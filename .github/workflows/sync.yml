@@ -75,6 +75,37 @@ jobs:
         if: steps.sync.outputs.synced == 'true'
         run: git push --follow-tags origin HEAD:${{ github.event.repository.default_branch }}
 
+      # A tag alone notifies nobody and does not show up on the repository's
+      # front page, so every synced version gets a release too.
+      - name: Release
+        if: steps.sync.outputs.synced == 'true'
+        env:
+          GH_TOKEN: ${{ github.token }}
+          VERSION: ${{ steps.sync.outputs.version }}
+        run: |
+          tag="v$VERSION"
+
+          # The Go module tag repair path reports a sync without there being a
+          # new upstream version, and there the release already exists.
+          if gh release view "$tag" >/dev/null 2>&1; then
+            exit 0
+          fi
+
+          fence='```'
+          gh release create "$tag" --verify-tag --title "$tag" --notes-file - <<EOF
+          Pulumi SDKs generated from [stripe/terraform-provider-stripe $tag](https://github.com/stripe/terraform-provider-stripe/releases/tag/$tag).
+
+          ${fence}bash
+          pulumi package add terraform-provider stripe/stripe $VERSION
+          ${fence}
+
+          The Go SDK lives in this repository and can be depended on directly:
+
+          ${fence}bash
+          go get github.com/gvtlabs/pulumi-stripe/sdks/go@$tag
+          ${fence}
+          EOF
+
       - name: Summary
         if: always()
         run: |

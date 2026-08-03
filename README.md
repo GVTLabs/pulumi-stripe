@@ -5,9 +5,9 @@ Pulumi SDKs for [Stripe](https://stripe.com), generated from
 via Pulumi's Terraform provider bridge.
 
 This repository does exactly one thing: it watches the upstream provider for new
-releases, regenerates the SDKs, and tags the result with the same version. Tag
-`v0.2.3` here contains the SDKs generated from upstream `v0.2.3`. Everything
-under `sdks/` is generated — never edit it by hand.
+releases, regenerates the SDKs, and tags and releases the result under the same
+version. Tag `v0.2.3` here contains the SDKs generated from upstream `v0.2.3`.
+Everything under `sdks/` is generated — never edit it by hand.
 
 ## Using the SDKs
 
@@ -64,8 +64,11 @@ becomes `BillingMeter`.
 [`.github/workflows/sync.yml`](.github/workflows/sync.yml) runs
 [`scripts/sync.sh`](scripts/sync.sh) hourly. The script reads the latest upstream
 release, exits early if a matching tag already exists, and otherwise regenerates
-all five SDKs, commits them, and creates the mirroring tags. Git tags are the
-only state, so the job is idempotent and needs no external bookkeeping.
+all five SDKs, commits them, and creates the mirroring tags. The workflow then
+publishes a GitHub release for the `v<version>` tag, which is what a consumer
+can subscribe to; a tag on its own notifies nobody. Git tags are the only state
+the sync decision rests on, so the job is idempotent and needs no external
+bookkeeping.
 
 Two steps exist purely to keep the Go SDK consumable. The script rewrites the
 bridge's canonical module path to this repository's and fails loudly if any
