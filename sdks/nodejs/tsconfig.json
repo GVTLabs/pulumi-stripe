@@ -1,0 +1,51 @@
+{
+    "compilerOptions": {
+        // Output
+        "outDir": "bin",
+        "declaration": true,
+        "declarationMap": true,
+        "sourceMap": true,
+        "stripInternal": true,
+        // Environment
+        "target": "ES2022",
+        "module": "nodenext",
+        "moduleResolution": "nodenext",
+        "moduleDetection": "force",
+        "types": ["node"],
+        // Type Checking
+        "strict": true,
+        "noFallthroughCasesInSwitch": true,
+        "noImplicitReturns": true,
+        "skipLibCheck": true
+    },
+    "files": [
+        "billingMeter.ts",
+        "config/index.ts",
+        "config/vars.ts",
+        "coupon.ts",
+        "customer.ts",
+        "entitlementsFeature.ts",
+        "getBillingMeter.ts",
+        "index.ts",
+        "price.ts",
+        "product.ts",
+        "promotionCode.ts",
+        "provider.ts",
+        "shippingRate.ts",
+        "taxRate.ts",
+        "types/index.ts",
+        "types/input.ts",
+        "types/output.ts",
+        "utilities.ts",
+        "v2billingLicenseFee.ts",
+        "v2billingLicensedItem.ts",
+        "v2billingMeteredItem.ts",
+        "v2billingPricingPlan.ts",
+        "v2billingPricingPlanComponent.ts",
+        "v2billingRateCard.ts",
+        "v2billingRateCardRate.ts",
+        "v2billingServiceAction.ts",
+        "v2coreEventDestination.ts",
+        "webhookEndpoint.ts"
+    ]
+}
