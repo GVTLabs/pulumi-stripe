@@ -1,0 +1,85 @@
+name: Sync upstream release
+
+# GitHub does not let one repository subscribe to another repository's release
+# events, so polling is the only trigger that works without cooperation from
+# stripe/terraform-provider-stripe. The repository_dispatch trigger is here so
+# a webhook relay can push us an event and skip the polling delay.
+on:
+  schedule:
+    - cron: '17 * * * *'
+  workflow_dispatch:
+    inputs:
+      version:
+        description: 'Upstream version to sync (defaults to the latest release)'
+        required: false
+        type: string
+      force:
+        description: 'Regenerate even if the tag already exists'
+        required: false
+        default: false
+        type: boolean
+  repository_dispatch:
+    types: [upstream-release]
+
+permissions:
+  contents: write
+
+concurrency:
+  group: sync-upstream
+  cancel-in-progress: false
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          fetch-depth: 0
+
+      # Installation-only mode: with no 'command' input the action downloads the
+      # CLI and exits without logging in, so no PULUMI_ACCESS_TOKEN is needed.
+      # Codegen never talks to the Pulumi Cloud backend.
+      - uses: pulumi/actions@v7
+
+      - name: Configure git identity
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+
+      - name: Sync
+        id: sync
+        env:
+          GH_TOKEN: ${{ github.token }}
+          INPUT_VERSION: ${{ inputs.version || github.event.client_payload.version || '' }}
+          INPUT_FORCE: ${{ inputs.force || false }}
+        run: |
+          args=()
+          [[ -n "$INPUT_VERSION" ]] && args+=(--version "$INPUT_VERSION")
+          [[ "$INPUT_FORCE" == 'true' ]] && args+=(--force)
+
+          set +e
+          ./scripts/sync.sh "${args[@]}"
+          code=$?
+          set -e
+
+          # 75 means the release is not on the OpenTofu registry yet. That is
+          # expected for a while after an upstream release, so let the next
+          # scheduled run pick it up instead of reporting a red build.
+          if [[ $code -eq 75 ]]; then
+            echo "::notice::Upstream release is not published to the OpenTofu registry yet; retrying on the next scheduled run."
+            exit 0
+          fi
+          exit $code
+
+      - name: Push
+        if: steps.sync.outputs.synced == 'true'
+        run: git push --follow-tags origin HEAD:${{ github.event.repository.default_branch }}
+
+      - name: Summary
+        if: always()
+        run: |
+          if [[ '${{ steps.sync.outputs.synced }}' == 'true' ]]; then
+            echo "Synced \`v${{ steps.sync.outputs.version }}\`." >>"$GITHUB_STEP_SUMMARY"
+          else
+            echo "Nothing to do; already at \`v${{ steps.sync.outputs.version }}\`." >>"$GITHUB_STEP_SUMMARY"
+          fi
