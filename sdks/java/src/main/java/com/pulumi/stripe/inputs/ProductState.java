@@ -7,8 +7,9 @@ import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
 import com.pulumi.stripe.inputs.ProductDefaultPriceDataArgs;
 import com.pulumi.stripe.inputs.ProductMarketingFeatureArgs;
-import com.pulumi.stripe.inputs.ProductPackageDimensionsArgs;
+import com.pulumi.stripe.inputs.ProductPackageDimensionArgs;
 import java.lang.Boolean;
+import java.lang.Double;
 import java.lang.String;
 import java.util.List;
 import java.util.Map;
@@ -22,14 +23,14 @@ public final class ProductState extends com.pulumi.resources.ResourceArgs {
     public static final ProductState Empty = new ProductState();
 
     /**
-     * Whether the product is currently available for purchase. Defaults to &lt;span pulumi-lang-nodejs=&#34;`true`&#34; pulumi-lang-dotnet=&#34;`True`&#34; pulumi-lang-go=&#34;`true`&#34; pulumi-lang-python=&#34;`true`&#34; pulumi-lang-yaml=&#34;`true`&#34; pulumi-lang-java=&#34;`true`&#34; pulumi-lang-hcl=&#34;`true`&#34;&gt;`true`&lt;/span&gt;.
+     * Whether the product is currently available for purchase.
      * 
      */
     @Import(name="active")
     private @Nullable Output<Boolean> active;
 
     /**
-     * @return Whether the product is currently available for purchase. Defaults to &lt;span pulumi-lang-nodejs=&#34;`true`&#34; pulumi-lang-dotnet=&#34;`True`&#34; pulumi-lang-go=&#34;`true`&#34; pulumi-lang-python=&#34;`true`&#34; pulumi-lang-yaml=&#34;`true`&#34; pulumi-lang-java=&#34;`true`&#34; pulumi-lang-hcl=&#34;`true`&#34;&gt;`true`&lt;/span&gt;.
+     * @return Whether the product is currently available for purchase.
      * 
      */
     public Optional<Output<Boolean>> active() {
@@ -37,18 +38,48 @@ public final class ProductState extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * Data used to generate a new [Price](https://stripe.com/docs/api/prices) object. This Price will be set as the default price for this product.
+     * Time at which the object was created. Measured in seconds since the Unix epoch.
      * 
      */
-    @Import(name="defaultPriceData")
-    private @Nullable Output<ProductDefaultPriceDataArgs> defaultPriceData;
+    @Import(name="created")
+    private @Nullable Output<Double> created;
 
     /**
-     * @return Data used to generate a new [Price](https://stripe.com/docs/api/prices) object. This Price will be set as the default price for this product.
+     * @return Time at which the object was created. Measured in seconds since the Unix epoch.
      * 
      */
-    public Optional<Output<ProductDefaultPriceDataArgs>> defaultPriceData() {
-        return Optional.ofNullable(this.defaultPriceData);
+    public Optional<Output<Double>> created() {
+        return Optional.ofNullable(this.created);
+    }
+
+    /**
+     * The ID of the [Price](https://docs.stripe.com/api/prices) object that is the default price for this product.
+     * 
+     */
+    @Import(name="defaultPrice")
+    private @Nullable Output<String> defaultPrice;
+
+    /**
+     * @return The ID of the [Price](https://docs.stripe.com/api/prices) object that is the default price for this product.
+     * 
+     */
+    public Optional<Output<String>> defaultPrice() {
+        return Optional.ofNullable(this.defaultPrice);
+    }
+
+    /**
+     * Data used to generate a new [Price](https://docs.stripe.com/api/prices) object. This Price will be set as the default price for this product.
+     * 
+     */
+    @Import(name="defaultPriceDatas")
+    private @Nullable Output<List<ProductDefaultPriceDataArgs>> defaultPriceDatas;
+
+    /**
+     * @return Data used to generate a new [Price](https://docs.stripe.com/api/prices) object. This Price will be set as the default price for this product.
+     * 
+     */
+    public Optional<Output<List<ProductDefaultPriceDataArgs>>> defaultPriceDatas() {
+        return Optional.ofNullable(this.defaultPriceDatas);
     }
 
     /**
@@ -82,14 +113,29 @@ public final class ProductState extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * A list of up to 15 marketing features for this product. These are displayed in [pricing tables](https://stripe.com/docs/payments/checkout/pricing-table).
+     * If the object exists in live mode, the value is &lt;span pulumi-lang-nodejs=&#34;`true`&#34; pulumi-lang-dotnet=&#34;`True`&#34; pulumi-lang-go=&#34;`true`&#34; pulumi-lang-python=&#34;`true`&#34; pulumi-lang-yaml=&#34;`true`&#34; pulumi-lang-java=&#34;`true`&#34; pulumi-lang-hcl=&#34;`true`&#34;&gt;`true`&lt;/span&gt;. If the object exists in test mode, the value is &lt;span pulumi-lang-nodejs=&#34;`false`&#34; pulumi-lang-dotnet=&#34;`False`&#34; pulumi-lang-go=&#34;`false`&#34; pulumi-lang-python=&#34;`false`&#34; pulumi-lang-yaml=&#34;`false`&#34; pulumi-lang-java=&#34;`false`&#34; pulumi-lang-hcl=&#34;`false`&#34;&gt;`false`&lt;/span&gt;.
+     * 
+     */
+    @Import(name="livemode")
+    private @Nullable Output<Boolean> livemode;
+
+    /**
+     * @return If the object exists in live mode, the value is &lt;span pulumi-lang-nodejs=&#34;`true`&#34; pulumi-lang-dotnet=&#34;`True`&#34; pulumi-lang-go=&#34;`true`&#34; pulumi-lang-python=&#34;`true`&#34; pulumi-lang-yaml=&#34;`true`&#34; pulumi-lang-java=&#34;`true`&#34; pulumi-lang-hcl=&#34;`true`&#34;&gt;`true`&lt;/span&gt;. If the object exists in test mode, the value is &lt;span pulumi-lang-nodejs=&#34;`false`&#34; pulumi-lang-dotnet=&#34;`False`&#34; pulumi-lang-go=&#34;`false`&#34; pulumi-lang-python=&#34;`false`&#34; pulumi-lang-yaml=&#34;`false`&#34; pulumi-lang-java=&#34;`false`&#34; pulumi-lang-hcl=&#34;`false`&#34;&gt;`false`&lt;/span&gt;.
+     * 
+     */
+    public Optional<Output<Boolean>> livemode() {
+        return Optional.ofNullable(this.livemode);
+    }
+
+    /**
+     * A list of up to 15 marketing features for this product. These are displayed in [pricing tables](https://docs.stripe.com/payments/checkout/pricing-table).
      * 
      */
     @Import(name="marketingFeatures")
     private @Nullable Output<List<ProductMarketingFeatureArgs>> marketingFeatures;
 
     /**
-     * @return A list of up to 15 marketing features for this product. These are displayed in [pricing tables](https://stripe.com/docs/payments/checkout/pricing-table).
+     * @return A list of up to 15 marketing features for this product. These are displayed in [pricing tables](https://docs.stripe.com/payments/checkout/pricing-table).
      * 
      */
     public Optional<Output<List<ProductMarketingFeatureArgs>>> marketingFeatures() {
@@ -97,14 +143,14 @@ public final class ProductState extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * Set of [key-value pairs](https://stripe.com/docs/api/metadata) that you can attach to an object. This can be useful for storing additional information about the object in a structured format. Individual keys can be unset by posting an empty value to them. All keys can be unset by posting an empty value to &lt;span pulumi-lang-nodejs=&#34;`metadata`&#34; pulumi-lang-dotnet=&#34;`Metadata`&#34; pulumi-lang-go=&#34;`metadata`&#34; pulumi-lang-python=&#34;`metadata`&#34; pulumi-lang-yaml=&#34;`metadata`&#34; pulumi-lang-java=&#34;`metadata`&#34; pulumi-lang-hcl=&#34;`metadata`&#34;&gt;`metadata`&lt;/span&gt;.
+     * Set of [key-value pairs](https://docs.stripe.com/api/metadata) that you can attach to an object. This can be useful for storing additional information about the object in a structured format.
      * 
      */
     @Import(name="metadata")
     private @Nullable Output<Map<String,String>> metadata;
 
     /**
-     * @return Set of [key-value pairs](https://stripe.com/docs/api/metadata) that you can attach to an object. This can be useful for storing additional information about the object in a structured format. Individual keys can be unset by posting an empty value to them. All keys can be unset by posting an empty value to &lt;span pulumi-lang-nodejs=&#34;`metadata`&#34; pulumi-lang-dotnet=&#34;`Metadata`&#34; pulumi-lang-go=&#34;`metadata`&#34; pulumi-lang-python=&#34;`metadata`&#34; pulumi-lang-yaml=&#34;`metadata`&#34; pulumi-lang-java=&#34;`metadata`&#34; pulumi-lang-hcl=&#34;`metadata`&#34;&gt;`metadata`&lt;/span&gt;.
+     * @return Set of [key-value pairs](https://docs.stripe.com/api/metadata) that you can attach to an object. This can be useful for storing additional information about the object in a structured format.
      * 
      */
     public Optional<Output<Map<String,String>>> metadata() {
@@ -127,17 +173,32 @@ public final class ProductState extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
+     * String representing the object&#39;s type. Objects of the same type share the same value.
+     * 
+     */
+    @Import(name="object")
+    private @Nullable Output<String> object;
+
+    /**
+     * @return String representing the object&#39;s type. Objects of the same type share the same value.
+     * 
+     */
+    public Optional<Output<String>> object() {
+        return Optional.ofNullable(this.object);
+    }
+
+    /**
      * The dimensions of this product for shipping purposes.
      * 
      */
     @Import(name="packageDimensions")
-    private @Nullable Output<ProductPackageDimensionsArgs> packageDimensions;
+    private @Nullable Output<List<ProductPackageDimensionArgs>> packageDimensions;
 
     /**
      * @return The dimensions of this product for shipping purposes.
      * 
      */
-    public Optional<Output<ProductPackageDimensionsArgs>> packageDimensions() {
+    public Optional<Output<List<ProductPackageDimensionArgs>>> packageDimensions() {
         return Optional.ofNullable(this.packageDimensions);
     }
 
@@ -157,14 +218,14 @@ public final class ProductState extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * An arbitrary string to be displayed on your customer&#39;s credit card or bank statement. While most banks display this information consistently, some may display it incorrectly or not at all. This may be up to 22 characters. The statement description may not include `&lt;`, `&gt;`, `\`, `\&#34;`, `&#39;` characters, and will appear on your customer&#39;s statement in capital letters. Non-ASCII characters are automatically stripped. It must contain at least one letter. Only used for subscription payments.
+     * Extra information about a product which will appear on your customer&#39;s credit card statement. In the case that multiple products are billed at once, the first statement descriptor will be used. Only used for subscription payments.
      * 
      */
     @Import(name="statementDescriptor")
     private @Nullable Output<String> statementDescriptor;
 
     /**
-     * @return An arbitrary string to be displayed on your customer&#39;s credit card or bank statement. While most banks display this information consistently, some may display it incorrectly or not at all. This may be up to 22 characters. The statement description may not include `&lt;`, `&gt;`, `\`, `\&#34;`, `&#39;` characters, and will appear on your customer&#39;s statement in capital letters. Non-ASCII characters are automatically stripped. It must contain at least one letter. Only used for subscription payments.
+     * @return Extra information about a product which will appear on your customer&#39;s credit card statement. In the case that multiple products are billed at once, the first statement descriptor will be used. Only used for subscription payments.
      * 
      */
     public Optional<Output<String>> statementDescriptor() {
@@ -172,14 +233,14 @@ public final class ProductState extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * A [tax code](https://stripe.com/docs/tax/tax-categories) ID.
+     * A [tax code](https://docs.stripe.com/tax/tax-categories) ID.
      * 
      */
     @Import(name="taxCode")
     private @Nullable Output<String> taxCode;
 
     /**
-     * @return A [tax code](https://stripe.com/docs/tax/tax-categories) ID.
+     * @return A [tax code](https://docs.stripe.com/tax/tax-categories) ID.
      * 
      */
     public Optional<Output<String>> taxCode() {
@@ -187,14 +248,14 @@ public final class ProductState extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * The type of the product. Defaults to &lt;span pulumi-lang-nodejs=&#34;`service`&#34; pulumi-lang-dotnet=&#34;`Service`&#34; pulumi-lang-go=&#34;`service`&#34; pulumi-lang-python=&#34;`service`&#34; pulumi-lang-yaml=&#34;`service`&#34; pulumi-lang-java=&#34;`service`&#34; pulumi-lang-hcl=&#34;`service`&#34;&gt;`service`&lt;/span&gt; if not explicitly specified, enabling use of this product with Subscriptions and Plans. Set this parameter to &lt;span pulumi-lang-nodejs=&#34;`good`&#34; pulumi-lang-dotnet=&#34;`Good`&#34; pulumi-lang-go=&#34;`good`&#34; pulumi-lang-python=&#34;`good`&#34; pulumi-lang-yaml=&#34;`good`&#34; pulumi-lang-java=&#34;`good`&#34; pulumi-lang-hcl=&#34;`good`&#34;&gt;`good`&lt;/span&gt; to use this product with Orders and SKUs. On API versions before `2018-02-05`, this field defaults to &lt;span pulumi-lang-nodejs=&#34;`good`&#34; pulumi-lang-dotnet=&#34;`Good`&#34; pulumi-lang-go=&#34;`good`&#34; pulumi-lang-python=&#34;`good`&#34; pulumi-lang-yaml=&#34;`good`&#34; pulumi-lang-java=&#34;`good`&#34; pulumi-lang-hcl=&#34;`good`&#34;&gt;`good`&lt;/span&gt; for compatibility reasons.
+     * The type of the product. The product is either of type &lt;span pulumi-lang-nodejs=&#34;`good`&#34; pulumi-lang-dotnet=&#34;`Good`&#34; pulumi-lang-go=&#34;`good`&#34; pulumi-lang-python=&#34;`good`&#34; pulumi-lang-yaml=&#34;`good`&#34; pulumi-lang-java=&#34;`good`&#34; pulumi-lang-hcl=&#34;`good`&#34;&gt;`good`&lt;/span&gt;, which is eligible for use with Orders and SKUs, or &lt;span pulumi-lang-nodejs=&#34;`service`&#34; pulumi-lang-dotnet=&#34;`Service`&#34; pulumi-lang-go=&#34;`service`&#34; pulumi-lang-python=&#34;`service`&#34; pulumi-lang-yaml=&#34;`service`&#34; pulumi-lang-java=&#34;`service`&#34; pulumi-lang-hcl=&#34;`service`&#34;&gt;`service`&lt;/span&gt;, which is eligible for use with Subscriptions and Plans.
      * 
      */
     @Import(name="type")
     private @Nullable Output<String> type;
 
     /**
-     * @return The type of the product. Defaults to &lt;span pulumi-lang-nodejs=&#34;`service`&#34; pulumi-lang-dotnet=&#34;`Service`&#34; pulumi-lang-go=&#34;`service`&#34; pulumi-lang-python=&#34;`service`&#34; pulumi-lang-yaml=&#34;`service`&#34; pulumi-lang-java=&#34;`service`&#34; pulumi-lang-hcl=&#34;`service`&#34;&gt;`service`&lt;/span&gt; if not explicitly specified, enabling use of this product with Subscriptions and Plans. Set this parameter to &lt;span pulumi-lang-nodejs=&#34;`good`&#34; pulumi-lang-dotnet=&#34;`Good`&#34; pulumi-lang-go=&#34;`good`&#34; pulumi-lang-python=&#34;`good`&#34; pulumi-lang-yaml=&#34;`good`&#34; pulumi-lang-java=&#34;`good`&#34; pulumi-lang-hcl=&#34;`good`&#34;&gt;`good`&lt;/span&gt; to use this product with Orders and SKUs. On API versions before `2018-02-05`, this field defaults to &lt;span pulumi-lang-nodejs=&#34;`good`&#34; pulumi-lang-dotnet=&#34;`Good`&#34; pulumi-lang-go=&#34;`good`&#34; pulumi-lang-python=&#34;`good`&#34; pulumi-lang-yaml=&#34;`good`&#34; pulumi-lang-java=&#34;`good`&#34; pulumi-lang-hcl=&#34;`good`&#34;&gt;`good`&lt;/span&gt; for compatibility reasons.
+     * @return The type of the product. The product is either of type &lt;span pulumi-lang-nodejs=&#34;`good`&#34; pulumi-lang-dotnet=&#34;`Good`&#34; pulumi-lang-go=&#34;`good`&#34; pulumi-lang-python=&#34;`good`&#34; pulumi-lang-yaml=&#34;`good`&#34; pulumi-lang-java=&#34;`good`&#34; pulumi-lang-hcl=&#34;`good`&#34;&gt;`good`&lt;/span&gt;, which is eligible for use with Orders and SKUs, or &lt;span pulumi-lang-nodejs=&#34;`service`&#34; pulumi-lang-dotnet=&#34;`Service`&#34; pulumi-lang-go=&#34;`service`&#34; pulumi-lang-python=&#34;`service`&#34; pulumi-lang-yaml=&#34;`service`&#34; pulumi-lang-java=&#34;`service`&#34; pulumi-lang-hcl=&#34;`service`&#34;&gt;`service`&lt;/span&gt;, which is eligible for use with Subscriptions and Plans.
      * 
      */
     public Optional<Output<String>> type() {
@@ -217,6 +278,21 @@ public final class ProductState extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
+     * Time at which the object was last updated. Measured in seconds since the Unix epoch.
+     * 
+     */
+    @Import(name="updated")
+    private @Nullable Output<Double> updated;
+
+    /**
+     * @return Time at which the object was last updated. Measured in seconds since the Unix epoch.
+     * 
+     */
+    public Optional<Output<Double>> updated() {
+        return Optional.ofNullable(this.updated);
+    }
+
+    /**
      * A URL of a publicly-accessible webpage for this product.
      * 
      */
@@ -235,18 +311,23 @@ public final class ProductState extends com.pulumi.resources.ResourceArgs {
 
     private ProductState(ProductState $) {
         this.active = $.active;
-        this.defaultPriceData = $.defaultPriceData;
+        this.created = $.created;
+        this.defaultPrice = $.defaultPrice;
+        this.defaultPriceDatas = $.defaultPriceDatas;
         this.description = $.description;
         this.images = $.images;
+        this.livemode = $.livemode;
         this.marketingFeatures = $.marketingFeatures;
         this.metadata = $.metadata;
         this.name = $.name;
+        this.object = $.object;
         this.packageDimensions = $.packageDimensions;
         this.shippable = $.shippable;
         this.statementDescriptor = $.statementDescriptor;
         this.taxCode = $.taxCode;
         this.type = $.type;
         this.unitLabel = $.unitLabel;
+        this.updated = $.updated;
         this.url = $.url;
     }
 
@@ -269,7 +350,7 @@ public final class ProductState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param active Whether the product is currently available for purchase. Defaults to &lt;span pulumi-lang-nodejs=&#34;`true`&#34; pulumi-lang-dotnet=&#34;`True`&#34; pulumi-lang-go=&#34;`true`&#34; pulumi-lang-python=&#34;`true`&#34; pulumi-lang-yaml=&#34;`true`&#34; pulumi-lang-java=&#34;`true`&#34; pulumi-lang-hcl=&#34;`true`&#34;&gt;`true`&lt;/span&gt;.
+         * @param active Whether the product is currently available for purchase.
          * 
          * @return builder
          * 
@@ -280,7 +361,7 @@ public final class ProductState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param active Whether the product is currently available for purchase. Defaults to &lt;span pulumi-lang-nodejs=&#34;`true`&#34; pulumi-lang-dotnet=&#34;`True`&#34; pulumi-lang-go=&#34;`true`&#34; pulumi-lang-python=&#34;`true`&#34; pulumi-lang-yaml=&#34;`true`&#34; pulumi-lang-java=&#34;`true`&#34; pulumi-lang-hcl=&#34;`true`&#34;&gt;`true`&lt;/span&gt;.
+         * @param active Whether the product is currently available for purchase.
          * 
          * @return builder
          * 
@@ -290,24 +371,76 @@ public final class ProductState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param defaultPriceData Data used to generate a new [Price](https://stripe.com/docs/api/prices) object. This Price will be set as the default price for this product.
+         * @param created Time at which the object was created. Measured in seconds since the Unix epoch.
          * 
          * @return builder
          * 
          */
-        public Builder defaultPriceData(@Nullable Output<ProductDefaultPriceDataArgs> defaultPriceData) {
-            $.defaultPriceData = defaultPriceData;
+        public Builder created(@Nullable Output<Double> created) {
+            $.created = created;
             return this;
         }
 
         /**
-         * @param defaultPriceData Data used to generate a new [Price](https://stripe.com/docs/api/prices) object. This Price will be set as the default price for this product.
+         * @param created Time at which the object was created. Measured in seconds since the Unix epoch.
          * 
          * @return builder
          * 
          */
-        public Builder defaultPriceData(ProductDefaultPriceDataArgs defaultPriceData) {
-            return defaultPriceData(Output.of(defaultPriceData));
+        public Builder created(Double created) {
+            return created(Output.of(created));
+        }
+
+        /**
+         * @param defaultPrice The ID of the [Price](https://docs.stripe.com/api/prices) object that is the default price for this product.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder defaultPrice(@Nullable Output<String> defaultPrice) {
+            $.defaultPrice = defaultPrice;
+            return this;
+        }
+
+        /**
+         * @param defaultPrice The ID of the [Price](https://docs.stripe.com/api/prices) object that is the default price for this product.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder defaultPrice(String defaultPrice) {
+            return defaultPrice(Output.of(defaultPrice));
+        }
+
+        /**
+         * @param defaultPriceDatas Data used to generate a new [Price](https://docs.stripe.com/api/prices) object. This Price will be set as the default price for this product.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder defaultPriceDatas(@Nullable Output<List<ProductDefaultPriceDataArgs>> defaultPriceDatas) {
+            $.defaultPriceDatas = defaultPriceDatas;
+            return this;
+        }
+
+        /**
+         * @param defaultPriceDatas Data used to generate a new [Price](https://docs.stripe.com/api/prices) object. This Price will be set as the default price for this product.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder defaultPriceDatas(List<ProductDefaultPriceDataArgs> defaultPriceDatas) {
+            return defaultPriceDatas(Output.of(defaultPriceDatas));
+        }
+
+        /**
+         * @param defaultPriceDatas Data used to generate a new [Price](https://docs.stripe.com/api/prices) object. This Price will be set as the default price for this product.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder defaultPriceDatas(ProductDefaultPriceDataArgs... defaultPriceDatas) {
+            return defaultPriceDatas(List.of(defaultPriceDatas));
         }
 
         /**
@@ -363,7 +496,28 @@ public final class ProductState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param marketingFeatures A list of up to 15 marketing features for this product. These are displayed in [pricing tables](https://stripe.com/docs/payments/checkout/pricing-table).
+         * @param livemode If the object exists in live mode, the value is &lt;span pulumi-lang-nodejs=&#34;`true`&#34; pulumi-lang-dotnet=&#34;`True`&#34; pulumi-lang-go=&#34;`true`&#34; pulumi-lang-python=&#34;`true`&#34; pulumi-lang-yaml=&#34;`true`&#34; pulumi-lang-java=&#34;`true`&#34; pulumi-lang-hcl=&#34;`true`&#34;&gt;`true`&lt;/span&gt;. If the object exists in test mode, the value is &lt;span pulumi-lang-nodejs=&#34;`false`&#34; pulumi-lang-dotnet=&#34;`False`&#34; pulumi-lang-go=&#34;`false`&#34; pulumi-lang-python=&#34;`false`&#34; pulumi-lang-yaml=&#34;`false`&#34; pulumi-lang-java=&#34;`false`&#34; pulumi-lang-hcl=&#34;`false`&#34;&gt;`false`&lt;/span&gt;.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder livemode(@Nullable Output<Boolean> livemode) {
+            $.livemode = livemode;
+            return this;
+        }
+
+        /**
+         * @param livemode If the object exists in live mode, the value is &lt;span pulumi-lang-nodejs=&#34;`true`&#34; pulumi-lang-dotnet=&#34;`True`&#34; pulumi-lang-go=&#34;`true`&#34; pulumi-lang-python=&#34;`true`&#34; pulumi-lang-yaml=&#34;`true`&#34; pulumi-lang-java=&#34;`true`&#34; pulumi-lang-hcl=&#34;`true`&#34;&gt;`true`&lt;/span&gt;. If the object exists in test mode, the value is &lt;span pulumi-lang-nodejs=&#34;`false`&#34; pulumi-lang-dotnet=&#34;`False`&#34; pulumi-lang-go=&#34;`false`&#34; pulumi-lang-python=&#34;`false`&#34; pulumi-lang-yaml=&#34;`false`&#34; pulumi-lang-java=&#34;`false`&#34; pulumi-lang-hcl=&#34;`false`&#34;&gt;`false`&lt;/span&gt;.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder livemode(Boolean livemode) {
+            return livemode(Output.of(livemode));
+        }
+
+        /**
+         * @param marketingFeatures A list of up to 15 marketing features for this product. These are displayed in [pricing tables](https://docs.stripe.com/payments/checkout/pricing-table).
          * 
          * @return builder
          * 
@@ -374,7 +528,7 @@ public final class ProductState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param marketingFeatures A list of up to 15 marketing features for this product. These are displayed in [pricing tables](https://stripe.com/docs/payments/checkout/pricing-table).
+         * @param marketingFeatures A list of up to 15 marketing features for this product. These are displayed in [pricing tables](https://docs.stripe.com/payments/checkout/pricing-table).
          * 
          * @return builder
          * 
@@ -384,7 +538,7 @@ public final class ProductState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param marketingFeatures A list of up to 15 marketing features for this product. These are displayed in [pricing tables](https://stripe.com/docs/payments/checkout/pricing-table).
+         * @param marketingFeatures A list of up to 15 marketing features for this product. These are displayed in [pricing tables](https://docs.stripe.com/payments/checkout/pricing-table).
          * 
          * @return builder
          * 
@@ -394,7 +548,7 @@ public final class ProductState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param metadata Set of [key-value pairs](https://stripe.com/docs/api/metadata) that you can attach to an object. This can be useful for storing additional information about the object in a structured format. Individual keys can be unset by posting an empty value to them. All keys can be unset by posting an empty value to &lt;span pulumi-lang-nodejs=&#34;`metadata`&#34; pulumi-lang-dotnet=&#34;`Metadata`&#34; pulumi-lang-go=&#34;`metadata`&#34; pulumi-lang-python=&#34;`metadata`&#34; pulumi-lang-yaml=&#34;`metadata`&#34; pulumi-lang-java=&#34;`metadata`&#34; pulumi-lang-hcl=&#34;`metadata`&#34;&gt;`metadata`&lt;/span&gt;.
+         * @param metadata Set of [key-value pairs](https://docs.stripe.com/api/metadata) that you can attach to an object. This can be useful for storing additional information about the object in a structured format.
          * 
          * @return builder
          * 
@@ -405,7 +559,7 @@ public final class ProductState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param metadata Set of [key-value pairs](https://stripe.com/docs/api/metadata) that you can attach to an object. This can be useful for storing additional information about the object in a structured format. Individual keys can be unset by posting an empty value to them. All keys can be unset by posting an empty value to &lt;span pulumi-lang-nodejs=&#34;`metadata`&#34; pulumi-lang-dotnet=&#34;`Metadata`&#34; pulumi-lang-go=&#34;`metadata`&#34; pulumi-lang-python=&#34;`metadata`&#34; pulumi-lang-yaml=&#34;`metadata`&#34; pulumi-lang-java=&#34;`metadata`&#34; pulumi-lang-hcl=&#34;`metadata`&#34;&gt;`metadata`&lt;/span&gt;.
+         * @param metadata Set of [key-value pairs](https://docs.stripe.com/api/metadata) that you can attach to an object. This can be useful for storing additional information about the object in a structured format.
          * 
          * @return builder
          * 
@@ -436,12 +590,33 @@ public final class ProductState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
+         * @param object String representing the object&#39;s type. Objects of the same type share the same value.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder object(@Nullable Output<String> object) {
+            $.object = object;
+            return this;
+        }
+
+        /**
+         * @param object String representing the object&#39;s type. Objects of the same type share the same value.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder object(String object) {
+            return object(Output.of(object));
+        }
+
+        /**
          * @param packageDimensions The dimensions of this product for shipping purposes.
          * 
          * @return builder
          * 
          */
-        public Builder packageDimensions(@Nullable Output<ProductPackageDimensionsArgs> packageDimensions) {
+        public Builder packageDimensions(@Nullable Output<List<ProductPackageDimensionArgs>> packageDimensions) {
             $.packageDimensions = packageDimensions;
             return this;
         }
@@ -452,8 +627,18 @@ public final class ProductState extends com.pulumi.resources.ResourceArgs {
          * @return builder
          * 
          */
-        public Builder packageDimensions(ProductPackageDimensionsArgs packageDimensions) {
+        public Builder packageDimensions(List<ProductPackageDimensionArgs> packageDimensions) {
             return packageDimensions(Output.of(packageDimensions));
+        }
+
+        /**
+         * @param packageDimensions The dimensions of this product for shipping purposes.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder packageDimensions(ProductPackageDimensionArgs... packageDimensions) {
+            return packageDimensions(List.of(packageDimensions));
         }
 
         /**
@@ -478,7 +663,7 @@ public final class ProductState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param statementDescriptor An arbitrary string to be displayed on your customer&#39;s credit card or bank statement. While most banks display this information consistently, some may display it incorrectly or not at all. This may be up to 22 characters. The statement description may not include `&lt;`, `&gt;`, `\`, `\&#34;`, `&#39;` characters, and will appear on your customer&#39;s statement in capital letters. Non-ASCII characters are automatically stripped. It must contain at least one letter. Only used for subscription payments.
+         * @param statementDescriptor Extra information about a product which will appear on your customer&#39;s credit card statement. In the case that multiple products are billed at once, the first statement descriptor will be used. Only used for subscription payments.
          * 
          * @return builder
          * 
@@ -489,7 +674,7 @@ public final class ProductState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param statementDescriptor An arbitrary string to be displayed on your customer&#39;s credit card or bank statement. While most banks display this information consistently, some may display it incorrectly or not at all. This may be up to 22 characters. The statement description may not include `&lt;`, `&gt;`, `\`, `\&#34;`, `&#39;` characters, and will appear on your customer&#39;s statement in capital letters. Non-ASCII characters are automatically stripped. It must contain at least one letter. Only used for subscription payments.
+         * @param statementDescriptor Extra information about a product which will appear on your customer&#39;s credit card statement. In the case that multiple products are billed at once, the first statement descriptor will be used. Only used for subscription payments.
          * 
          * @return builder
          * 
@@ -499,7 +684,7 @@ public final class ProductState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param taxCode A [tax code](https://stripe.com/docs/tax/tax-categories) ID.
+         * @param taxCode A [tax code](https://docs.stripe.com/tax/tax-categories) ID.
          * 
          * @return builder
          * 
@@ -510,7 +695,7 @@ public final class ProductState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param taxCode A [tax code](https://stripe.com/docs/tax/tax-categories) ID.
+         * @param taxCode A [tax code](https://docs.stripe.com/tax/tax-categories) ID.
          * 
          * @return builder
          * 
@@ -520,7 +705,7 @@ public final class ProductState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param type The type of the product. Defaults to &lt;span pulumi-lang-nodejs=&#34;`service`&#34; pulumi-lang-dotnet=&#34;`Service`&#34; pulumi-lang-go=&#34;`service`&#34; pulumi-lang-python=&#34;`service`&#34; pulumi-lang-yaml=&#34;`service`&#34; pulumi-lang-java=&#34;`service`&#34; pulumi-lang-hcl=&#34;`service`&#34;&gt;`service`&lt;/span&gt; if not explicitly specified, enabling use of this product with Subscriptions and Plans. Set this parameter to &lt;span pulumi-lang-nodejs=&#34;`good`&#34; pulumi-lang-dotnet=&#34;`Good`&#34; pulumi-lang-go=&#34;`good`&#34; pulumi-lang-python=&#34;`good`&#34; pulumi-lang-yaml=&#34;`good`&#34; pulumi-lang-java=&#34;`good`&#34; pulumi-lang-hcl=&#34;`good`&#34;&gt;`good`&lt;/span&gt; to use this product with Orders and SKUs. On API versions before `2018-02-05`, this field defaults to &lt;span pulumi-lang-nodejs=&#34;`good`&#34; pulumi-lang-dotnet=&#34;`Good`&#34; pulumi-lang-go=&#34;`good`&#34; pulumi-lang-python=&#34;`good`&#34; pulumi-lang-yaml=&#34;`good`&#34; pulumi-lang-java=&#34;`good`&#34; pulumi-lang-hcl=&#34;`good`&#34;&gt;`good`&lt;/span&gt; for compatibility reasons.
+         * @param type The type of the product. The product is either of type &lt;span pulumi-lang-nodejs=&#34;`good`&#34; pulumi-lang-dotnet=&#34;`Good`&#34; pulumi-lang-go=&#34;`good`&#34; pulumi-lang-python=&#34;`good`&#34; pulumi-lang-yaml=&#34;`good`&#34; pulumi-lang-java=&#34;`good`&#34; pulumi-lang-hcl=&#34;`good`&#34;&gt;`good`&lt;/span&gt;, which is eligible for use with Orders and SKUs, or &lt;span pulumi-lang-nodejs=&#34;`service`&#34; pulumi-lang-dotnet=&#34;`Service`&#34; pulumi-lang-go=&#34;`service`&#34; pulumi-lang-python=&#34;`service`&#34; pulumi-lang-yaml=&#34;`service`&#34; pulumi-lang-java=&#34;`service`&#34; pulumi-lang-hcl=&#34;`service`&#34;&gt;`service`&lt;/span&gt;, which is eligible for use with Subscriptions and Plans.
          * 
          * @return builder
          * 
@@ -531,7 +716,7 @@ public final class ProductState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param type The type of the product. Defaults to &lt;span pulumi-lang-nodejs=&#34;`service`&#34; pulumi-lang-dotnet=&#34;`Service`&#34; pulumi-lang-go=&#34;`service`&#34; pulumi-lang-python=&#34;`service`&#34; pulumi-lang-yaml=&#34;`service`&#34; pulumi-lang-java=&#34;`service`&#34; pulumi-lang-hcl=&#34;`service`&#34;&gt;`service`&lt;/span&gt; if not explicitly specified, enabling use of this product with Subscriptions and Plans. Set this parameter to &lt;span pulumi-lang-nodejs=&#34;`good`&#34; pulumi-lang-dotnet=&#34;`Good`&#34; pulumi-lang-go=&#34;`good`&#34; pulumi-lang-python=&#34;`good`&#34; pulumi-lang-yaml=&#34;`good`&#34; pulumi-lang-java=&#34;`good`&#34; pulumi-lang-hcl=&#34;`good`&#34;&gt;`good`&lt;/span&gt; to use this product with Orders and SKUs. On API versions before `2018-02-05`, this field defaults to &lt;span pulumi-lang-nodejs=&#34;`good`&#34; pulumi-lang-dotnet=&#34;`Good`&#34; pulumi-lang-go=&#34;`good`&#34; pulumi-lang-python=&#34;`good`&#34; pulumi-lang-yaml=&#34;`good`&#34; pulumi-lang-java=&#34;`good`&#34; pulumi-lang-hcl=&#34;`good`&#34;&gt;`good`&lt;/span&gt; for compatibility reasons.
+         * @param type The type of the product. The product is either of type &lt;span pulumi-lang-nodejs=&#34;`good`&#34; pulumi-lang-dotnet=&#34;`Good`&#34; pulumi-lang-go=&#34;`good`&#34; pulumi-lang-python=&#34;`good`&#34; pulumi-lang-yaml=&#34;`good`&#34; pulumi-lang-java=&#34;`good`&#34; pulumi-lang-hcl=&#34;`good`&#34;&gt;`good`&lt;/span&gt;, which is eligible for use with Orders and SKUs, or &lt;span pulumi-lang-nodejs=&#34;`service`&#34; pulumi-lang-dotnet=&#34;`Service`&#34; pulumi-lang-go=&#34;`service`&#34; pulumi-lang-python=&#34;`service`&#34; pulumi-lang-yaml=&#34;`service`&#34; pulumi-lang-java=&#34;`service`&#34; pulumi-lang-hcl=&#34;`service`&#34;&gt;`service`&lt;/span&gt;, which is eligible for use with Subscriptions and Plans.
          * 
          * @return builder
          * 
@@ -559,6 +744,27 @@ public final class ProductState extends com.pulumi.resources.ResourceArgs {
          */
         public Builder unitLabel(String unitLabel) {
             return unitLabel(Output.of(unitLabel));
+        }
+
+        /**
+         * @param updated Time at which the object was last updated. Measured in seconds since the Unix epoch.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder updated(@Nullable Output<Double> updated) {
+            $.updated = updated;
+            return this;
+        }
+
+        /**
+         * @param updated Time at which the object was last updated. Measured in seconds since the Unix epoch.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder updated(Double updated) {
+            return updated(Output.of(updated));
         }
 
         /**

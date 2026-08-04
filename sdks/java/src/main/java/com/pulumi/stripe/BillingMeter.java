@@ -12,7 +12,10 @@ import com.pulumi.stripe.Utilities;
 import com.pulumi.stripe.inputs.BillingMeterState;
 import com.pulumi.stripe.outputs.BillingMeterCustomerMapping;
 import com.pulumi.stripe.outputs.BillingMeterDefaultAggregation;
-import com.pulumi.stripe.outputs.BillingMeterValueSettings;
+import com.pulumi.stripe.outputs.BillingMeterStatusTransitions;
+import com.pulumi.stripe.outputs.BillingMeterValueSetting;
+import java.lang.Boolean;
+import java.lang.Double;
 import java.lang.String;
 import java.util.List;
 import java.util.Optional;
@@ -21,56 +24,40 @@ import javax.annotation.Nullable;
 @ResourceType(type="stripe:index/billingMeter:BillingMeter")
 public class BillingMeter extends com.pulumi.resources.CustomResource {
     /**
-     * Fields that specify how to map a meter event to a customer.
+     * Time at which the object was created. Measured in seconds since the Unix epoch.
      * 
      */
-    @Export(name="customerMapping", refs={BillingMeterCustomerMapping.class}, tree="[0]")
-    private Output</* @Nullable */ BillingMeterCustomerMapping> customerMapping;
+    @Export(name="created", refs={Double.class}, tree="[0]")
+    private Output<Double> created;
 
     /**
-     * @return Fields that specify how to map a meter event to a customer.
+     * @return Time at which the object was created. Measured in seconds since the Unix epoch.
      * 
      */
-    public Output<Optional<BillingMeterCustomerMapping>> customerMapping() {
-        return Codegen.optional(this.customerMapping);
+    public Output<Double> created() {
+        return this.created;
     }
-    /**
-     * The default settings to aggregate a meter&#39;s events with.
-     * 
-     */
-    @Export(name="defaultAggregation", refs={BillingMeterDefaultAggregation.class}, tree="[0]")
-    private Output<BillingMeterDefaultAggregation> defaultAggregation;
+    @Export(name="customerMappings", refs={List.class,BillingMeterCustomerMapping.class}, tree="[0,1]")
+    private Output</* @Nullable */ List<BillingMeterCustomerMapping>> customerMappings;
 
-    /**
-     * @return The default settings to aggregate a meter&#39;s events with.
-     * 
-     */
-    public Output<BillingMeterDefaultAggregation> defaultAggregation() {
-        return this.defaultAggregation;
+    public Output<Optional<List<BillingMeterCustomerMapping>>> customerMappings() {
+        return Codegen.optional(this.customerMappings);
     }
-    /**
-     * Set of keys that will be used to group meter events by. Each key must be present in the event payload.
-     * 
-     */
-    @Export(name="dimensionPayloadKeys", refs={List.class,String.class}, tree="[0,1]")
-    private Output</* @Nullable */ List<String>> dimensionPayloadKeys;
+    @Export(name="defaultAggregations", refs={List.class,BillingMeterDefaultAggregation.class}, tree="[0,1]")
+    private Output</* @Nullable */ List<BillingMeterDefaultAggregation>> defaultAggregations;
 
-    /**
-     * @return Set of keys that will be used to group meter events by. Each key must be present in the event payload.
-     * 
-     */
-    public Output<Optional<List<String>>> dimensionPayloadKeys() {
-        return Codegen.optional(this.dimensionPayloadKeys);
+    public Output<Optional<List<BillingMeterDefaultAggregation>>> defaultAggregations() {
+        return Codegen.optional(this.defaultAggregations);
     }
     /**
-     * The meter’s name. Not visible to the customer.
+     * The meter&#39;s name.
      * 
      */
     @Export(name="displayName", refs={String.class}, tree="[0]")
     private Output<String> displayName;
 
     /**
-     * @return The meter’s name. Not visible to the customer.
+     * @return The meter&#39;s name.
      * 
      */
     public Output<String> displayName() {
@@ -105,6 +92,34 @@ public class BillingMeter extends com.pulumi.resources.CustomResource {
         return this.eventTimeWindow;
     }
     /**
+     * If the object exists in live mode, the value is &lt;span pulumi-lang-nodejs=&#34;`true`&#34; pulumi-lang-dotnet=&#34;`True`&#34; pulumi-lang-go=&#34;`true`&#34; pulumi-lang-python=&#34;`true`&#34; pulumi-lang-yaml=&#34;`true`&#34; pulumi-lang-java=&#34;`true`&#34; pulumi-lang-hcl=&#34;`true`&#34;&gt;`true`&lt;/span&gt;. If the object exists in test mode, the value is &lt;span pulumi-lang-nodejs=&#34;`false`&#34; pulumi-lang-dotnet=&#34;`False`&#34; pulumi-lang-go=&#34;`false`&#34; pulumi-lang-python=&#34;`false`&#34; pulumi-lang-yaml=&#34;`false`&#34; pulumi-lang-java=&#34;`false`&#34; pulumi-lang-hcl=&#34;`false`&#34;&gt;`false`&lt;/span&gt;.
+     * 
+     */
+    @Export(name="livemode", refs={Boolean.class}, tree="[0]")
+    private Output<Boolean> livemode;
+
+    /**
+     * @return If the object exists in live mode, the value is &lt;span pulumi-lang-nodejs=&#34;`true`&#34; pulumi-lang-dotnet=&#34;`True`&#34; pulumi-lang-go=&#34;`true`&#34; pulumi-lang-python=&#34;`true`&#34; pulumi-lang-yaml=&#34;`true`&#34; pulumi-lang-java=&#34;`true`&#34; pulumi-lang-hcl=&#34;`true`&#34;&gt;`true`&lt;/span&gt;. If the object exists in test mode, the value is &lt;span pulumi-lang-nodejs=&#34;`false`&#34; pulumi-lang-dotnet=&#34;`False`&#34; pulumi-lang-go=&#34;`false`&#34; pulumi-lang-python=&#34;`false`&#34; pulumi-lang-yaml=&#34;`false`&#34; pulumi-lang-java=&#34;`false`&#34; pulumi-lang-hcl=&#34;`false`&#34;&gt;`false`&lt;/span&gt;.
+     * 
+     */
+    public Output<Boolean> livemode() {
+        return this.livemode;
+    }
+    /**
+     * String representing the object&#39;s type. Objects of the same type share the same value.
+     * 
+     */
+    @Export(name="object", refs={String.class}, tree="[0]")
+    private Output<String> object;
+
+    /**
+     * @return String representing the object&#39;s type. Objects of the same type share the same value.
+     * 
+     */
+    public Output<String> object() {
+        return this.object;
+    }
+    /**
      * The meter&#39;s status.
      * 
      */
@@ -118,18 +133,30 @@ public class BillingMeter extends com.pulumi.resources.CustomResource {
     public Output<String> status() {
         return this.status;
     }
+    @Export(name="statusTransitions", refs={BillingMeterStatusTransitions.class}, tree="[0]")
+    private Output<BillingMeterStatusTransitions> statusTransitions;
+
+    public Output<BillingMeterStatusTransitions> statusTransitions() {
+        return this.statusTransitions;
+    }
     /**
-     * Fields that specify how to calculate a meter event&#39;s value.
+     * Time at which the object was last updated. Measured in seconds since the Unix epoch.
      * 
      */
-    @Export(name="valueSettings", refs={BillingMeterValueSettings.class}, tree="[0]")
-    private Output</* @Nullable */ BillingMeterValueSettings> valueSettings;
+    @Export(name="updated", refs={Double.class}, tree="[0]")
+    private Output<Double> updated;
 
     /**
-     * @return Fields that specify how to calculate a meter event&#39;s value.
+     * @return Time at which the object was last updated. Measured in seconds since the Unix epoch.
      * 
      */
-    public Output<Optional<BillingMeterValueSettings>> valueSettings() {
+    public Output<Double> updated() {
+        return this.updated;
+    }
+    @Export(name="valueSettings", refs={List.class,BillingMeterValueSetting.class}, tree="[0,1]")
+    private Output</* @Nullable */ List<BillingMeterValueSetting>> valueSettings;
+
+    public Output<Optional<List<BillingMeterValueSetting>>> valueSettings() {
         return Codegen.optional(this.valueSettings);
     }
 

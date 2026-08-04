@@ -35,13 +35,21 @@ export class Product extends pulumi.CustomResource {
     }
 
     /**
-     * Whether the product is currently available for purchase. Defaults to <span pulumi-lang-nodejs="`true`" pulumi-lang-dotnet="`True`" pulumi-lang-go="`true`" pulumi-lang-python="`true`" pulumi-lang-yaml="`true`" pulumi-lang-java="`true`" pulumi-lang-hcl="`true`">`true`</span>.
+     * Whether the product is currently available for purchase.
      */
-    declare public readonly active: pulumi.Output<boolean | undefined>;
+    declare public readonly active: pulumi.Output<boolean>;
     /**
-     * Data used to generate a new [Price](https://stripe.com/docs/api/prices) object. This Price will be set as the default price for this product.
+     * Time at which the object was created. Measured in seconds since the Unix epoch.
      */
-    declare public readonly defaultPriceData: pulumi.Output<outputs.ProductDefaultPriceData | undefined>;
+    declare public /*out*/ readonly created: pulumi.Output<number>;
+    /**
+     * The ID of the [Price](https://docs.stripe.com/api/prices) object that is the default price for this product.
+     */
+    declare public /*out*/ readonly defaultPrice: pulumi.Output<string>;
+    /**
+     * Data used to generate a new [Price](https://docs.stripe.com/api/prices) object. This Price will be set as the default price for this product.
+     */
+    declare public readonly defaultPriceDatas: pulumi.Output<outputs.ProductDefaultPriceData[] | undefined>;
     /**
      * The product's description, meant to be displayable to the customer. Use this field to optionally store a long form explanation of the product being sold for your own rendering purposes.
      */
@@ -51,11 +59,15 @@ export class Product extends pulumi.CustomResource {
      */
     declare public readonly images: pulumi.Output<string[] | undefined>;
     /**
-     * A list of up to 15 marketing features for this product. These are displayed in [pricing tables](https://stripe.com/docs/payments/checkout/pricing-table).
+     * If the object exists in live mode, the value is <span pulumi-lang-nodejs="`true`" pulumi-lang-dotnet="`True`" pulumi-lang-go="`true`" pulumi-lang-python="`true`" pulumi-lang-yaml="`true`" pulumi-lang-java="`true`" pulumi-lang-hcl="`true`">`true`</span>. If the object exists in test mode, the value is <span pulumi-lang-nodejs="`false`" pulumi-lang-dotnet="`False`" pulumi-lang-go="`false`" pulumi-lang-python="`false`" pulumi-lang-yaml="`false`" pulumi-lang-java="`false`" pulumi-lang-hcl="`false`">`false`</span>.
+     */
+    declare public /*out*/ readonly livemode: pulumi.Output<boolean>;
+    /**
+     * A list of up to 15 marketing features for this product. These are displayed in [pricing tables](https://docs.stripe.com/payments/checkout/pricing-table).
      */
     declare public readonly marketingFeatures: pulumi.Output<outputs.ProductMarketingFeature[] | undefined>;
     /**
-     * Set of [key-value pairs](https://stripe.com/docs/api/metadata) that you can attach to an object. This can be useful for storing additional information about the object in a structured format. Individual keys can be unset by posting an empty value to them. All keys can be unset by posting an empty value to <span pulumi-lang-nodejs="`metadata`" pulumi-lang-dotnet="`Metadata`" pulumi-lang-go="`metadata`" pulumi-lang-python="`metadata`" pulumi-lang-yaml="`metadata`" pulumi-lang-java="`metadata`" pulumi-lang-hcl="`metadata`">`metadata`</span>.
+     * Set of [key-value pairs](https://docs.stripe.com/api/metadata) that you can attach to an object. This can be useful for storing additional information about the object in a structured format.
      */
     declare public readonly metadata: pulumi.Output<{[key: string]: string}>;
     /**
@@ -63,29 +75,37 @@ export class Product extends pulumi.CustomResource {
      */
     declare public readonly name: pulumi.Output<string>;
     /**
+     * String representing the object's type. Objects of the same type share the same value.
+     */
+    declare public /*out*/ readonly object: pulumi.Output<string>;
+    /**
      * The dimensions of this product for shipping purposes.
      */
-    declare public readonly packageDimensions: pulumi.Output<outputs.ProductPackageDimensions | undefined>;
+    declare public readonly packageDimensions: pulumi.Output<outputs.ProductPackageDimension[] | undefined>;
     /**
      * Whether this product is shipped (i.e., physical goods).
      */
     declare public readonly shippable: pulumi.Output<boolean>;
     /**
-     * An arbitrary string to be displayed on your customer's credit card or bank statement. While most banks display this information consistently, some may display it incorrectly or not at all. This may be up to 22 characters. The statement description may not include `<`, `>`, `\`, `\"`, `'` characters, and will appear on your customer's statement in capital letters. Non-ASCII characters are automatically stripped. It must contain at least one letter. Only used for subscription payments.
+     * Extra information about a product which will appear on your customer's credit card statement. In the case that multiple products are billed at once, the first statement descriptor will be used. Only used for subscription payments.
      */
     declare public readonly statementDescriptor: pulumi.Output<string>;
     /**
-     * A [tax code](https://stripe.com/docs/tax/tax-categories) ID.
+     * A [tax code](https://docs.stripe.com/tax/tax-categories) ID.
      */
     declare public readonly taxCode: pulumi.Output<string>;
     /**
-     * The type of the product. Defaults to <span pulumi-lang-nodejs="`service`" pulumi-lang-dotnet="`Service`" pulumi-lang-go="`service`" pulumi-lang-python="`service`" pulumi-lang-yaml="`service`" pulumi-lang-java="`service`" pulumi-lang-hcl="`service`">`service`</span> if not explicitly specified, enabling use of this product with Subscriptions and Plans. Set this parameter to <span pulumi-lang-nodejs="`good`" pulumi-lang-dotnet="`Good`" pulumi-lang-go="`good`" pulumi-lang-python="`good`" pulumi-lang-yaml="`good`" pulumi-lang-java="`good`" pulumi-lang-hcl="`good`">`good`</span> to use this product with Orders and SKUs. On API versions before `2018-02-05`, this field defaults to <span pulumi-lang-nodejs="`good`" pulumi-lang-dotnet="`Good`" pulumi-lang-go="`good`" pulumi-lang-python="`good`" pulumi-lang-yaml="`good`" pulumi-lang-java="`good`" pulumi-lang-hcl="`good`">`good`</span> for compatibility reasons.
+     * The type of the product. The product is either of type <span pulumi-lang-nodejs="`good`" pulumi-lang-dotnet="`Good`" pulumi-lang-go="`good`" pulumi-lang-python="`good`" pulumi-lang-yaml="`good`" pulumi-lang-java="`good`" pulumi-lang-hcl="`good`">`good`</span>, which is eligible for use with Orders and SKUs, or <span pulumi-lang-nodejs="`service`" pulumi-lang-dotnet="`Service`" pulumi-lang-go="`service`" pulumi-lang-python="`service`" pulumi-lang-yaml="`service`" pulumi-lang-java="`service`" pulumi-lang-hcl="`service`">`service`</span>, which is eligible for use with Subscriptions and Plans.
      */
     declare public readonly type: pulumi.Output<string>;
     /**
      * A label that represents units of this product. When set, this will be included in customers' receipts, invoices, Checkout, and the customer portal.
      */
     declare public readonly unitLabel: pulumi.Output<string>;
+    /**
+     * Time at which the object was last updated. Measured in seconds since the Unix epoch.
+     */
+    declare public /*out*/ readonly updated: pulumi.Output<number>;
     /**
      * A URL of a publicly-accessible webpage for this product.
      */
@@ -105,23 +125,28 @@ export class Product extends pulumi.CustomResource {
         if (opts.id) {
             const state = argsOrState as ProductState | undefined;
             resourceInputs["active"] = state?.active;
-            resourceInputs["defaultPriceData"] = state?.defaultPriceData;
+            resourceInputs["created"] = state?.created;
+            resourceInputs["defaultPrice"] = state?.defaultPrice;
+            resourceInputs["defaultPriceDatas"] = state?.defaultPriceDatas;
             resourceInputs["description"] = state?.description;
             resourceInputs["images"] = state?.images;
+            resourceInputs["livemode"] = state?.livemode;
             resourceInputs["marketingFeatures"] = state?.marketingFeatures;
             resourceInputs["metadata"] = state?.metadata;
             resourceInputs["name"] = state?.name;
+            resourceInputs["object"] = state?.object;
             resourceInputs["packageDimensions"] = state?.packageDimensions;
             resourceInputs["shippable"] = state?.shippable;
             resourceInputs["statementDescriptor"] = state?.statementDescriptor;
             resourceInputs["taxCode"] = state?.taxCode;
             resourceInputs["type"] = state?.type;
             resourceInputs["unitLabel"] = state?.unitLabel;
+            resourceInputs["updated"] = state?.updated;
             resourceInputs["url"] = state?.url;
         } else {
             const args = argsOrState as ProductArgs | undefined;
             resourceInputs["active"] = args?.active;
-            resourceInputs["defaultPriceData"] = args?.defaultPriceData;
+            resourceInputs["defaultPriceDatas"] = args?.defaultPriceDatas;
             resourceInputs["description"] = args?.description;
             resourceInputs["images"] = args?.images;
             resourceInputs["marketingFeatures"] = args?.marketingFeatures;
@@ -134,6 +159,11 @@ export class Product extends pulumi.CustomResource {
             resourceInputs["type"] = args?.type;
             resourceInputs["unitLabel"] = args?.unitLabel;
             resourceInputs["url"] = args?.url;
+            resourceInputs["created"] = undefined /*out*/;
+            resourceInputs["defaultPrice"] = undefined /*out*/;
+            resourceInputs["livemode"] = undefined /*out*/;
+            resourceInputs["object"] = undefined /*out*/;
+            resourceInputs["updated"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(Product.__pulumiType, name, resourceInputs, opts, false /*dependency*/, utilities.getPackage());
@@ -145,13 +175,21 @@ export class Product extends pulumi.CustomResource {
  */
 export interface ProductState {
     /**
-     * Whether the product is currently available for purchase. Defaults to <span pulumi-lang-nodejs="`true`" pulumi-lang-dotnet="`True`" pulumi-lang-go="`true`" pulumi-lang-python="`true`" pulumi-lang-yaml="`true`" pulumi-lang-java="`true`" pulumi-lang-hcl="`true`">`true`</span>.
+     * Whether the product is currently available for purchase.
      */
     active?: pulumi.Input<boolean | undefined>;
     /**
-     * Data used to generate a new [Price](https://stripe.com/docs/api/prices) object. This Price will be set as the default price for this product.
+     * Time at which the object was created. Measured in seconds since the Unix epoch.
      */
-    defaultPriceData?: pulumi.Input<inputs.ProductDefaultPriceData | undefined>;
+    created?: pulumi.Input<number | undefined>;
+    /**
+     * The ID of the [Price](https://docs.stripe.com/api/prices) object that is the default price for this product.
+     */
+    defaultPrice?: pulumi.Input<string | undefined>;
+    /**
+     * Data used to generate a new [Price](https://docs.stripe.com/api/prices) object. This Price will be set as the default price for this product.
+     */
+    defaultPriceDatas?: pulumi.Input<pulumi.Input<inputs.ProductDefaultPriceData>[] | undefined>;
     /**
      * The product's description, meant to be displayable to the customer. Use this field to optionally store a long form explanation of the product being sold for your own rendering purposes.
      */
@@ -161,11 +199,15 @@ export interface ProductState {
      */
     images?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
-     * A list of up to 15 marketing features for this product. These are displayed in [pricing tables](https://stripe.com/docs/payments/checkout/pricing-table).
+     * If the object exists in live mode, the value is <span pulumi-lang-nodejs="`true`" pulumi-lang-dotnet="`True`" pulumi-lang-go="`true`" pulumi-lang-python="`true`" pulumi-lang-yaml="`true`" pulumi-lang-java="`true`" pulumi-lang-hcl="`true`">`true`</span>. If the object exists in test mode, the value is <span pulumi-lang-nodejs="`false`" pulumi-lang-dotnet="`False`" pulumi-lang-go="`false`" pulumi-lang-python="`false`" pulumi-lang-yaml="`false`" pulumi-lang-java="`false`" pulumi-lang-hcl="`false`">`false`</span>.
+     */
+    livemode?: pulumi.Input<boolean | undefined>;
+    /**
+     * A list of up to 15 marketing features for this product. These are displayed in [pricing tables](https://docs.stripe.com/payments/checkout/pricing-table).
      */
     marketingFeatures?: pulumi.Input<pulumi.Input<inputs.ProductMarketingFeature>[] | undefined>;
     /**
-     * Set of [key-value pairs](https://stripe.com/docs/api/metadata) that you can attach to an object. This can be useful for storing additional information about the object in a structured format. Individual keys can be unset by posting an empty value to them. All keys can be unset by posting an empty value to <span pulumi-lang-nodejs="`metadata`" pulumi-lang-dotnet="`Metadata`" pulumi-lang-go="`metadata`" pulumi-lang-python="`metadata`" pulumi-lang-yaml="`metadata`" pulumi-lang-java="`metadata`" pulumi-lang-hcl="`metadata`">`metadata`</span>.
+     * Set of [key-value pairs](https://docs.stripe.com/api/metadata) that you can attach to an object. This can be useful for storing additional information about the object in a structured format.
      */
     metadata?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
     /**
@@ -173,29 +215,37 @@ export interface ProductState {
      */
     name?: pulumi.Input<string | undefined>;
     /**
+     * String representing the object's type. Objects of the same type share the same value.
+     */
+    object?: pulumi.Input<string | undefined>;
+    /**
      * The dimensions of this product for shipping purposes.
      */
-    packageDimensions?: pulumi.Input<inputs.ProductPackageDimensions | undefined>;
+    packageDimensions?: pulumi.Input<pulumi.Input<inputs.ProductPackageDimension>[] | undefined>;
     /**
      * Whether this product is shipped (i.e., physical goods).
      */
     shippable?: pulumi.Input<boolean | undefined>;
     /**
-     * An arbitrary string to be displayed on your customer's credit card or bank statement. While most banks display this information consistently, some may display it incorrectly or not at all. This may be up to 22 characters. The statement description may not include `<`, `>`, `\`, `\"`, `'` characters, and will appear on your customer's statement in capital letters. Non-ASCII characters are automatically stripped. It must contain at least one letter. Only used for subscription payments.
+     * Extra information about a product which will appear on your customer's credit card statement. In the case that multiple products are billed at once, the first statement descriptor will be used. Only used for subscription payments.
      */
     statementDescriptor?: pulumi.Input<string | undefined>;
     /**
-     * A [tax code](https://stripe.com/docs/tax/tax-categories) ID.
+     * A [tax code](https://docs.stripe.com/tax/tax-categories) ID.
      */
     taxCode?: pulumi.Input<string | undefined>;
     /**
-     * The type of the product. Defaults to <span pulumi-lang-nodejs="`service`" pulumi-lang-dotnet="`Service`" pulumi-lang-go="`service`" pulumi-lang-python="`service`" pulumi-lang-yaml="`service`" pulumi-lang-java="`service`" pulumi-lang-hcl="`service`">`service`</span> if not explicitly specified, enabling use of this product with Subscriptions and Plans. Set this parameter to <span pulumi-lang-nodejs="`good`" pulumi-lang-dotnet="`Good`" pulumi-lang-go="`good`" pulumi-lang-python="`good`" pulumi-lang-yaml="`good`" pulumi-lang-java="`good`" pulumi-lang-hcl="`good`">`good`</span> to use this product with Orders and SKUs. On API versions before `2018-02-05`, this field defaults to <span pulumi-lang-nodejs="`good`" pulumi-lang-dotnet="`Good`" pulumi-lang-go="`good`" pulumi-lang-python="`good`" pulumi-lang-yaml="`good`" pulumi-lang-java="`good`" pulumi-lang-hcl="`good`">`good`</span> for compatibility reasons.
+     * The type of the product. The product is either of type <span pulumi-lang-nodejs="`good`" pulumi-lang-dotnet="`Good`" pulumi-lang-go="`good`" pulumi-lang-python="`good`" pulumi-lang-yaml="`good`" pulumi-lang-java="`good`" pulumi-lang-hcl="`good`">`good`</span>, which is eligible for use with Orders and SKUs, or <span pulumi-lang-nodejs="`service`" pulumi-lang-dotnet="`Service`" pulumi-lang-go="`service`" pulumi-lang-python="`service`" pulumi-lang-yaml="`service`" pulumi-lang-java="`service`" pulumi-lang-hcl="`service`">`service`</span>, which is eligible for use with Subscriptions and Plans.
      */
     type?: pulumi.Input<string | undefined>;
     /**
      * A label that represents units of this product. When set, this will be included in customers' receipts, invoices, Checkout, and the customer portal.
      */
     unitLabel?: pulumi.Input<string | undefined>;
+    /**
+     * Time at which the object was last updated. Measured in seconds since the Unix epoch.
+     */
+    updated?: pulumi.Input<number | undefined>;
     /**
      * A URL of a publicly-accessible webpage for this product.
      */
@@ -207,13 +257,13 @@ export interface ProductState {
  */
 export interface ProductArgs {
     /**
-     * Whether the product is currently available for purchase. Defaults to <span pulumi-lang-nodejs="`true`" pulumi-lang-dotnet="`True`" pulumi-lang-go="`true`" pulumi-lang-python="`true`" pulumi-lang-yaml="`true`" pulumi-lang-java="`true`" pulumi-lang-hcl="`true`">`true`</span>.
+     * Whether the product is currently available for purchase.
      */
     active?: pulumi.Input<boolean | undefined>;
     /**
-     * Data used to generate a new [Price](https://stripe.com/docs/api/prices) object. This Price will be set as the default price for this product.
+     * Data used to generate a new [Price](https://docs.stripe.com/api/prices) object. This Price will be set as the default price for this product.
      */
-    defaultPriceData?: pulumi.Input<inputs.ProductDefaultPriceData | undefined>;
+    defaultPriceDatas?: pulumi.Input<pulumi.Input<inputs.ProductDefaultPriceData>[] | undefined>;
     /**
      * The product's description, meant to be displayable to the customer. Use this field to optionally store a long form explanation of the product being sold for your own rendering purposes.
      */
@@ -223,11 +273,11 @@ export interface ProductArgs {
      */
     images?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
-     * A list of up to 15 marketing features for this product. These are displayed in [pricing tables](https://stripe.com/docs/payments/checkout/pricing-table).
+     * A list of up to 15 marketing features for this product. These are displayed in [pricing tables](https://docs.stripe.com/payments/checkout/pricing-table).
      */
     marketingFeatures?: pulumi.Input<pulumi.Input<inputs.ProductMarketingFeature>[] | undefined>;
     /**
-     * Set of [key-value pairs](https://stripe.com/docs/api/metadata) that you can attach to an object. This can be useful for storing additional information about the object in a structured format. Individual keys can be unset by posting an empty value to them. All keys can be unset by posting an empty value to <span pulumi-lang-nodejs="`metadata`" pulumi-lang-dotnet="`Metadata`" pulumi-lang-go="`metadata`" pulumi-lang-python="`metadata`" pulumi-lang-yaml="`metadata`" pulumi-lang-java="`metadata`" pulumi-lang-hcl="`metadata`">`metadata`</span>.
+     * Set of [key-value pairs](https://docs.stripe.com/api/metadata) that you can attach to an object. This can be useful for storing additional information about the object in a structured format.
      */
     metadata?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
     /**
@@ -237,21 +287,21 @@ export interface ProductArgs {
     /**
      * The dimensions of this product for shipping purposes.
      */
-    packageDimensions?: pulumi.Input<inputs.ProductPackageDimensions | undefined>;
+    packageDimensions?: pulumi.Input<pulumi.Input<inputs.ProductPackageDimension>[] | undefined>;
     /**
      * Whether this product is shipped (i.e., physical goods).
      */
     shippable?: pulumi.Input<boolean | undefined>;
     /**
-     * An arbitrary string to be displayed on your customer's credit card or bank statement. While most banks display this information consistently, some may display it incorrectly or not at all. This may be up to 22 characters. The statement description may not include `<`, `>`, `\`, `\"`, `'` characters, and will appear on your customer's statement in capital letters. Non-ASCII characters are automatically stripped. It must contain at least one letter. Only used for subscription payments.
+     * Extra information about a product which will appear on your customer's credit card statement. In the case that multiple products are billed at once, the first statement descriptor will be used. Only used for subscription payments.
      */
     statementDescriptor?: pulumi.Input<string | undefined>;
     /**
-     * A [tax code](https://stripe.com/docs/tax/tax-categories) ID.
+     * A [tax code](https://docs.stripe.com/tax/tax-categories) ID.
      */
     taxCode?: pulumi.Input<string | undefined>;
     /**
-     * The type of the product. Defaults to <span pulumi-lang-nodejs="`service`" pulumi-lang-dotnet="`Service`" pulumi-lang-go="`service`" pulumi-lang-python="`service`" pulumi-lang-yaml="`service`" pulumi-lang-java="`service`" pulumi-lang-hcl="`service`">`service`</span> if not explicitly specified, enabling use of this product with Subscriptions and Plans. Set this parameter to <span pulumi-lang-nodejs="`good`" pulumi-lang-dotnet="`Good`" pulumi-lang-go="`good`" pulumi-lang-python="`good`" pulumi-lang-yaml="`good`" pulumi-lang-java="`good`" pulumi-lang-hcl="`good`">`good`</span> to use this product with Orders and SKUs. On API versions before `2018-02-05`, this field defaults to <span pulumi-lang-nodejs="`good`" pulumi-lang-dotnet="`Good`" pulumi-lang-go="`good`" pulumi-lang-python="`good`" pulumi-lang-yaml="`good`" pulumi-lang-java="`good`" pulumi-lang-hcl="`good`">`good`</span> for compatibility reasons.
+     * The type of the product. The product is either of type <span pulumi-lang-nodejs="`good`" pulumi-lang-dotnet="`Good`" pulumi-lang-go="`good`" pulumi-lang-python="`good`" pulumi-lang-yaml="`good`" pulumi-lang-java="`good`" pulumi-lang-hcl="`good`">`good`</span>, which is eligible for use with Orders and SKUs, or <span pulumi-lang-nodejs="`service`" pulumi-lang-dotnet="`Service`" pulumi-lang-go="`service`" pulumi-lang-python="`service`" pulumi-lang-yaml="`service`" pulumi-lang-java="`service`" pulumi-lang-hcl="`service`">`service`</span>, which is eligible for use with Subscriptions and Plans.
      */
     type?: pulumi.Input<string | undefined>;
     /**

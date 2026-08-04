@@ -16,20 +16,20 @@ namespace Pulumi.Stripe.Outputs
         /// <summary>
         /// The upper bound of the estimated range. If empty, represents no upper bound i.e., infinite.
         /// </summary>
-        public readonly Outputs.ShippingRateDeliveryEstimateMaximum? Maximum;
+        public readonly ImmutableArray<Outputs.ShippingRateDeliveryEstimateMaximum> Maximums;
         /// <summary>
         /// The lower bound of the estimated range. If empty, represents no lower bound.
         /// </summary>
-        public readonly Outputs.ShippingRateDeliveryEstimateMinimum? Minimum;
+        public readonly ImmutableArray<Outputs.ShippingRateDeliveryEstimateMinimum> Minimums;
 
         [OutputConstructor]
         private ShippingRateDeliveryEstimate(
-            Outputs.ShippingRateDeliveryEstimateMaximum? maximum,
+            ImmutableArray<Outputs.ShippingRateDeliveryEstimateMaximum> maximums,
 
-            Outputs.ShippingRateDeliveryEstimateMinimum? minimum)
+            ImmutableArray<Outputs.ShippingRateDeliveryEstimateMinimum> minimums)
         {
-            Maximum = maximum;
-            Minimum = minimum;
+            Maximums = maximums;
+            Minimums = minimums;
         }
     }
 }

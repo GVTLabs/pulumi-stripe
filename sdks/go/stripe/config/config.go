@@ -11,7 +11,12 @@ import (
 
 var _ = internal.GetEnvOrDefault
 
-// Stripe API key
+// Stripe API key. Can also be set via the STRIPE_API_KEY environment variable.
 func GetApiKey(ctx *pulumi.Context) string {
 	return config.Get(ctx, "stripe:apiKey")
+}
+
+// Connected account context for Connect-scoped requests. Can also be set via the STRIPE_ACCOUNT environment variable.
+func GetStripeAccount(ctx *pulumi.Context) string {
+	return config.Get(ctx, "stripe:stripeAccount")
 }

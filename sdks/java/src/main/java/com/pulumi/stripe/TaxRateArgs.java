@@ -20,14 +20,14 @@ public final class TaxRateArgs extends com.pulumi.resources.ResourceArgs {
     public static final TaxRateArgs Empty = new TaxRateArgs();
 
     /**
-     * Flag determining whether the tax rate is active or inactive (archived). Inactive tax rates cannot be used with new applications or Checkout Sessions, but will still work for subscriptions and invoices that already have it set.
+     * Defaults to &lt;span pulumi-lang-nodejs=&#34;`true`&#34; pulumi-lang-dotnet=&#34;`True`&#34; pulumi-lang-go=&#34;`true`&#34; pulumi-lang-python=&#34;`true`&#34; pulumi-lang-yaml=&#34;`true`&#34; pulumi-lang-java=&#34;`true`&#34; pulumi-lang-hcl=&#34;`true`&#34;&gt;`true`&lt;/span&gt;. When set to &lt;span pulumi-lang-nodejs=&#34;`false`&#34; pulumi-lang-dotnet=&#34;`False`&#34; pulumi-lang-go=&#34;`false`&#34; pulumi-lang-python=&#34;`false`&#34; pulumi-lang-yaml=&#34;`false`&#34; pulumi-lang-java=&#34;`false`&#34; pulumi-lang-hcl=&#34;`false`&#34;&gt;`false`&lt;/span&gt;, this tax rate cannot be used with new applications or Checkout Sessions, but will still work for subscriptions and invoices that already have it set.
      * 
      */
     @Import(name="active")
     private @Nullable Output<Boolean> active;
 
     /**
-     * @return Flag determining whether the tax rate is active or inactive (archived). Inactive tax rates cannot be used with new applications or Checkout Sessions, but will still work for subscriptions and invoices that already have it set.
+     * @return Defaults to &lt;span pulumi-lang-nodejs=&#34;`true`&#34; pulumi-lang-dotnet=&#34;`True`&#34; pulumi-lang-go=&#34;`true`&#34; pulumi-lang-python=&#34;`true`&#34; pulumi-lang-yaml=&#34;`true`&#34; pulumi-lang-java=&#34;`true`&#34; pulumi-lang-hcl=&#34;`true`&#34;&gt;`true`&lt;/span&gt;. When set to &lt;span pulumi-lang-nodejs=&#34;`false`&#34; pulumi-lang-dotnet=&#34;`False`&#34; pulumi-lang-go=&#34;`false`&#34; pulumi-lang-python=&#34;`false`&#34; pulumi-lang-yaml=&#34;`false`&#34; pulumi-lang-java=&#34;`false`&#34; pulumi-lang-hcl=&#34;`false`&#34;&gt;`false`&lt;/span&gt;, this tax rate cannot be used with new applications or Checkout Sessions, but will still work for subscriptions and invoices that already have it set.
      * 
      */
     public Optional<Output<Boolean>> active() {
@@ -65,14 +65,14 @@ public final class TaxRateArgs extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * The display name of the tax rate, which will be shown to users.
+     * The display name of the tax rates as it will appear to your customer on their receipt email, PDF, and the hosted invoice page.
      * 
      */
     @Import(name="displayName", required=true)
     private Output<String> displayName;
 
     /**
-     * @return The display name of the tax rate, which will be shown to users.
+     * @return The display name of the tax rates as it will appear to your customer on their receipt email, PDF, and the hosted invoice page.
      * 
      */
     public Output<String> displayName() {
@@ -110,14 +110,14 @@ public final class TaxRateArgs extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * Set of [key-value pairs](https://stripe.com/docs/api/metadata) that you can attach to an object. This can be useful for storing additional information about the object in a structured format. Individual keys can be unset by posting an empty value to them. All keys can be unset by posting an empty value to &lt;span pulumi-lang-nodejs=&#34;`metadata`&#34; pulumi-lang-dotnet=&#34;`Metadata`&#34; pulumi-lang-go=&#34;`metadata`&#34; pulumi-lang-python=&#34;`metadata`&#34; pulumi-lang-yaml=&#34;`metadata`&#34; pulumi-lang-java=&#34;`metadata`&#34; pulumi-lang-hcl=&#34;`metadata`&#34;&gt;`metadata`&lt;/span&gt;.
+     * Set of [key-value pairs](https://docs.stripe.com/api/metadata) that you can attach to an object. This can be useful for storing additional information about the object in a structured format.
      * 
      */
     @Import(name="metadata")
     private @Nullable Output<Map<String,String>> metadata;
 
     /**
-     * @return Set of [key-value pairs](https://stripe.com/docs/api/metadata) that you can attach to an object. This can be useful for storing additional information about the object in a structured format. Individual keys can be unset by posting an empty value to them. All keys can be unset by posting an empty value to &lt;span pulumi-lang-nodejs=&#34;`metadata`&#34; pulumi-lang-dotnet=&#34;`Metadata`&#34; pulumi-lang-go=&#34;`metadata`&#34; pulumi-lang-python=&#34;`metadata`&#34; pulumi-lang-yaml=&#34;`metadata`&#34; pulumi-lang-java=&#34;`metadata`&#34; pulumi-lang-hcl=&#34;`metadata`&#34;&gt;`metadata`&lt;/span&gt;.
+     * @return Set of [key-value pairs](https://docs.stripe.com/api/metadata) that you can attach to an object. This can be useful for storing additional information about the object in a structured format.
      * 
      */
     public Optional<Output<Map<String,String>>> metadata() {
@@ -125,14 +125,14 @@ public final class TaxRateArgs extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * This represents the tax rate percent out of 100.
+     * Tax rate percentage out of 100. For tax calculations with automatic_tax[enabled]=true, this percentage includes the statutory tax rate of non-taxable jurisdictions.
      * 
      */
     @Import(name="percentage", required=true)
     private Output<Double> percentage;
 
     /**
-     * @return This represents the tax rate percent out of 100.
+     * @return Tax rate percentage out of 100. For tax calculations with automatic_tax[enabled]=true, this percentage includes the statutory tax rate of non-taxable jurisdictions.
      * 
      */
     public Output<Double> percentage() {
@@ -140,14 +140,14 @@ public final class TaxRateArgs extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * [ISO 3166-2 subdivision code](https://en.wikipedia.org/wiki/ISO_3166-2), without country prefix. For example, \&#34;NY\&#34; for New York, United States.
+     * [ISO 3166-2 subdivision code](https://en.wikipedia.org/wiki/ISO_3166-2), without country prefix. For example, &#34;NY&#34; for New York, United States.
      * 
      */
     @Import(name="state")
     private @Nullable Output<String> state;
 
     /**
-     * @return [ISO 3166-2 subdivision code](https://en.wikipedia.org/wiki/ISO_3166-2), without country prefix. For example, \&#34;NY\&#34; for New York, United States.
+     * @return [ISO 3166-2 subdivision code](https://en.wikipedia.org/wiki/ISO_3166-2), without country prefix. For example, &#34;NY&#34; for New York, United States.
      * 
      */
     public Optional<Output<String>> state() {
@@ -203,7 +203,7 @@ public final class TaxRateArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param active Flag determining whether the tax rate is active or inactive (archived). Inactive tax rates cannot be used with new applications or Checkout Sessions, but will still work for subscriptions and invoices that already have it set.
+         * @param active Defaults to &lt;span pulumi-lang-nodejs=&#34;`true`&#34; pulumi-lang-dotnet=&#34;`True`&#34; pulumi-lang-go=&#34;`true`&#34; pulumi-lang-python=&#34;`true`&#34; pulumi-lang-yaml=&#34;`true`&#34; pulumi-lang-java=&#34;`true`&#34; pulumi-lang-hcl=&#34;`true`&#34;&gt;`true`&lt;/span&gt;. When set to &lt;span pulumi-lang-nodejs=&#34;`false`&#34; pulumi-lang-dotnet=&#34;`False`&#34; pulumi-lang-go=&#34;`false`&#34; pulumi-lang-python=&#34;`false`&#34; pulumi-lang-yaml=&#34;`false`&#34; pulumi-lang-java=&#34;`false`&#34; pulumi-lang-hcl=&#34;`false`&#34;&gt;`false`&lt;/span&gt;, this tax rate cannot be used with new applications or Checkout Sessions, but will still work for subscriptions and invoices that already have it set.
          * 
          * @return builder
          * 
@@ -214,7 +214,7 @@ public final class TaxRateArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param active Flag determining whether the tax rate is active or inactive (archived). Inactive tax rates cannot be used with new applications or Checkout Sessions, but will still work for subscriptions and invoices that already have it set.
+         * @param active Defaults to &lt;span pulumi-lang-nodejs=&#34;`true`&#34; pulumi-lang-dotnet=&#34;`True`&#34; pulumi-lang-go=&#34;`true`&#34; pulumi-lang-python=&#34;`true`&#34; pulumi-lang-yaml=&#34;`true`&#34; pulumi-lang-java=&#34;`true`&#34; pulumi-lang-hcl=&#34;`true`&#34;&gt;`true`&lt;/span&gt;. When set to &lt;span pulumi-lang-nodejs=&#34;`false`&#34; pulumi-lang-dotnet=&#34;`False`&#34; pulumi-lang-go=&#34;`false`&#34; pulumi-lang-python=&#34;`false`&#34; pulumi-lang-yaml=&#34;`false`&#34; pulumi-lang-java=&#34;`false`&#34; pulumi-lang-hcl=&#34;`false`&#34;&gt;`false`&lt;/span&gt;, this tax rate cannot be used with new applications or Checkout Sessions, but will still work for subscriptions and invoices that already have it set.
          * 
          * @return builder
          * 
@@ -266,7 +266,7 @@ public final class TaxRateArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param displayName The display name of the tax rate, which will be shown to users.
+         * @param displayName The display name of the tax rates as it will appear to your customer on their receipt email, PDF, and the hosted invoice page.
          * 
          * @return builder
          * 
@@ -277,7 +277,7 @@ public final class TaxRateArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param displayName The display name of the tax rate, which will be shown to users.
+         * @param displayName The display name of the tax rates as it will appear to your customer on their receipt email, PDF, and the hosted invoice page.
          * 
          * @return builder
          * 
@@ -329,7 +329,7 @@ public final class TaxRateArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param metadata Set of [key-value pairs](https://stripe.com/docs/api/metadata) that you can attach to an object. This can be useful for storing additional information about the object in a structured format. Individual keys can be unset by posting an empty value to them. All keys can be unset by posting an empty value to &lt;span pulumi-lang-nodejs=&#34;`metadata`&#34; pulumi-lang-dotnet=&#34;`Metadata`&#34; pulumi-lang-go=&#34;`metadata`&#34; pulumi-lang-python=&#34;`metadata`&#34; pulumi-lang-yaml=&#34;`metadata`&#34; pulumi-lang-java=&#34;`metadata`&#34; pulumi-lang-hcl=&#34;`metadata`&#34;&gt;`metadata`&lt;/span&gt;.
+         * @param metadata Set of [key-value pairs](https://docs.stripe.com/api/metadata) that you can attach to an object. This can be useful for storing additional information about the object in a structured format.
          * 
          * @return builder
          * 
@@ -340,7 +340,7 @@ public final class TaxRateArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param metadata Set of [key-value pairs](https://stripe.com/docs/api/metadata) that you can attach to an object. This can be useful for storing additional information about the object in a structured format. Individual keys can be unset by posting an empty value to them. All keys can be unset by posting an empty value to &lt;span pulumi-lang-nodejs=&#34;`metadata`&#34; pulumi-lang-dotnet=&#34;`Metadata`&#34; pulumi-lang-go=&#34;`metadata`&#34; pulumi-lang-python=&#34;`metadata`&#34; pulumi-lang-yaml=&#34;`metadata`&#34; pulumi-lang-java=&#34;`metadata`&#34; pulumi-lang-hcl=&#34;`metadata`&#34;&gt;`metadata`&lt;/span&gt;.
+         * @param metadata Set of [key-value pairs](https://docs.stripe.com/api/metadata) that you can attach to an object. This can be useful for storing additional information about the object in a structured format.
          * 
          * @return builder
          * 
@@ -350,7 +350,7 @@ public final class TaxRateArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param percentage This represents the tax rate percent out of 100.
+         * @param percentage Tax rate percentage out of 100. For tax calculations with automatic_tax[enabled]=true, this percentage includes the statutory tax rate of non-taxable jurisdictions.
          * 
          * @return builder
          * 
@@ -361,7 +361,7 @@ public final class TaxRateArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param percentage This represents the tax rate percent out of 100.
+         * @param percentage Tax rate percentage out of 100. For tax calculations with automatic_tax[enabled]=true, this percentage includes the statutory tax rate of non-taxable jurisdictions.
          * 
          * @return builder
          * 
@@ -371,7 +371,7 @@ public final class TaxRateArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param state [ISO 3166-2 subdivision code](https://en.wikipedia.org/wiki/ISO_3166-2), without country prefix. For example, \&#34;NY\&#34; for New York, United States.
+         * @param state [ISO 3166-2 subdivision code](https://en.wikipedia.org/wiki/ISO_3166-2), without country prefix. For example, &#34;NY&#34; for New York, United States.
          * 
          * @return builder
          * 
@@ -382,7 +382,7 @@ public final class TaxRateArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param state [ISO 3166-2 subdivision code](https://en.wikipedia.org/wiki/ISO_3166-2), without country prefix. For example, \&#34;NY\&#34; for New York, United States.
+         * @param state [ISO 3166-2 subdivision code](https://en.wikipedia.org/wiki/ISO_3166-2), without country prefix. For example, &#34;NY&#34; for New York, United States.
          * 
          * @return builder
          * 

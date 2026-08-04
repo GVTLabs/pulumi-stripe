@@ -4,7 +4,9 @@
 package com.pulumi.stripe.outputs;
 
 import com.pulumi.core.annotations.CustomType;
+import com.pulumi.stripe.outputs.CustomerTaxLocation;
 import java.lang.String;
+import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 import javax.annotation.Nullable;
@@ -16,7 +18,16 @@ public final class CustomerTax {
      * 
      */
     private @Nullable String automaticTax;
+    /**
+     * @return A recent IP address of the customer used for tax reporting and tax location inference.
+     * 
+     */
     private @Nullable String ipAddress;
+    /**
+     * @return The identified tax location of the customer.
+     * 
+     */
+    private @Nullable List<CustomerTaxLocation> locations;
     /**
      * @return The tax calculation provider used for location resolution. Defaults to &lt;span pulumi-lang-nodejs=&#34;`stripe`&#34; pulumi-lang-dotnet=&#34;`Stripe`&#34; pulumi-lang-go=&#34;`stripe`&#34; pulumi-lang-python=&#34;`stripe`&#34; pulumi-lang-yaml=&#34;`stripe`&#34; pulumi-lang-java=&#34;`stripe`&#34; pulumi-lang-hcl=&#34;`stripe`&#34;&gt;`stripe`&lt;/span&gt; when not using a [third-party provider](https://www.terraform.io/tax/third-party-apps).
      * 
@@ -36,8 +47,19 @@ public final class CustomerTax {
     public Optional<String> automaticTax() {
         return Optional.ofNullable(this.automaticTax);
     }
+    /**
+     * @return A recent IP address of the customer used for tax reporting and tax location inference.
+     * 
+     */
     public Optional<String> ipAddress() {
         return Optional.ofNullable(this.ipAddress);
+    }
+    /**
+     * @return The identified tax location of the customer.
+     * 
+     */
+    public List<CustomerTaxLocation> locations() {
+        return this.locations == null ? List.of() : this.locations;
     }
     /**
      * @return The tax calculation provider used for location resolution. Defaults to &lt;span pulumi-lang-nodejs=&#34;`stripe`&#34; pulumi-lang-dotnet=&#34;`Stripe`&#34; pulumi-lang-go=&#34;`stripe`&#34; pulumi-lang-python=&#34;`stripe`&#34; pulumi-lang-yaml=&#34;`stripe`&#34; pulumi-lang-java=&#34;`stripe`&#34; pulumi-lang-hcl=&#34;`stripe`&#34;&gt;`stripe`&lt;/span&gt; when not using a [third-party provider](https://www.terraform.io/tax/third-party-apps).
@@ -65,6 +87,7 @@ public final class CustomerTax {
     public static final class Builder {
         private @Nullable String automaticTax;
         private @Nullable String ipAddress;
+        private @Nullable List<CustomerTaxLocation> locations;
         private @Nullable String provider;
         private @Nullable String validateLocation;
         public Builder() {}
@@ -72,6 +95,7 @@ public final class CustomerTax {
     	      Objects.requireNonNull(defaults);
     	      this.automaticTax = defaults.automaticTax;
     	      this.ipAddress = defaults.ipAddress;
+    	      this.locations = defaults.locations;
     	      this.provider = defaults.provider;
     	      this.validateLocation = defaults.validateLocation;
         }
@@ -89,6 +113,15 @@ public final class CustomerTax {
             return this;
         }
         @CustomType.Setter
+        public Builder locations(@Nullable List<CustomerTaxLocation> locations) {
+
+            this.locations = locations;
+            return this;
+        }
+        public Builder locations(CustomerTaxLocation... locations) {
+            return locations(List.of(locations));
+        }
+        @CustomType.Setter
         public Builder provider(@Nullable String provider) {
 
             this.provider = provider;
@@ -104,6 +137,7 @@ public final class CustomerTax {
             final var _resultValue = new CustomerTax();
             _resultValue.automaticTax = automaticTax;
             _resultValue.ipAddress = ipAddress;
+            _resultValue.locations = locations;
             _resultValue.provider = provider;
             _resultValue.validateLocation = validateLocation;
             return _resultValue;

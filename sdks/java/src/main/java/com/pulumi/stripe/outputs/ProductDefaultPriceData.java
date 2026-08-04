@@ -32,9 +32,9 @@ public final class ProductDefaultPriceData {
      * @return When set, provides configuration for the amount to be adjusted by the customer during Checkout Sessions and Payment Links.
      * 
      */
-    private @Nullable ProductDefaultPriceDataCustomUnitAmount customUnitAmount;
+    private @Nullable List<ProductDefaultPriceDataCustomUnitAmount> customUnitAmounts;
     /**
-     * @return Set of [key-value pairs](https://stripe.com/docs/api/metadata) that you can attach to an object. This can be useful for storing additional information about the object in a structured format. Individual keys can be unset by posting an empty value to them. All keys can be unset by posting an empty value to &lt;span pulumi-lang-nodejs=&#34;`metadata`&#34; pulumi-lang-dotnet=&#34;`Metadata`&#34; pulumi-lang-go=&#34;`metadata`&#34; pulumi-lang-python=&#34;`metadata`&#34; pulumi-lang-yaml=&#34;`metadata`&#34; pulumi-lang-java=&#34;`metadata`&#34; pulumi-lang-hcl=&#34;`metadata`&#34;&gt;`metadata`&lt;/span&gt;.
+     * @return Set of [key-value pairs](https://docs.stripe.com/api/metadata) that you can attach to an object. This can be useful for storing additional information about the object in a structured format. Individual keys can be unset by posting an empty value to them. All keys can be unset by posting an empty value to &lt;span pulumi-lang-nodejs=&#34;`metadata`&#34; pulumi-lang-dotnet=&#34;`Metadata`&#34; pulumi-lang-go=&#34;`metadata`&#34; pulumi-lang-python=&#34;`metadata`&#34; pulumi-lang-yaml=&#34;`metadata`&#34; pulumi-lang-java=&#34;`metadata`&#34; pulumi-lang-hcl=&#34;`metadata`&#34;&gt;`metadata`&lt;/span&gt;.
      * 
      */
     private @Nullable Map<String,String> metadata;
@@ -42,9 +42,9 @@ public final class ProductDefaultPriceData {
      * @return The recurring components of a price such as &lt;span pulumi-lang-nodejs=&#34;`interval`&#34; pulumi-lang-dotnet=&#34;`Interval`&#34; pulumi-lang-go=&#34;`interval`&#34; pulumi-lang-python=&#34;`interval`&#34; pulumi-lang-yaml=&#34;`interval`&#34; pulumi-lang-java=&#34;`interval`&#34; pulumi-lang-hcl=&#34;`interval`&#34;&gt;`interval`&lt;/span&gt; and &lt;span pulumi-lang-nodejs=&#34;`intervalCount`&#34; pulumi-lang-dotnet=&#34;`IntervalCount`&#34; pulumi-lang-go=&#34;`intervalCount`&#34; pulumi-lang-python=&#34;`interval_count`&#34; pulumi-lang-yaml=&#34;`intervalCount`&#34; pulumi-lang-java=&#34;`intervalCount`&#34; pulumi-lang-hcl=&#34;`interval_count`&#34;&gt;`intervalCount`&lt;/span&gt;.
      * 
      */
-    private @Nullable ProductDefaultPriceDataRecurring recurring;
+    private @Nullable List<ProductDefaultPriceDataRecurring> recurrings;
     /**
-     * @return Only required if a [default tax behavior](&lt;https://stripe.com/docs/tax/products-prices-tax-categories-tax-behavior#setting-a-default-tax-behavior-(recommended)&gt;) was not provided in the Stripe Tax settings. Specifies whether the price is considered inclusive of taxes or exclusive of taxes. One of &lt;span pulumi-lang-nodejs=&#34;`inclusive`&#34; pulumi-lang-dotnet=&#34;`Inclusive`&#34; pulumi-lang-go=&#34;`inclusive`&#34; pulumi-lang-python=&#34;`inclusive`&#34; pulumi-lang-yaml=&#34;`inclusive`&#34; pulumi-lang-java=&#34;`inclusive`&#34; pulumi-lang-hcl=&#34;`inclusive`&#34;&gt;`inclusive`&lt;/span&gt;, &lt;span pulumi-lang-nodejs=&#34;`exclusive`&#34; pulumi-lang-dotnet=&#34;`Exclusive`&#34; pulumi-lang-go=&#34;`exclusive`&#34; pulumi-lang-python=&#34;`exclusive`&#34; pulumi-lang-yaml=&#34;`exclusive`&#34; pulumi-lang-java=&#34;`exclusive`&#34; pulumi-lang-hcl=&#34;`exclusive`&#34;&gt;`exclusive`&lt;/span&gt;, or &lt;span pulumi-lang-nodejs=&#34;`unspecified`&#34; pulumi-lang-dotnet=&#34;`Unspecified`&#34; pulumi-lang-go=&#34;`unspecified`&#34; pulumi-lang-python=&#34;`unspecified`&#34; pulumi-lang-yaml=&#34;`unspecified`&#34; pulumi-lang-java=&#34;`unspecified`&#34; pulumi-lang-hcl=&#34;`unspecified`&#34;&gt;`unspecified`&lt;/span&gt;. Once specified as either &lt;span pulumi-lang-nodejs=&#34;`inclusive`&#34; pulumi-lang-dotnet=&#34;`Inclusive`&#34; pulumi-lang-go=&#34;`inclusive`&#34; pulumi-lang-python=&#34;`inclusive`&#34; pulumi-lang-yaml=&#34;`inclusive`&#34; pulumi-lang-java=&#34;`inclusive`&#34; pulumi-lang-hcl=&#34;`inclusive`&#34;&gt;`inclusive`&lt;/span&gt; or &lt;span pulumi-lang-nodejs=&#34;`exclusive`&#34; pulumi-lang-dotnet=&#34;`Exclusive`&#34; pulumi-lang-go=&#34;`exclusive`&#34; pulumi-lang-python=&#34;`exclusive`&#34; pulumi-lang-yaml=&#34;`exclusive`&#34; pulumi-lang-java=&#34;`exclusive`&#34; pulumi-lang-hcl=&#34;`exclusive`&#34;&gt;`exclusive`&lt;/span&gt;, it cannot be changed.
+     * @return Only required if a [default tax behavior](&lt;https://docs.stripe.com/tax/products-prices-tax-categories-tax-behavior#setting-a-default-tax-behavior-(recommended)&gt;) was not provided in the Stripe Tax settings. Specifies whether the price is considered inclusive of taxes or exclusive of taxes. One of &lt;span pulumi-lang-nodejs=&#34;`inclusive`&#34; pulumi-lang-dotnet=&#34;`Inclusive`&#34; pulumi-lang-go=&#34;`inclusive`&#34; pulumi-lang-python=&#34;`inclusive`&#34; pulumi-lang-yaml=&#34;`inclusive`&#34; pulumi-lang-java=&#34;`inclusive`&#34; pulumi-lang-hcl=&#34;`inclusive`&#34;&gt;`inclusive`&lt;/span&gt;, &lt;span pulumi-lang-nodejs=&#34;`exclusive`&#34; pulumi-lang-dotnet=&#34;`Exclusive`&#34; pulumi-lang-go=&#34;`exclusive`&#34; pulumi-lang-python=&#34;`exclusive`&#34; pulumi-lang-yaml=&#34;`exclusive`&#34; pulumi-lang-java=&#34;`exclusive`&#34; pulumi-lang-hcl=&#34;`exclusive`&#34;&gt;`exclusive`&lt;/span&gt;, or &lt;span pulumi-lang-nodejs=&#34;`unspecified`&#34; pulumi-lang-dotnet=&#34;`Unspecified`&#34; pulumi-lang-go=&#34;`unspecified`&#34; pulumi-lang-python=&#34;`unspecified`&#34; pulumi-lang-yaml=&#34;`unspecified`&#34; pulumi-lang-java=&#34;`unspecified`&#34; pulumi-lang-hcl=&#34;`unspecified`&#34;&gt;`unspecified`&lt;/span&gt;. Once specified as either &lt;span pulumi-lang-nodejs=&#34;`inclusive`&#34; pulumi-lang-dotnet=&#34;`Inclusive`&#34; pulumi-lang-go=&#34;`inclusive`&#34; pulumi-lang-python=&#34;`inclusive`&#34; pulumi-lang-yaml=&#34;`inclusive`&#34; pulumi-lang-java=&#34;`inclusive`&#34; pulumi-lang-hcl=&#34;`inclusive`&#34;&gt;`inclusive`&lt;/span&gt; or &lt;span pulumi-lang-nodejs=&#34;`exclusive`&#34; pulumi-lang-dotnet=&#34;`Exclusive`&#34; pulumi-lang-go=&#34;`exclusive`&#34; pulumi-lang-python=&#34;`exclusive`&#34; pulumi-lang-yaml=&#34;`exclusive`&#34; pulumi-lang-java=&#34;`exclusive`&#34; pulumi-lang-hcl=&#34;`exclusive`&#34;&gt;`exclusive`&lt;/span&gt;, it cannot be changed.
      * 
      */
     private @Nullable String taxBehavior;
@@ -78,11 +78,11 @@ public final class ProductDefaultPriceData {
      * @return When set, provides configuration for the amount to be adjusted by the customer during Checkout Sessions and Payment Links.
      * 
      */
-    public Optional<ProductDefaultPriceDataCustomUnitAmount> customUnitAmount() {
-        return Optional.ofNullable(this.customUnitAmount);
+    public List<ProductDefaultPriceDataCustomUnitAmount> customUnitAmounts() {
+        return this.customUnitAmounts == null ? List.of() : this.customUnitAmounts;
     }
     /**
-     * @return Set of [key-value pairs](https://stripe.com/docs/api/metadata) that you can attach to an object. This can be useful for storing additional information about the object in a structured format. Individual keys can be unset by posting an empty value to them. All keys can be unset by posting an empty value to &lt;span pulumi-lang-nodejs=&#34;`metadata`&#34; pulumi-lang-dotnet=&#34;`Metadata`&#34; pulumi-lang-go=&#34;`metadata`&#34; pulumi-lang-python=&#34;`metadata`&#34; pulumi-lang-yaml=&#34;`metadata`&#34; pulumi-lang-java=&#34;`metadata`&#34; pulumi-lang-hcl=&#34;`metadata`&#34;&gt;`metadata`&lt;/span&gt;.
+     * @return Set of [key-value pairs](https://docs.stripe.com/api/metadata) that you can attach to an object. This can be useful for storing additional information about the object in a structured format. Individual keys can be unset by posting an empty value to them. All keys can be unset by posting an empty value to &lt;span pulumi-lang-nodejs=&#34;`metadata`&#34; pulumi-lang-dotnet=&#34;`Metadata`&#34; pulumi-lang-go=&#34;`metadata`&#34; pulumi-lang-python=&#34;`metadata`&#34; pulumi-lang-yaml=&#34;`metadata`&#34; pulumi-lang-java=&#34;`metadata`&#34; pulumi-lang-hcl=&#34;`metadata`&#34;&gt;`metadata`&lt;/span&gt;.
      * 
      */
     public Map<String,String> metadata() {
@@ -92,11 +92,11 @@ public final class ProductDefaultPriceData {
      * @return The recurring components of a price such as &lt;span pulumi-lang-nodejs=&#34;`interval`&#34; pulumi-lang-dotnet=&#34;`Interval`&#34; pulumi-lang-go=&#34;`interval`&#34; pulumi-lang-python=&#34;`interval`&#34; pulumi-lang-yaml=&#34;`interval`&#34; pulumi-lang-java=&#34;`interval`&#34; pulumi-lang-hcl=&#34;`interval`&#34;&gt;`interval`&lt;/span&gt; and &lt;span pulumi-lang-nodejs=&#34;`intervalCount`&#34; pulumi-lang-dotnet=&#34;`IntervalCount`&#34; pulumi-lang-go=&#34;`intervalCount`&#34; pulumi-lang-python=&#34;`interval_count`&#34; pulumi-lang-yaml=&#34;`intervalCount`&#34; pulumi-lang-java=&#34;`intervalCount`&#34; pulumi-lang-hcl=&#34;`interval_count`&#34;&gt;`intervalCount`&lt;/span&gt;.
      * 
      */
-    public Optional<ProductDefaultPriceDataRecurring> recurring() {
-        return Optional.ofNullable(this.recurring);
+    public List<ProductDefaultPriceDataRecurring> recurrings() {
+        return this.recurrings == null ? List.of() : this.recurrings;
     }
     /**
-     * @return Only required if a [default tax behavior](&lt;https://stripe.com/docs/tax/products-prices-tax-categories-tax-behavior#setting-a-default-tax-behavior-(recommended)&gt;) was not provided in the Stripe Tax settings. Specifies whether the price is considered inclusive of taxes or exclusive of taxes. One of &lt;span pulumi-lang-nodejs=&#34;`inclusive`&#34; pulumi-lang-dotnet=&#34;`Inclusive`&#34; pulumi-lang-go=&#34;`inclusive`&#34; pulumi-lang-python=&#34;`inclusive`&#34; pulumi-lang-yaml=&#34;`inclusive`&#34; pulumi-lang-java=&#34;`inclusive`&#34; pulumi-lang-hcl=&#34;`inclusive`&#34;&gt;`inclusive`&lt;/span&gt;, &lt;span pulumi-lang-nodejs=&#34;`exclusive`&#34; pulumi-lang-dotnet=&#34;`Exclusive`&#34; pulumi-lang-go=&#34;`exclusive`&#34; pulumi-lang-python=&#34;`exclusive`&#34; pulumi-lang-yaml=&#34;`exclusive`&#34; pulumi-lang-java=&#34;`exclusive`&#34; pulumi-lang-hcl=&#34;`exclusive`&#34;&gt;`exclusive`&lt;/span&gt;, or &lt;span pulumi-lang-nodejs=&#34;`unspecified`&#34; pulumi-lang-dotnet=&#34;`Unspecified`&#34; pulumi-lang-go=&#34;`unspecified`&#34; pulumi-lang-python=&#34;`unspecified`&#34; pulumi-lang-yaml=&#34;`unspecified`&#34; pulumi-lang-java=&#34;`unspecified`&#34; pulumi-lang-hcl=&#34;`unspecified`&#34;&gt;`unspecified`&lt;/span&gt;. Once specified as either &lt;span pulumi-lang-nodejs=&#34;`inclusive`&#34; pulumi-lang-dotnet=&#34;`Inclusive`&#34; pulumi-lang-go=&#34;`inclusive`&#34; pulumi-lang-python=&#34;`inclusive`&#34; pulumi-lang-yaml=&#34;`inclusive`&#34; pulumi-lang-java=&#34;`inclusive`&#34; pulumi-lang-hcl=&#34;`inclusive`&#34;&gt;`inclusive`&lt;/span&gt; or &lt;span pulumi-lang-nodejs=&#34;`exclusive`&#34; pulumi-lang-dotnet=&#34;`Exclusive`&#34; pulumi-lang-go=&#34;`exclusive`&#34; pulumi-lang-python=&#34;`exclusive`&#34; pulumi-lang-yaml=&#34;`exclusive`&#34; pulumi-lang-java=&#34;`exclusive`&#34; pulumi-lang-hcl=&#34;`exclusive`&#34;&gt;`exclusive`&lt;/span&gt;, it cannot be changed.
+     * @return Only required if a [default tax behavior](&lt;https://docs.stripe.com/tax/products-prices-tax-categories-tax-behavior#setting-a-default-tax-behavior-(recommended)&gt;) was not provided in the Stripe Tax settings. Specifies whether the price is considered inclusive of taxes or exclusive of taxes. One of &lt;span pulumi-lang-nodejs=&#34;`inclusive`&#34; pulumi-lang-dotnet=&#34;`Inclusive`&#34; pulumi-lang-go=&#34;`inclusive`&#34; pulumi-lang-python=&#34;`inclusive`&#34; pulumi-lang-yaml=&#34;`inclusive`&#34; pulumi-lang-java=&#34;`inclusive`&#34; pulumi-lang-hcl=&#34;`inclusive`&#34;&gt;`inclusive`&lt;/span&gt;, &lt;span pulumi-lang-nodejs=&#34;`exclusive`&#34; pulumi-lang-dotnet=&#34;`Exclusive`&#34; pulumi-lang-go=&#34;`exclusive`&#34; pulumi-lang-python=&#34;`exclusive`&#34; pulumi-lang-yaml=&#34;`exclusive`&#34; pulumi-lang-java=&#34;`exclusive`&#34; pulumi-lang-hcl=&#34;`exclusive`&#34;&gt;`exclusive`&lt;/span&gt;, or &lt;span pulumi-lang-nodejs=&#34;`unspecified`&#34; pulumi-lang-dotnet=&#34;`Unspecified`&#34; pulumi-lang-go=&#34;`unspecified`&#34; pulumi-lang-python=&#34;`unspecified`&#34; pulumi-lang-yaml=&#34;`unspecified`&#34; pulumi-lang-java=&#34;`unspecified`&#34; pulumi-lang-hcl=&#34;`unspecified`&#34;&gt;`unspecified`&lt;/span&gt;. Once specified as either &lt;span pulumi-lang-nodejs=&#34;`inclusive`&#34; pulumi-lang-dotnet=&#34;`Inclusive`&#34; pulumi-lang-go=&#34;`inclusive`&#34; pulumi-lang-python=&#34;`inclusive`&#34; pulumi-lang-yaml=&#34;`inclusive`&#34; pulumi-lang-java=&#34;`inclusive`&#34; pulumi-lang-hcl=&#34;`inclusive`&#34;&gt;`inclusive`&lt;/span&gt; or &lt;span pulumi-lang-nodejs=&#34;`exclusive`&#34; pulumi-lang-dotnet=&#34;`Exclusive`&#34; pulumi-lang-go=&#34;`exclusive`&#34; pulumi-lang-python=&#34;`exclusive`&#34; pulumi-lang-yaml=&#34;`exclusive`&#34; pulumi-lang-java=&#34;`exclusive`&#34; pulumi-lang-hcl=&#34;`exclusive`&#34;&gt;`exclusive`&lt;/span&gt;, it cannot be changed.
      * 
      */
     public Optional<String> taxBehavior() {
@@ -128,9 +128,9 @@ public final class ProductDefaultPriceData {
     public static final class Builder {
         private String currency;
         private @Nullable List<ProductDefaultPriceDataCurrencyOption> currencyOptions;
-        private @Nullable ProductDefaultPriceDataCustomUnitAmount customUnitAmount;
+        private @Nullable List<ProductDefaultPriceDataCustomUnitAmount> customUnitAmounts;
         private @Nullable Map<String,String> metadata;
-        private @Nullable ProductDefaultPriceDataRecurring recurring;
+        private @Nullable List<ProductDefaultPriceDataRecurring> recurrings;
         private @Nullable String taxBehavior;
         private @Nullable Double unitAmount;
         private @Nullable String unitAmountDecimal;
@@ -139,9 +139,9 @@ public final class ProductDefaultPriceData {
     	      Objects.requireNonNull(defaults);
     	      this.currency = defaults.currency;
     	      this.currencyOptions = defaults.currencyOptions;
-    	      this.customUnitAmount = defaults.customUnitAmount;
+    	      this.customUnitAmounts = defaults.customUnitAmounts;
     	      this.metadata = defaults.metadata;
-    	      this.recurring = defaults.recurring;
+    	      this.recurrings = defaults.recurrings;
     	      this.taxBehavior = defaults.taxBehavior;
     	      this.unitAmount = defaults.unitAmount;
     	      this.unitAmountDecimal = defaults.unitAmountDecimal;
@@ -165,10 +165,13 @@ public final class ProductDefaultPriceData {
             return currencyOptions(List.of(currencyOptions));
         }
         @CustomType.Setter
-        public Builder customUnitAmount(@Nullable ProductDefaultPriceDataCustomUnitAmount customUnitAmount) {
+        public Builder customUnitAmounts(@Nullable List<ProductDefaultPriceDataCustomUnitAmount> customUnitAmounts) {
 
-            this.customUnitAmount = customUnitAmount;
+            this.customUnitAmounts = customUnitAmounts;
             return this;
+        }
+        public Builder customUnitAmounts(ProductDefaultPriceDataCustomUnitAmount... customUnitAmounts) {
+            return customUnitAmounts(List.of(customUnitAmounts));
         }
         @CustomType.Setter
         public Builder metadata(@Nullable Map<String,String> metadata) {
@@ -177,10 +180,13 @@ public final class ProductDefaultPriceData {
             return this;
         }
         @CustomType.Setter
-        public Builder recurring(@Nullable ProductDefaultPriceDataRecurring recurring) {
+        public Builder recurrings(@Nullable List<ProductDefaultPriceDataRecurring> recurrings) {
 
-            this.recurring = recurring;
+            this.recurrings = recurrings;
             return this;
+        }
+        public Builder recurrings(ProductDefaultPriceDataRecurring... recurrings) {
+            return recurrings(List.of(recurrings));
         }
         @CustomType.Setter
         public Builder taxBehavior(@Nullable String taxBehavior) {
@@ -204,9 +210,9 @@ public final class ProductDefaultPriceData {
             final var _resultValue = new ProductDefaultPriceData();
             _resultValue.currency = currency;
             _resultValue.currencyOptions = currencyOptions;
-            _resultValue.customUnitAmount = customUnitAmount;
+            _resultValue.customUnitAmounts = customUnitAmounts;
             _resultValue.metadata = metadata;
-            _resultValue.recurring = recurring;
+            _resultValue.recurrings = recurrings;
             _resultValue.taxBehavior = taxBehavior;
             _resultValue.unitAmount = unitAmount;
             _resultValue.unitAmountDecimal = unitAmountDecimal;

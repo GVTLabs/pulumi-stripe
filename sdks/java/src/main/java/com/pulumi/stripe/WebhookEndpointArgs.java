@@ -20,14 +20,14 @@ public final class WebhookEndpointArgs extends com.pulumi.resources.ResourceArgs
     public static final WebhookEndpointArgs Empty = new WebhookEndpointArgs();
 
     /**
-     * Events sent to this endpoint will be generated with this Stripe Version instead of your account&#39;s default Stripe Version.
+     * The API version events are rendered as for this webhook endpoint.
      * 
      */
     @Import(name="apiVersion")
     private @Nullable Output<String> apiVersion;
 
     /**
-     * @return Events sent to this endpoint will be generated with this Stripe Version instead of your account&#39;s default Stripe Version.
+     * @return The API version events are rendered as for this webhook endpoint.
      * 
      */
     public Optional<Output<String>> apiVersion() {
@@ -49,31 +49,47 @@ public final class WebhookEndpointArgs extends com.pulumi.resources.ResourceArgs
         return Optional.ofNullable(this.connect);
     }
 
+    /**
+     * An optional description of what the webhook is used for.
+     * 
+     */
     @Import(name="description")
     private @Nullable Output<String> description;
 
+    /**
+     * @return An optional description of what the webhook is used for.
+     * 
+     */
     public Optional<Output<String>> description() {
         return Optional.ofNullable(this.description);
     }
 
     /**
-     * The list of events to enable for this endpoint. You may specify `[&#39;*&#39;]` to enable all events, except those that require explicit selection.
+     * The list of events to enable for this endpoint. `[&#39;*&#39;]` indicates that all events are enabled, except those that require explicit selection.
      * 
      */
     @Import(name="enabledEvents", required=true)
     private Output<List<String>> enabledEvents;
 
     /**
-     * @return The list of events to enable for this endpoint. You may specify `[&#39;*&#39;]` to enable all events, except those that require explicit selection.
+     * @return The list of events to enable for this endpoint. `[&#39;*&#39;]` indicates that all events are enabled, except those that require explicit selection.
      * 
      */
     public Output<List<String>> enabledEvents() {
         return this.enabledEvents;
     }
 
+    /**
+     * Set of [key-value pairs](https://docs.stripe.com/api/metadata) that you can attach to an object. This can be useful for storing additional information about the object in a structured format.
+     * 
+     */
     @Import(name="metadata")
     private @Nullable Output<Map<String,String>> metadata;
 
+    /**
+     * @return Set of [key-value pairs](https://docs.stripe.com/api/metadata) that you can attach to an object. This can be useful for storing additional information about the object in a structured format.
+     * 
+     */
     public Optional<Output<Map<String,String>>> metadata() {
         return Optional.ofNullable(this.metadata);
     }
@@ -123,7 +139,7 @@ public final class WebhookEndpointArgs extends com.pulumi.resources.ResourceArgs
         }
 
         /**
-         * @param apiVersion Events sent to this endpoint will be generated with this Stripe Version instead of your account&#39;s default Stripe Version.
+         * @param apiVersion The API version events are rendered as for this webhook endpoint.
          * 
          * @return builder
          * 
@@ -134,7 +150,7 @@ public final class WebhookEndpointArgs extends com.pulumi.resources.ResourceArgs
         }
 
         /**
-         * @param apiVersion Events sent to this endpoint will be generated with this Stripe Version instead of your account&#39;s default Stripe Version.
+         * @param apiVersion The API version events are rendered as for this webhook endpoint.
          * 
          * @return builder
          * 
@@ -164,17 +180,29 @@ public final class WebhookEndpointArgs extends com.pulumi.resources.ResourceArgs
             return connect(Output.of(connect));
         }
 
+        /**
+         * @param description An optional description of what the webhook is used for.
+         * 
+         * @return builder
+         * 
+         */
         public Builder description(@Nullable Output<String> description) {
             $.description = description;
             return this;
         }
 
+        /**
+         * @param description An optional description of what the webhook is used for.
+         * 
+         * @return builder
+         * 
+         */
         public Builder description(String description) {
             return description(Output.of(description));
         }
 
         /**
-         * @param enabledEvents The list of events to enable for this endpoint. You may specify `[&#39;*&#39;]` to enable all events, except those that require explicit selection.
+         * @param enabledEvents The list of events to enable for this endpoint. `[&#39;*&#39;]` indicates that all events are enabled, except those that require explicit selection.
          * 
          * @return builder
          * 
@@ -185,7 +213,7 @@ public final class WebhookEndpointArgs extends com.pulumi.resources.ResourceArgs
         }
 
         /**
-         * @param enabledEvents The list of events to enable for this endpoint. You may specify `[&#39;*&#39;]` to enable all events, except those that require explicit selection.
+         * @param enabledEvents The list of events to enable for this endpoint. `[&#39;*&#39;]` indicates that all events are enabled, except those that require explicit selection.
          * 
          * @return builder
          * 
@@ -195,7 +223,7 @@ public final class WebhookEndpointArgs extends com.pulumi.resources.ResourceArgs
         }
 
         /**
-         * @param enabledEvents The list of events to enable for this endpoint. You may specify `[&#39;*&#39;]` to enable all events, except those that require explicit selection.
+         * @param enabledEvents The list of events to enable for this endpoint. `[&#39;*&#39;]` indicates that all events are enabled, except those that require explicit selection.
          * 
          * @return builder
          * 
@@ -204,11 +232,23 @@ public final class WebhookEndpointArgs extends com.pulumi.resources.ResourceArgs
             return enabledEvents(List.of(enabledEvents));
         }
 
+        /**
+         * @param metadata Set of [key-value pairs](https://docs.stripe.com/api/metadata) that you can attach to an object. This can be useful for storing additional information about the object in a structured format.
+         * 
+         * @return builder
+         * 
+         */
         public Builder metadata(@Nullable Output<Map<String,String>> metadata) {
             $.metadata = metadata;
             return this;
         }
 
+        /**
+         * @param metadata Set of [key-value pairs](https://docs.stripe.com/api/metadata) that you can attach to an object. This can be useful for storing additional information about the object in a structured format.
+         * 
+         * @return builder
+         * 
+         */
         public Builder metadata(Map<String,String> metadata) {
             return metadata(Output.of(metadata));
         }

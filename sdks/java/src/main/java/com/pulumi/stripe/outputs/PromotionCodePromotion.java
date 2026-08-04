@@ -13,26 +13,26 @@ import javax.annotation.Nullable;
 @CustomType
 public final class PromotionCodePromotion {
     /**
-     * @return If promotion &lt;span pulumi-lang-nodejs=&#34;`type`&#34; pulumi-lang-dotnet=&#34;`Type`&#34; pulumi-lang-go=&#34;`type`&#34; pulumi-lang-python=&#34;`type`&#34; pulumi-lang-yaml=&#34;`type`&#34; pulumi-lang-java=&#34;`type`&#34; pulumi-lang-hcl=&#34;`type`&#34;&gt;`type`&lt;/span&gt; is &lt;span pulumi-lang-nodejs=&#34;`coupon`&#34; pulumi-lang-dotnet=&#34;`Coupon`&#34; pulumi-lang-go=&#34;`coupon`&#34; pulumi-lang-python=&#34;`coupon`&#34; pulumi-lang-yaml=&#34;`coupon`&#34; pulumi-lang-java=&#34;`coupon`&#34; pulumi-lang-hcl=&#34;`coupon`&#34;&gt;`coupon`&lt;/span&gt;, the coupon for this promotion code.
+     * @return If promotion &lt;span pulumi-lang-nodejs=&#34;`type`&#34; pulumi-lang-dotnet=&#34;`Type`&#34; pulumi-lang-go=&#34;`type`&#34; pulumi-lang-python=&#34;`type`&#34; pulumi-lang-yaml=&#34;`type`&#34; pulumi-lang-java=&#34;`type`&#34; pulumi-lang-hcl=&#34;`type`&#34;&gt;`type`&lt;/span&gt; is &lt;span pulumi-lang-nodejs=&#34;`coupon`&#34; pulumi-lang-dotnet=&#34;`Coupon`&#34; pulumi-lang-go=&#34;`coupon`&#34; pulumi-lang-python=&#34;`coupon`&#34; pulumi-lang-yaml=&#34;`coupon`&#34; pulumi-lang-java=&#34;`coupon`&#34; pulumi-lang-hcl=&#34;`coupon`&#34;&gt;`coupon`&lt;/span&gt;, the coupon for this promotion.
      * 
      */
     private @Nullable String coupon;
     /**
-     * @return Specifies the type of promotion.
+     * @return The type of promotion.
      * 
      */
     private String type;
 
     private PromotionCodePromotion() {}
     /**
-     * @return If promotion &lt;span pulumi-lang-nodejs=&#34;`type`&#34; pulumi-lang-dotnet=&#34;`Type`&#34; pulumi-lang-go=&#34;`type`&#34; pulumi-lang-python=&#34;`type`&#34; pulumi-lang-yaml=&#34;`type`&#34; pulumi-lang-java=&#34;`type`&#34; pulumi-lang-hcl=&#34;`type`&#34;&gt;`type`&lt;/span&gt; is &lt;span pulumi-lang-nodejs=&#34;`coupon`&#34; pulumi-lang-dotnet=&#34;`Coupon`&#34; pulumi-lang-go=&#34;`coupon`&#34; pulumi-lang-python=&#34;`coupon`&#34; pulumi-lang-yaml=&#34;`coupon`&#34; pulumi-lang-java=&#34;`coupon`&#34; pulumi-lang-hcl=&#34;`coupon`&#34;&gt;`coupon`&lt;/span&gt;, the coupon for this promotion code.
+     * @return If promotion &lt;span pulumi-lang-nodejs=&#34;`type`&#34; pulumi-lang-dotnet=&#34;`Type`&#34; pulumi-lang-go=&#34;`type`&#34; pulumi-lang-python=&#34;`type`&#34; pulumi-lang-yaml=&#34;`type`&#34; pulumi-lang-java=&#34;`type`&#34; pulumi-lang-hcl=&#34;`type`&#34;&gt;`type`&lt;/span&gt; is &lt;span pulumi-lang-nodejs=&#34;`coupon`&#34; pulumi-lang-dotnet=&#34;`Coupon`&#34; pulumi-lang-go=&#34;`coupon`&#34; pulumi-lang-python=&#34;`coupon`&#34; pulumi-lang-yaml=&#34;`coupon`&#34; pulumi-lang-java=&#34;`coupon`&#34; pulumi-lang-hcl=&#34;`coupon`&#34;&gt;`coupon`&lt;/span&gt;, the coupon for this promotion.
      * 
      */
     public Optional<String> coupon() {
         return Optional.ofNullable(this.coupon);
     }
     /**
-     * @return Specifies the type of promotion.
+     * @return The type of promotion.
      * 
      */
     public String type() {

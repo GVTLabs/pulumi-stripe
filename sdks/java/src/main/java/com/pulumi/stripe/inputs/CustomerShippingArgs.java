@@ -8,6 +8,7 @@ import com.pulumi.core.annotations.Import;
 import com.pulumi.exceptions.MissingRequiredPropertyException;
 import com.pulumi.stripe.inputs.CustomerShippingAddressArgs;
 import java.lang.String;
+import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 import javax.annotation.Nullable;
@@ -17,19 +18,11 @@ public final class CustomerShippingArgs extends com.pulumi.resources.ResourceArg
 
     public static final CustomerShippingArgs Empty = new CustomerShippingArgs();
 
-    /**
-     * Customer shipping address.
-     * 
-     */
-    @Import(name="address", required=true)
-    private Output<CustomerShippingAddressArgs> address;
+    @Import(name="addresses")
+    private @Nullable Output<List<CustomerShippingAddressArgs>> addresses;
 
-    /**
-     * @return Customer shipping address.
-     * 
-     */
-    public Output<CustomerShippingAddressArgs> address() {
-        return this.address;
+    public Optional<Output<List<CustomerShippingAddressArgs>>> addresses() {
+        return Optional.ofNullable(this.addresses);
     }
 
     /**
@@ -48,14 +41,14 @@ public final class CustomerShippingArgs extends com.pulumi.resources.ResourceArg
     }
 
     /**
-     * Customer name.
+     * Recipient name.
      * 
      */
     @Import(name="name", required=true)
     private Output<String> name;
 
     /**
-     * @return Customer name.
+     * @return Recipient name.
      * 
      */
     public Output<String> name() {
@@ -63,14 +56,14 @@ public final class CustomerShippingArgs extends com.pulumi.resources.ResourceArg
     }
 
     /**
-     * Customer phone (including extension).
+     * Recipient phone (including extension).
      * 
      */
     @Import(name="phone")
     private @Nullable Output<String> phone;
 
     /**
-     * @return Customer phone (including extension).
+     * @return Recipient phone (including extension).
      * 
      */
     public Optional<Output<String>> phone() {
@@ -95,7 +88,7 @@ public final class CustomerShippingArgs extends com.pulumi.resources.ResourceArg
     private CustomerShippingArgs() {}
 
     private CustomerShippingArgs(CustomerShippingArgs $) {
-        this.address = $.address;
+        this.addresses = $.addresses;
         this.carrier = $.carrier;
         this.name = $.name;
         this.phone = $.phone;
@@ -120,25 +113,17 @@ public final class CustomerShippingArgs extends com.pulumi.resources.ResourceArg
             $ = new CustomerShippingArgs(Objects.requireNonNull(defaults));
         }
 
-        /**
-         * @param address Customer shipping address.
-         * 
-         * @return builder
-         * 
-         */
-        public Builder address(Output<CustomerShippingAddressArgs> address) {
-            $.address = address;
+        public Builder addresses(@Nullable Output<List<CustomerShippingAddressArgs>> addresses) {
+            $.addresses = addresses;
             return this;
         }
 
-        /**
-         * @param address Customer shipping address.
-         * 
-         * @return builder
-         * 
-         */
-        public Builder address(CustomerShippingAddressArgs address) {
-            return address(Output.of(address));
+        public Builder addresses(List<CustomerShippingAddressArgs> addresses) {
+            return addresses(Output.of(addresses));
+        }
+
+        public Builder addresses(CustomerShippingAddressArgs... addresses) {
+            return addresses(List.of(addresses));
         }
 
         /**
@@ -163,7 +148,7 @@ public final class CustomerShippingArgs extends com.pulumi.resources.ResourceArg
         }
 
         /**
-         * @param name Customer name.
+         * @param name Recipient name.
          * 
          * @return builder
          * 
@@ -174,7 +159,7 @@ public final class CustomerShippingArgs extends com.pulumi.resources.ResourceArg
         }
 
         /**
-         * @param name Customer name.
+         * @param name Recipient name.
          * 
          * @return builder
          * 
@@ -184,7 +169,7 @@ public final class CustomerShippingArgs extends com.pulumi.resources.ResourceArg
         }
 
         /**
-         * @param phone Customer phone (including extension).
+         * @param phone Recipient phone (including extension).
          * 
          * @return builder
          * 
@@ -195,7 +180,7 @@ public final class CustomerShippingArgs extends com.pulumi.resources.ResourceArg
         }
 
         /**
-         * @param phone Customer phone (including extension).
+         * @param phone Recipient phone (including extension).
          * 
          * @return builder
          * 
@@ -226,9 +211,6 @@ public final class CustomerShippingArgs extends com.pulumi.resources.ResourceArg
         }
 
         public CustomerShippingArgs build() {
-            if ($.address == null) {
-                throw new MissingRequiredPropertyException("CustomerShippingArgs", "address");
-            }
             if ($.name == null) {
                 throw new MissingRequiredPropertyException("CustomerShippingArgs", "name");
             }

@@ -11,7 +11,10 @@ import com.pulumi.stripe.Utilities;
 import com.pulumi.stripe.V2CoreEventDestinationArgs;
 import com.pulumi.stripe.inputs.V2CoreEventDestinationState;
 import com.pulumi.stripe.outputs.V2CoreEventDestinationAmazonEventbridge;
+import com.pulumi.stripe.outputs.V2CoreEventDestinationAzureEventGrid;
+import com.pulumi.stripe.outputs.V2CoreEventDestinationStatusDetails;
 import com.pulumi.stripe.outputs.V2CoreEventDestinationWebhookEndpoint;
+import java.lang.Boolean;
 import java.lang.String;
 import java.util.List;
 import java.util.Map;
@@ -24,15 +27,43 @@ public class V2CoreEventDestination extends com.pulumi.resources.CustomResource 
      * Amazon EventBridge configuration.
      * 
      */
-    @Export(name="amazonEventbridge", refs={V2CoreEventDestinationAmazonEventbridge.class}, tree="[0]")
-    private Output</* @Nullable */ V2CoreEventDestinationAmazonEventbridge> amazonEventbridge;
+    @Export(name="amazonEventbridges", refs={List.class,V2CoreEventDestinationAmazonEventbridge.class}, tree="[0,1]")
+    private Output</* @Nullable */ List<V2CoreEventDestinationAmazonEventbridge>> amazonEventbridges;
 
     /**
      * @return Amazon EventBridge configuration.
      * 
      */
-    public Output<Optional<V2CoreEventDestinationAmazonEventbridge>> amazonEventbridge() {
-        return Codegen.optional(this.amazonEventbridge);
+    public Output<Optional<List<V2CoreEventDestinationAmazonEventbridge>>> amazonEventbridges() {
+        return Codegen.optional(this.amazonEventbridges);
+    }
+    /**
+     * Azure Event Grid configuration.
+     * 
+     */
+    @Export(name="azureEventGrid", refs={V2CoreEventDestinationAzureEventGrid.class}, tree="[0]")
+    private Output<V2CoreEventDestinationAzureEventGrid> azureEventGrid;
+
+    /**
+     * @return Azure Event Grid configuration.
+     * 
+     */
+    public Output<V2CoreEventDestinationAzureEventGrid> azureEventGrid() {
+        return this.azureEventGrid;
+    }
+    /**
+     * Time at which the object was created.
+     * 
+     */
+    @Export(name="created", refs={String.class}, tree="[0]")
+    private Output<String> created;
+
+    /**
+     * @return Time at which the object was created.
+     * 
+     */
+    public Output<String> created() {
+        return this.created;
     }
     /**
      * An optional description of what the event destination is used for.
@@ -77,18 +108,56 @@ public class V2CoreEventDestination extends com.pulumi.resources.CustomResource 
         return this.eventPayload;
     }
     /**
-     * Where events should be routed from.
+     * Specifies which accounts&#39; events route to this destination.
+     * `{@literal @}self`: Receive events from the account that owns the event destination.
+     * `{@literal @}accounts`: Receive events emitted from other accounts you manage which includes your v1 and v2 accounts.
+     * `{@literal @}organization_members`: Receive events from accounts directly linked to the organization.
+     * `{@literal @}organization_members/{@literal @}accounts`: Receive events from all accounts connected to any platform accounts in the organization.
      * 
      */
     @Export(name="eventsFroms", refs={List.class,String.class}, tree="[0,1]")
     private Output<List<String>> eventsFroms;
 
     /**
-     * @return Where events should be routed from.
+     * @return Specifies which accounts&#39; events route to this destination.
+     * `{@literal @}self`: Receive events from the account that owns the event destination.
+     * `{@literal @}accounts`: Receive events emitted from other accounts you manage which includes your v1 and v2 accounts.
+     * `{@literal @}organization_members`: Receive events from accounts directly linked to the organization.
+     * `{@literal @}organization_members/{@literal @}accounts`: Receive events from all accounts connected to any platform accounts in the organization.
      * 
      */
     public Output<List<String>> eventsFroms() {
         return this.eventsFroms;
+    }
+    /**
+     * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * Additional fields to include in the response.
+     * 
+     */
+    @Export(name="includes", refs={List.class,String.class}, tree="[0,1]")
+    private Output</* @Nullable */ List<String>> includes;
+
+    /**
+     * @return **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * Additional fields to include in the response.
+     * 
+     */
+    public Output<Optional<List<String>>> includes() {
+        return Codegen.optional(this.includes);
+    }
+    /**
+     * Has the value &lt;span pulumi-lang-nodejs=&#34;`true`&#34; pulumi-lang-dotnet=&#34;`True`&#34; pulumi-lang-go=&#34;`true`&#34; pulumi-lang-python=&#34;`true`&#34; pulumi-lang-yaml=&#34;`true`&#34; pulumi-lang-java=&#34;`true`&#34; pulumi-lang-hcl=&#34;`true`&#34;&gt;`true`&lt;/span&gt; if the object exists in live mode or the value &lt;span pulumi-lang-nodejs=&#34;`false`&#34; pulumi-lang-dotnet=&#34;`False`&#34; pulumi-lang-go=&#34;`false`&#34; pulumi-lang-python=&#34;`false`&#34; pulumi-lang-yaml=&#34;`false`&#34; pulumi-lang-java=&#34;`false`&#34; pulumi-lang-hcl=&#34;`false`&#34;&gt;`false`&lt;/span&gt; if the object exists in test mode.
+     * 
+     */
+    @Export(name="livemode", refs={Boolean.class}, tree="[0]")
+    private Output<Boolean> livemode;
+
+    /**
+     * @return Has the value &lt;span pulumi-lang-nodejs=&#34;`true`&#34; pulumi-lang-dotnet=&#34;`True`&#34; pulumi-lang-go=&#34;`true`&#34; pulumi-lang-python=&#34;`true`&#34; pulumi-lang-yaml=&#34;`true`&#34; pulumi-lang-java=&#34;`true`&#34; pulumi-lang-hcl=&#34;`true`&#34;&gt;`true`&lt;/span&gt; if the object exists in live mode or the value &lt;span pulumi-lang-nodejs=&#34;`false`&#34; pulumi-lang-dotnet=&#34;`False`&#34; pulumi-lang-go=&#34;`false`&#34; pulumi-lang-python=&#34;`false`&#34; pulumi-lang-yaml=&#34;`false`&#34; pulumi-lang-java=&#34;`false`&#34; pulumi-lang-hcl=&#34;`false`&#34;&gt;`false`&lt;/span&gt; if the object exists in test mode.
+     * 
+     */
+    public Output<Boolean> livemode() {
+        return this.livemode;
     }
     /**
      * Metadata.
@@ -119,6 +188,20 @@ public class V2CoreEventDestination extends com.pulumi.resources.CustomResource 
         return this.name;
     }
     /**
+     * String representing the object&#39;s type. Objects of the same type share the same value of the object field.
+     * 
+     */
+    @Export(name="object", refs={String.class}, tree="[0]")
+    private Output<String> object;
+
+    /**
+     * @return String representing the object&#39;s type. Objects of the same type share the same value of the object field.
+     * 
+     */
+    public Output<String> object() {
+        return this.object;
+    }
+    /**
      * If using the snapshot event payload, the API version events are rendered as.
      * 
      */
@@ -147,6 +230,20 @@ public class V2CoreEventDestination extends com.pulumi.resources.CustomResource 
         return this.status;
     }
     /**
+     * Additional information about event destination status.
+     * 
+     */
+    @Export(name="statusDetails", refs={V2CoreEventDestinationStatusDetails.class}, tree="[0]")
+    private Output<V2CoreEventDestinationStatusDetails> statusDetails;
+
+    /**
+     * @return Additional information about event destination status.
+     * 
+     */
+    public Output<V2CoreEventDestinationStatusDetails> statusDetails() {
+        return this.statusDetails;
+    }
+    /**
      * Event destination type.
      * 
      */
@@ -161,18 +258,32 @@ public class V2CoreEventDestination extends com.pulumi.resources.CustomResource 
         return this.type;
     }
     /**
+     * Time at which the object was last updated.
+     * 
+     */
+    @Export(name="updated", refs={String.class}, tree="[0]")
+    private Output<String> updated;
+
+    /**
+     * @return Time at which the object was last updated.
+     * 
+     */
+    public Output<String> updated() {
+        return this.updated;
+    }
+    /**
      * Webhook endpoint configuration.
      * 
      */
-    @Export(name="webhookEndpoint", refs={V2CoreEventDestinationWebhookEndpoint.class}, tree="[0]")
-    private Output</* @Nullable */ V2CoreEventDestinationWebhookEndpoint> webhookEndpoint;
+    @Export(name="webhookEndpoints", refs={List.class,V2CoreEventDestinationWebhookEndpoint.class}, tree="[0,1]")
+    private Output</* @Nullable */ List<V2CoreEventDestinationWebhookEndpoint>> webhookEndpoints;
 
     /**
      * @return Webhook endpoint configuration.
      * 
      */
-    public Output<Optional<V2CoreEventDestinationWebhookEndpoint>> webhookEndpoint() {
-        return Codegen.optional(this.webhookEndpoint);
+    public Output<Optional<List<V2CoreEventDestinationWebhookEndpoint>>> webhookEndpoints() {
+        return Codegen.optional(this.webhookEndpoints);
     }
 
     /**
@@ -214,6 +325,9 @@ public class V2CoreEventDestination extends com.pulumi.resources.CustomResource 
     private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<java.lang.String> id) {
         var defaultOptions = com.pulumi.resources.CustomResourceOptions.builder()
             .version(Utilities.getVersion())
+            .additionalSecretOutputs(List.of(
+                "includes"
+            ))
             .build();
         return com.pulumi.resources.CustomResourceOptions.merge(defaultOptions, options, id);
     }

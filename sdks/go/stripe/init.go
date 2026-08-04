@@ -21,40 +21,100 @@ func (m *module) Version() semver.Version {
 
 func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi.Resource, err error) {
 	switch typ {
+	case "stripe:index/applePayDomain:ApplePayDomain":
+		r = &ApplePayDomain{}
+	case "stripe:index/billingAlert:BillingAlert":
+		r = &BillingAlert{}
+	case "stripe:index/billingCreditGrant:BillingCreditGrant":
+		r = &BillingCreditGrant{}
 	case "stripe:index/billingMeter:BillingMeter":
 		r = &BillingMeter{}
+	case "stripe:index/billingPortalConfiguration:BillingPortalConfiguration":
+		r = &BillingPortalConfiguration{}
+	case "stripe:index/charge:Charge":
+		r = &Charge{}
+	case "stripe:index/climateOrder:ClimateOrder":
+		r = &ClimateOrder{}
 	case "stripe:index/coupon:Coupon":
 		r = &Coupon{}
+	case "stripe:index/creditNote:CreditNote":
+		r = &CreditNote{}
 	case "stripe:index/customer:Customer":
 		r = &Customer{}
+	case "stripe:index/customerBalanceTransaction:CustomerBalanceTransaction":
+		r = &CustomerBalanceTransaction{}
 	case "stripe:index/entitlementsFeature:EntitlementsFeature":
 		r = &EntitlementsFeature{}
+	case "stripe:index/file:File":
+		r = &File{}
+	case "stripe:index/fileLink:FileLink":
+		r = &FileLink{}
+	case "stripe:index/invoice:Invoice":
+		r = &Invoice{}
+	case "stripe:index/invoiceItem:InvoiceItem":
+		r = &InvoiceItem{}
+	case "stripe:index/issuingCard:IssuingCard":
+		r = &IssuingCard{}
+	case "stripe:index/issuingCardholder:IssuingCardholder":
+		r = &IssuingCardholder{}
+	case "stripe:index/issuingDispute:IssuingDispute":
+		r = &IssuingDispute{}
+	case "stripe:index/issuingPersonalizationDesign:IssuingPersonalizationDesign":
+		r = &IssuingPersonalizationDesign{}
+	case "stripe:index/paymentIntent:PaymentIntent":
+		r = &PaymentIntent{}
+	case "stripe:index/paymentLink:PaymentLink":
+		r = &PaymentLink{}
+	case "stripe:index/paymentMethod:PaymentMethod":
+		r = &PaymentMethod{}
+	case "stripe:index/paymentMethodConfiguration:PaymentMethodConfiguration":
+		r = &PaymentMethodConfiguration{}
+	case "stripe:index/paymentMethodDomain:PaymentMethodDomain":
+		r = &PaymentMethodDomain{}
+	case "stripe:index/person:Person":
+		r = &Person{}
+	case "stripe:index/plan:Plan":
+		r = &Plan{}
 	case "stripe:index/price:Price":
 		r = &Price{}
 	case "stripe:index/product:Product":
 		r = &Product{}
+	case "stripe:index/productFeature:ProductFeature":
+		r = &ProductFeature{}
 	case "stripe:index/promotionCode:PromotionCode":
 		r = &PromotionCode{}
+	case "stripe:index/quote:Quote":
+		r = &Quote{}
+	case "stripe:index/radarValueList:RadarValueList":
+		r = &RadarValueList{}
+	case "stripe:index/radarValueListItem:RadarValueListItem":
+		r = &RadarValueListItem{}
+	case "stripe:index/setupIntent:SetupIntent":
+		r = &SetupIntent{}
 	case "stripe:index/shippingRate:ShippingRate":
 		r = &ShippingRate{}
+	case "stripe:index/source:Source":
+		r = &Source{}
+	case "stripe:index/subscription:Subscription":
+		r = &Subscription{}
+	case "stripe:index/subscriptionItem:SubscriptionItem":
+		r = &SubscriptionItem{}
+	case "stripe:index/subscriptionSchedule:SubscriptionSchedule":
+		r = &SubscriptionSchedule{}
+	case "stripe:index/taxId:TaxId":
+		r = &TaxId{}
 	case "stripe:index/taxRate:TaxRate":
 		r = &TaxRate{}
-	case "stripe:index/v2BillingLicenseFee:V2BillingLicenseFee":
-		r = &V2BillingLicenseFee{}
-	case "stripe:index/v2BillingLicensedItem:V2BillingLicensedItem":
-		r = &V2BillingLicensedItem{}
-	case "stripe:index/v2BillingMeteredItem:V2BillingMeteredItem":
-		r = &V2BillingMeteredItem{}
-	case "stripe:index/v2BillingPricingPlan:V2BillingPricingPlan":
-		r = &V2BillingPricingPlan{}
-	case "stripe:index/v2BillingPricingPlanComponent:V2BillingPricingPlanComponent":
-		r = &V2BillingPricingPlanComponent{}
-	case "stripe:index/v2BillingRateCard:V2BillingRateCard":
-		r = &V2BillingRateCard{}
-	case "stripe:index/v2BillingRateCardRate:V2BillingRateCardRate":
-		r = &V2BillingRateCardRate{}
-	case "stripe:index/v2BillingServiceAction:V2BillingServiceAction":
-		r = &V2BillingServiceAction{}
+	case "stripe:index/taxRegistration:TaxRegistration":
+		r = &TaxRegistration{}
+	case "stripe:index/terminalConfiguration:TerminalConfiguration":
+		r = &TerminalConfiguration{}
+	case "stripe:index/terminalLocation:TerminalLocation":
+		r = &TerminalLocation{}
+	case "stripe:index/terminalReader:TerminalReader":
+		r = &TerminalReader{}
+	case "stripe:index/treasuryFinancialAccount:TreasuryFinancialAccount":
+		r = &TreasuryFinancialAccount{}
 	case "stripe:index/v2CoreEventDestination:V2CoreEventDestination":
 		r = &V2CoreEventDestination{}
 	case "stripe:index/webhookEndpoint:WebhookEndpoint":
@@ -92,7 +152,37 @@ func init() {
 	}
 	pulumi.RegisterResourceModule(
 		"stripe",
+		"index/applePayDomain",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"stripe",
+		"index/billingAlert",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"stripe",
+		"index/billingCreditGrant",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"stripe",
 		"index/billingMeter",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"stripe",
+		"index/billingPortalConfiguration",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"stripe",
+		"index/charge",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"stripe",
+		"index/climateOrder",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(
@@ -102,12 +192,97 @@ func init() {
 	)
 	pulumi.RegisterResourceModule(
 		"stripe",
+		"index/creditNote",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"stripe",
 		"index/customer",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(
 		"stripe",
+		"index/customerBalanceTransaction",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"stripe",
 		"index/entitlementsFeature",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"stripe",
+		"index/file",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"stripe",
+		"index/fileLink",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"stripe",
+		"index/invoice",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"stripe",
+		"index/invoiceItem",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"stripe",
+		"index/issuingCard",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"stripe",
+		"index/issuingCardholder",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"stripe",
+		"index/issuingDispute",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"stripe",
+		"index/issuingPersonalizationDesign",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"stripe",
+		"index/paymentIntent",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"stripe",
+		"index/paymentLink",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"stripe",
+		"index/paymentMethod",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"stripe",
+		"index/paymentMethodConfiguration",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"stripe",
+		"index/paymentMethodDomain",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"stripe",
+		"index/person",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"stripe",
+		"index/plan",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(
@@ -122,7 +297,32 @@ func init() {
 	)
 	pulumi.RegisterResourceModule(
 		"stripe",
+		"index/productFeature",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"stripe",
 		"index/promotionCode",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"stripe",
+		"index/quote",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"stripe",
+		"index/radarValueList",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"stripe",
+		"index/radarValueListItem",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"stripe",
+		"index/setupIntent",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(
@@ -132,47 +332,57 @@ func init() {
 	)
 	pulumi.RegisterResourceModule(
 		"stripe",
+		"index/source",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"stripe",
+		"index/subscription",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"stripe",
+		"index/subscriptionItem",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"stripe",
+		"index/subscriptionSchedule",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"stripe",
+		"index/taxId",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"stripe",
 		"index/taxRate",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(
 		"stripe",
-		"index/v2BillingLicenseFee",
+		"index/taxRegistration",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(
 		"stripe",
-		"index/v2BillingLicensedItem",
+		"index/terminalConfiguration",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(
 		"stripe",
-		"index/v2BillingMeteredItem",
+		"index/terminalLocation",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(
 		"stripe",
-		"index/v2BillingPricingPlan",
+		"index/terminalReader",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(
 		"stripe",
-		"index/v2BillingPricingPlanComponent",
-		&module{version},
-	)
-	pulumi.RegisterResourceModule(
-		"stripe",
-		"index/v2BillingRateCard",
-		&module{version},
-	)
-	pulumi.RegisterResourceModule(
-		"stripe",
-		"index/v2BillingRateCardRate",
-		&module{version},
-	)
-	pulumi.RegisterResourceModule(
-		"stripe",
-		"index/v2BillingServiceAction",
+		"index/treasuryFinancialAccount",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(

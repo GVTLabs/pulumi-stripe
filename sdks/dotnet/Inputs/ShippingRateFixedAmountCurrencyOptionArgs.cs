@@ -18,6 +18,9 @@ namespace Pulumi.Stripe.Inputs
         [Input("amount", required: true)]
         public Input<double> Amount { get; set; } = null!;
 
+        /// <summary>
+        /// Key for this entry.
+        /// </summary>
         [Input("key", required: true)]
         public Input<string> Key { get; set; } = null!;
 

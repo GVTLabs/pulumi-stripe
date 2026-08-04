@@ -12,23 +12,35 @@ namespace Pulumi.Stripe
     [StripeResourceType("stripe:index/customer:Customer")]
     public partial class Customer : global::Pulumi.CustomResource
     {
-        [Output("address")]
-        public Output<Outputs.CustomerAddress?> Address { get; private set; } = null!;
+        /// <summary>
+        /// The customer's address.
+        /// </summary>
+        [Output("addresses")]
+        public Output<ImmutableArray<Outputs.CustomerAddress>> Addresses { get; private set; } = null!;
 
         /// <summary>
-        /// An integer amount in cents (or local equivalent) that represents the customer's current balance, which affect the customer's future invoices. A negative amount represents a credit that decreases the amount due on an invoice; a positive amount increases the amount due on an invoice.
+        /// The current balance, if any, that's stored on the customer in their default currency. If negative, the customer has credit to apply to their next invoice. If positive, the customer has an amount owed that's added to their next invoice. The balance only considers amounts that Stripe hasn't successfully applied to any invoice. It doesn't reflect unpaid invoices. This balance is only taken into account after invoices finalize. For multi-currency balances, see &lt;span pulumi-lang-nodejs="[invoiceCreditBalance]" pulumi-lang-dotnet="[InvoiceCreditBalance]" pulumi-lang-go="[invoiceCreditBalance]" pulumi-lang-python="[invoice_credit_balance]" pulumi-lang-yaml="[invoiceCreditBalance]" pulumi-lang-java="[invoiceCreditBalance]" pulumi-lang-hcl="[invoice_credit_balance]"&gt;[invoiceCreditBalance]&lt;/span&gt;(https://docs.stripe.com/api/customers/object#customer_object-invoice_credit_balance).
         /// </summary>
         [Output("balance")]
         public Output<double> Balance { get; private set; } = null!;
 
+        /// <summary>
+        /// The customer's business name.
+        /// </summary>
         [Output("businessName")]
         public Output<string> BusinessName { get; private set; } = null!;
 
         /// <summary>
-        /// Balance information and default balance settings for this customer.
+        /// The current funds being held by Stripe on behalf of the customer. You can apply these funds towards payment intents when the source is &lt;span pulumi-lang-nodejs=""cashBalance"" pulumi-lang-dotnet=""CashBalance"" pulumi-lang-go=""cashBalance"" pulumi-lang-python=""cash_balance"" pulumi-lang-yaml=""cashBalance"" pulumi-lang-java=""cashBalance"" pulumi-lang-hcl=""cash_balance""&gt;"cashBalance"&lt;/span&gt;. The `settings&lt;span pulumi-lang-nodejs="[reconciliationMode]" pulumi-lang-dotnet="[ReconciliationMode]" pulumi-lang-go="[reconciliationMode]" pulumi-lang-python="[reconciliation_mode]" pulumi-lang-yaml="[reconciliationMode]" pulumi-lang-java="[reconciliationMode]" pulumi-lang-hcl="[reconciliation_mode]"&gt;[reconciliationMode]&lt;/span&gt;` field describes if these funds apply to these payment intents manually or automatically.
         /// </summary>
-        [Output("cashBalance")]
-        public Output<Outputs.CustomerCashBalance?> CashBalance { get; private set; } = null!;
+        [Output("cashBalances")]
+        public Output<ImmutableArray<Outputs.CustomerCashBalance>> CashBalances { get; private set; } = null!;
+
+        /// <summary>
+        /// Time at which the object was created. Measured in seconds since the Unix epoch.
+        /// </summary>
+        [Output("created")]
+        public Output<double> Created { get; private set; } = null!;
 
         /// <summary>
         /// Three-letter [ISO code for the currency](https://stripe.com/docs/currencies) the customer can be charged in for recurring billing purposes.
@@ -36,42 +48,78 @@ namespace Pulumi.Stripe
         [Output("currency")]
         public Output<string> Currency { get; private set; } = null!;
 
+        /// <summary>
+        /// The ID of an Account representing a customer. You can use this ID with any v1 API that accepts a&lt;span pulumi-lang-nodejs=" customerAccount " pulumi-lang-dotnet=" CustomerAccount " pulumi-lang-go=" customerAccount " pulumi-lang-python=" customer_account " pulumi-lang-yaml=" customerAccount " pulumi-lang-java=" customerAccount " pulumi-lang-hcl=" customer_account "&gt; customerAccount &lt;/span&gt;parameter.
+        /// </summary>
         [Output("customerAccount")]
         public Output<string> CustomerAccount { get; private set; } = null!;
 
         /// <summary>
-        /// Tracks the most recent state change on any invoice belonging to the customer. Paying an invoice or marking it uncollectible via the API will set this field to false. An automatic payment failure or passing the `invoice.due_date` will set this field to &lt;span pulumi-lang-nodejs="`true`" pulumi-lang-dotnet="`True`" pulumi-lang-go="`true`" pulumi-lang-python="`true`" pulumi-lang-yaml="`true`" pulumi-lang-java="`true`" pulumi-lang-hcl="`true`"&gt;`true`&lt;/span&gt;. If an invoice becomes uncollectible by [dunning](https://stripe.com/docs/billing/automatic-collection), &lt;span pulumi-lang-nodejs="`delinquent`" pulumi-lang-dotnet="`Delinquent`" pulumi-lang-go="`delinquent`" pulumi-lang-python="`delinquent`" pulumi-lang-yaml="`delinquent`" pulumi-lang-java="`delinquent`" pulumi-lang-hcl="`delinquent`"&gt;`delinquent`&lt;/span&gt; doesn't reset to &lt;span pulumi-lang-nodejs="`false`" pulumi-lang-dotnet="`False`" pulumi-lang-go="`false`" pulumi-lang-python="`false`" pulumi-lang-yaml="`false`" pulumi-lang-java="`false`" pulumi-lang-hcl="`false`"&gt;`false`&lt;/span&gt;. If you care whether the customer has paid their most recent subscription invoice, use `subscription.status` instead. Paying or marking uncollectible any customer invoice regardless of whether it is the latest invoice for a subscription will always set this field to &lt;span pulumi-lang-nodejs="`false`" pulumi-lang-dotnet="`False`" pulumi-lang-go="`false`" pulumi-lang-python="`false`" pulumi-lang-yaml="`false`" pulumi-lang-java="`false`" pulumi-lang-hcl="`false`"&gt;`false`&lt;/span&gt;.
+        /// ID of the default payment source for the customer.
+        /// 
+        /// If you use payment methods created through the PaymentMethods API, see the [invoice_settings.default_payment_method](https://docs.stripe.com/api/customers/object#customer_object-invoice_settings-default_payment_method) field instead.
+        /// </summary>
+        [Output("defaultSource")]
+        public Output<string> DefaultSource { get; private set; } = null!;
+
+        /// <summary>
+        /// Tracks the most recent state change on any invoice belonging to the customer. Paying an invoice or marking it uncollectible via the API will set this field to false. An automatic payment failure or passing the `invoice.due_date` will set this field to &lt;span pulumi-lang-nodejs="`true`" pulumi-lang-dotnet="`True`" pulumi-lang-go="`true`" pulumi-lang-python="`true`" pulumi-lang-yaml="`true`" pulumi-lang-java="`true`" pulumi-lang-hcl="`true`"&gt;`true`&lt;/span&gt;.
+        /// 
+        /// If an invoice becomes uncollectible by [dunning](https://docs.stripe.com/billing/automatic-collection), &lt;span pulumi-lang-nodejs="`delinquent`" pulumi-lang-dotnet="`Delinquent`" pulumi-lang-go="`delinquent`" pulumi-lang-python="`delinquent`" pulumi-lang-yaml="`delinquent`" pulumi-lang-java="`delinquent`" pulumi-lang-hcl="`delinquent`"&gt;`delinquent`&lt;/span&gt; doesn't reset to &lt;span pulumi-lang-nodejs="`false`" pulumi-lang-dotnet="`False`" pulumi-lang-go="`false`" pulumi-lang-python="`false`" pulumi-lang-yaml="`false`" pulumi-lang-java="`false`" pulumi-lang-hcl="`false`"&gt;`false`&lt;/span&gt;.
+        /// 
+        /// If you care whether the customer has paid their most recent subscription invoice, use `subscription.status` instead. Paying or marking uncollectible any customer invoice regardless of whether it is the latest invoice for a subscription will always set this field to &lt;span pulumi-lang-nodejs="`false`" pulumi-lang-dotnet="`False`" pulumi-lang-go="`false`" pulumi-lang-python="`false`" pulumi-lang-yaml="`false`" pulumi-lang-java="`false`" pulumi-lang-hcl="`false`"&gt;`false`&lt;/span&gt;.
         /// </summary>
         [Output("delinquent")]
         public Output<bool> Delinquent { get; private set; } = null!;
 
         /// <summary>
-        /// An arbitrary string that you can attach to a customer object. It is displayed alongside the customer in the dashboard.
+        /// An arbitrary string attached to the object. Often useful for displaying to users.
         /// </summary>
         [Output("description")]
         public Output<string> Description { get; private set; } = null!;
 
         /// <summary>
-        /// Customer's email address. It's displayed alongside the customer in your dashboard and can be useful for searching and tracking. This may be up to *512 characters*.
+        /// Describes the current discount active on the customer, if there is one.
+        /// </summary>
+        [Output("discount")]
+        public Output<string> Discount { get; private set; } = null!;
+
+        /// <summary>
+        /// The customer's email address.
         /// </summary>
         [Output("email")]
         public Output<string> Email { get; private set; } = null!;
 
+        /// <summary>
+        /// The customer's individual name.
+        /// </summary>
         [Output("individualName")]
         public Output<string> IndividualName { get; private set; } = null!;
 
         /// <summary>
-        /// The prefix for the customer used to generate unique invoice numbers. Must be 3–12 uppercase letters or numbers.
+        /// The current multi-currency balances, if any, that's stored on the customer. If positive in a currency, the customer has a credit to apply to their next invoice denominated in that currency. If negative, the customer has an amount owed that's added to their next invoice denominated in that currency. These balances don't apply to unpaid invoices. They solely track amounts that Stripe hasn't successfully applied to any invoice. Stripe only applies a balance in a specific currency to an invoice after that invoice (which is in the same currency) finalizes.
+        /// </summary>
+        [Output("invoiceCreditBalance")]
+        public Output<ImmutableDictionary<string, double>> InvoiceCreditBalance { get; private set; } = null!;
+
+        /// <summary>
+        /// The prefix for the customer used to generate unique invoice numbers.
         /// </summary>
         [Output("invoicePrefix")]
         public Output<string> InvoicePrefix { get; private set; } = null!;
 
-        /// <summary>
-        /// Default invoice settings for this customer.
-        /// </summary>
         [Output("invoiceSettings")]
-        public Output<Outputs.CustomerInvoiceSettings?> InvoiceSettings { get; private set; } = null!;
+        public Output<ImmutableArray<Outputs.CustomerInvoiceSetting>> InvoiceSettings { get; private set; } = null!;
 
+        /// <summary>
+        /// If the object exists in live mode, the value is &lt;span pulumi-lang-nodejs="`true`" pulumi-lang-dotnet="`True`" pulumi-lang-go="`true`" pulumi-lang-python="`true`" pulumi-lang-yaml="`true`" pulumi-lang-java="`true`" pulumi-lang-hcl="`true`"&gt;`true`&lt;/span&gt;. If the object exists in test mode, the value is &lt;span pulumi-lang-nodejs="`false`" pulumi-lang-dotnet="`False`" pulumi-lang-go="`false`" pulumi-lang-python="`false`" pulumi-lang-yaml="`false`" pulumi-lang-java="`false`" pulumi-lang-hcl="`false`"&gt;`false`&lt;/span&gt;.
+        /// </summary>
+        [Output("livemode")]
+        public Output<bool> Livemode { get; private set; } = null!;
+
+        /// <summary>
+        /// Set of [key-value pairs](https://docs.stripe.com/api/metadata) that you can attach to an object. This can be useful for storing additional information about the object in a structured format.
+        /// </summary>
         [Output("metadata")]
         public Output<ImmutableDictionary<string, string>> Metadata { get; private set; } = null!;
 
@@ -82,10 +130,16 @@ namespace Pulumi.Stripe
         public Output<string> Name { get; private set; } = null!;
 
         /// <summary>
-        /// The sequence to be used on the customer's next invoice. Defaults to 1.
+        /// The suffix of the customer's next invoice number (for example, 0001). When the account uses account level sequencing, this parameter is ignored in API requests and the field omitted in API responses.
         /// </summary>
         [Output("nextInvoiceSequence")]
         public Output<double> NextInvoiceSequence { get; private set; } = null!;
+
+        /// <summary>
+        /// String representing the object's type. Objects of the same type share the same value.
+        /// </summary>
+        [Output("object")]
+        public Output<string> Object { get; private set; } = null!;
 
         [Output("paymentMethod")]
         public Output<string?> PaymentMethod { get; private set; } = null!;
@@ -97,22 +151,25 @@ namespace Pulumi.Stripe
         public Output<string> Phone { get; private set; } = null!;
 
         /// <summary>
-        /// Customer's preferred languages, ordered by preference.
+        /// The customer's preferred locales (languages), ordered by preference.
         /// </summary>
         [Output("preferredLocales")]
         public Output<ImmutableArray<string>> PreferredLocales { get; private set; } = null!;
 
-        [Output("shipping")]
-        public Output<Outputs.CustomerShipping?> Shipping { get; private set; } = null!;
-
         /// <summary>
-        /// Tax details about the customer.
+        /// Mailing and shipping address for the customer. Appears on invoices emailed to this customer.
         /// </summary>
-        [Output("tax")]
-        public Output<Outputs.CustomerTax?> Tax { get; private set; } = null!;
+        [Output("shippings")]
+        public Output<ImmutableArray<Outputs.CustomerShipping>> Shippings { get; private set; } = null!;
 
         /// <summary>
-        /// The customer's tax exemption. One of &lt;span pulumi-lang-nodejs="`none`" pulumi-lang-dotnet="`None`" pulumi-lang-go="`none`" pulumi-lang-python="`none`" pulumi-lang-yaml="`none`" pulumi-lang-java="`none`" pulumi-lang-hcl="`none`"&gt;`none`&lt;/span&gt;, &lt;span pulumi-lang-nodejs="`exempt`" pulumi-lang-dotnet="`Exempt`" pulumi-lang-go="`exempt`" pulumi-lang-python="`exempt`" pulumi-lang-yaml="`exempt`" pulumi-lang-java="`exempt`" pulumi-lang-hcl="`exempt`"&gt;`exempt`&lt;/span&gt;, or &lt;span pulumi-lang-nodejs="`reverse`" pulumi-lang-dotnet="`Reverse`" pulumi-lang-go="`reverse`" pulumi-lang-python="`reverse`" pulumi-lang-yaml="`reverse`" pulumi-lang-java="`reverse`" pulumi-lang-hcl="`reverse`"&gt;`reverse`&lt;/span&gt;.
+        /// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        /// </summary>
+        [Output("source")]
+        public Output<string?> Source { get; private set; } = null!;
+
+        /// <summary>
+        /// Describes the customer's tax exemption status, which is &lt;span pulumi-lang-nodejs="`none`" pulumi-lang-dotnet="`None`" pulumi-lang-go="`none`" pulumi-lang-python="`none`" pulumi-lang-yaml="`none`" pulumi-lang-java="`none`" pulumi-lang-hcl="`none`"&gt;`none`&lt;/span&gt;, &lt;span pulumi-lang-nodejs="`exempt`" pulumi-lang-dotnet="`Exempt`" pulumi-lang-go="`exempt`" pulumi-lang-python="`exempt`" pulumi-lang-yaml="`exempt`" pulumi-lang-java="`exempt`" pulumi-lang-hcl="`exempt`"&gt;`exempt`&lt;/span&gt;, or &lt;span pulumi-lang-nodejs="`reverse`" pulumi-lang-dotnet="`Reverse`" pulumi-lang-go="`reverse`" pulumi-lang-python="`reverse`" pulumi-lang-yaml="`reverse`" pulumi-lang-java="`reverse`" pulumi-lang-hcl="`reverse`"&gt;`reverse`&lt;/span&gt;. When set to &lt;span pulumi-lang-nodejs="`reverse`" pulumi-lang-dotnet="`Reverse`" pulumi-lang-go="`reverse`" pulumi-lang-python="`reverse`" pulumi-lang-yaml="`reverse`" pulumi-lang-java="`reverse`" pulumi-lang-hcl="`reverse`"&gt;`reverse`&lt;/span&gt;, invoice and receipt PDFs include the following text: **"Reverse charge"**.
         /// </summary>
         [Output("taxExempt")]
         public Output<string> TaxExempt { get; private set; } = null!;
@@ -123,11 +180,20 @@ namespace Pulumi.Stripe
         [Output("taxIdDatas")]
         public Output<ImmutableArray<Outputs.CustomerTaxIdData>> TaxIdDatas { get; private set; } = null!;
 
+        [Output("taxes")]
+        public Output<ImmutableArray<Outputs.CustomerTax>> Taxes { get; private set; } = null!;
+
         /// <summary>
-        /// ID of the test clock to attach to the customer.
+        /// ID of the test clock that this customer belongs to.
         /// </summary>
         [Output("testClock")]
         public Output<string> TestClock { get; private set; } = null!;
+
+        /// <summary>
+        /// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        /// </summary>
+        [Output("validate")]
+        public Output<bool?> Validate { get; private set; } = null!;
 
 
         /// <summary>
@@ -152,6 +218,11 @@ namespace Pulumi.Stripe
             var defaultOptions = new CustomResourceOptions
             {
                 Version = Utilities.Version,
+                AdditionalSecretOutputs =
+                {
+                    "source",
+                    "validate",
+                },
             };
             var merged = CustomResourceOptions.Merge(defaultOptions, options);
             // Override the ID if one was specified for consistency with other language SDKs.
@@ -175,53 +246,88 @@ namespace Pulumi.Stripe
 
     public sealed class CustomerArgs : global::Pulumi.ResourceArgs
     {
-        [Input("address")]
-        public Input<Inputs.CustomerAddressArgs>? Address { get; set; }
+        [Input("addresses")]
+        private InputList<Inputs.CustomerAddressArgs>? _addresses;
 
         /// <summary>
-        /// An integer amount in cents (or local equivalent) that represents the customer's current balance, which affect the customer's future invoices. A negative amount represents a credit that decreases the amount due on an invoice; a positive amount increases the amount due on an invoice.
+        /// The customer's address.
+        /// </summary>
+        public InputList<Inputs.CustomerAddressArgs> Addresses
+        {
+            get => _addresses ?? (_addresses = new InputList<Inputs.CustomerAddressArgs>());
+            set => _addresses = value;
+        }
+
+        /// <summary>
+        /// The current balance, if any, that's stored on the customer in their default currency. If negative, the customer has credit to apply to their next invoice. If positive, the customer has an amount owed that's added to their next invoice. The balance only considers amounts that Stripe hasn't successfully applied to any invoice. It doesn't reflect unpaid invoices. This balance is only taken into account after invoices finalize. For multi-currency balances, see &lt;span pulumi-lang-nodejs="[invoiceCreditBalance]" pulumi-lang-dotnet="[InvoiceCreditBalance]" pulumi-lang-go="[invoiceCreditBalance]" pulumi-lang-python="[invoice_credit_balance]" pulumi-lang-yaml="[invoiceCreditBalance]" pulumi-lang-java="[invoiceCreditBalance]" pulumi-lang-hcl="[invoice_credit_balance]"&gt;[invoiceCreditBalance]&lt;/span&gt;(https://docs.stripe.com/api/customers/object#customer_object-invoice_credit_balance).
         /// </summary>
         [Input("balance")]
         public Input<double>? Balance { get; set; }
 
+        /// <summary>
+        /// The customer's business name.
+        /// </summary>
         [Input("businessName")]
         public Input<string>? BusinessName { get; set; }
 
-        /// <summary>
-        /// Balance information and default balance settings for this customer.
-        /// </summary>
-        [Input("cashBalance")]
-        public Input<Inputs.CustomerCashBalanceArgs>? CashBalance { get; set; }
+        [Input("cashBalances")]
+        private InputList<Inputs.CustomerCashBalanceArgs>? _cashBalances;
 
         /// <summary>
-        /// An arbitrary string that you can attach to a customer object. It is displayed alongside the customer in the dashboard.
+        /// The current funds being held by Stripe on behalf of the customer. You can apply these funds towards payment intents when the source is &lt;span pulumi-lang-nodejs=""cashBalance"" pulumi-lang-dotnet=""CashBalance"" pulumi-lang-go=""cashBalance"" pulumi-lang-python=""cash_balance"" pulumi-lang-yaml=""cashBalance"" pulumi-lang-java=""cashBalance"" pulumi-lang-hcl=""cash_balance""&gt;"cashBalance"&lt;/span&gt;. The `settings&lt;span pulumi-lang-nodejs="[reconciliationMode]" pulumi-lang-dotnet="[ReconciliationMode]" pulumi-lang-go="[reconciliationMode]" pulumi-lang-python="[reconciliation_mode]" pulumi-lang-yaml="[reconciliationMode]" pulumi-lang-java="[reconciliationMode]" pulumi-lang-hcl="[reconciliation_mode]"&gt;[reconciliationMode]&lt;/span&gt;` field describes if these funds apply to these payment intents manually or automatically.
+        /// </summary>
+        public InputList<Inputs.CustomerCashBalanceArgs> CashBalances
+        {
+            get => _cashBalances ?? (_cashBalances = new InputList<Inputs.CustomerCashBalanceArgs>());
+            set => _cashBalances = value;
+        }
+
+        /// <summary>
+        /// ID of the default payment source for the customer.
+        /// 
+        /// If you use payment methods created through the PaymentMethods API, see the [invoice_settings.default_payment_method](https://docs.stripe.com/api/customers/object#customer_object-invoice_settings-default_payment_method) field instead.
+        /// </summary>
+        [Input("defaultSource")]
+        public Input<string>? DefaultSource { get; set; }
+
+        /// <summary>
+        /// An arbitrary string attached to the object. Often useful for displaying to users.
         /// </summary>
         [Input("description")]
         public Input<string>? Description { get; set; }
 
         /// <summary>
-        /// Customer's email address. It's displayed alongside the customer in your dashboard and can be useful for searching and tracking. This may be up to *512 characters*.
+        /// The customer's email address.
         /// </summary>
         [Input("email")]
         public Input<string>? Email { get; set; }
 
+        /// <summary>
+        /// The customer's individual name.
+        /// </summary>
         [Input("individualName")]
         public Input<string>? IndividualName { get; set; }
 
         /// <summary>
-        /// The prefix for the customer used to generate unique invoice numbers. Must be 3–12 uppercase letters or numbers.
+        /// The prefix for the customer used to generate unique invoice numbers.
         /// </summary>
         [Input("invoicePrefix")]
         public Input<string>? InvoicePrefix { get; set; }
 
-        /// <summary>
-        /// Default invoice settings for this customer.
-        /// </summary>
         [Input("invoiceSettings")]
-        public Input<Inputs.CustomerInvoiceSettingsArgs>? InvoiceSettings { get; set; }
+        private InputList<Inputs.CustomerInvoiceSettingArgs>? _invoiceSettings;
+        public InputList<Inputs.CustomerInvoiceSettingArgs> InvoiceSettings
+        {
+            get => _invoiceSettings ?? (_invoiceSettings = new InputList<Inputs.CustomerInvoiceSettingArgs>());
+            set => _invoiceSettings = value;
+        }
 
         [Input("metadata")]
         private InputMap<string>? _metadata;
+
+        /// <summary>
+        /// Set of [key-value pairs](https://docs.stripe.com/api/metadata) that you can attach to an object. This can be useful for storing additional information about the object in a structured format.
+        /// </summary>
         public InputMap<string> Metadata
         {
             get => _metadata ?? (_metadata = new InputMap<string>());
@@ -235,7 +341,7 @@ namespace Pulumi.Stripe
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// The sequence to be used on the customer's next invoice. Defaults to 1.
+        /// The suffix of the customer's next invoice number (for example, 0001). When the account uses account level sequencing, this parameter is ignored in API requests and the field omitted in API responses.
         /// </summary>
         [Input("nextInvoiceSequence")]
         public Input<double>? NextInvoiceSequence { get; set; }
@@ -253,7 +359,7 @@ namespace Pulumi.Stripe
         private InputList<string>? _preferredLocales;
 
         /// <summary>
-        /// Customer's preferred languages, ordered by preference.
+        /// The customer's preferred locales (languages), ordered by preference.
         /// </summary>
         public InputList<string> PreferredLocales
         {
@@ -261,17 +367,36 @@ namespace Pulumi.Stripe
             set => _preferredLocales = value;
         }
 
-        [Input("shipping")]
-        public Input<Inputs.CustomerShippingArgs>? Shipping { get; set; }
+        [Input("shippings")]
+        private InputList<Inputs.CustomerShippingArgs>? _shippings;
 
         /// <summary>
-        /// Tax details about the customer.
+        /// Mailing and shipping address for the customer. Appears on invoices emailed to this customer.
         /// </summary>
-        [Input("tax")]
-        public Input<Inputs.CustomerTaxArgs>? Tax { get; set; }
+        public InputList<Inputs.CustomerShippingArgs> Shippings
+        {
+            get => _shippings ?? (_shippings = new InputList<Inputs.CustomerShippingArgs>());
+            set => _shippings = value;
+        }
+
+        [Input("source")]
+        private Input<string>? _source;
 
         /// <summary>
-        /// The customer's tax exemption. One of &lt;span pulumi-lang-nodejs="`none`" pulumi-lang-dotnet="`None`" pulumi-lang-go="`none`" pulumi-lang-python="`none`" pulumi-lang-yaml="`none`" pulumi-lang-java="`none`" pulumi-lang-hcl="`none`"&gt;`none`&lt;/span&gt;, &lt;span pulumi-lang-nodejs="`exempt`" pulumi-lang-dotnet="`Exempt`" pulumi-lang-go="`exempt`" pulumi-lang-python="`exempt`" pulumi-lang-yaml="`exempt`" pulumi-lang-java="`exempt`" pulumi-lang-hcl="`exempt`"&gt;`exempt`&lt;/span&gt;, or &lt;span pulumi-lang-nodejs="`reverse`" pulumi-lang-dotnet="`Reverse`" pulumi-lang-go="`reverse`" pulumi-lang-python="`reverse`" pulumi-lang-yaml="`reverse`" pulumi-lang-java="`reverse`" pulumi-lang-hcl="`reverse`"&gt;`reverse`&lt;/span&gt;.
+        /// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        /// </summary>
+        public Input<string>? Source
+        {
+            get => _source;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _source = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
+
+        /// <summary>
+        /// Describes the customer's tax exemption status, which is &lt;span pulumi-lang-nodejs="`none`" pulumi-lang-dotnet="`None`" pulumi-lang-go="`none`" pulumi-lang-python="`none`" pulumi-lang-yaml="`none`" pulumi-lang-java="`none`" pulumi-lang-hcl="`none`"&gt;`none`&lt;/span&gt;, &lt;span pulumi-lang-nodejs="`exempt`" pulumi-lang-dotnet="`Exempt`" pulumi-lang-go="`exempt`" pulumi-lang-python="`exempt`" pulumi-lang-yaml="`exempt`" pulumi-lang-java="`exempt`" pulumi-lang-hcl="`exempt`"&gt;`exempt`&lt;/span&gt;, or &lt;span pulumi-lang-nodejs="`reverse`" pulumi-lang-dotnet="`Reverse`" pulumi-lang-go="`reverse`" pulumi-lang-python="`reverse`" pulumi-lang-yaml="`reverse`" pulumi-lang-java="`reverse`" pulumi-lang-hcl="`reverse`"&gt;`reverse`&lt;/span&gt;. When set to &lt;span pulumi-lang-nodejs="`reverse`" pulumi-lang-dotnet="`Reverse`" pulumi-lang-go="`reverse`" pulumi-lang-python="`reverse`" pulumi-lang-yaml="`reverse`" pulumi-lang-java="`reverse`" pulumi-lang-hcl="`reverse`"&gt;`reverse`&lt;/span&gt;, invoice and receipt PDFs include the following text: **"Reverse charge"**.
         /// </summary>
         [Input("taxExempt")]
         public Input<string>? TaxExempt { get; set; }
@@ -288,11 +413,35 @@ namespace Pulumi.Stripe
             set => _taxIdDatas = value;
         }
 
+        [Input("taxes")]
+        private InputList<Inputs.CustomerTaxArgs>? _taxes;
+        public InputList<Inputs.CustomerTaxArgs> Taxes
+        {
+            get => _taxes ?? (_taxes = new InputList<Inputs.CustomerTaxArgs>());
+            set => _taxes = value;
+        }
+
         /// <summary>
-        /// ID of the test clock to attach to the customer.
+        /// ID of the test clock that this customer belongs to.
         /// </summary>
         [Input("testClock")]
         public Input<string>? TestClock { get; set; }
+
+        [Input("validate")]
+        private Input<bool>? _validate;
+
+        /// <summary>
+        /// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        /// </summary>
+        public Input<bool>? Validate
+        {
+            get => _validate;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _validate = Output.Tuple<Input<bool>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
 
         public CustomerArgs()
         {
@@ -302,23 +451,47 @@ namespace Pulumi.Stripe
 
     public sealed class CustomerState : global::Pulumi.ResourceArgs
     {
-        [Input("address")]
-        public Input<Inputs.CustomerAddressGetArgs>? Address { get; set; }
+        [Input("addresses")]
+        private InputList<Inputs.CustomerAddressGetArgs>? _addresses;
 
         /// <summary>
-        /// An integer amount in cents (or local equivalent) that represents the customer's current balance, which affect the customer's future invoices. A negative amount represents a credit that decreases the amount due on an invoice; a positive amount increases the amount due on an invoice.
+        /// The customer's address.
+        /// </summary>
+        public InputList<Inputs.CustomerAddressGetArgs> Addresses
+        {
+            get => _addresses ?? (_addresses = new InputList<Inputs.CustomerAddressGetArgs>());
+            set => _addresses = value;
+        }
+
+        /// <summary>
+        /// The current balance, if any, that's stored on the customer in their default currency. If negative, the customer has credit to apply to their next invoice. If positive, the customer has an amount owed that's added to their next invoice. The balance only considers amounts that Stripe hasn't successfully applied to any invoice. It doesn't reflect unpaid invoices. This balance is only taken into account after invoices finalize. For multi-currency balances, see &lt;span pulumi-lang-nodejs="[invoiceCreditBalance]" pulumi-lang-dotnet="[InvoiceCreditBalance]" pulumi-lang-go="[invoiceCreditBalance]" pulumi-lang-python="[invoice_credit_balance]" pulumi-lang-yaml="[invoiceCreditBalance]" pulumi-lang-java="[invoiceCreditBalance]" pulumi-lang-hcl="[invoice_credit_balance]"&gt;[invoiceCreditBalance]&lt;/span&gt;(https://docs.stripe.com/api/customers/object#customer_object-invoice_credit_balance).
         /// </summary>
         [Input("balance")]
         public Input<double>? Balance { get; set; }
 
+        /// <summary>
+        /// The customer's business name.
+        /// </summary>
         [Input("businessName")]
         public Input<string>? BusinessName { get; set; }
 
+        [Input("cashBalances")]
+        private InputList<Inputs.CustomerCashBalanceGetArgs>? _cashBalances;
+
         /// <summary>
-        /// Balance information and default balance settings for this customer.
+        /// The current funds being held by Stripe on behalf of the customer. You can apply these funds towards payment intents when the source is &lt;span pulumi-lang-nodejs=""cashBalance"" pulumi-lang-dotnet=""CashBalance"" pulumi-lang-go=""cashBalance"" pulumi-lang-python=""cash_balance"" pulumi-lang-yaml=""cashBalance"" pulumi-lang-java=""cashBalance"" pulumi-lang-hcl=""cash_balance""&gt;"cashBalance"&lt;/span&gt;. The `settings&lt;span pulumi-lang-nodejs="[reconciliationMode]" pulumi-lang-dotnet="[ReconciliationMode]" pulumi-lang-go="[reconciliationMode]" pulumi-lang-python="[reconciliation_mode]" pulumi-lang-yaml="[reconciliationMode]" pulumi-lang-java="[reconciliationMode]" pulumi-lang-hcl="[reconciliation_mode]"&gt;[reconciliationMode]&lt;/span&gt;` field describes if these funds apply to these payment intents manually or automatically.
         /// </summary>
-        [Input("cashBalance")]
-        public Input<Inputs.CustomerCashBalanceGetArgs>? CashBalance { get; set; }
+        public InputList<Inputs.CustomerCashBalanceGetArgs> CashBalances
+        {
+            get => _cashBalances ?? (_cashBalances = new InputList<Inputs.CustomerCashBalanceGetArgs>());
+            set => _cashBalances = value;
+        }
+
+        /// <summary>
+        /// Time at which the object was created. Measured in seconds since the Unix epoch.
+        /// </summary>
+        [Input("created")]
+        public Input<double>? Created { get; set; }
 
         /// <summary>
         /// Three-letter [ISO code for the currency](https://stripe.com/docs/currencies) the customer can be charged in for recurring billing purposes.
@@ -326,44 +499,92 @@ namespace Pulumi.Stripe
         [Input("currency")]
         public Input<string>? Currency { get; set; }
 
+        /// <summary>
+        /// The ID of an Account representing a customer. You can use this ID with any v1 API that accepts a&lt;span pulumi-lang-nodejs=" customerAccount " pulumi-lang-dotnet=" CustomerAccount " pulumi-lang-go=" customerAccount " pulumi-lang-python=" customer_account " pulumi-lang-yaml=" customerAccount " pulumi-lang-java=" customerAccount " pulumi-lang-hcl=" customer_account "&gt; customerAccount &lt;/span&gt;parameter.
+        /// </summary>
         [Input("customerAccount")]
         public Input<string>? CustomerAccount { get; set; }
 
         /// <summary>
-        /// Tracks the most recent state change on any invoice belonging to the customer. Paying an invoice or marking it uncollectible via the API will set this field to false. An automatic payment failure or passing the `invoice.due_date` will set this field to &lt;span pulumi-lang-nodejs="`true`" pulumi-lang-dotnet="`True`" pulumi-lang-go="`true`" pulumi-lang-python="`true`" pulumi-lang-yaml="`true`" pulumi-lang-java="`true`" pulumi-lang-hcl="`true`"&gt;`true`&lt;/span&gt;. If an invoice becomes uncollectible by [dunning](https://stripe.com/docs/billing/automatic-collection), &lt;span pulumi-lang-nodejs="`delinquent`" pulumi-lang-dotnet="`Delinquent`" pulumi-lang-go="`delinquent`" pulumi-lang-python="`delinquent`" pulumi-lang-yaml="`delinquent`" pulumi-lang-java="`delinquent`" pulumi-lang-hcl="`delinquent`"&gt;`delinquent`&lt;/span&gt; doesn't reset to &lt;span pulumi-lang-nodejs="`false`" pulumi-lang-dotnet="`False`" pulumi-lang-go="`false`" pulumi-lang-python="`false`" pulumi-lang-yaml="`false`" pulumi-lang-java="`false`" pulumi-lang-hcl="`false`"&gt;`false`&lt;/span&gt;. If you care whether the customer has paid their most recent subscription invoice, use `subscription.status` instead. Paying or marking uncollectible any customer invoice regardless of whether it is the latest invoice for a subscription will always set this field to &lt;span pulumi-lang-nodejs="`false`" pulumi-lang-dotnet="`False`" pulumi-lang-go="`false`" pulumi-lang-python="`false`" pulumi-lang-yaml="`false`" pulumi-lang-java="`false`" pulumi-lang-hcl="`false`"&gt;`false`&lt;/span&gt;.
+        /// ID of the default payment source for the customer.
+        /// 
+        /// If you use payment methods created through the PaymentMethods API, see the [invoice_settings.default_payment_method](https://docs.stripe.com/api/customers/object#customer_object-invoice_settings-default_payment_method) field instead.
+        /// </summary>
+        [Input("defaultSource")]
+        public Input<string>? DefaultSource { get; set; }
+
+        /// <summary>
+        /// Tracks the most recent state change on any invoice belonging to the customer. Paying an invoice or marking it uncollectible via the API will set this field to false. An automatic payment failure or passing the `invoice.due_date` will set this field to &lt;span pulumi-lang-nodejs="`true`" pulumi-lang-dotnet="`True`" pulumi-lang-go="`true`" pulumi-lang-python="`true`" pulumi-lang-yaml="`true`" pulumi-lang-java="`true`" pulumi-lang-hcl="`true`"&gt;`true`&lt;/span&gt;.
+        /// 
+        /// If an invoice becomes uncollectible by [dunning](https://docs.stripe.com/billing/automatic-collection), &lt;span pulumi-lang-nodejs="`delinquent`" pulumi-lang-dotnet="`Delinquent`" pulumi-lang-go="`delinquent`" pulumi-lang-python="`delinquent`" pulumi-lang-yaml="`delinquent`" pulumi-lang-java="`delinquent`" pulumi-lang-hcl="`delinquent`"&gt;`delinquent`&lt;/span&gt; doesn't reset to &lt;span pulumi-lang-nodejs="`false`" pulumi-lang-dotnet="`False`" pulumi-lang-go="`false`" pulumi-lang-python="`false`" pulumi-lang-yaml="`false`" pulumi-lang-java="`false`" pulumi-lang-hcl="`false`"&gt;`false`&lt;/span&gt;.
+        /// 
+        /// If you care whether the customer has paid their most recent subscription invoice, use `subscription.status` instead. Paying or marking uncollectible any customer invoice regardless of whether it is the latest invoice for a subscription will always set this field to &lt;span pulumi-lang-nodejs="`false`" pulumi-lang-dotnet="`False`" pulumi-lang-go="`false`" pulumi-lang-python="`false`" pulumi-lang-yaml="`false`" pulumi-lang-java="`false`" pulumi-lang-hcl="`false`"&gt;`false`&lt;/span&gt;.
         /// </summary>
         [Input("delinquent")]
         public Input<bool>? Delinquent { get; set; }
 
         /// <summary>
-        /// An arbitrary string that you can attach to a customer object. It is displayed alongside the customer in the dashboard.
+        /// An arbitrary string attached to the object. Often useful for displaying to users.
         /// </summary>
         [Input("description")]
         public Input<string>? Description { get; set; }
 
         /// <summary>
-        /// Customer's email address. It's displayed alongside the customer in your dashboard and can be useful for searching and tracking. This may be up to *512 characters*.
+        /// Describes the current discount active on the customer, if there is one.
+        /// </summary>
+        [Input("discount")]
+        public Input<string>? Discount { get; set; }
+
+        /// <summary>
+        /// The customer's email address.
         /// </summary>
         [Input("email")]
         public Input<string>? Email { get; set; }
 
+        /// <summary>
+        /// The customer's individual name.
+        /// </summary>
         [Input("individualName")]
         public Input<string>? IndividualName { get; set; }
 
+        [Input("invoiceCreditBalance")]
+        private InputMap<double>? _invoiceCreditBalance;
+
         /// <summary>
-        /// The prefix for the customer used to generate unique invoice numbers. Must be 3–12 uppercase letters or numbers.
+        /// The current multi-currency balances, if any, that's stored on the customer. If positive in a currency, the customer has a credit to apply to their next invoice denominated in that currency. If negative, the customer has an amount owed that's added to their next invoice denominated in that currency. These balances don't apply to unpaid invoices. They solely track amounts that Stripe hasn't successfully applied to any invoice. Stripe only applies a balance in a specific currency to an invoice after that invoice (which is in the same currency) finalizes.
+        /// </summary>
+        public InputMap<double> InvoiceCreditBalance
+        {
+            get => _invoiceCreditBalance ?? (_invoiceCreditBalance = new InputMap<double>());
+            set => _invoiceCreditBalance = value;
+        }
+
+        /// <summary>
+        /// The prefix for the customer used to generate unique invoice numbers.
         /// </summary>
         [Input("invoicePrefix")]
         public Input<string>? InvoicePrefix { get; set; }
 
-        /// <summary>
-        /// Default invoice settings for this customer.
-        /// </summary>
         [Input("invoiceSettings")]
-        public Input<Inputs.CustomerInvoiceSettingsGetArgs>? InvoiceSettings { get; set; }
+        private InputList<Inputs.CustomerInvoiceSettingGetArgs>? _invoiceSettings;
+        public InputList<Inputs.CustomerInvoiceSettingGetArgs> InvoiceSettings
+        {
+            get => _invoiceSettings ?? (_invoiceSettings = new InputList<Inputs.CustomerInvoiceSettingGetArgs>());
+            set => _invoiceSettings = value;
+        }
+
+        /// <summary>
+        /// If the object exists in live mode, the value is &lt;span pulumi-lang-nodejs="`true`" pulumi-lang-dotnet="`True`" pulumi-lang-go="`true`" pulumi-lang-python="`true`" pulumi-lang-yaml="`true`" pulumi-lang-java="`true`" pulumi-lang-hcl="`true`"&gt;`true`&lt;/span&gt;. If the object exists in test mode, the value is &lt;span pulumi-lang-nodejs="`false`" pulumi-lang-dotnet="`False`" pulumi-lang-go="`false`" pulumi-lang-python="`false`" pulumi-lang-yaml="`false`" pulumi-lang-java="`false`" pulumi-lang-hcl="`false`"&gt;`false`&lt;/span&gt;.
+        /// </summary>
+        [Input("livemode")]
+        public Input<bool>? Livemode { get; set; }
 
         [Input("metadata")]
         private InputMap<string>? _metadata;
+
+        /// <summary>
+        /// Set of [key-value pairs](https://docs.stripe.com/api/metadata) that you can attach to an object. This can be useful for storing additional information about the object in a structured format.
+        /// </summary>
         public InputMap<string> Metadata
         {
             get => _metadata ?? (_metadata = new InputMap<string>());
@@ -377,10 +598,16 @@ namespace Pulumi.Stripe
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// The sequence to be used on the customer's next invoice. Defaults to 1.
+        /// The suffix of the customer's next invoice number (for example, 0001). When the account uses account level sequencing, this parameter is ignored in API requests and the field omitted in API responses.
         /// </summary>
         [Input("nextInvoiceSequence")]
         public Input<double>? NextInvoiceSequence { get; set; }
+
+        /// <summary>
+        /// String representing the object's type. Objects of the same type share the same value.
+        /// </summary>
+        [Input("object")]
+        public Input<string>? Object { get; set; }
 
         [Input("paymentMethod")]
         public Input<string>? PaymentMethod { get; set; }
@@ -395,7 +622,7 @@ namespace Pulumi.Stripe
         private InputList<string>? _preferredLocales;
 
         /// <summary>
-        /// Customer's preferred languages, ordered by preference.
+        /// The customer's preferred locales (languages), ordered by preference.
         /// </summary>
         public InputList<string> PreferredLocales
         {
@@ -403,17 +630,36 @@ namespace Pulumi.Stripe
             set => _preferredLocales = value;
         }
 
-        [Input("shipping")]
-        public Input<Inputs.CustomerShippingGetArgs>? Shipping { get; set; }
+        [Input("shippings")]
+        private InputList<Inputs.CustomerShippingGetArgs>? _shippings;
 
         /// <summary>
-        /// Tax details about the customer.
+        /// Mailing and shipping address for the customer. Appears on invoices emailed to this customer.
         /// </summary>
-        [Input("tax")]
-        public Input<Inputs.CustomerTaxGetArgs>? Tax { get; set; }
+        public InputList<Inputs.CustomerShippingGetArgs> Shippings
+        {
+            get => _shippings ?? (_shippings = new InputList<Inputs.CustomerShippingGetArgs>());
+            set => _shippings = value;
+        }
+
+        [Input("source")]
+        private Input<string>? _source;
 
         /// <summary>
-        /// The customer's tax exemption. One of &lt;span pulumi-lang-nodejs="`none`" pulumi-lang-dotnet="`None`" pulumi-lang-go="`none`" pulumi-lang-python="`none`" pulumi-lang-yaml="`none`" pulumi-lang-java="`none`" pulumi-lang-hcl="`none`"&gt;`none`&lt;/span&gt;, &lt;span pulumi-lang-nodejs="`exempt`" pulumi-lang-dotnet="`Exempt`" pulumi-lang-go="`exempt`" pulumi-lang-python="`exempt`" pulumi-lang-yaml="`exempt`" pulumi-lang-java="`exempt`" pulumi-lang-hcl="`exempt`"&gt;`exempt`&lt;/span&gt;, or &lt;span pulumi-lang-nodejs="`reverse`" pulumi-lang-dotnet="`Reverse`" pulumi-lang-go="`reverse`" pulumi-lang-python="`reverse`" pulumi-lang-yaml="`reverse`" pulumi-lang-java="`reverse`" pulumi-lang-hcl="`reverse`"&gt;`reverse`&lt;/span&gt;.
+        /// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        /// </summary>
+        public Input<string>? Source
+        {
+            get => _source;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _source = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
+
+        /// <summary>
+        /// Describes the customer's tax exemption status, which is &lt;span pulumi-lang-nodejs="`none`" pulumi-lang-dotnet="`None`" pulumi-lang-go="`none`" pulumi-lang-python="`none`" pulumi-lang-yaml="`none`" pulumi-lang-java="`none`" pulumi-lang-hcl="`none`"&gt;`none`&lt;/span&gt;, &lt;span pulumi-lang-nodejs="`exempt`" pulumi-lang-dotnet="`Exempt`" pulumi-lang-go="`exempt`" pulumi-lang-python="`exempt`" pulumi-lang-yaml="`exempt`" pulumi-lang-java="`exempt`" pulumi-lang-hcl="`exempt`"&gt;`exempt`&lt;/span&gt;, or &lt;span pulumi-lang-nodejs="`reverse`" pulumi-lang-dotnet="`Reverse`" pulumi-lang-go="`reverse`" pulumi-lang-python="`reverse`" pulumi-lang-yaml="`reverse`" pulumi-lang-java="`reverse`" pulumi-lang-hcl="`reverse`"&gt;`reverse`&lt;/span&gt;. When set to &lt;span pulumi-lang-nodejs="`reverse`" pulumi-lang-dotnet="`Reverse`" pulumi-lang-go="`reverse`" pulumi-lang-python="`reverse`" pulumi-lang-yaml="`reverse`" pulumi-lang-java="`reverse`" pulumi-lang-hcl="`reverse`"&gt;`reverse`&lt;/span&gt;, invoice and receipt PDFs include the following text: **"Reverse charge"**.
         /// </summary>
         [Input("taxExempt")]
         public Input<string>? TaxExempt { get; set; }
@@ -430,11 +676,35 @@ namespace Pulumi.Stripe
             set => _taxIdDatas = value;
         }
 
+        [Input("taxes")]
+        private InputList<Inputs.CustomerTaxGetArgs>? _taxes;
+        public InputList<Inputs.CustomerTaxGetArgs> Taxes
+        {
+            get => _taxes ?? (_taxes = new InputList<Inputs.CustomerTaxGetArgs>());
+            set => _taxes = value;
+        }
+
         /// <summary>
-        /// ID of the test clock to attach to the customer.
+        /// ID of the test clock that this customer belongs to.
         /// </summary>
         [Input("testClock")]
         public Input<string>? TestClock { get; set; }
+
+        [Input("validate")]
+        private Input<bool>? _validate;
+
+        /// <summary>
+        /// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        /// </summary>
+        public Input<bool>? Validate
+        {
+            get => _validate;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _validate = Output.Tuple<Input<bool>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
 
         public CustomerState()
         {

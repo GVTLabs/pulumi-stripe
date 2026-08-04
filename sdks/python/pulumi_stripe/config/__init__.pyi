@@ -16,6 +16,11 @@ from .. import _utilities
 
 apiKey: Optional[str]
 """
-Stripe API key
+Stripe API key. Can also be set via the STRIPE_API_KEY environment variable.
+"""
+
+stripeAccount: Optional[str]
+"""
+Connected account context for Connect-scoped requests. Can also be set via the STRIPE_ACCOUNT environment variable.
 """
 

@@ -5,15 +5,23 @@ package com.pulumi.stripe;
 
 import com.pulumi.core.internal.Codegen;
 import java.lang.String;
+import java.util.Optional;
 
 public final class Config {
 
     private static final com.pulumi.Config config = com.pulumi.Config.of("stripe");
 /**
- * Stripe API key
+ * Stripe API key. Can also be set via the STRIPE_API_KEY environment variable.
  * 
  */
-    public String apiKey() {
-        return Codegen.stringProp("apiKey").config(config).require();
+    public Optional<String> apiKey() {
+        return Codegen.stringProp("apiKey").config(config).get();
+    }
+/**
+ * Connected account context for Connect-scoped requests. Can also be set via the STRIPE_ACCOUNT environment variable.
+ * 
+ */
+    public Optional<String> stripeAccount() {
+        return Codegen.stringProp("stripeAccount").config(config).get();
     }
 }

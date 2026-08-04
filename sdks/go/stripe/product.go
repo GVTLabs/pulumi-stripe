@@ -14,32 +14,42 @@ import (
 type Product struct {
 	pulumi.CustomResourceState
 
-	// Whether the product is currently available for purchase. Defaults to <span pulumi-lang-nodejs="`true`" pulumi-lang-dotnet="`True`" pulumi-lang-go="`true`" pulumi-lang-python="`true`" pulumi-lang-yaml="`true`" pulumi-lang-java="`true`" pulumi-lang-hcl="`true`">`true`</span>.
-	Active pulumi.BoolPtrOutput `pulumi:"active"`
-	// Data used to generate a new [Price](https://stripe.com/docs/api/prices) object. This Price will be set as the default price for this product.
-	DefaultPriceData ProductDefaultPriceDataPtrOutput `pulumi:"defaultPriceData"`
+	// Whether the product is currently available for purchase.
+	Active pulumi.BoolOutput `pulumi:"active"`
+	// Time at which the object was created. Measured in seconds since the Unix epoch.
+	Created pulumi.Float64Output `pulumi:"created"`
+	// The ID of the [Price](https://docs.stripe.com/api/prices) object that is the default price for this product.
+	DefaultPrice pulumi.StringOutput `pulumi:"defaultPrice"`
+	// Data used to generate a new [Price](https://docs.stripe.com/api/prices) object. This Price will be set as the default price for this product.
+	DefaultPriceDatas ProductDefaultPriceDataArrayOutput `pulumi:"defaultPriceDatas"`
 	// The product's description, meant to be displayable to the customer. Use this field to optionally store a long form explanation of the product being sold for your own rendering purposes.
 	Description pulumi.StringOutput `pulumi:"description"`
 	// A list of up to 8 URLs of images for this product, meant to be displayable to the customer.
 	Images pulumi.StringArrayOutput `pulumi:"images"`
-	// A list of up to 15 marketing features for this product. These are displayed in [pricing tables](https://stripe.com/docs/payments/checkout/pricing-table).
+	// If the object exists in live mode, the value is <span pulumi-lang-nodejs="`true`" pulumi-lang-dotnet="`True`" pulumi-lang-go="`true`" pulumi-lang-python="`true`" pulumi-lang-yaml="`true`" pulumi-lang-java="`true`" pulumi-lang-hcl="`true`">`true`</span>. If the object exists in test mode, the value is <span pulumi-lang-nodejs="`false`" pulumi-lang-dotnet="`False`" pulumi-lang-go="`false`" pulumi-lang-python="`false`" pulumi-lang-yaml="`false`" pulumi-lang-java="`false`" pulumi-lang-hcl="`false`">`false`</span>.
+	Livemode pulumi.BoolOutput `pulumi:"livemode"`
+	// A list of up to 15 marketing features for this product. These are displayed in [pricing tables](https://docs.stripe.com/payments/checkout/pricing-table).
 	MarketingFeatures ProductMarketingFeatureArrayOutput `pulumi:"marketingFeatures"`
-	// Set of [key-value pairs](https://stripe.com/docs/api/metadata) that you can attach to an object. This can be useful for storing additional information about the object in a structured format. Individual keys can be unset by posting an empty value to them. All keys can be unset by posting an empty value to <span pulumi-lang-nodejs="`metadata`" pulumi-lang-dotnet="`Metadata`" pulumi-lang-go="`metadata`" pulumi-lang-python="`metadata`" pulumi-lang-yaml="`metadata`" pulumi-lang-java="`metadata`" pulumi-lang-hcl="`metadata`">`metadata`</span>.
+	// Set of [key-value pairs](https://docs.stripe.com/api/metadata) that you can attach to an object. This can be useful for storing additional information about the object in a structured format.
 	Metadata pulumi.StringMapOutput `pulumi:"metadata"`
 	// The product's name, meant to be displayable to the customer.
 	Name pulumi.StringOutput `pulumi:"name"`
+	// String representing the object's type. Objects of the same type share the same value.
+	Object pulumi.StringOutput `pulumi:"object"`
 	// The dimensions of this product for shipping purposes.
-	PackageDimensions ProductPackageDimensionsPtrOutput `pulumi:"packageDimensions"`
+	PackageDimensions ProductPackageDimensionArrayOutput `pulumi:"packageDimensions"`
 	// Whether this product is shipped (i.e., physical goods).
 	Shippable pulumi.BoolOutput `pulumi:"shippable"`
-	// An arbitrary string to be displayed on your customer's credit card or bank statement. While most banks display this information consistently, some may display it incorrectly or not at all. This may be up to 22 characters. The statement description may not include `<`, `>`, `\`, `\"`, `'` characters, and will appear on your customer's statement in capital letters. Non-ASCII characters are automatically stripped. It must contain at least one letter. Only used for subscription payments.
+	// Extra information about a product which will appear on your customer's credit card statement. In the case that multiple products are billed at once, the first statement descriptor will be used. Only used for subscription payments.
 	StatementDescriptor pulumi.StringOutput `pulumi:"statementDescriptor"`
-	// A [tax code](https://stripe.com/docs/tax/tax-categories) ID.
+	// A [tax code](https://docs.stripe.com/tax/tax-categories) ID.
 	TaxCode pulumi.StringOutput `pulumi:"taxCode"`
-	// The type of the product. Defaults to <span pulumi-lang-nodejs="`service`" pulumi-lang-dotnet="`Service`" pulumi-lang-go="`service`" pulumi-lang-python="`service`" pulumi-lang-yaml="`service`" pulumi-lang-java="`service`" pulumi-lang-hcl="`service`">`service`</span> if not explicitly specified, enabling use of this product with Subscriptions and Plans. Set this parameter to <span pulumi-lang-nodejs="`good`" pulumi-lang-dotnet="`Good`" pulumi-lang-go="`good`" pulumi-lang-python="`good`" pulumi-lang-yaml="`good`" pulumi-lang-java="`good`" pulumi-lang-hcl="`good`">`good`</span> to use this product with Orders and SKUs. On API versions before `2018-02-05`, this field defaults to <span pulumi-lang-nodejs="`good`" pulumi-lang-dotnet="`Good`" pulumi-lang-go="`good`" pulumi-lang-python="`good`" pulumi-lang-yaml="`good`" pulumi-lang-java="`good`" pulumi-lang-hcl="`good`">`good`</span> for compatibility reasons.
+	// The type of the product. The product is either of type <span pulumi-lang-nodejs="`good`" pulumi-lang-dotnet="`Good`" pulumi-lang-go="`good`" pulumi-lang-python="`good`" pulumi-lang-yaml="`good`" pulumi-lang-java="`good`" pulumi-lang-hcl="`good`">`good`</span>, which is eligible for use with Orders and SKUs, or <span pulumi-lang-nodejs="`service`" pulumi-lang-dotnet="`Service`" pulumi-lang-go="`service`" pulumi-lang-python="`service`" pulumi-lang-yaml="`service`" pulumi-lang-java="`service`" pulumi-lang-hcl="`service`">`service`</span>, which is eligible for use with Subscriptions and Plans.
 	Type pulumi.StringOutput `pulumi:"type"`
 	// A label that represents units of this product. When set, this will be included in customers' receipts, invoices, Checkout, and the customer portal.
 	UnitLabel pulumi.StringOutput `pulumi:"unitLabel"`
+	// Time at which the object was last updated. Measured in seconds since the Unix epoch.
+	Updated pulumi.Float64Output `pulumi:"updated"`
 	// A URL of a publicly-accessible webpage for this product.
 	Url pulumi.StringOutput `pulumi:"url"`
 }
@@ -82,63 +92,83 @@ func GetProduct(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering Product resources.
 type productState struct {
-	// Whether the product is currently available for purchase. Defaults to <span pulumi-lang-nodejs="`true`" pulumi-lang-dotnet="`True`" pulumi-lang-go="`true`" pulumi-lang-python="`true`" pulumi-lang-yaml="`true`" pulumi-lang-java="`true`" pulumi-lang-hcl="`true`">`true`</span>.
+	// Whether the product is currently available for purchase.
 	Active *bool `pulumi:"active"`
-	// Data used to generate a new [Price](https://stripe.com/docs/api/prices) object. This Price will be set as the default price for this product.
-	DefaultPriceData *ProductDefaultPriceData `pulumi:"defaultPriceData"`
+	// Time at which the object was created. Measured in seconds since the Unix epoch.
+	Created *float64 `pulumi:"created"`
+	// The ID of the [Price](https://docs.stripe.com/api/prices) object that is the default price for this product.
+	DefaultPrice *string `pulumi:"defaultPrice"`
+	// Data used to generate a new [Price](https://docs.stripe.com/api/prices) object. This Price will be set as the default price for this product.
+	DefaultPriceDatas []ProductDefaultPriceData `pulumi:"defaultPriceDatas"`
 	// The product's description, meant to be displayable to the customer. Use this field to optionally store a long form explanation of the product being sold for your own rendering purposes.
 	Description *string `pulumi:"description"`
 	// A list of up to 8 URLs of images for this product, meant to be displayable to the customer.
 	Images []string `pulumi:"images"`
-	// A list of up to 15 marketing features for this product. These are displayed in [pricing tables](https://stripe.com/docs/payments/checkout/pricing-table).
+	// If the object exists in live mode, the value is <span pulumi-lang-nodejs="`true`" pulumi-lang-dotnet="`True`" pulumi-lang-go="`true`" pulumi-lang-python="`true`" pulumi-lang-yaml="`true`" pulumi-lang-java="`true`" pulumi-lang-hcl="`true`">`true`</span>. If the object exists in test mode, the value is <span pulumi-lang-nodejs="`false`" pulumi-lang-dotnet="`False`" pulumi-lang-go="`false`" pulumi-lang-python="`false`" pulumi-lang-yaml="`false`" pulumi-lang-java="`false`" pulumi-lang-hcl="`false`">`false`</span>.
+	Livemode *bool `pulumi:"livemode"`
+	// A list of up to 15 marketing features for this product. These are displayed in [pricing tables](https://docs.stripe.com/payments/checkout/pricing-table).
 	MarketingFeatures []ProductMarketingFeature `pulumi:"marketingFeatures"`
-	// Set of [key-value pairs](https://stripe.com/docs/api/metadata) that you can attach to an object. This can be useful for storing additional information about the object in a structured format. Individual keys can be unset by posting an empty value to them. All keys can be unset by posting an empty value to <span pulumi-lang-nodejs="`metadata`" pulumi-lang-dotnet="`Metadata`" pulumi-lang-go="`metadata`" pulumi-lang-python="`metadata`" pulumi-lang-yaml="`metadata`" pulumi-lang-java="`metadata`" pulumi-lang-hcl="`metadata`">`metadata`</span>.
+	// Set of [key-value pairs](https://docs.stripe.com/api/metadata) that you can attach to an object. This can be useful for storing additional information about the object in a structured format.
 	Metadata map[string]string `pulumi:"metadata"`
 	// The product's name, meant to be displayable to the customer.
 	Name *string `pulumi:"name"`
+	// String representing the object's type. Objects of the same type share the same value.
+	Object *string `pulumi:"object"`
 	// The dimensions of this product for shipping purposes.
-	PackageDimensions *ProductPackageDimensions `pulumi:"packageDimensions"`
+	PackageDimensions []ProductPackageDimension `pulumi:"packageDimensions"`
 	// Whether this product is shipped (i.e., physical goods).
 	Shippable *bool `pulumi:"shippable"`
-	// An arbitrary string to be displayed on your customer's credit card or bank statement. While most banks display this information consistently, some may display it incorrectly or not at all. This may be up to 22 characters. The statement description may not include `<`, `>`, `\`, `\"`, `'` characters, and will appear on your customer's statement in capital letters. Non-ASCII characters are automatically stripped. It must contain at least one letter. Only used for subscription payments.
+	// Extra information about a product which will appear on your customer's credit card statement. In the case that multiple products are billed at once, the first statement descriptor will be used. Only used for subscription payments.
 	StatementDescriptor *string `pulumi:"statementDescriptor"`
-	// A [tax code](https://stripe.com/docs/tax/tax-categories) ID.
+	// A [tax code](https://docs.stripe.com/tax/tax-categories) ID.
 	TaxCode *string `pulumi:"taxCode"`
-	// The type of the product. Defaults to <span pulumi-lang-nodejs="`service`" pulumi-lang-dotnet="`Service`" pulumi-lang-go="`service`" pulumi-lang-python="`service`" pulumi-lang-yaml="`service`" pulumi-lang-java="`service`" pulumi-lang-hcl="`service`">`service`</span> if not explicitly specified, enabling use of this product with Subscriptions and Plans. Set this parameter to <span pulumi-lang-nodejs="`good`" pulumi-lang-dotnet="`Good`" pulumi-lang-go="`good`" pulumi-lang-python="`good`" pulumi-lang-yaml="`good`" pulumi-lang-java="`good`" pulumi-lang-hcl="`good`">`good`</span> to use this product with Orders and SKUs. On API versions before `2018-02-05`, this field defaults to <span pulumi-lang-nodejs="`good`" pulumi-lang-dotnet="`Good`" pulumi-lang-go="`good`" pulumi-lang-python="`good`" pulumi-lang-yaml="`good`" pulumi-lang-java="`good`" pulumi-lang-hcl="`good`">`good`</span> for compatibility reasons.
+	// The type of the product. The product is either of type <span pulumi-lang-nodejs="`good`" pulumi-lang-dotnet="`Good`" pulumi-lang-go="`good`" pulumi-lang-python="`good`" pulumi-lang-yaml="`good`" pulumi-lang-java="`good`" pulumi-lang-hcl="`good`">`good`</span>, which is eligible for use with Orders and SKUs, or <span pulumi-lang-nodejs="`service`" pulumi-lang-dotnet="`Service`" pulumi-lang-go="`service`" pulumi-lang-python="`service`" pulumi-lang-yaml="`service`" pulumi-lang-java="`service`" pulumi-lang-hcl="`service`">`service`</span>, which is eligible for use with Subscriptions and Plans.
 	Type *string `pulumi:"type"`
 	// A label that represents units of this product. When set, this will be included in customers' receipts, invoices, Checkout, and the customer portal.
 	UnitLabel *string `pulumi:"unitLabel"`
+	// Time at which the object was last updated. Measured in seconds since the Unix epoch.
+	Updated *float64 `pulumi:"updated"`
 	// A URL of a publicly-accessible webpage for this product.
 	Url *string `pulumi:"url"`
 }
 
 type ProductState struct {
-	// Whether the product is currently available for purchase. Defaults to <span pulumi-lang-nodejs="`true`" pulumi-lang-dotnet="`True`" pulumi-lang-go="`true`" pulumi-lang-python="`true`" pulumi-lang-yaml="`true`" pulumi-lang-java="`true`" pulumi-lang-hcl="`true`">`true`</span>.
+	// Whether the product is currently available for purchase.
 	Active pulumi.BoolPtrInput
-	// Data used to generate a new [Price](https://stripe.com/docs/api/prices) object. This Price will be set as the default price for this product.
-	DefaultPriceData ProductDefaultPriceDataPtrInput
+	// Time at which the object was created. Measured in seconds since the Unix epoch.
+	Created pulumi.Float64PtrInput
+	// The ID of the [Price](https://docs.stripe.com/api/prices) object that is the default price for this product.
+	DefaultPrice pulumi.StringPtrInput
+	// Data used to generate a new [Price](https://docs.stripe.com/api/prices) object. This Price will be set as the default price for this product.
+	DefaultPriceDatas ProductDefaultPriceDataArrayInput
 	// The product's description, meant to be displayable to the customer. Use this field to optionally store a long form explanation of the product being sold for your own rendering purposes.
 	Description pulumi.StringPtrInput
 	// A list of up to 8 URLs of images for this product, meant to be displayable to the customer.
 	Images pulumi.StringArrayInput
-	// A list of up to 15 marketing features for this product. These are displayed in [pricing tables](https://stripe.com/docs/payments/checkout/pricing-table).
+	// If the object exists in live mode, the value is <span pulumi-lang-nodejs="`true`" pulumi-lang-dotnet="`True`" pulumi-lang-go="`true`" pulumi-lang-python="`true`" pulumi-lang-yaml="`true`" pulumi-lang-java="`true`" pulumi-lang-hcl="`true`">`true`</span>. If the object exists in test mode, the value is <span pulumi-lang-nodejs="`false`" pulumi-lang-dotnet="`False`" pulumi-lang-go="`false`" pulumi-lang-python="`false`" pulumi-lang-yaml="`false`" pulumi-lang-java="`false`" pulumi-lang-hcl="`false`">`false`</span>.
+	Livemode pulumi.BoolPtrInput
+	// A list of up to 15 marketing features for this product. These are displayed in [pricing tables](https://docs.stripe.com/payments/checkout/pricing-table).
 	MarketingFeatures ProductMarketingFeatureArrayInput
-	// Set of [key-value pairs](https://stripe.com/docs/api/metadata) that you can attach to an object. This can be useful for storing additional information about the object in a structured format. Individual keys can be unset by posting an empty value to them. All keys can be unset by posting an empty value to <span pulumi-lang-nodejs="`metadata`" pulumi-lang-dotnet="`Metadata`" pulumi-lang-go="`metadata`" pulumi-lang-python="`metadata`" pulumi-lang-yaml="`metadata`" pulumi-lang-java="`metadata`" pulumi-lang-hcl="`metadata`">`metadata`</span>.
+	// Set of [key-value pairs](https://docs.stripe.com/api/metadata) that you can attach to an object. This can be useful for storing additional information about the object in a structured format.
 	Metadata pulumi.StringMapInput
 	// The product's name, meant to be displayable to the customer.
 	Name pulumi.StringPtrInput
+	// String representing the object's type. Objects of the same type share the same value.
+	Object pulumi.StringPtrInput
 	// The dimensions of this product for shipping purposes.
-	PackageDimensions ProductPackageDimensionsPtrInput
+	PackageDimensions ProductPackageDimensionArrayInput
 	// Whether this product is shipped (i.e., physical goods).
 	Shippable pulumi.BoolPtrInput
-	// An arbitrary string to be displayed on your customer's credit card or bank statement. While most banks display this information consistently, some may display it incorrectly or not at all. This may be up to 22 characters. The statement description may not include `<`, `>`, `\`, `\"`, `'` characters, and will appear on your customer's statement in capital letters. Non-ASCII characters are automatically stripped. It must contain at least one letter. Only used for subscription payments.
+	// Extra information about a product which will appear on your customer's credit card statement. In the case that multiple products are billed at once, the first statement descriptor will be used. Only used for subscription payments.
 	StatementDescriptor pulumi.StringPtrInput
-	// A [tax code](https://stripe.com/docs/tax/tax-categories) ID.
+	// A [tax code](https://docs.stripe.com/tax/tax-categories) ID.
 	TaxCode pulumi.StringPtrInput
-	// The type of the product. Defaults to <span pulumi-lang-nodejs="`service`" pulumi-lang-dotnet="`Service`" pulumi-lang-go="`service`" pulumi-lang-python="`service`" pulumi-lang-yaml="`service`" pulumi-lang-java="`service`" pulumi-lang-hcl="`service`">`service`</span> if not explicitly specified, enabling use of this product with Subscriptions and Plans. Set this parameter to <span pulumi-lang-nodejs="`good`" pulumi-lang-dotnet="`Good`" pulumi-lang-go="`good`" pulumi-lang-python="`good`" pulumi-lang-yaml="`good`" pulumi-lang-java="`good`" pulumi-lang-hcl="`good`">`good`</span> to use this product with Orders and SKUs. On API versions before `2018-02-05`, this field defaults to <span pulumi-lang-nodejs="`good`" pulumi-lang-dotnet="`Good`" pulumi-lang-go="`good`" pulumi-lang-python="`good`" pulumi-lang-yaml="`good`" pulumi-lang-java="`good`" pulumi-lang-hcl="`good`">`good`</span> for compatibility reasons.
+	// The type of the product. The product is either of type <span pulumi-lang-nodejs="`good`" pulumi-lang-dotnet="`Good`" pulumi-lang-go="`good`" pulumi-lang-python="`good`" pulumi-lang-yaml="`good`" pulumi-lang-java="`good`" pulumi-lang-hcl="`good`">`good`</span>, which is eligible for use with Orders and SKUs, or <span pulumi-lang-nodejs="`service`" pulumi-lang-dotnet="`Service`" pulumi-lang-go="`service`" pulumi-lang-python="`service`" pulumi-lang-yaml="`service`" pulumi-lang-java="`service`" pulumi-lang-hcl="`service`">`service`</span>, which is eligible for use with Subscriptions and Plans.
 	Type pulumi.StringPtrInput
 	// A label that represents units of this product. When set, this will be included in customers' receipts, invoices, Checkout, and the customer portal.
 	UnitLabel pulumi.StringPtrInput
+	// Time at which the object was last updated. Measured in seconds since the Unix epoch.
+	Updated pulumi.Float64PtrInput
 	// A URL of a publicly-accessible webpage for this product.
 	Url pulumi.StringPtrInput
 }
@@ -148,29 +178,29 @@ func (ProductState) ElementType() reflect.Type {
 }
 
 type productArgs struct {
-	// Whether the product is currently available for purchase. Defaults to <span pulumi-lang-nodejs="`true`" pulumi-lang-dotnet="`True`" pulumi-lang-go="`true`" pulumi-lang-python="`true`" pulumi-lang-yaml="`true`" pulumi-lang-java="`true`" pulumi-lang-hcl="`true`">`true`</span>.
+	// Whether the product is currently available for purchase.
 	Active *bool `pulumi:"active"`
-	// Data used to generate a new [Price](https://stripe.com/docs/api/prices) object. This Price will be set as the default price for this product.
-	DefaultPriceData *ProductDefaultPriceData `pulumi:"defaultPriceData"`
+	// Data used to generate a new [Price](https://docs.stripe.com/api/prices) object. This Price will be set as the default price for this product.
+	DefaultPriceDatas []ProductDefaultPriceData `pulumi:"defaultPriceDatas"`
 	// The product's description, meant to be displayable to the customer. Use this field to optionally store a long form explanation of the product being sold for your own rendering purposes.
 	Description *string `pulumi:"description"`
 	// A list of up to 8 URLs of images for this product, meant to be displayable to the customer.
 	Images []string `pulumi:"images"`
-	// A list of up to 15 marketing features for this product. These are displayed in [pricing tables](https://stripe.com/docs/payments/checkout/pricing-table).
+	// A list of up to 15 marketing features for this product. These are displayed in [pricing tables](https://docs.stripe.com/payments/checkout/pricing-table).
 	MarketingFeatures []ProductMarketingFeature `pulumi:"marketingFeatures"`
-	// Set of [key-value pairs](https://stripe.com/docs/api/metadata) that you can attach to an object. This can be useful for storing additional information about the object in a structured format. Individual keys can be unset by posting an empty value to them. All keys can be unset by posting an empty value to <span pulumi-lang-nodejs="`metadata`" pulumi-lang-dotnet="`Metadata`" pulumi-lang-go="`metadata`" pulumi-lang-python="`metadata`" pulumi-lang-yaml="`metadata`" pulumi-lang-java="`metadata`" pulumi-lang-hcl="`metadata`">`metadata`</span>.
+	// Set of [key-value pairs](https://docs.stripe.com/api/metadata) that you can attach to an object. This can be useful for storing additional information about the object in a structured format.
 	Metadata map[string]string `pulumi:"metadata"`
 	// The product's name, meant to be displayable to the customer.
 	Name *string `pulumi:"name"`
 	// The dimensions of this product for shipping purposes.
-	PackageDimensions *ProductPackageDimensions `pulumi:"packageDimensions"`
+	PackageDimensions []ProductPackageDimension `pulumi:"packageDimensions"`
 	// Whether this product is shipped (i.e., physical goods).
 	Shippable *bool `pulumi:"shippable"`
-	// An arbitrary string to be displayed on your customer's credit card or bank statement. While most banks display this information consistently, some may display it incorrectly or not at all. This may be up to 22 characters. The statement description may not include `<`, `>`, `\`, `\"`, `'` characters, and will appear on your customer's statement in capital letters. Non-ASCII characters are automatically stripped. It must contain at least one letter. Only used for subscription payments.
+	// Extra information about a product which will appear on your customer's credit card statement. In the case that multiple products are billed at once, the first statement descriptor will be used. Only used for subscription payments.
 	StatementDescriptor *string `pulumi:"statementDescriptor"`
-	// A [tax code](https://stripe.com/docs/tax/tax-categories) ID.
+	// A [tax code](https://docs.stripe.com/tax/tax-categories) ID.
 	TaxCode *string `pulumi:"taxCode"`
-	// The type of the product. Defaults to <span pulumi-lang-nodejs="`service`" pulumi-lang-dotnet="`Service`" pulumi-lang-go="`service`" pulumi-lang-python="`service`" pulumi-lang-yaml="`service`" pulumi-lang-java="`service`" pulumi-lang-hcl="`service`">`service`</span> if not explicitly specified, enabling use of this product with Subscriptions and Plans. Set this parameter to <span pulumi-lang-nodejs="`good`" pulumi-lang-dotnet="`Good`" pulumi-lang-go="`good`" pulumi-lang-python="`good`" pulumi-lang-yaml="`good`" pulumi-lang-java="`good`" pulumi-lang-hcl="`good`">`good`</span> to use this product with Orders and SKUs. On API versions before `2018-02-05`, this field defaults to <span pulumi-lang-nodejs="`good`" pulumi-lang-dotnet="`Good`" pulumi-lang-go="`good`" pulumi-lang-python="`good`" pulumi-lang-yaml="`good`" pulumi-lang-java="`good`" pulumi-lang-hcl="`good`">`good`</span> for compatibility reasons.
+	// The type of the product. The product is either of type <span pulumi-lang-nodejs="`good`" pulumi-lang-dotnet="`Good`" pulumi-lang-go="`good`" pulumi-lang-python="`good`" pulumi-lang-yaml="`good`" pulumi-lang-java="`good`" pulumi-lang-hcl="`good`">`good`</span>, which is eligible for use with Orders and SKUs, or <span pulumi-lang-nodejs="`service`" pulumi-lang-dotnet="`Service`" pulumi-lang-go="`service`" pulumi-lang-python="`service`" pulumi-lang-yaml="`service`" pulumi-lang-java="`service`" pulumi-lang-hcl="`service`">`service`</span>, which is eligible for use with Subscriptions and Plans.
 	Type *string `pulumi:"type"`
 	// A label that represents units of this product. When set, this will be included in customers' receipts, invoices, Checkout, and the customer portal.
 	UnitLabel *string `pulumi:"unitLabel"`
@@ -180,29 +210,29 @@ type productArgs struct {
 
 // The set of arguments for constructing a Product resource.
 type ProductArgs struct {
-	// Whether the product is currently available for purchase. Defaults to <span pulumi-lang-nodejs="`true`" pulumi-lang-dotnet="`True`" pulumi-lang-go="`true`" pulumi-lang-python="`true`" pulumi-lang-yaml="`true`" pulumi-lang-java="`true`" pulumi-lang-hcl="`true`">`true`</span>.
+	// Whether the product is currently available for purchase.
 	Active pulumi.BoolPtrInput
-	// Data used to generate a new [Price](https://stripe.com/docs/api/prices) object. This Price will be set as the default price for this product.
-	DefaultPriceData ProductDefaultPriceDataPtrInput
+	// Data used to generate a new [Price](https://docs.stripe.com/api/prices) object. This Price will be set as the default price for this product.
+	DefaultPriceDatas ProductDefaultPriceDataArrayInput
 	// The product's description, meant to be displayable to the customer. Use this field to optionally store a long form explanation of the product being sold for your own rendering purposes.
 	Description pulumi.StringPtrInput
 	// A list of up to 8 URLs of images for this product, meant to be displayable to the customer.
 	Images pulumi.StringArrayInput
-	// A list of up to 15 marketing features for this product. These are displayed in [pricing tables](https://stripe.com/docs/payments/checkout/pricing-table).
+	// A list of up to 15 marketing features for this product. These are displayed in [pricing tables](https://docs.stripe.com/payments/checkout/pricing-table).
 	MarketingFeatures ProductMarketingFeatureArrayInput
-	// Set of [key-value pairs](https://stripe.com/docs/api/metadata) that you can attach to an object. This can be useful for storing additional information about the object in a structured format. Individual keys can be unset by posting an empty value to them. All keys can be unset by posting an empty value to <span pulumi-lang-nodejs="`metadata`" pulumi-lang-dotnet="`Metadata`" pulumi-lang-go="`metadata`" pulumi-lang-python="`metadata`" pulumi-lang-yaml="`metadata`" pulumi-lang-java="`metadata`" pulumi-lang-hcl="`metadata`">`metadata`</span>.
+	// Set of [key-value pairs](https://docs.stripe.com/api/metadata) that you can attach to an object. This can be useful for storing additional information about the object in a structured format.
 	Metadata pulumi.StringMapInput
 	// The product's name, meant to be displayable to the customer.
 	Name pulumi.StringPtrInput
 	// The dimensions of this product for shipping purposes.
-	PackageDimensions ProductPackageDimensionsPtrInput
+	PackageDimensions ProductPackageDimensionArrayInput
 	// Whether this product is shipped (i.e., physical goods).
 	Shippable pulumi.BoolPtrInput
-	// An arbitrary string to be displayed on your customer's credit card or bank statement. While most banks display this information consistently, some may display it incorrectly or not at all. This may be up to 22 characters. The statement description may not include `<`, `>`, `\`, `\"`, `'` characters, and will appear on your customer's statement in capital letters. Non-ASCII characters are automatically stripped. It must contain at least one letter. Only used for subscription payments.
+	// Extra information about a product which will appear on your customer's credit card statement. In the case that multiple products are billed at once, the first statement descriptor will be used. Only used for subscription payments.
 	StatementDescriptor pulumi.StringPtrInput
-	// A [tax code](https://stripe.com/docs/tax/tax-categories) ID.
+	// A [tax code](https://docs.stripe.com/tax/tax-categories) ID.
 	TaxCode pulumi.StringPtrInput
-	// The type of the product. Defaults to <span pulumi-lang-nodejs="`service`" pulumi-lang-dotnet="`Service`" pulumi-lang-go="`service`" pulumi-lang-python="`service`" pulumi-lang-yaml="`service`" pulumi-lang-java="`service`" pulumi-lang-hcl="`service`">`service`</span> if not explicitly specified, enabling use of this product with Subscriptions and Plans. Set this parameter to <span pulumi-lang-nodejs="`good`" pulumi-lang-dotnet="`Good`" pulumi-lang-go="`good`" pulumi-lang-python="`good`" pulumi-lang-yaml="`good`" pulumi-lang-java="`good`" pulumi-lang-hcl="`good`">`good`</span> to use this product with Orders and SKUs. On API versions before `2018-02-05`, this field defaults to <span pulumi-lang-nodejs="`good`" pulumi-lang-dotnet="`Good`" pulumi-lang-go="`good`" pulumi-lang-python="`good`" pulumi-lang-yaml="`good`" pulumi-lang-java="`good`" pulumi-lang-hcl="`good`">`good`</span> for compatibility reasons.
+	// The type of the product. The product is either of type <span pulumi-lang-nodejs="`good`" pulumi-lang-dotnet="`Good`" pulumi-lang-go="`good`" pulumi-lang-python="`good`" pulumi-lang-yaml="`good`" pulumi-lang-java="`good`" pulumi-lang-hcl="`good`">`good`</span>, which is eligible for use with Orders and SKUs, or <span pulumi-lang-nodejs="`service`" pulumi-lang-dotnet="`Service`" pulumi-lang-go="`service`" pulumi-lang-python="`service`" pulumi-lang-yaml="`service`" pulumi-lang-java="`service`" pulumi-lang-hcl="`service`">`service`</span>, which is eligible for use with Subscriptions and Plans.
 	Type pulumi.StringPtrInput
 	// A label that represents units of this product. When set, this will be included in customers' receipts, invoices, Checkout, and the customer portal.
 	UnitLabel pulumi.StringPtrInput
@@ -247,14 +277,24 @@ func (o ProductOutput) ToProductOutputWithContext(ctx context.Context) ProductOu
 	return o
 }
 
-// Whether the product is currently available for purchase. Defaults to <span pulumi-lang-nodejs="`true`" pulumi-lang-dotnet="`True`" pulumi-lang-go="`true`" pulumi-lang-python="`true`" pulumi-lang-yaml="`true`" pulumi-lang-java="`true`" pulumi-lang-hcl="`true`">`true`</span>.
-func (o ProductOutput) Active() pulumi.BoolPtrOutput {
-	return o.ApplyT(func(v *Product) pulumi.BoolPtrOutput { return v.Active }).(pulumi.BoolPtrOutput)
+// Whether the product is currently available for purchase.
+func (o ProductOutput) Active() pulumi.BoolOutput {
+	return o.ApplyT(func(v *Product) pulumi.BoolOutput { return v.Active }).(pulumi.BoolOutput)
 }
 
-// Data used to generate a new [Price](https://stripe.com/docs/api/prices) object. This Price will be set as the default price for this product.
-func (o ProductOutput) DefaultPriceData() ProductDefaultPriceDataPtrOutput {
-	return o.ApplyT(func(v *Product) ProductDefaultPriceDataPtrOutput { return v.DefaultPriceData }).(ProductDefaultPriceDataPtrOutput)
+// Time at which the object was created. Measured in seconds since the Unix epoch.
+func (o ProductOutput) Created() pulumi.Float64Output {
+	return o.ApplyT(func(v *Product) pulumi.Float64Output { return v.Created }).(pulumi.Float64Output)
+}
+
+// The ID of the [Price](https://docs.stripe.com/api/prices) object that is the default price for this product.
+func (o ProductOutput) DefaultPrice() pulumi.StringOutput {
+	return o.ApplyT(func(v *Product) pulumi.StringOutput { return v.DefaultPrice }).(pulumi.StringOutput)
+}
+
+// Data used to generate a new [Price](https://docs.stripe.com/api/prices) object. This Price will be set as the default price for this product.
+func (o ProductOutput) DefaultPriceDatas() ProductDefaultPriceDataArrayOutput {
+	return o.ApplyT(func(v *Product) ProductDefaultPriceDataArrayOutput { return v.DefaultPriceDatas }).(ProductDefaultPriceDataArrayOutput)
 }
 
 // The product's description, meant to be displayable to the customer. Use this field to optionally store a long form explanation of the product being sold for your own rendering purposes.
@@ -267,12 +307,17 @@ func (o ProductOutput) Images() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v *Product) pulumi.StringArrayOutput { return v.Images }).(pulumi.StringArrayOutput)
 }
 
-// A list of up to 15 marketing features for this product. These are displayed in [pricing tables](https://stripe.com/docs/payments/checkout/pricing-table).
+// If the object exists in live mode, the value is <span pulumi-lang-nodejs="`true`" pulumi-lang-dotnet="`True`" pulumi-lang-go="`true`" pulumi-lang-python="`true`" pulumi-lang-yaml="`true`" pulumi-lang-java="`true`" pulumi-lang-hcl="`true`">`true`</span>. If the object exists in test mode, the value is <span pulumi-lang-nodejs="`false`" pulumi-lang-dotnet="`False`" pulumi-lang-go="`false`" pulumi-lang-python="`false`" pulumi-lang-yaml="`false`" pulumi-lang-java="`false`" pulumi-lang-hcl="`false`">`false`</span>.
+func (o ProductOutput) Livemode() pulumi.BoolOutput {
+	return o.ApplyT(func(v *Product) pulumi.BoolOutput { return v.Livemode }).(pulumi.BoolOutput)
+}
+
+// A list of up to 15 marketing features for this product. These are displayed in [pricing tables](https://docs.stripe.com/payments/checkout/pricing-table).
 func (o ProductOutput) MarketingFeatures() ProductMarketingFeatureArrayOutput {
 	return o.ApplyT(func(v *Product) ProductMarketingFeatureArrayOutput { return v.MarketingFeatures }).(ProductMarketingFeatureArrayOutput)
 }
 
-// Set of [key-value pairs](https://stripe.com/docs/api/metadata) that you can attach to an object. This can be useful for storing additional information about the object in a structured format. Individual keys can be unset by posting an empty value to them. All keys can be unset by posting an empty value to <span pulumi-lang-nodejs="`metadata`" pulumi-lang-dotnet="`Metadata`" pulumi-lang-go="`metadata`" pulumi-lang-python="`metadata`" pulumi-lang-yaml="`metadata`" pulumi-lang-java="`metadata`" pulumi-lang-hcl="`metadata`">`metadata`</span>.
+// Set of [key-value pairs](https://docs.stripe.com/api/metadata) that you can attach to an object. This can be useful for storing additional information about the object in a structured format.
 func (o ProductOutput) Metadata() pulumi.StringMapOutput {
 	return o.ApplyT(func(v *Product) pulumi.StringMapOutput { return v.Metadata }).(pulumi.StringMapOutput)
 }
@@ -282,9 +327,14 @@ func (o ProductOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v *Product) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
 }
 
+// String representing the object's type. Objects of the same type share the same value.
+func (o ProductOutput) Object() pulumi.StringOutput {
+	return o.ApplyT(func(v *Product) pulumi.StringOutput { return v.Object }).(pulumi.StringOutput)
+}
+
 // The dimensions of this product for shipping purposes.
-func (o ProductOutput) PackageDimensions() ProductPackageDimensionsPtrOutput {
-	return o.ApplyT(func(v *Product) ProductPackageDimensionsPtrOutput { return v.PackageDimensions }).(ProductPackageDimensionsPtrOutput)
+func (o ProductOutput) PackageDimensions() ProductPackageDimensionArrayOutput {
+	return o.ApplyT(func(v *Product) ProductPackageDimensionArrayOutput { return v.PackageDimensions }).(ProductPackageDimensionArrayOutput)
 }
 
 // Whether this product is shipped (i.e., physical goods).
@@ -292,17 +342,17 @@ func (o ProductOutput) Shippable() pulumi.BoolOutput {
 	return o.ApplyT(func(v *Product) pulumi.BoolOutput { return v.Shippable }).(pulumi.BoolOutput)
 }
 
-// An arbitrary string to be displayed on your customer's credit card or bank statement. While most banks display this information consistently, some may display it incorrectly or not at all. This may be up to 22 characters. The statement description may not include `<`, `>`, `\`, `\"`, `'` characters, and will appear on your customer's statement in capital letters. Non-ASCII characters are automatically stripped. It must contain at least one letter. Only used for subscription payments.
+// Extra information about a product which will appear on your customer's credit card statement. In the case that multiple products are billed at once, the first statement descriptor will be used. Only used for subscription payments.
 func (o ProductOutput) StatementDescriptor() pulumi.StringOutput {
 	return o.ApplyT(func(v *Product) pulumi.StringOutput { return v.StatementDescriptor }).(pulumi.StringOutput)
 }
 
-// A [tax code](https://stripe.com/docs/tax/tax-categories) ID.
+// A [tax code](https://docs.stripe.com/tax/tax-categories) ID.
 func (o ProductOutput) TaxCode() pulumi.StringOutput {
 	return o.ApplyT(func(v *Product) pulumi.StringOutput { return v.TaxCode }).(pulumi.StringOutput)
 }
 
-// The type of the product. Defaults to <span pulumi-lang-nodejs="`service`" pulumi-lang-dotnet="`Service`" pulumi-lang-go="`service`" pulumi-lang-python="`service`" pulumi-lang-yaml="`service`" pulumi-lang-java="`service`" pulumi-lang-hcl="`service`">`service`</span> if not explicitly specified, enabling use of this product with Subscriptions and Plans. Set this parameter to <span pulumi-lang-nodejs="`good`" pulumi-lang-dotnet="`Good`" pulumi-lang-go="`good`" pulumi-lang-python="`good`" pulumi-lang-yaml="`good`" pulumi-lang-java="`good`" pulumi-lang-hcl="`good`">`good`</span> to use this product with Orders and SKUs. On API versions before `2018-02-05`, this field defaults to <span pulumi-lang-nodejs="`good`" pulumi-lang-dotnet="`Good`" pulumi-lang-go="`good`" pulumi-lang-python="`good`" pulumi-lang-yaml="`good`" pulumi-lang-java="`good`" pulumi-lang-hcl="`good`">`good`</span> for compatibility reasons.
+// The type of the product. The product is either of type <span pulumi-lang-nodejs="`good`" pulumi-lang-dotnet="`Good`" pulumi-lang-go="`good`" pulumi-lang-python="`good`" pulumi-lang-yaml="`good`" pulumi-lang-java="`good`" pulumi-lang-hcl="`good`">`good`</span>, which is eligible for use with Orders and SKUs, or <span pulumi-lang-nodejs="`service`" pulumi-lang-dotnet="`Service`" pulumi-lang-go="`service`" pulumi-lang-python="`service`" pulumi-lang-yaml="`service`" pulumi-lang-java="`service`" pulumi-lang-hcl="`service`">`service`</span>, which is eligible for use with Subscriptions and Plans.
 func (o ProductOutput) Type() pulumi.StringOutput {
 	return o.ApplyT(func(v *Product) pulumi.StringOutput { return v.Type }).(pulumi.StringOutput)
 }
@@ -310,6 +360,11 @@ func (o ProductOutput) Type() pulumi.StringOutput {
 // A label that represents units of this product. When set, this will be included in customers' receipts, invoices, Checkout, and the customer portal.
 func (o ProductOutput) UnitLabel() pulumi.StringOutput {
 	return o.ApplyT(func(v *Product) pulumi.StringOutput { return v.UnitLabel }).(pulumi.StringOutput)
+}
+
+// Time at which the object was last updated. Measured in seconds since the Unix epoch.
+func (o ProductOutput) Updated() pulumi.Float64Output {
+	return o.ApplyT(func(v *Product) pulumi.Float64Output { return v.Updated }).(pulumi.Float64Output)
 }
 
 // A URL of a publicly-accessible webpage for this product.

@@ -14,7 +14,7 @@ namespace Pulumi.Stripe.Outputs
     public sealed class CouponAppliesTo
     {
         /// <summary>
-        /// An array of Product IDs that this Coupon will apply to.
+        /// A list of product IDs this coupon applies to
         /// </summary>
         public readonly ImmutableArray<string> Products;
 

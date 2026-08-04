@@ -13,7 +13,7 @@ namespace Pulumi.Stripe
     public partial class WebhookEndpoint : global::Pulumi.CustomResource
     {
         /// <summary>
-        /// Events sent to this endpoint will be generated with this Stripe Version instead of your account's default Stripe Version.
+        /// The API version events are rendered as for this webhook endpoint.
         /// </summary>
         [Output("apiVersion")]
         public Output<string> ApiVersion { get; private set; } = null!;
@@ -30,17 +30,41 @@ namespace Pulumi.Stripe
         [Output("connect")]
         public Output<bool?> Connect { get; private set; } = null!;
 
+        /// <summary>
+        /// Time at which the object was created. Measured in seconds since the Unix epoch.
+        /// </summary>
+        [Output("created")]
+        public Output<double> Created { get; private set; } = null!;
+
+        /// <summary>
+        /// An optional description of what the webhook is used for.
+        /// </summary>
         [Output("description")]
         public Output<string> Description { get; private set; } = null!;
 
         /// <summary>
-        /// The list of events to enable for this endpoint. You may specify `['*']` to enable all events, except those that require explicit selection.
+        /// The list of events to enable for this endpoint. `['*']` indicates that all events are enabled, except those that require explicit selection.
         /// </summary>
         [Output("enabledEvents")]
         public Output<ImmutableArray<string>> EnabledEvents { get; private set; } = null!;
 
+        /// <summary>
+        /// If the object exists in live mode, the value is &lt;span pulumi-lang-nodejs="`true`" pulumi-lang-dotnet="`True`" pulumi-lang-go="`true`" pulumi-lang-python="`true`" pulumi-lang-yaml="`true`" pulumi-lang-java="`true`" pulumi-lang-hcl="`true`"&gt;`true`&lt;/span&gt;. If the object exists in test mode, the value is &lt;span pulumi-lang-nodejs="`false`" pulumi-lang-dotnet="`False`" pulumi-lang-go="`false`" pulumi-lang-python="`false`" pulumi-lang-yaml="`false`" pulumi-lang-java="`false`" pulumi-lang-hcl="`false`"&gt;`false`&lt;/span&gt;.
+        /// </summary>
+        [Output("livemode")]
+        public Output<bool> Livemode { get; private set; } = null!;
+
+        /// <summary>
+        /// Set of [key-value pairs](https://docs.stripe.com/api/metadata) that you can attach to an object. This can be useful for storing additional information about the object in a structured format.
+        /// </summary>
         [Output("metadata")]
         public Output<ImmutableDictionary<string, string>> Metadata { get; private set; } = null!;
+
+        /// <summary>
+        /// String representing the object's type. Objects of the same type share the same value.
+        /// </summary>
+        [Output("object")]
+        public Output<string> Object { get; private set; } = null!;
 
         /// <summary>
         /// The endpoint's secret, used to generate [webhook signatures](https://docs.stripe.com/webhooks/signatures). Only returned at creation.
@@ -111,7 +135,7 @@ namespace Pulumi.Stripe
     public sealed class WebhookEndpointArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Events sent to this endpoint will be generated with this Stripe Version instead of your account's default Stripe Version.
+        /// The API version events are rendered as for this webhook endpoint.
         /// </summary>
         [Input("apiVersion")]
         public Input<string>? ApiVersion { get; set; }
@@ -122,6 +146,9 @@ namespace Pulumi.Stripe
         [Input("connect")]
         public Input<bool>? Connect { get; set; }
 
+        /// <summary>
+        /// An optional description of what the webhook is used for.
+        /// </summary>
         [Input("description")]
         public Input<string>? Description { get; set; }
 
@@ -129,7 +156,7 @@ namespace Pulumi.Stripe
         private InputList<string>? _enabledEvents;
 
         /// <summary>
-        /// The list of events to enable for this endpoint. You may specify `['*']` to enable all events, except those that require explicit selection.
+        /// The list of events to enable for this endpoint. `['*']` indicates that all events are enabled, except those that require explicit selection.
         /// </summary>
         public InputList<string> EnabledEvents
         {
@@ -139,6 +166,10 @@ namespace Pulumi.Stripe
 
         [Input("metadata")]
         private InputMap<string>? _metadata;
+
+        /// <summary>
+        /// Set of [key-value pairs](https://docs.stripe.com/api/metadata) that you can attach to an object. This can be useful for storing additional information about the object in a structured format.
+        /// </summary>
         public InputMap<string> Metadata
         {
             get => _metadata ?? (_metadata = new InputMap<string>());
@@ -160,7 +191,7 @@ namespace Pulumi.Stripe
     public sealed class WebhookEndpointState : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Events sent to this endpoint will be generated with this Stripe Version instead of your account's default Stripe Version.
+        /// The API version events are rendered as for this webhook endpoint.
         /// </summary>
         [Input("apiVersion")]
         public Input<string>? ApiVersion { get; set; }
@@ -177,6 +208,15 @@ namespace Pulumi.Stripe
         [Input("connect")]
         public Input<bool>? Connect { get; set; }
 
+        /// <summary>
+        /// Time at which the object was created. Measured in seconds since the Unix epoch.
+        /// </summary>
+        [Input("created")]
+        public Input<double>? Created { get; set; }
+
+        /// <summary>
+        /// An optional description of what the webhook is used for.
+        /// </summary>
         [Input("description")]
         public Input<string>? Description { get; set; }
 
@@ -184,7 +224,7 @@ namespace Pulumi.Stripe
         private InputList<string>? _enabledEvents;
 
         /// <summary>
-        /// The list of events to enable for this endpoint. You may specify `['*']` to enable all events, except those that require explicit selection.
+        /// The list of events to enable for this endpoint. `['*']` indicates that all events are enabled, except those that require explicit selection.
         /// </summary>
         public InputList<string> EnabledEvents
         {
@@ -192,13 +232,29 @@ namespace Pulumi.Stripe
             set => _enabledEvents = value;
         }
 
+        /// <summary>
+        /// If the object exists in live mode, the value is &lt;span pulumi-lang-nodejs="`true`" pulumi-lang-dotnet="`True`" pulumi-lang-go="`true`" pulumi-lang-python="`true`" pulumi-lang-yaml="`true`" pulumi-lang-java="`true`" pulumi-lang-hcl="`true`"&gt;`true`&lt;/span&gt;. If the object exists in test mode, the value is &lt;span pulumi-lang-nodejs="`false`" pulumi-lang-dotnet="`False`" pulumi-lang-go="`false`" pulumi-lang-python="`false`" pulumi-lang-yaml="`false`" pulumi-lang-java="`false`" pulumi-lang-hcl="`false`"&gt;`false`&lt;/span&gt;.
+        /// </summary>
+        [Input("livemode")]
+        public Input<bool>? Livemode { get; set; }
+
         [Input("metadata")]
         private InputMap<string>? _metadata;
+
+        /// <summary>
+        /// Set of [key-value pairs](https://docs.stripe.com/api/metadata) that you can attach to an object. This can be useful for storing additional information about the object in a structured format.
+        /// </summary>
         public InputMap<string> Metadata
         {
             get => _metadata ?? (_metadata = new InputMap<string>());
             set => _metadata = value;
         }
+
+        /// <summary>
+        /// String representing the object's type. Objects of the same type share the same value.
+        /// </summary>
+        [Input("object")]
+        public Input<string>? Object { get; set; }
 
         [Input("secret")]
         private Input<string>? _secret;

@@ -4,8 +4,11 @@
 package com.pulumi.stripe.outputs;
 
 import com.pulumi.core.annotations.CustomType;
-import com.pulumi.stripe.outputs.CustomerCashBalanceSettings;
+import com.pulumi.stripe.outputs.CustomerCashBalanceSetting;
+import java.lang.Boolean;
+import java.lang.Double;
 import java.lang.String;
+import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
@@ -14,32 +17,38 @@ import javax.annotation.Nullable;
 @CustomType
 public final class CustomerCashBalance {
     /**
-     * @return A hash of all cash balances available to this customer. You cannot delete a customer with any cash balances, even if the balance is 0. Amounts are represented in the [smallest currency unit](https://stripe.com/docs/currencies#zero-decimal).
+     * @return A hash of all cash balances available to this customer. You cannot delete a customer with any cash balances, even if the balance is 0. Amounts are represented in the [smallest currency unit](https://docs.stripe.com/currencies#zero-decimal).
      * 
      */
-    private @Nullable Map<String,String> available;
+    private @Nullable Map<String,Double> available;
     /**
      * @return The ID of the customer whose cash balance this object represents.
      * 
      */
     private @Nullable String customer;
     /**
-     * @return The ID of the account whose cash balance this object represents.
+     * @return The ID of an Account representing a customer whose cash balance this object represents.
      * 
      */
     private @Nullable String customerAccount;
     /**
-     * @return Settings controlling the behavior of the customer&#39;s cash balance, such as reconciliation of funds received.
+     * @return If the object exists in live mode, the value is &lt;span pulumi-lang-nodejs=&#34;`true`&#34; pulumi-lang-dotnet=&#34;`True`&#34; pulumi-lang-go=&#34;`true`&#34; pulumi-lang-python=&#34;`true`&#34; pulumi-lang-yaml=&#34;`true`&#34; pulumi-lang-java=&#34;`true`&#34; pulumi-lang-hcl=&#34;`true`&#34;&gt;`true`&lt;/span&gt;. If the object exists in test mode, the value is &lt;span pulumi-lang-nodejs=&#34;`false`&#34; pulumi-lang-dotnet=&#34;`False`&#34; pulumi-lang-go=&#34;`false`&#34; pulumi-lang-python=&#34;`false`&#34; pulumi-lang-yaml=&#34;`false`&#34; pulumi-lang-java=&#34;`false`&#34; pulumi-lang-hcl=&#34;`false`&#34;&gt;`false`&lt;/span&gt;.
      * 
      */
-    private @Nullable CustomerCashBalanceSettings settings;
+    private @Nullable Boolean livemode;
+    /**
+     * @return String representing the object&#39;s type. Objects of the same type share the same value.
+     * 
+     */
+    private @Nullable String object;
+    private @Nullable List<CustomerCashBalanceSetting> settings;
 
     private CustomerCashBalance() {}
     /**
-     * @return A hash of all cash balances available to this customer. You cannot delete a customer with any cash balances, even if the balance is 0. Amounts are represented in the [smallest currency unit](https://stripe.com/docs/currencies#zero-decimal).
+     * @return A hash of all cash balances available to this customer. You cannot delete a customer with any cash balances, even if the balance is 0. Amounts are represented in the [smallest currency unit](https://docs.stripe.com/currencies#zero-decimal).
      * 
      */
-    public Map<String,String> available() {
+    public Map<String,Double> available() {
         return this.available == null ? Map.of() : this.available;
     }
     /**
@@ -50,18 +59,28 @@ public final class CustomerCashBalance {
         return Optional.ofNullable(this.customer);
     }
     /**
-     * @return The ID of the account whose cash balance this object represents.
+     * @return The ID of an Account representing a customer whose cash balance this object represents.
      * 
      */
     public Optional<String> customerAccount() {
         return Optional.ofNullable(this.customerAccount);
     }
     /**
-     * @return Settings controlling the behavior of the customer&#39;s cash balance, such as reconciliation of funds received.
+     * @return If the object exists in live mode, the value is &lt;span pulumi-lang-nodejs=&#34;`true`&#34; pulumi-lang-dotnet=&#34;`True`&#34; pulumi-lang-go=&#34;`true`&#34; pulumi-lang-python=&#34;`true`&#34; pulumi-lang-yaml=&#34;`true`&#34; pulumi-lang-java=&#34;`true`&#34; pulumi-lang-hcl=&#34;`true`&#34;&gt;`true`&lt;/span&gt;. If the object exists in test mode, the value is &lt;span pulumi-lang-nodejs=&#34;`false`&#34; pulumi-lang-dotnet=&#34;`False`&#34; pulumi-lang-go=&#34;`false`&#34; pulumi-lang-python=&#34;`false`&#34; pulumi-lang-yaml=&#34;`false`&#34; pulumi-lang-java=&#34;`false`&#34; pulumi-lang-hcl=&#34;`false`&#34;&gt;`false`&lt;/span&gt;.
      * 
      */
-    public Optional<CustomerCashBalanceSettings> settings() {
-        return Optional.ofNullable(this.settings);
+    public Optional<Boolean> livemode() {
+        return Optional.ofNullable(this.livemode);
+    }
+    /**
+     * @return String representing the object&#39;s type. Objects of the same type share the same value.
+     * 
+     */
+    public Optional<String> object() {
+        return Optional.ofNullable(this.object);
+    }
+    public List<CustomerCashBalanceSetting> settings() {
+        return this.settings == null ? List.of() : this.settings;
     }
 
     public static Builder builder() {
@@ -73,21 +92,25 @@ public final class CustomerCashBalance {
     }
     @CustomType.Builder
     public static final class Builder {
-        private @Nullable Map<String,String> available;
+        private @Nullable Map<String,Double> available;
         private @Nullable String customer;
         private @Nullable String customerAccount;
-        private @Nullable CustomerCashBalanceSettings settings;
+        private @Nullable Boolean livemode;
+        private @Nullable String object;
+        private @Nullable List<CustomerCashBalanceSetting> settings;
         public Builder() {}
         public Builder(CustomerCashBalance defaults) {
     	      Objects.requireNonNull(defaults);
     	      this.available = defaults.available;
     	      this.customer = defaults.customer;
     	      this.customerAccount = defaults.customerAccount;
+    	      this.livemode = defaults.livemode;
+    	      this.object = defaults.object;
     	      this.settings = defaults.settings;
         }
 
         @CustomType.Setter
-        public Builder available(@Nullable Map<String,String> available) {
+        public Builder available(@Nullable Map<String,Double> available) {
 
             this.available = available;
             return this;
@@ -105,16 +128,33 @@ public final class CustomerCashBalance {
             return this;
         }
         @CustomType.Setter
-        public Builder settings(@Nullable CustomerCashBalanceSettings settings) {
+        public Builder livemode(@Nullable Boolean livemode) {
+
+            this.livemode = livemode;
+            return this;
+        }
+        @CustomType.Setter
+        public Builder object(@Nullable String object) {
+
+            this.object = object;
+            return this;
+        }
+        @CustomType.Setter
+        public Builder settings(@Nullable List<CustomerCashBalanceSetting> settings) {
 
             this.settings = settings;
             return this;
+        }
+        public Builder settings(CustomerCashBalanceSetting... settings) {
+            return settings(List.of(settings));
         }
         public CustomerCashBalance build() {
             final var _resultValue = new CustomerCashBalance();
             _resultValue.available = available;
             _resultValue.customer = customer;
             _resultValue.customerAccount = customerAccount;
+            _resultValue.livemode = livemode;
+            _resultValue.object = object;
             _resultValue.settings = settings;
             return _resultValue;
         }

@@ -17,7 +17,7 @@ public final class CustomerAddress {
      */
     private @Nullable String city;
     /**
-     * @return A freeform text field for the country. However, in order to activate some tax features, the format should be a two-letter country code ([ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2)).
+     * @return Two-letter country code ([ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2)).
      * 
      */
     private @Nullable String country;
@@ -37,7 +37,7 @@ public final class CustomerAddress {
      */
     private @Nullable String postalCode;
     /**
-     * @return State, county, province, or region.
+     * @return State, county, province, or region ([ISO 3166-2](https://en.wikipedia.org/wiki/ISO_3166-2)).
      * 
      */
     private @Nullable String state;
@@ -51,7 +51,7 @@ public final class CustomerAddress {
         return Optional.ofNullable(this.city);
     }
     /**
-     * @return A freeform text field for the country. However, in order to activate some tax features, the format should be a two-letter country code ([ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2)).
+     * @return Two-letter country code ([ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2)).
      * 
      */
     public Optional<String> country() {
@@ -79,7 +79,7 @@ public final class CustomerAddress {
         return Optional.ofNullable(this.postalCode);
     }
     /**
-     * @return State, county, province, or region.
+     * @return State, county, province, or region ([ISO 3166-2](https://en.wikipedia.org/wiki/ISO_3166-2)).
      * 
      */
     public Optional<String> state() {

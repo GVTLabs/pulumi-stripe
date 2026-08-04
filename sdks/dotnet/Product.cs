@@ -13,16 +13,28 @@ namespace Pulumi.Stripe
     public partial class Product : global::Pulumi.CustomResource
     {
         /// <summary>
-        /// Whether the product is currently available for purchase. Defaults to &lt;span pulumi-lang-nodejs="`true`" pulumi-lang-dotnet="`True`" pulumi-lang-go="`true`" pulumi-lang-python="`true`" pulumi-lang-yaml="`true`" pulumi-lang-java="`true`" pulumi-lang-hcl="`true`"&gt;`true`&lt;/span&gt;.
+        /// Whether the product is currently available for purchase.
         /// </summary>
         [Output("active")]
-        public Output<bool?> Active { get; private set; } = null!;
+        public Output<bool> Active { get; private set; } = null!;
 
         /// <summary>
-        /// Data used to generate a new [Price](https://stripe.com/docs/api/prices) object. This Price will be set as the default price for this product.
+        /// Time at which the object was created. Measured in seconds since the Unix epoch.
         /// </summary>
-        [Output("defaultPriceData")]
-        public Output<Outputs.ProductDefaultPriceData?> DefaultPriceData { get; private set; } = null!;
+        [Output("created")]
+        public Output<double> Created { get; private set; } = null!;
+
+        /// <summary>
+        /// The ID of the [Price](https://docs.stripe.com/api/prices) object that is the default price for this product.
+        /// </summary>
+        [Output("defaultPrice")]
+        public Output<string> DefaultPrice { get; private set; } = null!;
+
+        /// <summary>
+        /// Data used to generate a new [Price](https://docs.stripe.com/api/prices) object. This Price will be set as the default price for this product.
+        /// </summary>
+        [Output("defaultPriceDatas")]
+        public Output<ImmutableArray<Outputs.ProductDefaultPriceData>> DefaultPriceDatas { get; private set; } = null!;
 
         /// <summary>
         /// The product's description, meant to be displayable to the customer. Use this field to optionally store a long form explanation of the product being sold for your own rendering purposes.
@@ -37,13 +49,19 @@ namespace Pulumi.Stripe
         public Output<ImmutableArray<string>> Images { get; private set; } = null!;
 
         /// <summary>
-        /// A list of up to 15 marketing features for this product. These are displayed in [pricing tables](https://stripe.com/docs/payments/checkout/pricing-table).
+        /// If the object exists in live mode, the value is &lt;span pulumi-lang-nodejs="`true`" pulumi-lang-dotnet="`True`" pulumi-lang-go="`true`" pulumi-lang-python="`true`" pulumi-lang-yaml="`true`" pulumi-lang-java="`true`" pulumi-lang-hcl="`true`"&gt;`true`&lt;/span&gt;. If the object exists in test mode, the value is &lt;span pulumi-lang-nodejs="`false`" pulumi-lang-dotnet="`False`" pulumi-lang-go="`false`" pulumi-lang-python="`false`" pulumi-lang-yaml="`false`" pulumi-lang-java="`false`" pulumi-lang-hcl="`false`"&gt;`false`&lt;/span&gt;.
+        /// </summary>
+        [Output("livemode")]
+        public Output<bool> Livemode { get; private set; } = null!;
+
+        /// <summary>
+        /// A list of up to 15 marketing features for this product. These are displayed in [pricing tables](https://docs.stripe.com/payments/checkout/pricing-table).
         /// </summary>
         [Output("marketingFeatures")]
         public Output<ImmutableArray<Outputs.ProductMarketingFeature>> MarketingFeatures { get; private set; } = null!;
 
         /// <summary>
-        /// Set of [key-value pairs](https://stripe.com/docs/api/metadata) that you can attach to an object. This can be useful for storing additional information about the object in a structured format. Individual keys can be unset by posting an empty value to them. All keys can be unset by posting an empty value to &lt;span pulumi-lang-nodejs="`metadata`" pulumi-lang-dotnet="`Metadata`" pulumi-lang-go="`metadata`" pulumi-lang-python="`metadata`" pulumi-lang-yaml="`metadata`" pulumi-lang-java="`metadata`" pulumi-lang-hcl="`metadata`"&gt;`metadata`&lt;/span&gt;.
+        /// Set of [key-value pairs](https://docs.stripe.com/api/metadata) that you can attach to an object. This can be useful for storing additional information about the object in a structured format.
         /// </summary>
         [Output("metadata")]
         public Output<ImmutableDictionary<string, string>> Metadata { get; private set; } = null!;
@@ -55,10 +73,16 @@ namespace Pulumi.Stripe
         public Output<string> Name { get; private set; } = null!;
 
         /// <summary>
+        /// String representing the object's type. Objects of the same type share the same value.
+        /// </summary>
+        [Output("object")]
+        public Output<string> Object { get; private set; } = null!;
+
+        /// <summary>
         /// The dimensions of this product for shipping purposes.
         /// </summary>
         [Output("packageDimensions")]
-        public Output<Outputs.ProductPackageDimensions?> PackageDimensions { get; private set; } = null!;
+        public Output<ImmutableArray<Outputs.ProductPackageDimension>> PackageDimensions { get; private set; } = null!;
 
         /// <summary>
         /// Whether this product is shipped (i.e., physical goods).
@@ -67,19 +91,19 @@ namespace Pulumi.Stripe
         public Output<bool> Shippable { get; private set; } = null!;
 
         /// <summary>
-        /// An arbitrary string to be displayed on your customer's credit card or bank statement. While most banks display this information consistently, some may display it incorrectly or not at all. This may be up to 22 characters. The statement description may not include `&lt;`, `&gt;`, `\`, `\"`, `'` characters, and will appear on your customer's statement in capital letters. Non-ASCII characters are automatically stripped. It must contain at least one letter. Only used for subscription payments.
+        /// Extra information about a product which will appear on your customer's credit card statement. In the case that multiple products are billed at once, the first statement descriptor will be used. Only used for subscription payments.
         /// </summary>
         [Output("statementDescriptor")]
         public Output<string> StatementDescriptor { get; private set; } = null!;
 
         /// <summary>
-        /// A [tax code](https://stripe.com/docs/tax/tax-categories) ID.
+        /// A [tax code](https://docs.stripe.com/tax/tax-categories) ID.
         /// </summary>
         [Output("taxCode")]
         public Output<string> TaxCode { get; private set; } = null!;
 
         /// <summary>
-        /// The type of the product. Defaults to &lt;span pulumi-lang-nodejs="`service`" pulumi-lang-dotnet="`Service`" pulumi-lang-go="`service`" pulumi-lang-python="`service`" pulumi-lang-yaml="`service`" pulumi-lang-java="`service`" pulumi-lang-hcl="`service`"&gt;`service`&lt;/span&gt; if not explicitly specified, enabling use of this product with Subscriptions and Plans. Set this parameter to &lt;span pulumi-lang-nodejs="`good`" pulumi-lang-dotnet="`Good`" pulumi-lang-go="`good`" pulumi-lang-python="`good`" pulumi-lang-yaml="`good`" pulumi-lang-java="`good`" pulumi-lang-hcl="`good`"&gt;`good`&lt;/span&gt; to use this product with Orders and SKUs. On API versions before `2018-02-05`, this field defaults to &lt;span pulumi-lang-nodejs="`good`" pulumi-lang-dotnet="`Good`" pulumi-lang-go="`good`" pulumi-lang-python="`good`" pulumi-lang-yaml="`good`" pulumi-lang-java="`good`" pulumi-lang-hcl="`good`"&gt;`good`&lt;/span&gt; for compatibility reasons.
+        /// The type of the product. The product is either of type &lt;span pulumi-lang-nodejs="`good`" pulumi-lang-dotnet="`Good`" pulumi-lang-go="`good`" pulumi-lang-python="`good`" pulumi-lang-yaml="`good`" pulumi-lang-java="`good`" pulumi-lang-hcl="`good`"&gt;`good`&lt;/span&gt;, which is eligible for use with Orders and SKUs, or &lt;span pulumi-lang-nodejs="`service`" pulumi-lang-dotnet="`Service`" pulumi-lang-go="`service`" pulumi-lang-python="`service`" pulumi-lang-yaml="`service`" pulumi-lang-java="`service`" pulumi-lang-hcl="`service`"&gt;`service`&lt;/span&gt;, which is eligible for use with Subscriptions and Plans.
         /// </summary>
         [Output("type")]
         public Output<string> Type { get; private set; } = null!;
@@ -89,6 +113,12 @@ namespace Pulumi.Stripe
         /// </summary>
         [Output("unitLabel")]
         public Output<string> UnitLabel { get; private set; } = null!;
+
+        /// <summary>
+        /// Time at which the object was last updated. Measured in seconds since the Unix epoch.
+        /// </summary>
+        [Output("updated")]
+        public Output<double> Updated { get; private set; } = null!;
 
         /// <summary>
         /// A URL of a publicly-accessible webpage for this product.
@@ -143,16 +173,22 @@ namespace Pulumi.Stripe
     public sealed class ProductArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Whether the product is currently available for purchase. Defaults to &lt;span pulumi-lang-nodejs="`true`" pulumi-lang-dotnet="`True`" pulumi-lang-go="`true`" pulumi-lang-python="`true`" pulumi-lang-yaml="`true`" pulumi-lang-java="`true`" pulumi-lang-hcl="`true`"&gt;`true`&lt;/span&gt;.
+        /// Whether the product is currently available for purchase.
         /// </summary>
         [Input("active")]
         public Input<bool>? Active { get; set; }
 
+        [Input("defaultPriceDatas")]
+        private InputList<Inputs.ProductDefaultPriceDataArgs>? _defaultPriceDatas;
+
         /// <summary>
-        /// Data used to generate a new [Price](https://stripe.com/docs/api/prices) object. This Price will be set as the default price for this product.
+        /// Data used to generate a new [Price](https://docs.stripe.com/api/prices) object. This Price will be set as the default price for this product.
         /// </summary>
-        [Input("defaultPriceData")]
-        public Input<Inputs.ProductDefaultPriceDataArgs>? DefaultPriceData { get; set; }
+        public InputList<Inputs.ProductDefaultPriceDataArgs> DefaultPriceDatas
+        {
+            get => _defaultPriceDatas ?? (_defaultPriceDatas = new InputList<Inputs.ProductDefaultPriceDataArgs>());
+            set => _defaultPriceDatas = value;
+        }
 
         /// <summary>
         /// The product's description, meant to be displayable to the customer. Use this field to optionally store a long form explanation of the product being sold for your own rendering purposes.
@@ -176,7 +212,7 @@ namespace Pulumi.Stripe
         private InputList<Inputs.ProductMarketingFeatureArgs>? _marketingFeatures;
 
         /// <summary>
-        /// A list of up to 15 marketing features for this product. These are displayed in [pricing tables](https://stripe.com/docs/payments/checkout/pricing-table).
+        /// A list of up to 15 marketing features for this product. These are displayed in [pricing tables](https://docs.stripe.com/payments/checkout/pricing-table).
         /// </summary>
         public InputList<Inputs.ProductMarketingFeatureArgs> MarketingFeatures
         {
@@ -188,7 +224,7 @@ namespace Pulumi.Stripe
         private InputMap<string>? _metadata;
 
         /// <summary>
-        /// Set of [key-value pairs](https://stripe.com/docs/api/metadata) that you can attach to an object. This can be useful for storing additional information about the object in a structured format. Individual keys can be unset by posting an empty value to them. All keys can be unset by posting an empty value to &lt;span pulumi-lang-nodejs="`metadata`" pulumi-lang-dotnet="`Metadata`" pulumi-lang-go="`metadata`" pulumi-lang-python="`metadata`" pulumi-lang-yaml="`metadata`" pulumi-lang-java="`metadata`" pulumi-lang-hcl="`metadata`"&gt;`metadata`&lt;/span&gt;.
+        /// Set of [key-value pairs](https://docs.stripe.com/api/metadata) that you can attach to an object. This can be useful for storing additional information about the object in a structured format.
         /// </summary>
         public InputMap<string> Metadata
         {
@@ -202,11 +238,17 @@ namespace Pulumi.Stripe
         [Input("name")]
         public Input<string>? Name { get; set; }
 
+        [Input("packageDimensions")]
+        private InputList<Inputs.ProductPackageDimensionArgs>? _packageDimensions;
+
         /// <summary>
         /// The dimensions of this product for shipping purposes.
         /// </summary>
-        [Input("packageDimensions")]
-        public Input<Inputs.ProductPackageDimensionsArgs>? PackageDimensions { get; set; }
+        public InputList<Inputs.ProductPackageDimensionArgs> PackageDimensions
+        {
+            get => _packageDimensions ?? (_packageDimensions = new InputList<Inputs.ProductPackageDimensionArgs>());
+            set => _packageDimensions = value;
+        }
 
         /// <summary>
         /// Whether this product is shipped (i.e., physical goods).
@@ -215,19 +257,19 @@ namespace Pulumi.Stripe
         public Input<bool>? Shippable { get; set; }
 
         /// <summary>
-        /// An arbitrary string to be displayed on your customer's credit card or bank statement. While most banks display this information consistently, some may display it incorrectly or not at all. This may be up to 22 characters. The statement description may not include `&lt;`, `&gt;`, `\`, `\"`, `'` characters, and will appear on your customer's statement in capital letters. Non-ASCII characters are automatically stripped. It must contain at least one letter. Only used for subscription payments.
+        /// Extra information about a product which will appear on your customer's credit card statement. In the case that multiple products are billed at once, the first statement descriptor will be used. Only used for subscription payments.
         /// </summary>
         [Input("statementDescriptor")]
         public Input<string>? StatementDescriptor { get; set; }
 
         /// <summary>
-        /// A [tax code](https://stripe.com/docs/tax/tax-categories) ID.
+        /// A [tax code](https://docs.stripe.com/tax/tax-categories) ID.
         /// </summary>
         [Input("taxCode")]
         public Input<string>? TaxCode { get; set; }
 
         /// <summary>
-        /// The type of the product. Defaults to &lt;span pulumi-lang-nodejs="`service`" pulumi-lang-dotnet="`Service`" pulumi-lang-go="`service`" pulumi-lang-python="`service`" pulumi-lang-yaml="`service`" pulumi-lang-java="`service`" pulumi-lang-hcl="`service`"&gt;`service`&lt;/span&gt; if not explicitly specified, enabling use of this product with Subscriptions and Plans. Set this parameter to &lt;span pulumi-lang-nodejs="`good`" pulumi-lang-dotnet="`Good`" pulumi-lang-go="`good`" pulumi-lang-python="`good`" pulumi-lang-yaml="`good`" pulumi-lang-java="`good`" pulumi-lang-hcl="`good`"&gt;`good`&lt;/span&gt; to use this product with Orders and SKUs. On API versions before `2018-02-05`, this field defaults to &lt;span pulumi-lang-nodejs="`good`" pulumi-lang-dotnet="`Good`" pulumi-lang-go="`good`" pulumi-lang-python="`good`" pulumi-lang-yaml="`good`" pulumi-lang-java="`good`" pulumi-lang-hcl="`good`"&gt;`good`&lt;/span&gt; for compatibility reasons.
+        /// The type of the product. The product is either of type &lt;span pulumi-lang-nodejs="`good`" pulumi-lang-dotnet="`Good`" pulumi-lang-go="`good`" pulumi-lang-python="`good`" pulumi-lang-yaml="`good`" pulumi-lang-java="`good`" pulumi-lang-hcl="`good`"&gt;`good`&lt;/span&gt;, which is eligible for use with Orders and SKUs, or &lt;span pulumi-lang-nodejs="`service`" pulumi-lang-dotnet="`Service`" pulumi-lang-go="`service`" pulumi-lang-python="`service`" pulumi-lang-yaml="`service`" pulumi-lang-java="`service`" pulumi-lang-hcl="`service`"&gt;`service`&lt;/span&gt;, which is eligible for use with Subscriptions and Plans.
         /// </summary>
         [Input("type")]
         public Input<string>? Type { get; set; }
@@ -253,16 +295,34 @@ namespace Pulumi.Stripe
     public sealed class ProductState : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Whether the product is currently available for purchase. Defaults to &lt;span pulumi-lang-nodejs="`true`" pulumi-lang-dotnet="`True`" pulumi-lang-go="`true`" pulumi-lang-python="`true`" pulumi-lang-yaml="`true`" pulumi-lang-java="`true`" pulumi-lang-hcl="`true`"&gt;`true`&lt;/span&gt;.
+        /// Whether the product is currently available for purchase.
         /// </summary>
         [Input("active")]
         public Input<bool>? Active { get; set; }
 
         /// <summary>
-        /// Data used to generate a new [Price](https://stripe.com/docs/api/prices) object. This Price will be set as the default price for this product.
+        /// Time at which the object was created. Measured in seconds since the Unix epoch.
         /// </summary>
-        [Input("defaultPriceData")]
-        public Input<Inputs.ProductDefaultPriceDataGetArgs>? DefaultPriceData { get; set; }
+        [Input("created")]
+        public Input<double>? Created { get; set; }
+
+        /// <summary>
+        /// The ID of the [Price](https://docs.stripe.com/api/prices) object that is the default price for this product.
+        /// </summary>
+        [Input("defaultPrice")]
+        public Input<string>? DefaultPrice { get; set; }
+
+        [Input("defaultPriceDatas")]
+        private InputList<Inputs.ProductDefaultPriceDataGetArgs>? _defaultPriceDatas;
+
+        /// <summary>
+        /// Data used to generate a new [Price](https://docs.stripe.com/api/prices) object. This Price will be set as the default price for this product.
+        /// </summary>
+        public InputList<Inputs.ProductDefaultPriceDataGetArgs> DefaultPriceDatas
+        {
+            get => _defaultPriceDatas ?? (_defaultPriceDatas = new InputList<Inputs.ProductDefaultPriceDataGetArgs>());
+            set => _defaultPriceDatas = value;
+        }
 
         /// <summary>
         /// The product's description, meant to be displayable to the customer. Use this field to optionally store a long form explanation of the product being sold for your own rendering purposes.
@@ -282,11 +342,17 @@ namespace Pulumi.Stripe
             set => _images = value;
         }
 
+        /// <summary>
+        /// If the object exists in live mode, the value is &lt;span pulumi-lang-nodejs="`true`" pulumi-lang-dotnet="`True`" pulumi-lang-go="`true`" pulumi-lang-python="`true`" pulumi-lang-yaml="`true`" pulumi-lang-java="`true`" pulumi-lang-hcl="`true`"&gt;`true`&lt;/span&gt;. If the object exists in test mode, the value is &lt;span pulumi-lang-nodejs="`false`" pulumi-lang-dotnet="`False`" pulumi-lang-go="`false`" pulumi-lang-python="`false`" pulumi-lang-yaml="`false`" pulumi-lang-java="`false`" pulumi-lang-hcl="`false`"&gt;`false`&lt;/span&gt;.
+        /// </summary>
+        [Input("livemode")]
+        public Input<bool>? Livemode { get; set; }
+
         [Input("marketingFeatures")]
         private InputList<Inputs.ProductMarketingFeatureGetArgs>? _marketingFeatures;
 
         /// <summary>
-        /// A list of up to 15 marketing features for this product. These are displayed in [pricing tables](https://stripe.com/docs/payments/checkout/pricing-table).
+        /// A list of up to 15 marketing features for this product. These are displayed in [pricing tables](https://docs.stripe.com/payments/checkout/pricing-table).
         /// </summary>
         public InputList<Inputs.ProductMarketingFeatureGetArgs> MarketingFeatures
         {
@@ -298,7 +364,7 @@ namespace Pulumi.Stripe
         private InputMap<string>? _metadata;
 
         /// <summary>
-        /// Set of [key-value pairs](https://stripe.com/docs/api/metadata) that you can attach to an object. This can be useful for storing additional information about the object in a structured format. Individual keys can be unset by posting an empty value to them. All keys can be unset by posting an empty value to &lt;span pulumi-lang-nodejs="`metadata`" pulumi-lang-dotnet="`Metadata`" pulumi-lang-go="`metadata`" pulumi-lang-python="`metadata`" pulumi-lang-yaml="`metadata`" pulumi-lang-java="`metadata`" pulumi-lang-hcl="`metadata`"&gt;`metadata`&lt;/span&gt;.
+        /// Set of [key-value pairs](https://docs.stripe.com/api/metadata) that you can attach to an object. This can be useful for storing additional information about the object in a structured format.
         /// </summary>
         public InputMap<string> Metadata
         {
@@ -313,10 +379,22 @@ namespace Pulumi.Stripe
         public Input<string>? Name { get; set; }
 
         /// <summary>
+        /// String representing the object's type. Objects of the same type share the same value.
+        /// </summary>
+        [Input("object")]
+        public Input<string>? Object { get; set; }
+
+        [Input("packageDimensions")]
+        private InputList<Inputs.ProductPackageDimensionGetArgs>? _packageDimensions;
+
+        /// <summary>
         /// The dimensions of this product for shipping purposes.
         /// </summary>
-        [Input("packageDimensions")]
-        public Input<Inputs.ProductPackageDimensionsGetArgs>? PackageDimensions { get; set; }
+        public InputList<Inputs.ProductPackageDimensionGetArgs> PackageDimensions
+        {
+            get => _packageDimensions ?? (_packageDimensions = new InputList<Inputs.ProductPackageDimensionGetArgs>());
+            set => _packageDimensions = value;
+        }
 
         /// <summary>
         /// Whether this product is shipped (i.e., physical goods).
@@ -325,19 +403,19 @@ namespace Pulumi.Stripe
         public Input<bool>? Shippable { get; set; }
 
         /// <summary>
-        /// An arbitrary string to be displayed on your customer's credit card or bank statement. While most banks display this information consistently, some may display it incorrectly or not at all. This may be up to 22 characters. The statement description may not include `&lt;`, `&gt;`, `\`, `\"`, `'` characters, and will appear on your customer's statement in capital letters. Non-ASCII characters are automatically stripped. It must contain at least one letter. Only used for subscription payments.
+        /// Extra information about a product which will appear on your customer's credit card statement. In the case that multiple products are billed at once, the first statement descriptor will be used. Only used for subscription payments.
         /// </summary>
         [Input("statementDescriptor")]
         public Input<string>? StatementDescriptor { get; set; }
 
         /// <summary>
-        /// A [tax code](https://stripe.com/docs/tax/tax-categories) ID.
+        /// A [tax code](https://docs.stripe.com/tax/tax-categories) ID.
         /// </summary>
         [Input("taxCode")]
         public Input<string>? TaxCode { get; set; }
 
         /// <summary>
-        /// The type of the product. Defaults to &lt;span pulumi-lang-nodejs="`service`" pulumi-lang-dotnet="`Service`" pulumi-lang-go="`service`" pulumi-lang-python="`service`" pulumi-lang-yaml="`service`" pulumi-lang-java="`service`" pulumi-lang-hcl="`service`"&gt;`service`&lt;/span&gt; if not explicitly specified, enabling use of this product with Subscriptions and Plans. Set this parameter to &lt;span pulumi-lang-nodejs="`good`" pulumi-lang-dotnet="`Good`" pulumi-lang-go="`good`" pulumi-lang-python="`good`" pulumi-lang-yaml="`good`" pulumi-lang-java="`good`" pulumi-lang-hcl="`good`"&gt;`good`&lt;/span&gt; to use this product with Orders and SKUs. On API versions before `2018-02-05`, this field defaults to &lt;span pulumi-lang-nodejs="`good`" pulumi-lang-dotnet="`Good`" pulumi-lang-go="`good`" pulumi-lang-python="`good`" pulumi-lang-yaml="`good`" pulumi-lang-java="`good`" pulumi-lang-hcl="`good`"&gt;`good`&lt;/span&gt; for compatibility reasons.
+        /// The type of the product. The product is either of type &lt;span pulumi-lang-nodejs="`good`" pulumi-lang-dotnet="`Good`" pulumi-lang-go="`good`" pulumi-lang-python="`good`" pulumi-lang-yaml="`good`" pulumi-lang-java="`good`" pulumi-lang-hcl="`good`"&gt;`good`&lt;/span&gt;, which is eligible for use with Orders and SKUs, or &lt;span pulumi-lang-nodejs="`service`" pulumi-lang-dotnet="`Service`" pulumi-lang-go="`service`" pulumi-lang-python="`service`" pulumi-lang-yaml="`service`" pulumi-lang-java="`service`" pulumi-lang-hcl="`service`"&gt;`service`&lt;/span&gt;, which is eligible for use with Subscriptions and Plans.
         /// </summary>
         [Input("type")]
         public Input<string>? Type { get; set; }
@@ -347,6 +425,12 @@ namespace Pulumi.Stripe
         /// </summary>
         [Input("unitLabel")]
         public Input<string>? UnitLabel { get; set; }
+
+        /// <summary>
+        /// Time at which the object was last updated. Measured in seconds since the Unix epoch.
+        /// </summary>
+        [Input("updated")]
+        public Input<double>? Updated { get; set; }
 
         /// <summary>
         /// A URL of a publicly-accessible webpage for this product.

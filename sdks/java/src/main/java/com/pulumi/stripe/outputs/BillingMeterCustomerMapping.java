@@ -16,7 +16,7 @@ public final class BillingMeterCustomerMapping {
      */
     private String eventPayloadKey;
     /**
-     * @return The method for mapping a meter event to a customer. Must be &lt;span pulumi-lang-nodejs=&#34;`byId`&#34; pulumi-lang-dotnet=&#34;`ById`&#34; pulumi-lang-go=&#34;`byId`&#34; pulumi-lang-python=&#34;`by_id`&#34; pulumi-lang-yaml=&#34;`byId`&#34; pulumi-lang-java=&#34;`byId`&#34; pulumi-lang-hcl=&#34;`by_id`&#34;&gt;`byId`&lt;/span&gt;.
+     * @return The method for mapping a meter event to a customer.
      * 
      */
     private String type;
@@ -30,7 +30,7 @@ public final class BillingMeterCustomerMapping {
         return this.eventPayloadKey;
     }
     /**
-     * @return The method for mapping a meter event to a customer. Must be &lt;span pulumi-lang-nodejs=&#34;`byId`&#34; pulumi-lang-dotnet=&#34;`ById`&#34; pulumi-lang-go=&#34;`byId`&#34; pulumi-lang-python=&#34;`by_id`&#34; pulumi-lang-yaml=&#34;`byId`&#34; pulumi-lang-java=&#34;`byId`&#34; pulumi-lang-hcl=&#34;`by_id`&#34;&gt;`byId`&lt;/span&gt;.
+     * @return The method for mapping a meter event to a customer.
      * 
      */
     public String type() {

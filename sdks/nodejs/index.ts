@@ -5,30 +5,140 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 // Export members:
+export { ApplePayDomainArgs, ApplePayDomainState } from "./applePayDomain";
+export type ApplePayDomain = import("./applePayDomain").ApplePayDomain;
+export const ApplePayDomain: typeof import("./applePayDomain").ApplePayDomain = null as any;
+utilities.lazyLoad(exports, ["ApplePayDomain"], () => require("./applePayDomain"));
+
+export { BillingAlertArgs, BillingAlertState } from "./billingAlert";
+export type BillingAlert = import("./billingAlert").BillingAlert;
+export const BillingAlert: typeof import("./billingAlert").BillingAlert = null as any;
+utilities.lazyLoad(exports, ["BillingAlert"], () => require("./billingAlert"));
+
+export { BillingCreditGrantArgs, BillingCreditGrantState } from "./billingCreditGrant";
+export type BillingCreditGrant = import("./billingCreditGrant").BillingCreditGrant;
+export const BillingCreditGrant: typeof import("./billingCreditGrant").BillingCreditGrant = null as any;
+utilities.lazyLoad(exports, ["BillingCreditGrant"], () => require("./billingCreditGrant"));
+
 export { BillingMeterArgs, BillingMeterState } from "./billingMeter";
 export type BillingMeter = import("./billingMeter").BillingMeter;
 export const BillingMeter: typeof import("./billingMeter").BillingMeter = null as any;
 utilities.lazyLoad(exports, ["BillingMeter"], () => require("./billingMeter"));
+
+export { BillingPortalConfigurationArgs, BillingPortalConfigurationState } from "./billingPortalConfiguration";
+export type BillingPortalConfiguration = import("./billingPortalConfiguration").BillingPortalConfiguration;
+export const BillingPortalConfiguration: typeof import("./billingPortalConfiguration").BillingPortalConfiguration = null as any;
+utilities.lazyLoad(exports, ["BillingPortalConfiguration"], () => require("./billingPortalConfiguration"));
+
+export { ChargeArgs, ChargeState } from "./charge";
+export type Charge = import("./charge").Charge;
+export const Charge: typeof import("./charge").Charge = null as any;
+utilities.lazyLoad(exports, ["Charge"], () => require("./charge"));
+
+export { ClimateOrderArgs, ClimateOrderState } from "./climateOrder";
+export type ClimateOrder = import("./climateOrder").ClimateOrder;
+export const ClimateOrder: typeof import("./climateOrder").ClimateOrder = null as any;
+utilities.lazyLoad(exports, ["ClimateOrder"], () => require("./climateOrder"));
 
 export { CouponArgs, CouponState } from "./coupon";
 export type Coupon = import("./coupon").Coupon;
 export const Coupon: typeof import("./coupon").Coupon = null as any;
 utilities.lazyLoad(exports, ["Coupon"], () => require("./coupon"));
 
+export { CreditNoteArgs, CreditNoteState } from "./creditNote";
+export type CreditNote = import("./creditNote").CreditNote;
+export const CreditNote: typeof import("./creditNote").CreditNote = null as any;
+utilities.lazyLoad(exports, ["CreditNote"], () => require("./creditNote"));
+
 export { CustomerArgs, CustomerState } from "./customer";
 export type Customer = import("./customer").Customer;
 export const Customer: typeof import("./customer").Customer = null as any;
 utilities.lazyLoad(exports, ["Customer"], () => require("./customer"));
+
+export { CustomerBalanceTransactionArgs, CustomerBalanceTransactionState } from "./customerBalanceTransaction";
+export type CustomerBalanceTransaction = import("./customerBalanceTransaction").CustomerBalanceTransaction;
+export const CustomerBalanceTransaction: typeof import("./customerBalanceTransaction").CustomerBalanceTransaction = null as any;
+utilities.lazyLoad(exports, ["CustomerBalanceTransaction"], () => require("./customerBalanceTransaction"));
 
 export { EntitlementsFeatureArgs, EntitlementsFeatureState } from "./entitlementsFeature";
 export type EntitlementsFeature = import("./entitlementsFeature").EntitlementsFeature;
 export const EntitlementsFeature: typeof import("./entitlementsFeature").EntitlementsFeature = null as any;
 utilities.lazyLoad(exports, ["EntitlementsFeature"], () => require("./entitlementsFeature"));
 
-export { GetBillingMeterArgs, GetBillingMeterResult, GetBillingMeterOutputArgs } from "./getBillingMeter";
-export const getBillingMeter: typeof import("./getBillingMeter").getBillingMeter = null as any;
-export const getBillingMeterOutput: typeof import("./getBillingMeter").getBillingMeterOutput = null as any;
-utilities.lazyLoad(exports, ["getBillingMeter","getBillingMeterOutput"], () => require("./getBillingMeter"));
+export { FileArgs, FileState } from "./file";
+export type File = import("./file").File;
+export const File: typeof import("./file").File = null as any;
+utilities.lazyLoad(exports, ["File"], () => require("./file"));
+
+export { FileLinkArgs, FileLinkState } from "./fileLink";
+export type FileLink = import("./fileLink").FileLink;
+export const FileLink: typeof import("./fileLink").FileLink = null as any;
+utilities.lazyLoad(exports, ["FileLink"], () => require("./fileLink"));
+
+export { InvoiceArgs, InvoiceState } from "./invoice";
+export type Invoice = import("./invoice").Invoice;
+export const Invoice: typeof import("./invoice").Invoice = null as any;
+utilities.lazyLoad(exports, ["Invoice"], () => require("./invoice"));
+
+export { InvoiceItemArgs, InvoiceItemState } from "./invoiceItem";
+export type InvoiceItem = import("./invoiceItem").InvoiceItem;
+export const InvoiceItem: typeof import("./invoiceItem").InvoiceItem = null as any;
+utilities.lazyLoad(exports, ["InvoiceItem"], () => require("./invoiceItem"));
+
+export { IssuingCardArgs, IssuingCardState } from "./issuingCard";
+export type IssuingCard = import("./issuingCard").IssuingCard;
+export const IssuingCard: typeof import("./issuingCard").IssuingCard = null as any;
+utilities.lazyLoad(exports, ["IssuingCard"], () => require("./issuingCard"));
+
+export { IssuingCardholderArgs, IssuingCardholderState } from "./issuingCardholder";
+export type IssuingCardholder = import("./issuingCardholder").IssuingCardholder;
+export const IssuingCardholder: typeof import("./issuingCardholder").IssuingCardholder = null as any;
+utilities.lazyLoad(exports, ["IssuingCardholder"], () => require("./issuingCardholder"));
+
+export { IssuingDisputeArgs, IssuingDisputeState } from "./issuingDispute";
+export type IssuingDispute = import("./issuingDispute").IssuingDispute;
+export const IssuingDispute: typeof import("./issuingDispute").IssuingDispute = null as any;
+utilities.lazyLoad(exports, ["IssuingDispute"], () => require("./issuingDispute"));
+
+export { IssuingPersonalizationDesignArgs, IssuingPersonalizationDesignState } from "./issuingPersonalizationDesign";
+export type IssuingPersonalizationDesign = import("./issuingPersonalizationDesign").IssuingPersonalizationDesign;
+export const IssuingPersonalizationDesign: typeof import("./issuingPersonalizationDesign").IssuingPersonalizationDesign = null as any;
+utilities.lazyLoad(exports, ["IssuingPersonalizationDesign"], () => require("./issuingPersonalizationDesign"));
+
+export { PaymentIntentArgs, PaymentIntentState } from "./paymentIntent";
+export type PaymentIntent = import("./paymentIntent").PaymentIntent;
+export const PaymentIntent: typeof import("./paymentIntent").PaymentIntent = null as any;
+utilities.lazyLoad(exports, ["PaymentIntent"], () => require("./paymentIntent"));
+
+export { PaymentLinkArgs, PaymentLinkState } from "./paymentLink";
+export type PaymentLink = import("./paymentLink").PaymentLink;
+export const PaymentLink: typeof import("./paymentLink").PaymentLink = null as any;
+utilities.lazyLoad(exports, ["PaymentLink"], () => require("./paymentLink"));
+
+export { PaymentMethodArgs, PaymentMethodState } from "./paymentMethod";
+export type PaymentMethod = import("./paymentMethod").PaymentMethod;
+export const PaymentMethod: typeof import("./paymentMethod").PaymentMethod = null as any;
+utilities.lazyLoad(exports, ["PaymentMethod"], () => require("./paymentMethod"));
+
+export { PaymentMethodConfigurationArgs, PaymentMethodConfigurationState } from "./paymentMethodConfiguration";
+export type PaymentMethodConfiguration = import("./paymentMethodConfiguration").PaymentMethodConfiguration;
+export const PaymentMethodConfiguration: typeof import("./paymentMethodConfiguration").PaymentMethodConfiguration = null as any;
+utilities.lazyLoad(exports, ["PaymentMethodConfiguration"], () => require("./paymentMethodConfiguration"));
+
+export { PaymentMethodDomainArgs, PaymentMethodDomainState } from "./paymentMethodDomain";
+export type PaymentMethodDomain = import("./paymentMethodDomain").PaymentMethodDomain;
+export const PaymentMethodDomain: typeof import("./paymentMethodDomain").PaymentMethodDomain = null as any;
+utilities.lazyLoad(exports, ["PaymentMethodDomain"], () => require("./paymentMethodDomain"));
+
+export { PersonArgs, PersonState } from "./person";
+export type Person = import("./person").Person;
+export const Person: typeof import("./person").Person = null as any;
+utilities.lazyLoad(exports, ["Person"], () => require("./person"));
+
+export { PlanArgs, PlanState } from "./plan";
+export type Plan = import("./plan").Plan;
+export const Plan: typeof import("./plan").Plan = null as any;
+utilities.lazyLoad(exports, ["Plan"], () => require("./plan"));
 
 export { PriceArgs, PriceState } from "./price";
 export type Price = import("./price").Price;
@@ -40,6 +150,11 @@ export type Product = import("./product").Product;
 export const Product: typeof import("./product").Product = null as any;
 utilities.lazyLoad(exports, ["Product"], () => require("./product"));
 
+export { ProductFeatureArgs, ProductFeatureState } from "./productFeature";
+export type ProductFeature = import("./productFeature").ProductFeature;
+export const ProductFeature: typeof import("./productFeature").ProductFeature = null as any;
+utilities.lazyLoad(exports, ["ProductFeature"], () => require("./productFeature"));
+
 export { PromotionCodeArgs, PromotionCodeState } from "./promotionCode";
 export type PromotionCode = import("./promotionCode").PromotionCode;
 export const PromotionCode: typeof import("./promotionCode").PromotionCode = null as any;
@@ -48,55 +163,85 @@ utilities.lazyLoad(exports, ["PromotionCode"], () => require("./promotionCode"))
 export * from "./provider";
 import { Provider } from "./provider";
 
+export { QuoteArgs, QuoteState } from "./quote";
+export type Quote = import("./quote").Quote;
+export const Quote: typeof import("./quote").Quote = null as any;
+utilities.lazyLoad(exports, ["Quote"], () => require("./quote"));
+
+export { RadarValueListArgs, RadarValueListState } from "./radarValueList";
+export type RadarValueList = import("./radarValueList").RadarValueList;
+export const RadarValueList: typeof import("./radarValueList").RadarValueList = null as any;
+utilities.lazyLoad(exports, ["RadarValueList"], () => require("./radarValueList"));
+
+export { RadarValueListItemArgs, RadarValueListItemState } from "./radarValueListItem";
+export type RadarValueListItem = import("./radarValueListItem").RadarValueListItem;
+export const RadarValueListItem: typeof import("./radarValueListItem").RadarValueListItem = null as any;
+utilities.lazyLoad(exports, ["RadarValueListItem"], () => require("./radarValueListItem"));
+
+export { SetupIntentArgs, SetupIntentState } from "./setupIntent";
+export type SetupIntent = import("./setupIntent").SetupIntent;
+export const SetupIntent: typeof import("./setupIntent").SetupIntent = null as any;
+utilities.lazyLoad(exports, ["SetupIntent"], () => require("./setupIntent"));
+
 export { ShippingRateArgs, ShippingRateState } from "./shippingRate";
 export type ShippingRate = import("./shippingRate").ShippingRate;
 export const ShippingRate: typeof import("./shippingRate").ShippingRate = null as any;
 utilities.lazyLoad(exports, ["ShippingRate"], () => require("./shippingRate"));
+
+export { SourceArgs, SourceState } from "./source";
+export type Source = import("./source").Source;
+export const Source: typeof import("./source").Source = null as any;
+utilities.lazyLoad(exports, ["Source"], () => require("./source"));
+
+export { SubscriptionArgs, SubscriptionState } from "./subscription";
+export type Subscription = import("./subscription").Subscription;
+export const Subscription: typeof import("./subscription").Subscription = null as any;
+utilities.lazyLoad(exports, ["Subscription"], () => require("./subscription"));
+
+export { SubscriptionItemArgs, SubscriptionItemState } from "./subscriptionItem";
+export type SubscriptionItem = import("./subscriptionItem").SubscriptionItem;
+export const SubscriptionItem: typeof import("./subscriptionItem").SubscriptionItem = null as any;
+utilities.lazyLoad(exports, ["SubscriptionItem"], () => require("./subscriptionItem"));
+
+export { SubscriptionScheduleArgs, SubscriptionScheduleState } from "./subscriptionSchedule";
+export type SubscriptionSchedule = import("./subscriptionSchedule").SubscriptionSchedule;
+export const SubscriptionSchedule: typeof import("./subscriptionSchedule").SubscriptionSchedule = null as any;
+utilities.lazyLoad(exports, ["SubscriptionSchedule"], () => require("./subscriptionSchedule"));
+
+export { TaxIdArgs, TaxIdState } from "./taxId";
+export type TaxId = import("./taxId").TaxId;
+export const TaxId: typeof import("./taxId").TaxId = null as any;
+utilities.lazyLoad(exports, ["TaxId"], () => require("./taxId"));
 
 export { TaxRateArgs, TaxRateState } from "./taxRate";
 export type TaxRate = import("./taxRate").TaxRate;
 export const TaxRate: typeof import("./taxRate").TaxRate = null as any;
 utilities.lazyLoad(exports, ["TaxRate"], () => require("./taxRate"));
 
-export { V2BillingLicenseFeeArgs, V2BillingLicenseFeeState } from "./v2billingLicenseFee";
-export type V2BillingLicenseFee = import("./v2billingLicenseFee").V2BillingLicenseFee;
-export const V2BillingLicenseFee: typeof import("./v2billingLicenseFee").V2BillingLicenseFee = null as any;
-utilities.lazyLoad(exports, ["V2BillingLicenseFee"], () => require("./v2billingLicenseFee"));
+export { TaxRegistrationArgs, TaxRegistrationState } from "./taxRegistration";
+export type TaxRegistration = import("./taxRegistration").TaxRegistration;
+export const TaxRegistration: typeof import("./taxRegistration").TaxRegistration = null as any;
+utilities.lazyLoad(exports, ["TaxRegistration"], () => require("./taxRegistration"));
 
-export { V2BillingLicensedItemArgs, V2BillingLicensedItemState } from "./v2billingLicensedItem";
-export type V2BillingLicensedItem = import("./v2billingLicensedItem").V2BillingLicensedItem;
-export const V2BillingLicensedItem: typeof import("./v2billingLicensedItem").V2BillingLicensedItem = null as any;
-utilities.lazyLoad(exports, ["V2BillingLicensedItem"], () => require("./v2billingLicensedItem"));
+export { TerminalConfigurationArgs, TerminalConfigurationState } from "./terminalConfiguration";
+export type TerminalConfiguration = import("./terminalConfiguration").TerminalConfiguration;
+export const TerminalConfiguration: typeof import("./terminalConfiguration").TerminalConfiguration = null as any;
+utilities.lazyLoad(exports, ["TerminalConfiguration"], () => require("./terminalConfiguration"));
 
-export { V2BillingMeteredItemArgs, V2BillingMeteredItemState } from "./v2billingMeteredItem";
-export type V2BillingMeteredItem = import("./v2billingMeteredItem").V2BillingMeteredItem;
-export const V2BillingMeteredItem: typeof import("./v2billingMeteredItem").V2BillingMeteredItem = null as any;
-utilities.lazyLoad(exports, ["V2BillingMeteredItem"], () => require("./v2billingMeteredItem"));
+export { TerminalLocationArgs, TerminalLocationState } from "./terminalLocation";
+export type TerminalLocation = import("./terminalLocation").TerminalLocation;
+export const TerminalLocation: typeof import("./terminalLocation").TerminalLocation = null as any;
+utilities.lazyLoad(exports, ["TerminalLocation"], () => require("./terminalLocation"));
 
-export { V2BillingPricingPlanArgs, V2BillingPricingPlanState } from "./v2billingPricingPlan";
-export type V2BillingPricingPlan = import("./v2billingPricingPlan").V2BillingPricingPlan;
-export const V2BillingPricingPlan: typeof import("./v2billingPricingPlan").V2BillingPricingPlan = null as any;
-utilities.lazyLoad(exports, ["V2BillingPricingPlan"], () => require("./v2billingPricingPlan"));
+export { TerminalReaderArgs, TerminalReaderState } from "./terminalReader";
+export type TerminalReader = import("./terminalReader").TerminalReader;
+export const TerminalReader: typeof import("./terminalReader").TerminalReader = null as any;
+utilities.lazyLoad(exports, ["TerminalReader"], () => require("./terminalReader"));
 
-export { V2BillingPricingPlanComponentArgs, V2BillingPricingPlanComponentState } from "./v2billingPricingPlanComponent";
-export type V2BillingPricingPlanComponent = import("./v2billingPricingPlanComponent").V2BillingPricingPlanComponent;
-export const V2BillingPricingPlanComponent: typeof import("./v2billingPricingPlanComponent").V2BillingPricingPlanComponent = null as any;
-utilities.lazyLoad(exports, ["V2BillingPricingPlanComponent"], () => require("./v2billingPricingPlanComponent"));
-
-export { V2BillingRateCardArgs, V2BillingRateCardState } from "./v2billingRateCard";
-export type V2BillingRateCard = import("./v2billingRateCard").V2BillingRateCard;
-export const V2BillingRateCard: typeof import("./v2billingRateCard").V2BillingRateCard = null as any;
-utilities.lazyLoad(exports, ["V2BillingRateCard"], () => require("./v2billingRateCard"));
-
-export { V2BillingRateCardRateArgs, V2BillingRateCardRateState } from "./v2billingRateCardRate";
-export type V2BillingRateCardRate = import("./v2billingRateCardRate").V2BillingRateCardRate;
-export const V2BillingRateCardRate: typeof import("./v2billingRateCardRate").V2BillingRateCardRate = null as any;
-utilities.lazyLoad(exports, ["V2BillingRateCardRate"], () => require("./v2billingRateCardRate"));
-
-export { V2BillingServiceActionArgs, V2BillingServiceActionState } from "./v2billingServiceAction";
-export type V2BillingServiceAction = import("./v2billingServiceAction").V2BillingServiceAction;
-export const V2BillingServiceAction: typeof import("./v2billingServiceAction").V2BillingServiceAction = null as any;
-utilities.lazyLoad(exports, ["V2BillingServiceAction"], () => require("./v2billingServiceAction"));
+export { TreasuryFinancialAccountArgs, TreasuryFinancialAccountState } from "./treasuryFinancialAccount";
+export type TreasuryFinancialAccount = import("./treasuryFinancialAccount").TreasuryFinancialAccount;
+export const TreasuryFinancialAccount: typeof import("./treasuryFinancialAccount").TreasuryFinancialAccount = null as any;
+utilities.lazyLoad(exports, ["TreasuryFinancialAccount"], () => require("./treasuryFinancialAccount"));
 
 export { V2CoreEventDestinationArgs, V2CoreEventDestinationState } from "./v2coreEventDestination";
 export type V2CoreEventDestination = import("./v2coreEventDestination").V2CoreEventDestination;
@@ -122,40 +267,100 @@ const _module = {
     version: utilities.getVersion(),
     construct: (name: string, type: string, urn: string): pulumi.Resource => {
         switch (type) {
+            case "stripe:index/applePayDomain:ApplePayDomain":
+                return new ApplePayDomain(name, <any>undefined, { urn })
+            case "stripe:index/billingAlert:BillingAlert":
+                return new BillingAlert(name, <any>undefined, { urn })
+            case "stripe:index/billingCreditGrant:BillingCreditGrant":
+                return new BillingCreditGrant(name, <any>undefined, { urn })
             case "stripe:index/billingMeter:BillingMeter":
                 return new BillingMeter(name, <any>undefined, { urn })
+            case "stripe:index/billingPortalConfiguration:BillingPortalConfiguration":
+                return new BillingPortalConfiguration(name, <any>undefined, { urn })
+            case "stripe:index/charge:Charge":
+                return new Charge(name, <any>undefined, { urn })
+            case "stripe:index/climateOrder:ClimateOrder":
+                return new ClimateOrder(name, <any>undefined, { urn })
             case "stripe:index/coupon:Coupon":
                 return new Coupon(name, <any>undefined, { urn })
+            case "stripe:index/creditNote:CreditNote":
+                return new CreditNote(name, <any>undefined, { urn })
             case "stripe:index/customer:Customer":
                 return new Customer(name, <any>undefined, { urn })
+            case "stripe:index/customerBalanceTransaction:CustomerBalanceTransaction":
+                return new CustomerBalanceTransaction(name, <any>undefined, { urn })
             case "stripe:index/entitlementsFeature:EntitlementsFeature":
                 return new EntitlementsFeature(name, <any>undefined, { urn })
+            case "stripe:index/file:File":
+                return new File(name, <any>undefined, { urn })
+            case "stripe:index/fileLink:FileLink":
+                return new FileLink(name, <any>undefined, { urn })
+            case "stripe:index/invoice:Invoice":
+                return new Invoice(name, <any>undefined, { urn })
+            case "stripe:index/invoiceItem:InvoiceItem":
+                return new InvoiceItem(name, <any>undefined, { urn })
+            case "stripe:index/issuingCard:IssuingCard":
+                return new IssuingCard(name, <any>undefined, { urn })
+            case "stripe:index/issuingCardholder:IssuingCardholder":
+                return new IssuingCardholder(name, <any>undefined, { urn })
+            case "stripe:index/issuingDispute:IssuingDispute":
+                return new IssuingDispute(name, <any>undefined, { urn })
+            case "stripe:index/issuingPersonalizationDesign:IssuingPersonalizationDesign":
+                return new IssuingPersonalizationDesign(name, <any>undefined, { urn })
+            case "stripe:index/paymentIntent:PaymentIntent":
+                return new PaymentIntent(name, <any>undefined, { urn })
+            case "stripe:index/paymentLink:PaymentLink":
+                return new PaymentLink(name, <any>undefined, { urn })
+            case "stripe:index/paymentMethod:PaymentMethod":
+                return new PaymentMethod(name, <any>undefined, { urn })
+            case "stripe:index/paymentMethodConfiguration:PaymentMethodConfiguration":
+                return new PaymentMethodConfiguration(name, <any>undefined, { urn })
+            case "stripe:index/paymentMethodDomain:PaymentMethodDomain":
+                return new PaymentMethodDomain(name, <any>undefined, { urn })
+            case "stripe:index/person:Person":
+                return new Person(name, <any>undefined, { urn })
+            case "stripe:index/plan:Plan":
+                return new Plan(name, <any>undefined, { urn })
             case "stripe:index/price:Price":
                 return new Price(name, <any>undefined, { urn })
             case "stripe:index/product:Product":
                 return new Product(name, <any>undefined, { urn })
+            case "stripe:index/productFeature:ProductFeature":
+                return new ProductFeature(name, <any>undefined, { urn })
             case "stripe:index/promotionCode:PromotionCode":
                 return new PromotionCode(name, <any>undefined, { urn })
+            case "stripe:index/quote:Quote":
+                return new Quote(name, <any>undefined, { urn })
+            case "stripe:index/radarValueList:RadarValueList":
+                return new RadarValueList(name, <any>undefined, { urn })
+            case "stripe:index/radarValueListItem:RadarValueListItem":
+                return new RadarValueListItem(name, <any>undefined, { urn })
+            case "stripe:index/setupIntent:SetupIntent":
+                return new SetupIntent(name, <any>undefined, { urn })
             case "stripe:index/shippingRate:ShippingRate":
                 return new ShippingRate(name, <any>undefined, { urn })
+            case "stripe:index/source:Source":
+                return new Source(name, <any>undefined, { urn })
+            case "stripe:index/subscription:Subscription":
+                return new Subscription(name, <any>undefined, { urn })
+            case "stripe:index/subscriptionItem:SubscriptionItem":
+                return new SubscriptionItem(name, <any>undefined, { urn })
+            case "stripe:index/subscriptionSchedule:SubscriptionSchedule":
+                return new SubscriptionSchedule(name, <any>undefined, { urn })
+            case "stripe:index/taxId:TaxId":
+                return new TaxId(name, <any>undefined, { urn })
             case "stripe:index/taxRate:TaxRate":
                 return new TaxRate(name, <any>undefined, { urn })
-            case "stripe:index/v2BillingLicenseFee:V2BillingLicenseFee":
-                return new V2BillingLicenseFee(name, <any>undefined, { urn })
-            case "stripe:index/v2BillingLicensedItem:V2BillingLicensedItem":
-                return new V2BillingLicensedItem(name, <any>undefined, { urn })
-            case "stripe:index/v2BillingMeteredItem:V2BillingMeteredItem":
-                return new V2BillingMeteredItem(name, <any>undefined, { urn })
-            case "stripe:index/v2BillingPricingPlan:V2BillingPricingPlan":
-                return new V2BillingPricingPlan(name, <any>undefined, { urn })
-            case "stripe:index/v2BillingPricingPlanComponent:V2BillingPricingPlanComponent":
-                return new V2BillingPricingPlanComponent(name, <any>undefined, { urn })
-            case "stripe:index/v2BillingRateCard:V2BillingRateCard":
-                return new V2BillingRateCard(name, <any>undefined, { urn })
-            case "stripe:index/v2BillingRateCardRate:V2BillingRateCardRate":
-                return new V2BillingRateCardRate(name, <any>undefined, { urn })
-            case "stripe:index/v2BillingServiceAction:V2BillingServiceAction":
-                return new V2BillingServiceAction(name, <any>undefined, { urn })
+            case "stripe:index/taxRegistration:TaxRegistration":
+                return new TaxRegistration(name, <any>undefined, { urn })
+            case "stripe:index/terminalConfiguration:TerminalConfiguration":
+                return new TerminalConfiguration(name, <any>undefined, { urn })
+            case "stripe:index/terminalLocation:TerminalLocation":
+                return new TerminalLocation(name, <any>undefined, { urn })
+            case "stripe:index/terminalReader:TerminalReader":
+                return new TerminalReader(name, <any>undefined, { urn })
+            case "stripe:index/treasuryFinancialAccount:TreasuryFinancialAccount":
+                return new TreasuryFinancialAccount(name, <any>undefined, { urn })
             case "stripe:index/v2CoreEventDestination:V2CoreEventDestination":
                 return new V2CoreEventDestination(name, <any>undefined, { urn })
             case "stripe:index/webhookEndpoint:WebhookEndpoint":
@@ -165,23 +370,53 @@ const _module = {
         }
     },
 };
+pulumi.runtime.registerResourceModule("stripe", "index/applePayDomain", _module)
+pulumi.runtime.registerResourceModule("stripe", "index/billingAlert", _module)
+pulumi.runtime.registerResourceModule("stripe", "index/billingCreditGrant", _module)
 pulumi.runtime.registerResourceModule("stripe", "index/billingMeter", _module)
+pulumi.runtime.registerResourceModule("stripe", "index/billingPortalConfiguration", _module)
+pulumi.runtime.registerResourceModule("stripe", "index/charge", _module)
+pulumi.runtime.registerResourceModule("stripe", "index/climateOrder", _module)
 pulumi.runtime.registerResourceModule("stripe", "index/coupon", _module)
+pulumi.runtime.registerResourceModule("stripe", "index/creditNote", _module)
 pulumi.runtime.registerResourceModule("stripe", "index/customer", _module)
+pulumi.runtime.registerResourceModule("stripe", "index/customerBalanceTransaction", _module)
 pulumi.runtime.registerResourceModule("stripe", "index/entitlementsFeature", _module)
+pulumi.runtime.registerResourceModule("stripe", "index/file", _module)
+pulumi.runtime.registerResourceModule("stripe", "index/fileLink", _module)
+pulumi.runtime.registerResourceModule("stripe", "index/invoice", _module)
+pulumi.runtime.registerResourceModule("stripe", "index/invoiceItem", _module)
+pulumi.runtime.registerResourceModule("stripe", "index/issuingCard", _module)
+pulumi.runtime.registerResourceModule("stripe", "index/issuingCardholder", _module)
+pulumi.runtime.registerResourceModule("stripe", "index/issuingDispute", _module)
+pulumi.runtime.registerResourceModule("stripe", "index/issuingPersonalizationDesign", _module)
+pulumi.runtime.registerResourceModule("stripe", "index/paymentIntent", _module)
+pulumi.runtime.registerResourceModule("stripe", "index/paymentLink", _module)
+pulumi.runtime.registerResourceModule("stripe", "index/paymentMethod", _module)
+pulumi.runtime.registerResourceModule("stripe", "index/paymentMethodConfiguration", _module)
+pulumi.runtime.registerResourceModule("stripe", "index/paymentMethodDomain", _module)
+pulumi.runtime.registerResourceModule("stripe", "index/person", _module)
+pulumi.runtime.registerResourceModule("stripe", "index/plan", _module)
 pulumi.runtime.registerResourceModule("stripe", "index/price", _module)
 pulumi.runtime.registerResourceModule("stripe", "index/product", _module)
+pulumi.runtime.registerResourceModule("stripe", "index/productFeature", _module)
 pulumi.runtime.registerResourceModule("stripe", "index/promotionCode", _module)
+pulumi.runtime.registerResourceModule("stripe", "index/quote", _module)
+pulumi.runtime.registerResourceModule("stripe", "index/radarValueList", _module)
+pulumi.runtime.registerResourceModule("stripe", "index/radarValueListItem", _module)
+pulumi.runtime.registerResourceModule("stripe", "index/setupIntent", _module)
 pulumi.runtime.registerResourceModule("stripe", "index/shippingRate", _module)
+pulumi.runtime.registerResourceModule("stripe", "index/source", _module)
+pulumi.runtime.registerResourceModule("stripe", "index/subscription", _module)
+pulumi.runtime.registerResourceModule("stripe", "index/subscriptionItem", _module)
+pulumi.runtime.registerResourceModule("stripe", "index/subscriptionSchedule", _module)
+pulumi.runtime.registerResourceModule("stripe", "index/taxId", _module)
 pulumi.runtime.registerResourceModule("stripe", "index/taxRate", _module)
-pulumi.runtime.registerResourceModule("stripe", "index/v2BillingLicenseFee", _module)
-pulumi.runtime.registerResourceModule("stripe", "index/v2BillingLicensedItem", _module)
-pulumi.runtime.registerResourceModule("stripe", "index/v2BillingMeteredItem", _module)
-pulumi.runtime.registerResourceModule("stripe", "index/v2BillingPricingPlan", _module)
-pulumi.runtime.registerResourceModule("stripe", "index/v2BillingPricingPlanComponent", _module)
-pulumi.runtime.registerResourceModule("stripe", "index/v2BillingRateCard", _module)
-pulumi.runtime.registerResourceModule("stripe", "index/v2BillingRateCardRate", _module)
-pulumi.runtime.registerResourceModule("stripe", "index/v2BillingServiceAction", _module)
+pulumi.runtime.registerResourceModule("stripe", "index/taxRegistration", _module)
+pulumi.runtime.registerResourceModule("stripe", "index/terminalConfiguration", _module)
+pulumi.runtime.registerResourceModule("stripe", "index/terminalLocation", _module)
+pulumi.runtime.registerResourceModule("stripe", "index/terminalReader", _module)
+pulumi.runtime.registerResourceModule("stripe", "index/treasuryFinancialAccount", _module)
 pulumi.runtime.registerResourceModule("stripe", "index/v2CoreEventDestination", _module)
 pulumi.runtime.registerResourceModule("stripe", "index/webhookEndpoint", _module)
 pulumi.runtime.registerResourcePackage("stripe", {

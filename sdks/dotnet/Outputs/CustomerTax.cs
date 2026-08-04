@@ -17,7 +17,14 @@ namespace Pulumi.Stripe.Outputs
         /// Surfaces if automatic tax computation is possible given the current customer location information.
         /// </summary>
         public readonly string? AutomaticTax;
+        /// <summary>
+        /// A recent IP address of the customer used for tax reporting and tax location inference.
+        /// </summary>
         public readonly string? IpAddress;
+        /// <summary>
+        /// The identified tax location of the customer.
+        /// </summary>
+        public readonly ImmutableArray<Outputs.CustomerTaxLocation> Locations;
         /// <summary>
         /// The tax calculation provider used for location resolution. Defaults to &lt;span pulumi-lang-nodejs="`stripe`" pulumi-lang-dotnet="`Stripe`" pulumi-lang-go="`stripe`" pulumi-lang-python="`stripe`" pulumi-lang-yaml="`stripe`" pulumi-lang-java="`stripe`" pulumi-lang-hcl="`stripe`"&gt;`stripe`&lt;/span&gt; when not using a [third-party provider](https://www.terraform.io/tax/third-party-apps).
         /// </summary>
@@ -33,12 +40,15 @@ namespace Pulumi.Stripe.Outputs
 
             string? ipAddress,
 
+            ImmutableArray<Outputs.CustomerTaxLocation> locations,
+
             string? provider,
 
             string? validateLocation)
         {
             AutomaticTax = automaticTax;
             IpAddress = ipAddress;
+            Locations = locations;
             Provider = provider;
             ValidateLocation = validateLocation;
         }

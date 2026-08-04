@@ -19,10 +19,16 @@ namespace Pulumi.Stripe
     public partial class Provider : global::Pulumi.ProviderResource
     {
         /// <summary>
-        /// Stripe API key
+        /// Stripe API key. Can also be set via the STRIPE_API_KEY environment variable.
         /// </summary>
         [Output("apiKey")]
-        public Output<string> ApiKey { get; private set; } = null!;
+        public Output<string?> ApiKey { get; private set; } = null!;
+
+        /// <summary>
+        /// Connected account context for Connect-scoped requests. Can also be set via the STRIPE_ACCOUNT environment variable.
+        /// </summary>
+        [Output("stripeAccount")]
+        public Output<string?> StripeAccount { get; private set; } = null!;
 
 
         /// <summary>
@@ -32,7 +38,7 @@ namespace Pulumi.Stripe
         /// <param name="name">The unique name of the resource</param>
         /// <param name="args">The arguments used to populate this resource's properties</param>
         /// <param name="options">A bag of options that control this resource's behavior</param>
-        public Provider(string name, ProviderArgs args, CustomResourceOptions? options = null)
+        public Provider(string name, ProviderArgs? args = null, CustomResourceOptions? options = null)
             : base("stripe", name, args ?? new ProviderArgs(), MakeResourceOptions(options, ""), Utilities.PackageParameterization())
         {
         }
@@ -62,11 +68,11 @@ namespace Pulumi.Stripe
 
     public sealed class ProviderArgs : global::Pulumi.ResourceArgs
     {
-        [Input("apiKey", required: true)]
+        [Input("apiKey")]
         private Input<string>? _apiKey;
 
         /// <summary>
-        /// Stripe API key
+        /// Stripe API key. Can also be set via the STRIPE_API_KEY environment variable.
         /// </summary>
         public Input<string>? ApiKey
         {
@@ -77,6 +83,12 @@ namespace Pulumi.Stripe
                 _apiKey = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
             }
         }
+
+        /// <summary>
+        /// Connected account context for Connect-scoped requests. Can also be set via the STRIPE_ACCOUNT environment variable.
+        /// </summary>
+        [Input("stripeAccount")]
+        public Input<string>? StripeAccount { get; set; }
 
         public ProviderArgs()
         {

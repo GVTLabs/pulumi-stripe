@@ -17,6 +17,9 @@ namespace Pulumi.Stripe.Outputs
         /// A non-negative integer in cents representing how much to charge.
         /// </summary>
         public readonly double Amount;
+        /// <summary>
+        /// Key for this entry.
+        /// </summary>
         public readonly string Key;
         /// <summary>
         /// Specifies whether the rate is considered inclusive of taxes or exclusive of taxes. One of &lt;span pulumi-lang-nodejs="`inclusive`" pulumi-lang-dotnet="`Inclusive`" pulumi-lang-go="`inclusive`" pulumi-lang-python="`inclusive`" pulumi-lang-yaml="`inclusive`" pulumi-lang-java="`inclusive`" pulumi-lang-hcl="`inclusive`"&gt;`inclusive`&lt;/span&gt;, &lt;span pulumi-lang-nodejs="`exclusive`" pulumi-lang-dotnet="`Exclusive`" pulumi-lang-go="`exclusive`" pulumi-lang-python="`exclusive`" pulumi-lang-yaml="`exclusive`" pulumi-lang-java="`exclusive`" pulumi-lang-hcl="`exclusive`"&gt;`exclusive`&lt;/span&gt;, or &lt;span pulumi-lang-nodejs="`unspecified`" pulumi-lang-dotnet="`Unspecified`" pulumi-lang-go="`unspecified`" pulumi-lang-python="`unspecified`" pulumi-lang-yaml="`unspecified`" pulumi-lang-java="`unspecified`" pulumi-lang-hcl="`unspecified`"&gt;`unspecified`&lt;/span&gt;.

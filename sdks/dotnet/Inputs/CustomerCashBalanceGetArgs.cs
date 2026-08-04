@@ -13,14 +13,14 @@ namespace Pulumi.Stripe.Inputs
     public sealed class CustomerCashBalanceGetArgs : global::Pulumi.ResourceArgs
     {
         [Input("available")]
-        private InputMap<string>? _available;
+        private InputMap<double>? _available;
 
         /// <summary>
-        /// A hash of all cash balances available to this customer. You cannot delete a customer with any cash balances, even if the balance is 0. Amounts are represented in the [smallest currency unit](https://stripe.com/docs/currencies#zero-decimal).
+        /// A hash of all cash balances available to this customer. You cannot delete a customer with any cash balances, even if the balance is 0. Amounts are represented in the [smallest currency unit](https://docs.stripe.com/currencies#zero-decimal).
         /// </summary>
-        public InputMap<string> Available
+        public InputMap<double> Available
         {
-            get => _available ?? (_available = new InputMap<string>());
+            get => _available ?? (_available = new InputMap<double>());
             set => _available = value;
         }
 
@@ -31,16 +31,30 @@ namespace Pulumi.Stripe.Inputs
         public Input<string>? Customer { get; set; }
 
         /// <summary>
-        /// The ID of the account whose cash balance this object represents.
+        /// The ID of an Account representing a customer whose cash balance this object represents.
         /// </summary>
         [Input("customerAccount")]
         public Input<string>? CustomerAccount { get; set; }
 
         /// <summary>
-        /// Settings controlling the behavior of the customer's cash balance, such as reconciliation of funds received.
+        /// If the object exists in live mode, the value is &lt;span pulumi-lang-nodejs="`true`" pulumi-lang-dotnet="`True`" pulumi-lang-go="`true`" pulumi-lang-python="`true`" pulumi-lang-yaml="`true`" pulumi-lang-java="`true`" pulumi-lang-hcl="`true`"&gt;`true`&lt;/span&gt;. If the object exists in test mode, the value is &lt;span pulumi-lang-nodejs="`false`" pulumi-lang-dotnet="`False`" pulumi-lang-go="`false`" pulumi-lang-python="`false`" pulumi-lang-yaml="`false`" pulumi-lang-java="`false`" pulumi-lang-hcl="`false`"&gt;`false`&lt;/span&gt;.
         /// </summary>
+        [Input("livemode")]
+        public Input<bool>? Livemode { get; set; }
+
+        /// <summary>
+        /// String representing the object's type. Objects of the same type share the same value.
+        /// </summary>
+        [Input("object")]
+        public Input<string>? Object { get; set; }
+
         [Input("settings")]
-        public Input<Inputs.CustomerCashBalanceSettingsGetArgs>? Settings { get; set; }
+        private InputList<Inputs.CustomerCashBalanceSettingGetArgs>? _settings;
+        public InputList<Inputs.CustomerCashBalanceSettingGetArgs> Settings
+        {
+            get => _settings ?? (_settings = new InputList<Inputs.CustomerCashBalanceSettingGetArgs>());
+            set => _settings = value;
+        }
 
         public CustomerCashBalanceGetArgs()
         {

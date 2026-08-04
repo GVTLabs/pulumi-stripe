@@ -14,11 +14,11 @@ namespace Pulumi.Stripe.Outputs
     public sealed class PromotionCodePromotion
     {
         /// <summary>
-        /// If promotion &lt;span pulumi-lang-nodejs="`type`" pulumi-lang-dotnet="`Type`" pulumi-lang-go="`type`" pulumi-lang-python="`type`" pulumi-lang-yaml="`type`" pulumi-lang-java="`type`" pulumi-lang-hcl="`type`"&gt;`type`&lt;/span&gt; is &lt;span pulumi-lang-nodejs="`coupon`" pulumi-lang-dotnet="`Coupon`" pulumi-lang-go="`coupon`" pulumi-lang-python="`coupon`" pulumi-lang-yaml="`coupon`" pulumi-lang-java="`coupon`" pulumi-lang-hcl="`coupon`"&gt;`coupon`&lt;/span&gt;, the coupon for this promotion code.
+        /// If promotion &lt;span pulumi-lang-nodejs="`type`" pulumi-lang-dotnet="`Type`" pulumi-lang-go="`type`" pulumi-lang-python="`type`" pulumi-lang-yaml="`type`" pulumi-lang-java="`type`" pulumi-lang-hcl="`type`"&gt;`type`&lt;/span&gt; is &lt;span pulumi-lang-nodejs="`coupon`" pulumi-lang-dotnet="`Coupon`" pulumi-lang-go="`coupon`" pulumi-lang-python="`coupon`" pulumi-lang-yaml="`coupon`" pulumi-lang-java="`coupon`" pulumi-lang-hcl="`coupon`"&gt;`coupon`&lt;/span&gt;, the coupon for this promotion.
         /// </summary>
         public readonly string? Coupon;
         /// <summary>
-        /// Specifies the type of promotion.
+        /// The type of promotion.
         /// </summary>
         public readonly string Type;
 

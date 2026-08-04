@@ -14,21 +14,24 @@ namespace Pulumi.Stripe.Outputs
     public sealed class PriceTier
     {
         /// <summary>
-        /// The flat billing amount for an entire tier, regardless of the number of units in the tier.
+        /// Price for the entire tier.
         /// </summary>
         public readonly double? FlatAmount;
         /// <summary>
-        /// Same as &lt;span pulumi-lang-nodejs="`flatAmount`" pulumi-lang-dotnet="`FlatAmount`" pulumi-lang-go="`flatAmount`" pulumi-lang-python="`flat_amount`" pulumi-lang-yaml="`flatAmount`" pulumi-lang-java="`flatAmount`" pulumi-lang-hcl="`flat_amount`"&gt;`flatAmount`&lt;/span&gt;, but accepts a decimal value representing an integer in the minor units of the currency. Only one of &lt;span pulumi-lang-nodejs="`flatAmount`" pulumi-lang-dotnet="`FlatAmount`" pulumi-lang-go="`flatAmount`" pulumi-lang-python="`flat_amount`" pulumi-lang-yaml="`flatAmount`" pulumi-lang-java="`flatAmount`" pulumi-lang-hcl="`flat_amount`"&gt;`flatAmount`&lt;/span&gt; and &lt;span pulumi-lang-nodejs="`flatAmountDecimal`" pulumi-lang-dotnet="`FlatAmountDecimal`" pulumi-lang-go="`flatAmountDecimal`" pulumi-lang-python="`flat_amount_decimal`" pulumi-lang-yaml="`flatAmountDecimal`" pulumi-lang-java="`flatAmountDecimal`" pulumi-lang-hcl="`flat_amount_decimal`"&gt;`flatAmountDecimal`&lt;/span&gt; can be set.
+        /// Same as &lt;span pulumi-lang-nodejs="`flatAmount`" pulumi-lang-dotnet="`FlatAmount`" pulumi-lang-go="`flatAmount`" pulumi-lang-python="`flat_amount`" pulumi-lang-yaml="`flatAmount`" pulumi-lang-java="`flatAmount`" pulumi-lang-hcl="`flat_amount`"&gt;`flatAmount`&lt;/span&gt;, but contains a decimal value with at most 12 decimal places.
         /// </summary>
         public readonly string? FlatAmountDecimal;
         /// <summary>
-        /// The per unit billing amount for each individual unit for which this tier applies.
+        /// Per unit price for units relevant to the tier.
         /// </summary>
         public readonly double? UnitAmount;
         /// <summary>
-        /// Same as &lt;span pulumi-lang-nodejs="`unitAmount`" pulumi-lang-dotnet="`UnitAmount`" pulumi-lang-go="`unitAmount`" pulumi-lang-python="`unit_amount`" pulumi-lang-yaml="`unitAmount`" pulumi-lang-java="`unitAmount`" pulumi-lang-hcl="`unit_amount`"&gt;`unitAmount`&lt;/span&gt;, but accepts a decimal value in cents (or local equivalent) with at most 12 decimal places. Only one of &lt;span pulumi-lang-nodejs="`unitAmount`" pulumi-lang-dotnet="`UnitAmount`" pulumi-lang-go="`unitAmount`" pulumi-lang-python="`unit_amount`" pulumi-lang-yaml="`unitAmount`" pulumi-lang-java="`unitAmount`" pulumi-lang-hcl="`unit_amount`"&gt;`unitAmount`&lt;/span&gt; and &lt;span pulumi-lang-nodejs="`unitAmountDecimal`" pulumi-lang-dotnet="`UnitAmountDecimal`" pulumi-lang-go="`unitAmountDecimal`" pulumi-lang-python="`unit_amount_decimal`" pulumi-lang-yaml="`unitAmountDecimal`" pulumi-lang-java="`unitAmountDecimal`" pulumi-lang-hcl="`unit_amount_decimal`"&gt;`unitAmountDecimal`&lt;/span&gt; can be set.
+        /// Same as &lt;span pulumi-lang-nodejs="`unitAmount`" pulumi-lang-dotnet="`UnitAmount`" pulumi-lang-go="`unitAmount`" pulumi-lang-python="`unit_amount`" pulumi-lang-yaml="`unitAmount`" pulumi-lang-java="`unitAmount`" pulumi-lang-hcl="`unit_amount`"&gt;`unitAmount`&lt;/span&gt;, but contains a decimal value with at most 12 decimal places.
         /// </summary>
         public readonly string? UnitAmountDecimal;
+        /// <summary>
+        /// Up to and including to this quantity will be contained in the tier.
+        /// </summary>
         public readonly string UpTo;
 
         [OutputConstructor]

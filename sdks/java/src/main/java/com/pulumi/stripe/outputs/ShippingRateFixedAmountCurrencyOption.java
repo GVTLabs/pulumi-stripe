@@ -18,6 +18,10 @@ public final class ShippingRateFixedAmountCurrencyOption {
      * 
      */
     private Double amount;
+    /**
+     * @return Key for this entry.
+     * 
+     */
     private String key;
     /**
      * @return Specifies whether the rate is considered inclusive of taxes or exclusive of taxes. One of &lt;span pulumi-lang-nodejs=&#34;`inclusive`&#34; pulumi-lang-dotnet=&#34;`Inclusive`&#34; pulumi-lang-go=&#34;`inclusive`&#34; pulumi-lang-python=&#34;`inclusive`&#34; pulumi-lang-yaml=&#34;`inclusive`&#34; pulumi-lang-java=&#34;`inclusive`&#34; pulumi-lang-hcl=&#34;`inclusive`&#34;&gt;`inclusive`&lt;/span&gt;, &lt;span pulumi-lang-nodejs=&#34;`exclusive`&#34; pulumi-lang-dotnet=&#34;`Exclusive`&#34; pulumi-lang-go=&#34;`exclusive`&#34; pulumi-lang-python=&#34;`exclusive`&#34; pulumi-lang-yaml=&#34;`exclusive`&#34; pulumi-lang-java=&#34;`exclusive`&#34; pulumi-lang-hcl=&#34;`exclusive`&#34;&gt;`exclusive`&lt;/span&gt;, or &lt;span pulumi-lang-nodejs=&#34;`unspecified`&#34; pulumi-lang-dotnet=&#34;`Unspecified`&#34; pulumi-lang-go=&#34;`unspecified`&#34; pulumi-lang-python=&#34;`unspecified`&#34; pulumi-lang-yaml=&#34;`unspecified`&#34; pulumi-lang-java=&#34;`unspecified`&#34; pulumi-lang-hcl=&#34;`unspecified`&#34;&gt;`unspecified`&lt;/span&gt;.
@@ -33,6 +37,10 @@ public final class ShippingRateFixedAmountCurrencyOption {
     public Double amount() {
         return this.amount;
     }
+    /**
+     * @return Key for this entry.
+     * 
+     */
     public String key() {
         return this.key;
     }

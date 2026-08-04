@@ -26,9 +26,13 @@ export class Provider extends pulumi.ProviderResource {
     }
 
     /**
-     * Stripe API key
+     * Stripe API key. Can also be set via the STRIPE_API_KEY environment variable.
      */
-    declare public readonly apiKey: pulumi.Output<string>;
+    declare public readonly apiKey: pulumi.Output<string | undefined>;
+    /**
+     * Connected account context for Connect-scoped requests. Can also be set via the STRIPE_ACCOUNT environment variable.
+     */
+    declare public readonly stripeAccount: pulumi.Output<string | undefined>;
 
     /**
      * Create a Provider resource with the given unique name, arguments, and options.
@@ -37,14 +41,12 @@ export class Provider extends pulumi.ProviderResource {
      * @param args The arguments to use to populate this resource's properties.
      * @param opts A bag of options that control this resource's behavior.
      */
-    constructor(name: string, args: ProviderArgs, opts?: pulumi.ResourceOptions) {
+    constructor(name: string, args?: ProviderArgs, opts?: pulumi.ResourceOptions) {
         let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         {
-            if (args?.apiKey === undefined && !opts.urn) {
-                throw new Error("Missing required property 'apiKey'");
-            }
             resourceInputs["apiKey"] = args?.apiKey ? pulumi.secret(args.apiKey) : undefined;
+            resourceInputs["stripeAccount"] = args?.stripeAccount;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         const secretOpts = { additionalSecretOutputs: ["apiKey"] };
@@ -68,9 +70,13 @@ export class Provider extends pulumi.ProviderResource {
  */
 export interface ProviderArgs {
     /**
-     * Stripe API key
+     * Stripe API key. Can also be set via the STRIPE_API_KEY environment variable.
      */
-    apiKey: pulumi.Input<string>;
+    apiKey?: pulumi.Input<string | undefined>;
+    /**
+     * Connected account context for Connect-scoped requests. Can also be set via the STRIPE_ACCOUNT environment variable.
+     */
+    stripeAccount?: pulumi.Input<string | undefined>;
 }
 
 export namespace Provider {

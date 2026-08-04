@@ -18,14 +18,14 @@ public final class PriceTierArgs extends com.pulumi.resources.ResourceArgs {
     public static final PriceTierArgs Empty = new PriceTierArgs();
 
     /**
-     * The flat billing amount for an entire tier, regardless of the number of units in the tier.
+     * Price for the entire tier.
      * 
      */
     @Import(name="flatAmount")
     private @Nullable Output<Double> flatAmount;
 
     /**
-     * @return The flat billing amount for an entire tier, regardless of the number of units in the tier.
+     * @return Price for the entire tier.
      * 
      */
     public Optional<Output<Double>> flatAmount() {
@@ -33,14 +33,14 @@ public final class PriceTierArgs extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * Same as &lt;span pulumi-lang-nodejs=&#34;`flatAmount`&#34; pulumi-lang-dotnet=&#34;`FlatAmount`&#34; pulumi-lang-go=&#34;`flatAmount`&#34; pulumi-lang-python=&#34;`flat_amount`&#34; pulumi-lang-yaml=&#34;`flatAmount`&#34; pulumi-lang-java=&#34;`flatAmount`&#34; pulumi-lang-hcl=&#34;`flat_amount`&#34;&gt;`flatAmount`&lt;/span&gt;, but accepts a decimal value representing an integer in the minor units of the currency. Only one of &lt;span pulumi-lang-nodejs=&#34;`flatAmount`&#34; pulumi-lang-dotnet=&#34;`FlatAmount`&#34; pulumi-lang-go=&#34;`flatAmount`&#34; pulumi-lang-python=&#34;`flat_amount`&#34; pulumi-lang-yaml=&#34;`flatAmount`&#34; pulumi-lang-java=&#34;`flatAmount`&#34; pulumi-lang-hcl=&#34;`flat_amount`&#34;&gt;`flatAmount`&lt;/span&gt; and &lt;span pulumi-lang-nodejs=&#34;`flatAmountDecimal`&#34; pulumi-lang-dotnet=&#34;`FlatAmountDecimal`&#34; pulumi-lang-go=&#34;`flatAmountDecimal`&#34; pulumi-lang-python=&#34;`flat_amount_decimal`&#34; pulumi-lang-yaml=&#34;`flatAmountDecimal`&#34; pulumi-lang-java=&#34;`flatAmountDecimal`&#34; pulumi-lang-hcl=&#34;`flat_amount_decimal`&#34;&gt;`flatAmountDecimal`&lt;/span&gt; can be set.
+     * Same as &lt;span pulumi-lang-nodejs=&#34;`flatAmount`&#34; pulumi-lang-dotnet=&#34;`FlatAmount`&#34; pulumi-lang-go=&#34;`flatAmount`&#34; pulumi-lang-python=&#34;`flat_amount`&#34; pulumi-lang-yaml=&#34;`flatAmount`&#34; pulumi-lang-java=&#34;`flatAmount`&#34; pulumi-lang-hcl=&#34;`flat_amount`&#34;&gt;`flatAmount`&lt;/span&gt;, but contains a decimal value with at most 12 decimal places.
      * 
      */
     @Import(name="flatAmountDecimal")
     private @Nullable Output<String> flatAmountDecimal;
 
     /**
-     * @return Same as &lt;span pulumi-lang-nodejs=&#34;`flatAmount`&#34; pulumi-lang-dotnet=&#34;`FlatAmount`&#34; pulumi-lang-go=&#34;`flatAmount`&#34; pulumi-lang-python=&#34;`flat_amount`&#34; pulumi-lang-yaml=&#34;`flatAmount`&#34; pulumi-lang-java=&#34;`flatAmount`&#34; pulumi-lang-hcl=&#34;`flat_amount`&#34;&gt;`flatAmount`&lt;/span&gt;, but accepts a decimal value representing an integer in the minor units of the currency. Only one of &lt;span pulumi-lang-nodejs=&#34;`flatAmount`&#34; pulumi-lang-dotnet=&#34;`FlatAmount`&#34; pulumi-lang-go=&#34;`flatAmount`&#34; pulumi-lang-python=&#34;`flat_amount`&#34; pulumi-lang-yaml=&#34;`flatAmount`&#34; pulumi-lang-java=&#34;`flatAmount`&#34; pulumi-lang-hcl=&#34;`flat_amount`&#34;&gt;`flatAmount`&lt;/span&gt; and &lt;span pulumi-lang-nodejs=&#34;`flatAmountDecimal`&#34; pulumi-lang-dotnet=&#34;`FlatAmountDecimal`&#34; pulumi-lang-go=&#34;`flatAmountDecimal`&#34; pulumi-lang-python=&#34;`flat_amount_decimal`&#34; pulumi-lang-yaml=&#34;`flatAmountDecimal`&#34; pulumi-lang-java=&#34;`flatAmountDecimal`&#34; pulumi-lang-hcl=&#34;`flat_amount_decimal`&#34;&gt;`flatAmountDecimal`&lt;/span&gt; can be set.
+     * @return Same as &lt;span pulumi-lang-nodejs=&#34;`flatAmount`&#34; pulumi-lang-dotnet=&#34;`FlatAmount`&#34; pulumi-lang-go=&#34;`flatAmount`&#34; pulumi-lang-python=&#34;`flat_amount`&#34; pulumi-lang-yaml=&#34;`flatAmount`&#34; pulumi-lang-java=&#34;`flatAmount`&#34; pulumi-lang-hcl=&#34;`flat_amount`&#34;&gt;`flatAmount`&lt;/span&gt;, but contains a decimal value with at most 12 decimal places.
      * 
      */
     public Optional<Output<String>> flatAmountDecimal() {
@@ -48,14 +48,14 @@ public final class PriceTierArgs extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * The per unit billing amount for each individual unit for which this tier applies.
+     * Per unit price for units relevant to the tier.
      * 
      */
     @Import(name="unitAmount")
     private @Nullable Output<Double> unitAmount;
 
     /**
-     * @return The per unit billing amount for each individual unit for which this tier applies.
+     * @return Per unit price for units relevant to the tier.
      * 
      */
     public Optional<Output<Double>> unitAmount() {
@@ -63,23 +63,31 @@ public final class PriceTierArgs extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * Same as &lt;span pulumi-lang-nodejs=&#34;`unitAmount`&#34; pulumi-lang-dotnet=&#34;`UnitAmount`&#34; pulumi-lang-go=&#34;`unitAmount`&#34; pulumi-lang-python=&#34;`unit_amount`&#34; pulumi-lang-yaml=&#34;`unitAmount`&#34; pulumi-lang-java=&#34;`unitAmount`&#34; pulumi-lang-hcl=&#34;`unit_amount`&#34;&gt;`unitAmount`&lt;/span&gt;, but accepts a decimal value in cents (or local equivalent) with at most 12 decimal places. Only one of &lt;span pulumi-lang-nodejs=&#34;`unitAmount`&#34; pulumi-lang-dotnet=&#34;`UnitAmount`&#34; pulumi-lang-go=&#34;`unitAmount`&#34; pulumi-lang-python=&#34;`unit_amount`&#34; pulumi-lang-yaml=&#34;`unitAmount`&#34; pulumi-lang-java=&#34;`unitAmount`&#34; pulumi-lang-hcl=&#34;`unit_amount`&#34;&gt;`unitAmount`&lt;/span&gt; and &lt;span pulumi-lang-nodejs=&#34;`unitAmountDecimal`&#34; pulumi-lang-dotnet=&#34;`UnitAmountDecimal`&#34; pulumi-lang-go=&#34;`unitAmountDecimal`&#34; pulumi-lang-python=&#34;`unit_amount_decimal`&#34; pulumi-lang-yaml=&#34;`unitAmountDecimal`&#34; pulumi-lang-java=&#34;`unitAmountDecimal`&#34; pulumi-lang-hcl=&#34;`unit_amount_decimal`&#34;&gt;`unitAmountDecimal`&lt;/span&gt; can be set.
+     * Same as &lt;span pulumi-lang-nodejs=&#34;`unitAmount`&#34; pulumi-lang-dotnet=&#34;`UnitAmount`&#34; pulumi-lang-go=&#34;`unitAmount`&#34; pulumi-lang-python=&#34;`unit_amount`&#34; pulumi-lang-yaml=&#34;`unitAmount`&#34; pulumi-lang-java=&#34;`unitAmount`&#34; pulumi-lang-hcl=&#34;`unit_amount`&#34;&gt;`unitAmount`&lt;/span&gt;, but contains a decimal value with at most 12 decimal places.
      * 
      */
     @Import(name="unitAmountDecimal")
     private @Nullable Output<String> unitAmountDecimal;
 
     /**
-     * @return Same as &lt;span pulumi-lang-nodejs=&#34;`unitAmount`&#34; pulumi-lang-dotnet=&#34;`UnitAmount`&#34; pulumi-lang-go=&#34;`unitAmount`&#34; pulumi-lang-python=&#34;`unit_amount`&#34; pulumi-lang-yaml=&#34;`unitAmount`&#34; pulumi-lang-java=&#34;`unitAmount`&#34; pulumi-lang-hcl=&#34;`unit_amount`&#34;&gt;`unitAmount`&lt;/span&gt;, but accepts a decimal value in cents (or local equivalent) with at most 12 decimal places. Only one of &lt;span pulumi-lang-nodejs=&#34;`unitAmount`&#34; pulumi-lang-dotnet=&#34;`UnitAmount`&#34; pulumi-lang-go=&#34;`unitAmount`&#34; pulumi-lang-python=&#34;`unit_amount`&#34; pulumi-lang-yaml=&#34;`unitAmount`&#34; pulumi-lang-java=&#34;`unitAmount`&#34; pulumi-lang-hcl=&#34;`unit_amount`&#34;&gt;`unitAmount`&lt;/span&gt; and &lt;span pulumi-lang-nodejs=&#34;`unitAmountDecimal`&#34; pulumi-lang-dotnet=&#34;`UnitAmountDecimal`&#34; pulumi-lang-go=&#34;`unitAmountDecimal`&#34; pulumi-lang-python=&#34;`unit_amount_decimal`&#34; pulumi-lang-yaml=&#34;`unitAmountDecimal`&#34; pulumi-lang-java=&#34;`unitAmountDecimal`&#34; pulumi-lang-hcl=&#34;`unit_amount_decimal`&#34;&gt;`unitAmountDecimal`&lt;/span&gt; can be set.
+     * @return Same as &lt;span pulumi-lang-nodejs=&#34;`unitAmount`&#34; pulumi-lang-dotnet=&#34;`UnitAmount`&#34; pulumi-lang-go=&#34;`unitAmount`&#34; pulumi-lang-python=&#34;`unit_amount`&#34; pulumi-lang-yaml=&#34;`unitAmount`&#34; pulumi-lang-java=&#34;`unitAmount`&#34; pulumi-lang-hcl=&#34;`unit_amount`&#34;&gt;`unitAmount`&lt;/span&gt;, but contains a decimal value with at most 12 decimal places.
      * 
      */
     public Optional<Output<String>> unitAmountDecimal() {
         return Optional.ofNullable(this.unitAmountDecimal);
     }
 
+    /**
+     * Up to and including to this quantity will be contained in the tier.
+     * 
+     */
     @Import(name="upTo", required=true)
     private Output<String> upTo;
 
+    /**
+     * @return Up to and including to this quantity will be contained in the tier.
+     * 
+     */
     public Output<String> upTo() {
         return this.upTo;
     }
@@ -113,7 +121,7 @@ public final class PriceTierArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param flatAmount The flat billing amount for an entire tier, regardless of the number of units in the tier.
+         * @param flatAmount Price for the entire tier.
          * 
          * @return builder
          * 
@@ -124,7 +132,7 @@ public final class PriceTierArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param flatAmount The flat billing amount for an entire tier, regardless of the number of units in the tier.
+         * @param flatAmount Price for the entire tier.
          * 
          * @return builder
          * 
@@ -134,7 +142,7 @@ public final class PriceTierArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param flatAmountDecimal Same as &lt;span pulumi-lang-nodejs=&#34;`flatAmount`&#34; pulumi-lang-dotnet=&#34;`FlatAmount`&#34; pulumi-lang-go=&#34;`flatAmount`&#34; pulumi-lang-python=&#34;`flat_amount`&#34; pulumi-lang-yaml=&#34;`flatAmount`&#34; pulumi-lang-java=&#34;`flatAmount`&#34; pulumi-lang-hcl=&#34;`flat_amount`&#34;&gt;`flatAmount`&lt;/span&gt;, but accepts a decimal value representing an integer in the minor units of the currency. Only one of &lt;span pulumi-lang-nodejs=&#34;`flatAmount`&#34; pulumi-lang-dotnet=&#34;`FlatAmount`&#34; pulumi-lang-go=&#34;`flatAmount`&#34; pulumi-lang-python=&#34;`flat_amount`&#34; pulumi-lang-yaml=&#34;`flatAmount`&#34; pulumi-lang-java=&#34;`flatAmount`&#34; pulumi-lang-hcl=&#34;`flat_amount`&#34;&gt;`flatAmount`&lt;/span&gt; and &lt;span pulumi-lang-nodejs=&#34;`flatAmountDecimal`&#34; pulumi-lang-dotnet=&#34;`FlatAmountDecimal`&#34; pulumi-lang-go=&#34;`flatAmountDecimal`&#34; pulumi-lang-python=&#34;`flat_amount_decimal`&#34; pulumi-lang-yaml=&#34;`flatAmountDecimal`&#34; pulumi-lang-java=&#34;`flatAmountDecimal`&#34; pulumi-lang-hcl=&#34;`flat_amount_decimal`&#34;&gt;`flatAmountDecimal`&lt;/span&gt; can be set.
+         * @param flatAmountDecimal Same as &lt;span pulumi-lang-nodejs=&#34;`flatAmount`&#34; pulumi-lang-dotnet=&#34;`FlatAmount`&#34; pulumi-lang-go=&#34;`flatAmount`&#34; pulumi-lang-python=&#34;`flat_amount`&#34; pulumi-lang-yaml=&#34;`flatAmount`&#34; pulumi-lang-java=&#34;`flatAmount`&#34; pulumi-lang-hcl=&#34;`flat_amount`&#34;&gt;`flatAmount`&lt;/span&gt;, but contains a decimal value with at most 12 decimal places.
          * 
          * @return builder
          * 
@@ -145,7 +153,7 @@ public final class PriceTierArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param flatAmountDecimal Same as &lt;span pulumi-lang-nodejs=&#34;`flatAmount`&#34; pulumi-lang-dotnet=&#34;`FlatAmount`&#34; pulumi-lang-go=&#34;`flatAmount`&#34; pulumi-lang-python=&#34;`flat_amount`&#34; pulumi-lang-yaml=&#34;`flatAmount`&#34; pulumi-lang-java=&#34;`flatAmount`&#34; pulumi-lang-hcl=&#34;`flat_amount`&#34;&gt;`flatAmount`&lt;/span&gt;, but accepts a decimal value representing an integer in the minor units of the currency. Only one of &lt;span pulumi-lang-nodejs=&#34;`flatAmount`&#34; pulumi-lang-dotnet=&#34;`FlatAmount`&#34; pulumi-lang-go=&#34;`flatAmount`&#34; pulumi-lang-python=&#34;`flat_amount`&#34; pulumi-lang-yaml=&#34;`flatAmount`&#34; pulumi-lang-java=&#34;`flatAmount`&#34; pulumi-lang-hcl=&#34;`flat_amount`&#34;&gt;`flatAmount`&lt;/span&gt; and &lt;span pulumi-lang-nodejs=&#34;`flatAmountDecimal`&#34; pulumi-lang-dotnet=&#34;`FlatAmountDecimal`&#34; pulumi-lang-go=&#34;`flatAmountDecimal`&#34; pulumi-lang-python=&#34;`flat_amount_decimal`&#34; pulumi-lang-yaml=&#34;`flatAmountDecimal`&#34; pulumi-lang-java=&#34;`flatAmountDecimal`&#34; pulumi-lang-hcl=&#34;`flat_amount_decimal`&#34;&gt;`flatAmountDecimal`&lt;/span&gt; can be set.
+         * @param flatAmountDecimal Same as &lt;span pulumi-lang-nodejs=&#34;`flatAmount`&#34; pulumi-lang-dotnet=&#34;`FlatAmount`&#34; pulumi-lang-go=&#34;`flatAmount`&#34; pulumi-lang-python=&#34;`flat_amount`&#34; pulumi-lang-yaml=&#34;`flatAmount`&#34; pulumi-lang-java=&#34;`flatAmount`&#34; pulumi-lang-hcl=&#34;`flat_amount`&#34;&gt;`flatAmount`&lt;/span&gt;, but contains a decimal value with at most 12 decimal places.
          * 
          * @return builder
          * 
@@ -155,7 +163,7 @@ public final class PriceTierArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param unitAmount The per unit billing amount for each individual unit for which this tier applies.
+         * @param unitAmount Per unit price for units relevant to the tier.
          * 
          * @return builder
          * 
@@ -166,7 +174,7 @@ public final class PriceTierArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param unitAmount The per unit billing amount for each individual unit for which this tier applies.
+         * @param unitAmount Per unit price for units relevant to the tier.
          * 
          * @return builder
          * 
@@ -176,7 +184,7 @@ public final class PriceTierArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param unitAmountDecimal Same as &lt;span pulumi-lang-nodejs=&#34;`unitAmount`&#34; pulumi-lang-dotnet=&#34;`UnitAmount`&#34; pulumi-lang-go=&#34;`unitAmount`&#34; pulumi-lang-python=&#34;`unit_amount`&#34; pulumi-lang-yaml=&#34;`unitAmount`&#34; pulumi-lang-java=&#34;`unitAmount`&#34; pulumi-lang-hcl=&#34;`unit_amount`&#34;&gt;`unitAmount`&lt;/span&gt;, but accepts a decimal value in cents (or local equivalent) with at most 12 decimal places. Only one of &lt;span pulumi-lang-nodejs=&#34;`unitAmount`&#34; pulumi-lang-dotnet=&#34;`UnitAmount`&#34; pulumi-lang-go=&#34;`unitAmount`&#34; pulumi-lang-python=&#34;`unit_amount`&#34; pulumi-lang-yaml=&#34;`unitAmount`&#34; pulumi-lang-java=&#34;`unitAmount`&#34; pulumi-lang-hcl=&#34;`unit_amount`&#34;&gt;`unitAmount`&lt;/span&gt; and &lt;span pulumi-lang-nodejs=&#34;`unitAmountDecimal`&#34; pulumi-lang-dotnet=&#34;`UnitAmountDecimal`&#34; pulumi-lang-go=&#34;`unitAmountDecimal`&#34; pulumi-lang-python=&#34;`unit_amount_decimal`&#34; pulumi-lang-yaml=&#34;`unitAmountDecimal`&#34; pulumi-lang-java=&#34;`unitAmountDecimal`&#34; pulumi-lang-hcl=&#34;`unit_amount_decimal`&#34;&gt;`unitAmountDecimal`&lt;/span&gt; can be set.
+         * @param unitAmountDecimal Same as &lt;span pulumi-lang-nodejs=&#34;`unitAmount`&#34; pulumi-lang-dotnet=&#34;`UnitAmount`&#34; pulumi-lang-go=&#34;`unitAmount`&#34; pulumi-lang-python=&#34;`unit_amount`&#34; pulumi-lang-yaml=&#34;`unitAmount`&#34; pulumi-lang-java=&#34;`unitAmount`&#34; pulumi-lang-hcl=&#34;`unit_amount`&#34;&gt;`unitAmount`&lt;/span&gt;, but contains a decimal value with at most 12 decimal places.
          * 
          * @return builder
          * 
@@ -187,7 +195,7 @@ public final class PriceTierArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param unitAmountDecimal Same as &lt;span pulumi-lang-nodejs=&#34;`unitAmount`&#34; pulumi-lang-dotnet=&#34;`UnitAmount`&#34; pulumi-lang-go=&#34;`unitAmount`&#34; pulumi-lang-python=&#34;`unit_amount`&#34; pulumi-lang-yaml=&#34;`unitAmount`&#34; pulumi-lang-java=&#34;`unitAmount`&#34; pulumi-lang-hcl=&#34;`unit_amount`&#34;&gt;`unitAmount`&lt;/span&gt;, but accepts a decimal value in cents (or local equivalent) with at most 12 decimal places. Only one of &lt;span pulumi-lang-nodejs=&#34;`unitAmount`&#34; pulumi-lang-dotnet=&#34;`UnitAmount`&#34; pulumi-lang-go=&#34;`unitAmount`&#34; pulumi-lang-python=&#34;`unit_amount`&#34; pulumi-lang-yaml=&#34;`unitAmount`&#34; pulumi-lang-java=&#34;`unitAmount`&#34; pulumi-lang-hcl=&#34;`unit_amount`&#34;&gt;`unitAmount`&lt;/span&gt; and &lt;span pulumi-lang-nodejs=&#34;`unitAmountDecimal`&#34; pulumi-lang-dotnet=&#34;`UnitAmountDecimal`&#34; pulumi-lang-go=&#34;`unitAmountDecimal`&#34; pulumi-lang-python=&#34;`unit_amount_decimal`&#34; pulumi-lang-yaml=&#34;`unitAmountDecimal`&#34; pulumi-lang-java=&#34;`unitAmountDecimal`&#34; pulumi-lang-hcl=&#34;`unit_amount_decimal`&#34;&gt;`unitAmountDecimal`&lt;/span&gt; can be set.
+         * @param unitAmountDecimal Same as &lt;span pulumi-lang-nodejs=&#34;`unitAmount`&#34; pulumi-lang-dotnet=&#34;`UnitAmount`&#34; pulumi-lang-go=&#34;`unitAmount`&#34; pulumi-lang-python=&#34;`unit_amount`&#34; pulumi-lang-yaml=&#34;`unitAmount`&#34; pulumi-lang-java=&#34;`unitAmount`&#34; pulumi-lang-hcl=&#34;`unit_amount`&#34;&gt;`unitAmount`&lt;/span&gt;, but contains a decimal value with at most 12 decimal places.
          * 
          * @return builder
          * 
@@ -196,11 +204,23 @@ public final class PriceTierArgs extends com.pulumi.resources.ResourceArgs {
             return unitAmountDecimal(Output.of(unitAmountDecimal));
         }
 
+        /**
+         * @param upTo Up to and including to this quantity will be contained in the tier.
+         * 
+         * @return builder
+         * 
+         */
         public Builder upTo(Output<String> upTo) {
             $.upTo = upTo;
             return this;
         }
 
+        /**
+         * @param upTo Up to and including to this quantity will be contained in the tier.
+         * 
+         * @return builder
+         * 
+         */
         public Builder upTo(String upTo) {
             return upTo(Output.of(upTo));
         }

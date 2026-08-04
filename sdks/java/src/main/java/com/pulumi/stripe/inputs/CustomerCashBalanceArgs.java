@@ -5,8 +5,11 @@ package com.pulumi.stripe.inputs;
 
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
-import com.pulumi.stripe.inputs.CustomerCashBalanceSettingsArgs;
+import com.pulumi.stripe.inputs.CustomerCashBalanceSettingArgs;
+import java.lang.Boolean;
+import java.lang.Double;
 import java.lang.String;
+import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
@@ -18,17 +21,17 @@ public final class CustomerCashBalanceArgs extends com.pulumi.resources.Resource
     public static final CustomerCashBalanceArgs Empty = new CustomerCashBalanceArgs();
 
     /**
-     * A hash of all cash balances available to this customer. You cannot delete a customer with any cash balances, even if the balance is 0. Amounts are represented in the [smallest currency unit](https://stripe.com/docs/currencies#zero-decimal).
+     * A hash of all cash balances available to this customer. You cannot delete a customer with any cash balances, even if the balance is 0. Amounts are represented in the [smallest currency unit](https://docs.stripe.com/currencies#zero-decimal).
      * 
      */
     @Import(name="available")
-    private @Nullable Output<Map<String,String>> available;
+    private @Nullable Output<Map<String,Double>> available;
 
     /**
-     * @return A hash of all cash balances available to this customer. You cannot delete a customer with any cash balances, even if the balance is 0. Amounts are represented in the [smallest currency unit](https://stripe.com/docs/currencies#zero-decimal).
+     * @return A hash of all cash balances available to this customer. You cannot delete a customer with any cash balances, even if the balance is 0. Amounts are represented in the [smallest currency unit](https://docs.stripe.com/currencies#zero-decimal).
      * 
      */
-    public Optional<Output<Map<String,String>>> available() {
+    public Optional<Output<Map<String,Double>>> available() {
         return Optional.ofNullable(this.available);
     }
 
@@ -48,14 +51,14 @@ public final class CustomerCashBalanceArgs extends com.pulumi.resources.Resource
     }
 
     /**
-     * The ID of the account whose cash balance this object represents.
+     * The ID of an Account representing a customer whose cash balance this object represents.
      * 
      */
     @Import(name="customerAccount")
     private @Nullable Output<String> customerAccount;
 
     /**
-     * @return The ID of the account whose cash balance this object represents.
+     * @return The ID of an Account representing a customer whose cash balance this object represents.
      * 
      */
     public Optional<Output<String>> customerAccount() {
@@ -63,17 +66,39 @@ public final class CustomerCashBalanceArgs extends com.pulumi.resources.Resource
     }
 
     /**
-     * Settings controlling the behavior of the customer&#39;s cash balance, such as reconciliation of funds received.
+     * If the object exists in live mode, the value is &lt;span pulumi-lang-nodejs=&#34;`true`&#34; pulumi-lang-dotnet=&#34;`True`&#34; pulumi-lang-go=&#34;`true`&#34; pulumi-lang-python=&#34;`true`&#34; pulumi-lang-yaml=&#34;`true`&#34; pulumi-lang-java=&#34;`true`&#34; pulumi-lang-hcl=&#34;`true`&#34;&gt;`true`&lt;/span&gt;. If the object exists in test mode, the value is &lt;span pulumi-lang-nodejs=&#34;`false`&#34; pulumi-lang-dotnet=&#34;`False`&#34; pulumi-lang-go=&#34;`false`&#34; pulumi-lang-python=&#34;`false`&#34; pulumi-lang-yaml=&#34;`false`&#34; pulumi-lang-java=&#34;`false`&#34; pulumi-lang-hcl=&#34;`false`&#34;&gt;`false`&lt;/span&gt;.
      * 
      */
-    @Import(name="settings")
-    private @Nullable Output<CustomerCashBalanceSettingsArgs> settings;
+    @Import(name="livemode")
+    private @Nullable Output<Boolean> livemode;
 
     /**
-     * @return Settings controlling the behavior of the customer&#39;s cash balance, such as reconciliation of funds received.
+     * @return If the object exists in live mode, the value is &lt;span pulumi-lang-nodejs=&#34;`true`&#34; pulumi-lang-dotnet=&#34;`True`&#34; pulumi-lang-go=&#34;`true`&#34; pulumi-lang-python=&#34;`true`&#34; pulumi-lang-yaml=&#34;`true`&#34; pulumi-lang-java=&#34;`true`&#34; pulumi-lang-hcl=&#34;`true`&#34;&gt;`true`&lt;/span&gt;. If the object exists in test mode, the value is &lt;span pulumi-lang-nodejs=&#34;`false`&#34; pulumi-lang-dotnet=&#34;`False`&#34; pulumi-lang-go=&#34;`false`&#34; pulumi-lang-python=&#34;`false`&#34; pulumi-lang-yaml=&#34;`false`&#34; pulumi-lang-java=&#34;`false`&#34; pulumi-lang-hcl=&#34;`false`&#34;&gt;`false`&lt;/span&gt;.
      * 
      */
-    public Optional<Output<CustomerCashBalanceSettingsArgs>> settings() {
+    public Optional<Output<Boolean>> livemode() {
+        return Optional.ofNullable(this.livemode);
+    }
+
+    /**
+     * String representing the object&#39;s type. Objects of the same type share the same value.
+     * 
+     */
+    @Import(name="object")
+    private @Nullable Output<String> object;
+
+    /**
+     * @return String representing the object&#39;s type. Objects of the same type share the same value.
+     * 
+     */
+    public Optional<Output<String>> object() {
+        return Optional.ofNullable(this.object);
+    }
+
+    @Import(name="settings")
+    private @Nullable Output<List<CustomerCashBalanceSettingArgs>> settings;
+
+    public Optional<Output<List<CustomerCashBalanceSettingArgs>>> settings() {
         return Optional.ofNullable(this.settings);
     }
 
@@ -83,6 +108,8 @@ public final class CustomerCashBalanceArgs extends com.pulumi.resources.Resource
         this.available = $.available;
         this.customer = $.customer;
         this.customerAccount = $.customerAccount;
+        this.livemode = $.livemode;
+        this.object = $.object;
         this.settings = $.settings;
     }
 
@@ -105,23 +132,23 @@ public final class CustomerCashBalanceArgs extends com.pulumi.resources.Resource
         }
 
         /**
-         * @param available A hash of all cash balances available to this customer. You cannot delete a customer with any cash balances, even if the balance is 0. Amounts are represented in the [smallest currency unit](https://stripe.com/docs/currencies#zero-decimal).
+         * @param available A hash of all cash balances available to this customer. You cannot delete a customer with any cash balances, even if the balance is 0. Amounts are represented in the [smallest currency unit](https://docs.stripe.com/currencies#zero-decimal).
          * 
          * @return builder
          * 
          */
-        public Builder available(@Nullable Output<Map<String,String>> available) {
+        public Builder available(@Nullable Output<Map<String,Double>> available) {
             $.available = available;
             return this;
         }
 
         /**
-         * @param available A hash of all cash balances available to this customer. You cannot delete a customer with any cash balances, even if the balance is 0. Amounts are represented in the [smallest currency unit](https://stripe.com/docs/currencies#zero-decimal).
+         * @param available A hash of all cash balances available to this customer. You cannot delete a customer with any cash balances, even if the balance is 0. Amounts are represented in the [smallest currency unit](https://docs.stripe.com/currencies#zero-decimal).
          * 
          * @return builder
          * 
          */
-        public Builder available(Map<String,String> available) {
+        public Builder available(Map<String,Double> available) {
             return available(Output.of(available));
         }
 
@@ -147,7 +174,7 @@ public final class CustomerCashBalanceArgs extends com.pulumi.resources.Resource
         }
 
         /**
-         * @param customerAccount The ID of the account whose cash balance this object represents.
+         * @param customerAccount The ID of an Account representing a customer whose cash balance this object represents.
          * 
          * @return builder
          * 
@@ -158,7 +185,7 @@ public final class CustomerCashBalanceArgs extends com.pulumi.resources.Resource
         }
 
         /**
-         * @param customerAccount The ID of the account whose cash balance this object represents.
+         * @param customerAccount The ID of an Account representing a customer whose cash balance this object represents.
          * 
          * @return builder
          * 
@@ -168,24 +195,58 @@ public final class CustomerCashBalanceArgs extends com.pulumi.resources.Resource
         }
 
         /**
-         * @param settings Settings controlling the behavior of the customer&#39;s cash balance, such as reconciliation of funds received.
+         * @param livemode If the object exists in live mode, the value is &lt;span pulumi-lang-nodejs=&#34;`true`&#34; pulumi-lang-dotnet=&#34;`True`&#34; pulumi-lang-go=&#34;`true`&#34; pulumi-lang-python=&#34;`true`&#34; pulumi-lang-yaml=&#34;`true`&#34; pulumi-lang-java=&#34;`true`&#34; pulumi-lang-hcl=&#34;`true`&#34;&gt;`true`&lt;/span&gt;. If the object exists in test mode, the value is &lt;span pulumi-lang-nodejs=&#34;`false`&#34; pulumi-lang-dotnet=&#34;`False`&#34; pulumi-lang-go=&#34;`false`&#34; pulumi-lang-python=&#34;`false`&#34; pulumi-lang-yaml=&#34;`false`&#34; pulumi-lang-java=&#34;`false`&#34; pulumi-lang-hcl=&#34;`false`&#34;&gt;`false`&lt;/span&gt;.
          * 
          * @return builder
          * 
          */
-        public Builder settings(@Nullable Output<CustomerCashBalanceSettingsArgs> settings) {
-            $.settings = settings;
+        public Builder livemode(@Nullable Output<Boolean> livemode) {
+            $.livemode = livemode;
             return this;
         }
 
         /**
-         * @param settings Settings controlling the behavior of the customer&#39;s cash balance, such as reconciliation of funds received.
+         * @param livemode If the object exists in live mode, the value is &lt;span pulumi-lang-nodejs=&#34;`true`&#34; pulumi-lang-dotnet=&#34;`True`&#34; pulumi-lang-go=&#34;`true`&#34; pulumi-lang-python=&#34;`true`&#34; pulumi-lang-yaml=&#34;`true`&#34; pulumi-lang-java=&#34;`true`&#34; pulumi-lang-hcl=&#34;`true`&#34;&gt;`true`&lt;/span&gt;. If the object exists in test mode, the value is &lt;span pulumi-lang-nodejs=&#34;`false`&#34; pulumi-lang-dotnet=&#34;`False`&#34; pulumi-lang-go=&#34;`false`&#34; pulumi-lang-python=&#34;`false`&#34; pulumi-lang-yaml=&#34;`false`&#34; pulumi-lang-java=&#34;`false`&#34; pulumi-lang-hcl=&#34;`false`&#34;&gt;`false`&lt;/span&gt;.
          * 
          * @return builder
          * 
          */
-        public Builder settings(CustomerCashBalanceSettingsArgs settings) {
+        public Builder livemode(Boolean livemode) {
+            return livemode(Output.of(livemode));
+        }
+
+        /**
+         * @param object String representing the object&#39;s type. Objects of the same type share the same value.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder object(@Nullable Output<String> object) {
+            $.object = object;
+            return this;
+        }
+
+        /**
+         * @param object String representing the object&#39;s type. Objects of the same type share the same value.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder object(String object) {
+            return object(Output.of(object));
+        }
+
+        public Builder settings(@Nullable Output<List<CustomerCashBalanceSettingArgs>> settings) {
+            $.settings = settings;
+            return this;
+        }
+
+        public Builder settings(List<CustomerCashBalanceSettingArgs> settings) {
             return settings(Output.of(settings));
+        }
+
+        public Builder settings(CustomerCashBalanceSettingArgs... settings) {
+            return settings(List.of(settings));
         }
 
         public CustomerCashBalanceArgs build() {

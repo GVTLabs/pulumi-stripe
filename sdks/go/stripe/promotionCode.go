@@ -7,7 +7,6 @@ import (
 	"context"
 	"reflect"
 
-	"errors"
 	"github.com/gvtlabs/pulumi-stripe/sdks/go/stripe/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
@@ -15,24 +14,28 @@ import (
 type PromotionCode struct {
 	pulumi.CustomResourceState
 
-	// Whether the promotion code is currently active.
+	// Whether the promotion code is currently active. A promotion code is only active if the coupon is also valid.
 	Active pulumi.BoolOutput `pulumi:"active"`
-	// The customer-facing code. Regardless of case, this code must be unique across all active promotion codes for a specific customer. Valid characters are lower case letters (a-z), upper case letters (A-Z), and digits (0-9). If left blank, we will generate one automatically.
+	// The customer-facing code. Regardless of case, this code must be unique across all active promotion codes for each customer. Valid characters are lower case letters (a-z), upper case letters (A-Z), digits (0-9), and dashes (-).
 	Code pulumi.StringOutput `pulumi:"code"`
-	// The customer that this promotion code can be used by. If not set, the promotion code can be used by all customers.
+	// Time at which the object was created. Measured in seconds since the Unix epoch.
+	Created pulumi.Float64Output `pulumi:"created"`
+	// The customer who can use this promotion code.
 	Customer pulumi.StringOutput `pulumi:"customer"`
-	// The account that this promotion code can be used by. If not set, the promotion code can be used by all accounts.
+	// The account representing the customer who can use this promotion code.
 	CustomerAccount pulumi.StringOutput `pulumi:"customerAccount"`
-	// The timestamp at which this promotion code will expire. If the coupon has specified a <span pulumi-lang-nodejs="`redeemsBy`" pulumi-lang-dotnet="`RedeemsBy`" pulumi-lang-go="`redeemsBy`" pulumi-lang-python="`redeems_by`" pulumi-lang-yaml="`redeemsBy`" pulumi-lang-java="`redeemsBy`" pulumi-lang-hcl="`redeems_by`">`redeemsBy`</span>, then this value cannot be after the coupon's <span pulumi-lang-nodejs="`redeemsBy`" pulumi-lang-dotnet="`RedeemsBy`" pulumi-lang-go="`redeemsBy`" pulumi-lang-python="`redeems_by`" pulumi-lang-yaml="`redeemsBy`" pulumi-lang-java="`redeemsBy`" pulumi-lang-hcl="`redeems_by`">`redeemsBy`</span>.
+	// Date at which the promotion code can no longer be redeemed.
 	ExpiresAt pulumi.Float64Output `pulumi:"expiresAt"`
-	// A positive integer specifying the number of times the promotion code can be redeemed. If the coupon has specified a <span pulumi-lang-nodejs="`maxRedemptions`" pulumi-lang-dotnet="`MaxRedemptions`" pulumi-lang-go="`maxRedemptions`" pulumi-lang-python="`max_redemptions`" pulumi-lang-yaml="`maxRedemptions`" pulumi-lang-java="`maxRedemptions`" pulumi-lang-hcl="`max_redemptions`">`maxRedemptions`</span>, then this value cannot be greater than the coupon's <span pulumi-lang-nodejs="`maxRedemptions`" pulumi-lang-dotnet="`MaxRedemptions`" pulumi-lang-go="`maxRedemptions`" pulumi-lang-python="`max_redemptions`" pulumi-lang-yaml="`maxRedemptions`" pulumi-lang-java="`maxRedemptions`" pulumi-lang-hcl="`max_redemptions`">`maxRedemptions`</span>.
+	// If the object exists in live mode, the value is <span pulumi-lang-nodejs="`true`" pulumi-lang-dotnet="`True`" pulumi-lang-go="`true`" pulumi-lang-python="`true`" pulumi-lang-yaml="`true`" pulumi-lang-java="`true`" pulumi-lang-hcl="`true`">`true`</span>. If the object exists in test mode, the value is <span pulumi-lang-nodejs="`false`" pulumi-lang-dotnet="`False`" pulumi-lang-go="`false`" pulumi-lang-python="`false`" pulumi-lang-yaml="`false`" pulumi-lang-java="`false`" pulumi-lang-hcl="`false`">`false`</span>.
+	Livemode pulumi.BoolOutput `pulumi:"livemode"`
+	// Maximum number of times this promotion code can be redeemed.
 	MaxRedemptions pulumi.Float64Output `pulumi:"maxRedemptions"`
-	// Set of [key-value pairs](https://stripe.com/docs/api/metadata) that you can attach to an object. This can be useful for storing additional information about the object in a structured format. Individual keys can be unset by posting an empty value to them. All keys can be unset by posting an empty value to <span pulumi-lang-nodejs="`metadata`" pulumi-lang-dotnet="`Metadata`" pulumi-lang-go="`metadata`" pulumi-lang-python="`metadata`" pulumi-lang-yaml="`metadata`" pulumi-lang-java="`metadata`" pulumi-lang-hcl="`metadata`">`metadata`</span>.
+	// Set of [key-value pairs](https://docs.stripe.com/api/metadata) that you can attach to an object. This can be useful for storing additional information about the object in a structured format.
 	Metadata pulumi.StringMapOutput `pulumi:"metadata"`
-	// The promotion referenced by this promotion code.
-	Promotion PromotionCodePromotionOutput `pulumi:"promotion"`
-	// Settings that restrict the redemption of the promotion code.
-	Restrictions PromotionCodeRestrictionsPtrOutput `pulumi:"restrictions"`
+	// String representing the object's type. Objects of the same type share the same value.
+	Object       pulumi.StringOutput                 `pulumi:"object"`
+	Promotions   PromotionCodePromotionArrayOutput   `pulumi:"promotions"`
+	Restrictions PromotionCodeRestrictionArrayOutput `pulumi:"restrictions"`
 	// Number of times this promotion code has been used.
 	TimesRedeemed pulumi.Float64Output `pulumi:"timesRedeemed"`
 }
@@ -41,12 +44,9 @@ type PromotionCode struct {
 func NewPromotionCode(ctx *pulumi.Context,
 	name string, args *PromotionCodeArgs, opts ...pulumi.ResourceOption) (*PromotionCode, error) {
 	if args == nil {
-		return nil, errors.New("missing one or more required arguments")
+		args = &PromotionCodeArgs{}
 	}
 
-	if args.Promotion == nil {
-		return nil, errors.New("invalid value for required argument 'Promotion'")
-	}
 	opts = internal.PkgResourceDefaultOpts(opts)
 	ref, err := internal.PkgGetPackageRef(ctx)
 	if err != nil {
@@ -78,47 +78,55 @@ func GetPromotionCode(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering PromotionCode resources.
 type promotionCodeState struct {
-	// Whether the promotion code is currently active.
+	// Whether the promotion code is currently active. A promotion code is only active if the coupon is also valid.
 	Active *bool `pulumi:"active"`
-	// The customer-facing code. Regardless of case, this code must be unique across all active promotion codes for a specific customer. Valid characters are lower case letters (a-z), upper case letters (A-Z), and digits (0-9). If left blank, we will generate one automatically.
+	// The customer-facing code. Regardless of case, this code must be unique across all active promotion codes for each customer. Valid characters are lower case letters (a-z), upper case letters (A-Z), digits (0-9), and dashes (-).
 	Code *string `pulumi:"code"`
-	// The customer that this promotion code can be used by. If not set, the promotion code can be used by all customers.
+	// Time at which the object was created. Measured in seconds since the Unix epoch.
+	Created *float64 `pulumi:"created"`
+	// The customer who can use this promotion code.
 	Customer *string `pulumi:"customer"`
-	// The account that this promotion code can be used by. If not set, the promotion code can be used by all accounts.
+	// The account representing the customer who can use this promotion code.
 	CustomerAccount *string `pulumi:"customerAccount"`
-	// The timestamp at which this promotion code will expire. If the coupon has specified a <span pulumi-lang-nodejs="`redeemsBy`" pulumi-lang-dotnet="`RedeemsBy`" pulumi-lang-go="`redeemsBy`" pulumi-lang-python="`redeems_by`" pulumi-lang-yaml="`redeemsBy`" pulumi-lang-java="`redeemsBy`" pulumi-lang-hcl="`redeems_by`">`redeemsBy`</span>, then this value cannot be after the coupon's <span pulumi-lang-nodejs="`redeemsBy`" pulumi-lang-dotnet="`RedeemsBy`" pulumi-lang-go="`redeemsBy`" pulumi-lang-python="`redeems_by`" pulumi-lang-yaml="`redeemsBy`" pulumi-lang-java="`redeemsBy`" pulumi-lang-hcl="`redeems_by`">`redeemsBy`</span>.
+	// Date at which the promotion code can no longer be redeemed.
 	ExpiresAt *float64 `pulumi:"expiresAt"`
-	// A positive integer specifying the number of times the promotion code can be redeemed. If the coupon has specified a <span pulumi-lang-nodejs="`maxRedemptions`" pulumi-lang-dotnet="`MaxRedemptions`" pulumi-lang-go="`maxRedemptions`" pulumi-lang-python="`max_redemptions`" pulumi-lang-yaml="`maxRedemptions`" pulumi-lang-java="`maxRedemptions`" pulumi-lang-hcl="`max_redemptions`">`maxRedemptions`</span>, then this value cannot be greater than the coupon's <span pulumi-lang-nodejs="`maxRedemptions`" pulumi-lang-dotnet="`MaxRedemptions`" pulumi-lang-go="`maxRedemptions`" pulumi-lang-python="`max_redemptions`" pulumi-lang-yaml="`maxRedemptions`" pulumi-lang-java="`maxRedemptions`" pulumi-lang-hcl="`max_redemptions`">`maxRedemptions`</span>.
+	// If the object exists in live mode, the value is <span pulumi-lang-nodejs="`true`" pulumi-lang-dotnet="`True`" pulumi-lang-go="`true`" pulumi-lang-python="`true`" pulumi-lang-yaml="`true`" pulumi-lang-java="`true`" pulumi-lang-hcl="`true`">`true`</span>. If the object exists in test mode, the value is <span pulumi-lang-nodejs="`false`" pulumi-lang-dotnet="`False`" pulumi-lang-go="`false`" pulumi-lang-python="`false`" pulumi-lang-yaml="`false`" pulumi-lang-java="`false`" pulumi-lang-hcl="`false`">`false`</span>.
+	Livemode *bool `pulumi:"livemode"`
+	// Maximum number of times this promotion code can be redeemed.
 	MaxRedemptions *float64 `pulumi:"maxRedemptions"`
-	// Set of [key-value pairs](https://stripe.com/docs/api/metadata) that you can attach to an object. This can be useful for storing additional information about the object in a structured format. Individual keys can be unset by posting an empty value to them. All keys can be unset by posting an empty value to <span pulumi-lang-nodejs="`metadata`" pulumi-lang-dotnet="`Metadata`" pulumi-lang-go="`metadata`" pulumi-lang-python="`metadata`" pulumi-lang-yaml="`metadata`" pulumi-lang-java="`metadata`" pulumi-lang-hcl="`metadata`">`metadata`</span>.
+	// Set of [key-value pairs](https://docs.stripe.com/api/metadata) that you can attach to an object. This can be useful for storing additional information about the object in a structured format.
 	Metadata map[string]string `pulumi:"metadata"`
-	// The promotion referenced by this promotion code.
-	Promotion *PromotionCodePromotion `pulumi:"promotion"`
-	// Settings that restrict the redemption of the promotion code.
-	Restrictions *PromotionCodeRestrictions `pulumi:"restrictions"`
+	// String representing the object's type. Objects of the same type share the same value.
+	Object       *string                    `pulumi:"object"`
+	Promotions   []PromotionCodePromotion   `pulumi:"promotions"`
+	Restrictions []PromotionCodeRestriction `pulumi:"restrictions"`
 	// Number of times this promotion code has been used.
 	TimesRedeemed *float64 `pulumi:"timesRedeemed"`
 }
 
 type PromotionCodeState struct {
-	// Whether the promotion code is currently active.
+	// Whether the promotion code is currently active. A promotion code is only active if the coupon is also valid.
 	Active pulumi.BoolPtrInput
-	// The customer-facing code. Regardless of case, this code must be unique across all active promotion codes for a specific customer. Valid characters are lower case letters (a-z), upper case letters (A-Z), and digits (0-9). If left blank, we will generate one automatically.
+	// The customer-facing code. Regardless of case, this code must be unique across all active promotion codes for each customer. Valid characters are lower case letters (a-z), upper case letters (A-Z), digits (0-9), and dashes (-).
 	Code pulumi.StringPtrInput
-	// The customer that this promotion code can be used by. If not set, the promotion code can be used by all customers.
+	// Time at which the object was created. Measured in seconds since the Unix epoch.
+	Created pulumi.Float64PtrInput
+	// The customer who can use this promotion code.
 	Customer pulumi.StringPtrInput
-	// The account that this promotion code can be used by. If not set, the promotion code can be used by all accounts.
+	// The account representing the customer who can use this promotion code.
 	CustomerAccount pulumi.StringPtrInput
-	// The timestamp at which this promotion code will expire. If the coupon has specified a <span pulumi-lang-nodejs="`redeemsBy`" pulumi-lang-dotnet="`RedeemsBy`" pulumi-lang-go="`redeemsBy`" pulumi-lang-python="`redeems_by`" pulumi-lang-yaml="`redeemsBy`" pulumi-lang-java="`redeemsBy`" pulumi-lang-hcl="`redeems_by`">`redeemsBy`</span>, then this value cannot be after the coupon's <span pulumi-lang-nodejs="`redeemsBy`" pulumi-lang-dotnet="`RedeemsBy`" pulumi-lang-go="`redeemsBy`" pulumi-lang-python="`redeems_by`" pulumi-lang-yaml="`redeemsBy`" pulumi-lang-java="`redeemsBy`" pulumi-lang-hcl="`redeems_by`">`redeemsBy`</span>.
+	// Date at which the promotion code can no longer be redeemed.
 	ExpiresAt pulumi.Float64PtrInput
-	// A positive integer specifying the number of times the promotion code can be redeemed. If the coupon has specified a <span pulumi-lang-nodejs="`maxRedemptions`" pulumi-lang-dotnet="`MaxRedemptions`" pulumi-lang-go="`maxRedemptions`" pulumi-lang-python="`max_redemptions`" pulumi-lang-yaml="`maxRedemptions`" pulumi-lang-java="`maxRedemptions`" pulumi-lang-hcl="`max_redemptions`">`maxRedemptions`</span>, then this value cannot be greater than the coupon's <span pulumi-lang-nodejs="`maxRedemptions`" pulumi-lang-dotnet="`MaxRedemptions`" pulumi-lang-go="`maxRedemptions`" pulumi-lang-python="`max_redemptions`" pulumi-lang-yaml="`maxRedemptions`" pulumi-lang-java="`maxRedemptions`" pulumi-lang-hcl="`max_redemptions`">`maxRedemptions`</span>.
+	// If the object exists in live mode, the value is <span pulumi-lang-nodejs="`true`" pulumi-lang-dotnet="`True`" pulumi-lang-go="`true`" pulumi-lang-python="`true`" pulumi-lang-yaml="`true`" pulumi-lang-java="`true`" pulumi-lang-hcl="`true`">`true`</span>. If the object exists in test mode, the value is <span pulumi-lang-nodejs="`false`" pulumi-lang-dotnet="`False`" pulumi-lang-go="`false`" pulumi-lang-python="`false`" pulumi-lang-yaml="`false`" pulumi-lang-java="`false`" pulumi-lang-hcl="`false`">`false`</span>.
+	Livemode pulumi.BoolPtrInput
+	// Maximum number of times this promotion code can be redeemed.
 	MaxRedemptions pulumi.Float64PtrInput
-	// Set of [key-value pairs](https://stripe.com/docs/api/metadata) that you can attach to an object. This can be useful for storing additional information about the object in a structured format. Individual keys can be unset by posting an empty value to them. All keys can be unset by posting an empty value to <span pulumi-lang-nodejs="`metadata`" pulumi-lang-dotnet="`Metadata`" pulumi-lang-go="`metadata`" pulumi-lang-python="`metadata`" pulumi-lang-yaml="`metadata`" pulumi-lang-java="`metadata`" pulumi-lang-hcl="`metadata`">`metadata`</span>.
+	// Set of [key-value pairs](https://docs.stripe.com/api/metadata) that you can attach to an object. This can be useful for storing additional information about the object in a structured format.
 	Metadata pulumi.StringMapInput
-	// The promotion referenced by this promotion code.
-	Promotion PromotionCodePromotionPtrInput
-	// Settings that restrict the redemption of the promotion code.
-	Restrictions PromotionCodeRestrictionsPtrInput
+	// String representing the object's type. Objects of the same type share the same value.
+	Object       pulumi.StringPtrInput
+	Promotions   PromotionCodePromotionArrayInput
+	Restrictions PromotionCodeRestrictionArrayInput
 	// Number of times this promotion code has been used.
 	TimesRedeemed pulumi.Float64PtrInput
 }
@@ -128,46 +136,42 @@ func (PromotionCodeState) ElementType() reflect.Type {
 }
 
 type promotionCodeArgs struct {
-	// Whether the promotion code is currently active.
+	// Whether the promotion code is currently active. A promotion code is only active if the coupon is also valid.
 	Active *bool `pulumi:"active"`
-	// The customer-facing code. Regardless of case, this code must be unique across all active promotion codes for a specific customer. Valid characters are lower case letters (a-z), upper case letters (A-Z), and digits (0-9). If left blank, we will generate one automatically.
+	// The customer-facing code. Regardless of case, this code must be unique across all active promotion codes for each customer. Valid characters are lower case letters (a-z), upper case letters (A-Z), digits (0-9), and dashes (-).
 	Code *string `pulumi:"code"`
-	// The customer that this promotion code can be used by. If not set, the promotion code can be used by all customers.
+	// The customer who can use this promotion code.
 	Customer *string `pulumi:"customer"`
-	// The account that this promotion code can be used by. If not set, the promotion code can be used by all accounts.
+	// The account representing the customer who can use this promotion code.
 	CustomerAccount *string `pulumi:"customerAccount"`
-	// The timestamp at which this promotion code will expire. If the coupon has specified a <span pulumi-lang-nodejs="`redeemsBy`" pulumi-lang-dotnet="`RedeemsBy`" pulumi-lang-go="`redeemsBy`" pulumi-lang-python="`redeems_by`" pulumi-lang-yaml="`redeemsBy`" pulumi-lang-java="`redeemsBy`" pulumi-lang-hcl="`redeems_by`">`redeemsBy`</span>, then this value cannot be after the coupon's <span pulumi-lang-nodejs="`redeemsBy`" pulumi-lang-dotnet="`RedeemsBy`" pulumi-lang-go="`redeemsBy`" pulumi-lang-python="`redeems_by`" pulumi-lang-yaml="`redeemsBy`" pulumi-lang-java="`redeemsBy`" pulumi-lang-hcl="`redeems_by`">`redeemsBy`</span>.
+	// Date at which the promotion code can no longer be redeemed.
 	ExpiresAt *float64 `pulumi:"expiresAt"`
-	// A positive integer specifying the number of times the promotion code can be redeemed. If the coupon has specified a <span pulumi-lang-nodejs="`maxRedemptions`" pulumi-lang-dotnet="`MaxRedemptions`" pulumi-lang-go="`maxRedemptions`" pulumi-lang-python="`max_redemptions`" pulumi-lang-yaml="`maxRedemptions`" pulumi-lang-java="`maxRedemptions`" pulumi-lang-hcl="`max_redemptions`">`maxRedemptions`</span>, then this value cannot be greater than the coupon's <span pulumi-lang-nodejs="`maxRedemptions`" pulumi-lang-dotnet="`MaxRedemptions`" pulumi-lang-go="`maxRedemptions`" pulumi-lang-python="`max_redemptions`" pulumi-lang-yaml="`maxRedemptions`" pulumi-lang-java="`maxRedemptions`" pulumi-lang-hcl="`max_redemptions`">`maxRedemptions`</span>.
+	// Maximum number of times this promotion code can be redeemed.
 	MaxRedemptions *float64 `pulumi:"maxRedemptions"`
-	// Set of [key-value pairs](https://stripe.com/docs/api/metadata) that you can attach to an object. This can be useful for storing additional information about the object in a structured format. Individual keys can be unset by posting an empty value to them. All keys can be unset by posting an empty value to <span pulumi-lang-nodejs="`metadata`" pulumi-lang-dotnet="`Metadata`" pulumi-lang-go="`metadata`" pulumi-lang-python="`metadata`" pulumi-lang-yaml="`metadata`" pulumi-lang-java="`metadata`" pulumi-lang-hcl="`metadata`">`metadata`</span>.
-	Metadata map[string]string `pulumi:"metadata"`
-	// The promotion referenced by this promotion code.
-	Promotion PromotionCodePromotion `pulumi:"promotion"`
-	// Settings that restrict the redemption of the promotion code.
-	Restrictions *PromotionCodeRestrictions `pulumi:"restrictions"`
+	// Set of [key-value pairs](https://docs.stripe.com/api/metadata) that you can attach to an object. This can be useful for storing additional information about the object in a structured format.
+	Metadata     map[string]string          `pulumi:"metadata"`
+	Promotions   []PromotionCodePromotion   `pulumi:"promotions"`
+	Restrictions []PromotionCodeRestriction `pulumi:"restrictions"`
 }
 
 // The set of arguments for constructing a PromotionCode resource.
 type PromotionCodeArgs struct {
-	// Whether the promotion code is currently active.
+	// Whether the promotion code is currently active. A promotion code is only active if the coupon is also valid.
 	Active pulumi.BoolPtrInput
-	// The customer-facing code. Regardless of case, this code must be unique across all active promotion codes for a specific customer. Valid characters are lower case letters (a-z), upper case letters (A-Z), and digits (0-9). If left blank, we will generate one automatically.
+	// The customer-facing code. Regardless of case, this code must be unique across all active promotion codes for each customer. Valid characters are lower case letters (a-z), upper case letters (A-Z), digits (0-9), and dashes (-).
 	Code pulumi.StringPtrInput
-	// The customer that this promotion code can be used by. If not set, the promotion code can be used by all customers.
+	// The customer who can use this promotion code.
 	Customer pulumi.StringPtrInput
-	// The account that this promotion code can be used by. If not set, the promotion code can be used by all accounts.
+	// The account representing the customer who can use this promotion code.
 	CustomerAccount pulumi.StringPtrInput
-	// The timestamp at which this promotion code will expire. If the coupon has specified a <span pulumi-lang-nodejs="`redeemsBy`" pulumi-lang-dotnet="`RedeemsBy`" pulumi-lang-go="`redeemsBy`" pulumi-lang-python="`redeems_by`" pulumi-lang-yaml="`redeemsBy`" pulumi-lang-java="`redeemsBy`" pulumi-lang-hcl="`redeems_by`">`redeemsBy`</span>, then this value cannot be after the coupon's <span pulumi-lang-nodejs="`redeemsBy`" pulumi-lang-dotnet="`RedeemsBy`" pulumi-lang-go="`redeemsBy`" pulumi-lang-python="`redeems_by`" pulumi-lang-yaml="`redeemsBy`" pulumi-lang-java="`redeemsBy`" pulumi-lang-hcl="`redeems_by`">`redeemsBy`</span>.
+	// Date at which the promotion code can no longer be redeemed.
 	ExpiresAt pulumi.Float64PtrInput
-	// A positive integer specifying the number of times the promotion code can be redeemed. If the coupon has specified a <span pulumi-lang-nodejs="`maxRedemptions`" pulumi-lang-dotnet="`MaxRedemptions`" pulumi-lang-go="`maxRedemptions`" pulumi-lang-python="`max_redemptions`" pulumi-lang-yaml="`maxRedemptions`" pulumi-lang-java="`maxRedemptions`" pulumi-lang-hcl="`max_redemptions`">`maxRedemptions`</span>, then this value cannot be greater than the coupon's <span pulumi-lang-nodejs="`maxRedemptions`" pulumi-lang-dotnet="`MaxRedemptions`" pulumi-lang-go="`maxRedemptions`" pulumi-lang-python="`max_redemptions`" pulumi-lang-yaml="`maxRedemptions`" pulumi-lang-java="`maxRedemptions`" pulumi-lang-hcl="`max_redemptions`">`maxRedemptions`</span>.
+	// Maximum number of times this promotion code can be redeemed.
 	MaxRedemptions pulumi.Float64PtrInput
-	// Set of [key-value pairs](https://stripe.com/docs/api/metadata) that you can attach to an object. This can be useful for storing additional information about the object in a structured format. Individual keys can be unset by posting an empty value to them. All keys can be unset by posting an empty value to <span pulumi-lang-nodejs="`metadata`" pulumi-lang-dotnet="`Metadata`" pulumi-lang-go="`metadata`" pulumi-lang-python="`metadata`" pulumi-lang-yaml="`metadata`" pulumi-lang-java="`metadata`" pulumi-lang-hcl="`metadata`">`metadata`</span>.
-	Metadata pulumi.StringMapInput
-	// The promotion referenced by this promotion code.
-	Promotion PromotionCodePromotionInput
-	// Settings that restrict the redemption of the promotion code.
-	Restrictions PromotionCodeRestrictionsPtrInput
+	// Set of [key-value pairs](https://docs.stripe.com/api/metadata) that you can attach to an object. This can be useful for storing additional information about the object in a structured format.
+	Metadata     pulumi.StringMapInput
+	Promotions   PromotionCodePromotionArrayInput
+	Restrictions PromotionCodeRestrictionArrayInput
 }
 
 func (PromotionCodeArgs) ElementType() reflect.Type {
@@ -207,49 +211,62 @@ func (o PromotionCodeOutput) ToPromotionCodeOutputWithContext(ctx context.Contex
 	return o
 }
 
-// Whether the promotion code is currently active.
+// Whether the promotion code is currently active. A promotion code is only active if the coupon is also valid.
 func (o PromotionCodeOutput) Active() pulumi.BoolOutput {
 	return o.ApplyT(func(v *PromotionCode) pulumi.BoolOutput { return v.Active }).(pulumi.BoolOutput)
 }
 
-// The customer-facing code. Regardless of case, this code must be unique across all active promotion codes for a specific customer. Valid characters are lower case letters (a-z), upper case letters (A-Z), and digits (0-9). If left blank, we will generate one automatically.
+// The customer-facing code. Regardless of case, this code must be unique across all active promotion codes for each customer. Valid characters are lower case letters (a-z), upper case letters (A-Z), digits (0-9), and dashes (-).
 func (o PromotionCodeOutput) Code() pulumi.StringOutput {
 	return o.ApplyT(func(v *PromotionCode) pulumi.StringOutput { return v.Code }).(pulumi.StringOutput)
 }
 
-// The customer that this promotion code can be used by. If not set, the promotion code can be used by all customers.
+// Time at which the object was created. Measured in seconds since the Unix epoch.
+func (o PromotionCodeOutput) Created() pulumi.Float64Output {
+	return o.ApplyT(func(v *PromotionCode) pulumi.Float64Output { return v.Created }).(pulumi.Float64Output)
+}
+
+// The customer who can use this promotion code.
 func (o PromotionCodeOutput) Customer() pulumi.StringOutput {
 	return o.ApplyT(func(v *PromotionCode) pulumi.StringOutput { return v.Customer }).(pulumi.StringOutput)
 }
 
-// The account that this promotion code can be used by. If not set, the promotion code can be used by all accounts.
+// The account representing the customer who can use this promotion code.
 func (o PromotionCodeOutput) CustomerAccount() pulumi.StringOutput {
 	return o.ApplyT(func(v *PromotionCode) pulumi.StringOutput { return v.CustomerAccount }).(pulumi.StringOutput)
 }
 
-// The timestamp at which this promotion code will expire. If the coupon has specified a <span pulumi-lang-nodejs="`redeemsBy`" pulumi-lang-dotnet="`RedeemsBy`" pulumi-lang-go="`redeemsBy`" pulumi-lang-python="`redeems_by`" pulumi-lang-yaml="`redeemsBy`" pulumi-lang-java="`redeemsBy`" pulumi-lang-hcl="`redeems_by`">`redeemsBy`</span>, then this value cannot be after the coupon's <span pulumi-lang-nodejs="`redeemsBy`" pulumi-lang-dotnet="`RedeemsBy`" pulumi-lang-go="`redeemsBy`" pulumi-lang-python="`redeems_by`" pulumi-lang-yaml="`redeemsBy`" pulumi-lang-java="`redeemsBy`" pulumi-lang-hcl="`redeems_by`">`redeemsBy`</span>.
+// Date at which the promotion code can no longer be redeemed.
 func (o PromotionCodeOutput) ExpiresAt() pulumi.Float64Output {
 	return o.ApplyT(func(v *PromotionCode) pulumi.Float64Output { return v.ExpiresAt }).(pulumi.Float64Output)
 }
 
-// A positive integer specifying the number of times the promotion code can be redeemed. If the coupon has specified a <span pulumi-lang-nodejs="`maxRedemptions`" pulumi-lang-dotnet="`MaxRedemptions`" pulumi-lang-go="`maxRedemptions`" pulumi-lang-python="`max_redemptions`" pulumi-lang-yaml="`maxRedemptions`" pulumi-lang-java="`maxRedemptions`" pulumi-lang-hcl="`max_redemptions`">`maxRedemptions`</span>, then this value cannot be greater than the coupon's <span pulumi-lang-nodejs="`maxRedemptions`" pulumi-lang-dotnet="`MaxRedemptions`" pulumi-lang-go="`maxRedemptions`" pulumi-lang-python="`max_redemptions`" pulumi-lang-yaml="`maxRedemptions`" pulumi-lang-java="`maxRedemptions`" pulumi-lang-hcl="`max_redemptions`">`maxRedemptions`</span>.
+// If the object exists in live mode, the value is <span pulumi-lang-nodejs="`true`" pulumi-lang-dotnet="`True`" pulumi-lang-go="`true`" pulumi-lang-python="`true`" pulumi-lang-yaml="`true`" pulumi-lang-java="`true`" pulumi-lang-hcl="`true`">`true`</span>. If the object exists in test mode, the value is <span pulumi-lang-nodejs="`false`" pulumi-lang-dotnet="`False`" pulumi-lang-go="`false`" pulumi-lang-python="`false`" pulumi-lang-yaml="`false`" pulumi-lang-java="`false`" pulumi-lang-hcl="`false`">`false`</span>.
+func (o PromotionCodeOutput) Livemode() pulumi.BoolOutput {
+	return o.ApplyT(func(v *PromotionCode) pulumi.BoolOutput { return v.Livemode }).(pulumi.BoolOutput)
+}
+
+// Maximum number of times this promotion code can be redeemed.
 func (o PromotionCodeOutput) MaxRedemptions() pulumi.Float64Output {
 	return o.ApplyT(func(v *PromotionCode) pulumi.Float64Output { return v.MaxRedemptions }).(pulumi.Float64Output)
 }
 
-// Set of [key-value pairs](https://stripe.com/docs/api/metadata) that you can attach to an object. This can be useful for storing additional information about the object in a structured format. Individual keys can be unset by posting an empty value to them. All keys can be unset by posting an empty value to <span pulumi-lang-nodejs="`metadata`" pulumi-lang-dotnet="`Metadata`" pulumi-lang-go="`metadata`" pulumi-lang-python="`metadata`" pulumi-lang-yaml="`metadata`" pulumi-lang-java="`metadata`" pulumi-lang-hcl="`metadata`">`metadata`</span>.
+// Set of [key-value pairs](https://docs.stripe.com/api/metadata) that you can attach to an object. This can be useful for storing additional information about the object in a structured format.
 func (o PromotionCodeOutput) Metadata() pulumi.StringMapOutput {
 	return o.ApplyT(func(v *PromotionCode) pulumi.StringMapOutput { return v.Metadata }).(pulumi.StringMapOutput)
 }
 
-// The promotion referenced by this promotion code.
-func (o PromotionCodeOutput) Promotion() PromotionCodePromotionOutput {
-	return o.ApplyT(func(v *PromotionCode) PromotionCodePromotionOutput { return v.Promotion }).(PromotionCodePromotionOutput)
+// String representing the object's type. Objects of the same type share the same value.
+func (o PromotionCodeOutput) Object() pulumi.StringOutput {
+	return o.ApplyT(func(v *PromotionCode) pulumi.StringOutput { return v.Object }).(pulumi.StringOutput)
 }
 
-// Settings that restrict the redemption of the promotion code.
-func (o PromotionCodeOutput) Restrictions() PromotionCodeRestrictionsPtrOutput {
-	return o.ApplyT(func(v *PromotionCode) PromotionCodeRestrictionsPtrOutput { return v.Restrictions }).(PromotionCodeRestrictionsPtrOutput)
+func (o PromotionCodeOutput) Promotions() PromotionCodePromotionArrayOutput {
+	return o.ApplyT(func(v *PromotionCode) PromotionCodePromotionArrayOutput { return v.Promotions }).(PromotionCodePromotionArrayOutput)
+}
+
+func (o PromotionCodeOutput) Restrictions() PromotionCodeRestrictionArrayOutput {
+	return o.ApplyT(func(v *PromotionCode) PromotionCodeRestrictionArrayOutput { return v.Restrictions }).(PromotionCodeRestrictionArrayOutput)
 }
 
 // Number of times this promotion code has been used.

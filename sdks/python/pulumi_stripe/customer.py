@@ -21,52 +21,65 @@ __all__ = ['CustomerArgs', 'Customer']
 @pulumi.input_type
 class CustomerArgs:
     def __init__(__self__, *,
-                 address: pulumi.Input[Optional['CustomerAddressArgs']] = None,
+                 addresses: pulumi.Input[Optional[Sequence[pulumi.Input['CustomerAddressArgs']]]] = None,
                  balance: pulumi.Input[Optional[_builtins.float]] = None,
                  business_name: pulumi.Input[Optional[_builtins.str]] = None,
-                 cash_balance: pulumi.Input[Optional['CustomerCashBalanceArgs']] = None,
+                 cash_balances: pulumi.Input[Optional[Sequence[pulumi.Input['CustomerCashBalanceArgs']]]] = None,
+                 default_source: pulumi.Input[Optional[_builtins.str]] = None,
                  description: pulumi.Input[Optional[_builtins.str]] = None,
                  email: pulumi.Input[Optional[_builtins.str]] = None,
                  individual_name: pulumi.Input[Optional[_builtins.str]] = None,
                  invoice_prefix: pulumi.Input[Optional[_builtins.str]] = None,
-                 invoice_settings: pulumi.Input[Optional['CustomerInvoiceSettingsArgs']] = None,
+                 invoice_settings: pulumi.Input[Optional[Sequence[pulumi.Input['CustomerInvoiceSettingArgs']]]] = None,
                  metadata: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
                  name: pulumi.Input[Optional[_builtins.str]] = None,
                  next_invoice_sequence: pulumi.Input[Optional[_builtins.float]] = None,
                  payment_method: pulumi.Input[Optional[_builtins.str]] = None,
                  phone: pulumi.Input[Optional[_builtins.str]] = None,
                  preferred_locales: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 shipping: pulumi.Input[Optional['CustomerShippingArgs']] = None,
-                 tax: pulumi.Input[Optional['CustomerTaxArgs']] = None,
+                 shippings: pulumi.Input[Optional[Sequence[pulumi.Input['CustomerShippingArgs']]]] = None,
+                 source: pulumi.Input[Optional[_builtins.str]] = None,
                  tax_exempt: pulumi.Input[Optional[_builtins.str]] = None,
                  tax_id_datas: pulumi.Input[Optional[Sequence[pulumi.Input['CustomerTaxIdDataArgs']]]] = None,
-                 test_clock: pulumi.Input[Optional[_builtins.str]] = None):
+                 taxes: pulumi.Input[Optional[Sequence[pulumi.Input['CustomerTaxArgs']]]] = None,
+                 test_clock: pulumi.Input[Optional[_builtins.str]] = None,
+                 validate: pulumi.Input[Optional[_builtins.bool]] = None):
         """
         The set of arguments for constructing a Customer resource.
 
-        :param pulumi.Input[_builtins.float] balance: An integer amount in cents (or local equivalent) that represents the customer's current balance, which affect the customer's future invoices. A negative amount represents a credit that decreases the amount due on an invoice; a positive amount increases the amount due on an invoice.
-        :param pulumi.Input['CustomerCashBalanceArgs'] cash_balance: Balance information and default balance settings for this customer.
-        :param pulumi.Input[_builtins.str] description: An arbitrary string that you can attach to a customer object. It is displayed alongside the customer in the dashboard.
-        :param pulumi.Input[_builtins.str] email: Customer's email address. It's displayed alongside the customer in your dashboard and can be useful for searching and tracking. This may be up to *512 characters*.
-        :param pulumi.Input[_builtins.str] invoice_prefix: The prefix for the customer used to generate unique invoice numbers. Must be 3–12 uppercase letters or numbers.
-        :param pulumi.Input['CustomerInvoiceSettingsArgs'] invoice_settings: Default invoice settings for this customer.
+        :param pulumi.Input[Sequence[pulumi.Input['CustomerAddressArgs']]] addresses: The customer's address.
+        :param pulumi.Input[_builtins.float] balance: The current balance, if any, that's stored on the customer in their default currency. If negative, the customer has credit to apply to their next invoice. If positive, the customer has an amount owed that's added to their next invoice. The balance only considers amounts that Stripe hasn't successfully applied to any invoice. It doesn't reflect unpaid invoices. This balance is only taken into account after invoices finalize. For multi-currency balances, see <span pulumi-lang-nodejs="[invoiceCreditBalance]" pulumi-lang-dotnet="[InvoiceCreditBalance]" pulumi-lang-go="[invoiceCreditBalance]" pulumi-lang-python="[invoice_credit_balance]" pulumi-lang-yaml="[invoiceCreditBalance]" pulumi-lang-java="[invoiceCreditBalance]" pulumi-lang-hcl="[invoice_credit_balance]">[invoiceCreditBalance]</span>(https://docs.stripe.com/api/customers/object#customer_object-invoice_credit_balance).
+        :param pulumi.Input[_builtins.str] business_name: The customer's business name.
+        :param pulumi.Input[Sequence[pulumi.Input['CustomerCashBalanceArgs']]] cash_balances: The current funds being held by Stripe on behalf of the customer. You can apply these funds towards payment intents when the source is <span pulumi-lang-nodejs=""cashBalance"" pulumi-lang-dotnet=""CashBalance"" pulumi-lang-go=""cashBalance"" pulumi-lang-python=""cash_balance"" pulumi-lang-yaml=""cashBalance"" pulumi-lang-java=""cashBalance"" pulumi-lang-hcl=""cash_balance"">"cashBalance"</span>. The `settings<span pulumi-lang-nodejs="[reconciliationMode]" pulumi-lang-dotnet="[ReconciliationMode]" pulumi-lang-go="[reconciliationMode]" pulumi-lang-python="[reconciliation_mode]" pulumi-lang-yaml="[reconciliationMode]" pulumi-lang-java="[reconciliationMode]" pulumi-lang-hcl="[reconciliation_mode]">[reconciliationMode]</span>` field describes if these funds apply to these payment intents manually or automatically.
+        :param pulumi.Input[_builtins.str] default_source: ID of the default payment source for the customer.
+               
+               If you use payment methods created through the PaymentMethods API, see the [invoice_settings.default_payment_method](https://docs.stripe.com/api/customers/object#customer_object-invoice_settings-default_payment_method) field instead.
+        :param pulumi.Input[_builtins.str] description: An arbitrary string attached to the object. Often useful for displaying to users.
+        :param pulumi.Input[_builtins.str] email: The customer's email address.
+        :param pulumi.Input[_builtins.str] individual_name: The customer's individual name.
+        :param pulumi.Input[_builtins.str] invoice_prefix: The prefix for the customer used to generate unique invoice numbers.
+        :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] metadata: Set of [key-value pairs](https://docs.stripe.com/api/metadata) that you can attach to an object. This can be useful for storing additional information about the object in a structured format.
         :param pulumi.Input[_builtins.str] name: The customer's full name or business name.
-        :param pulumi.Input[_builtins.float] next_invoice_sequence: The sequence to be used on the customer's next invoice. Defaults to 1.
+        :param pulumi.Input[_builtins.float] next_invoice_sequence: The suffix of the customer's next invoice number (for example, 0001). When the account uses account level sequencing, this parameter is ignored in API requests and the field omitted in API responses.
         :param pulumi.Input[_builtins.str] phone: The customer's phone number.
-        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] preferred_locales: Customer's preferred languages, ordered by preference.
-        :param pulumi.Input['CustomerTaxArgs'] tax: Tax details about the customer.
-        :param pulumi.Input[_builtins.str] tax_exempt: The customer's tax exemption. One of <span pulumi-lang-nodejs="`none`" pulumi-lang-dotnet="`None`" pulumi-lang-go="`none`" pulumi-lang-python="`none`" pulumi-lang-yaml="`none`" pulumi-lang-java="`none`" pulumi-lang-hcl="`none`">`none`</span>, <span pulumi-lang-nodejs="`exempt`" pulumi-lang-dotnet="`Exempt`" pulumi-lang-go="`exempt`" pulumi-lang-python="`exempt`" pulumi-lang-yaml="`exempt`" pulumi-lang-java="`exempt`" pulumi-lang-hcl="`exempt`">`exempt`</span>, or <span pulumi-lang-nodejs="`reverse`" pulumi-lang-dotnet="`Reverse`" pulumi-lang-go="`reverse`" pulumi-lang-python="`reverse`" pulumi-lang-yaml="`reverse`" pulumi-lang-java="`reverse`" pulumi-lang-hcl="`reverse`">`reverse`</span>.
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] preferred_locales: The customer's preferred locales (languages), ordered by preference.
+        :param pulumi.Input[Sequence[pulumi.Input['CustomerShippingArgs']]] shippings: Mailing and shipping address for the customer. Appears on invoices emailed to this customer.
+        :param pulumi.Input[_builtins.str] source: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        :param pulumi.Input[_builtins.str] tax_exempt: Describes the customer's tax exemption status, which is <span pulumi-lang-nodejs="`none`" pulumi-lang-dotnet="`None`" pulumi-lang-go="`none`" pulumi-lang-python="`none`" pulumi-lang-yaml="`none`" pulumi-lang-java="`none`" pulumi-lang-hcl="`none`">`none`</span>, <span pulumi-lang-nodejs="`exempt`" pulumi-lang-dotnet="`Exempt`" pulumi-lang-go="`exempt`" pulumi-lang-python="`exempt`" pulumi-lang-yaml="`exempt`" pulumi-lang-java="`exempt`" pulumi-lang-hcl="`exempt`">`exempt`</span>, or <span pulumi-lang-nodejs="`reverse`" pulumi-lang-dotnet="`Reverse`" pulumi-lang-go="`reverse`" pulumi-lang-python="`reverse`" pulumi-lang-yaml="`reverse`" pulumi-lang-java="`reverse`" pulumi-lang-hcl="`reverse`">`reverse`</span>. When set to <span pulumi-lang-nodejs="`reverse`" pulumi-lang-dotnet="`Reverse`" pulumi-lang-go="`reverse`" pulumi-lang-python="`reverse`" pulumi-lang-yaml="`reverse`" pulumi-lang-java="`reverse`" pulumi-lang-hcl="`reverse`">`reverse`</span>, invoice and receipt PDFs include the following text: **"Reverse charge"**.
         :param pulumi.Input[Sequence[pulumi.Input['CustomerTaxIdDataArgs']]] tax_id_datas: The customer's tax IDs.
-        :param pulumi.Input[_builtins.str] test_clock: ID of the test clock to attach to the customer.
+        :param pulumi.Input[_builtins.str] test_clock: ID of the test clock that this customer belongs to.
+        :param pulumi.Input[_builtins.bool] validate: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
         """
-        if address is not None:
-            pulumi.set(__self__, "address", address)
+        if addresses is not None:
+            pulumi.set(__self__, "addresses", addresses)
         if balance is not None:
             pulumi.set(__self__, "balance", balance)
         if business_name is not None:
             pulumi.set(__self__, "business_name", business_name)
-        if cash_balance is not None:
-            pulumi.set(__self__, "cash_balance", cash_balance)
+        if cash_balances is not None:
+            pulumi.set(__self__, "cash_balances", cash_balances)
+        if default_source is not None:
+            pulumi.set(__self__, "default_source", default_source)
         if description is not None:
             pulumi.set(__self__, "description", description)
         if email is not None:
@@ -89,31 +102,38 @@ class CustomerArgs:
             pulumi.set(__self__, "phone", phone)
         if preferred_locales is not None:
             pulumi.set(__self__, "preferred_locales", preferred_locales)
-        if shipping is not None:
-            pulumi.set(__self__, "shipping", shipping)
-        if tax is not None:
-            pulumi.set(__self__, "tax", tax)
+        if shippings is not None:
+            pulumi.set(__self__, "shippings", shippings)
+        if source is not None:
+            pulumi.set(__self__, "source", source)
         if tax_exempt is not None:
             pulumi.set(__self__, "tax_exempt", tax_exempt)
         if tax_id_datas is not None:
             pulumi.set(__self__, "tax_id_datas", tax_id_datas)
+        if taxes is not None:
+            pulumi.set(__self__, "taxes", taxes)
         if test_clock is not None:
             pulumi.set(__self__, "test_clock", test_clock)
+        if validate is not None:
+            pulumi.set(__self__, "validate", validate)
 
     @_builtins.property
     @pulumi.getter
-    def address(self) -> pulumi.Input[Optional['CustomerAddressArgs']]:
-        return pulumi.get(self, "address")
+    def addresses(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['CustomerAddressArgs']]]]:
+        """
+        The customer's address.
+        """
+        return pulumi.get(self, "addresses")
 
-    @address.setter
-    def address(self, value: pulumi.Input[Optional['CustomerAddressArgs']]):
-        pulumi.set(self, "address", value)
+    @addresses.setter
+    def addresses(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['CustomerAddressArgs']]]]):
+        pulumi.set(self, "addresses", value)
 
     @_builtins.property
     @pulumi.getter
     def balance(self) -> pulumi.Input[Optional[_builtins.float]]:
         """
-        An integer amount in cents (or local equivalent) that represents the customer's current balance, which affect the customer's future invoices. A negative amount represents a credit that decreases the amount due on an invoice; a positive amount increases the amount due on an invoice.
+        The current balance, if any, that's stored on the customer in their default currency. If negative, the customer has credit to apply to their next invoice. If positive, the customer has an amount owed that's added to their next invoice. The balance only considers amounts that Stripe hasn't successfully applied to any invoice. It doesn't reflect unpaid invoices. This balance is only taken into account after invoices finalize. For multi-currency balances, see <span pulumi-lang-nodejs="[invoiceCreditBalance]" pulumi-lang-dotnet="[InvoiceCreditBalance]" pulumi-lang-go="[invoiceCreditBalance]" pulumi-lang-python="[invoice_credit_balance]" pulumi-lang-yaml="[invoiceCreditBalance]" pulumi-lang-java="[invoiceCreditBalance]" pulumi-lang-hcl="[invoice_credit_balance]">[invoiceCreditBalance]</span>(https://docs.stripe.com/api/customers/object#customer_object-invoice_credit_balance).
         """
         return pulumi.get(self, "balance")
 
@@ -124,6 +144,9 @@ class CustomerArgs:
     @_builtins.property
     @pulumi.getter(name="businessName")
     def business_name(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        The customer's business name.
+        """
         return pulumi.get(self, "business_name")
 
     @business_name.setter
@@ -131,22 +154,36 @@ class CustomerArgs:
         pulumi.set(self, "business_name", value)
 
     @_builtins.property
-    @pulumi.getter(name="cashBalance")
-    def cash_balance(self) -> pulumi.Input[Optional['CustomerCashBalanceArgs']]:
+    @pulumi.getter(name="cashBalances")
+    def cash_balances(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['CustomerCashBalanceArgs']]]]:
         """
-        Balance information and default balance settings for this customer.
+        The current funds being held by Stripe on behalf of the customer. You can apply these funds towards payment intents when the source is <span pulumi-lang-nodejs=""cashBalance"" pulumi-lang-dotnet=""CashBalance"" pulumi-lang-go=""cashBalance"" pulumi-lang-python=""cash_balance"" pulumi-lang-yaml=""cashBalance"" pulumi-lang-java=""cashBalance"" pulumi-lang-hcl=""cash_balance"">"cashBalance"</span>. The `settings<span pulumi-lang-nodejs="[reconciliationMode]" pulumi-lang-dotnet="[ReconciliationMode]" pulumi-lang-go="[reconciliationMode]" pulumi-lang-python="[reconciliation_mode]" pulumi-lang-yaml="[reconciliationMode]" pulumi-lang-java="[reconciliationMode]" pulumi-lang-hcl="[reconciliation_mode]">[reconciliationMode]</span>` field describes if these funds apply to these payment intents manually or automatically.
         """
-        return pulumi.get(self, "cash_balance")
+        return pulumi.get(self, "cash_balances")
 
-    @cash_balance.setter
-    def cash_balance(self, value: pulumi.Input[Optional['CustomerCashBalanceArgs']]):
-        pulumi.set(self, "cash_balance", value)
+    @cash_balances.setter
+    def cash_balances(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['CustomerCashBalanceArgs']]]]):
+        pulumi.set(self, "cash_balances", value)
+
+    @_builtins.property
+    @pulumi.getter(name="defaultSource")
+    def default_source(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        ID of the default payment source for the customer.
+
+        If you use payment methods created through the PaymentMethods API, see the [invoice_settings.default_payment_method](https://docs.stripe.com/api/customers/object#customer_object-invoice_settings-default_payment_method) field instead.
+        """
+        return pulumi.get(self, "default_source")
+
+    @default_source.setter
+    def default_source(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "default_source", value)
 
     @_builtins.property
     @pulumi.getter
     def description(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
-        An arbitrary string that you can attach to a customer object. It is displayed alongside the customer in the dashboard.
+        An arbitrary string attached to the object. Often useful for displaying to users.
         """
         return pulumi.get(self, "description")
 
@@ -158,7 +195,7 @@ class CustomerArgs:
     @pulumi.getter
     def email(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
-        Customer's email address. It's displayed alongside the customer in your dashboard and can be useful for searching and tracking. This may be up to *512 characters*.
+        The customer's email address.
         """
         return pulumi.get(self, "email")
 
@@ -169,6 +206,9 @@ class CustomerArgs:
     @_builtins.property
     @pulumi.getter(name="individualName")
     def individual_name(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        The customer's individual name.
+        """
         return pulumi.get(self, "individual_name")
 
     @individual_name.setter
@@ -179,7 +219,7 @@ class CustomerArgs:
     @pulumi.getter(name="invoicePrefix")
     def invoice_prefix(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
-        The prefix for the customer used to generate unique invoice numbers. Must be 3–12 uppercase letters or numbers.
+        The prefix for the customer used to generate unique invoice numbers.
         """
         return pulumi.get(self, "invoice_prefix")
 
@@ -189,19 +229,19 @@ class CustomerArgs:
 
     @_builtins.property
     @pulumi.getter(name="invoiceSettings")
-    def invoice_settings(self) -> pulumi.Input[Optional['CustomerInvoiceSettingsArgs']]:
-        """
-        Default invoice settings for this customer.
-        """
+    def invoice_settings(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['CustomerInvoiceSettingArgs']]]]:
         return pulumi.get(self, "invoice_settings")
 
     @invoice_settings.setter
-    def invoice_settings(self, value: pulumi.Input[Optional['CustomerInvoiceSettingsArgs']]):
+    def invoice_settings(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['CustomerInvoiceSettingArgs']]]]):
         pulumi.set(self, "invoice_settings", value)
 
     @_builtins.property
     @pulumi.getter
     def metadata(self) -> pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]:
+        """
+        Set of [key-value pairs](https://docs.stripe.com/api/metadata) that you can attach to an object. This can be useful for storing additional information about the object in a structured format.
+        """
         return pulumi.get(self, "metadata")
 
     @metadata.setter
@@ -224,7 +264,7 @@ class CustomerArgs:
     @pulumi.getter(name="nextInvoiceSequence")
     def next_invoice_sequence(self) -> pulumi.Input[Optional[_builtins.float]]:
         """
-        The sequence to be used on the customer's next invoice. Defaults to 1.
+        The suffix of the customer's next invoice number (for example, 0001). When the account uses account level sequencing, this parameter is ignored in API requests and the field omitted in API responses.
         """
         return pulumi.get(self, "next_invoice_sequence")
 
@@ -257,7 +297,7 @@ class CustomerArgs:
     @pulumi.getter(name="preferredLocales")
     def preferred_locales(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
-        Customer's preferred languages, ordered by preference.
+        The customer's preferred locales (languages), ordered by preference.
         """
         return pulumi.get(self, "preferred_locales")
 
@@ -267,30 +307,33 @@ class CustomerArgs:
 
     @_builtins.property
     @pulumi.getter
-    def shipping(self) -> pulumi.Input[Optional['CustomerShippingArgs']]:
-        return pulumi.get(self, "shipping")
+    def shippings(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['CustomerShippingArgs']]]]:
+        """
+        Mailing and shipping address for the customer. Appears on invoices emailed to this customer.
+        """
+        return pulumi.get(self, "shippings")
 
-    @shipping.setter
-    def shipping(self, value: pulumi.Input[Optional['CustomerShippingArgs']]):
-        pulumi.set(self, "shipping", value)
+    @shippings.setter
+    def shippings(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['CustomerShippingArgs']]]]):
+        pulumi.set(self, "shippings", value)
 
     @_builtins.property
     @pulumi.getter
-    def tax(self) -> pulumi.Input[Optional['CustomerTaxArgs']]:
+    def source(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
-        Tax details about the customer.
+        **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
         """
-        return pulumi.get(self, "tax")
+        return pulumi.get(self, "source")
 
-    @tax.setter
-    def tax(self, value: pulumi.Input[Optional['CustomerTaxArgs']]):
-        pulumi.set(self, "tax", value)
+    @source.setter
+    def source(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "source", value)
 
     @_builtins.property
     @pulumi.getter(name="taxExempt")
     def tax_exempt(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
-        The customer's tax exemption. One of <span pulumi-lang-nodejs="`none`" pulumi-lang-dotnet="`None`" pulumi-lang-go="`none`" pulumi-lang-python="`none`" pulumi-lang-yaml="`none`" pulumi-lang-java="`none`" pulumi-lang-hcl="`none`">`none`</span>, <span pulumi-lang-nodejs="`exempt`" pulumi-lang-dotnet="`Exempt`" pulumi-lang-go="`exempt`" pulumi-lang-python="`exempt`" pulumi-lang-yaml="`exempt`" pulumi-lang-java="`exempt`" pulumi-lang-hcl="`exempt`">`exempt`</span>, or <span pulumi-lang-nodejs="`reverse`" pulumi-lang-dotnet="`Reverse`" pulumi-lang-go="`reverse`" pulumi-lang-python="`reverse`" pulumi-lang-yaml="`reverse`" pulumi-lang-java="`reverse`" pulumi-lang-hcl="`reverse`">`reverse`</span>.
+        Describes the customer's tax exemption status, which is <span pulumi-lang-nodejs="`none`" pulumi-lang-dotnet="`None`" pulumi-lang-go="`none`" pulumi-lang-python="`none`" pulumi-lang-yaml="`none`" pulumi-lang-java="`none`" pulumi-lang-hcl="`none`">`none`</span>, <span pulumi-lang-nodejs="`exempt`" pulumi-lang-dotnet="`Exempt`" pulumi-lang-go="`exempt`" pulumi-lang-python="`exempt`" pulumi-lang-yaml="`exempt`" pulumi-lang-java="`exempt`" pulumi-lang-hcl="`exempt`">`exempt`</span>, or <span pulumi-lang-nodejs="`reverse`" pulumi-lang-dotnet="`Reverse`" pulumi-lang-go="`reverse`" pulumi-lang-python="`reverse`" pulumi-lang-yaml="`reverse`" pulumi-lang-java="`reverse`" pulumi-lang-hcl="`reverse`">`reverse`</span>. When set to <span pulumi-lang-nodejs="`reverse`" pulumi-lang-dotnet="`Reverse`" pulumi-lang-go="`reverse`" pulumi-lang-python="`reverse`" pulumi-lang-yaml="`reverse`" pulumi-lang-java="`reverse`" pulumi-lang-hcl="`reverse`">`reverse`</span>, invoice and receipt PDFs include the following text: **"Reverse charge"**.
         """
         return pulumi.get(self, "tax_exempt")
 
@@ -311,10 +354,19 @@ class CustomerArgs:
         pulumi.set(self, "tax_id_datas", value)
 
     @_builtins.property
+    @pulumi.getter
+    def taxes(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['CustomerTaxArgs']]]]:
+        return pulumi.get(self, "taxes")
+
+    @taxes.setter
+    def taxes(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['CustomerTaxArgs']]]]):
+        pulumi.set(self, "taxes", value)
+
+    @_builtins.property
     @pulumi.getter(name="testClock")
     def test_clock(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
-        ID of the test clock to attach to the customer.
+        ID of the test clock that this customer belongs to.
         """
         return pulumi.get(self, "test_clock")
 
@@ -322,114 +374,171 @@ class CustomerArgs:
     def test_clock(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "test_clock", value)
 
+    @_builtins.property
+    @pulumi.getter
+    def validate(self) -> pulumi.Input[Optional[_builtins.bool]]:
+        """
+        **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        """
+        return pulumi.get(self, "validate")
+
+    @validate.setter
+    def validate(self, value: pulumi.Input[Optional[_builtins.bool]]):
+        pulumi.set(self, "validate", value)
+
 
 @pulumi.input_type
 class _CustomerState:
     def __init__(__self__, *,
-                 address: pulumi.Input[Optional['CustomerAddressArgs']] = None,
+                 addresses: pulumi.Input[Optional[Sequence[pulumi.Input['CustomerAddressArgs']]]] = None,
                  balance: pulumi.Input[Optional[_builtins.float]] = None,
                  business_name: pulumi.Input[Optional[_builtins.str]] = None,
-                 cash_balance: pulumi.Input[Optional['CustomerCashBalanceArgs']] = None,
+                 cash_balances: pulumi.Input[Optional[Sequence[pulumi.Input['CustomerCashBalanceArgs']]]] = None,
+                 created: pulumi.Input[Optional[_builtins.float]] = None,
                  currency: pulumi.Input[Optional[_builtins.str]] = None,
                  customer_account: pulumi.Input[Optional[_builtins.str]] = None,
+                 default_source: pulumi.Input[Optional[_builtins.str]] = None,
                  delinquent: pulumi.Input[Optional[_builtins.bool]] = None,
                  description: pulumi.Input[Optional[_builtins.str]] = None,
+                 discount: pulumi.Input[Optional[_builtins.str]] = None,
                  email: pulumi.Input[Optional[_builtins.str]] = None,
                  individual_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 invoice_credit_balance: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.float]]]] = None,
                  invoice_prefix: pulumi.Input[Optional[_builtins.str]] = None,
-                 invoice_settings: pulumi.Input[Optional['CustomerInvoiceSettingsArgs']] = None,
+                 invoice_settings: pulumi.Input[Optional[Sequence[pulumi.Input['CustomerInvoiceSettingArgs']]]] = None,
+                 livemode: pulumi.Input[Optional[_builtins.bool]] = None,
                  metadata: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
                  name: pulumi.Input[Optional[_builtins.str]] = None,
                  next_invoice_sequence: pulumi.Input[Optional[_builtins.float]] = None,
+                 object: pulumi.Input[Optional[_builtins.str]] = None,
                  payment_method: pulumi.Input[Optional[_builtins.str]] = None,
                  phone: pulumi.Input[Optional[_builtins.str]] = None,
                  preferred_locales: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 shipping: pulumi.Input[Optional['CustomerShippingArgs']] = None,
-                 tax: pulumi.Input[Optional['CustomerTaxArgs']] = None,
+                 shippings: pulumi.Input[Optional[Sequence[pulumi.Input['CustomerShippingArgs']]]] = None,
+                 source: pulumi.Input[Optional[_builtins.str]] = None,
                  tax_exempt: pulumi.Input[Optional[_builtins.str]] = None,
                  tax_id_datas: pulumi.Input[Optional[Sequence[pulumi.Input['CustomerTaxIdDataArgs']]]] = None,
-                 test_clock: pulumi.Input[Optional[_builtins.str]] = None):
+                 taxes: pulumi.Input[Optional[Sequence[pulumi.Input['CustomerTaxArgs']]]] = None,
+                 test_clock: pulumi.Input[Optional[_builtins.str]] = None,
+                 validate: pulumi.Input[Optional[_builtins.bool]] = None):
         """
         Input properties used for looking up and filtering Customer resources.
 
-        :param pulumi.Input[_builtins.float] balance: An integer amount in cents (or local equivalent) that represents the customer's current balance, which affect the customer's future invoices. A negative amount represents a credit that decreases the amount due on an invoice; a positive amount increases the amount due on an invoice.
-        :param pulumi.Input['CustomerCashBalanceArgs'] cash_balance: Balance information and default balance settings for this customer.
+        :param pulumi.Input[Sequence[pulumi.Input['CustomerAddressArgs']]] addresses: The customer's address.
+        :param pulumi.Input[_builtins.float] balance: The current balance, if any, that's stored on the customer in their default currency. If negative, the customer has credit to apply to their next invoice. If positive, the customer has an amount owed that's added to their next invoice. The balance only considers amounts that Stripe hasn't successfully applied to any invoice. It doesn't reflect unpaid invoices. This balance is only taken into account after invoices finalize. For multi-currency balances, see <span pulumi-lang-nodejs="[invoiceCreditBalance]" pulumi-lang-dotnet="[InvoiceCreditBalance]" pulumi-lang-go="[invoiceCreditBalance]" pulumi-lang-python="[invoice_credit_balance]" pulumi-lang-yaml="[invoiceCreditBalance]" pulumi-lang-java="[invoiceCreditBalance]" pulumi-lang-hcl="[invoice_credit_balance]">[invoiceCreditBalance]</span>(https://docs.stripe.com/api/customers/object#customer_object-invoice_credit_balance).
+        :param pulumi.Input[_builtins.str] business_name: The customer's business name.
+        :param pulumi.Input[Sequence[pulumi.Input['CustomerCashBalanceArgs']]] cash_balances: The current funds being held by Stripe on behalf of the customer. You can apply these funds towards payment intents when the source is <span pulumi-lang-nodejs=""cashBalance"" pulumi-lang-dotnet=""CashBalance"" pulumi-lang-go=""cashBalance"" pulumi-lang-python=""cash_balance"" pulumi-lang-yaml=""cashBalance"" pulumi-lang-java=""cashBalance"" pulumi-lang-hcl=""cash_balance"">"cashBalance"</span>. The `settings<span pulumi-lang-nodejs="[reconciliationMode]" pulumi-lang-dotnet="[ReconciliationMode]" pulumi-lang-go="[reconciliationMode]" pulumi-lang-python="[reconciliation_mode]" pulumi-lang-yaml="[reconciliationMode]" pulumi-lang-java="[reconciliationMode]" pulumi-lang-hcl="[reconciliation_mode]">[reconciliationMode]</span>` field describes if these funds apply to these payment intents manually or automatically.
+        :param pulumi.Input[_builtins.float] created: Time at which the object was created. Measured in seconds since the Unix epoch.
         :param pulumi.Input[_builtins.str] currency: Three-letter [ISO code for the currency](https://stripe.com/docs/currencies) the customer can be charged in for recurring billing purposes.
-        :param pulumi.Input[_builtins.bool] delinquent: Tracks the most recent state change on any invoice belonging to the customer. Paying an invoice or marking it uncollectible via the API will set this field to false. An automatic payment failure or passing the `invoice.due_date` will set this field to <span pulumi-lang-nodejs="`true`" pulumi-lang-dotnet="`True`" pulumi-lang-go="`true`" pulumi-lang-python="`true`" pulumi-lang-yaml="`true`" pulumi-lang-java="`true`" pulumi-lang-hcl="`true`">`true`</span>. If an invoice becomes uncollectible by [dunning](https://stripe.com/docs/billing/automatic-collection), <span pulumi-lang-nodejs="`delinquent`" pulumi-lang-dotnet="`Delinquent`" pulumi-lang-go="`delinquent`" pulumi-lang-python="`delinquent`" pulumi-lang-yaml="`delinquent`" pulumi-lang-java="`delinquent`" pulumi-lang-hcl="`delinquent`">`delinquent`</span> doesn't reset to <span pulumi-lang-nodejs="`false`" pulumi-lang-dotnet="`False`" pulumi-lang-go="`false`" pulumi-lang-python="`false`" pulumi-lang-yaml="`false`" pulumi-lang-java="`false`" pulumi-lang-hcl="`false`">`false`</span>. If you care whether the customer has paid their most recent subscription invoice, use `subscription.status` instead. Paying or marking uncollectible any customer invoice regardless of whether it is the latest invoice for a subscription will always set this field to <span pulumi-lang-nodejs="`false`" pulumi-lang-dotnet="`False`" pulumi-lang-go="`false`" pulumi-lang-python="`false`" pulumi-lang-yaml="`false`" pulumi-lang-java="`false`" pulumi-lang-hcl="`false`">`false`</span>.
-        :param pulumi.Input[_builtins.str] description: An arbitrary string that you can attach to a customer object. It is displayed alongside the customer in the dashboard.
-        :param pulumi.Input[_builtins.str] email: Customer's email address. It's displayed alongside the customer in your dashboard and can be useful for searching and tracking. This may be up to *512 characters*.
-        :param pulumi.Input[_builtins.str] invoice_prefix: The prefix for the customer used to generate unique invoice numbers. Must be 3–12 uppercase letters or numbers.
-        :param pulumi.Input['CustomerInvoiceSettingsArgs'] invoice_settings: Default invoice settings for this customer.
+        :param pulumi.Input[_builtins.str] customer_account: The ID of an Account representing a customer. You can use this ID with any v1 API that accepts a<span pulumi-lang-nodejs=" customerAccount " pulumi-lang-dotnet=" CustomerAccount " pulumi-lang-go=" customerAccount " pulumi-lang-python=" customer_account " pulumi-lang-yaml=" customerAccount " pulumi-lang-java=" customerAccount " pulumi-lang-hcl=" customer_account "> customerAccount </span>parameter.
+        :param pulumi.Input[_builtins.str] default_source: ID of the default payment source for the customer.
+               
+               If you use payment methods created through the PaymentMethods API, see the [invoice_settings.default_payment_method](https://docs.stripe.com/api/customers/object#customer_object-invoice_settings-default_payment_method) field instead.
+        :param pulumi.Input[_builtins.bool] delinquent: Tracks the most recent state change on any invoice belonging to the customer. Paying an invoice or marking it uncollectible via the API will set this field to false. An automatic payment failure or passing the `invoice.due_date` will set this field to <span pulumi-lang-nodejs="`true`" pulumi-lang-dotnet="`True`" pulumi-lang-go="`true`" pulumi-lang-python="`true`" pulumi-lang-yaml="`true`" pulumi-lang-java="`true`" pulumi-lang-hcl="`true`">`true`</span>.
+               
+               If an invoice becomes uncollectible by [dunning](https://docs.stripe.com/billing/automatic-collection), <span pulumi-lang-nodejs="`delinquent`" pulumi-lang-dotnet="`Delinquent`" pulumi-lang-go="`delinquent`" pulumi-lang-python="`delinquent`" pulumi-lang-yaml="`delinquent`" pulumi-lang-java="`delinquent`" pulumi-lang-hcl="`delinquent`">`delinquent`</span> doesn't reset to <span pulumi-lang-nodejs="`false`" pulumi-lang-dotnet="`False`" pulumi-lang-go="`false`" pulumi-lang-python="`false`" pulumi-lang-yaml="`false`" pulumi-lang-java="`false`" pulumi-lang-hcl="`false`">`false`</span>.
+               
+               If you care whether the customer has paid their most recent subscription invoice, use `subscription.status` instead. Paying or marking uncollectible any customer invoice regardless of whether it is the latest invoice for a subscription will always set this field to <span pulumi-lang-nodejs="`false`" pulumi-lang-dotnet="`False`" pulumi-lang-go="`false`" pulumi-lang-python="`false`" pulumi-lang-yaml="`false`" pulumi-lang-java="`false`" pulumi-lang-hcl="`false`">`false`</span>.
+        :param pulumi.Input[_builtins.str] description: An arbitrary string attached to the object. Often useful for displaying to users.
+        :param pulumi.Input[_builtins.str] discount: Describes the current discount active on the customer, if there is one.
+        :param pulumi.Input[_builtins.str] email: The customer's email address.
+        :param pulumi.Input[_builtins.str] individual_name: The customer's individual name.
+        :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.float]]] invoice_credit_balance: The current multi-currency balances, if any, that's stored on the customer. If positive in a currency, the customer has a credit to apply to their next invoice denominated in that currency. If negative, the customer has an amount owed that's added to their next invoice denominated in that currency. These balances don't apply to unpaid invoices. They solely track amounts that Stripe hasn't successfully applied to any invoice. Stripe only applies a balance in a specific currency to an invoice after that invoice (which is in the same currency) finalizes.
+        :param pulumi.Input[_builtins.str] invoice_prefix: The prefix for the customer used to generate unique invoice numbers.
+        :param pulumi.Input[_builtins.bool] livemode: If the object exists in live mode, the value is <span pulumi-lang-nodejs="`true`" pulumi-lang-dotnet="`True`" pulumi-lang-go="`true`" pulumi-lang-python="`true`" pulumi-lang-yaml="`true`" pulumi-lang-java="`true`" pulumi-lang-hcl="`true`">`true`</span>. If the object exists in test mode, the value is <span pulumi-lang-nodejs="`false`" pulumi-lang-dotnet="`False`" pulumi-lang-go="`false`" pulumi-lang-python="`false`" pulumi-lang-yaml="`false`" pulumi-lang-java="`false`" pulumi-lang-hcl="`false`">`false`</span>.
+        :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] metadata: Set of [key-value pairs](https://docs.stripe.com/api/metadata) that you can attach to an object. This can be useful for storing additional information about the object in a structured format.
         :param pulumi.Input[_builtins.str] name: The customer's full name or business name.
-        :param pulumi.Input[_builtins.float] next_invoice_sequence: The sequence to be used on the customer's next invoice. Defaults to 1.
+        :param pulumi.Input[_builtins.float] next_invoice_sequence: The suffix of the customer's next invoice number (for example, 0001). When the account uses account level sequencing, this parameter is ignored in API requests and the field omitted in API responses.
+        :param pulumi.Input[_builtins.str] object: String representing the object's type. Objects of the same type share the same value.
         :param pulumi.Input[_builtins.str] phone: The customer's phone number.
-        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] preferred_locales: Customer's preferred languages, ordered by preference.
-        :param pulumi.Input['CustomerTaxArgs'] tax: Tax details about the customer.
-        :param pulumi.Input[_builtins.str] tax_exempt: The customer's tax exemption. One of <span pulumi-lang-nodejs="`none`" pulumi-lang-dotnet="`None`" pulumi-lang-go="`none`" pulumi-lang-python="`none`" pulumi-lang-yaml="`none`" pulumi-lang-java="`none`" pulumi-lang-hcl="`none`">`none`</span>, <span pulumi-lang-nodejs="`exempt`" pulumi-lang-dotnet="`Exempt`" pulumi-lang-go="`exempt`" pulumi-lang-python="`exempt`" pulumi-lang-yaml="`exempt`" pulumi-lang-java="`exempt`" pulumi-lang-hcl="`exempt`">`exempt`</span>, or <span pulumi-lang-nodejs="`reverse`" pulumi-lang-dotnet="`Reverse`" pulumi-lang-go="`reverse`" pulumi-lang-python="`reverse`" pulumi-lang-yaml="`reverse`" pulumi-lang-java="`reverse`" pulumi-lang-hcl="`reverse`">`reverse`</span>.
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] preferred_locales: The customer's preferred locales (languages), ordered by preference.
+        :param pulumi.Input[Sequence[pulumi.Input['CustomerShippingArgs']]] shippings: Mailing and shipping address for the customer. Appears on invoices emailed to this customer.
+        :param pulumi.Input[_builtins.str] source: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        :param pulumi.Input[_builtins.str] tax_exempt: Describes the customer's tax exemption status, which is <span pulumi-lang-nodejs="`none`" pulumi-lang-dotnet="`None`" pulumi-lang-go="`none`" pulumi-lang-python="`none`" pulumi-lang-yaml="`none`" pulumi-lang-java="`none`" pulumi-lang-hcl="`none`">`none`</span>, <span pulumi-lang-nodejs="`exempt`" pulumi-lang-dotnet="`Exempt`" pulumi-lang-go="`exempt`" pulumi-lang-python="`exempt`" pulumi-lang-yaml="`exempt`" pulumi-lang-java="`exempt`" pulumi-lang-hcl="`exempt`">`exempt`</span>, or <span pulumi-lang-nodejs="`reverse`" pulumi-lang-dotnet="`Reverse`" pulumi-lang-go="`reverse`" pulumi-lang-python="`reverse`" pulumi-lang-yaml="`reverse`" pulumi-lang-java="`reverse`" pulumi-lang-hcl="`reverse`">`reverse`</span>. When set to <span pulumi-lang-nodejs="`reverse`" pulumi-lang-dotnet="`Reverse`" pulumi-lang-go="`reverse`" pulumi-lang-python="`reverse`" pulumi-lang-yaml="`reverse`" pulumi-lang-java="`reverse`" pulumi-lang-hcl="`reverse`">`reverse`</span>, invoice and receipt PDFs include the following text: **"Reverse charge"**.
         :param pulumi.Input[Sequence[pulumi.Input['CustomerTaxIdDataArgs']]] tax_id_datas: The customer's tax IDs.
-        :param pulumi.Input[_builtins.str] test_clock: ID of the test clock to attach to the customer.
+        :param pulumi.Input[_builtins.str] test_clock: ID of the test clock that this customer belongs to.
+        :param pulumi.Input[_builtins.bool] validate: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
         """
-        if address is not None:
-            pulumi.set(__self__, "address", address)
+        if addresses is not None:
+            pulumi.set(__self__, "addresses", addresses)
         if balance is not None:
             pulumi.set(__self__, "balance", balance)
         if business_name is not None:
             pulumi.set(__self__, "business_name", business_name)
-        if cash_balance is not None:
-            pulumi.set(__self__, "cash_balance", cash_balance)
+        if cash_balances is not None:
+            pulumi.set(__self__, "cash_balances", cash_balances)
+        if created is not None:
+            pulumi.set(__self__, "created", created)
         if currency is not None:
             pulumi.set(__self__, "currency", currency)
         if customer_account is not None:
             pulumi.set(__self__, "customer_account", customer_account)
+        if default_source is not None:
+            pulumi.set(__self__, "default_source", default_source)
         if delinquent is not None:
             pulumi.set(__self__, "delinquent", delinquent)
         if description is not None:
             pulumi.set(__self__, "description", description)
+        if discount is not None:
+            pulumi.set(__self__, "discount", discount)
         if email is not None:
             pulumi.set(__self__, "email", email)
         if individual_name is not None:
             pulumi.set(__self__, "individual_name", individual_name)
+        if invoice_credit_balance is not None:
+            pulumi.set(__self__, "invoice_credit_balance", invoice_credit_balance)
         if invoice_prefix is not None:
             pulumi.set(__self__, "invoice_prefix", invoice_prefix)
         if invoice_settings is not None:
             pulumi.set(__self__, "invoice_settings", invoice_settings)
+        if livemode is not None:
+            pulumi.set(__self__, "livemode", livemode)
         if metadata is not None:
             pulumi.set(__self__, "metadata", metadata)
         if name is not None:
             pulumi.set(__self__, "name", name)
         if next_invoice_sequence is not None:
             pulumi.set(__self__, "next_invoice_sequence", next_invoice_sequence)
+        if object is not None:
+            pulumi.set(__self__, "object", object)
         if payment_method is not None:
             pulumi.set(__self__, "payment_method", payment_method)
         if phone is not None:
             pulumi.set(__self__, "phone", phone)
         if preferred_locales is not None:
             pulumi.set(__self__, "preferred_locales", preferred_locales)
-        if shipping is not None:
-            pulumi.set(__self__, "shipping", shipping)
-        if tax is not None:
-            pulumi.set(__self__, "tax", tax)
+        if shippings is not None:
+            pulumi.set(__self__, "shippings", shippings)
+        if source is not None:
+            pulumi.set(__self__, "source", source)
         if tax_exempt is not None:
             pulumi.set(__self__, "tax_exempt", tax_exempt)
         if tax_id_datas is not None:
             pulumi.set(__self__, "tax_id_datas", tax_id_datas)
+        if taxes is not None:
+            pulumi.set(__self__, "taxes", taxes)
         if test_clock is not None:
             pulumi.set(__self__, "test_clock", test_clock)
+        if validate is not None:
+            pulumi.set(__self__, "validate", validate)
 
     @_builtins.property
     @pulumi.getter
-    def address(self) -> pulumi.Input[Optional['CustomerAddressArgs']]:
-        return pulumi.get(self, "address")
+    def addresses(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['CustomerAddressArgs']]]]:
+        """
+        The customer's address.
+        """
+        return pulumi.get(self, "addresses")
 
-    @address.setter
-    def address(self, value: pulumi.Input[Optional['CustomerAddressArgs']]):
-        pulumi.set(self, "address", value)
+    @addresses.setter
+    def addresses(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['CustomerAddressArgs']]]]):
+        pulumi.set(self, "addresses", value)
 
     @_builtins.property
     @pulumi.getter
     def balance(self) -> pulumi.Input[Optional[_builtins.float]]:
         """
-        An integer amount in cents (or local equivalent) that represents the customer's current balance, which affect the customer's future invoices. A negative amount represents a credit that decreases the amount due on an invoice; a positive amount increases the amount due on an invoice.
+        The current balance, if any, that's stored on the customer in their default currency. If negative, the customer has credit to apply to their next invoice. If positive, the customer has an amount owed that's added to their next invoice. The balance only considers amounts that Stripe hasn't successfully applied to any invoice. It doesn't reflect unpaid invoices. This balance is only taken into account after invoices finalize. For multi-currency balances, see <span pulumi-lang-nodejs="[invoiceCreditBalance]" pulumi-lang-dotnet="[InvoiceCreditBalance]" pulumi-lang-go="[invoiceCreditBalance]" pulumi-lang-python="[invoice_credit_balance]" pulumi-lang-yaml="[invoiceCreditBalance]" pulumi-lang-java="[invoiceCreditBalance]" pulumi-lang-hcl="[invoice_credit_balance]">[invoiceCreditBalance]</span>(https://docs.stripe.com/api/customers/object#customer_object-invoice_credit_balance).
         """
         return pulumi.get(self, "balance")
 
@@ -440,6 +549,9 @@ class _CustomerState:
     @_builtins.property
     @pulumi.getter(name="businessName")
     def business_name(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        The customer's business name.
+        """
         return pulumi.get(self, "business_name")
 
     @business_name.setter
@@ -447,16 +559,28 @@ class _CustomerState:
         pulumi.set(self, "business_name", value)
 
     @_builtins.property
-    @pulumi.getter(name="cashBalance")
-    def cash_balance(self) -> pulumi.Input[Optional['CustomerCashBalanceArgs']]:
+    @pulumi.getter(name="cashBalances")
+    def cash_balances(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['CustomerCashBalanceArgs']]]]:
         """
-        Balance information and default balance settings for this customer.
+        The current funds being held by Stripe on behalf of the customer. You can apply these funds towards payment intents when the source is <span pulumi-lang-nodejs=""cashBalance"" pulumi-lang-dotnet=""CashBalance"" pulumi-lang-go=""cashBalance"" pulumi-lang-python=""cash_balance"" pulumi-lang-yaml=""cashBalance"" pulumi-lang-java=""cashBalance"" pulumi-lang-hcl=""cash_balance"">"cashBalance"</span>. The `settings<span pulumi-lang-nodejs="[reconciliationMode]" pulumi-lang-dotnet="[ReconciliationMode]" pulumi-lang-go="[reconciliationMode]" pulumi-lang-python="[reconciliation_mode]" pulumi-lang-yaml="[reconciliationMode]" pulumi-lang-java="[reconciliationMode]" pulumi-lang-hcl="[reconciliation_mode]">[reconciliationMode]</span>` field describes if these funds apply to these payment intents manually or automatically.
         """
-        return pulumi.get(self, "cash_balance")
+        return pulumi.get(self, "cash_balances")
 
-    @cash_balance.setter
-    def cash_balance(self, value: pulumi.Input[Optional['CustomerCashBalanceArgs']]):
-        pulumi.set(self, "cash_balance", value)
+    @cash_balances.setter
+    def cash_balances(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['CustomerCashBalanceArgs']]]]):
+        pulumi.set(self, "cash_balances", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def created(self) -> pulumi.Input[Optional[_builtins.float]]:
+        """
+        Time at which the object was created. Measured in seconds since the Unix epoch.
+        """
+        return pulumi.get(self, "created")
+
+    @created.setter
+    def created(self, value: pulumi.Input[Optional[_builtins.float]]):
+        pulumi.set(self, "created", value)
 
     @_builtins.property
     @pulumi.getter
@@ -473,6 +597,9 @@ class _CustomerState:
     @_builtins.property
     @pulumi.getter(name="customerAccount")
     def customer_account(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        The ID of an Account representing a customer. You can use this ID with any v1 API that accepts a<span pulumi-lang-nodejs=" customerAccount " pulumi-lang-dotnet=" CustomerAccount " pulumi-lang-go=" customerAccount " pulumi-lang-python=" customer_account " pulumi-lang-yaml=" customerAccount " pulumi-lang-java=" customerAccount " pulumi-lang-hcl=" customer_account "> customerAccount </span>parameter.
+        """
         return pulumi.get(self, "customer_account")
 
     @customer_account.setter
@@ -480,10 +607,28 @@ class _CustomerState:
         pulumi.set(self, "customer_account", value)
 
     @_builtins.property
+    @pulumi.getter(name="defaultSource")
+    def default_source(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        ID of the default payment source for the customer.
+
+        If you use payment methods created through the PaymentMethods API, see the [invoice_settings.default_payment_method](https://docs.stripe.com/api/customers/object#customer_object-invoice_settings-default_payment_method) field instead.
+        """
+        return pulumi.get(self, "default_source")
+
+    @default_source.setter
+    def default_source(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "default_source", value)
+
+    @_builtins.property
     @pulumi.getter
     def delinquent(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
-        Tracks the most recent state change on any invoice belonging to the customer. Paying an invoice or marking it uncollectible via the API will set this field to false. An automatic payment failure or passing the `invoice.due_date` will set this field to <span pulumi-lang-nodejs="`true`" pulumi-lang-dotnet="`True`" pulumi-lang-go="`true`" pulumi-lang-python="`true`" pulumi-lang-yaml="`true`" pulumi-lang-java="`true`" pulumi-lang-hcl="`true`">`true`</span>. If an invoice becomes uncollectible by [dunning](https://stripe.com/docs/billing/automatic-collection), <span pulumi-lang-nodejs="`delinquent`" pulumi-lang-dotnet="`Delinquent`" pulumi-lang-go="`delinquent`" pulumi-lang-python="`delinquent`" pulumi-lang-yaml="`delinquent`" pulumi-lang-java="`delinquent`" pulumi-lang-hcl="`delinquent`">`delinquent`</span> doesn't reset to <span pulumi-lang-nodejs="`false`" pulumi-lang-dotnet="`False`" pulumi-lang-go="`false`" pulumi-lang-python="`false`" pulumi-lang-yaml="`false`" pulumi-lang-java="`false`" pulumi-lang-hcl="`false`">`false`</span>. If you care whether the customer has paid their most recent subscription invoice, use `subscription.status` instead. Paying or marking uncollectible any customer invoice regardless of whether it is the latest invoice for a subscription will always set this field to <span pulumi-lang-nodejs="`false`" pulumi-lang-dotnet="`False`" pulumi-lang-go="`false`" pulumi-lang-python="`false`" pulumi-lang-yaml="`false`" pulumi-lang-java="`false`" pulumi-lang-hcl="`false`">`false`</span>.
+        Tracks the most recent state change on any invoice belonging to the customer. Paying an invoice or marking it uncollectible via the API will set this field to false. An automatic payment failure or passing the `invoice.due_date` will set this field to <span pulumi-lang-nodejs="`true`" pulumi-lang-dotnet="`True`" pulumi-lang-go="`true`" pulumi-lang-python="`true`" pulumi-lang-yaml="`true`" pulumi-lang-java="`true`" pulumi-lang-hcl="`true`">`true`</span>.
+
+        If an invoice becomes uncollectible by [dunning](https://docs.stripe.com/billing/automatic-collection), <span pulumi-lang-nodejs="`delinquent`" pulumi-lang-dotnet="`Delinquent`" pulumi-lang-go="`delinquent`" pulumi-lang-python="`delinquent`" pulumi-lang-yaml="`delinquent`" pulumi-lang-java="`delinquent`" pulumi-lang-hcl="`delinquent`">`delinquent`</span> doesn't reset to <span pulumi-lang-nodejs="`false`" pulumi-lang-dotnet="`False`" pulumi-lang-go="`false`" pulumi-lang-python="`false`" pulumi-lang-yaml="`false`" pulumi-lang-java="`false`" pulumi-lang-hcl="`false`">`false`</span>.
+
+        If you care whether the customer has paid their most recent subscription invoice, use `subscription.status` instead. Paying or marking uncollectible any customer invoice regardless of whether it is the latest invoice for a subscription will always set this field to <span pulumi-lang-nodejs="`false`" pulumi-lang-dotnet="`False`" pulumi-lang-go="`false`" pulumi-lang-python="`false`" pulumi-lang-yaml="`false`" pulumi-lang-java="`false`" pulumi-lang-hcl="`false`">`false`</span>.
         """
         return pulumi.get(self, "delinquent")
 
@@ -495,7 +640,7 @@ class _CustomerState:
     @pulumi.getter
     def description(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
-        An arbitrary string that you can attach to a customer object. It is displayed alongside the customer in the dashboard.
+        An arbitrary string attached to the object. Often useful for displaying to users.
         """
         return pulumi.get(self, "description")
 
@@ -505,9 +650,21 @@ class _CustomerState:
 
     @_builtins.property
     @pulumi.getter
+    def discount(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        Describes the current discount active on the customer, if there is one.
+        """
+        return pulumi.get(self, "discount")
+
+    @discount.setter
+    def discount(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "discount", value)
+
+    @_builtins.property
+    @pulumi.getter
     def email(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
-        Customer's email address. It's displayed alongside the customer in your dashboard and can be useful for searching and tracking. This may be up to *512 characters*.
+        The customer's email address.
         """
         return pulumi.get(self, "email")
 
@@ -518,6 +675,9 @@ class _CustomerState:
     @_builtins.property
     @pulumi.getter(name="individualName")
     def individual_name(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        The customer's individual name.
+        """
         return pulumi.get(self, "individual_name")
 
     @individual_name.setter
@@ -525,10 +685,22 @@ class _CustomerState:
         pulumi.set(self, "individual_name", value)
 
     @_builtins.property
+    @pulumi.getter(name="invoiceCreditBalance")
+    def invoice_credit_balance(self) -> pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.float]]]]:
+        """
+        The current multi-currency balances, if any, that's stored on the customer. If positive in a currency, the customer has a credit to apply to their next invoice denominated in that currency. If negative, the customer has an amount owed that's added to their next invoice denominated in that currency. These balances don't apply to unpaid invoices. They solely track amounts that Stripe hasn't successfully applied to any invoice. Stripe only applies a balance in a specific currency to an invoice after that invoice (which is in the same currency) finalizes.
+        """
+        return pulumi.get(self, "invoice_credit_balance")
+
+    @invoice_credit_balance.setter
+    def invoice_credit_balance(self, value: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.float]]]]):
+        pulumi.set(self, "invoice_credit_balance", value)
+
+    @_builtins.property
     @pulumi.getter(name="invoicePrefix")
     def invoice_prefix(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
-        The prefix for the customer used to generate unique invoice numbers. Must be 3–12 uppercase letters or numbers.
+        The prefix for the customer used to generate unique invoice numbers.
         """
         return pulumi.get(self, "invoice_prefix")
 
@@ -538,19 +710,31 @@ class _CustomerState:
 
     @_builtins.property
     @pulumi.getter(name="invoiceSettings")
-    def invoice_settings(self) -> pulumi.Input[Optional['CustomerInvoiceSettingsArgs']]:
-        """
-        Default invoice settings for this customer.
-        """
+    def invoice_settings(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['CustomerInvoiceSettingArgs']]]]:
         return pulumi.get(self, "invoice_settings")
 
     @invoice_settings.setter
-    def invoice_settings(self, value: pulumi.Input[Optional['CustomerInvoiceSettingsArgs']]):
+    def invoice_settings(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['CustomerInvoiceSettingArgs']]]]):
         pulumi.set(self, "invoice_settings", value)
 
     @_builtins.property
     @pulumi.getter
+    def livemode(self) -> pulumi.Input[Optional[_builtins.bool]]:
+        """
+        If the object exists in live mode, the value is <span pulumi-lang-nodejs="`true`" pulumi-lang-dotnet="`True`" pulumi-lang-go="`true`" pulumi-lang-python="`true`" pulumi-lang-yaml="`true`" pulumi-lang-java="`true`" pulumi-lang-hcl="`true`">`true`</span>. If the object exists in test mode, the value is <span pulumi-lang-nodejs="`false`" pulumi-lang-dotnet="`False`" pulumi-lang-go="`false`" pulumi-lang-python="`false`" pulumi-lang-yaml="`false`" pulumi-lang-java="`false`" pulumi-lang-hcl="`false`">`false`</span>.
+        """
+        return pulumi.get(self, "livemode")
+
+    @livemode.setter
+    def livemode(self, value: pulumi.Input[Optional[_builtins.bool]]):
+        pulumi.set(self, "livemode", value)
+
+    @_builtins.property
+    @pulumi.getter
     def metadata(self) -> pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]:
+        """
+        Set of [key-value pairs](https://docs.stripe.com/api/metadata) that you can attach to an object. This can be useful for storing additional information about the object in a structured format.
+        """
         return pulumi.get(self, "metadata")
 
     @metadata.setter
@@ -573,13 +757,25 @@ class _CustomerState:
     @pulumi.getter(name="nextInvoiceSequence")
     def next_invoice_sequence(self) -> pulumi.Input[Optional[_builtins.float]]:
         """
-        The sequence to be used on the customer's next invoice. Defaults to 1.
+        The suffix of the customer's next invoice number (for example, 0001). When the account uses account level sequencing, this parameter is ignored in API requests and the field omitted in API responses.
         """
         return pulumi.get(self, "next_invoice_sequence")
 
     @next_invoice_sequence.setter
     def next_invoice_sequence(self, value: pulumi.Input[Optional[_builtins.float]]):
         pulumi.set(self, "next_invoice_sequence", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def object(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        String representing the object's type. Objects of the same type share the same value.
+        """
+        return pulumi.get(self, "object")
+
+    @object.setter
+    def object(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "object", value)
 
     @_builtins.property
     @pulumi.getter(name="paymentMethod")
@@ -606,7 +802,7 @@ class _CustomerState:
     @pulumi.getter(name="preferredLocales")
     def preferred_locales(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
-        Customer's preferred languages, ordered by preference.
+        The customer's preferred locales (languages), ordered by preference.
         """
         return pulumi.get(self, "preferred_locales")
 
@@ -616,30 +812,33 @@ class _CustomerState:
 
     @_builtins.property
     @pulumi.getter
-    def shipping(self) -> pulumi.Input[Optional['CustomerShippingArgs']]:
-        return pulumi.get(self, "shipping")
+    def shippings(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['CustomerShippingArgs']]]]:
+        """
+        Mailing and shipping address for the customer. Appears on invoices emailed to this customer.
+        """
+        return pulumi.get(self, "shippings")
 
-    @shipping.setter
-    def shipping(self, value: pulumi.Input[Optional['CustomerShippingArgs']]):
-        pulumi.set(self, "shipping", value)
+    @shippings.setter
+    def shippings(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['CustomerShippingArgs']]]]):
+        pulumi.set(self, "shippings", value)
 
     @_builtins.property
     @pulumi.getter
-    def tax(self) -> pulumi.Input[Optional['CustomerTaxArgs']]:
+    def source(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
-        Tax details about the customer.
+        **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
         """
-        return pulumi.get(self, "tax")
+        return pulumi.get(self, "source")
 
-    @tax.setter
-    def tax(self, value: pulumi.Input[Optional['CustomerTaxArgs']]):
-        pulumi.set(self, "tax", value)
+    @source.setter
+    def source(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "source", value)
 
     @_builtins.property
     @pulumi.getter(name="taxExempt")
     def tax_exempt(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
-        The customer's tax exemption. One of <span pulumi-lang-nodejs="`none`" pulumi-lang-dotnet="`None`" pulumi-lang-go="`none`" pulumi-lang-python="`none`" pulumi-lang-yaml="`none`" pulumi-lang-java="`none`" pulumi-lang-hcl="`none`">`none`</span>, <span pulumi-lang-nodejs="`exempt`" pulumi-lang-dotnet="`Exempt`" pulumi-lang-go="`exempt`" pulumi-lang-python="`exempt`" pulumi-lang-yaml="`exempt`" pulumi-lang-java="`exempt`" pulumi-lang-hcl="`exempt`">`exempt`</span>, or <span pulumi-lang-nodejs="`reverse`" pulumi-lang-dotnet="`Reverse`" pulumi-lang-go="`reverse`" pulumi-lang-python="`reverse`" pulumi-lang-yaml="`reverse`" pulumi-lang-java="`reverse`" pulumi-lang-hcl="`reverse`">`reverse`</span>.
+        Describes the customer's tax exemption status, which is <span pulumi-lang-nodejs="`none`" pulumi-lang-dotnet="`None`" pulumi-lang-go="`none`" pulumi-lang-python="`none`" pulumi-lang-yaml="`none`" pulumi-lang-java="`none`" pulumi-lang-hcl="`none`">`none`</span>, <span pulumi-lang-nodejs="`exempt`" pulumi-lang-dotnet="`Exempt`" pulumi-lang-go="`exempt`" pulumi-lang-python="`exempt`" pulumi-lang-yaml="`exempt`" pulumi-lang-java="`exempt`" pulumi-lang-hcl="`exempt`">`exempt`</span>, or <span pulumi-lang-nodejs="`reverse`" pulumi-lang-dotnet="`Reverse`" pulumi-lang-go="`reverse`" pulumi-lang-python="`reverse`" pulumi-lang-yaml="`reverse`" pulumi-lang-java="`reverse`" pulumi-lang-hcl="`reverse`">`reverse`</span>. When set to <span pulumi-lang-nodejs="`reverse`" pulumi-lang-dotnet="`Reverse`" pulumi-lang-go="`reverse`" pulumi-lang-python="`reverse`" pulumi-lang-yaml="`reverse`" pulumi-lang-java="`reverse`" pulumi-lang-hcl="`reverse`">`reverse`</span>, invoice and receipt PDFs include the following text: **"Reverse charge"**.
         """
         return pulumi.get(self, "tax_exempt")
 
@@ -660,16 +859,37 @@ class _CustomerState:
         pulumi.set(self, "tax_id_datas", value)
 
     @_builtins.property
+    @pulumi.getter
+    def taxes(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['CustomerTaxArgs']]]]:
+        return pulumi.get(self, "taxes")
+
+    @taxes.setter
+    def taxes(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['CustomerTaxArgs']]]]):
+        pulumi.set(self, "taxes", value)
+
+    @_builtins.property
     @pulumi.getter(name="testClock")
     def test_clock(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
-        ID of the test clock to attach to the customer.
+        ID of the test clock that this customer belongs to.
         """
         return pulumi.get(self, "test_clock")
 
     @test_clock.setter
     def test_clock(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "test_clock", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def validate(self) -> pulumi.Input[Optional[_builtins.bool]]:
+        """
+        **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        """
+        return pulumi.get(self, "validate")
+
+    @validate.setter
+    def validate(self, value: pulumi.Input[Optional[_builtins.bool]]):
+        pulumi.set(self, "validate", value)
 
 
 @pulumi.type_token("stripe:index/customer:Customer")
@@ -678,46 +898,57 @@ class Customer(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 address: pulumi.Input[Optional[Union['CustomerAddressArgs', 'CustomerAddressArgsDict']]] = None,
+                 addresses: pulumi.Input[Optional[Sequence[pulumi.Input[Union['CustomerAddressArgs', 'CustomerAddressArgsDict']]]]] = None,
                  balance: pulumi.Input[Optional[_builtins.float]] = None,
                  business_name: pulumi.Input[Optional[_builtins.str]] = None,
-                 cash_balance: pulumi.Input[Optional[Union['CustomerCashBalanceArgs', 'CustomerCashBalanceArgsDict']]] = None,
+                 cash_balances: pulumi.Input[Optional[Sequence[pulumi.Input[Union['CustomerCashBalanceArgs', 'CustomerCashBalanceArgsDict']]]]] = None,
+                 default_source: pulumi.Input[Optional[_builtins.str]] = None,
                  description: pulumi.Input[Optional[_builtins.str]] = None,
                  email: pulumi.Input[Optional[_builtins.str]] = None,
                  individual_name: pulumi.Input[Optional[_builtins.str]] = None,
                  invoice_prefix: pulumi.Input[Optional[_builtins.str]] = None,
-                 invoice_settings: pulumi.Input[Optional[Union['CustomerInvoiceSettingsArgs', 'CustomerInvoiceSettingsArgsDict']]] = None,
+                 invoice_settings: pulumi.Input[Optional[Sequence[pulumi.Input[Union['CustomerInvoiceSettingArgs', 'CustomerInvoiceSettingArgsDict']]]]] = None,
                  metadata: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
                  name: pulumi.Input[Optional[_builtins.str]] = None,
                  next_invoice_sequence: pulumi.Input[Optional[_builtins.float]] = None,
                  payment_method: pulumi.Input[Optional[_builtins.str]] = None,
                  phone: pulumi.Input[Optional[_builtins.str]] = None,
                  preferred_locales: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 shipping: pulumi.Input[Optional[Union['CustomerShippingArgs', 'CustomerShippingArgsDict']]] = None,
-                 tax: pulumi.Input[Optional[Union['CustomerTaxArgs', 'CustomerTaxArgsDict']]] = None,
+                 shippings: pulumi.Input[Optional[Sequence[pulumi.Input[Union['CustomerShippingArgs', 'CustomerShippingArgsDict']]]]] = None,
+                 source: pulumi.Input[Optional[_builtins.str]] = None,
                  tax_exempt: pulumi.Input[Optional[_builtins.str]] = None,
                  tax_id_datas: pulumi.Input[Optional[Sequence[pulumi.Input[Union['CustomerTaxIdDataArgs', 'CustomerTaxIdDataArgsDict']]]]] = None,
+                 taxes: pulumi.Input[Optional[Sequence[pulumi.Input[Union['CustomerTaxArgs', 'CustomerTaxArgsDict']]]]] = None,
                  test_clock: pulumi.Input[Optional[_builtins.str]] = None,
+                 validate: pulumi.Input[Optional[_builtins.bool]] = None,
                  __props__=None):
         """
         Create a Customer resource with the given unique name, props, and options.
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[_builtins.float] balance: An integer amount in cents (or local equivalent) that represents the customer's current balance, which affect the customer's future invoices. A negative amount represents a credit that decreases the amount due on an invoice; a positive amount increases the amount due on an invoice.
-        :param pulumi.Input[Union['CustomerCashBalanceArgs', 'CustomerCashBalanceArgsDict']] cash_balance: Balance information and default balance settings for this customer.
-        :param pulumi.Input[_builtins.str] description: An arbitrary string that you can attach to a customer object. It is displayed alongside the customer in the dashboard.
-        :param pulumi.Input[_builtins.str] email: Customer's email address. It's displayed alongside the customer in your dashboard and can be useful for searching and tracking. This may be up to *512 characters*.
-        :param pulumi.Input[_builtins.str] invoice_prefix: The prefix for the customer used to generate unique invoice numbers. Must be 3–12 uppercase letters or numbers.
-        :param pulumi.Input[Union['CustomerInvoiceSettingsArgs', 'CustomerInvoiceSettingsArgsDict']] invoice_settings: Default invoice settings for this customer.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['CustomerAddressArgs', 'CustomerAddressArgsDict']]]] addresses: The customer's address.
+        :param pulumi.Input[_builtins.float] balance: The current balance, if any, that's stored on the customer in their default currency. If negative, the customer has credit to apply to their next invoice. If positive, the customer has an amount owed that's added to their next invoice. The balance only considers amounts that Stripe hasn't successfully applied to any invoice. It doesn't reflect unpaid invoices. This balance is only taken into account after invoices finalize. For multi-currency balances, see <span pulumi-lang-nodejs="[invoiceCreditBalance]" pulumi-lang-dotnet="[InvoiceCreditBalance]" pulumi-lang-go="[invoiceCreditBalance]" pulumi-lang-python="[invoice_credit_balance]" pulumi-lang-yaml="[invoiceCreditBalance]" pulumi-lang-java="[invoiceCreditBalance]" pulumi-lang-hcl="[invoice_credit_balance]">[invoiceCreditBalance]</span>(https://docs.stripe.com/api/customers/object#customer_object-invoice_credit_balance).
+        :param pulumi.Input[_builtins.str] business_name: The customer's business name.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['CustomerCashBalanceArgs', 'CustomerCashBalanceArgsDict']]]] cash_balances: The current funds being held by Stripe on behalf of the customer. You can apply these funds towards payment intents when the source is <span pulumi-lang-nodejs=""cashBalance"" pulumi-lang-dotnet=""CashBalance"" pulumi-lang-go=""cashBalance"" pulumi-lang-python=""cash_balance"" pulumi-lang-yaml=""cashBalance"" pulumi-lang-java=""cashBalance"" pulumi-lang-hcl=""cash_balance"">"cashBalance"</span>. The `settings<span pulumi-lang-nodejs="[reconciliationMode]" pulumi-lang-dotnet="[ReconciliationMode]" pulumi-lang-go="[reconciliationMode]" pulumi-lang-python="[reconciliation_mode]" pulumi-lang-yaml="[reconciliationMode]" pulumi-lang-java="[reconciliationMode]" pulumi-lang-hcl="[reconciliation_mode]">[reconciliationMode]</span>` field describes if these funds apply to these payment intents manually or automatically.
+        :param pulumi.Input[_builtins.str] default_source: ID of the default payment source for the customer.
+               
+               If you use payment methods created through the PaymentMethods API, see the [invoice_settings.default_payment_method](https://docs.stripe.com/api/customers/object#customer_object-invoice_settings-default_payment_method) field instead.
+        :param pulumi.Input[_builtins.str] description: An arbitrary string attached to the object. Often useful for displaying to users.
+        :param pulumi.Input[_builtins.str] email: The customer's email address.
+        :param pulumi.Input[_builtins.str] individual_name: The customer's individual name.
+        :param pulumi.Input[_builtins.str] invoice_prefix: The prefix for the customer used to generate unique invoice numbers.
+        :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] metadata: Set of [key-value pairs](https://docs.stripe.com/api/metadata) that you can attach to an object. This can be useful for storing additional information about the object in a structured format.
         :param pulumi.Input[_builtins.str] name: The customer's full name or business name.
-        :param pulumi.Input[_builtins.float] next_invoice_sequence: The sequence to be used on the customer's next invoice. Defaults to 1.
+        :param pulumi.Input[_builtins.float] next_invoice_sequence: The suffix of the customer's next invoice number (for example, 0001). When the account uses account level sequencing, this parameter is ignored in API requests and the field omitted in API responses.
         :param pulumi.Input[_builtins.str] phone: The customer's phone number.
-        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] preferred_locales: Customer's preferred languages, ordered by preference.
-        :param pulumi.Input[Union['CustomerTaxArgs', 'CustomerTaxArgsDict']] tax: Tax details about the customer.
-        :param pulumi.Input[_builtins.str] tax_exempt: The customer's tax exemption. One of <span pulumi-lang-nodejs="`none`" pulumi-lang-dotnet="`None`" pulumi-lang-go="`none`" pulumi-lang-python="`none`" pulumi-lang-yaml="`none`" pulumi-lang-java="`none`" pulumi-lang-hcl="`none`">`none`</span>, <span pulumi-lang-nodejs="`exempt`" pulumi-lang-dotnet="`Exempt`" pulumi-lang-go="`exempt`" pulumi-lang-python="`exempt`" pulumi-lang-yaml="`exempt`" pulumi-lang-java="`exempt`" pulumi-lang-hcl="`exempt`">`exempt`</span>, or <span pulumi-lang-nodejs="`reverse`" pulumi-lang-dotnet="`Reverse`" pulumi-lang-go="`reverse`" pulumi-lang-python="`reverse`" pulumi-lang-yaml="`reverse`" pulumi-lang-java="`reverse`" pulumi-lang-hcl="`reverse`">`reverse`</span>.
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] preferred_locales: The customer's preferred locales (languages), ordered by preference.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['CustomerShippingArgs', 'CustomerShippingArgsDict']]]] shippings: Mailing and shipping address for the customer. Appears on invoices emailed to this customer.
+        :param pulumi.Input[_builtins.str] source: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        :param pulumi.Input[_builtins.str] tax_exempt: Describes the customer's tax exemption status, which is <span pulumi-lang-nodejs="`none`" pulumi-lang-dotnet="`None`" pulumi-lang-go="`none`" pulumi-lang-python="`none`" pulumi-lang-yaml="`none`" pulumi-lang-java="`none`" pulumi-lang-hcl="`none`">`none`</span>, <span pulumi-lang-nodejs="`exempt`" pulumi-lang-dotnet="`Exempt`" pulumi-lang-go="`exempt`" pulumi-lang-python="`exempt`" pulumi-lang-yaml="`exempt`" pulumi-lang-java="`exempt`" pulumi-lang-hcl="`exempt`">`exempt`</span>, or <span pulumi-lang-nodejs="`reverse`" pulumi-lang-dotnet="`Reverse`" pulumi-lang-go="`reverse`" pulumi-lang-python="`reverse`" pulumi-lang-yaml="`reverse`" pulumi-lang-java="`reverse`" pulumi-lang-hcl="`reverse`">`reverse`</span>. When set to <span pulumi-lang-nodejs="`reverse`" pulumi-lang-dotnet="`Reverse`" pulumi-lang-go="`reverse`" pulumi-lang-python="`reverse`" pulumi-lang-yaml="`reverse`" pulumi-lang-java="`reverse`" pulumi-lang-hcl="`reverse`">`reverse`</span>, invoice and receipt PDFs include the following text: **"Reverse charge"**.
         :param pulumi.Input[Sequence[pulumi.Input[Union['CustomerTaxIdDataArgs', 'CustomerTaxIdDataArgsDict']]]] tax_id_datas: The customer's tax IDs.
-        :param pulumi.Input[_builtins.str] test_clock: ID of the test clock to attach to the customer.
+        :param pulumi.Input[_builtins.str] test_clock: ID of the test clock that this customer belongs to.
+        :param pulumi.Input[_builtins.bool] validate: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
         """
         ...
     @overload
@@ -743,26 +974,29 @@ class Customer(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 address: pulumi.Input[Optional[Union['CustomerAddressArgs', 'CustomerAddressArgsDict']]] = None,
+                 addresses: pulumi.Input[Optional[Sequence[pulumi.Input[Union['CustomerAddressArgs', 'CustomerAddressArgsDict']]]]] = None,
                  balance: pulumi.Input[Optional[_builtins.float]] = None,
                  business_name: pulumi.Input[Optional[_builtins.str]] = None,
-                 cash_balance: pulumi.Input[Optional[Union['CustomerCashBalanceArgs', 'CustomerCashBalanceArgsDict']]] = None,
+                 cash_balances: pulumi.Input[Optional[Sequence[pulumi.Input[Union['CustomerCashBalanceArgs', 'CustomerCashBalanceArgsDict']]]]] = None,
+                 default_source: pulumi.Input[Optional[_builtins.str]] = None,
                  description: pulumi.Input[Optional[_builtins.str]] = None,
                  email: pulumi.Input[Optional[_builtins.str]] = None,
                  individual_name: pulumi.Input[Optional[_builtins.str]] = None,
                  invoice_prefix: pulumi.Input[Optional[_builtins.str]] = None,
-                 invoice_settings: pulumi.Input[Optional[Union['CustomerInvoiceSettingsArgs', 'CustomerInvoiceSettingsArgsDict']]] = None,
+                 invoice_settings: pulumi.Input[Optional[Sequence[pulumi.Input[Union['CustomerInvoiceSettingArgs', 'CustomerInvoiceSettingArgsDict']]]]] = None,
                  metadata: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
                  name: pulumi.Input[Optional[_builtins.str]] = None,
                  next_invoice_sequence: pulumi.Input[Optional[_builtins.float]] = None,
                  payment_method: pulumi.Input[Optional[_builtins.str]] = None,
                  phone: pulumi.Input[Optional[_builtins.str]] = None,
                  preferred_locales: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 shipping: pulumi.Input[Optional[Union['CustomerShippingArgs', 'CustomerShippingArgsDict']]] = None,
-                 tax: pulumi.Input[Optional[Union['CustomerTaxArgs', 'CustomerTaxArgsDict']]] = None,
+                 shippings: pulumi.Input[Optional[Sequence[pulumi.Input[Union['CustomerShippingArgs', 'CustomerShippingArgsDict']]]]] = None,
+                 source: pulumi.Input[Optional[_builtins.str]] = None,
                  tax_exempt: pulumi.Input[Optional[_builtins.str]] = None,
                  tax_id_datas: pulumi.Input[Optional[Sequence[pulumi.Input[Union['CustomerTaxIdDataArgs', 'CustomerTaxIdDataArgsDict']]]]] = None,
+                 taxes: pulumi.Input[Optional[Sequence[pulumi.Input[Union['CustomerTaxArgs', 'CustomerTaxArgsDict']]]]] = None,
                  test_clock: pulumi.Input[Optional[_builtins.str]] = None,
+                 validate: pulumi.Input[Optional[_builtins.bool]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -772,10 +1006,11 @@ class Customer(pulumi.CustomResource):
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = CustomerArgs.__new__(CustomerArgs)
 
-            __props__.__dict__["address"] = address
+            __props__.__dict__["addresses"] = addresses
             __props__.__dict__["balance"] = balance
             __props__.__dict__["business_name"] = business_name
-            __props__.__dict__["cash_balance"] = cash_balance
+            __props__.__dict__["cash_balances"] = cash_balances
+            __props__.__dict__["default_source"] = default_source
             __props__.__dict__["description"] = description
             __props__.__dict__["email"] = email
             __props__.__dict__["individual_name"] = individual_name
@@ -787,14 +1022,23 @@ class Customer(pulumi.CustomResource):
             __props__.__dict__["payment_method"] = payment_method
             __props__.__dict__["phone"] = phone
             __props__.__dict__["preferred_locales"] = preferred_locales
-            __props__.__dict__["shipping"] = shipping
-            __props__.__dict__["tax"] = tax
+            __props__.__dict__["shippings"] = shippings
+            __props__.__dict__["source"] = None if source is None else pulumi.Output.secret(source)
             __props__.__dict__["tax_exempt"] = tax_exempt
             __props__.__dict__["tax_id_datas"] = tax_id_datas
+            __props__.__dict__["taxes"] = taxes
             __props__.__dict__["test_clock"] = test_clock
+            __props__.__dict__["validate"] = None if validate is None else pulumi.Output.secret(validate)
+            __props__.__dict__["created"] = None
             __props__.__dict__["currency"] = None
             __props__.__dict__["customer_account"] = None
             __props__.__dict__["delinquent"] = None
+            __props__.__dict__["discount"] = None
+            __props__.__dict__["invoice_credit_balance"] = None
+            __props__.__dict__["livemode"] = None
+            __props__.__dict__["object"] = None
+        secret_opts = pulumi.ResourceOptions(additional_secret_outputs=["source", "validate"])
+        opts = pulumi.ResourceOptions.merge(opts, secret_opts)
         super(Customer, __self__).__init__(
             'stripe:index/customer:Customer',
             resource_name,
@@ -806,29 +1050,37 @@ class Customer(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            address: pulumi.Input[Optional[Union['CustomerAddressArgs', 'CustomerAddressArgsDict']]] = None,
+            addresses: pulumi.Input[Optional[Sequence[pulumi.Input[Union['CustomerAddressArgs', 'CustomerAddressArgsDict']]]]] = None,
             balance: pulumi.Input[Optional[_builtins.float]] = None,
             business_name: pulumi.Input[Optional[_builtins.str]] = None,
-            cash_balance: pulumi.Input[Optional[Union['CustomerCashBalanceArgs', 'CustomerCashBalanceArgsDict']]] = None,
+            cash_balances: pulumi.Input[Optional[Sequence[pulumi.Input[Union['CustomerCashBalanceArgs', 'CustomerCashBalanceArgsDict']]]]] = None,
+            created: pulumi.Input[Optional[_builtins.float]] = None,
             currency: pulumi.Input[Optional[_builtins.str]] = None,
             customer_account: pulumi.Input[Optional[_builtins.str]] = None,
+            default_source: pulumi.Input[Optional[_builtins.str]] = None,
             delinquent: pulumi.Input[Optional[_builtins.bool]] = None,
             description: pulumi.Input[Optional[_builtins.str]] = None,
+            discount: pulumi.Input[Optional[_builtins.str]] = None,
             email: pulumi.Input[Optional[_builtins.str]] = None,
             individual_name: pulumi.Input[Optional[_builtins.str]] = None,
+            invoice_credit_balance: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.float]]]] = None,
             invoice_prefix: pulumi.Input[Optional[_builtins.str]] = None,
-            invoice_settings: pulumi.Input[Optional[Union['CustomerInvoiceSettingsArgs', 'CustomerInvoiceSettingsArgsDict']]] = None,
+            invoice_settings: pulumi.Input[Optional[Sequence[pulumi.Input[Union['CustomerInvoiceSettingArgs', 'CustomerInvoiceSettingArgsDict']]]]] = None,
+            livemode: pulumi.Input[Optional[_builtins.bool]] = None,
             metadata: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
             name: pulumi.Input[Optional[_builtins.str]] = None,
             next_invoice_sequence: pulumi.Input[Optional[_builtins.float]] = None,
+            object: pulumi.Input[Optional[_builtins.str]] = None,
             payment_method: pulumi.Input[Optional[_builtins.str]] = None,
             phone: pulumi.Input[Optional[_builtins.str]] = None,
             preferred_locales: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
-            shipping: pulumi.Input[Optional[Union['CustomerShippingArgs', 'CustomerShippingArgsDict']]] = None,
-            tax: pulumi.Input[Optional[Union['CustomerTaxArgs', 'CustomerTaxArgsDict']]] = None,
+            shippings: pulumi.Input[Optional[Sequence[pulumi.Input[Union['CustomerShippingArgs', 'CustomerShippingArgsDict']]]]] = None,
+            source: pulumi.Input[Optional[_builtins.str]] = None,
             tax_exempt: pulumi.Input[Optional[_builtins.str]] = None,
             tax_id_datas: pulumi.Input[Optional[Sequence[pulumi.Input[Union['CustomerTaxIdDataArgs', 'CustomerTaxIdDataArgsDict']]]]] = None,
-            test_clock: pulumi.Input[Optional[_builtins.str]] = None) -> 'Customer':
+            taxes: pulumi.Input[Optional[Sequence[pulumi.Input[Union['CustomerTaxArgs', 'CustomerTaxArgsDict']]]]] = None,
+            test_clock: pulumi.Input[Optional[_builtins.str]] = None,
+            validate: pulumi.Input[Optional[_builtins.bool]] = None) -> 'Customer':
         """
         Get an existing Customer resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -836,77 +1088,117 @@ class Customer(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[_builtins.float] balance: An integer amount in cents (or local equivalent) that represents the customer's current balance, which affect the customer's future invoices. A negative amount represents a credit that decreases the amount due on an invoice; a positive amount increases the amount due on an invoice.
-        :param pulumi.Input[Union['CustomerCashBalanceArgs', 'CustomerCashBalanceArgsDict']] cash_balance: Balance information and default balance settings for this customer.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['CustomerAddressArgs', 'CustomerAddressArgsDict']]]] addresses: The customer's address.
+        :param pulumi.Input[_builtins.float] balance: The current balance, if any, that's stored on the customer in their default currency. If negative, the customer has credit to apply to their next invoice. If positive, the customer has an amount owed that's added to their next invoice. The balance only considers amounts that Stripe hasn't successfully applied to any invoice. It doesn't reflect unpaid invoices. This balance is only taken into account after invoices finalize. For multi-currency balances, see <span pulumi-lang-nodejs="[invoiceCreditBalance]" pulumi-lang-dotnet="[InvoiceCreditBalance]" pulumi-lang-go="[invoiceCreditBalance]" pulumi-lang-python="[invoice_credit_balance]" pulumi-lang-yaml="[invoiceCreditBalance]" pulumi-lang-java="[invoiceCreditBalance]" pulumi-lang-hcl="[invoice_credit_balance]">[invoiceCreditBalance]</span>(https://docs.stripe.com/api/customers/object#customer_object-invoice_credit_balance).
+        :param pulumi.Input[_builtins.str] business_name: The customer's business name.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['CustomerCashBalanceArgs', 'CustomerCashBalanceArgsDict']]]] cash_balances: The current funds being held by Stripe on behalf of the customer. You can apply these funds towards payment intents when the source is <span pulumi-lang-nodejs=""cashBalance"" pulumi-lang-dotnet=""CashBalance"" pulumi-lang-go=""cashBalance"" pulumi-lang-python=""cash_balance"" pulumi-lang-yaml=""cashBalance"" pulumi-lang-java=""cashBalance"" pulumi-lang-hcl=""cash_balance"">"cashBalance"</span>. The `settings<span pulumi-lang-nodejs="[reconciliationMode]" pulumi-lang-dotnet="[ReconciliationMode]" pulumi-lang-go="[reconciliationMode]" pulumi-lang-python="[reconciliation_mode]" pulumi-lang-yaml="[reconciliationMode]" pulumi-lang-java="[reconciliationMode]" pulumi-lang-hcl="[reconciliation_mode]">[reconciliationMode]</span>` field describes if these funds apply to these payment intents manually or automatically.
+        :param pulumi.Input[_builtins.float] created: Time at which the object was created. Measured in seconds since the Unix epoch.
         :param pulumi.Input[_builtins.str] currency: Three-letter [ISO code for the currency](https://stripe.com/docs/currencies) the customer can be charged in for recurring billing purposes.
-        :param pulumi.Input[_builtins.bool] delinquent: Tracks the most recent state change on any invoice belonging to the customer. Paying an invoice or marking it uncollectible via the API will set this field to false. An automatic payment failure or passing the `invoice.due_date` will set this field to <span pulumi-lang-nodejs="`true`" pulumi-lang-dotnet="`True`" pulumi-lang-go="`true`" pulumi-lang-python="`true`" pulumi-lang-yaml="`true`" pulumi-lang-java="`true`" pulumi-lang-hcl="`true`">`true`</span>. If an invoice becomes uncollectible by [dunning](https://stripe.com/docs/billing/automatic-collection), <span pulumi-lang-nodejs="`delinquent`" pulumi-lang-dotnet="`Delinquent`" pulumi-lang-go="`delinquent`" pulumi-lang-python="`delinquent`" pulumi-lang-yaml="`delinquent`" pulumi-lang-java="`delinquent`" pulumi-lang-hcl="`delinquent`">`delinquent`</span> doesn't reset to <span pulumi-lang-nodejs="`false`" pulumi-lang-dotnet="`False`" pulumi-lang-go="`false`" pulumi-lang-python="`false`" pulumi-lang-yaml="`false`" pulumi-lang-java="`false`" pulumi-lang-hcl="`false`">`false`</span>. If you care whether the customer has paid their most recent subscription invoice, use `subscription.status` instead. Paying or marking uncollectible any customer invoice regardless of whether it is the latest invoice for a subscription will always set this field to <span pulumi-lang-nodejs="`false`" pulumi-lang-dotnet="`False`" pulumi-lang-go="`false`" pulumi-lang-python="`false`" pulumi-lang-yaml="`false`" pulumi-lang-java="`false`" pulumi-lang-hcl="`false`">`false`</span>.
-        :param pulumi.Input[_builtins.str] description: An arbitrary string that you can attach to a customer object. It is displayed alongside the customer in the dashboard.
-        :param pulumi.Input[_builtins.str] email: Customer's email address. It's displayed alongside the customer in your dashboard and can be useful for searching and tracking. This may be up to *512 characters*.
-        :param pulumi.Input[_builtins.str] invoice_prefix: The prefix for the customer used to generate unique invoice numbers. Must be 3–12 uppercase letters or numbers.
-        :param pulumi.Input[Union['CustomerInvoiceSettingsArgs', 'CustomerInvoiceSettingsArgsDict']] invoice_settings: Default invoice settings for this customer.
+        :param pulumi.Input[_builtins.str] customer_account: The ID of an Account representing a customer. You can use this ID with any v1 API that accepts a<span pulumi-lang-nodejs=" customerAccount " pulumi-lang-dotnet=" CustomerAccount " pulumi-lang-go=" customerAccount " pulumi-lang-python=" customer_account " pulumi-lang-yaml=" customerAccount " pulumi-lang-java=" customerAccount " pulumi-lang-hcl=" customer_account "> customerAccount </span>parameter.
+        :param pulumi.Input[_builtins.str] default_source: ID of the default payment source for the customer.
+               
+               If you use payment methods created through the PaymentMethods API, see the [invoice_settings.default_payment_method](https://docs.stripe.com/api/customers/object#customer_object-invoice_settings-default_payment_method) field instead.
+        :param pulumi.Input[_builtins.bool] delinquent: Tracks the most recent state change on any invoice belonging to the customer. Paying an invoice or marking it uncollectible via the API will set this field to false. An automatic payment failure or passing the `invoice.due_date` will set this field to <span pulumi-lang-nodejs="`true`" pulumi-lang-dotnet="`True`" pulumi-lang-go="`true`" pulumi-lang-python="`true`" pulumi-lang-yaml="`true`" pulumi-lang-java="`true`" pulumi-lang-hcl="`true`">`true`</span>.
+               
+               If an invoice becomes uncollectible by [dunning](https://docs.stripe.com/billing/automatic-collection), <span pulumi-lang-nodejs="`delinquent`" pulumi-lang-dotnet="`Delinquent`" pulumi-lang-go="`delinquent`" pulumi-lang-python="`delinquent`" pulumi-lang-yaml="`delinquent`" pulumi-lang-java="`delinquent`" pulumi-lang-hcl="`delinquent`">`delinquent`</span> doesn't reset to <span pulumi-lang-nodejs="`false`" pulumi-lang-dotnet="`False`" pulumi-lang-go="`false`" pulumi-lang-python="`false`" pulumi-lang-yaml="`false`" pulumi-lang-java="`false`" pulumi-lang-hcl="`false`">`false`</span>.
+               
+               If you care whether the customer has paid their most recent subscription invoice, use `subscription.status` instead. Paying or marking uncollectible any customer invoice regardless of whether it is the latest invoice for a subscription will always set this field to <span pulumi-lang-nodejs="`false`" pulumi-lang-dotnet="`False`" pulumi-lang-go="`false`" pulumi-lang-python="`false`" pulumi-lang-yaml="`false`" pulumi-lang-java="`false`" pulumi-lang-hcl="`false`">`false`</span>.
+        :param pulumi.Input[_builtins.str] description: An arbitrary string attached to the object. Often useful for displaying to users.
+        :param pulumi.Input[_builtins.str] discount: Describes the current discount active on the customer, if there is one.
+        :param pulumi.Input[_builtins.str] email: The customer's email address.
+        :param pulumi.Input[_builtins.str] individual_name: The customer's individual name.
+        :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.float]]] invoice_credit_balance: The current multi-currency balances, if any, that's stored on the customer. If positive in a currency, the customer has a credit to apply to their next invoice denominated in that currency. If negative, the customer has an amount owed that's added to their next invoice denominated in that currency. These balances don't apply to unpaid invoices. They solely track amounts that Stripe hasn't successfully applied to any invoice. Stripe only applies a balance in a specific currency to an invoice after that invoice (which is in the same currency) finalizes.
+        :param pulumi.Input[_builtins.str] invoice_prefix: The prefix for the customer used to generate unique invoice numbers.
+        :param pulumi.Input[_builtins.bool] livemode: If the object exists in live mode, the value is <span pulumi-lang-nodejs="`true`" pulumi-lang-dotnet="`True`" pulumi-lang-go="`true`" pulumi-lang-python="`true`" pulumi-lang-yaml="`true`" pulumi-lang-java="`true`" pulumi-lang-hcl="`true`">`true`</span>. If the object exists in test mode, the value is <span pulumi-lang-nodejs="`false`" pulumi-lang-dotnet="`False`" pulumi-lang-go="`false`" pulumi-lang-python="`false`" pulumi-lang-yaml="`false`" pulumi-lang-java="`false`" pulumi-lang-hcl="`false`">`false`</span>.
+        :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] metadata: Set of [key-value pairs](https://docs.stripe.com/api/metadata) that you can attach to an object. This can be useful for storing additional information about the object in a structured format.
         :param pulumi.Input[_builtins.str] name: The customer's full name or business name.
-        :param pulumi.Input[_builtins.float] next_invoice_sequence: The sequence to be used on the customer's next invoice. Defaults to 1.
+        :param pulumi.Input[_builtins.float] next_invoice_sequence: The suffix of the customer's next invoice number (for example, 0001). When the account uses account level sequencing, this parameter is ignored in API requests and the field omitted in API responses.
+        :param pulumi.Input[_builtins.str] object: String representing the object's type. Objects of the same type share the same value.
         :param pulumi.Input[_builtins.str] phone: The customer's phone number.
-        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] preferred_locales: Customer's preferred languages, ordered by preference.
-        :param pulumi.Input[Union['CustomerTaxArgs', 'CustomerTaxArgsDict']] tax: Tax details about the customer.
-        :param pulumi.Input[_builtins.str] tax_exempt: The customer's tax exemption. One of <span pulumi-lang-nodejs="`none`" pulumi-lang-dotnet="`None`" pulumi-lang-go="`none`" pulumi-lang-python="`none`" pulumi-lang-yaml="`none`" pulumi-lang-java="`none`" pulumi-lang-hcl="`none`">`none`</span>, <span pulumi-lang-nodejs="`exempt`" pulumi-lang-dotnet="`Exempt`" pulumi-lang-go="`exempt`" pulumi-lang-python="`exempt`" pulumi-lang-yaml="`exempt`" pulumi-lang-java="`exempt`" pulumi-lang-hcl="`exempt`">`exempt`</span>, or <span pulumi-lang-nodejs="`reverse`" pulumi-lang-dotnet="`Reverse`" pulumi-lang-go="`reverse`" pulumi-lang-python="`reverse`" pulumi-lang-yaml="`reverse`" pulumi-lang-java="`reverse`" pulumi-lang-hcl="`reverse`">`reverse`</span>.
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] preferred_locales: The customer's preferred locales (languages), ordered by preference.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['CustomerShippingArgs', 'CustomerShippingArgsDict']]]] shippings: Mailing and shipping address for the customer. Appears on invoices emailed to this customer.
+        :param pulumi.Input[_builtins.str] source: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        :param pulumi.Input[_builtins.str] tax_exempt: Describes the customer's tax exemption status, which is <span pulumi-lang-nodejs="`none`" pulumi-lang-dotnet="`None`" pulumi-lang-go="`none`" pulumi-lang-python="`none`" pulumi-lang-yaml="`none`" pulumi-lang-java="`none`" pulumi-lang-hcl="`none`">`none`</span>, <span pulumi-lang-nodejs="`exempt`" pulumi-lang-dotnet="`Exempt`" pulumi-lang-go="`exempt`" pulumi-lang-python="`exempt`" pulumi-lang-yaml="`exempt`" pulumi-lang-java="`exempt`" pulumi-lang-hcl="`exempt`">`exempt`</span>, or <span pulumi-lang-nodejs="`reverse`" pulumi-lang-dotnet="`Reverse`" pulumi-lang-go="`reverse`" pulumi-lang-python="`reverse`" pulumi-lang-yaml="`reverse`" pulumi-lang-java="`reverse`" pulumi-lang-hcl="`reverse`">`reverse`</span>. When set to <span pulumi-lang-nodejs="`reverse`" pulumi-lang-dotnet="`Reverse`" pulumi-lang-go="`reverse`" pulumi-lang-python="`reverse`" pulumi-lang-yaml="`reverse`" pulumi-lang-java="`reverse`" pulumi-lang-hcl="`reverse`">`reverse`</span>, invoice and receipt PDFs include the following text: **"Reverse charge"**.
         :param pulumi.Input[Sequence[pulumi.Input[Union['CustomerTaxIdDataArgs', 'CustomerTaxIdDataArgsDict']]]] tax_id_datas: The customer's tax IDs.
-        :param pulumi.Input[_builtins.str] test_clock: ID of the test clock to attach to the customer.
+        :param pulumi.Input[_builtins.str] test_clock: ID of the test clock that this customer belongs to.
+        :param pulumi.Input[_builtins.bool] validate: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
         __props__ = _CustomerState.__new__(_CustomerState)
 
-        __props__.__dict__["address"] = address
+        __props__.__dict__["addresses"] = addresses
         __props__.__dict__["balance"] = balance
         __props__.__dict__["business_name"] = business_name
-        __props__.__dict__["cash_balance"] = cash_balance
+        __props__.__dict__["cash_balances"] = cash_balances
+        __props__.__dict__["created"] = created
         __props__.__dict__["currency"] = currency
         __props__.__dict__["customer_account"] = customer_account
+        __props__.__dict__["default_source"] = default_source
         __props__.__dict__["delinquent"] = delinquent
         __props__.__dict__["description"] = description
+        __props__.__dict__["discount"] = discount
         __props__.__dict__["email"] = email
         __props__.__dict__["individual_name"] = individual_name
+        __props__.__dict__["invoice_credit_balance"] = invoice_credit_balance
         __props__.__dict__["invoice_prefix"] = invoice_prefix
         __props__.__dict__["invoice_settings"] = invoice_settings
+        __props__.__dict__["livemode"] = livemode
         __props__.__dict__["metadata"] = metadata
         __props__.__dict__["name"] = name
         __props__.__dict__["next_invoice_sequence"] = next_invoice_sequence
+        __props__.__dict__["object"] = object
         __props__.__dict__["payment_method"] = payment_method
         __props__.__dict__["phone"] = phone
         __props__.__dict__["preferred_locales"] = preferred_locales
-        __props__.__dict__["shipping"] = shipping
-        __props__.__dict__["tax"] = tax
+        __props__.__dict__["shippings"] = shippings
+        __props__.__dict__["source"] = source
         __props__.__dict__["tax_exempt"] = tax_exempt
         __props__.__dict__["tax_id_datas"] = tax_id_datas
+        __props__.__dict__["taxes"] = taxes
         __props__.__dict__["test_clock"] = test_clock
+        __props__.__dict__["validate"] = validate
         return Customer(resource_name, opts=opts, __props__=__props__)
 
     @_builtins.property
     @pulumi.getter
-    def address(self) -> pulumi.Output[Optional['outputs.CustomerAddress']]:
-        return pulumi.get(self, "address")
+    def addresses(self) -> pulumi.Output[Optional[Sequence['outputs.CustomerAddress']]]:
+        """
+        The customer's address.
+        """
+        return pulumi.get(self, "addresses")
 
     @_builtins.property
     @pulumi.getter
     def balance(self) -> pulumi.Output[_builtins.float]:
         """
-        An integer amount in cents (or local equivalent) that represents the customer's current balance, which affect the customer's future invoices. A negative amount represents a credit that decreases the amount due on an invoice; a positive amount increases the amount due on an invoice.
+        The current balance, if any, that's stored on the customer in their default currency. If negative, the customer has credit to apply to their next invoice. If positive, the customer has an amount owed that's added to their next invoice. The balance only considers amounts that Stripe hasn't successfully applied to any invoice. It doesn't reflect unpaid invoices. This balance is only taken into account after invoices finalize. For multi-currency balances, see <span pulumi-lang-nodejs="[invoiceCreditBalance]" pulumi-lang-dotnet="[InvoiceCreditBalance]" pulumi-lang-go="[invoiceCreditBalance]" pulumi-lang-python="[invoice_credit_balance]" pulumi-lang-yaml="[invoiceCreditBalance]" pulumi-lang-java="[invoiceCreditBalance]" pulumi-lang-hcl="[invoice_credit_balance]">[invoiceCreditBalance]</span>(https://docs.stripe.com/api/customers/object#customer_object-invoice_credit_balance).
         """
         return pulumi.get(self, "balance")
 
     @_builtins.property
     @pulumi.getter(name="businessName")
     def business_name(self) -> pulumi.Output[_builtins.str]:
+        """
+        The customer's business name.
+        """
         return pulumi.get(self, "business_name")
 
     @_builtins.property
-    @pulumi.getter(name="cashBalance")
-    def cash_balance(self) -> pulumi.Output[Optional['outputs.CustomerCashBalance']]:
+    @pulumi.getter(name="cashBalances")
+    def cash_balances(self) -> pulumi.Output[Optional[Sequence['outputs.CustomerCashBalance']]]:
         """
-        Balance information and default balance settings for this customer.
+        The current funds being held by Stripe on behalf of the customer. You can apply these funds towards payment intents when the source is <span pulumi-lang-nodejs=""cashBalance"" pulumi-lang-dotnet=""CashBalance"" pulumi-lang-go=""cashBalance"" pulumi-lang-python=""cash_balance"" pulumi-lang-yaml=""cashBalance"" pulumi-lang-java=""cashBalance"" pulumi-lang-hcl=""cash_balance"">"cashBalance"</span>. The `settings<span pulumi-lang-nodejs="[reconciliationMode]" pulumi-lang-dotnet="[ReconciliationMode]" pulumi-lang-go="[reconciliationMode]" pulumi-lang-python="[reconciliation_mode]" pulumi-lang-yaml="[reconciliationMode]" pulumi-lang-java="[reconciliationMode]" pulumi-lang-hcl="[reconciliation_mode]">[reconciliationMode]</span>` field describes if these funds apply to these payment intents manually or automatically.
         """
-        return pulumi.get(self, "cash_balance")
+        return pulumi.get(self, "cash_balances")
+
+    @_builtins.property
+    @pulumi.getter
+    def created(self) -> pulumi.Output[_builtins.float]:
+        """
+        Time at which the object was created. Measured in seconds since the Unix epoch.
+        """
+        return pulumi.get(self, "created")
 
     @_builtins.property
     @pulumi.getter
@@ -919,13 +1211,30 @@ class Customer(pulumi.CustomResource):
     @_builtins.property
     @pulumi.getter(name="customerAccount")
     def customer_account(self) -> pulumi.Output[_builtins.str]:
+        """
+        The ID of an Account representing a customer. You can use this ID with any v1 API that accepts a<span pulumi-lang-nodejs=" customerAccount " pulumi-lang-dotnet=" CustomerAccount " pulumi-lang-go=" customerAccount " pulumi-lang-python=" customer_account " pulumi-lang-yaml=" customerAccount " pulumi-lang-java=" customerAccount " pulumi-lang-hcl=" customer_account "> customerAccount </span>parameter.
+        """
         return pulumi.get(self, "customer_account")
+
+    @_builtins.property
+    @pulumi.getter(name="defaultSource")
+    def default_source(self) -> pulumi.Output[_builtins.str]:
+        """
+        ID of the default payment source for the customer.
+
+        If you use payment methods created through the PaymentMethods API, see the [invoice_settings.default_payment_method](https://docs.stripe.com/api/customers/object#customer_object-invoice_settings-default_payment_method) field instead.
+        """
+        return pulumi.get(self, "default_source")
 
     @_builtins.property
     @pulumi.getter
     def delinquent(self) -> pulumi.Output[_builtins.bool]:
         """
-        Tracks the most recent state change on any invoice belonging to the customer. Paying an invoice or marking it uncollectible via the API will set this field to false. An automatic payment failure or passing the `invoice.due_date` will set this field to <span pulumi-lang-nodejs="`true`" pulumi-lang-dotnet="`True`" pulumi-lang-go="`true`" pulumi-lang-python="`true`" pulumi-lang-yaml="`true`" pulumi-lang-java="`true`" pulumi-lang-hcl="`true`">`true`</span>. If an invoice becomes uncollectible by [dunning](https://stripe.com/docs/billing/automatic-collection), <span pulumi-lang-nodejs="`delinquent`" pulumi-lang-dotnet="`Delinquent`" pulumi-lang-go="`delinquent`" pulumi-lang-python="`delinquent`" pulumi-lang-yaml="`delinquent`" pulumi-lang-java="`delinquent`" pulumi-lang-hcl="`delinquent`">`delinquent`</span> doesn't reset to <span pulumi-lang-nodejs="`false`" pulumi-lang-dotnet="`False`" pulumi-lang-go="`false`" pulumi-lang-python="`false`" pulumi-lang-yaml="`false`" pulumi-lang-java="`false`" pulumi-lang-hcl="`false`">`false`</span>. If you care whether the customer has paid their most recent subscription invoice, use `subscription.status` instead. Paying or marking uncollectible any customer invoice regardless of whether it is the latest invoice for a subscription will always set this field to <span pulumi-lang-nodejs="`false`" pulumi-lang-dotnet="`False`" pulumi-lang-go="`false`" pulumi-lang-python="`false`" pulumi-lang-yaml="`false`" pulumi-lang-java="`false`" pulumi-lang-hcl="`false`">`false`</span>.
+        Tracks the most recent state change on any invoice belonging to the customer. Paying an invoice or marking it uncollectible via the API will set this field to false. An automatic payment failure or passing the `invoice.due_date` will set this field to <span pulumi-lang-nodejs="`true`" pulumi-lang-dotnet="`True`" pulumi-lang-go="`true`" pulumi-lang-python="`true`" pulumi-lang-yaml="`true`" pulumi-lang-java="`true`" pulumi-lang-hcl="`true`">`true`</span>.
+
+        If an invoice becomes uncollectible by [dunning](https://docs.stripe.com/billing/automatic-collection), <span pulumi-lang-nodejs="`delinquent`" pulumi-lang-dotnet="`Delinquent`" pulumi-lang-go="`delinquent`" pulumi-lang-python="`delinquent`" pulumi-lang-yaml="`delinquent`" pulumi-lang-java="`delinquent`" pulumi-lang-hcl="`delinquent`">`delinquent`</span> doesn't reset to <span pulumi-lang-nodejs="`false`" pulumi-lang-dotnet="`False`" pulumi-lang-go="`false`" pulumi-lang-python="`false`" pulumi-lang-yaml="`false`" pulumi-lang-java="`false`" pulumi-lang-hcl="`false`">`false`</span>.
+
+        If you care whether the customer has paid their most recent subscription invoice, use `subscription.status` instead. Paying or marking uncollectible any customer invoice regardless of whether it is the latest invoice for a subscription will always set this field to <span pulumi-lang-nodejs="`false`" pulumi-lang-dotnet="`False`" pulumi-lang-go="`false`" pulumi-lang-python="`false`" pulumi-lang-yaml="`false`" pulumi-lang-java="`false`" pulumi-lang-hcl="`false`">`false`</span>.
         """
         return pulumi.get(self, "delinquent")
 
@@ -933,42 +1242,69 @@ class Customer(pulumi.CustomResource):
     @pulumi.getter
     def description(self) -> pulumi.Output[_builtins.str]:
         """
-        An arbitrary string that you can attach to a customer object. It is displayed alongside the customer in the dashboard.
+        An arbitrary string attached to the object. Often useful for displaying to users.
         """
         return pulumi.get(self, "description")
 
     @_builtins.property
     @pulumi.getter
+    def discount(self) -> pulumi.Output[_builtins.str]:
+        """
+        Describes the current discount active on the customer, if there is one.
+        """
+        return pulumi.get(self, "discount")
+
+    @_builtins.property
+    @pulumi.getter
     def email(self) -> pulumi.Output[_builtins.str]:
         """
-        Customer's email address. It's displayed alongside the customer in your dashboard and can be useful for searching and tracking. This may be up to *512 characters*.
+        The customer's email address.
         """
         return pulumi.get(self, "email")
 
     @_builtins.property
     @pulumi.getter(name="individualName")
     def individual_name(self) -> pulumi.Output[_builtins.str]:
+        """
+        The customer's individual name.
+        """
         return pulumi.get(self, "individual_name")
+
+    @_builtins.property
+    @pulumi.getter(name="invoiceCreditBalance")
+    def invoice_credit_balance(self) -> pulumi.Output[Mapping[str, _builtins.float]]:
+        """
+        The current multi-currency balances, if any, that's stored on the customer. If positive in a currency, the customer has a credit to apply to their next invoice denominated in that currency. If negative, the customer has an amount owed that's added to their next invoice denominated in that currency. These balances don't apply to unpaid invoices. They solely track amounts that Stripe hasn't successfully applied to any invoice. Stripe only applies a balance in a specific currency to an invoice after that invoice (which is in the same currency) finalizes.
+        """
+        return pulumi.get(self, "invoice_credit_balance")
 
     @_builtins.property
     @pulumi.getter(name="invoicePrefix")
     def invoice_prefix(self) -> pulumi.Output[_builtins.str]:
         """
-        The prefix for the customer used to generate unique invoice numbers. Must be 3–12 uppercase letters or numbers.
+        The prefix for the customer used to generate unique invoice numbers.
         """
         return pulumi.get(self, "invoice_prefix")
 
     @_builtins.property
     @pulumi.getter(name="invoiceSettings")
-    def invoice_settings(self) -> pulumi.Output[Optional['outputs.CustomerInvoiceSettings']]:
-        """
-        Default invoice settings for this customer.
-        """
+    def invoice_settings(self) -> pulumi.Output[Optional[Sequence['outputs.CustomerInvoiceSetting']]]:
         return pulumi.get(self, "invoice_settings")
 
     @_builtins.property
     @pulumi.getter
+    def livemode(self) -> pulumi.Output[_builtins.bool]:
+        """
+        If the object exists in live mode, the value is <span pulumi-lang-nodejs="`true`" pulumi-lang-dotnet="`True`" pulumi-lang-go="`true`" pulumi-lang-python="`true`" pulumi-lang-yaml="`true`" pulumi-lang-java="`true`" pulumi-lang-hcl="`true`">`true`</span>. If the object exists in test mode, the value is <span pulumi-lang-nodejs="`false`" pulumi-lang-dotnet="`False`" pulumi-lang-go="`false`" pulumi-lang-python="`false`" pulumi-lang-yaml="`false`" pulumi-lang-java="`false`" pulumi-lang-hcl="`false`">`false`</span>.
+        """
+        return pulumi.get(self, "livemode")
+
+    @_builtins.property
+    @pulumi.getter
     def metadata(self) -> pulumi.Output[Mapping[str, _builtins.str]]:
+        """
+        Set of [key-value pairs](https://docs.stripe.com/api/metadata) that you can attach to an object. This can be useful for storing additional information about the object in a structured format.
+        """
         return pulumi.get(self, "metadata")
 
     @_builtins.property
@@ -983,9 +1319,17 @@ class Customer(pulumi.CustomResource):
     @pulumi.getter(name="nextInvoiceSequence")
     def next_invoice_sequence(self) -> pulumi.Output[_builtins.float]:
         """
-        The sequence to be used on the customer's next invoice. Defaults to 1.
+        The suffix of the customer's next invoice number (for example, 0001). When the account uses account level sequencing, this parameter is ignored in API requests and the field omitted in API responses.
         """
         return pulumi.get(self, "next_invoice_sequence")
+
+    @_builtins.property
+    @pulumi.getter
+    def object(self) -> pulumi.Output[_builtins.str]:
+        """
+        String representing the object's type. Objects of the same type share the same value.
+        """
+        return pulumi.get(self, "object")
 
     @_builtins.property
     @pulumi.getter(name="paymentMethod")
@@ -1002,30 +1346,33 @@ class Customer(pulumi.CustomResource):
 
     @_builtins.property
     @pulumi.getter(name="preferredLocales")
-    def preferred_locales(self) -> pulumi.Output[Optional[Sequence[_builtins.str]]]:
+    def preferred_locales(self) -> pulumi.Output[Sequence[_builtins.str]]:
         """
-        Customer's preferred languages, ordered by preference.
+        The customer's preferred locales (languages), ordered by preference.
         """
         return pulumi.get(self, "preferred_locales")
 
     @_builtins.property
     @pulumi.getter
-    def shipping(self) -> pulumi.Output[Optional['outputs.CustomerShipping']]:
-        return pulumi.get(self, "shipping")
+    def shippings(self) -> pulumi.Output[Optional[Sequence['outputs.CustomerShipping']]]:
+        """
+        Mailing and shipping address for the customer. Appears on invoices emailed to this customer.
+        """
+        return pulumi.get(self, "shippings")
 
     @_builtins.property
     @pulumi.getter
-    def tax(self) -> pulumi.Output[Optional['outputs.CustomerTax']]:
+    def source(self) -> pulumi.Output[Optional[_builtins.str]]:
         """
-        Tax details about the customer.
+        **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
         """
-        return pulumi.get(self, "tax")
+        return pulumi.get(self, "source")
 
     @_builtins.property
     @pulumi.getter(name="taxExempt")
     def tax_exempt(self) -> pulumi.Output[_builtins.str]:
         """
-        The customer's tax exemption. One of <span pulumi-lang-nodejs="`none`" pulumi-lang-dotnet="`None`" pulumi-lang-go="`none`" pulumi-lang-python="`none`" pulumi-lang-yaml="`none`" pulumi-lang-java="`none`" pulumi-lang-hcl="`none`">`none`</span>, <span pulumi-lang-nodejs="`exempt`" pulumi-lang-dotnet="`Exempt`" pulumi-lang-go="`exempt`" pulumi-lang-python="`exempt`" pulumi-lang-yaml="`exempt`" pulumi-lang-java="`exempt`" pulumi-lang-hcl="`exempt`">`exempt`</span>, or <span pulumi-lang-nodejs="`reverse`" pulumi-lang-dotnet="`Reverse`" pulumi-lang-go="`reverse`" pulumi-lang-python="`reverse`" pulumi-lang-yaml="`reverse`" pulumi-lang-java="`reverse`" pulumi-lang-hcl="`reverse`">`reverse`</span>.
+        Describes the customer's tax exemption status, which is <span pulumi-lang-nodejs="`none`" pulumi-lang-dotnet="`None`" pulumi-lang-go="`none`" pulumi-lang-python="`none`" pulumi-lang-yaml="`none`" pulumi-lang-java="`none`" pulumi-lang-hcl="`none`">`none`</span>, <span pulumi-lang-nodejs="`exempt`" pulumi-lang-dotnet="`Exempt`" pulumi-lang-go="`exempt`" pulumi-lang-python="`exempt`" pulumi-lang-yaml="`exempt`" pulumi-lang-java="`exempt`" pulumi-lang-hcl="`exempt`">`exempt`</span>, or <span pulumi-lang-nodejs="`reverse`" pulumi-lang-dotnet="`Reverse`" pulumi-lang-go="`reverse`" pulumi-lang-python="`reverse`" pulumi-lang-yaml="`reverse`" pulumi-lang-java="`reverse`" pulumi-lang-hcl="`reverse`">`reverse`</span>. When set to <span pulumi-lang-nodejs="`reverse`" pulumi-lang-dotnet="`Reverse`" pulumi-lang-go="`reverse`" pulumi-lang-python="`reverse`" pulumi-lang-yaml="`reverse`" pulumi-lang-java="`reverse`" pulumi-lang-hcl="`reverse`">`reverse`</span>, invoice and receipt PDFs include the following text: **"Reverse charge"**.
         """
         return pulumi.get(self, "tax_exempt")
 
@@ -1038,10 +1385,23 @@ class Customer(pulumi.CustomResource):
         return pulumi.get(self, "tax_id_datas")
 
     @_builtins.property
+    @pulumi.getter
+    def taxes(self) -> pulumi.Output[Optional[Sequence['outputs.CustomerTax']]]:
+        return pulumi.get(self, "taxes")
+
+    @_builtins.property
     @pulumi.getter(name="testClock")
     def test_clock(self) -> pulumi.Output[_builtins.str]:
         """
-        ID of the test clock to attach to the customer.
+        ID of the test clock that this customer belongs to.
         """
         return pulumi.get(self, "test_clock")
+
+    @_builtins.property
+    @pulumi.getter
+    def validate(self) -> pulumi.Output[Optional[_builtins.bool]]:
+        """
+        **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        """
+        return pulumi.get(self, "validate")
 

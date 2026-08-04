@@ -5,9 +5,10 @@ package com.pulumi.stripe;
 
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
-import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.String;
 import java.util.Objects;
+import java.util.Optional;
+import javax.annotation.Nullable;
 
 
 public final class ProviderArgs extends com.pulumi.resources.ResourceArgs {
@@ -15,24 +16,40 @@ public final class ProviderArgs extends com.pulumi.resources.ResourceArgs {
     public static final ProviderArgs Empty = new ProviderArgs();
 
     /**
-     * Stripe API key
+     * Stripe API key. Can also be set via the STRIPE_API_KEY environment variable.
      * 
      */
-    @Import(name="apiKey", required=true)
-    private Output<String> apiKey;
+    @Import(name="apiKey")
+    private @Nullable Output<String> apiKey;
 
     /**
-     * @return Stripe API key
+     * @return Stripe API key. Can also be set via the STRIPE_API_KEY environment variable.
      * 
      */
-    public Output<String> apiKey() {
-        return this.apiKey;
+    public Optional<Output<String>> apiKey() {
+        return Optional.ofNullable(this.apiKey);
+    }
+
+    /**
+     * Connected account context for Connect-scoped requests. Can also be set via the STRIPE_ACCOUNT environment variable.
+     * 
+     */
+    @Import(name="stripeAccount")
+    private @Nullable Output<String> stripeAccount;
+
+    /**
+     * @return Connected account context for Connect-scoped requests. Can also be set via the STRIPE_ACCOUNT environment variable.
+     * 
+     */
+    public Optional<Output<String>> stripeAccount() {
+        return Optional.ofNullable(this.stripeAccount);
     }
 
     private ProviderArgs() {}
 
     private ProviderArgs(ProviderArgs $) {
         this.apiKey = $.apiKey;
+        this.stripeAccount = $.stripeAccount;
     }
 
     public static Builder builder() {
@@ -54,18 +71,18 @@ public final class ProviderArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param apiKey Stripe API key
+         * @param apiKey Stripe API key. Can also be set via the STRIPE_API_KEY environment variable.
          * 
          * @return builder
          * 
          */
-        public Builder apiKey(Output<String> apiKey) {
+        public Builder apiKey(@Nullable Output<String> apiKey) {
             $.apiKey = apiKey;
             return this;
         }
 
         /**
-         * @param apiKey Stripe API key
+         * @param apiKey Stripe API key. Can also be set via the STRIPE_API_KEY environment variable.
          * 
          * @return builder
          * 
@@ -74,10 +91,28 @@ public final class ProviderArgs extends com.pulumi.resources.ResourceArgs {
             return apiKey(Output.of(apiKey));
         }
 
+        /**
+         * @param stripeAccount Connected account context for Connect-scoped requests. Can also be set via the STRIPE_ACCOUNT environment variable.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder stripeAccount(@Nullable Output<String> stripeAccount) {
+            $.stripeAccount = stripeAccount;
+            return this;
+        }
+
+        /**
+         * @param stripeAccount Connected account context for Connect-scoped requests. Can also be set via the STRIPE_ACCOUNT environment variable.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder stripeAccount(String stripeAccount) {
+            return stripeAccount(Output.of(stripeAccount));
+        }
+
         public ProviderArgs build() {
-            if ($.apiKey == null) {
-                throw new MissingRequiredPropertyException("ProviderArgs", "apiKey");
-            }
             return $;
         }
     }

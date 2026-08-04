@@ -14,56 +14,64 @@ import javax.annotation.Nullable;
 @CustomType
 public final class PriceTier {
     /**
-     * @return The flat billing amount for an entire tier, regardless of the number of units in the tier.
+     * @return Price for the entire tier.
      * 
      */
     private @Nullable Double flatAmount;
     /**
-     * @return Same as &lt;span pulumi-lang-nodejs=&#34;`flatAmount`&#34; pulumi-lang-dotnet=&#34;`FlatAmount`&#34; pulumi-lang-go=&#34;`flatAmount`&#34; pulumi-lang-python=&#34;`flat_amount`&#34; pulumi-lang-yaml=&#34;`flatAmount`&#34; pulumi-lang-java=&#34;`flatAmount`&#34; pulumi-lang-hcl=&#34;`flat_amount`&#34;&gt;`flatAmount`&lt;/span&gt;, but accepts a decimal value representing an integer in the minor units of the currency. Only one of &lt;span pulumi-lang-nodejs=&#34;`flatAmount`&#34; pulumi-lang-dotnet=&#34;`FlatAmount`&#34; pulumi-lang-go=&#34;`flatAmount`&#34; pulumi-lang-python=&#34;`flat_amount`&#34; pulumi-lang-yaml=&#34;`flatAmount`&#34; pulumi-lang-java=&#34;`flatAmount`&#34; pulumi-lang-hcl=&#34;`flat_amount`&#34;&gt;`flatAmount`&lt;/span&gt; and &lt;span pulumi-lang-nodejs=&#34;`flatAmountDecimal`&#34; pulumi-lang-dotnet=&#34;`FlatAmountDecimal`&#34; pulumi-lang-go=&#34;`flatAmountDecimal`&#34; pulumi-lang-python=&#34;`flat_amount_decimal`&#34; pulumi-lang-yaml=&#34;`flatAmountDecimal`&#34; pulumi-lang-java=&#34;`flatAmountDecimal`&#34; pulumi-lang-hcl=&#34;`flat_amount_decimal`&#34;&gt;`flatAmountDecimal`&lt;/span&gt; can be set.
+     * @return Same as &lt;span pulumi-lang-nodejs=&#34;`flatAmount`&#34; pulumi-lang-dotnet=&#34;`FlatAmount`&#34; pulumi-lang-go=&#34;`flatAmount`&#34; pulumi-lang-python=&#34;`flat_amount`&#34; pulumi-lang-yaml=&#34;`flatAmount`&#34; pulumi-lang-java=&#34;`flatAmount`&#34; pulumi-lang-hcl=&#34;`flat_amount`&#34;&gt;`flatAmount`&lt;/span&gt;, but contains a decimal value with at most 12 decimal places.
      * 
      */
     private @Nullable String flatAmountDecimal;
     /**
-     * @return The per unit billing amount for each individual unit for which this tier applies.
+     * @return Per unit price for units relevant to the tier.
      * 
      */
     private @Nullable Double unitAmount;
     /**
-     * @return Same as &lt;span pulumi-lang-nodejs=&#34;`unitAmount`&#34; pulumi-lang-dotnet=&#34;`UnitAmount`&#34; pulumi-lang-go=&#34;`unitAmount`&#34; pulumi-lang-python=&#34;`unit_amount`&#34; pulumi-lang-yaml=&#34;`unitAmount`&#34; pulumi-lang-java=&#34;`unitAmount`&#34; pulumi-lang-hcl=&#34;`unit_amount`&#34;&gt;`unitAmount`&lt;/span&gt;, but accepts a decimal value in cents (or local equivalent) with at most 12 decimal places. Only one of &lt;span pulumi-lang-nodejs=&#34;`unitAmount`&#34; pulumi-lang-dotnet=&#34;`UnitAmount`&#34; pulumi-lang-go=&#34;`unitAmount`&#34; pulumi-lang-python=&#34;`unit_amount`&#34; pulumi-lang-yaml=&#34;`unitAmount`&#34; pulumi-lang-java=&#34;`unitAmount`&#34; pulumi-lang-hcl=&#34;`unit_amount`&#34;&gt;`unitAmount`&lt;/span&gt; and &lt;span pulumi-lang-nodejs=&#34;`unitAmountDecimal`&#34; pulumi-lang-dotnet=&#34;`UnitAmountDecimal`&#34; pulumi-lang-go=&#34;`unitAmountDecimal`&#34; pulumi-lang-python=&#34;`unit_amount_decimal`&#34; pulumi-lang-yaml=&#34;`unitAmountDecimal`&#34; pulumi-lang-java=&#34;`unitAmountDecimal`&#34; pulumi-lang-hcl=&#34;`unit_amount_decimal`&#34;&gt;`unitAmountDecimal`&lt;/span&gt; can be set.
+     * @return Same as &lt;span pulumi-lang-nodejs=&#34;`unitAmount`&#34; pulumi-lang-dotnet=&#34;`UnitAmount`&#34; pulumi-lang-go=&#34;`unitAmount`&#34; pulumi-lang-python=&#34;`unit_amount`&#34; pulumi-lang-yaml=&#34;`unitAmount`&#34; pulumi-lang-java=&#34;`unitAmount`&#34; pulumi-lang-hcl=&#34;`unit_amount`&#34;&gt;`unitAmount`&lt;/span&gt;, but contains a decimal value with at most 12 decimal places.
      * 
      */
     private @Nullable String unitAmountDecimal;
+    /**
+     * @return Up to and including to this quantity will be contained in the tier.
+     * 
+     */
     private String upTo;
 
     private PriceTier() {}
     /**
-     * @return The flat billing amount for an entire tier, regardless of the number of units in the tier.
+     * @return Price for the entire tier.
      * 
      */
     public Optional<Double> flatAmount() {
         return Optional.ofNullable(this.flatAmount);
     }
     /**
-     * @return Same as &lt;span pulumi-lang-nodejs=&#34;`flatAmount`&#34; pulumi-lang-dotnet=&#34;`FlatAmount`&#34; pulumi-lang-go=&#34;`flatAmount`&#34; pulumi-lang-python=&#34;`flat_amount`&#34; pulumi-lang-yaml=&#34;`flatAmount`&#34; pulumi-lang-java=&#34;`flatAmount`&#34; pulumi-lang-hcl=&#34;`flat_amount`&#34;&gt;`flatAmount`&lt;/span&gt;, but accepts a decimal value representing an integer in the minor units of the currency. Only one of &lt;span pulumi-lang-nodejs=&#34;`flatAmount`&#34; pulumi-lang-dotnet=&#34;`FlatAmount`&#34; pulumi-lang-go=&#34;`flatAmount`&#34; pulumi-lang-python=&#34;`flat_amount`&#34; pulumi-lang-yaml=&#34;`flatAmount`&#34; pulumi-lang-java=&#34;`flatAmount`&#34; pulumi-lang-hcl=&#34;`flat_amount`&#34;&gt;`flatAmount`&lt;/span&gt; and &lt;span pulumi-lang-nodejs=&#34;`flatAmountDecimal`&#34; pulumi-lang-dotnet=&#34;`FlatAmountDecimal`&#34; pulumi-lang-go=&#34;`flatAmountDecimal`&#34; pulumi-lang-python=&#34;`flat_amount_decimal`&#34; pulumi-lang-yaml=&#34;`flatAmountDecimal`&#34; pulumi-lang-java=&#34;`flatAmountDecimal`&#34; pulumi-lang-hcl=&#34;`flat_amount_decimal`&#34;&gt;`flatAmountDecimal`&lt;/span&gt; can be set.
+     * @return Same as &lt;span pulumi-lang-nodejs=&#34;`flatAmount`&#34; pulumi-lang-dotnet=&#34;`FlatAmount`&#34; pulumi-lang-go=&#34;`flatAmount`&#34; pulumi-lang-python=&#34;`flat_amount`&#34; pulumi-lang-yaml=&#34;`flatAmount`&#34; pulumi-lang-java=&#34;`flatAmount`&#34; pulumi-lang-hcl=&#34;`flat_amount`&#34;&gt;`flatAmount`&lt;/span&gt;, but contains a decimal value with at most 12 decimal places.
      * 
      */
     public Optional<String> flatAmountDecimal() {
         return Optional.ofNullable(this.flatAmountDecimal);
     }
     /**
-     * @return The per unit billing amount for each individual unit for which this tier applies.
+     * @return Per unit price for units relevant to the tier.
      * 
      */
     public Optional<Double> unitAmount() {
         return Optional.ofNullable(this.unitAmount);
     }
     /**
-     * @return Same as &lt;span pulumi-lang-nodejs=&#34;`unitAmount`&#34; pulumi-lang-dotnet=&#34;`UnitAmount`&#34; pulumi-lang-go=&#34;`unitAmount`&#34; pulumi-lang-python=&#34;`unit_amount`&#34; pulumi-lang-yaml=&#34;`unitAmount`&#34; pulumi-lang-java=&#34;`unitAmount`&#34; pulumi-lang-hcl=&#34;`unit_amount`&#34;&gt;`unitAmount`&lt;/span&gt;, but accepts a decimal value in cents (or local equivalent) with at most 12 decimal places. Only one of &lt;span pulumi-lang-nodejs=&#34;`unitAmount`&#34; pulumi-lang-dotnet=&#34;`UnitAmount`&#34; pulumi-lang-go=&#34;`unitAmount`&#34; pulumi-lang-python=&#34;`unit_amount`&#34; pulumi-lang-yaml=&#34;`unitAmount`&#34; pulumi-lang-java=&#34;`unitAmount`&#34; pulumi-lang-hcl=&#34;`unit_amount`&#34;&gt;`unitAmount`&lt;/span&gt; and &lt;span pulumi-lang-nodejs=&#34;`unitAmountDecimal`&#34; pulumi-lang-dotnet=&#34;`UnitAmountDecimal`&#34; pulumi-lang-go=&#34;`unitAmountDecimal`&#34; pulumi-lang-python=&#34;`unit_amount_decimal`&#34; pulumi-lang-yaml=&#34;`unitAmountDecimal`&#34; pulumi-lang-java=&#34;`unitAmountDecimal`&#34; pulumi-lang-hcl=&#34;`unit_amount_decimal`&#34;&gt;`unitAmountDecimal`&lt;/span&gt; can be set.
+     * @return Same as &lt;span pulumi-lang-nodejs=&#34;`unitAmount`&#34; pulumi-lang-dotnet=&#34;`UnitAmount`&#34; pulumi-lang-go=&#34;`unitAmount`&#34; pulumi-lang-python=&#34;`unit_amount`&#34; pulumi-lang-yaml=&#34;`unitAmount`&#34; pulumi-lang-java=&#34;`unitAmount`&#34; pulumi-lang-hcl=&#34;`unit_amount`&#34;&gt;`unitAmount`&lt;/span&gt;, but contains a decimal value with at most 12 decimal places.
      * 
      */
     public Optional<String> unitAmountDecimal() {
         return Optional.ofNullable(this.unitAmountDecimal);
     }
+    /**
+     * @return Up to and including to this quantity will be contained in the tier.
+     * 
+     */
     public String upTo() {
         return this.upTo;
     }

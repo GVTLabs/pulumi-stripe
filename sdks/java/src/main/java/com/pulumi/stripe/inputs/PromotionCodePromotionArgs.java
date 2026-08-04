@@ -17,14 +17,14 @@ public final class PromotionCodePromotionArgs extends com.pulumi.resources.Resou
     public static final PromotionCodePromotionArgs Empty = new PromotionCodePromotionArgs();
 
     /**
-     * If promotion &lt;span pulumi-lang-nodejs=&#34;`type`&#34; pulumi-lang-dotnet=&#34;`Type`&#34; pulumi-lang-go=&#34;`type`&#34; pulumi-lang-python=&#34;`type`&#34; pulumi-lang-yaml=&#34;`type`&#34; pulumi-lang-java=&#34;`type`&#34; pulumi-lang-hcl=&#34;`type`&#34;&gt;`type`&lt;/span&gt; is &lt;span pulumi-lang-nodejs=&#34;`coupon`&#34; pulumi-lang-dotnet=&#34;`Coupon`&#34; pulumi-lang-go=&#34;`coupon`&#34; pulumi-lang-python=&#34;`coupon`&#34; pulumi-lang-yaml=&#34;`coupon`&#34; pulumi-lang-java=&#34;`coupon`&#34; pulumi-lang-hcl=&#34;`coupon`&#34;&gt;`coupon`&lt;/span&gt;, the coupon for this promotion code.
+     * If promotion &lt;span pulumi-lang-nodejs=&#34;`type`&#34; pulumi-lang-dotnet=&#34;`Type`&#34; pulumi-lang-go=&#34;`type`&#34; pulumi-lang-python=&#34;`type`&#34; pulumi-lang-yaml=&#34;`type`&#34; pulumi-lang-java=&#34;`type`&#34; pulumi-lang-hcl=&#34;`type`&#34;&gt;`type`&lt;/span&gt; is &lt;span pulumi-lang-nodejs=&#34;`coupon`&#34; pulumi-lang-dotnet=&#34;`Coupon`&#34; pulumi-lang-go=&#34;`coupon`&#34; pulumi-lang-python=&#34;`coupon`&#34; pulumi-lang-yaml=&#34;`coupon`&#34; pulumi-lang-java=&#34;`coupon`&#34; pulumi-lang-hcl=&#34;`coupon`&#34;&gt;`coupon`&lt;/span&gt;, the coupon for this promotion.
      * 
      */
     @Import(name="coupon")
     private @Nullable Output<String> coupon;
 
     /**
-     * @return If promotion &lt;span pulumi-lang-nodejs=&#34;`type`&#34; pulumi-lang-dotnet=&#34;`Type`&#34; pulumi-lang-go=&#34;`type`&#34; pulumi-lang-python=&#34;`type`&#34; pulumi-lang-yaml=&#34;`type`&#34; pulumi-lang-java=&#34;`type`&#34; pulumi-lang-hcl=&#34;`type`&#34;&gt;`type`&lt;/span&gt; is &lt;span pulumi-lang-nodejs=&#34;`coupon`&#34; pulumi-lang-dotnet=&#34;`Coupon`&#34; pulumi-lang-go=&#34;`coupon`&#34; pulumi-lang-python=&#34;`coupon`&#34; pulumi-lang-yaml=&#34;`coupon`&#34; pulumi-lang-java=&#34;`coupon`&#34; pulumi-lang-hcl=&#34;`coupon`&#34;&gt;`coupon`&lt;/span&gt;, the coupon for this promotion code.
+     * @return If promotion &lt;span pulumi-lang-nodejs=&#34;`type`&#34; pulumi-lang-dotnet=&#34;`Type`&#34; pulumi-lang-go=&#34;`type`&#34; pulumi-lang-python=&#34;`type`&#34; pulumi-lang-yaml=&#34;`type`&#34; pulumi-lang-java=&#34;`type`&#34; pulumi-lang-hcl=&#34;`type`&#34;&gt;`type`&lt;/span&gt; is &lt;span pulumi-lang-nodejs=&#34;`coupon`&#34; pulumi-lang-dotnet=&#34;`Coupon`&#34; pulumi-lang-go=&#34;`coupon`&#34; pulumi-lang-python=&#34;`coupon`&#34; pulumi-lang-yaml=&#34;`coupon`&#34; pulumi-lang-java=&#34;`coupon`&#34; pulumi-lang-hcl=&#34;`coupon`&#34;&gt;`coupon`&lt;/span&gt;, the coupon for this promotion.
      * 
      */
     public Optional<Output<String>> coupon() {
@@ -32,14 +32,14 @@ public final class PromotionCodePromotionArgs extends com.pulumi.resources.Resou
     }
 
     /**
-     * Specifies the type of promotion.
+     * The type of promotion.
      * 
      */
     @Import(name="type", required=true)
     private Output<String> type;
 
     /**
-     * @return Specifies the type of promotion.
+     * @return The type of promotion.
      * 
      */
     public Output<String> type() {
@@ -72,7 +72,7 @@ public final class PromotionCodePromotionArgs extends com.pulumi.resources.Resou
         }
 
         /**
-         * @param coupon If promotion &lt;span pulumi-lang-nodejs=&#34;`type`&#34; pulumi-lang-dotnet=&#34;`Type`&#34; pulumi-lang-go=&#34;`type`&#34; pulumi-lang-python=&#34;`type`&#34; pulumi-lang-yaml=&#34;`type`&#34; pulumi-lang-java=&#34;`type`&#34; pulumi-lang-hcl=&#34;`type`&#34;&gt;`type`&lt;/span&gt; is &lt;span pulumi-lang-nodejs=&#34;`coupon`&#34; pulumi-lang-dotnet=&#34;`Coupon`&#34; pulumi-lang-go=&#34;`coupon`&#34; pulumi-lang-python=&#34;`coupon`&#34; pulumi-lang-yaml=&#34;`coupon`&#34; pulumi-lang-java=&#34;`coupon`&#34; pulumi-lang-hcl=&#34;`coupon`&#34;&gt;`coupon`&lt;/span&gt;, the coupon for this promotion code.
+         * @param coupon If promotion &lt;span pulumi-lang-nodejs=&#34;`type`&#34; pulumi-lang-dotnet=&#34;`Type`&#34; pulumi-lang-go=&#34;`type`&#34; pulumi-lang-python=&#34;`type`&#34; pulumi-lang-yaml=&#34;`type`&#34; pulumi-lang-java=&#34;`type`&#34; pulumi-lang-hcl=&#34;`type`&#34;&gt;`type`&lt;/span&gt; is &lt;span pulumi-lang-nodejs=&#34;`coupon`&#34; pulumi-lang-dotnet=&#34;`Coupon`&#34; pulumi-lang-go=&#34;`coupon`&#34; pulumi-lang-python=&#34;`coupon`&#34; pulumi-lang-yaml=&#34;`coupon`&#34; pulumi-lang-java=&#34;`coupon`&#34; pulumi-lang-hcl=&#34;`coupon`&#34;&gt;`coupon`&lt;/span&gt;, the coupon for this promotion.
          * 
          * @return builder
          * 
@@ -83,7 +83,7 @@ public final class PromotionCodePromotionArgs extends com.pulumi.resources.Resou
         }
 
         /**
-         * @param coupon If promotion &lt;span pulumi-lang-nodejs=&#34;`type`&#34; pulumi-lang-dotnet=&#34;`Type`&#34; pulumi-lang-go=&#34;`type`&#34; pulumi-lang-python=&#34;`type`&#34; pulumi-lang-yaml=&#34;`type`&#34; pulumi-lang-java=&#34;`type`&#34; pulumi-lang-hcl=&#34;`type`&#34;&gt;`type`&lt;/span&gt; is &lt;span pulumi-lang-nodejs=&#34;`coupon`&#34; pulumi-lang-dotnet=&#34;`Coupon`&#34; pulumi-lang-go=&#34;`coupon`&#34; pulumi-lang-python=&#34;`coupon`&#34; pulumi-lang-yaml=&#34;`coupon`&#34; pulumi-lang-java=&#34;`coupon`&#34; pulumi-lang-hcl=&#34;`coupon`&#34;&gt;`coupon`&lt;/span&gt;, the coupon for this promotion code.
+         * @param coupon If promotion &lt;span pulumi-lang-nodejs=&#34;`type`&#34; pulumi-lang-dotnet=&#34;`Type`&#34; pulumi-lang-go=&#34;`type`&#34; pulumi-lang-python=&#34;`type`&#34; pulumi-lang-yaml=&#34;`type`&#34; pulumi-lang-java=&#34;`type`&#34; pulumi-lang-hcl=&#34;`type`&#34;&gt;`type`&lt;/span&gt; is &lt;span pulumi-lang-nodejs=&#34;`coupon`&#34; pulumi-lang-dotnet=&#34;`Coupon`&#34; pulumi-lang-go=&#34;`coupon`&#34; pulumi-lang-python=&#34;`coupon`&#34; pulumi-lang-yaml=&#34;`coupon`&#34; pulumi-lang-java=&#34;`coupon`&#34; pulumi-lang-hcl=&#34;`coupon`&#34;&gt;`coupon`&lt;/span&gt;, the coupon for this promotion.
          * 
          * @return builder
          * 
@@ -93,7 +93,7 @@ public final class PromotionCodePromotionArgs extends com.pulumi.resources.Resou
         }
 
         /**
-         * @param type Specifies the type of promotion.
+         * @param type The type of promotion.
          * 
          * @return builder
          * 
@@ -104,7 +104,7 @@ public final class PromotionCodePromotionArgs extends com.pulumi.resources.Resou
         }
 
         /**
-         * @param type Specifies the type of promotion.
+         * @param type The type of promotion.
          * 
          * @return builder
          * 

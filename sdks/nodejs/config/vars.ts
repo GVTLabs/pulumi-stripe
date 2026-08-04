@@ -8,12 +8,23 @@ declare var exports: any;
 const __config = new pulumi.Config("stripe");
 
 /**
- * Stripe API key
+ * Stripe API key. Can also be set via the STRIPE_API_KEY environment variable.
  */
 export declare const apiKey: string | undefined;
 Object.defineProperty(exports, "apiKey", {
     get() {
         return __config.get("apiKey");
+    },
+    enumerable: true,
+});
+
+/**
+ * Connected account context for Connect-scoped requests. Can also be set via the STRIPE_ACCOUNT environment variable.
+ */
+export declare const stripeAccount: string | undefined;
+Object.defineProperty(exports, "stripeAccount", {
+    get() {
+        return __config.get("stripeAccount");
     },
     enumerable: true,
 });

@@ -6,6 +6,7 @@ package com.pulumi.stripe.inputs;
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
 import java.lang.Boolean;
+import java.lang.Double;
 import java.lang.String;
 import java.util.List;
 import java.util.Map;
@@ -19,14 +20,14 @@ public final class WebhookEndpointState extends com.pulumi.resources.ResourceArg
     public static final WebhookEndpointState Empty = new WebhookEndpointState();
 
     /**
-     * Events sent to this endpoint will be generated with this Stripe Version instead of your account&#39;s default Stripe Version.
+     * The API version events are rendered as for this webhook endpoint.
      * 
      */
     @Import(name="apiVersion")
     private @Nullable Output<String> apiVersion;
 
     /**
-     * @return Events sent to this endpoint will be generated with this Stripe Version instead of your account&#39;s default Stripe Version.
+     * @return The API version events are rendered as for this webhook endpoint.
      * 
      */
     public Optional<Output<String>> apiVersion() {
@@ -63,33 +64,94 @@ public final class WebhookEndpointState extends com.pulumi.resources.ResourceArg
         return Optional.ofNullable(this.connect);
     }
 
+    /**
+     * Time at which the object was created. Measured in seconds since the Unix epoch.
+     * 
+     */
+    @Import(name="created")
+    private @Nullable Output<Double> created;
+
+    /**
+     * @return Time at which the object was created. Measured in seconds since the Unix epoch.
+     * 
+     */
+    public Optional<Output<Double>> created() {
+        return Optional.ofNullable(this.created);
+    }
+
+    /**
+     * An optional description of what the webhook is used for.
+     * 
+     */
     @Import(name="description")
     private @Nullable Output<String> description;
 
+    /**
+     * @return An optional description of what the webhook is used for.
+     * 
+     */
     public Optional<Output<String>> description() {
         return Optional.ofNullable(this.description);
     }
 
     /**
-     * The list of events to enable for this endpoint. You may specify `[&#39;*&#39;]` to enable all events, except those that require explicit selection.
+     * The list of events to enable for this endpoint. `[&#39;*&#39;]` indicates that all events are enabled, except those that require explicit selection.
      * 
      */
     @Import(name="enabledEvents")
     private @Nullable Output<List<String>> enabledEvents;
 
     /**
-     * @return The list of events to enable for this endpoint. You may specify `[&#39;*&#39;]` to enable all events, except those that require explicit selection.
+     * @return The list of events to enable for this endpoint. `[&#39;*&#39;]` indicates that all events are enabled, except those that require explicit selection.
      * 
      */
     public Optional<Output<List<String>>> enabledEvents() {
         return Optional.ofNullable(this.enabledEvents);
     }
 
+    /**
+     * If the object exists in live mode, the value is &lt;span pulumi-lang-nodejs=&#34;`true`&#34; pulumi-lang-dotnet=&#34;`True`&#34; pulumi-lang-go=&#34;`true`&#34; pulumi-lang-python=&#34;`true`&#34; pulumi-lang-yaml=&#34;`true`&#34; pulumi-lang-java=&#34;`true`&#34; pulumi-lang-hcl=&#34;`true`&#34;&gt;`true`&lt;/span&gt;. If the object exists in test mode, the value is &lt;span pulumi-lang-nodejs=&#34;`false`&#34; pulumi-lang-dotnet=&#34;`False`&#34; pulumi-lang-go=&#34;`false`&#34; pulumi-lang-python=&#34;`false`&#34; pulumi-lang-yaml=&#34;`false`&#34; pulumi-lang-java=&#34;`false`&#34; pulumi-lang-hcl=&#34;`false`&#34;&gt;`false`&lt;/span&gt;.
+     * 
+     */
+    @Import(name="livemode")
+    private @Nullable Output<Boolean> livemode;
+
+    /**
+     * @return If the object exists in live mode, the value is &lt;span pulumi-lang-nodejs=&#34;`true`&#34; pulumi-lang-dotnet=&#34;`True`&#34; pulumi-lang-go=&#34;`true`&#34; pulumi-lang-python=&#34;`true`&#34; pulumi-lang-yaml=&#34;`true`&#34; pulumi-lang-java=&#34;`true`&#34; pulumi-lang-hcl=&#34;`true`&#34;&gt;`true`&lt;/span&gt;. If the object exists in test mode, the value is &lt;span pulumi-lang-nodejs=&#34;`false`&#34; pulumi-lang-dotnet=&#34;`False`&#34; pulumi-lang-go=&#34;`false`&#34; pulumi-lang-python=&#34;`false`&#34; pulumi-lang-yaml=&#34;`false`&#34; pulumi-lang-java=&#34;`false`&#34; pulumi-lang-hcl=&#34;`false`&#34;&gt;`false`&lt;/span&gt;.
+     * 
+     */
+    public Optional<Output<Boolean>> livemode() {
+        return Optional.ofNullable(this.livemode);
+    }
+
+    /**
+     * Set of [key-value pairs](https://docs.stripe.com/api/metadata) that you can attach to an object. This can be useful for storing additional information about the object in a structured format.
+     * 
+     */
     @Import(name="metadata")
     private @Nullable Output<Map<String,String>> metadata;
 
+    /**
+     * @return Set of [key-value pairs](https://docs.stripe.com/api/metadata) that you can attach to an object. This can be useful for storing additional information about the object in a structured format.
+     * 
+     */
     public Optional<Output<Map<String,String>>> metadata() {
         return Optional.ofNullable(this.metadata);
+    }
+
+    /**
+     * String representing the object&#39;s type. Objects of the same type share the same value.
+     * 
+     */
+    @Import(name="object")
+    private @Nullable Output<String> object;
+
+    /**
+     * @return String representing the object&#39;s type. Objects of the same type share the same value.
+     * 
+     */
+    public Optional<Output<String>> object() {
+        return Optional.ofNullable(this.object);
     }
 
     /**
@@ -143,9 +205,12 @@ public final class WebhookEndpointState extends com.pulumi.resources.ResourceArg
         this.apiVersion = $.apiVersion;
         this.application = $.application;
         this.connect = $.connect;
+        this.created = $.created;
         this.description = $.description;
         this.enabledEvents = $.enabledEvents;
+        this.livemode = $.livemode;
         this.metadata = $.metadata;
+        this.object = $.object;
         this.secret = $.secret;
         this.status = $.status;
         this.url = $.url;
@@ -170,7 +235,7 @@ public final class WebhookEndpointState extends com.pulumi.resources.ResourceArg
         }
 
         /**
-         * @param apiVersion Events sent to this endpoint will be generated with this Stripe Version instead of your account&#39;s default Stripe Version.
+         * @param apiVersion The API version events are rendered as for this webhook endpoint.
          * 
          * @return builder
          * 
@@ -181,7 +246,7 @@ public final class WebhookEndpointState extends com.pulumi.resources.ResourceArg
         }
 
         /**
-         * @param apiVersion Events sent to this endpoint will be generated with this Stripe Version instead of your account&#39;s default Stripe Version.
+         * @param apiVersion The API version events are rendered as for this webhook endpoint.
          * 
          * @return builder
          * 
@@ -232,17 +297,50 @@ public final class WebhookEndpointState extends com.pulumi.resources.ResourceArg
             return connect(Output.of(connect));
         }
 
+        /**
+         * @param created Time at which the object was created. Measured in seconds since the Unix epoch.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder created(@Nullable Output<Double> created) {
+            $.created = created;
+            return this;
+        }
+
+        /**
+         * @param created Time at which the object was created. Measured in seconds since the Unix epoch.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder created(Double created) {
+            return created(Output.of(created));
+        }
+
+        /**
+         * @param description An optional description of what the webhook is used for.
+         * 
+         * @return builder
+         * 
+         */
         public Builder description(@Nullable Output<String> description) {
             $.description = description;
             return this;
         }
 
+        /**
+         * @param description An optional description of what the webhook is used for.
+         * 
+         * @return builder
+         * 
+         */
         public Builder description(String description) {
             return description(Output.of(description));
         }
 
         /**
-         * @param enabledEvents The list of events to enable for this endpoint. You may specify `[&#39;*&#39;]` to enable all events, except those that require explicit selection.
+         * @param enabledEvents The list of events to enable for this endpoint. `[&#39;*&#39;]` indicates that all events are enabled, except those that require explicit selection.
          * 
          * @return builder
          * 
@@ -253,7 +351,7 @@ public final class WebhookEndpointState extends com.pulumi.resources.ResourceArg
         }
 
         /**
-         * @param enabledEvents The list of events to enable for this endpoint. You may specify `[&#39;*&#39;]` to enable all events, except those that require explicit selection.
+         * @param enabledEvents The list of events to enable for this endpoint. `[&#39;*&#39;]` indicates that all events are enabled, except those that require explicit selection.
          * 
          * @return builder
          * 
@@ -263,7 +361,7 @@ public final class WebhookEndpointState extends com.pulumi.resources.ResourceArg
         }
 
         /**
-         * @param enabledEvents The list of events to enable for this endpoint. You may specify `[&#39;*&#39;]` to enable all events, except those that require explicit selection.
+         * @param enabledEvents The list of events to enable for this endpoint. `[&#39;*&#39;]` indicates that all events are enabled, except those that require explicit selection.
          * 
          * @return builder
          * 
@@ -272,13 +370,67 @@ public final class WebhookEndpointState extends com.pulumi.resources.ResourceArg
             return enabledEvents(List.of(enabledEvents));
         }
 
+        /**
+         * @param livemode If the object exists in live mode, the value is &lt;span pulumi-lang-nodejs=&#34;`true`&#34; pulumi-lang-dotnet=&#34;`True`&#34; pulumi-lang-go=&#34;`true`&#34; pulumi-lang-python=&#34;`true`&#34; pulumi-lang-yaml=&#34;`true`&#34; pulumi-lang-java=&#34;`true`&#34; pulumi-lang-hcl=&#34;`true`&#34;&gt;`true`&lt;/span&gt;. If the object exists in test mode, the value is &lt;span pulumi-lang-nodejs=&#34;`false`&#34; pulumi-lang-dotnet=&#34;`False`&#34; pulumi-lang-go=&#34;`false`&#34; pulumi-lang-python=&#34;`false`&#34; pulumi-lang-yaml=&#34;`false`&#34; pulumi-lang-java=&#34;`false`&#34; pulumi-lang-hcl=&#34;`false`&#34;&gt;`false`&lt;/span&gt;.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder livemode(@Nullable Output<Boolean> livemode) {
+            $.livemode = livemode;
+            return this;
+        }
+
+        /**
+         * @param livemode If the object exists in live mode, the value is &lt;span pulumi-lang-nodejs=&#34;`true`&#34; pulumi-lang-dotnet=&#34;`True`&#34; pulumi-lang-go=&#34;`true`&#34; pulumi-lang-python=&#34;`true`&#34; pulumi-lang-yaml=&#34;`true`&#34; pulumi-lang-java=&#34;`true`&#34; pulumi-lang-hcl=&#34;`true`&#34;&gt;`true`&lt;/span&gt;. If the object exists in test mode, the value is &lt;span pulumi-lang-nodejs=&#34;`false`&#34; pulumi-lang-dotnet=&#34;`False`&#34; pulumi-lang-go=&#34;`false`&#34; pulumi-lang-python=&#34;`false`&#34; pulumi-lang-yaml=&#34;`false`&#34; pulumi-lang-java=&#34;`false`&#34; pulumi-lang-hcl=&#34;`false`&#34;&gt;`false`&lt;/span&gt;.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder livemode(Boolean livemode) {
+            return livemode(Output.of(livemode));
+        }
+
+        /**
+         * @param metadata Set of [key-value pairs](https://docs.stripe.com/api/metadata) that you can attach to an object. This can be useful for storing additional information about the object in a structured format.
+         * 
+         * @return builder
+         * 
+         */
         public Builder metadata(@Nullable Output<Map<String,String>> metadata) {
             $.metadata = metadata;
             return this;
         }
 
+        /**
+         * @param metadata Set of [key-value pairs](https://docs.stripe.com/api/metadata) that you can attach to an object. This can be useful for storing additional information about the object in a structured format.
+         * 
+         * @return builder
+         * 
+         */
         public Builder metadata(Map<String,String> metadata) {
             return metadata(Output.of(metadata));
+        }
+
+        /**
+         * @param object String representing the object&#39;s type. Objects of the same type share the same value.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder object(@Nullable Output<String> object) {
+            $.object = object;
+            return this;
+        }
+
+        /**
+         * @param object String representing the object&#39;s type. Objects of the same type share the same value.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder object(String object) {
+            return object(Output.of(object));
         }
 
         /**

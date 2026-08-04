@@ -12,20 +12,28 @@ import java.util.Objects;
 @CustomType
 public final class CouponCurrencyOption {
     /**
-     * @return A positive integer representing the amount to subtract from an invoice total.
+     * @return Amount (in the &lt;span pulumi-lang-nodejs=&#34;`currency`&#34; pulumi-lang-dotnet=&#34;`Currency`&#34; pulumi-lang-go=&#34;`currency`&#34; pulumi-lang-python=&#34;`currency`&#34; pulumi-lang-yaml=&#34;`currency`&#34; pulumi-lang-java=&#34;`currency`&#34; pulumi-lang-hcl=&#34;`currency`&#34;&gt;`currency`&lt;/span&gt; specified) that will be taken off the subtotal of any invoices for this customer.
      * 
      */
     private Double amountOff;
+    /**
+     * @return Key for this entry.
+     * 
+     */
     private String key;
 
     private CouponCurrencyOption() {}
     /**
-     * @return A positive integer representing the amount to subtract from an invoice total.
+     * @return Amount (in the &lt;span pulumi-lang-nodejs=&#34;`currency`&#34; pulumi-lang-dotnet=&#34;`Currency`&#34; pulumi-lang-go=&#34;`currency`&#34; pulumi-lang-python=&#34;`currency`&#34; pulumi-lang-yaml=&#34;`currency`&#34; pulumi-lang-java=&#34;`currency`&#34; pulumi-lang-hcl=&#34;`currency`&#34;&gt;`currency`&lt;/span&gt; specified) that will be taken off the subtotal of any invoices for this customer.
      * 
      */
     public Double amountOff() {
         return this.amountOff;
     }
+    /**
+     * @return Key for this entry.
+     * 
+     */
     public String key() {
         return this.key;
     }

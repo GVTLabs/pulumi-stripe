@@ -14,45 +14,71 @@ import (
 type Customer struct {
 	pulumi.CustomResourceState
 
-	Address CustomerAddressPtrOutput `pulumi:"address"`
-	// An integer amount in cents (or local equivalent) that represents the customer's current balance, which affect the customer's future invoices. A negative amount represents a credit that decreases the amount due on an invoice; a positive amount increases the amount due on an invoice.
-	Balance      pulumi.Float64Output `pulumi:"balance"`
-	BusinessName pulumi.StringOutput  `pulumi:"businessName"`
-	// Balance information and default balance settings for this customer.
-	CashBalance CustomerCashBalancePtrOutput `pulumi:"cashBalance"`
+	// The customer's address.
+	Addresses CustomerAddressArrayOutput `pulumi:"addresses"`
+	// The current balance, if any, that's stored on the customer in their default currency. If negative, the customer has credit to apply to their next invoice. If positive, the customer has an amount owed that's added to their next invoice. The balance only considers amounts that Stripe hasn't successfully applied to any invoice. It doesn't reflect unpaid invoices. This balance is only taken into account after invoices finalize. For multi-currency balances, see <span pulumi-lang-nodejs="[invoiceCreditBalance]" pulumi-lang-dotnet="[InvoiceCreditBalance]" pulumi-lang-go="[invoiceCreditBalance]" pulumi-lang-python="[invoice_credit_balance]" pulumi-lang-yaml="[invoiceCreditBalance]" pulumi-lang-java="[invoiceCreditBalance]" pulumi-lang-hcl="[invoice_credit_balance]">[invoiceCreditBalance]</span>(https://docs.stripe.com/api/customers/object#customer_object-invoice_credit_balance).
+	Balance pulumi.Float64Output `pulumi:"balance"`
+	// The customer's business name.
+	BusinessName pulumi.StringOutput `pulumi:"businessName"`
+	// The current funds being held by Stripe on behalf of the customer. You can apply these funds towards payment intents when the source is <span pulumi-lang-nodejs=""cashBalance"" pulumi-lang-dotnet=""CashBalance"" pulumi-lang-go=""cashBalance"" pulumi-lang-python=""cash_balance"" pulumi-lang-yaml=""cashBalance"" pulumi-lang-java=""cashBalance"" pulumi-lang-hcl=""cash_balance"">"cashBalance"</span>. The `settings<span pulumi-lang-nodejs="[reconciliationMode]" pulumi-lang-dotnet="[ReconciliationMode]" pulumi-lang-go="[reconciliationMode]" pulumi-lang-python="[reconciliation_mode]" pulumi-lang-yaml="[reconciliationMode]" pulumi-lang-java="[reconciliationMode]" pulumi-lang-hcl="[reconciliation_mode]">[reconciliationMode]</span>` field describes if these funds apply to these payment intents manually or automatically.
+	CashBalances CustomerCashBalanceArrayOutput `pulumi:"cashBalances"`
+	// Time at which the object was created. Measured in seconds since the Unix epoch.
+	Created pulumi.Float64Output `pulumi:"created"`
 	// Three-letter [ISO code for the currency](https://stripe.com/docs/currencies) the customer can be charged in for recurring billing purposes.
-	Currency        pulumi.StringOutput `pulumi:"currency"`
+	Currency pulumi.StringOutput `pulumi:"currency"`
+	// The ID of an Account representing a customer. You can use this ID with any v1 API that accepts a<span pulumi-lang-nodejs=" customerAccount " pulumi-lang-dotnet=" CustomerAccount " pulumi-lang-go=" customerAccount " pulumi-lang-python=" customer_account " pulumi-lang-yaml=" customerAccount " pulumi-lang-java=" customerAccount " pulumi-lang-hcl=" customer_account "> customerAccount </span>parameter.
 	CustomerAccount pulumi.StringOutput `pulumi:"customerAccount"`
-	// Tracks the most recent state change on any invoice belonging to the customer. Paying an invoice or marking it uncollectible via the API will set this field to false. An automatic payment failure or passing the `invoice.due_date` will set this field to <span pulumi-lang-nodejs="`true`" pulumi-lang-dotnet="`True`" pulumi-lang-go="`true`" pulumi-lang-python="`true`" pulumi-lang-yaml="`true`" pulumi-lang-java="`true`" pulumi-lang-hcl="`true`">`true`</span>. If an invoice becomes uncollectible by [dunning](https://stripe.com/docs/billing/automatic-collection), <span pulumi-lang-nodejs="`delinquent`" pulumi-lang-dotnet="`Delinquent`" pulumi-lang-go="`delinquent`" pulumi-lang-python="`delinquent`" pulumi-lang-yaml="`delinquent`" pulumi-lang-java="`delinquent`" pulumi-lang-hcl="`delinquent`">`delinquent`</span> doesn't reset to <span pulumi-lang-nodejs="`false`" pulumi-lang-dotnet="`False`" pulumi-lang-go="`false`" pulumi-lang-python="`false`" pulumi-lang-yaml="`false`" pulumi-lang-java="`false`" pulumi-lang-hcl="`false`">`false`</span>. If you care whether the customer has paid their most recent subscription invoice, use `subscription.status` instead. Paying or marking uncollectible any customer invoice regardless of whether it is the latest invoice for a subscription will always set this field to <span pulumi-lang-nodejs="`false`" pulumi-lang-dotnet="`False`" pulumi-lang-go="`false`" pulumi-lang-python="`false`" pulumi-lang-yaml="`false`" pulumi-lang-java="`false`" pulumi-lang-hcl="`false`">`false`</span>.
+	// ID of the default payment source for the customer.
+	//
+	// If you use payment methods created through the PaymentMethods API, see the [invoice_settings.default_payment_method](https://docs.stripe.com/api/customers/object#customer_object-invoice_settings-default_payment_method) field instead.
+	DefaultSource pulumi.StringOutput `pulumi:"defaultSource"`
+	// Tracks the most recent state change on any invoice belonging to the customer. Paying an invoice or marking it uncollectible via the API will set this field to false. An automatic payment failure or passing the `invoice.due_date` will set this field to <span pulumi-lang-nodejs="`true`" pulumi-lang-dotnet="`True`" pulumi-lang-go="`true`" pulumi-lang-python="`true`" pulumi-lang-yaml="`true`" pulumi-lang-java="`true`" pulumi-lang-hcl="`true`">`true`</span>.
+	//
+	// If an invoice becomes uncollectible by [dunning](https://docs.stripe.com/billing/automatic-collection), <span pulumi-lang-nodejs="`delinquent`" pulumi-lang-dotnet="`Delinquent`" pulumi-lang-go="`delinquent`" pulumi-lang-python="`delinquent`" pulumi-lang-yaml="`delinquent`" pulumi-lang-java="`delinquent`" pulumi-lang-hcl="`delinquent`">`delinquent`</span> doesn't reset to <span pulumi-lang-nodejs="`false`" pulumi-lang-dotnet="`False`" pulumi-lang-go="`false`" pulumi-lang-python="`false`" pulumi-lang-yaml="`false`" pulumi-lang-java="`false`" pulumi-lang-hcl="`false`">`false`</span>.
+	//
+	// If you care whether the customer has paid their most recent subscription invoice, use `subscription.status` instead. Paying or marking uncollectible any customer invoice regardless of whether it is the latest invoice for a subscription will always set this field to <span pulumi-lang-nodejs="`false`" pulumi-lang-dotnet="`False`" pulumi-lang-go="`false`" pulumi-lang-python="`false`" pulumi-lang-yaml="`false`" pulumi-lang-java="`false`" pulumi-lang-hcl="`false`">`false`</span>.
 	Delinquent pulumi.BoolOutput `pulumi:"delinquent"`
-	// An arbitrary string that you can attach to a customer object. It is displayed alongside the customer in the dashboard.
+	// An arbitrary string attached to the object. Often useful for displaying to users.
 	Description pulumi.StringOutput `pulumi:"description"`
-	// Customer's email address. It's displayed alongside the customer in your dashboard and can be useful for searching and tracking. This may be up to *512 characters*.
-	Email          pulumi.StringOutput `pulumi:"email"`
+	// Describes the current discount active on the customer, if there is one.
+	Discount pulumi.StringOutput `pulumi:"discount"`
+	// The customer's email address.
+	Email pulumi.StringOutput `pulumi:"email"`
+	// The customer's individual name.
 	IndividualName pulumi.StringOutput `pulumi:"individualName"`
-	// The prefix for the customer used to generate unique invoice numbers. Must be 3–12 uppercase letters or numbers.
-	InvoicePrefix pulumi.StringOutput `pulumi:"invoicePrefix"`
-	// Default invoice settings for this customer.
-	InvoiceSettings CustomerInvoiceSettingsPtrOutput `pulumi:"invoiceSettings"`
-	Metadata        pulumi.StringMapOutput           `pulumi:"metadata"`
+	// The current multi-currency balances, if any, that's stored on the customer. If positive in a currency, the customer has a credit to apply to their next invoice denominated in that currency. If negative, the customer has an amount owed that's added to their next invoice denominated in that currency. These balances don't apply to unpaid invoices. They solely track amounts that Stripe hasn't successfully applied to any invoice. Stripe only applies a balance in a specific currency to an invoice after that invoice (which is in the same currency) finalizes.
+	InvoiceCreditBalance pulumi.Float64MapOutput `pulumi:"invoiceCreditBalance"`
+	// The prefix for the customer used to generate unique invoice numbers.
+	InvoicePrefix   pulumi.StringOutput               `pulumi:"invoicePrefix"`
+	InvoiceSettings CustomerInvoiceSettingArrayOutput `pulumi:"invoiceSettings"`
+	// If the object exists in live mode, the value is <span pulumi-lang-nodejs="`true`" pulumi-lang-dotnet="`True`" pulumi-lang-go="`true`" pulumi-lang-python="`true`" pulumi-lang-yaml="`true`" pulumi-lang-java="`true`" pulumi-lang-hcl="`true`">`true`</span>. If the object exists in test mode, the value is <span pulumi-lang-nodejs="`false`" pulumi-lang-dotnet="`False`" pulumi-lang-go="`false`" pulumi-lang-python="`false`" pulumi-lang-yaml="`false`" pulumi-lang-java="`false`" pulumi-lang-hcl="`false`">`false`</span>.
+	Livemode pulumi.BoolOutput `pulumi:"livemode"`
+	// Set of [key-value pairs](https://docs.stripe.com/api/metadata) that you can attach to an object. This can be useful for storing additional information about the object in a structured format.
+	Metadata pulumi.StringMapOutput `pulumi:"metadata"`
 	// The customer's full name or business name.
 	Name pulumi.StringOutput `pulumi:"name"`
-	// The sequence to be used on the customer's next invoice. Defaults to 1.
-	NextInvoiceSequence pulumi.Float64Output   `pulumi:"nextInvoiceSequence"`
-	PaymentMethod       pulumi.StringPtrOutput `pulumi:"paymentMethod"`
+	// The suffix of the customer's next invoice number (for example, 0001). When the account uses account level sequencing, this parameter is ignored in API requests and the field omitted in API responses.
+	NextInvoiceSequence pulumi.Float64Output `pulumi:"nextInvoiceSequence"`
+	// String representing the object's type. Objects of the same type share the same value.
+	Object        pulumi.StringOutput    `pulumi:"object"`
+	PaymentMethod pulumi.StringPtrOutput `pulumi:"paymentMethod"`
 	// The customer's phone number.
 	Phone pulumi.StringOutput `pulumi:"phone"`
-	// Customer's preferred languages, ordered by preference.
-	PreferredLocales pulumi.StringArrayOutput  `pulumi:"preferredLocales"`
-	Shipping         CustomerShippingPtrOutput `pulumi:"shipping"`
-	// Tax details about the customer.
-	Tax CustomerTaxPtrOutput `pulumi:"tax"`
-	// The customer's tax exemption. One of <span pulumi-lang-nodejs="`none`" pulumi-lang-dotnet="`None`" pulumi-lang-go="`none`" pulumi-lang-python="`none`" pulumi-lang-yaml="`none`" pulumi-lang-java="`none`" pulumi-lang-hcl="`none`">`none`</span>, <span pulumi-lang-nodejs="`exempt`" pulumi-lang-dotnet="`Exempt`" pulumi-lang-go="`exempt`" pulumi-lang-python="`exempt`" pulumi-lang-yaml="`exempt`" pulumi-lang-java="`exempt`" pulumi-lang-hcl="`exempt`">`exempt`</span>, or <span pulumi-lang-nodejs="`reverse`" pulumi-lang-dotnet="`Reverse`" pulumi-lang-go="`reverse`" pulumi-lang-python="`reverse`" pulumi-lang-yaml="`reverse`" pulumi-lang-java="`reverse`" pulumi-lang-hcl="`reverse`">`reverse`</span>.
+	// The customer's preferred locales (languages), ordered by preference.
+	PreferredLocales pulumi.StringArrayOutput `pulumi:"preferredLocales"`
+	// Mailing and shipping address for the customer. Appears on invoices emailed to this customer.
+	Shippings CustomerShippingArrayOutput `pulumi:"shippings"`
+	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+	Source pulumi.StringPtrOutput `pulumi:"source"`
+	// Describes the customer's tax exemption status, which is <span pulumi-lang-nodejs="`none`" pulumi-lang-dotnet="`None`" pulumi-lang-go="`none`" pulumi-lang-python="`none`" pulumi-lang-yaml="`none`" pulumi-lang-java="`none`" pulumi-lang-hcl="`none`">`none`</span>, <span pulumi-lang-nodejs="`exempt`" pulumi-lang-dotnet="`Exempt`" pulumi-lang-go="`exempt`" pulumi-lang-python="`exempt`" pulumi-lang-yaml="`exempt`" pulumi-lang-java="`exempt`" pulumi-lang-hcl="`exempt`">`exempt`</span>, or <span pulumi-lang-nodejs="`reverse`" pulumi-lang-dotnet="`Reverse`" pulumi-lang-go="`reverse`" pulumi-lang-python="`reverse`" pulumi-lang-yaml="`reverse`" pulumi-lang-java="`reverse`" pulumi-lang-hcl="`reverse`">`reverse`</span>. When set to <span pulumi-lang-nodejs="`reverse`" pulumi-lang-dotnet="`Reverse`" pulumi-lang-go="`reverse`" pulumi-lang-python="`reverse`" pulumi-lang-yaml="`reverse`" pulumi-lang-java="`reverse`" pulumi-lang-hcl="`reverse`">`reverse`</span>, invoice and receipt PDFs include the following text: **"Reverse charge"**.
 	TaxExempt pulumi.StringOutput `pulumi:"taxExempt"`
 	// The customer's tax IDs.
 	TaxIdDatas CustomerTaxIdDataArrayOutput `pulumi:"taxIdDatas"`
-	// ID of the test clock to attach to the customer.
+	Taxes      CustomerTaxArrayOutput       `pulumi:"taxes"`
+	// ID of the test clock that this customer belongs to.
 	TestClock pulumi.StringOutput `pulumi:"testClock"`
+	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+	Validate pulumi.BoolPtrOutput `pulumi:"validate"`
 }
 
 // NewCustomer registers a new resource with the given unique name, arguments, and options.
@@ -62,6 +88,17 @@ func NewCustomer(ctx *pulumi.Context,
 		args = &CustomerArgs{}
 	}
 
+	if args.Source != nil {
+		args.Source = pulumi.ToSecret(args.Source).(pulumi.StringPtrInput)
+	}
+	if args.Validate != nil {
+		args.Validate = pulumi.ToSecret(args.Validate).(pulumi.BoolPtrInput)
+	}
+	secrets := pulumi.AdditionalSecretOutputs([]string{
+		"source",
+		"validate",
+	})
+	opts = append(opts, secrets)
 	opts = internal.PkgResourceDefaultOpts(opts)
 	ref, err := internal.PkgGetPackageRef(ctx)
 	if err != nil {
@@ -93,87 +130,139 @@ func GetCustomer(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering Customer resources.
 type customerState struct {
-	Address *CustomerAddress `pulumi:"address"`
-	// An integer amount in cents (or local equivalent) that represents the customer's current balance, which affect the customer's future invoices. A negative amount represents a credit that decreases the amount due on an invoice; a positive amount increases the amount due on an invoice.
-	Balance      *float64 `pulumi:"balance"`
-	BusinessName *string  `pulumi:"businessName"`
-	// Balance information and default balance settings for this customer.
-	CashBalance *CustomerCashBalance `pulumi:"cashBalance"`
+	// The customer's address.
+	Addresses []CustomerAddress `pulumi:"addresses"`
+	// The current balance, if any, that's stored on the customer in their default currency. If negative, the customer has credit to apply to their next invoice. If positive, the customer has an amount owed that's added to their next invoice. The balance only considers amounts that Stripe hasn't successfully applied to any invoice. It doesn't reflect unpaid invoices. This balance is only taken into account after invoices finalize. For multi-currency balances, see <span pulumi-lang-nodejs="[invoiceCreditBalance]" pulumi-lang-dotnet="[InvoiceCreditBalance]" pulumi-lang-go="[invoiceCreditBalance]" pulumi-lang-python="[invoice_credit_balance]" pulumi-lang-yaml="[invoiceCreditBalance]" pulumi-lang-java="[invoiceCreditBalance]" pulumi-lang-hcl="[invoice_credit_balance]">[invoiceCreditBalance]</span>(https://docs.stripe.com/api/customers/object#customer_object-invoice_credit_balance).
+	Balance *float64 `pulumi:"balance"`
+	// The customer's business name.
+	BusinessName *string `pulumi:"businessName"`
+	// The current funds being held by Stripe on behalf of the customer. You can apply these funds towards payment intents when the source is <span pulumi-lang-nodejs=""cashBalance"" pulumi-lang-dotnet=""CashBalance"" pulumi-lang-go=""cashBalance"" pulumi-lang-python=""cash_balance"" pulumi-lang-yaml=""cashBalance"" pulumi-lang-java=""cashBalance"" pulumi-lang-hcl=""cash_balance"">"cashBalance"</span>. The `settings<span pulumi-lang-nodejs="[reconciliationMode]" pulumi-lang-dotnet="[ReconciliationMode]" pulumi-lang-go="[reconciliationMode]" pulumi-lang-python="[reconciliation_mode]" pulumi-lang-yaml="[reconciliationMode]" pulumi-lang-java="[reconciliationMode]" pulumi-lang-hcl="[reconciliation_mode]">[reconciliationMode]</span>` field describes if these funds apply to these payment intents manually or automatically.
+	CashBalances []CustomerCashBalance `pulumi:"cashBalances"`
+	// Time at which the object was created. Measured in seconds since the Unix epoch.
+	Created *float64 `pulumi:"created"`
 	// Three-letter [ISO code for the currency](https://stripe.com/docs/currencies) the customer can be charged in for recurring billing purposes.
-	Currency        *string `pulumi:"currency"`
+	Currency *string `pulumi:"currency"`
+	// The ID of an Account representing a customer. You can use this ID with any v1 API that accepts a<span pulumi-lang-nodejs=" customerAccount " pulumi-lang-dotnet=" CustomerAccount " pulumi-lang-go=" customerAccount " pulumi-lang-python=" customer_account " pulumi-lang-yaml=" customerAccount " pulumi-lang-java=" customerAccount " pulumi-lang-hcl=" customer_account "> customerAccount </span>parameter.
 	CustomerAccount *string `pulumi:"customerAccount"`
-	// Tracks the most recent state change on any invoice belonging to the customer. Paying an invoice or marking it uncollectible via the API will set this field to false. An automatic payment failure or passing the `invoice.due_date` will set this field to <span pulumi-lang-nodejs="`true`" pulumi-lang-dotnet="`True`" pulumi-lang-go="`true`" pulumi-lang-python="`true`" pulumi-lang-yaml="`true`" pulumi-lang-java="`true`" pulumi-lang-hcl="`true`">`true`</span>. If an invoice becomes uncollectible by [dunning](https://stripe.com/docs/billing/automatic-collection), <span pulumi-lang-nodejs="`delinquent`" pulumi-lang-dotnet="`Delinquent`" pulumi-lang-go="`delinquent`" pulumi-lang-python="`delinquent`" pulumi-lang-yaml="`delinquent`" pulumi-lang-java="`delinquent`" pulumi-lang-hcl="`delinquent`">`delinquent`</span> doesn't reset to <span pulumi-lang-nodejs="`false`" pulumi-lang-dotnet="`False`" pulumi-lang-go="`false`" pulumi-lang-python="`false`" pulumi-lang-yaml="`false`" pulumi-lang-java="`false`" pulumi-lang-hcl="`false`">`false`</span>. If you care whether the customer has paid their most recent subscription invoice, use `subscription.status` instead. Paying or marking uncollectible any customer invoice regardless of whether it is the latest invoice for a subscription will always set this field to <span pulumi-lang-nodejs="`false`" pulumi-lang-dotnet="`False`" pulumi-lang-go="`false`" pulumi-lang-python="`false`" pulumi-lang-yaml="`false`" pulumi-lang-java="`false`" pulumi-lang-hcl="`false`">`false`</span>.
+	// ID of the default payment source for the customer.
+	//
+	// If you use payment methods created through the PaymentMethods API, see the [invoice_settings.default_payment_method](https://docs.stripe.com/api/customers/object#customer_object-invoice_settings-default_payment_method) field instead.
+	DefaultSource *string `pulumi:"defaultSource"`
+	// Tracks the most recent state change on any invoice belonging to the customer. Paying an invoice or marking it uncollectible via the API will set this field to false. An automatic payment failure or passing the `invoice.due_date` will set this field to <span pulumi-lang-nodejs="`true`" pulumi-lang-dotnet="`True`" pulumi-lang-go="`true`" pulumi-lang-python="`true`" pulumi-lang-yaml="`true`" pulumi-lang-java="`true`" pulumi-lang-hcl="`true`">`true`</span>.
+	//
+	// If an invoice becomes uncollectible by [dunning](https://docs.stripe.com/billing/automatic-collection), <span pulumi-lang-nodejs="`delinquent`" pulumi-lang-dotnet="`Delinquent`" pulumi-lang-go="`delinquent`" pulumi-lang-python="`delinquent`" pulumi-lang-yaml="`delinquent`" pulumi-lang-java="`delinquent`" pulumi-lang-hcl="`delinquent`">`delinquent`</span> doesn't reset to <span pulumi-lang-nodejs="`false`" pulumi-lang-dotnet="`False`" pulumi-lang-go="`false`" pulumi-lang-python="`false`" pulumi-lang-yaml="`false`" pulumi-lang-java="`false`" pulumi-lang-hcl="`false`">`false`</span>.
+	//
+	// If you care whether the customer has paid their most recent subscription invoice, use `subscription.status` instead. Paying or marking uncollectible any customer invoice regardless of whether it is the latest invoice for a subscription will always set this field to <span pulumi-lang-nodejs="`false`" pulumi-lang-dotnet="`False`" pulumi-lang-go="`false`" pulumi-lang-python="`false`" pulumi-lang-yaml="`false`" pulumi-lang-java="`false`" pulumi-lang-hcl="`false`">`false`</span>.
 	Delinquent *bool `pulumi:"delinquent"`
-	// An arbitrary string that you can attach to a customer object. It is displayed alongside the customer in the dashboard.
+	// An arbitrary string attached to the object. Often useful for displaying to users.
 	Description *string `pulumi:"description"`
-	// Customer's email address. It's displayed alongside the customer in your dashboard and can be useful for searching and tracking. This may be up to *512 characters*.
-	Email          *string `pulumi:"email"`
+	// Describes the current discount active on the customer, if there is one.
+	Discount *string `pulumi:"discount"`
+	// The customer's email address.
+	Email *string `pulumi:"email"`
+	// The customer's individual name.
 	IndividualName *string `pulumi:"individualName"`
-	// The prefix for the customer used to generate unique invoice numbers. Must be 3–12 uppercase letters or numbers.
-	InvoicePrefix *string `pulumi:"invoicePrefix"`
-	// Default invoice settings for this customer.
-	InvoiceSettings *CustomerInvoiceSettings `pulumi:"invoiceSettings"`
-	Metadata        map[string]string        `pulumi:"metadata"`
+	// The current multi-currency balances, if any, that's stored on the customer. If positive in a currency, the customer has a credit to apply to their next invoice denominated in that currency. If negative, the customer has an amount owed that's added to their next invoice denominated in that currency. These balances don't apply to unpaid invoices. They solely track amounts that Stripe hasn't successfully applied to any invoice. Stripe only applies a balance in a specific currency to an invoice after that invoice (which is in the same currency) finalizes.
+	InvoiceCreditBalance map[string]float64 `pulumi:"invoiceCreditBalance"`
+	// The prefix for the customer used to generate unique invoice numbers.
+	InvoicePrefix   *string                  `pulumi:"invoicePrefix"`
+	InvoiceSettings []CustomerInvoiceSetting `pulumi:"invoiceSettings"`
+	// If the object exists in live mode, the value is <span pulumi-lang-nodejs="`true`" pulumi-lang-dotnet="`True`" pulumi-lang-go="`true`" pulumi-lang-python="`true`" pulumi-lang-yaml="`true`" pulumi-lang-java="`true`" pulumi-lang-hcl="`true`">`true`</span>. If the object exists in test mode, the value is <span pulumi-lang-nodejs="`false`" pulumi-lang-dotnet="`False`" pulumi-lang-go="`false`" pulumi-lang-python="`false`" pulumi-lang-yaml="`false`" pulumi-lang-java="`false`" pulumi-lang-hcl="`false`">`false`</span>.
+	Livemode *bool `pulumi:"livemode"`
+	// Set of [key-value pairs](https://docs.stripe.com/api/metadata) that you can attach to an object. This can be useful for storing additional information about the object in a structured format.
+	Metadata map[string]string `pulumi:"metadata"`
 	// The customer's full name or business name.
 	Name *string `pulumi:"name"`
-	// The sequence to be used on the customer's next invoice. Defaults to 1.
+	// The suffix of the customer's next invoice number (for example, 0001). When the account uses account level sequencing, this parameter is ignored in API requests and the field omitted in API responses.
 	NextInvoiceSequence *float64 `pulumi:"nextInvoiceSequence"`
-	PaymentMethod       *string  `pulumi:"paymentMethod"`
+	// String representing the object's type. Objects of the same type share the same value.
+	Object        *string `pulumi:"object"`
+	PaymentMethod *string `pulumi:"paymentMethod"`
 	// The customer's phone number.
 	Phone *string `pulumi:"phone"`
-	// Customer's preferred languages, ordered by preference.
-	PreferredLocales []string          `pulumi:"preferredLocales"`
-	Shipping         *CustomerShipping `pulumi:"shipping"`
-	// Tax details about the customer.
-	Tax *CustomerTax `pulumi:"tax"`
-	// The customer's tax exemption. One of <span pulumi-lang-nodejs="`none`" pulumi-lang-dotnet="`None`" pulumi-lang-go="`none`" pulumi-lang-python="`none`" pulumi-lang-yaml="`none`" pulumi-lang-java="`none`" pulumi-lang-hcl="`none`">`none`</span>, <span pulumi-lang-nodejs="`exempt`" pulumi-lang-dotnet="`Exempt`" pulumi-lang-go="`exempt`" pulumi-lang-python="`exempt`" pulumi-lang-yaml="`exempt`" pulumi-lang-java="`exempt`" pulumi-lang-hcl="`exempt`">`exempt`</span>, or <span pulumi-lang-nodejs="`reverse`" pulumi-lang-dotnet="`Reverse`" pulumi-lang-go="`reverse`" pulumi-lang-python="`reverse`" pulumi-lang-yaml="`reverse`" pulumi-lang-java="`reverse`" pulumi-lang-hcl="`reverse`">`reverse`</span>.
+	// The customer's preferred locales (languages), ordered by preference.
+	PreferredLocales []string `pulumi:"preferredLocales"`
+	// Mailing and shipping address for the customer. Appears on invoices emailed to this customer.
+	Shippings []CustomerShipping `pulumi:"shippings"`
+	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+	Source *string `pulumi:"source"`
+	// Describes the customer's tax exemption status, which is <span pulumi-lang-nodejs="`none`" pulumi-lang-dotnet="`None`" pulumi-lang-go="`none`" pulumi-lang-python="`none`" pulumi-lang-yaml="`none`" pulumi-lang-java="`none`" pulumi-lang-hcl="`none`">`none`</span>, <span pulumi-lang-nodejs="`exempt`" pulumi-lang-dotnet="`Exempt`" pulumi-lang-go="`exempt`" pulumi-lang-python="`exempt`" pulumi-lang-yaml="`exempt`" pulumi-lang-java="`exempt`" pulumi-lang-hcl="`exempt`">`exempt`</span>, or <span pulumi-lang-nodejs="`reverse`" pulumi-lang-dotnet="`Reverse`" pulumi-lang-go="`reverse`" pulumi-lang-python="`reverse`" pulumi-lang-yaml="`reverse`" pulumi-lang-java="`reverse`" pulumi-lang-hcl="`reverse`">`reverse`</span>. When set to <span pulumi-lang-nodejs="`reverse`" pulumi-lang-dotnet="`Reverse`" pulumi-lang-go="`reverse`" pulumi-lang-python="`reverse`" pulumi-lang-yaml="`reverse`" pulumi-lang-java="`reverse`" pulumi-lang-hcl="`reverse`">`reverse`</span>, invoice and receipt PDFs include the following text: **"Reverse charge"**.
 	TaxExempt *string `pulumi:"taxExempt"`
 	// The customer's tax IDs.
 	TaxIdDatas []CustomerTaxIdData `pulumi:"taxIdDatas"`
-	// ID of the test clock to attach to the customer.
+	Taxes      []CustomerTax       `pulumi:"taxes"`
+	// ID of the test clock that this customer belongs to.
 	TestClock *string `pulumi:"testClock"`
+	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+	Validate *bool `pulumi:"validate"`
 }
 
 type CustomerState struct {
-	Address CustomerAddressPtrInput
-	// An integer amount in cents (or local equivalent) that represents the customer's current balance, which affect the customer's future invoices. A negative amount represents a credit that decreases the amount due on an invoice; a positive amount increases the amount due on an invoice.
-	Balance      pulumi.Float64PtrInput
+	// The customer's address.
+	Addresses CustomerAddressArrayInput
+	// The current balance, if any, that's stored on the customer in their default currency. If negative, the customer has credit to apply to their next invoice. If positive, the customer has an amount owed that's added to their next invoice. The balance only considers amounts that Stripe hasn't successfully applied to any invoice. It doesn't reflect unpaid invoices. This balance is only taken into account after invoices finalize. For multi-currency balances, see <span pulumi-lang-nodejs="[invoiceCreditBalance]" pulumi-lang-dotnet="[InvoiceCreditBalance]" pulumi-lang-go="[invoiceCreditBalance]" pulumi-lang-python="[invoice_credit_balance]" pulumi-lang-yaml="[invoiceCreditBalance]" pulumi-lang-java="[invoiceCreditBalance]" pulumi-lang-hcl="[invoice_credit_balance]">[invoiceCreditBalance]</span>(https://docs.stripe.com/api/customers/object#customer_object-invoice_credit_balance).
+	Balance pulumi.Float64PtrInput
+	// The customer's business name.
 	BusinessName pulumi.StringPtrInput
-	// Balance information and default balance settings for this customer.
-	CashBalance CustomerCashBalancePtrInput
+	// The current funds being held by Stripe on behalf of the customer. You can apply these funds towards payment intents when the source is <span pulumi-lang-nodejs=""cashBalance"" pulumi-lang-dotnet=""CashBalance"" pulumi-lang-go=""cashBalance"" pulumi-lang-python=""cash_balance"" pulumi-lang-yaml=""cashBalance"" pulumi-lang-java=""cashBalance"" pulumi-lang-hcl=""cash_balance"">"cashBalance"</span>. The `settings<span pulumi-lang-nodejs="[reconciliationMode]" pulumi-lang-dotnet="[ReconciliationMode]" pulumi-lang-go="[reconciliationMode]" pulumi-lang-python="[reconciliation_mode]" pulumi-lang-yaml="[reconciliationMode]" pulumi-lang-java="[reconciliationMode]" pulumi-lang-hcl="[reconciliation_mode]">[reconciliationMode]</span>` field describes if these funds apply to these payment intents manually or automatically.
+	CashBalances CustomerCashBalanceArrayInput
+	// Time at which the object was created. Measured in seconds since the Unix epoch.
+	Created pulumi.Float64PtrInput
 	// Three-letter [ISO code for the currency](https://stripe.com/docs/currencies) the customer can be charged in for recurring billing purposes.
-	Currency        pulumi.StringPtrInput
+	Currency pulumi.StringPtrInput
+	// The ID of an Account representing a customer. You can use this ID with any v1 API that accepts a<span pulumi-lang-nodejs=" customerAccount " pulumi-lang-dotnet=" CustomerAccount " pulumi-lang-go=" customerAccount " pulumi-lang-python=" customer_account " pulumi-lang-yaml=" customerAccount " pulumi-lang-java=" customerAccount " pulumi-lang-hcl=" customer_account "> customerAccount </span>parameter.
 	CustomerAccount pulumi.StringPtrInput
-	// Tracks the most recent state change on any invoice belonging to the customer. Paying an invoice or marking it uncollectible via the API will set this field to false. An automatic payment failure or passing the `invoice.due_date` will set this field to <span pulumi-lang-nodejs="`true`" pulumi-lang-dotnet="`True`" pulumi-lang-go="`true`" pulumi-lang-python="`true`" pulumi-lang-yaml="`true`" pulumi-lang-java="`true`" pulumi-lang-hcl="`true`">`true`</span>. If an invoice becomes uncollectible by [dunning](https://stripe.com/docs/billing/automatic-collection), <span pulumi-lang-nodejs="`delinquent`" pulumi-lang-dotnet="`Delinquent`" pulumi-lang-go="`delinquent`" pulumi-lang-python="`delinquent`" pulumi-lang-yaml="`delinquent`" pulumi-lang-java="`delinquent`" pulumi-lang-hcl="`delinquent`">`delinquent`</span> doesn't reset to <span pulumi-lang-nodejs="`false`" pulumi-lang-dotnet="`False`" pulumi-lang-go="`false`" pulumi-lang-python="`false`" pulumi-lang-yaml="`false`" pulumi-lang-java="`false`" pulumi-lang-hcl="`false`">`false`</span>. If you care whether the customer has paid their most recent subscription invoice, use `subscription.status` instead. Paying or marking uncollectible any customer invoice regardless of whether it is the latest invoice for a subscription will always set this field to <span pulumi-lang-nodejs="`false`" pulumi-lang-dotnet="`False`" pulumi-lang-go="`false`" pulumi-lang-python="`false`" pulumi-lang-yaml="`false`" pulumi-lang-java="`false`" pulumi-lang-hcl="`false`">`false`</span>.
+	// ID of the default payment source for the customer.
+	//
+	// If you use payment methods created through the PaymentMethods API, see the [invoice_settings.default_payment_method](https://docs.stripe.com/api/customers/object#customer_object-invoice_settings-default_payment_method) field instead.
+	DefaultSource pulumi.StringPtrInput
+	// Tracks the most recent state change on any invoice belonging to the customer. Paying an invoice or marking it uncollectible via the API will set this field to false. An automatic payment failure or passing the `invoice.due_date` will set this field to <span pulumi-lang-nodejs="`true`" pulumi-lang-dotnet="`True`" pulumi-lang-go="`true`" pulumi-lang-python="`true`" pulumi-lang-yaml="`true`" pulumi-lang-java="`true`" pulumi-lang-hcl="`true`">`true`</span>.
+	//
+	// If an invoice becomes uncollectible by [dunning](https://docs.stripe.com/billing/automatic-collection), <span pulumi-lang-nodejs="`delinquent`" pulumi-lang-dotnet="`Delinquent`" pulumi-lang-go="`delinquent`" pulumi-lang-python="`delinquent`" pulumi-lang-yaml="`delinquent`" pulumi-lang-java="`delinquent`" pulumi-lang-hcl="`delinquent`">`delinquent`</span> doesn't reset to <span pulumi-lang-nodejs="`false`" pulumi-lang-dotnet="`False`" pulumi-lang-go="`false`" pulumi-lang-python="`false`" pulumi-lang-yaml="`false`" pulumi-lang-java="`false`" pulumi-lang-hcl="`false`">`false`</span>.
+	//
+	// If you care whether the customer has paid their most recent subscription invoice, use `subscription.status` instead. Paying or marking uncollectible any customer invoice regardless of whether it is the latest invoice for a subscription will always set this field to <span pulumi-lang-nodejs="`false`" pulumi-lang-dotnet="`False`" pulumi-lang-go="`false`" pulumi-lang-python="`false`" pulumi-lang-yaml="`false`" pulumi-lang-java="`false`" pulumi-lang-hcl="`false`">`false`</span>.
 	Delinquent pulumi.BoolPtrInput
-	// An arbitrary string that you can attach to a customer object. It is displayed alongside the customer in the dashboard.
+	// An arbitrary string attached to the object. Often useful for displaying to users.
 	Description pulumi.StringPtrInput
-	// Customer's email address. It's displayed alongside the customer in your dashboard and can be useful for searching and tracking. This may be up to *512 characters*.
-	Email          pulumi.StringPtrInput
+	// Describes the current discount active on the customer, if there is one.
+	Discount pulumi.StringPtrInput
+	// The customer's email address.
+	Email pulumi.StringPtrInput
+	// The customer's individual name.
 	IndividualName pulumi.StringPtrInput
-	// The prefix for the customer used to generate unique invoice numbers. Must be 3–12 uppercase letters or numbers.
-	InvoicePrefix pulumi.StringPtrInput
-	// Default invoice settings for this customer.
-	InvoiceSettings CustomerInvoiceSettingsPtrInput
-	Metadata        pulumi.StringMapInput
+	// The current multi-currency balances, if any, that's stored on the customer. If positive in a currency, the customer has a credit to apply to their next invoice denominated in that currency. If negative, the customer has an amount owed that's added to their next invoice denominated in that currency. These balances don't apply to unpaid invoices. They solely track amounts that Stripe hasn't successfully applied to any invoice. Stripe only applies a balance in a specific currency to an invoice after that invoice (which is in the same currency) finalizes.
+	InvoiceCreditBalance pulumi.Float64MapInput
+	// The prefix for the customer used to generate unique invoice numbers.
+	InvoicePrefix   pulumi.StringPtrInput
+	InvoiceSettings CustomerInvoiceSettingArrayInput
+	// If the object exists in live mode, the value is <span pulumi-lang-nodejs="`true`" pulumi-lang-dotnet="`True`" pulumi-lang-go="`true`" pulumi-lang-python="`true`" pulumi-lang-yaml="`true`" pulumi-lang-java="`true`" pulumi-lang-hcl="`true`">`true`</span>. If the object exists in test mode, the value is <span pulumi-lang-nodejs="`false`" pulumi-lang-dotnet="`False`" pulumi-lang-go="`false`" pulumi-lang-python="`false`" pulumi-lang-yaml="`false`" pulumi-lang-java="`false`" pulumi-lang-hcl="`false`">`false`</span>.
+	Livemode pulumi.BoolPtrInput
+	// Set of [key-value pairs](https://docs.stripe.com/api/metadata) that you can attach to an object. This can be useful for storing additional information about the object in a structured format.
+	Metadata pulumi.StringMapInput
 	// The customer's full name or business name.
 	Name pulumi.StringPtrInput
-	// The sequence to be used on the customer's next invoice. Defaults to 1.
+	// The suffix of the customer's next invoice number (for example, 0001). When the account uses account level sequencing, this parameter is ignored in API requests and the field omitted in API responses.
 	NextInvoiceSequence pulumi.Float64PtrInput
-	PaymentMethod       pulumi.StringPtrInput
+	// String representing the object's type. Objects of the same type share the same value.
+	Object        pulumi.StringPtrInput
+	PaymentMethod pulumi.StringPtrInput
 	// The customer's phone number.
 	Phone pulumi.StringPtrInput
-	// Customer's preferred languages, ordered by preference.
+	// The customer's preferred locales (languages), ordered by preference.
 	PreferredLocales pulumi.StringArrayInput
-	Shipping         CustomerShippingPtrInput
-	// Tax details about the customer.
-	Tax CustomerTaxPtrInput
-	// The customer's tax exemption. One of <span pulumi-lang-nodejs="`none`" pulumi-lang-dotnet="`None`" pulumi-lang-go="`none`" pulumi-lang-python="`none`" pulumi-lang-yaml="`none`" pulumi-lang-java="`none`" pulumi-lang-hcl="`none`">`none`</span>, <span pulumi-lang-nodejs="`exempt`" pulumi-lang-dotnet="`Exempt`" pulumi-lang-go="`exempt`" pulumi-lang-python="`exempt`" pulumi-lang-yaml="`exempt`" pulumi-lang-java="`exempt`" pulumi-lang-hcl="`exempt`">`exempt`</span>, or <span pulumi-lang-nodejs="`reverse`" pulumi-lang-dotnet="`Reverse`" pulumi-lang-go="`reverse`" pulumi-lang-python="`reverse`" pulumi-lang-yaml="`reverse`" pulumi-lang-java="`reverse`" pulumi-lang-hcl="`reverse`">`reverse`</span>.
+	// Mailing and shipping address for the customer. Appears on invoices emailed to this customer.
+	Shippings CustomerShippingArrayInput
+	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+	Source pulumi.StringPtrInput
+	// Describes the customer's tax exemption status, which is <span pulumi-lang-nodejs="`none`" pulumi-lang-dotnet="`None`" pulumi-lang-go="`none`" pulumi-lang-python="`none`" pulumi-lang-yaml="`none`" pulumi-lang-java="`none`" pulumi-lang-hcl="`none`">`none`</span>, <span pulumi-lang-nodejs="`exempt`" pulumi-lang-dotnet="`Exempt`" pulumi-lang-go="`exempt`" pulumi-lang-python="`exempt`" pulumi-lang-yaml="`exempt`" pulumi-lang-java="`exempt`" pulumi-lang-hcl="`exempt`">`exempt`</span>, or <span pulumi-lang-nodejs="`reverse`" pulumi-lang-dotnet="`Reverse`" pulumi-lang-go="`reverse`" pulumi-lang-python="`reverse`" pulumi-lang-yaml="`reverse`" pulumi-lang-java="`reverse`" pulumi-lang-hcl="`reverse`">`reverse`</span>. When set to <span pulumi-lang-nodejs="`reverse`" pulumi-lang-dotnet="`Reverse`" pulumi-lang-go="`reverse`" pulumi-lang-python="`reverse`" pulumi-lang-yaml="`reverse`" pulumi-lang-java="`reverse`" pulumi-lang-hcl="`reverse`">`reverse`</span>, invoice and receipt PDFs include the following text: **"Reverse charge"**.
 	TaxExempt pulumi.StringPtrInput
 	// The customer's tax IDs.
 	TaxIdDatas CustomerTaxIdDataArrayInput
-	// ID of the test clock to attach to the customer.
+	Taxes      CustomerTaxArrayInput
+	// ID of the test clock that this customer belongs to.
 	TestClock pulumi.StringPtrInput
+	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+	Validate pulumi.BoolPtrInput
 }
 
 func (CustomerState) ElementType() reflect.Type {
@@ -181,78 +270,100 @@ func (CustomerState) ElementType() reflect.Type {
 }
 
 type customerArgs struct {
-	Address *CustomerAddress `pulumi:"address"`
-	// An integer amount in cents (or local equivalent) that represents the customer's current balance, which affect the customer's future invoices. A negative amount represents a credit that decreases the amount due on an invoice; a positive amount increases the amount due on an invoice.
-	Balance      *float64 `pulumi:"balance"`
-	BusinessName *string  `pulumi:"businessName"`
-	// Balance information and default balance settings for this customer.
-	CashBalance *CustomerCashBalance `pulumi:"cashBalance"`
-	// An arbitrary string that you can attach to a customer object. It is displayed alongside the customer in the dashboard.
+	// The customer's address.
+	Addresses []CustomerAddress `pulumi:"addresses"`
+	// The current balance, if any, that's stored on the customer in their default currency. If negative, the customer has credit to apply to their next invoice. If positive, the customer has an amount owed that's added to their next invoice. The balance only considers amounts that Stripe hasn't successfully applied to any invoice. It doesn't reflect unpaid invoices. This balance is only taken into account after invoices finalize. For multi-currency balances, see <span pulumi-lang-nodejs="[invoiceCreditBalance]" pulumi-lang-dotnet="[InvoiceCreditBalance]" pulumi-lang-go="[invoiceCreditBalance]" pulumi-lang-python="[invoice_credit_balance]" pulumi-lang-yaml="[invoiceCreditBalance]" pulumi-lang-java="[invoiceCreditBalance]" pulumi-lang-hcl="[invoice_credit_balance]">[invoiceCreditBalance]</span>(https://docs.stripe.com/api/customers/object#customer_object-invoice_credit_balance).
+	Balance *float64 `pulumi:"balance"`
+	// The customer's business name.
+	BusinessName *string `pulumi:"businessName"`
+	// The current funds being held by Stripe on behalf of the customer. You can apply these funds towards payment intents when the source is <span pulumi-lang-nodejs=""cashBalance"" pulumi-lang-dotnet=""CashBalance"" pulumi-lang-go=""cashBalance"" pulumi-lang-python=""cash_balance"" pulumi-lang-yaml=""cashBalance"" pulumi-lang-java=""cashBalance"" pulumi-lang-hcl=""cash_balance"">"cashBalance"</span>. The `settings<span pulumi-lang-nodejs="[reconciliationMode]" pulumi-lang-dotnet="[ReconciliationMode]" pulumi-lang-go="[reconciliationMode]" pulumi-lang-python="[reconciliation_mode]" pulumi-lang-yaml="[reconciliationMode]" pulumi-lang-java="[reconciliationMode]" pulumi-lang-hcl="[reconciliation_mode]">[reconciliationMode]</span>` field describes if these funds apply to these payment intents manually or automatically.
+	CashBalances []CustomerCashBalance `pulumi:"cashBalances"`
+	// ID of the default payment source for the customer.
+	//
+	// If you use payment methods created through the PaymentMethods API, see the [invoice_settings.default_payment_method](https://docs.stripe.com/api/customers/object#customer_object-invoice_settings-default_payment_method) field instead.
+	DefaultSource *string `pulumi:"defaultSource"`
+	// An arbitrary string attached to the object. Often useful for displaying to users.
 	Description *string `pulumi:"description"`
-	// Customer's email address. It's displayed alongside the customer in your dashboard and can be useful for searching and tracking. This may be up to *512 characters*.
-	Email          *string `pulumi:"email"`
+	// The customer's email address.
+	Email *string `pulumi:"email"`
+	// The customer's individual name.
 	IndividualName *string `pulumi:"individualName"`
-	// The prefix for the customer used to generate unique invoice numbers. Must be 3–12 uppercase letters or numbers.
-	InvoicePrefix *string `pulumi:"invoicePrefix"`
-	// Default invoice settings for this customer.
-	InvoiceSettings *CustomerInvoiceSettings `pulumi:"invoiceSettings"`
-	Metadata        map[string]string        `pulumi:"metadata"`
+	// The prefix for the customer used to generate unique invoice numbers.
+	InvoicePrefix   *string                  `pulumi:"invoicePrefix"`
+	InvoiceSettings []CustomerInvoiceSetting `pulumi:"invoiceSettings"`
+	// Set of [key-value pairs](https://docs.stripe.com/api/metadata) that you can attach to an object. This can be useful for storing additional information about the object in a structured format.
+	Metadata map[string]string `pulumi:"metadata"`
 	// The customer's full name or business name.
 	Name *string `pulumi:"name"`
-	// The sequence to be used on the customer's next invoice. Defaults to 1.
+	// The suffix of the customer's next invoice number (for example, 0001). When the account uses account level sequencing, this parameter is ignored in API requests and the field omitted in API responses.
 	NextInvoiceSequence *float64 `pulumi:"nextInvoiceSequence"`
 	PaymentMethod       *string  `pulumi:"paymentMethod"`
 	// The customer's phone number.
 	Phone *string `pulumi:"phone"`
-	// Customer's preferred languages, ordered by preference.
-	PreferredLocales []string          `pulumi:"preferredLocales"`
-	Shipping         *CustomerShipping `pulumi:"shipping"`
-	// Tax details about the customer.
-	Tax *CustomerTax `pulumi:"tax"`
-	// The customer's tax exemption. One of <span pulumi-lang-nodejs="`none`" pulumi-lang-dotnet="`None`" pulumi-lang-go="`none`" pulumi-lang-python="`none`" pulumi-lang-yaml="`none`" pulumi-lang-java="`none`" pulumi-lang-hcl="`none`">`none`</span>, <span pulumi-lang-nodejs="`exempt`" pulumi-lang-dotnet="`Exempt`" pulumi-lang-go="`exempt`" pulumi-lang-python="`exempt`" pulumi-lang-yaml="`exempt`" pulumi-lang-java="`exempt`" pulumi-lang-hcl="`exempt`">`exempt`</span>, or <span pulumi-lang-nodejs="`reverse`" pulumi-lang-dotnet="`Reverse`" pulumi-lang-go="`reverse`" pulumi-lang-python="`reverse`" pulumi-lang-yaml="`reverse`" pulumi-lang-java="`reverse`" pulumi-lang-hcl="`reverse`">`reverse`</span>.
+	// The customer's preferred locales (languages), ordered by preference.
+	PreferredLocales []string `pulumi:"preferredLocales"`
+	// Mailing and shipping address for the customer. Appears on invoices emailed to this customer.
+	Shippings []CustomerShipping `pulumi:"shippings"`
+	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+	Source *string `pulumi:"source"`
+	// Describes the customer's tax exemption status, which is <span pulumi-lang-nodejs="`none`" pulumi-lang-dotnet="`None`" pulumi-lang-go="`none`" pulumi-lang-python="`none`" pulumi-lang-yaml="`none`" pulumi-lang-java="`none`" pulumi-lang-hcl="`none`">`none`</span>, <span pulumi-lang-nodejs="`exempt`" pulumi-lang-dotnet="`Exempt`" pulumi-lang-go="`exempt`" pulumi-lang-python="`exempt`" pulumi-lang-yaml="`exempt`" pulumi-lang-java="`exempt`" pulumi-lang-hcl="`exempt`">`exempt`</span>, or <span pulumi-lang-nodejs="`reverse`" pulumi-lang-dotnet="`Reverse`" pulumi-lang-go="`reverse`" pulumi-lang-python="`reverse`" pulumi-lang-yaml="`reverse`" pulumi-lang-java="`reverse`" pulumi-lang-hcl="`reverse`">`reverse`</span>. When set to <span pulumi-lang-nodejs="`reverse`" pulumi-lang-dotnet="`Reverse`" pulumi-lang-go="`reverse`" pulumi-lang-python="`reverse`" pulumi-lang-yaml="`reverse`" pulumi-lang-java="`reverse`" pulumi-lang-hcl="`reverse`">`reverse`</span>, invoice and receipt PDFs include the following text: **"Reverse charge"**.
 	TaxExempt *string `pulumi:"taxExempt"`
 	// The customer's tax IDs.
 	TaxIdDatas []CustomerTaxIdData `pulumi:"taxIdDatas"`
-	// ID of the test clock to attach to the customer.
+	Taxes      []CustomerTax       `pulumi:"taxes"`
+	// ID of the test clock that this customer belongs to.
 	TestClock *string `pulumi:"testClock"`
+	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+	Validate *bool `pulumi:"validate"`
 }
 
 // The set of arguments for constructing a Customer resource.
 type CustomerArgs struct {
-	Address CustomerAddressPtrInput
-	// An integer amount in cents (or local equivalent) that represents the customer's current balance, which affect the customer's future invoices. A negative amount represents a credit that decreases the amount due on an invoice; a positive amount increases the amount due on an invoice.
-	Balance      pulumi.Float64PtrInput
+	// The customer's address.
+	Addresses CustomerAddressArrayInput
+	// The current balance, if any, that's stored on the customer in their default currency. If negative, the customer has credit to apply to their next invoice. If positive, the customer has an amount owed that's added to their next invoice. The balance only considers amounts that Stripe hasn't successfully applied to any invoice. It doesn't reflect unpaid invoices. This balance is only taken into account after invoices finalize. For multi-currency balances, see <span pulumi-lang-nodejs="[invoiceCreditBalance]" pulumi-lang-dotnet="[InvoiceCreditBalance]" pulumi-lang-go="[invoiceCreditBalance]" pulumi-lang-python="[invoice_credit_balance]" pulumi-lang-yaml="[invoiceCreditBalance]" pulumi-lang-java="[invoiceCreditBalance]" pulumi-lang-hcl="[invoice_credit_balance]">[invoiceCreditBalance]</span>(https://docs.stripe.com/api/customers/object#customer_object-invoice_credit_balance).
+	Balance pulumi.Float64PtrInput
+	// The customer's business name.
 	BusinessName pulumi.StringPtrInput
-	// Balance information and default balance settings for this customer.
-	CashBalance CustomerCashBalancePtrInput
-	// An arbitrary string that you can attach to a customer object. It is displayed alongside the customer in the dashboard.
+	// The current funds being held by Stripe on behalf of the customer. You can apply these funds towards payment intents when the source is <span pulumi-lang-nodejs=""cashBalance"" pulumi-lang-dotnet=""CashBalance"" pulumi-lang-go=""cashBalance"" pulumi-lang-python=""cash_balance"" pulumi-lang-yaml=""cashBalance"" pulumi-lang-java=""cashBalance"" pulumi-lang-hcl=""cash_balance"">"cashBalance"</span>. The `settings<span pulumi-lang-nodejs="[reconciliationMode]" pulumi-lang-dotnet="[ReconciliationMode]" pulumi-lang-go="[reconciliationMode]" pulumi-lang-python="[reconciliation_mode]" pulumi-lang-yaml="[reconciliationMode]" pulumi-lang-java="[reconciliationMode]" pulumi-lang-hcl="[reconciliation_mode]">[reconciliationMode]</span>` field describes if these funds apply to these payment intents manually or automatically.
+	CashBalances CustomerCashBalanceArrayInput
+	// ID of the default payment source for the customer.
+	//
+	// If you use payment methods created through the PaymentMethods API, see the [invoice_settings.default_payment_method](https://docs.stripe.com/api/customers/object#customer_object-invoice_settings-default_payment_method) field instead.
+	DefaultSource pulumi.StringPtrInput
+	// An arbitrary string attached to the object. Often useful for displaying to users.
 	Description pulumi.StringPtrInput
-	// Customer's email address. It's displayed alongside the customer in your dashboard and can be useful for searching and tracking. This may be up to *512 characters*.
-	Email          pulumi.StringPtrInput
+	// The customer's email address.
+	Email pulumi.StringPtrInput
+	// The customer's individual name.
 	IndividualName pulumi.StringPtrInput
-	// The prefix for the customer used to generate unique invoice numbers. Must be 3–12 uppercase letters or numbers.
-	InvoicePrefix pulumi.StringPtrInput
-	// Default invoice settings for this customer.
-	InvoiceSettings CustomerInvoiceSettingsPtrInput
-	Metadata        pulumi.StringMapInput
+	// The prefix for the customer used to generate unique invoice numbers.
+	InvoicePrefix   pulumi.StringPtrInput
+	InvoiceSettings CustomerInvoiceSettingArrayInput
+	// Set of [key-value pairs](https://docs.stripe.com/api/metadata) that you can attach to an object. This can be useful for storing additional information about the object in a structured format.
+	Metadata pulumi.StringMapInput
 	// The customer's full name or business name.
 	Name pulumi.StringPtrInput
-	// The sequence to be used on the customer's next invoice. Defaults to 1.
+	// The suffix of the customer's next invoice number (for example, 0001). When the account uses account level sequencing, this parameter is ignored in API requests and the field omitted in API responses.
 	NextInvoiceSequence pulumi.Float64PtrInput
 	PaymentMethod       pulumi.StringPtrInput
 	// The customer's phone number.
 	Phone pulumi.StringPtrInput
-	// Customer's preferred languages, ordered by preference.
+	// The customer's preferred locales (languages), ordered by preference.
 	PreferredLocales pulumi.StringArrayInput
-	Shipping         CustomerShippingPtrInput
-	// Tax details about the customer.
-	Tax CustomerTaxPtrInput
-	// The customer's tax exemption. One of <span pulumi-lang-nodejs="`none`" pulumi-lang-dotnet="`None`" pulumi-lang-go="`none`" pulumi-lang-python="`none`" pulumi-lang-yaml="`none`" pulumi-lang-java="`none`" pulumi-lang-hcl="`none`">`none`</span>, <span pulumi-lang-nodejs="`exempt`" pulumi-lang-dotnet="`Exempt`" pulumi-lang-go="`exempt`" pulumi-lang-python="`exempt`" pulumi-lang-yaml="`exempt`" pulumi-lang-java="`exempt`" pulumi-lang-hcl="`exempt`">`exempt`</span>, or <span pulumi-lang-nodejs="`reverse`" pulumi-lang-dotnet="`Reverse`" pulumi-lang-go="`reverse`" pulumi-lang-python="`reverse`" pulumi-lang-yaml="`reverse`" pulumi-lang-java="`reverse`" pulumi-lang-hcl="`reverse`">`reverse`</span>.
+	// Mailing and shipping address for the customer. Appears on invoices emailed to this customer.
+	Shippings CustomerShippingArrayInput
+	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+	Source pulumi.StringPtrInput
+	// Describes the customer's tax exemption status, which is <span pulumi-lang-nodejs="`none`" pulumi-lang-dotnet="`None`" pulumi-lang-go="`none`" pulumi-lang-python="`none`" pulumi-lang-yaml="`none`" pulumi-lang-java="`none`" pulumi-lang-hcl="`none`">`none`</span>, <span pulumi-lang-nodejs="`exempt`" pulumi-lang-dotnet="`Exempt`" pulumi-lang-go="`exempt`" pulumi-lang-python="`exempt`" pulumi-lang-yaml="`exempt`" pulumi-lang-java="`exempt`" pulumi-lang-hcl="`exempt`">`exempt`</span>, or <span pulumi-lang-nodejs="`reverse`" pulumi-lang-dotnet="`Reverse`" pulumi-lang-go="`reverse`" pulumi-lang-python="`reverse`" pulumi-lang-yaml="`reverse`" pulumi-lang-java="`reverse`" pulumi-lang-hcl="`reverse`">`reverse`</span>. When set to <span pulumi-lang-nodejs="`reverse`" pulumi-lang-dotnet="`Reverse`" pulumi-lang-go="`reverse`" pulumi-lang-python="`reverse`" pulumi-lang-yaml="`reverse`" pulumi-lang-java="`reverse`" pulumi-lang-hcl="`reverse`">`reverse`</span>, invoice and receipt PDFs include the following text: **"Reverse charge"**.
 	TaxExempt pulumi.StringPtrInput
 	// The customer's tax IDs.
 	TaxIdDatas CustomerTaxIdDataArrayInput
-	// ID of the test clock to attach to the customer.
+	Taxes      CustomerTaxArrayInput
+	// ID of the test clock that this customer belongs to.
 	TestClock pulumi.StringPtrInput
+	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+	Validate pulumi.BoolPtrInput
 }
 
 func (CustomerArgs) ElementType() reflect.Type {
@@ -292,22 +403,29 @@ func (o CustomerOutput) ToCustomerOutputWithContext(ctx context.Context) Custome
 	return o
 }
 
-func (o CustomerOutput) Address() CustomerAddressPtrOutput {
-	return o.ApplyT(func(v *Customer) CustomerAddressPtrOutput { return v.Address }).(CustomerAddressPtrOutput)
+// The customer's address.
+func (o CustomerOutput) Addresses() CustomerAddressArrayOutput {
+	return o.ApplyT(func(v *Customer) CustomerAddressArrayOutput { return v.Addresses }).(CustomerAddressArrayOutput)
 }
 
-// An integer amount in cents (or local equivalent) that represents the customer's current balance, which affect the customer's future invoices. A negative amount represents a credit that decreases the amount due on an invoice; a positive amount increases the amount due on an invoice.
+// The current balance, if any, that's stored on the customer in their default currency. If negative, the customer has credit to apply to their next invoice. If positive, the customer has an amount owed that's added to their next invoice. The balance only considers amounts that Stripe hasn't successfully applied to any invoice. It doesn't reflect unpaid invoices. This balance is only taken into account after invoices finalize. For multi-currency balances, see <span pulumi-lang-nodejs="[invoiceCreditBalance]" pulumi-lang-dotnet="[InvoiceCreditBalance]" pulumi-lang-go="[invoiceCreditBalance]" pulumi-lang-python="[invoice_credit_balance]" pulumi-lang-yaml="[invoiceCreditBalance]" pulumi-lang-java="[invoiceCreditBalance]" pulumi-lang-hcl="[invoice_credit_balance]">[invoiceCreditBalance]</span>(https://docs.stripe.com/api/customers/object#customer_object-invoice_credit_balance).
 func (o CustomerOutput) Balance() pulumi.Float64Output {
 	return o.ApplyT(func(v *Customer) pulumi.Float64Output { return v.Balance }).(pulumi.Float64Output)
 }
 
+// The customer's business name.
 func (o CustomerOutput) BusinessName() pulumi.StringOutput {
 	return o.ApplyT(func(v *Customer) pulumi.StringOutput { return v.BusinessName }).(pulumi.StringOutput)
 }
 
-// Balance information and default balance settings for this customer.
-func (o CustomerOutput) CashBalance() CustomerCashBalancePtrOutput {
-	return o.ApplyT(func(v *Customer) CustomerCashBalancePtrOutput { return v.CashBalance }).(CustomerCashBalancePtrOutput)
+// The current funds being held by Stripe on behalf of the customer. You can apply these funds towards payment intents when the source is <span pulumi-lang-nodejs=""cashBalance"" pulumi-lang-dotnet=""CashBalance"" pulumi-lang-go=""cashBalance"" pulumi-lang-python=""cash_balance"" pulumi-lang-yaml=""cashBalance"" pulumi-lang-java=""cashBalance"" pulumi-lang-hcl=""cash_balance"">"cashBalance"</span>. The `settings<span pulumi-lang-nodejs="[reconciliationMode]" pulumi-lang-dotnet="[ReconciliationMode]" pulumi-lang-go="[reconciliationMode]" pulumi-lang-python="[reconciliation_mode]" pulumi-lang-yaml="[reconciliationMode]" pulumi-lang-java="[reconciliationMode]" pulumi-lang-hcl="[reconciliation_mode]">[reconciliationMode]</span>` field describes if these funds apply to these payment intents manually or automatically.
+func (o CustomerOutput) CashBalances() CustomerCashBalanceArrayOutput {
+	return o.ApplyT(func(v *Customer) CustomerCashBalanceArrayOutput { return v.CashBalances }).(CustomerCashBalanceArrayOutput)
+}
+
+// Time at which the object was created. Measured in seconds since the Unix epoch.
+func (o CustomerOutput) Created() pulumi.Float64Output {
+	return o.ApplyT(func(v *Customer) pulumi.Float64Output { return v.Created }).(pulumi.Float64Output)
 }
 
 // Three-letter [ISO code for the currency](https://stripe.com/docs/currencies) the customer can be charged in for recurring billing purposes.
@@ -315,39 +433,67 @@ func (o CustomerOutput) Currency() pulumi.StringOutput {
 	return o.ApplyT(func(v *Customer) pulumi.StringOutput { return v.Currency }).(pulumi.StringOutput)
 }
 
+// The ID of an Account representing a customer. You can use this ID with any v1 API that accepts a<span pulumi-lang-nodejs=" customerAccount " pulumi-lang-dotnet=" CustomerAccount " pulumi-lang-go=" customerAccount " pulumi-lang-python=" customer_account " pulumi-lang-yaml=" customerAccount " pulumi-lang-java=" customerAccount " pulumi-lang-hcl=" customer_account "> customerAccount </span>parameter.
 func (o CustomerOutput) CustomerAccount() pulumi.StringOutput {
 	return o.ApplyT(func(v *Customer) pulumi.StringOutput { return v.CustomerAccount }).(pulumi.StringOutput)
 }
 
-// Tracks the most recent state change on any invoice belonging to the customer. Paying an invoice or marking it uncollectible via the API will set this field to false. An automatic payment failure or passing the `invoice.due_date` will set this field to <span pulumi-lang-nodejs="`true`" pulumi-lang-dotnet="`True`" pulumi-lang-go="`true`" pulumi-lang-python="`true`" pulumi-lang-yaml="`true`" pulumi-lang-java="`true`" pulumi-lang-hcl="`true`">`true`</span>. If an invoice becomes uncollectible by [dunning](https://stripe.com/docs/billing/automatic-collection), <span pulumi-lang-nodejs="`delinquent`" pulumi-lang-dotnet="`Delinquent`" pulumi-lang-go="`delinquent`" pulumi-lang-python="`delinquent`" pulumi-lang-yaml="`delinquent`" pulumi-lang-java="`delinquent`" pulumi-lang-hcl="`delinquent`">`delinquent`</span> doesn't reset to <span pulumi-lang-nodejs="`false`" pulumi-lang-dotnet="`False`" pulumi-lang-go="`false`" pulumi-lang-python="`false`" pulumi-lang-yaml="`false`" pulumi-lang-java="`false`" pulumi-lang-hcl="`false`">`false`</span>. If you care whether the customer has paid their most recent subscription invoice, use `subscription.status` instead. Paying or marking uncollectible any customer invoice regardless of whether it is the latest invoice for a subscription will always set this field to <span pulumi-lang-nodejs="`false`" pulumi-lang-dotnet="`False`" pulumi-lang-go="`false`" pulumi-lang-python="`false`" pulumi-lang-yaml="`false`" pulumi-lang-java="`false`" pulumi-lang-hcl="`false`">`false`</span>.
+// ID of the default payment source for the customer.
+//
+// If you use payment methods created through the PaymentMethods API, see the [invoice_settings.default_payment_method](https://docs.stripe.com/api/customers/object#customer_object-invoice_settings-default_payment_method) field instead.
+func (o CustomerOutput) DefaultSource() pulumi.StringOutput {
+	return o.ApplyT(func(v *Customer) pulumi.StringOutput { return v.DefaultSource }).(pulumi.StringOutput)
+}
+
+// Tracks the most recent state change on any invoice belonging to the customer. Paying an invoice or marking it uncollectible via the API will set this field to false. An automatic payment failure or passing the `invoice.due_date` will set this field to <span pulumi-lang-nodejs="`true`" pulumi-lang-dotnet="`True`" pulumi-lang-go="`true`" pulumi-lang-python="`true`" pulumi-lang-yaml="`true`" pulumi-lang-java="`true`" pulumi-lang-hcl="`true`">`true`</span>.
+//
+// If an invoice becomes uncollectible by [dunning](https://docs.stripe.com/billing/automatic-collection), <span pulumi-lang-nodejs="`delinquent`" pulumi-lang-dotnet="`Delinquent`" pulumi-lang-go="`delinquent`" pulumi-lang-python="`delinquent`" pulumi-lang-yaml="`delinquent`" pulumi-lang-java="`delinquent`" pulumi-lang-hcl="`delinquent`">`delinquent`</span> doesn't reset to <span pulumi-lang-nodejs="`false`" pulumi-lang-dotnet="`False`" pulumi-lang-go="`false`" pulumi-lang-python="`false`" pulumi-lang-yaml="`false`" pulumi-lang-java="`false`" pulumi-lang-hcl="`false`">`false`</span>.
+//
+// If you care whether the customer has paid their most recent subscription invoice, use `subscription.status` instead. Paying or marking uncollectible any customer invoice regardless of whether it is the latest invoice for a subscription will always set this field to <span pulumi-lang-nodejs="`false`" pulumi-lang-dotnet="`False`" pulumi-lang-go="`false`" pulumi-lang-python="`false`" pulumi-lang-yaml="`false`" pulumi-lang-java="`false`" pulumi-lang-hcl="`false`">`false`</span>.
 func (o CustomerOutput) Delinquent() pulumi.BoolOutput {
 	return o.ApplyT(func(v *Customer) pulumi.BoolOutput { return v.Delinquent }).(pulumi.BoolOutput)
 }
 
-// An arbitrary string that you can attach to a customer object. It is displayed alongside the customer in the dashboard.
+// An arbitrary string attached to the object. Often useful for displaying to users.
 func (o CustomerOutput) Description() pulumi.StringOutput {
 	return o.ApplyT(func(v *Customer) pulumi.StringOutput { return v.Description }).(pulumi.StringOutput)
 }
 
-// Customer's email address. It's displayed alongside the customer in your dashboard and can be useful for searching and tracking. This may be up to *512 characters*.
+// Describes the current discount active on the customer, if there is one.
+func (o CustomerOutput) Discount() pulumi.StringOutput {
+	return o.ApplyT(func(v *Customer) pulumi.StringOutput { return v.Discount }).(pulumi.StringOutput)
+}
+
+// The customer's email address.
 func (o CustomerOutput) Email() pulumi.StringOutput {
 	return o.ApplyT(func(v *Customer) pulumi.StringOutput { return v.Email }).(pulumi.StringOutput)
 }
 
+// The customer's individual name.
 func (o CustomerOutput) IndividualName() pulumi.StringOutput {
 	return o.ApplyT(func(v *Customer) pulumi.StringOutput { return v.IndividualName }).(pulumi.StringOutput)
 }
 
-// The prefix for the customer used to generate unique invoice numbers. Must be 3–12 uppercase letters or numbers.
+// The current multi-currency balances, if any, that's stored on the customer. If positive in a currency, the customer has a credit to apply to their next invoice denominated in that currency. If negative, the customer has an amount owed that's added to their next invoice denominated in that currency. These balances don't apply to unpaid invoices. They solely track amounts that Stripe hasn't successfully applied to any invoice. Stripe only applies a balance in a specific currency to an invoice after that invoice (which is in the same currency) finalizes.
+func (o CustomerOutput) InvoiceCreditBalance() pulumi.Float64MapOutput {
+	return o.ApplyT(func(v *Customer) pulumi.Float64MapOutput { return v.InvoiceCreditBalance }).(pulumi.Float64MapOutput)
+}
+
+// The prefix for the customer used to generate unique invoice numbers.
 func (o CustomerOutput) InvoicePrefix() pulumi.StringOutput {
 	return o.ApplyT(func(v *Customer) pulumi.StringOutput { return v.InvoicePrefix }).(pulumi.StringOutput)
 }
 
-// Default invoice settings for this customer.
-func (o CustomerOutput) InvoiceSettings() CustomerInvoiceSettingsPtrOutput {
-	return o.ApplyT(func(v *Customer) CustomerInvoiceSettingsPtrOutput { return v.InvoiceSettings }).(CustomerInvoiceSettingsPtrOutput)
+func (o CustomerOutput) InvoiceSettings() CustomerInvoiceSettingArrayOutput {
+	return o.ApplyT(func(v *Customer) CustomerInvoiceSettingArrayOutput { return v.InvoiceSettings }).(CustomerInvoiceSettingArrayOutput)
 }
 
+// If the object exists in live mode, the value is <span pulumi-lang-nodejs="`true`" pulumi-lang-dotnet="`True`" pulumi-lang-go="`true`" pulumi-lang-python="`true`" pulumi-lang-yaml="`true`" pulumi-lang-java="`true`" pulumi-lang-hcl="`true`">`true`</span>. If the object exists in test mode, the value is <span pulumi-lang-nodejs="`false`" pulumi-lang-dotnet="`False`" pulumi-lang-go="`false`" pulumi-lang-python="`false`" pulumi-lang-yaml="`false`" pulumi-lang-java="`false`" pulumi-lang-hcl="`false`">`false`</span>.
+func (o CustomerOutput) Livemode() pulumi.BoolOutput {
+	return o.ApplyT(func(v *Customer) pulumi.BoolOutput { return v.Livemode }).(pulumi.BoolOutput)
+}
+
+// Set of [key-value pairs](https://docs.stripe.com/api/metadata) that you can attach to an object. This can be useful for storing additional information about the object in a structured format.
 func (o CustomerOutput) Metadata() pulumi.StringMapOutput {
 	return o.ApplyT(func(v *Customer) pulumi.StringMapOutput { return v.Metadata }).(pulumi.StringMapOutput)
 }
@@ -357,9 +503,14 @@ func (o CustomerOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v *Customer) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
 }
 
-// The sequence to be used on the customer's next invoice. Defaults to 1.
+// The suffix of the customer's next invoice number (for example, 0001). When the account uses account level sequencing, this parameter is ignored in API requests and the field omitted in API responses.
 func (o CustomerOutput) NextInvoiceSequence() pulumi.Float64Output {
 	return o.ApplyT(func(v *Customer) pulumi.Float64Output { return v.NextInvoiceSequence }).(pulumi.Float64Output)
+}
+
+// String representing the object's type. Objects of the same type share the same value.
+func (o CustomerOutput) Object() pulumi.StringOutput {
+	return o.ApplyT(func(v *Customer) pulumi.StringOutput { return v.Object }).(pulumi.StringOutput)
 }
 
 func (o CustomerOutput) PaymentMethod() pulumi.StringPtrOutput {
@@ -371,21 +522,22 @@ func (o CustomerOutput) Phone() pulumi.StringOutput {
 	return o.ApplyT(func(v *Customer) pulumi.StringOutput { return v.Phone }).(pulumi.StringOutput)
 }
 
-// Customer's preferred languages, ordered by preference.
+// The customer's preferred locales (languages), ordered by preference.
 func (o CustomerOutput) PreferredLocales() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v *Customer) pulumi.StringArrayOutput { return v.PreferredLocales }).(pulumi.StringArrayOutput)
 }
 
-func (o CustomerOutput) Shipping() CustomerShippingPtrOutput {
-	return o.ApplyT(func(v *Customer) CustomerShippingPtrOutput { return v.Shipping }).(CustomerShippingPtrOutput)
+// Mailing and shipping address for the customer. Appears on invoices emailed to this customer.
+func (o CustomerOutput) Shippings() CustomerShippingArrayOutput {
+	return o.ApplyT(func(v *Customer) CustomerShippingArrayOutput { return v.Shippings }).(CustomerShippingArrayOutput)
 }
 
-// Tax details about the customer.
-func (o CustomerOutput) Tax() CustomerTaxPtrOutput {
-	return o.ApplyT(func(v *Customer) CustomerTaxPtrOutput { return v.Tax }).(CustomerTaxPtrOutput)
+// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+func (o CustomerOutput) Source() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Customer) pulumi.StringPtrOutput { return v.Source }).(pulumi.StringPtrOutput)
 }
 
-// The customer's tax exemption. One of <span pulumi-lang-nodejs="`none`" pulumi-lang-dotnet="`None`" pulumi-lang-go="`none`" pulumi-lang-python="`none`" pulumi-lang-yaml="`none`" pulumi-lang-java="`none`" pulumi-lang-hcl="`none`">`none`</span>, <span pulumi-lang-nodejs="`exempt`" pulumi-lang-dotnet="`Exempt`" pulumi-lang-go="`exempt`" pulumi-lang-python="`exempt`" pulumi-lang-yaml="`exempt`" pulumi-lang-java="`exempt`" pulumi-lang-hcl="`exempt`">`exempt`</span>, or <span pulumi-lang-nodejs="`reverse`" pulumi-lang-dotnet="`Reverse`" pulumi-lang-go="`reverse`" pulumi-lang-python="`reverse`" pulumi-lang-yaml="`reverse`" pulumi-lang-java="`reverse`" pulumi-lang-hcl="`reverse`">`reverse`</span>.
+// Describes the customer's tax exemption status, which is <span pulumi-lang-nodejs="`none`" pulumi-lang-dotnet="`None`" pulumi-lang-go="`none`" pulumi-lang-python="`none`" pulumi-lang-yaml="`none`" pulumi-lang-java="`none`" pulumi-lang-hcl="`none`">`none`</span>, <span pulumi-lang-nodejs="`exempt`" pulumi-lang-dotnet="`Exempt`" pulumi-lang-go="`exempt`" pulumi-lang-python="`exempt`" pulumi-lang-yaml="`exempt`" pulumi-lang-java="`exempt`" pulumi-lang-hcl="`exempt`">`exempt`</span>, or <span pulumi-lang-nodejs="`reverse`" pulumi-lang-dotnet="`Reverse`" pulumi-lang-go="`reverse`" pulumi-lang-python="`reverse`" pulumi-lang-yaml="`reverse`" pulumi-lang-java="`reverse`" pulumi-lang-hcl="`reverse`">`reverse`</span>. When set to <span pulumi-lang-nodejs="`reverse`" pulumi-lang-dotnet="`Reverse`" pulumi-lang-go="`reverse`" pulumi-lang-python="`reverse`" pulumi-lang-yaml="`reverse`" pulumi-lang-java="`reverse`" pulumi-lang-hcl="`reverse`">`reverse`</span>, invoice and receipt PDFs include the following text: **"Reverse charge"**.
 func (o CustomerOutput) TaxExempt() pulumi.StringOutput {
 	return o.ApplyT(func(v *Customer) pulumi.StringOutput { return v.TaxExempt }).(pulumi.StringOutput)
 }
@@ -395,9 +547,18 @@ func (o CustomerOutput) TaxIdDatas() CustomerTaxIdDataArrayOutput {
 	return o.ApplyT(func(v *Customer) CustomerTaxIdDataArrayOutput { return v.TaxIdDatas }).(CustomerTaxIdDataArrayOutput)
 }
 
-// ID of the test clock to attach to the customer.
+func (o CustomerOutput) Taxes() CustomerTaxArrayOutput {
+	return o.ApplyT(func(v *Customer) CustomerTaxArrayOutput { return v.Taxes }).(CustomerTaxArrayOutput)
+}
+
+// ID of the test clock that this customer belongs to.
 func (o CustomerOutput) TestClock() pulumi.StringOutput {
 	return o.ApplyT(func(v *Customer) pulumi.StringOutput { return v.TestClock }).(pulumi.StringOutput)
+}
+
+// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+func (o CustomerOutput) Validate() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *Customer) pulumi.BoolPtrOutput { return v.Validate }).(pulumi.BoolPtrOutput)
 }
 
 func init() {

@@ -7,6 +7,7 @@ import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
 import com.pulumi.exceptions.MissingRequiredPropertyException;
 import com.pulumi.stripe.inputs.ProductDefaultPriceDataCurrencyOptionCustomUnitAmountArgs;
+import com.pulumi.stripe.inputs.ProductDefaultPriceDataCurrencyOptionTierArgs;
 import java.lang.Double;
 import java.lang.String;
 import java.util.List;
@@ -23,33 +24,41 @@ public final class ProductDefaultPriceDataCurrencyOptionArgs extends com.pulumi.
      * When set, provides configuration for the amount to be adjusted by the customer during Checkout Sessions and Payment Links.
      * 
      */
-    @Import(name="customUnitAmount")
-    private @Nullable Output<ProductDefaultPriceDataCurrencyOptionCustomUnitAmountArgs> customUnitAmount;
+    @Import(name="customUnitAmounts")
+    private @Nullable Output<List<ProductDefaultPriceDataCurrencyOptionCustomUnitAmountArgs>> customUnitAmounts;
 
     /**
      * @return When set, provides configuration for the amount to be adjusted by the customer during Checkout Sessions and Payment Links.
      * 
      */
-    public Optional<Output<ProductDefaultPriceDataCurrencyOptionCustomUnitAmountArgs>> customUnitAmount() {
-        return Optional.ofNullable(this.customUnitAmount);
+    public Optional<Output<List<ProductDefaultPriceDataCurrencyOptionCustomUnitAmountArgs>>> customUnitAmounts() {
+        return Optional.ofNullable(this.customUnitAmounts);
     }
 
+    /**
+     * Key for this entry.
+     * 
+     */
     @Import(name="key", required=true)
     private Output<String> key;
 
+    /**
+     * @return Key for this entry.
+     * 
+     */
     public Output<String> key() {
         return this.key;
     }
 
     /**
-     * Only required if a [default tax behavior](&lt;https://stripe.com/docs/tax/products-prices-tax-categories-tax-behavior#setting-a-default-tax-behavior-(recommended)&gt;) was not provided in the Stripe Tax settings. Specifies whether the price is considered inclusive of taxes or exclusive of taxes. One of &lt;span pulumi-lang-nodejs=&#34;`inclusive`&#34; pulumi-lang-dotnet=&#34;`Inclusive`&#34; pulumi-lang-go=&#34;`inclusive`&#34; pulumi-lang-python=&#34;`inclusive`&#34; pulumi-lang-yaml=&#34;`inclusive`&#34; pulumi-lang-java=&#34;`inclusive`&#34; pulumi-lang-hcl=&#34;`inclusive`&#34;&gt;`inclusive`&lt;/span&gt;, &lt;span pulumi-lang-nodejs=&#34;`exclusive`&#34; pulumi-lang-dotnet=&#34;`Exclusive`&#34; pulumi-lang-go=&#34;`exclusive`&#34; pulumi-lang-python=&#34;`exclusive`&#34; pulumi-lang-yaml=&#34;`exclusive`&#34; pulumi-lang-java=&#34;`exclusive`&#34; pulumi-lang-hcl=&#34;`exclusive`&#34;&gt;`exclusive`&lt;/span&gt;, or &lt;span pulumi-lang-nodejs=&#34;`unspecified`&#34; pulumi-lang-dotnet=&#34;`Unspecified`&#34; pulumi-lang-go=&#34;`unspecified`&#34; pulumi-lang-python=&#34;`unspecified`&#34; pulumi-lang-yaml=&#34;`unspecified`&#34; pulumi-lang-java=&#34;`unspecified`&#34; pulumi-lang-hcl=&#34;`unspecified`&#34;&gt;`unspecified`&lt;/span&gt;. Once specified as either &lt;span pulumi-lang-nodejs=&#34;`inclusive`&#34; pulumi-lang-dotnet=&#34;`Inclusive`&#34; pulumi-lang-go=&#34;`inclusive`&#34; pulumi-lang-python=&#34;`inclusive`&#34; pulumi-lang-yaml=&#34;`inclusive`&#34; pulumi-lang-java=&#34;`inclusive`&#34; pulumi-lang-hcl=&#34;`inclusive`&#34;&gt;`inclusive`&lt;/span&gt; or &lt;span pulumi-lang-nodejs=&#34;`exclusive`&#34; pulumi-lang-dotnet=&#34;`Exclusive`&#34; pulumi-lang-go=&#34;`exclusive`&#34; pulumi-lang-python=&#34;`exclusive`&#34; pulumi-lang-yaml=&#34;`exclusive`&#34; pulumi-lang-java=&#34;`exclusive`&#34; pulumi-lang-hcl=&#34;`exclusive`&#34;&gt;`exclusive`&lt;/span&gt;, it cannot be changed.
+     * Only required if a [default tax behavior](&lt;https://docs.stripe.com/tax/products-prices-tax-categories-tax-behavior#setting-a-default-tax-behavior-(recommended)&gt;) was not provided in the Stripe Tax settings. Specifies whether the price is considered inclusive of taxes or exclusive of taxes. One of &lt;span pulumi-lang-nodejs=&#34;`inclusive`&#34; pulumi-lang-dotnet=&#34;`Inclusive`&#34; pulumi-lang-go=&#34;`inclusive`&#34; pulumi-lang-python=&#34;`inclusive`&#34; pulumi-lang-yaml=&#34;`inclusive`&#34; pulumi-lang-java=&#34;`inclusive`&#34; pulumi-lang-hcl=&#34;`inclusive`&#34;&gt;`inclusive`&lt;/span&gt;, &lt;span pulumi-lang-nodejs=&#34;`exclusive`&#34; pulumi-lang-dotnet=&#34;`Exclusive`&#34; pulumi-lang-go=&#34;`exclusive`&#34; pulumi-lang-python=&#34;`exclusive`&#34; pulumi-lang-yaml=&#34;`exclusive`&#34; pulumi-lang-java=&#34;`exclusive`&#34; pulumi-lang-hcl=&#34;`exclusive`&#34;&gt;`exclusive`&lt;/span&gt;, or &lt;span pulumi-lang-nodejs=&#34;`unspecified`&#34; pulumi-lang-dotnet=&#34;`Unspecified`&#34; pulumi-lang-go=&#34;`unspecified`&#34; pulumi-lang-python=&#34;`unspecified`&#34; pulumi-lang-yaml=&#34;`unspecified`&#34; pulumi-lang-java=&#34;`unspecified`&#34; pulumi-lang-hcl=&#34;`unspecified`&#34;&gt;`unspecified`&lt;/span&gt;. Once specified as either &lt;span pulumi-lang-nodejs=&#34;`inclusive`&#34; pulumi-lang-dotnet=&#34;`Inclusive`&#34; pulumi-lang-go=&#34;`inclusive`&#34; pulumi-lang-python=&#34;`inclusive`&#34; pulumi-lang-yaml=&#34;`inclusive`&#34; pulumi-lang-java=&#34;`inclusive`&#34; pulumi-lang-hcl=&#34;`inclusive`&#34;&gt;`inclusive`&lt;/span&gt; or &lt;span pulumi-lang-nodejs=&#34;`exclusive`&#34; pulumi-lang-dotnet=&#34;`Exclusive`&#34; pulumi-lang-go=&#34;`exclusive`&#34; pulumi-lang-python=&#34;`exclusive`&#34; pulumi-lang-yaml=&#34;`exclusive`&#34; pulumi-lang-java=&#34;`exclusive`&#34; pulumi-lang-hcl=&#34;`exclusive`&#34;&gt;`exclusive`&lt;/span&gt;, it cannot be changed.
      * 
      */
     @Import(name="taxBehavior")
     private @Nullable Output<String> taxBehavior;
 
     /**
-     * @return Only required if a [default tax behavior](&lt;https://stripe.com/docs/tax/products-prices-tax-categories-tax-behavior#setting-a-default-tax-behavior-(recommended)&gt;) was not provided in the Stripe Tax settings. Specifies whether the price is considered inclusive of taxes or exclusive of taxes. One of &lt;span pulumi-lang-nodejs=&#34;`inclusive`&#34; pulumi-lang-dotnet=&#34;`Inclusive`&#34; pulumi-lang-go=&#34;`inclusive`&#34; pulumi-lang-python=&#34;`inclusive`&#34; pulumi-lang-yaml=&#34;`inclusive`&#34; pulumi-lang-java=&#34;`inclusive`&#34; pulumi-lang-hcl=&#34;`inclusive`&#34;&gt;`inclusive`&lt;/span&gt;, &lt;span pulumi-lang-nodejs=&#34;`exclusive`&#34; pulumi-lang-dotnet=&#34;`Exclusive`&#34; pulumi-lang-go=&#34;`exclusive`&#34; pulumi-lang-python=&#34;`exclusive`&#34; pulumi-lang-yaml=&#34;`exclusive`&#34; pulumi-lang-java=&#34;`exclusive`&#34; pulumi-lang-hcl=&#34;`exclusive`&#34;&gt;`exclusive`&lt;/span&gt;, or &lt;span pulumi-lang-nodejs=&#34;`unspecified`&#34; pulumi-lang-dotnet=&#34;`Unspecified`&#34; pulumi-lang-go=&#34;`unspecified`&#34; pulumi-lang-python=&#34;`unspecified`&#34; pulumi-lang-yaml=&#34;`unspecified`&#34; pulumi-lang-java=&#34;`unspecified`&#34; pulumi-lang-hcl=&#34;`unspecified`&#34;&gt;`unspecified`&lt;/span&gt;. Once specified as either &lt;span pulumi-lang-nodejs=&#34;`inclusive`&#34; pulumi-lang-dotnet=&#34;`Inclusive`&#34; pulumi-lang-go=&#34;`inclusive`&#34; pulumi-lang-python=&#34;`inclusive`&#34; pulumi-lang-yaml=&#34;`inclusive`&#34; pulumi-lang-java=&#34;`inclusive`&#34; pulumi-lang-hcl=&#34;`inclusive`&#34;&gt;`inclusive`&lt;/span&gt; or &lt;span pulumi-lang-nodejs=&#34;`exclusive`&#34; pulumi-lang-dotnet=&#34;`Exclusive`&#34; pulumi-lang-go=&#34;`exclusive`&#34; pulumi-lang-python=&#34;`exclusive`&#34; pulumi-lang-yaml=&#34;`exclusive`&#34; pulumi-lang-java=&#34;`exclusive`&#34; pulumi-lang-hcl=&#34;`exclusive`&#34;&gt;`exclusive`&lt;/span&gt;, it cannot be changed.
+     * @return Only required if a [default tax behavior](&lt;https://docs.stripe.com/tax/products-prices-tax-categories-tax-behavior#setting-a-default-tax-behavior-(recommended)&gt;) was not provided in the Stripe Tax settings. Specifies whether the price is considered inclusive of taxes or exclusive of taxes. One of &lt;span pulumi-lang-nodejs=&#34;`inclusive`&#34; pulumi-lang-dotnet=&#34;`Inclusive`&#34; pulumi-lang-go=&#34;`inclusive`&#34; pulumi-lang-python=&#34;`inclusive`&#34; pulumi-lang-yaml=&#34;`inclusive`&#34; pulumi-lang-java=&#34;`inclusive`&#34; pulumi-lang-hcl=&#34;`inclusive`&#34;&gt;`inclusive`&lt;/span&gt;, &lt;span pulumi-lang-nodejs=&#34;`exclusive`&#34; pulumi-lang-dotnet=&#34;`Exclusive`&#34; pulumi-lang-go=&#34;`exclusive`&#34; pulumi-lang-python=&#34;`exclusive`&#34; pulumi-lang-yaml=&#34;`exclusive`&#34; pulumi-lang-java=&#34;`exclusive`&#34; pulumi-lang-hcl=&#34;`exclusive`&#34;&gt;`exclusive`&lt;/span&gt;, or &lt;span pulumi-lang-nodejs=&#34;`unspecified`&#34; pulumi-lang-dotnet=&#34;`Unspecified`&#34; pulumi-lang-go=&#34;`unspecified`&#34; pulumi-lang-python=&#34;`unspecified`&#34; pulumi-lang-yaml=&#34;`unspecified`&#34; pulumi-lang-java=&#34;`unspecified`&#34; pulumi-lang-hcl=&#34;`unspecified`&#34;&gt;`unspecified`&lt;/span&gt;. Once specified as either &lt;span pulumi-lang-nodejs=&#34;`inclusive`&#34; pulumi-lang-dotnet=&#34;`Inclusive`&#34; pulumi-lang-go=&#34;`inclusive`&#34; pulumi-lang-python=&#34;`inclusive`&#34; pulumi-lang-yaml=&#34;`inclusive`&#34; pulumi-lang-java=&#34;`inclusive`&#34; pulumi-lang-hcl=&#34;`inclusive`&#34;&gt;`inclusive`&lt;/span&gt; or &lt;span pulumi-lang-nodejs=&#34;`exclusive`&#34; pulumi-lang-dotnet=&#34;`Exclusive`&#34; pulumi-lang-go=&#34;`exclusive`&#34; pulumi-lang-python=&#34;`exclusive`&#34; pulumi-lang-yaml=&#34;`exclusive`&#34; pulumi-lang-java=&#34;`exclusive`&#34; pulumi-lang-hcl=&#34;`exclusive`&#34;&gt;`exclusive`&lt;/span&gt;, it cannot be changed.
      * 
      */
     public Optional<Output<String>> taxBehavior() {
@@ -61,13 +70,13 @@ public final class ProductDefaultPriceDataCurrencyOptionArgs extends com.pulumi.
      * 
      */
     @Import(name="tiers")
-    private @Nullable Output<List<List<String>>> tiers;
+    private @Nullable Output<List<ProductDefaultPriceDataCurrencyOptionTierArgs>> tiers;
 
     /**
      * @return Each element represents a pricing tier. This parameter requires &lt;span pulumi-lang-nodejs=&#34;`billingScheme`&#34; pulumi-lang-dotnet=&#34;`BillingScheme`&#34; pulumi-lang-go=&#34;`billingScheme`&#34; pulumi-lang-python=&#34;`billing_scheme`&#34; pulumi-lang-yaml=&#34;`billingScheme`&#34; pulumi-lang-java=&#34;`billingScheme`&#34; pulumi-lang-hcl=&#34;`billing_scheme`&#34;&gt;`billingScheme`&lt;/span&gt; to be set to &lt;span pulumi-lang-nodejs=&#34;`tiered`&#34; pulumi-lang-dotnet=&#34;`Tiered`&#34; pulumi-lang-go=&#34;`tiered`&#34; pulumi-lang-python=&#34;`tiered`&#34; pulumi-lang-yaml=&#34;`tiered`&#34; pulumi-lang-java=&#34;`tiered`&#34; pulumi-lang-hcl=&#34;`tiered`&#34;&gt;`tiered`&lt;/span&gt;. See also the documentation for &lt;span pulumi-lang-nodejs=&#34;`billingScheme`&#34; pulumi-lang-dotnet=&#34;`BillingScheme`&#34; pulumi-lang-go=&#34;`billingScheme`&#34; pulumi-lang-python=&#34;`billing_scheme`&#34; pulumi-lang-yaml=&#34;`billingScheme`&#34; pulumi-lang-java=&#34;`billingScheme`&#34; pulumi-lang-hcl=&#34;`billing_scheme`&#34;&gt;`billingScheme`&lt;/span&gt;.
      * 
      */
-    public Optional<Output<List<List<String>>>> tiers() {
+    public Optional<Output<List<ProductDefaultPriceDataCurrencyOptionTierArgs>>> tiers() {
         return Optional.ofNullable(this.tiers);
     }
 
@@ -104,7 +113,7 @@ public final class ProductDefaultPriceDataCurrencyOptionArgs extends com.pulumi.
     private ProductDefaultPriceDataCurrencyOptionArgs() {}
 
     private ProductDefaultPriceDataCurrencyOptionArgs(ProductDefaultPriceDataCurrencyOptionArgs $) {
-        this.customUnitAmount = $.customUnitAmount;
+        this.customUnitAmounts = $.customUnitAmounts;
         this.key = $.key;
         this.taxBehavior = $.taxBehavior;
         this.tiers = $.tiers;
@@ -131,37 +140,59 @@ public final class ProductDefaultPriceDataCurrencyOptionArgs extends com.pulumi.
         }
 
         /**
-         * @param customUnitAmount When set, provides configuration for the amount to be adjusted by the customer during Checkout Sessions and Payment Links.
+         * @param customUnitAmounts When set, provides configuration for the amount to be adjusted by the customer during Checkout Sessions and Payment Links.
          * 
          * @return builder
          * 
          */
-        public Builder customUnitAmount(@Nullable Output<ProductDefaultPriceDataCurrencyOptionCustomUnitAmountArgs> customUnitAmount) {
-            $.customUnitAmount = customUnitAmount;
+        public Builder customUnitAmounts(@Nullable Output<List<ProductDefaultPriceDataCurrencyOptionCustomUnitAmountArgs>> customUnitAmounts) {
+            $.customUnitAmounts = customUnitAmounts;
             return this;
         }
 
         /**
-         * @param customUnitAmount When set, provides configuration for the amount to be adjusted by the customer during Checkout Sessions and Payment Links.
+         * @param customUnitAmounts When set, provides configuration for the amount to be adjusted by the customer during Checkout Sessions and Payment Links.
          * 
          * @return builder
          * 
          */
-        public Builder customUnitAmount(ProductDefaultPriceDataCurrencyOptionCustomUnitAmountArgs customUnitAmount) {
-            return customUnitAmount(Output.of(customUnitAmount));
+        public Builder customUnitAmounts(List<ProductDefaultPriceDataCurrencyOptionCustomUnitAmountArgs> customUnitAmounts) {
+            return customUnitAmounts(Output.of(customUnitAmounts));
         }
 
+        /**
+         * @param customUnitAmounts When set, provides configuration for the amount to be adjusted by the customer during Checkout Sessions and Payment Links.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder customUnitAmounts(ProductDefaultPriceDataCurrencyOptionCustomUnitAmountArgs... customUnitAmounts) {
+            return customUnitAmounts(List.of(customUnitAmounts));
+        }
+
+        /**
+         * @param key Key for this entry.
+         * 
+         * @return builder
+         * 
+         */
         public Builder key(Output<String> key) {
             $.key = key;
             return this;
         }
 
+        /**
+         * @param key Key for this entry.
+         * 
+         * @return builder
+         * 
+         */
         public Builder key(String key) {
             return key(Output.of(key));
         }
 
         /**
-         * @param taxBehavior Only required if a [default tax behavior](&lt;https://stripe.com/docs/tax/products-prices-tax-categories-tax-behavior#setting-a-default-tax-behavior-(recommended)&gt;) was not provided in the Stripe Tax settings. Specifies whether the price is considered inclusive of taxes or exclusive of taxes. One of &lt;span pulumi-lang-nodejs=&#34;`inclusive`&#34; pulumi-lang-dotnet=&#34;`Inclusive`&#34; pulumi-lang-go=&#34;`inclusive`&#34; pulumi-lang-python=&#34;`inclusive`&#34; pulumi-lang-yaml=&#34;`inclusive`&#34; pulumi-lang-java=&#34;`inclusive`&#34; pulumi-lang-hcl=&#34;`inclusive`&#34;&gt;`inclusive`&lt;/span&gt;, &lt;span pulumi-lang-nodejs=&#34;`exclusive`&#34; pulumi-lang-dotnet=&#34;`Exclusive`&#34; pulumi-lang-go=&#34;`exclusive`&#34; pulumi-lang-python=&#34;`exclusive`&#34; pulumi-lang-yaml=&#34;`exclusive`&#34; pulumi-lang-java=&#34;`exclusive`&#34; pulumi-lang-hcl=&#34;`exclusive`&#34;&gt;`exclusive`&lt;/span&gt;, or &lt;span pulumi-lang-nodejs=&#34;`unspecified`&#34; pulumi-lang-dotnet=&#34;`Unspecified`&#34; pulumi-lang-go=&#34;`unspecified`&#34; pulumi-lang-python=&#34;`unspecified`&#34; pulumi-lang-yaml=&#34;`unspecified`&#34; pulumi-lang-java=&#34;`unspecified`&#34; pulumi-lang-hcl=&#34;`unspecified`&#34;&gt;`unspecified`&lt;/span&gt;. Once specified as either &lt;span pulumi-lang-nodejs=&#34;`inclusive`&#34; pulumi-lang-dotnet=&#34;`Inclusive`&#34; pulumi-lang-go=&#34;`inclusive`&#34; pulumi-lang-python=&#34;`inclusive`&#34; pulumi-lang-yaml=&#34;`inclusive`&#34; pulumi-lang-java=&#34;`inclusive`&#34; pulumi-lang-hcl=&#34;`inclusive`&#34;&gt;`inclusive`&lt;/span&gt; or &lt;span pulumi-lang-nodejs=&#34;`exclusive`&#34; pulumi-lang-dotnet=&#34;`Exclusive`&#34; pulumi-lang-go=&#34;`exclusive`&#34; pulumi-lang-python=&#34;`exclusive`&#34; pulumi-lang-yaml=&#34;`exclusive`&#34; pulumi-lang-java=&#34;`exclusive`&#34; pulumi-lang-hcl=&#34;`exclusive`&#34;&gt;`exclusive`&lt;/span&gt;, it cannot be changed.
+         * @param taxBehavior Only required if a [default tax behavior](&lt;https://docs.stripe.com/tax/products-prices-tax-categories-tax-behavior#setting-a-default-tax-behavior-(recommended)&gt;) was not provided in the Stripe Tax settings. Specifies whether the price is considered inclusive of taxes or exclusive of taxes. One of &lt;span pulumi-lang-nodejs=&#34;`inclusive`&#34; pulumi-lang-dotnet=&#34;`Inclusive`&#34; pulumi-lang-go=&#34;`inclusive`&#34; pulumi-lang-python=&#34;`inclusive`&#34; pulumi-lang-yaml=&#34;`inclusive`&#34; pulumi-lang-java=&#34;`inclusive`&#34; pulumi-lang-hcl=&#34;`inclusive`&#34;&gt;`inclusive`&lt;/span&gt;, &lt;span pulumi-lang-nodejs=&#34;`exclusive`&#34; pulumi-lang-dotnet=&#34;`Exclusive`&#34; pulumi-lang-go=&#34;`exclusive`&#34; pulumi-lang-python=&#34;`exclusive`&#34; pulumi-lang-yaml=&#34;`exclusive`&#34; pulumi-lang-java=&#34;`exclusive`&#34; pulumi-lang-hcl=&#34;`exclusive`&#34;&gt;`exclusive`&lt;/span&gt;, or &lt;span pulumi-lang-nodejs=&#34;`unspecified`&#34; pulumi-lang-dotnet=&#34;`Unspecified`&#34; pulumi-lang-go=&#34;`unspecified`&#34; pulumi-lang-python=&#34;`unspecified`&#34; pulumi-lang-yaml=&#34;`unspecified`&#34; pulumi-lang-java=&#34;`unspecified`&#34; pulumi-lang-hcl=&#34;`unspecified`&#34;&gt;`unspecified`&lt;/span&gt;. Once specified as either &lt;span pulumi-lang-nodejs=&#34;`inclusive`&#34; pulumi-lang-dotnet=&#34;`Inclusive`&#34; pulumi-lang-go=&#34;`inclusive`&#34; pulumi-lang-python=&#34;`inclusive`&#34; pulumi-lang-yaml=&#34;`inclusive`&#34; pulumi-lang-java=&#34;`inclusive`&#34; pulumi-lang-hcl=&#34;`inclusive`&#34;&gt;`inclusive`&lt;/span&gt; or &lt;span pulumi-lang-nodejs=&#34;`exclusive`&#34; pulumi-lang-dotnet=&#34;`Exclusive`&#34; pulumi-lang-go=&#34;`exclusive`&#34; pulumi-lang-python=&#34;`exclusive`&#34; pulumi-lang-yaml=&#34;`exclusive`&#34; pulumi-lang-java=&#34;`exclusive`&#34; pulumi-lang-hcl=&#34;`exclusive`&#34;&gt;`exclusive`&lt;/span&gt;, it cannot be changed.
          * 
          * @return builder
          * 
@@ -172,7 +203,7 @@ public final class ProductDefaultPriceDataCurrencyOptionArgs extends com.pulumi.
         }
 
         /**
-         * @param taxBehavior Only required if a [default tax behavior](&lt;https://stripe.com/docs/tax/products-prices-tax-categories-tax-behavior#setting-a-default-tax-behavior-(recommended)&gt;) was not provided in the Stripe Tax settings. Specifies whether the price is considered inclusive of taxes or exclusive of taxes. One of &lt;span pulumi-lang-nodejs=&#34;`inclusive`&#34; pulumi-lang-dotnet=&#34;`Inclusive`&#34; pulumi-lang-go=&#34;`inclusive`&#34; pulumi-lang-python=&#34;`inclusive`&#34; pulumi-lang-yaml=&#34;`inclusive`&#34; pulumi-lang-java=&#34;`inclusive`&#34; pulumi-lang-hcl=&#34;`inclusive`&#34;&gt;`inclusive`&lt;/span&gt;, &lt;span pulumi-lang-nodejs=&#34;`exclusive`&#34; pulumi-lang-dotnet=&#34;`Exclusive`&#34; pulumi-lang-go=&#34;`exclusive`&#34; pulumi-lang-python=&#34;`exclusive`&#34; pulumi-lang-yaml=&#34;`exclusive`&#34; pulumi-lang-java=&#34;`exclusive`&#34; pulumi-lang-hcl=&#34;`exclusive`&#34;&gt;`exclusive`&lt;/span&gt;, or &lt;span pulumi-lang-nodejs=&#34;`unspecified`&#34; pulumi-lang-dotnet=&#34;`Unspecified`&#34; pulumi-lang-go=&#34;`unspecified`&#34; pulumi-lang-python=&#34;`unspecified`&#34; pulumi-lang-yaml=&#34;`unspecified`&#34; pulumi-lang-java=&#34;`unspecified`&#34; pulumi-lang-hcl=&#34;`unspecified`&#34;&gt;`unspecified`&lt;/span&gt;. Once specified as either &lt;span pulumi-lang-nodejs=&#34;`inclusive`&#34; pulumi-lang-dotnet=&#34;`Inclusive`&#34; pulumi-lang-go=&#34;`inclusive`&#34; pulumi-lang-python=&#34;`inclusive`&#34; pulumi-lang-yaml=&#34;`inclusive`&#34; pulumi-lang-java=&#34;`inclusive`&#34; pulumi-lang-hcl=&#34;`inclusive`&#34;&gt;`inclusive`&lt;/span&gt; or &lt;span pulumi-lang-nodejs=&#34;`exclusive`&#34; pulumi-lang-dotnet=&#34;`Exclusive`&#34; pulumi-lang-go=&#34;`exclusive`&#34; pulumi-lang-python=&#34;`exclusive`&#34; pulumi-lang-yaml=&#34;`exclusive`&#34; pulumi-lang-java=&#34;`exclusive`&#34; pulumi-lang-hcl=&#34;`exclusive`&#34;&gt;`exclusive`&lt;/span&gt;, it cannot be changed.
+         * @param taxBehavior Only required if a [default tax behavior](&lt;https://docs.stripe.com/tax/products-prices-tax-categories-tax-behavior#setting-a-default-tax-behavior-(recommended)&gt;) was not provided in the Stripe Tax settings. Specifies whether the price is considered inclusive of taxes or exclusive of taxes. One of &lt;span pulumi-lang-nodejs=&#34;`inclusive`&#34; pulumi-lang-dotnet=&#34;`Inclusive`&#34; pulumi-lang-go=&#34;`inclusive`&#34; pulumi-lang-python=&#34;`inclusive`&#34; pulumi-lang-yaml=&#34;`inclusive`&#34; pulumi-lang-java=&#34;`inclusive`&#34; pulumi-lang-hcl=&#34;`inclusive`&#34;&gt;`inclusive`&lt;/span&gt;, &lt;span pulumi-lang-nodejs=&#34;`exclusive`&#34; pulumi-lang-dotnet=&#34;`Exclusive`&#34; pulumi-lang-go=&#34;`exclusive`&#34; pulumi-lang-python=&#34;`exclusive`&#34; pulumi-lang-yaml=&#34;`exclusive`&#34; pulumi-lang-java=&#34;`exclusive`&#34; pulumi-lang-hcl=&#34;`exclusive`&#34;&gt;`exclusive`&lt;/span&gt;, or &lt;span pulumi-lang-nodejs=&#34;`unspecified`&#34; pulumi-lang-dotnet=&#34;`Unspecified`&#34; pulumi-lang-go=&#34;`unspecified`&#34; pulumi-lang-python=&#34;`unspecified`&#34; pulumi-lang-yaml=&#34;`unspecified`&#34; pulumi-lang-java=&#34;`unspecified`&#34; pulumi-lang-hcl=&#34;`unspecified`&#34;&gt;`unspecified`&lt;/span&gt;. Once specified as either &lt;span pulumi-lang-nodejs=&#34;`inclusive`&#34; pulumi-lang-dotnet=&#34;`Inclusive`&#34; pulumi-lang-go=&#34;`inclusive`&#34; pulumi-lang-python=&#34;`inclusive`&#34; pulumi-lang-yaml=&#34;`inclusive`&#34; pulumi-lang-java=&#34;`inclusive`&#34; pulumi-lang-hcl=&#34;`inclusive`&#34;&gt;`inclusive`&lt;/span&gt; or &lt;span pulumi-lang-nodejs=&#34;`exclusive`&#34; pulumi-lang-dotnet=&#34;`Exclusive`&#34; pulumi-lang-go=&#34;`exclusive`&#34; pulumi-lang-python=&#34;`exclusive`&#34; pulumi-lang-yaml=&#34;`exclusive`&#34; pulumi-lang-java=&#34;`exclusive`&#34; pulumi-lang-hcl=&#34;`exclusive`&#34;&gt;`exclusive`&lt;/span&gt;, it cannot be changed.
          * 
          * @return builder
          * 
@@ -187,7 +218,7 @@ public final class ProductDefaultPriceDataCurrencyOptionArgs extends com.pulumi.
          * @return builder
          * 
          */
-        public Builder tiers(@Nullable Output<List<List<String>>> tiers) {
+        public Builder tiers(@Nullable Output<List<ProductDefaultPriceDataCurrencyOptionTierArgs>> tiers) {
             $.tiers = tiers;
             return this;
         }
@@ -198,7 +229,7 @@ public final class ProductDefaultPriceDataCurrencyOptionArgs extends com.pulumi.
          * @return builder
          * 
          */
-        public Builder tiers(List<List<String>> tiers) {
+        public Builder tiers(List<ProductDefaultPriceDataCurrencyOptionTierArgs> tiers) {
             return tiers(Output.of(tiers));
         }
 
@@ -208,7 +239,7 @@ public final class ProductDefaultPriceDataCurrencyOptionArgs extends com.pulumi.
          * @return builder
          * 
          */
-        public Builder tiers(List<String>... tiers) {
+        public Builder tiers(ProductDefaultPriceDataCurrencyOptionTierArgs... tiers) {
             return tiers(List.of(tiers));
         }
 

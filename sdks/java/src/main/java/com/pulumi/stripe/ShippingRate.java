@@ -13,7 +13,9 @@ import com.pulumi.stripe.inputs.ShippingRateState;
 import com.pulumi.stripe.outputs.ShippingRateDeliveryEstimate;
 import com.pulumi.stripe.outputs.ShippingRateFixedAmount;
 import java.lang.Boolean;
+import java.lang.Double;
 import java.lang.String;
+import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import javax.annotation.Nullable;
@@ -35,18 +37,32 @@ public class ShippingRate extends com.pulumi.resources.CustomResource {
         return this.active;
     }
     /**
+     * Time at which the object was created. Measured in seconds since the Unix epoch.
+     * 
+     */
+    @Export(name="created", refs={Double.class}, tree="[0]")
+    private Output<Double> created;
+
+    /**
+     * @return Time at which the object was created. Measured in seconds since the Unix epoch.
+     * 
+     */
+    public Output<Double> created() {
+        return this.created;
+    }
+    /**
      * The estimated range for how long shipping will take, meant to be displayable to the customer. This will appear on CheckoutSessions.
      * 
      */
-    @Export(name="deliveryEstimate", refs={ShippingRateDeliveryEstimate.class}, tree="[0]")
-    private Output</* @Nullable */ ShippingRateDeliveryEstimate> deliveryEstimate;
+    @Export(name="deliveryEstimates", refs={List.class,ShippingRateDeliveryEstimate.class}, tree="[0,1]")
+    private Output</* @Nullable */ List<ShippingRateDeliveryEstimate>> deliveryEstimates;
 
     /**
      * @return The estimated range for how long shipping will take, meant to be displayable to the customer. This will appear on CheckoutSessions.
      * 
      */
-    public Output<Optional<ShippingRateDeliveryEstimate>> deliveryEstimate() {
-        return Codegen.optional(this.deliveryEstimate);
+    public Output<Optional<List<ShippingRateDeliveryEstimate>>> deliveryEstimates() {
+        return Codegen.optional(this.deliveryEstimates);
     }
     /**
      * The name of the shipping rate, meant to be displayable to the customer. This will appear on CheckoutSessions.
@@ -62,33 +78,53 @@ public class ShippingRate extends com.pulumi.resources.CustomResource {
     public Output<String> displayName() {
         return this.displayName;
     }
-    /**
-     * Describes a fixed amount to charge for shipping. Must be present if type is &lt;span pulumi-lang-nodejs=&#34;`fixedAmount`&#34; pulumi-lang-dotnet=&#34;`FixedAmount`&#34; pulumi-lang-go=&#34;`fixedAmount`&#34; pulumi-lang-python=&#34;`fixed_amount`&#34; pulumi-lang-yaml=&#34;`fixedAmount`&#34; pulumi-lang-java=&#34;`fixedAmount`&#34; pulumi-lang-hcl=&#34;`fixed_amount`&#34;&gt;`fixedAmount`&lt;/span&gt;.
-     * 
-     */
-    @Export(name="fixedAmount", refs={ShippingRateFixedAmount.class}, tree="[0]")
-    private Output</* @Nullable */ ShippingRateFixedAmount> fixedAmount;
+    @Export(name="fixedAmounts", refs={List.class,ShippingRateFixedAmount.class}, tree="[0,1]")
+    private Output</* @Nullable */ List<ShippingRateFixedAmount>> fixedAmounts;
 
-    /**
-     * @return Describes a fixed amount to charge for shipping. Must be present if type is &lt;span pulumi-lang-nodejs=&#34;`fixedAmount`&#34; pulumi-lang-dotnet=&#34;`FixedAmount`&#34; pulumi-lang-go=&#34;`fixedAmount`&#34; pulumi-lang-python=&#34;`fixed_amount`&#34; pulumi-lang-yaml=&#34;`fixedAmount`&#34; pulumi-lang-java=&#34;`fixedAmount`&#34; pulumi-lang-hcl=&#34;`fixed_amount`&#34;&gt;`fixedAmount`&lt;/span&gt;.
-     * 
-     */
-    public Output<Optional<ShippingRateFixedAmount>> fixedAmount() {
-        return Codegen.optional(this.fixedAmount);
+    public Output<Optional<List<ShippingRateFixedAmount>>> fixedAmounts() {
+        return Codegen.optional(this.fixedAmounts);
     }
     /**
-     * Set of [key-value pairs](https://stripe.com/docs/api/metadata) that you can attach to an object. This can be useful for storing additional information about the object in a structured format. Individual keys can be unset by posting an empty value to them. All keys can be unset by posting an empty value to &lt;span pulumi-lang-nodejs=&#34;`metadata`&#34; pulumi-lang-dotnet=&#34;`Metadata`&#34; pulumi-lang-go=&#34;`metadata`&#34; pulumi-lang-python=&#34;`metadata`&#34; pulumi-lang-yaml=&#34;`metadata`&#34; pulumi-lang-java=&#34;`metadata`&#34; pulumi-lang-hcl=&#34;`metadata`&#34;&gt;`metadata`&lt;/span&gt;.
+     * If the object exists in live mode, the value is &lt;span pulumi-lang-nodejs=&#34;`true`&#34; pulumi-lang-dotnet=&#34;`True`&#34; pulumi-lang-go=&#34;`true`&#34; pulumi-lang-python=&#34;`true`&#34; pulumi-lang-yaml=&#34;`true`&#34; pulumi-lang-java=&#34;`true`&#34; pulumi-lang-hcl=&#34;`true`&#34;&gt;`true`&lt;/span&gt;. If the object exists in test mode, the value is &lt;span pulumi-lang-nodejs=&#34;`false`&#34; pulumi-lang-dotnet=&#34;`False`&#34; pulumi-lang-go=&#34;`false`&#34; pulumi-lang-python=&#34;`false`&#34; pulumi-lang-yaml=&#34;`false`&#34; pulumi-lang-java=&#34;`false`&#34; pulumi-lang-hcl=&#34;`false`&#34;&gt;`false`&lt;/span&gt;.
+     * 
+     */
+    @Export(name="livemode", refs={Boolean.class}, tree="[0]")
+    private Output<Boolean> livemode;
+
+    /**
+     * @return If the object exists in live mode, the value is &lt;span pulumi-lang-nodejs=&#34;`true`&#34; pulumi-lang-dotnet=&#34;`True`&#34; pulumi-lang-go=&#34;`true`&#34; pulumi-lang-python=&#34;`true`&#34; pulumi-lang-yaml=&#34;`true`&#34; pulumi-lang-java=&#34;`true`&#34; pulumi-lang-hcl=&#34;`true`&#34;&gt;`true`&lt;/span&gt;. If the object exists in test mode, the value is &lt;span pulumi-lang-nodejs=&#34;`false`&#34; pulumi-lang-dotnet=&#34;`False`&#34; pulumi-lang-go=&#34;`false`&#34; pulumi-lang-python=&#34;`false`&#34; pulumi-lang-yaml=&#34;`false`&#34; pulumi-lang-java=&#34;`false`&#34; pulumi-lang-hcl=&#34;`false`&#34;&gt;`false`&lt;/span&gt;.
+     * 
+     */
+    public Output<Boolean> livemode() {
+        return this.livemode;
+    }
+    /**
+     * Set of [key-value pairs](https://docs.stripe.com/api/metadata) that you can attach to an object. This can be useful for storing additional information about the object in a structured format.
      * 
      */
     @Export(name="metadata", refs={Map.class,String.class}, tree="[0,1,1]")
     private Output<Map<String,String>> metadata;
 
     /**
-     * @return Set of [key-value pairs](https://stripe.com/docs/api/metadata) that you can attach to an object. This can be useful for storing additional information about the object in a structured format. Individual keys can be unset by posting an empty value to them. All keys can be unset by posting an empty value to &lt;span pulumi-lang-nodejs=&#34;`metadata`&#34; pulumi-lang-dotnet=&#34;`Metadata`&#34; pulumi-lang-go=&#34;`metadata`&#34; pulumi-lang-python=&#34;`metadata`&#34; pulumi-lang-yaml=&#34;`metadata`&#34; pulumi-lang-java=&#34;`metadata`&#34; pulumi-lang-hcl=&#34;`metadata`&#34;&gt;`metadata`&lt;/span&gt;.
+     * @return Set of [key-value pairs](https://docs.stripe.com/api/metadata) that you can attach to an object. This can be useful for storing additional information about the object in a structured format.
      * 
      */
     public Output<Map<String,String>> metadata() {
         return this.metadata;
+    }
+    /**
+     * String representing the object&#39;s type. Objects of the same type share the same value.
+     * 
+     */
+    @Export(name="object", refs={String.class}, tree="[0]")
+    private Output<String> object;
+
+    /**
+     * @return String representing the object&#39;s type. Objects of the same type share the same value.
+     * 
+     */
+    public Output<String> object() {
+        return this.object;
     }
     /**
      * Specifies whether the rate is considered inclusive of taxes or exclusive of taxes. One of &lt;span pulumi-lang-nodejs=&#34;`inclusive`&#34; pulumi-lang-dotnet=&#34;`Inclusive`&#34; pulumi-lang-go=&#34;`inclusive`&#34; pulumi-lang-python=&#34;`inclusive`&#34; pulumi-lang-yaml=&#34;`inclusive`&#34; pulumi-lang-java=&#34;`inclusive`&#34; pulumi-lang-hcl=&#34;`inclusive`&#34;&gt;`inclusive`&lt;/span&gt;, &lt;span pulumi-lang-nodejs=&#34;`exclusive`&#34; pulumi-lang-dotnet=&#34;`Exclusive`&#34; pulumi-lang-go=&#34;`exclusive`&#34; pulumi-lang-python=&#34;`exclusive`&#34; pulumi-lang-yaml=&#34;`exclusive`&#34; pulumi-lang-java=&#34;`exclusive`&#34; pulumi-lang-hcl=&#34;`exclusive`&#34;&gt;`exclusive`&lt;/span&gt;, or &lt;span pulumi-lang-nodejs=&#34;`unspecified`&#34; pulumi-lang-dotnet=&#34;`Unspecified`&#34; pulumi-lang-go=&#34;`unspecified`&#34; pulumi-lang-python=&#34;`unspecified`&#34; pulumi-lang-yaml=&#34;`unspecified`&#34; pulumi-lang-java=&#34;`unspecified`&#34; pulumi-lang-hcl=&#34;`unspecified`&#34;&gt;`unspecified`&lt;/span&gt;.
@@ -105,14 +141,14 @@ public class ShippingRate extends com.pulumi.resources.CustomResource {
         return this.taxBehavior;
     }
     /**
-     * A [tax code](https://stripe.com/docs/tax/tax-categories) ID. The Shipping tax code is &lt;span pulumi-lang-nodejs=&#34;`txcd92010001`&#34; pulumi-lang-dotnet=&#34;`Txcd92010001`&#34; pulumi-lang-go=&#34;`txcd92010001`&#34; pulumi-lang-python=&#34;`txcd_92010001`&#34; pulumi-lang-yaml=&#34;`txcd92010001`&#34; pulumi-lang-java=&#34;`txcd92010001`&#34; pulumi-lang-hcl=&#34;`txcd_92010001`&#34;&gt;`txcd92010001`&lt;/span&gt;.
+     * A [tax code](https://docs.stripe.com/tax/tax-categories) ID. The Shipping tax code is &lt;span pulumi-lang-nodejs=&#34;`txcd92010001`&#34; pulumi-lang-dotnet=&#34;`Txcd92010001`&#34; pulumi-lang-go=&#34;`txcd92010001`&#34; pulumi-lang-python=&#34;`txcd_92010001`&#34; pulumi-lang-yaml=&#34;`txcd92010001`&#34; pulumi-lang-java=&#34;`txcd92010001`&#34; pulumi-lang-hcl=&#34;`txcd_92010001`&#34;&gt;`txcd92010001`&lt;/span&gt;.
      * 
      */
     @Export(name="taxCode", refs={String.class}, tree="[0]")
     private Output<String> taxCode;
 
     /**
-     * @return A [tax code](https://stripe.com/docs/tax/tax-categories) ID. The Shipping tax code is &lt;span pulumi-lang-nodejs=&#34;`txcd92010001`&#34; pulumi-lang-dotnet=&#34;`Txcd92010001`&#34; pulumi-lang-go=&#34;`txcd92010001`&#34; pulumi-lang-python=&#34;`txcd_92010001`&#34; pulumi-lang-yaml=&#34;`txcd92010001`&#34; pulumi-lang-java=&#34;`txcd92010001`&#34; pulumi-lang-hcl=&#34;`txcd_92010001`&#34;&gt;`txcd92010001`&lt;/span&gt;.
+     * @return A [tax code](https://docs.stripe.com/tax/tax-categories) ID. The Shipping tax code is &lt;span pulumi-lang-nodejs=&#34;`txcd92010001`&#34; pulumi-lang-dotnet=&#34;`Txcd92010001`&#34; pulumi-lang-go=&#34;`txcd92010001`&#34; pulumi-lang-python=&#34;`txcd_92010001`&#34; pulumi-lang-yaml=&#34;`txcd92010001`&#34; pulumi-lang-java=&#34;`txcd92010001`&#34; pulumi-lang-hcl=&#34;`txcd_92010001`&#34;&gt;`txcd92010001`&lt;/span&gt;.
      * 
      */
     public Output<String> taxCode() {

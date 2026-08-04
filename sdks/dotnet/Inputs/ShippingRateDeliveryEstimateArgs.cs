@@ -12,17 +12,29 @@ namespace Pulumi.Stripe.Inputs
 
     public sealed class ShippingRateDeliveryEstimateArgs : global::Pulumi.ResourceArgs
     {
+        [Input("maximums")]
+        private InputList<Inputs.ShippingRateDeliveryEstimateMaximumArgs>? _maximums;
+
         /// <summary>
         /// The upper bound of the estimated range. If empty, represents no upper bound i.e., infinite.
         /// </summary>
-        [Input("maximum")]
-        public Input<Inputs.ShippingRateDeliveryEstimateMaximumArgs>? Maximum { get; set; }
+        public InputList<Inputs.ShippingRateDeliveryEstimateMaximumArgs> Maximums
+        {
+            get => _maximums ?? (_maximums = new InputList<Inputs.ShippingRateDeliveryEstimateMaximumArgs>());
+            set => _maximums = value;
+        }
+
+        [Input("minimums")]
+        private InputList<Inputs.ShippingRateDeliveryEstimateMinimumArgs>? _minimums;
 
         /// <summary>
         /// The lower bound of the estimated range. If empty, represents no lower bound.
         /// </summary>
-        [Input("minimum")]
-        public Input<Inputs.ShippingRateDeliveryEstimateMinimumArgs>? Minimum { get; set; }
+        public InputList<Inputs.ShippingRateDeliveryEstimateMinimumArgs> Minimums
+        {
+            get => _minimums ?? (_minimums = new InputList<Inputs.ShippingRateDeliveryEstimateMinimumArgs>());
+            set => _minimums = value;
+        }
 
         public ShippingRateDeliveryEstimateArgs()
         {

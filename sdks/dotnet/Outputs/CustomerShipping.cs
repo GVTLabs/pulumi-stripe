@@ -13,20 +13,17 @@ namespace Pulumi.Stripe.Outputs
     [OutputType]
     public sealed class CustomerShipping
     {
-        /// <summary>
-        /// Customer shipping address.
-        /// </summary>
-        public readonly Outputs.CustomerShippingAddress Address;
+        public readonly ImmutableArray<Outputs.CustomerShippingAddress> Addresses;
         /// <summary>
         /// The delivery service that shipped a physical product, such as Fedex, UPS, USPS, etc.
         /// </summary>
         public readonly string? Carrier;
         /// <summary>
-        /// Customer name.
+        /// Recipient name.
         /// </summary>
         public readonly string Name;
         /// <summary>
-        /// Customer phone (including extension).
+        /// Recipient phone (including extension).
         /// </summary>
         public readonly string? Phone;
         /// <summary>
@@ -36,7 +33,7 @@ namespace Pulumi.Stripe.Outputs
 
         [OutputConstructor]
         private CustomerShipping(
-            Outputs.CustomerShippingAddress address,
+            ImmutableArray<Outputs.CustomerShippingAddress> addresses,
 
             string? carrier,
 
@@ -46,7 +43,7 @@ namespace Pulumi.Stripe.Outputs
 
             string? trackingNumber)
         {
-            Address = address;
+            Addresses = addresses;
             Carrier = carrier;
             Name = name;
             Phone = phone;

@@ -24,17 +24,17 @@ namespace Pulumi.Stripe.Outputs
         /// <summary>
         /// When set, provides configuration for the amount to be adjusted by the customer during Checkout Sessions and Payment Links.
         /// </summary>
-        public readonly Outputs.ProductDefaultPriceDataCustomUnitAmount? CustomUnitAmount;
+        public readonly ImmutableArray<Outputs.ProductDefaultPriceDataCustomUnitAmount> CustomUnitAmounts;
         /// <summary>
-        /// Set of [key-value pairs](https://stripe.com/docs/api/metadata) that you can attach to an object. This can be useful for storing additional information about the object in a structured format. Individual keys can be unset by posting an empty value to them. All keys can be unset by posting an empty value to &lt;span pulumi-lang-nodejs="`metadata`" pulumi-lang-dotnet="`Metadata`" pulumi-lang-go="`metadata`" pulumi-lang-python="`metadata`" pulumi-lang-yaml="`metadata`" pulumi-lang-java="`metadata`" pulumi-lang-hcl="`metadata`"&gt;`metadata`&lt;/span&gt;.
+        /// Set of [key-value pairs](https://docs.stripe.com/api/metadata) that you can attach to an object. This can be useful for storing additional information about the object in a structured format. Individual keys can be unset by posting an empty value to them. All keys can be unset by posting an empty value to &lt;span pulumi-lang-nodejs="`metadata`" pulumi-lang-dotnet="`Metadata`" pulumi-lang-go="`metadata`" pulumi-lang-python="`metadata`" pulumi-lang-yaml="`metadata`" pulumi-lang-java="`metadata`" pulumi-lang-hcl="`metadata`"&gt;`metadata`&lt;/span&gt;.
         /// </summary>
         public readonly ImmutableDictionary<string, string>? Metadata;
         /// <summary>
         /// The recurring components of a price such as &lt;span pulumi-lang-nodejs="`interval`" pulumi-lang-dotnet="`Interval`" pulumi-lang-go="`interval`" pulumi-lang-python="`interval`" pulumi-lang-yaml="`interval`" pulumi-lang-java="`interval`" pulumi-lang-hcl="`interval`"&gt;`interval`&lt;/span&gt; and &lt;span pulumi-lang-nodejs="`intervalCount`" pulumi-lang-dotnet="`IntervalCount`" pulumi-lang-go="`intervalCount`" pulumi-lang-python="`interval_count`" pulumi-lang-yaml="`intervalCount`" pulumi-lang-java="`intervalCount`" pulumi-lang-hcl="`interval_count`"&gt;`intervalCount`&lt;/span&gt;.
         /// </summary>
-        public readonly Outputs.ProductDefaultPriceDataRecurring? Recurring;
+        public readonly ImmutableArray<Outputs.ProductDefaultPriceDataRecurring> Recurrings;
         /// <summary>
-        /// Only required if a [default tax behavior](https://stripe.com/docs/tax/products-prices-tax-categories-tax-behavior#setting-a-default-tax-behavior-(recommended)) was not provided in the Stripe Tax settings. Specifies whether the price is considered inclusive of taxes or exclusive of taxes. One of &lt;span pulumi-lang-nodejs="`inclusive`" pulumi-lang-dotnet="`Inclusive`" pulumi-lang-go="`inclusive`" pulumi-lang-python="`inclusive`" pulumi-lang-yaml="`inclusive`" pulumi-lang-java="`inclusive`" pulumi-lang-hcl="`inclusive`"&gt;`inclusive`&lt;/span&gt;, &lt;span pulumi-lang-nodejs="`exclusive`" pulumi-lang-dotnet="`Exclusive`" pulumi-lang-go="`exclusive`" pulumi-lang-python="`exclusive`" pulumi-lang-yaml="`exclusive`" pulumi-lang-java="`exclusive`" pulumi-lang-hcl="`exclusive`"&gt;`exclusive`&lt;/span&gt;, or &lt;span pulumi-lang-nodejs="`unspecified`" pulumi-lang-dotnet="`Unspecified`" pulumi-lang-go="`unspecified`" pulumi-lang-python="`unspecified`" pulumi-lang-yaml="`unspecified`" pulumi-lang-java="`unspecified`" pulumi-lang-hcl="`unspecified`"&gt;`unspecified`&lt;/span&gt;. Once specified as either &lt;span pulumi-lang-nodejs="`inclusive`" pulumi-lang-dotnet="`Inclusive`" pulumi-lang-go="`inclusive`" pulumi-lang-python="`inclusive`" pulumi-lang-yaml="`inclusive`" pulumi-lang-java="`inclusive`" pulumi-lang-hcl="`inclusive`"&gt;`inclusive`&lt;/span&gt; or &lt;span pulumi-lang-nodejs="`exclusive`" pulumi-lang-dotnet="`Exclusive`" pulumi-lang-go="`exclusive`" pulumi-lang-python="`exclusive`" pulumi-lang-yaml="`exclusive`" pulumi-lang-java="`exclusive`" pulumi-lang-hcl="`exclusive`"&gt;`exclusive`&lt;/span&gt;, it cannot be changed.
+        /// Only required if a [default tax behavior](https://docs.stripe.com/tax/products-prices-tax-categories-tax-behavior#setting-a-default-tax-behavior-(recommended)) was not provided in the Stripe Tax settings. Specifies whether the price is considered inclusive of taxes or exclusive of taxes. One of &lt;span pulumi-lang-nodejs="`inclusive`" pulumi-lang-dotnet="`Inclusive`" pulumi-lang-go="`inclusive`" pulumi-lang-python="`inclusive`" pulumi-lang-yaml="`inclusive`" pulumi-lang-java="`inclusive`" pulumi-lang-hcl="`inclusive`"&gt;`inclusive`&lt;/span&gt;, &lt;span pulumi-lang-nodejs="`exclusive`" pulumi-lang-dotnet="`Exclusive`" pulumi-lang-go="`exclusive`" pulumi-lang-python="`exclusive`" pulumi-lang-yaml="`exclusive`" pulumi-lang-java="`exclusive`" pulumi-lang-hcl="`exclusive`"&gt;`exclusive`&lt;/span&gt;, or &lt;span pulumi-lang-nodejs="`unspecified`" pulumi-lang-dotnet="`Unspecified`" pulumi-lang-go="`unspecified`" pulumi-lang-python="`unspecified`" pulumi-lang-yaml="`unspecified`" pulumi-lang-java="`unspecified`" pulumi-lang-hcl="`unspecified`"&gt;`unspecified`&lt;/span&gt;. Once specified as either &lt;span pulumi-lang-nodejs="`inclusive`" pulumi-lang-dotnet="`Inclusive`" pulumi-lang-go="`inclusive`" pulumi-lang-python="`inclusive`" pulumi-lang-yaml="`inclusive`" pulumi-lang-java="`inclusive`" pulumi-lang-hcl="`inclusive`"&gt;`inclusive`&lt;/span&gt; or &lt;span pulumi-lang-nodejs="`exclusive`" pulumi-lang-dotnet="`Exclusive`" pulumi-lang-go="`exclusive`" pulumi-lang-python="`exclusive`" pulumi-lang-yaml="`exclusive`" pulumi-lang-java="`exclusive`" pulumi-lang-hcl="`exclusive`"&gt;`exclusive`&lt;/span&gt;, it cannot be changed.
         /// </summary>
         public readonly string? TaxBehavior;
         /// <summary>
@@ -52,11 +52,11 @@ namespace Pulumi.Stripe.Outputs
 
             ImmutableArray<Outputs.ProductDefaultPriceDataCurrencyOption> currencyOptions,
 
-            Outputs.ProductDefaultPriceDataCustomUnitAmount? customUnitAmount,
+            ImmutableArray<Outputs.ProductDefaultPriceDataCustomUnitAmount> customUnitAmounts,
 
             ImmutableDictionary<string, string>? metadata,
 
-            Outputs.ProductDefaultPriceDataRecurring? recurring,
+            ImmutableArray<Outputs.ProductDefaultPriceDataRecurring> recurrings,
 
             string? taxBehavior,
 
@@ -66,9 +66,9 @@ namespace Pulumi.Stripe.Outputs
         {
             Currency = currency;
             CurrencyOptions = currencyOptions;
-            CustomUnitAmount = customUnitAmount;
+            CustomUnitAmounts = customUnitAmounts;
             Metadata = metadata;
-            Recurring = recurring;
+            Recurrings = recurrings;
             TaxBehavior = taxBehavior;
             UnitAmount = unitAmount;
             UnitAmountDecimal = unitAmountDecimal;

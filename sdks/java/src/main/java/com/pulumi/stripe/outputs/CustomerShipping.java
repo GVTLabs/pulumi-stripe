@@ -7,29 +7,26 @@ import com.pulumi.core.annotations.CustomType;
 import com.pulumi.exceptions.MissingRequiredPropertyException;
 import com.pulumi.stripe.outputs.CustomerShippingAddress;
 import java.lang.String;
+import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 import javax.annotation.Nullable;
 
 @CustomType
 public final class CustomerShipping {
-    /**
-     * @return Customer shipping address.
-     * 
-     */
-    private CustomerShippingAddress address;
+    private @Nullable List<CustomerShippingAddress> addresses;
     /**
      * @return The delivery service that shipped a physical product, such as Fedex, UPS, USPS, etc.
      * 
      */
     private @Nullable String carrier;
     /**
-     * @return Customer name.
+     * @return Recipient name.
      * 
      */
     private String name;
     /**
-     * @return Customer phone (including extension).
+     * @return Recipient phone (including extension).
      * 
      */
     private @Nullable String phone;
@@ -40,12 +37,8 @@ public final class CustomerShipping {
     private @Nullable String trackingNumber;
 
     private CustomerShipping() {}
-    /**
-     * @return Customer shipping address.
-     * 
-     */
-    public CustomerShippingAddress address() {
-        return this.address;
+    public List<CustomerShippingAddress> addresses() {
+        return this.addresses == null ? List.of() : this.addresses;
     }
     /**
      * @return The delivery service that shipped a physical product, such as Fedex, UPS, USPS, etc.
@@ -55,14 +48,14 @@ public final class CustomerShipping {
         return Optional.ofNullable(this.carrier);
     }
     /**
-     * @return Customer name.
+     * @return Recipient name.
      * 
      */
     public String name() {
         return this.name;
     }
     /**
-     * @return Customer phone (including extension).
+     * @return Recipient phone (including extension).
      * 
      */
     public Optional<String> phone() {
@@ -85,7 +78,7 @@ public final class CustomerShipping {
     }
     @CustomType.Builder
     public static final class Builder {
-        private CustomerShippingAddress address;
+        private @Nullable List<CustomerShippingAddress> addresses;
         private @Nullable String carrier;
         private String name;
         private @Nullable String phone;
@@ -93,7 +86,7 @@ public final class CustomerShipping {
         public Builder() {}
         public Builder(CustomerShipping defaults) {
     	      Objects.requireNonNull(defaults);
-    	      this.address = defaults.address;
+    	      this.addresses = defaults.addresses;
     	      this.carrier = defaults.carrier;
     	      this.name = defaults.name;
     	      this.phone = defaults.phone;
@@ -101,12 +94,13 @@ public final class CustomerShipping {
         }
 
         @CustomType.Setter
-        public Builder address(CustomerShippingAddress address) {
-            if (address == null) {
-              throw new MissingRequiredPropertyException("CustomerShipping", "address");
-            }
-            this.address = address;
+        public Builder addresses(@Nullable List<CustomerShippingAddress> addresses) {
+
+            this.addresses = addresses;
             return this;
+        }
+        public Builder addresses(CustomerShippingAddress... addresses) {
+            return addresses(List.of(addresses));
         }
         @CustomType.Setter
         public Builder carrier(@Nullable String carrier) {
@@ -136,7 +130,7 @@ public final class CustomerShipping {
         }
         public CustomerShipping build() {
             final var _resultValue = new CustomerShipping();
-            _resultValue.address = address;
+            _resultValue.addresses = addresses;
             _resultValue.carrier = carrier;
             _resultValue.name = name;
             _resultValue.phone = phone;

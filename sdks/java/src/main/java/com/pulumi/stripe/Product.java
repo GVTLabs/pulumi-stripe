@@ -12,8 +12,9 @@ import com.pulumi.stripe.Utilities;
 import com.pulumi.stripe.inputs.ProductState;
 import com.pulumi.stripe.outputs.ProductDefaultPriceData;
 import com.pulumi.stripe.outputs.ProductMarketingFeature;
-import com.pulumi.stripe.outputs.ProductPackageDimensions;
+import com.pulumi.stripe.outputs.ProductPackageDimension;
 import java.lang.Boolean;
+import java.lang.Double;
 import java.lang.String;
 import java.util.List;
 import java.util.Map;
@@ -23,32 +24,60 @@ import javax.annotation.Nullable;
 @ResourceType(type="stripe:index/product:Product")
 public class Product extends com.pulumi.resources.CustomResource {
     /**
-     * Whether the product is currently available for purchase. Defaults to &lt;span pulumi-lang-nodejs=&#34;`true`&#34; pulumi-lang-dotnet=&#34;`True`&#34; pulumi-lang-go=&#34;`true`&#34; pulumi-lang-python=&#34;`true`&#34; pulumi-lang-yaml=&#34;`true`&#34; pulumi-lang-java=&#34;`true`&#34; pulumi-lang-hcl=&#34;`true`&#34;&gt;`true`&lt;/span&gt;.
+     * Whether the product is currently available for purchase.
      * 
      */
     @Export(name="active", refs={Boolean.class}, tree="[0]")
-    private Output</* @Nullable */ Boolean> active;
+    private Output<Boolean> active;
 
     /**
-     * @return Whether the product is currently available for purchase. Defaults to &lt;span pulumi-lang-nodejs=&#34;`true`&#34; pulumi-lang-dotnet=&#34;`True`&#34; pulumi-lang-go=&#34;`true`&#34; pulumi-lang-python=&#34;`true`&#34; pulumi-lang-yaml=&#34;`true`&#34; pulumi-lang-java=&#34;`true`&#34; pulumi-lang-hcl=&#34;`true`&#34;&gt;`true`&lt;/span&gt;.
+     * @return Whether the product is currently available for purchase.
      * 
      */
-    public Output<Optional<Boolean>> active() {
-        return Codegen.optional(this.active);
+    public Output<Boolean> active() {
+        return this.active;
     }
     /**
-     * Data used to generate a new [Price](https://stripe.com/docs/api/prices) object. This Price will be set as the default price for this product.
+     * Time at which the object was created. Measured in seconds since the Unix epoch.
      * 
      */
-    @Export(name="defaultPriceData", refs={ProductDefaultPriceData.class}, tree="[0]")
-    private Output</* @Nullable */ ProductDefaultPriceData> defaultPriceData;
+    @Export(name="created", refs={Double.class}, tree="[0]")
+    private Output<Double> created;
 
     /**
-     * @return Data used to generate a new [Price](https://stripe.com/docs/api/prices) object. This Price will be set as the default price for this product.
+     * @return Time at which the object was created. Measured in seconds since the Unix epoch.
      * 
      */
-    public Output<Optional<ProductDefaultPriceData>> defaultPriceData() {
-        return Codegen.optional(this.defaultPriceData);
+    public Output<Double> created() {
+        return this.created;
+    }
+    /**
+     * The ID of the [Price](https://docs.stripe.com/api/prices) object that is the default price for this product.
+     * 
+     */
+    @Export(name="defaultPrice", refs={String.class}, tree="[0]")
+    private Output<String> defaultPrice;
+
+    /**
+     * @return The ID of the [Price](https://docs.stripe.com/api/prices) object that is the default price for this product.
+     * 
+     */
+    public Output<String> defaultPrice() {
+        return this.defaultPrice;
+    }
+    /**
+     * Data used to generate a new [Price](https://docs.stripe.com/api/prices) object. This Price will be set as the default price for this product.
+     * 
+     */
+    @Export(name="defaultPriceDatas", refs={List.class,ProductDefaultPriceData.class}, tree="[0,1]")
+    private Output</* @Nullable */ List<ProductDefaultPriceData>> defaultPriceDatas;
+
+    /**
+     * @return Data used to generate a new [Price](https://docs.stripe.com/api/prices) object. This Price will be set as the default price for this product.
+     * 
+     */
+    public Output<Optional<List<ProductDefaultPriceData>>> defaultPriceDatas() {
+        return Codegen.optional(this.defaultPriceDatas);
     }
     /**
      * The product&#39;s description, meant to be displayable to the customer. Use this field to optionally store a long form explanation of the product being sold for your own rendering purposes.
@@ -79,28 +108,42 @@ public class Product extends com.pulumi.resources.CustomResource {
         return Codegen.optional(this.images);
     }
     /**
-     * A list of up to 15 marketing features for this product. These are displayed in [pricing tables](https://stripe.com/docs/payments/checkout/pricing-table).
+     * If the object exists in live mode, the value is &lt;span pulumi-lang-nodejs=&#34;`true`&#34; pulumi-lang-dotnet=&#34;`True`&#34; pulumi-lang-go=&#34;`true`&#34; pulumi-lang-python=&#34;`true`&#34; pulumi-lang-yaml=&#34;`true`&#34; pulumi-lang-java=&#34;`true`&#34; pulumi-lang-hcl=&#34;`true`&#34;&gt;`true`&lt;/span&gt;. If the object exists in test mode, the value is &lt;span pulumi-lang-nodejs=&#34;`false`&#34; pulumi-lang-dotnet=&#34;`False`&#34; pulumi-lang-go=&#34;`false`&#34; pulumi-lang-python=&#34;`false`&#34; pulumi-lang-yaml=&#34;`false`&#34; pulumi-lang-java=&#34;`false`&#34; pulumi-lang-hcl=&#34;`false`&#34;&gt;`false`&lt;/span&gt;.
+     * 
+     */
+    @Export(name="livemode", refs={Boolean.class}, tree="[0]")
+    private Output<Boolean> livemode;
+
+    /**
+     * @return If the object exists in live mode, the value is &lt;span pulumi-lang-nodejs=&#34;`true`&#34; pulumi-lang-dotnet=&#34;`True`&#34; pulumi-lang-go=&#34;`true`&#34; pulumi-lang-python=&#34;`true`&#34; pulumi-lang-yaml=&#34;`true`&#34; pulumi-lang-java=&#34;`true`&#34; pulumi-lang-hcl=&#34;`true`&#34;&gt;`true`&lt;/span&gt;. If the object exists in test mode, the value is &lt;span pulumi-lang-nodejs=&#34;`false`&#34; pulumi-lang-dotnet=&#34;`False`&#34; pulumi-lang-go=&#34;`false`&#34; pulumi-lang-python=&#34;`false`&#34; pulumi-lang-yaml=&#34;`false`&#34; pulumi-lang-java=&#34;`false`&#34; pulumi-lang-hcl=&#34;`false`&#34;&gt;`false`&lt;/span&gt;.
+     * 
+     */
+    public Output<Boolean> livemode() {
+        return this.livemode;
+    }
+    /**
+     * A list of up to 15 marketing features for this product. These are displayed in [pricing tables](https://docs.stripe.com/payments/checkout/pricing-table).
      * 
      */
     @Export(name="marketingFeatures", refs={List.class,ProductMarketingFeature.class}, tree="[0,1]")
     private Output</* @Nullable */ List<ProductMarketingFeature>> marketingFeatures;
 
     /**
-     * @return A list of up to 15 marketing features for this product. These are displayed in [pricing tables](https://stripe.com/docs/payments/checkout/pricing-table).
+     * @return A list of up to 15 marketing features for this product. These are displayed in [pricing tables](https://docs.stripe.com/payments/checkout/pricing-table).
      * 
      */
     public Output<Optional<List<ProductMarketingFeature>>> marketingFeatures() {
         return Codegen.optional(this.marketingFeatures);
     }
     /**
-     * Set of [key-value pairs](https://stripe.com/docs/api/metadata) that you can attach to an object. This can be useful for storing additional information about the object in a structured format. Individual keys can be unset by posting an empty value to them. All keys can be unset by posting an empty value to &lt;span pulumi-lang-nodejs=&#34;`metadata`&#34; pulumi-lang-dotnet=&#34;`Metadata`&#34; pulumi-lang-go=&#34;`metadata`&#34; pulumi-lang-python=&#34;`metadata`&#34; pulumi-lang-yaml=&#34;`metadata`&#34; pulumi-lang-java=&#34;`metadata`&#34; pulumi-lang-hcl=&#34;`metadata`&#34;&gt;`metadata`&lt;/span&gt;.
+     * Set of [key-value pairs](https://docs.stripe.com/api/metadata) that you can attach to an object. This can be useful for storing additional information about the object in a structured format.
      * 
      */
     @Export(name="metadata", refs={Map.class,String.class}, tree="[0,1,1]")
     private Output<Map<String,String>> metadata;
 
     /**
-     * @return Set of [key-value pairs](https://stripe.com/docs/api/metadata) that you can attach to an object. This can be useful for storing additional information about the object in a structured format. Individual keys can be unset by posting an empty value to them. All keys can be unset by posting an empty value to &lt;span pulumi-lang-nodejs=&#34;`metadata`&#34; pulumi-lang-dotnet=&#34;`Metadata`&#34; pulumi-lang-go=&#34;`metadata`&#34; pulumi-lang-python=&#34;`metadata`&#34; pulumi-lang-yaml=&#34;`metadata`&#34; pulumi-lang-java=&#34;`metadata`&#34; pulumi-lang-hcl=&#34;`metadata`&#34;&gt;`metadata`&lt;/span&gt;.
+     * @return Set of [key-value pairs](https://docs.stripe.com/api/metadata) that you can attach to an object. This can be useful for storing additional information about the object in a structured format.
      * 
      */
     public Output<Map<String,String>> metadata() {
@@ -121,17 +164,31 @@ public class Product extends com.pulumi.resources.CustomResource {
         return this.name;
     }
     /**
+     * String representing the object&#39;s type. Objects of the same type share the same value.
+     * 
+     */
+    @Export(name="object", refs={String.class}, tree="[0]")
+    private Output<String> object;
+
+    /**
+     * @return String representing the object&#39;s type. Objects of the same type share the same value.
+     * 
+     */
+    public Output<String> object() {
+        return this.object;
+    }
+    /**
      * The dimensions of this product for shipping purposes.
      * 
      */
-    @Export(name="packageDimensions", refs={ProductPackageDimensions.class}, tree="[0]")
-    private Output</* @Nullable */ ProductPackageDimensions> packageDimensions;
+    @Export(name="packageDimensions", refs={List.class,ProductPackageDimension.class}, tree="[0,1]")
+    private Output</* @Nullable */ List<ProductPackageDimension>> packageDimensions;
 
     /**
      * @return The dimensions of this product for shipping purposes.
      * 
      */
-    public Output<Optional<ProductPackageDimensions>> packageDimensions() {
+    public Output<Optional<List<ProductPackageDimension>>> packageDimensions() {
         return Codegen.optional(this.packageDimensions);
     }
     /**
@@ -149,42 +206,42 @@ public class Product extends com.pulumi.resources.CustomResource {
         return this.shippable;
     }
     /**
-     * An arbitrary string to be displayed on your customer&#39;s credit card or bank statement. While most banks display this information consistently, some may display it incorrectly or not at all. This may be up to 22 characters. The statement description may not include `&lt;`, `&gt;`, `\`, `\&#34;`, `&#39;` characters, and will appear on your customer&#39;s statement in capital letters. Non-ASCII characters are automatically stripped. It must contain at least one letter. Only used for subscription payments.
+     * Extra information about a product which will appear on your customer&#39;s credit card statement. In the case that multiple products are billed at once, the first statement descriptor will be used. Only used for subscription payments.
      * 
      */
     @Export(name="statementDescriptor", refs={String.class}, tree="[0]")
     private Output<String> statementDescriptor;
 
     /**
-     * @return An arbitrary string to be displayed on your customer&#39;s credit card or bank statement. While most banks display this information consistently, some may display it incorrectly or not at all. This may be up to 22 characters. The statement description may not include `&lt;`, `&gt;`, `\`, `\&#34;`, `&#39;` characters, and will appear on your customer&#39;s statement in capital letters. Non-ASCII characters are automatically stripped. It must contain at least one letter. Only used for subscription payments.
+     * @return Extra information about a product which will appear on your customer&#39;s credit card statement. In the case that multiple products are billed at once, the first statement descriptor will be used. Only used for subscription payments.
      * 
      */
     public Output<String> statementDescriptor() {
         return this.statementDescriptor;
     }
     /**
-     * A [tax code](https://stripe.com/docs/tax/tax-categories) ID.
+     * A [tax code](https://docs.stripe.com/tax/tax-categories) ID.
      * 
      */
     @Export(name="taxCode", refs={String.class}, tree="[0]")
     private Output<String> taxCode;
 
     /**
-     * @return A [tax code](https://stripe.com/docs/tax/tax-categories) ID.
+     * @return A [tax code](https://docs.stripe.com/tax/tax-categories) ID.
      * 
      */
     public Output<String> taxCode() {
         return this.taxCode;
     }
     /**
-     * The type of the product. Defaults to &lt;span pulumi-lang-nodejs=&#34;`service`&#34; pulumi-lang-dotnet=&#34;`Service`&#34; pulumi-lang-go=&#34;`service`&#34; pulumi-lang-python=&#34;`service`&#34; pulumi-lang-yaml=&#34;`service`&#34; pulumi-lang-java=&#34;`service`&#34; pulumi-lang-hcl=&#34;`service`&#34;&gt;`service`&lt;/span&gt; if not explicitly specified, enabling use of this product with Subscriptions and Plans. Set this parameter to &lt;span pulumi-lang-nodejs=&#34;`good`&#34; pulumi-lang-dotnet=&#34;`Good`&#34; pulumi-lang-go=&#34;`good`&#34; pulumi-lang-python=&#34;`good`&#34; pulumi-lang-yaml=&#34;`good`&#34; pulumi-lang-java=&#34;`good`&#34; pulumi-lang-hcl=&#34;`good`&#34;&gt;`good`&lt;/span&gt; to use this product with Orders and SKUs. On API versions before `2018-02-05`, this field defaults to &lt;span pulumi-lang-nodejs=&#34;`good`&#34; pulumi-lang-dotnet=&#34;`Good`&#34; pulumi-lang-go=&#34;`good`&#34; pulumi-lang-python=&#34;`good`&#34; pulumi-lang-yaml=&#34;`good`&#34; pulumi-lang-java=&#34;`good`&#34; pulumi-lang-hcl=&#34;`good`&#34;&gt;`good`&lt;/span&gt; for compatibility reasons.
+     * The type of the product. The product is either of type &lt;span pulumi-lang-nodejs=&#34;`good`&#34; pulumi-lang-dotnet=&#34;`Good`&#34; pulumi-lang-go=&#34;`good`&#34; pulumi-lang-python=&#34;`good`&#34; pulumi-lang-yaml=&#34;`good`&#34; pulumi-lang-java=&#34;`good`&#34; pulumi-lang-hcl=&#34;`good`&#34;&gt;`good`&lt;/span&gt;, which is eligible for use with Orders and SKUs, or &lt;span pulumi-lang-nodejs=&#34;`service`&#34; pulumi-lang-dotnet=&#34;`Service`&#34; pulumi-lang-go=&#34;`service`&#34; pulumi-lang-python=&#34;`service`&#34; pulumi-lang-yaml=&#34;`service`&#34; pulumi-lang-java=&#34;`service`&#34; pulumi-lang-hcl=&#34;`service`&#34;&gt;`service`&lt;/span&gt;, which is eligible for use with Subscriptions and Plans.
      * 
      */
     @Export(name="type", refs={String.class}, tree="[0]")
     private Output<String> type;
 
     /**
-     * @return The type of the product. Defaults to &lt;span pulumi-lang-nodejs=&#34;`service`&#34; pulumi-lang-dotnet=&#34;`Service`&#34; pulumi-lang-go=&#34;`service`&#34; pulumi-lang-python=&#34;`service`&#34; pulumi-lang-yaml=&#34;`service`&#34; pulumi-lang-java=&#34;`service`&#34; pulumi-lang-hcl=&#34;`service`&#34;&gt;`service`&lt;/span&gt; if not explicitly specified, enabling use of this product with Subscriptions and Plans. Set this parameter to &lt;span pulumi-lang-nodejs=&#34;`good`&#34; pulumi-lang-dotnet=&#34;`Good`&#34; pulumi-lang-go=&#34;`good`&#34; pulumi-lang-python=&#34;`good`&#34; pulumi-lang-yaml=&#34;`good`&#34; pulumi-lang-java=&#34;`good`&#34; pulumi-lang-hcl=&#34;`good`&#34;&gt;`good`&lt;/span&gt; to use this product with Orders and SKUs. On API versions before `2018-02-05`, this field defaults to &lt;span pulumi-lang-nodejs=&#34;`good`&#34; pulumi-lang-dotnet=&#34;`Good`&#34; pulumi-lang-go=&#34;`good`&#34; pulumi-lang-python=&#34;`good`&#34; pulumi-lang-yaml=&#34;`good`&#34; pulumi-lang-java=&#34;`good`&#34; pulumi-lang-hcl=&#34;`good`&#34;&gt;`good`&lt;/span&gt; for compatibility reasons.
+     * @return The type of the product. The product is either of type &lt;span pulumi-lang-nodejs=&#34;`good`&#34; pulumi-lang-dotnet=&#34;`Good`&#34; pulumi-lang-go=&#34;`good`&#34; pulumi-lang-python=&#34;`good`&#34; pulumi-lang-yaml=&#34;`good`&#34; pulumi-lang-java=&#34;`good`&#34; pulumi-lang-hcl=&#34;`good`&#34;&gt;`good`&lt;/span&gt;, which is eligible for use with Orders and SKUs, or &lt;span pulumi-lang-nodejs=&#34;`service`&#34; pulumi-lang-dotnet=&#34;`Service`&#34; pulumi-lang-go=&#34;`service`&#34; pulumi-lang-python=&#34;`service`&#34; pulumi-lang-yaml=&#34;`service`&#34; pulumi-lang-java=&#34;`service`&#34; pulumi-lang-hcl=&#34;`service`&#34;&gt;`service`&lt;/span&gt;, which is eligible for use with Subscriptions and Plans.
      * 
      */
     public Output<String> type() {
@@ -203,6 +260,20 @@ public class Product extends com.pulumi.resources.CustomResource {
      */
     public Output<String> unitLabel() {
         return this.unitLabel;
+    }
+    /**
+     * Time at which the object was last updated. Measured in seconds since the Unix epoch.
+     * 
+     */
+    @Export(name="updated", refs={Double.class}, tree="[0]")
+    private Output<Double> updated;
+
+    /**
+     * @return Time at which the object was last updated. Measured in seconds since the Unix epoch.
+     * 
+     */
+    public Output<Double> updated() {
+        return this.updated;
     }
     /**
      * A URL of a publicly-accessible webpage for this product.

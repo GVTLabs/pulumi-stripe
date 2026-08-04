@@ -11,10 +11,11 @@ import com.pulumi.stripe.PromotionCodeArgs;
 import com.pulumi.stripe.Utilities;
 import com.pulumi.stripe.inputs.PromotionCodeState;
 import com.pulumi.stripe.outputs.PromotionCodePromotion;
-import com.pulumi.stripe.outputs.PromotionCodeRestrictions;
+import com.pulumi.stripe.outputs.PromotionCodeRestriction;
 import java.lang.Boolean;
 import java.lang.Double;
 import java.lang.String;
+import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import javax.annotation.Nullable;
@@ -22,129 +23,155 @@ import javax.annotation.Nullable;
 @ResourceType(type="stripe:index/promotionCode:PromotionCode")
 public class PromotionCode extends com.pulumi.resources.CustomResource {
     /**
-     * Whether the promotion code is currently active.
+     * Whether the promotion code is currently active. A promotion code is only active if the coupon is also valid.
      * 
      */
     @Export(name="active", refs={Boolean.class}, tree="[0]")
     private Output<Boolean> active;
 
     /**
-     * @return Whether the promotion code is currently active.
+     * @return Whether the promotion code is currently active. A promotion code is only active if the coupon is also valid.
      * 
      */
     public Output<Boolean> active() {
         return this.active;
     }
     /**
-     * The customer-facing code. Regardless of case, this code must be unique across all active promotion codes for a specific customer. Valid characters are lower case letters (a-z), upper case letters (A-Z), and digits (0-9). If left blank, we will generate one automatically.
+     * The customer-facing code. Regardless of case, this code must be unique across all active promotion codes for each customer. Valid characters are lower case letters (a-z), upper case letters (A-Z), digits (0-9), and dashes (-).
      * 
      */
     @Export(name="code", refs={String.class}, tree="[0]")
     private Output<String> code;
 
     /**
-     * @return The customer-facing code. Regardless of case, this code must be unique across all active promotion codes for a specific customer. Valid characters are lower case letters (a-z), upper case letters (A-Z), and digits (0-9). If left blank, we will generate one automatically.
+     * @return The customer-facing code. Regardless of case, this code must be unique across all active promotion codes for each customer. Valid characters are lower case letters (a-z), upper case letters (A-Z), digits (0-9), and dashes (-).
      * 
      */
     public Output<String> code() {
         return this.code;
     }
     /**
-     * The customer that this promotion code can be used by. If not set, the promotion code can be used by all customers.
+     * Time at which the object was created. Measured in seconds since the Unix epoch.
+     * 
+     */
+    @Export(name="created", refs={Double.class}, tree="[0]")
+    private Output<Double> created;
+
+    /**
+     * @return Time at which the object was created. Measured in seconds since the Unix epoch.
+     * 
+     */
+    public Output<Double> created() {
+        return this.created;
+    }
+    /**
+     * The customer who can use this promotion code.
      * 
      */
     @Export(name="customer", refs={String.class}, tree="[0]")
     private Output<String> customer;
 
     /**
-     * @return The customer that this promotion code can be used by. If not set, the promotion code can be used by all customers.
+     * @return The customer who can use this promotion code.
      * 
      */
     public Output<String> customer() {
         return this.customer;
     }
     /**
-     * The account that this promotion code can be used by. If not set, the promotion code can be used by all accounts.
+     * The account representing the customer who can use this promotion code.
      * 
      */
     @Export(name="customerAccount", refs={String.class}, tree="[0]")
     private Output<String> customerAccount;
 
     /**
-     * @return The account that this promotion code can be used by. If not set, the promotion code can be used by all accounts.
+     * @return The account representing the customer who can use this promotion code.
      * 
      */
     public Output<String> customerAccount() {
         return this.customerAccount;
     }
     /**
-     * The timestamp at which this promotion code will expire. If the coupon has specified a &lt;span pulumi-lang-nodejs=&#34;`redeemsBy`&#34; pulumi-lang-dotnet=&#34;`RedeemsBy`&#34; pulumi-lang-go=&#34;`redeemsBy`&#34; pulumi-lang-python=&#34;`redeems_by`&#34; pulumi-lang-yaml=&#34;`redeemsBy`&#34; pulumi-lang-java=&#34;`redeemsBy`&#34; pulumi-lang-hcl=&#34;`redeems_by`&#34;&gt;`redeemsBy`&lt;/span&gt;, then this value cannot be after the coupon&#39;s &lt;span pulumi-lang-nodejs=&#34;`redeemsBy`&#34; pulumi-lang-dotnet=&#34;`RedeemsBy`&#34; pulumi-lang-go=&#34;`redeemsBy`&#34; pulumi-lang-python=&#34;`redeems_by`&#34; pulumi-lang-yaml=&#34;`redeemsBy`&#34; pulumi-lang-java=&#34;`redeemsBy`&#34; pulumi-lang-hcl=&#34;`redeems_by`&#34;&gt;`redeemsBy`&lt;/span&gt;.
+     * Date at which the promotion code can no longer be redeemed.
      * 
      */
     @Export(name="expiresAt", refs={Double.class}, tree="[0]")
     private Output<Double> expiresAt;
 
     /**
-     * @return The timestamp at which this promotion code will expire. If the coupon has specified a &lt;span pulumi-lang-nodejs=&#34;`redeemsBy`&#34; pulumi-lang-dotnet=&#34;`RedeemsBy`&#34; pulumi-lang-go=&#34;`redeemsBy`&#34; pulumi-lang-python=&#34;`redeems_by`&#34; pulumi-lang-yaml=&#34;`redeemsBy`&#34; pulumi-lang-java=&#34;`redeemsBy`&#34; pulumi-lang-hcl=&#34;`redeems_by`&#34;&gt;`redeemsBy`&lt;/span&gt;, then this value cannot be after the coupon&#39;s &lt;span pulumi-lang-nodejs=&#34;`redeemsBy`&#34; pulumi-lang-dotnet=&#34;`RedeemsBy`&#34; pulumi-lang-go=&#34;`redeemsBy`&#34; pulumi-lang-python=&#34;`redeems_by`&#34; pulumi-lang-yaml=&#34;`redeemsBy`&#34; pulumi-lang-java=&#34;`redeemsBy`&#34; pulumi-lang-hcl=&#34;`redeems_by`&#34;&gt;`redeemsBy`&lt;/span&gt;.
+     * @return Date at which the promotion code can no longer be redeemed.
      * 
      */
     public Output<Double> expiresAt() {
         return this.expiresAt;
     }
     /**
-     * A positive integer specifying the number of times the promotion code can be redeemed. If the coupon has specified a &lt;span pulumi-lang-nodejs=&#34;`maxRedemptions`&#34; pulumi-lang-dotnet=&#34;`MaxRedemptions`&#34; pulumi-lang-go=&#34;`maxRedemptions`&#34; pulumi-lang-python=&#34;`max_redemptions`&#34; pulumi-lang-yaml=&#34;`maxRedemptions`&#34; pulumi-lang-java=&#34;`maxRedemptions`&#34; pulumi-lang-hcl=&#34;`max_redemptions`&#34;&gt;`maxRedemptions`&lt;/span&gt;, then this value cannot be greater than the coupon&#39;s &lt;span pulumi-lang-nodejs=&#34;`maxRedemptions`&#34; pulumi-lang-dotnet=&#34;`MaxRedemptions`&#34; pulumi-lang-go=&#34;`maxRedemptions`&#34; pulumi-lang-python=&#34;`max_redemptions`&#34; pulumi-lang-yaml=&#34;`maxRedemptions`&#34; pulumi-lang-java=&#34;`maxRedemptions`&#34; pulumi-lang-hcl=&#34;`max_redemptions`&#34;&gt;`maxRedemptions`&lt;/span&gt;.
+     * If the object exists in live mode, the value is &lt;span pulumi-lang-nodejs=&#34;`true`&#34; pulumi-lang-dotnet=&#34;`True`&#34; pulumi-lang-go=&#34;`true`&#34; pulumi-lang-python=&#34;`true`&#34; pulumi-lang-yaml=&#34;`true`&#34; pulumi-lang-java=&#34;`true`&#34; pulumi-lang-hcl=&#34;`true`&#34;&gt;`true`&lt;/span&gt;. If the object exists in test mode, the value is &lt;span pulumi-lang-nodejs=&#34;`false`&#34; pulumi-lang-dotnet=&#34;`False`&#34; pulumi-lang-go=&#34;`false`&#34; pulumi-lang-python=&#34;`false`&#34; pulumi-lang-yaml=&#34;`false`&#34; pulumi-lang-java=&#34;`false`&#34; pulumi-lang-hcl=&#34;`false`&#34;&gt;`false`&lt;/span&gt;.
+     * 
+     */
+    @Export(name="livemode", refs={Boolean.class}, tree="[0]")
+    private Output<Boolean> livemode;
+
+    /**
+     * @return If the object exists in live mode, the value is &lt;span pulumi-lang-nodejs=&#34;`true`&#34; pulumi-lang-dotnet=&#34;`True`&#34; pulumi-lang-go=&#34;`true`&#34; pulumi-lang-python=&#34;`true`&#34; pulumi-lang-yaml=&#34;`true`&#34; pulumi-lang-java=&#34;`true`&#34; pulumi-lang-hcl=&#34;`true`&#34;&gt;`true`&lt;/span&gt;. If the object exists in test mode, the value is &lt;span pulumi-lang-nodejs=&#34;`false`&#34; pulumi-lang-dotnet=&#34;`False`&#34; pulumi-lang-go=&#34;`false`&#34; pulumi-lang-python=&#34;`false`&#34; pulumi-lang-yaml=&#34;`false`&#34; pulumi-lang-java=&#34;`false`&#34; pulumi-lang-hcl=&#34;`false`&#34;&gt;`false`&lt;/span&gt;.
+     * 
+     */
+    public Output<Boolean> livemode() {
+        return this.livemode;
+    }
+    /**
+     * Maximum number of times this promotion code can be redeemed.
      * 
      */
     @Export(name="maxRedemptions", refs={Double.class}, tree="[0]")
     private Output<Double> maxRedemptions;
 
     /**
-     * @return A positive integer specifying the number of times the promotion code can be redeemed. If the coupon has specified a &lt;span pulumi-lang-nodejs=&#34;`maxRedemptions`&#34; pulumi-lang-dotnet=&#34;`MaxRedemptions`&#34; pulumi-lang-go=&#34;`maxRedemptions`&#34; pulumi-lang-python=&#34;`max_redemptions`&#34; pulumi-lang-yaml=&#34;`maxRedemptions`&#34; pulumi-lang-java=&#34;`maxRedemptions`&#34; pulumi-lang-hcl=&#34;`max_redemptions`&#34;&gt;`maxRedemptions`&lt;/span&gt;, then this value cannot be greater than the coupon&#39;s &lt;span pulumi-lang-nodejs=&#34;`maxRedemptions`&#34; pulumi-lang-dotnet=&#34;`MaxRedemptions`&#34; pulumi-lang-go=&#34;`maxRedemptions`&#34; pulumi-lang-python=&#34;`max_redemptions`&#34; pulumi-lang-yaml=&#34;`maxRedemptions`&#34; pulumi-lang-java=&#34;`maxRedemptions`&#34; pulumi-lang-hcl=&#34;`max_redemptions`&#34;&gt;`maxRedemptions`&lt;/span&gt;.
+     * @return Maximum number of times this promotion code can be redeemed.
      * 
      */
     public Output<Double> maxRedemptions() {
         return this.maxRedemptions;
     }
     /**
-     * Set of [key-value pairs](https://stripe.com/docs/api/metadata) that you can attach to an object. This can be useful for storing additional information about the object in a structured format. Individual keys can be unset by posting an empty value to them. All keys can be unset by posting an empty value to &lt;span pulumi-lang-nodejs=&#34;`metadata`&#34; pulumi-lang-dotnet=&#34;`Metadata`&#34; pulumi-lang-go=&#34;`metadata`&#34; pulumi-lang-python=&#34;`metadata`&#34; pulumi-lang-yaml=&#34;`metadata`&#34; pulumi-lang-java=&#34;`metadata`&#34; pulumi-lang-hcl=&#34;`metadata`&#34;&gt;`metadata`&lt;/span&gt;.
+     * Set of [key-value pairs](https://docs.stripe.com/api/metadata) that you can attach to an object. This can be useful for storing additional information about the object in a structured format.
      * 
      */
     @Export(name="metadata", refs={Map.class,String.class}, tree="[0,1,1]")
     private Output<Map<String,String>> metadata;
 
     /**
-     * @return Set of [key-value pairs](https://stripe.com/docs/api/metadata) that you can attach to an object. This can be useful for storing additional information about the object in a structured format. Individual keys can be unset by posting an empty value to them. All keys can be unset by posting an empty value to &lt;span pulumi-lang-nodejs=&#34;`metadata`&#34; pulumi-lang-dotnet=&#34;`Metadata`&#34; pulumi-lang-go=&#34;`metadata`&#34; pulumi-lang-python=&#34;`metadata`&#34; pulumi-lang-yaml=&#34;`metadata`&#34; pulumi-lang-java=&#34;`metadata`&#34; pulumi-lang-hcl=&#34;`metadata`&#34;&gt;`metadata`&lt;/span&gt;.
+     * @return Set of [key-value pairs](https://docs.stripe.com/api/metadata) that you can attach to an object. This can be useful for storing additional information about the object in a structured format.
      * 
      */
     public Output<Map<String,String>> metadata() {
         return this.metadata;
     }
     /**
-     * The promotion referenced by this promotion code.
+     * String representing the object&#39;s type. Objects of the same type share the same value.
      * 
      */
-    @Export(name="promotion", refs={PromotionCodePromotion.class}, tree="[0]")
-    private Output<PromotionCodePromotion> promotion;
+    @Export(name="object", refs={String.class}, tree="[0]")
+    private Output<String> object;
 
     /**
-     * @return The promotion referenced by this promotion code.
+     * @return String representing the object&#39;s type. Objects of the same type share the same value.
      * 
      */
-    public Output<PromotionCodePromotion> promotion() {
-        return this.promotion;
+    public Output<String> object() {
+        return this.object;
     }
-    /**
-     * Settings that restrict the redemption of the promotion code.
-     * 
-     */
-    @Export(name="restrictions", refs={PromotionCodeRestrictions.class}, tree="[0]")
-    private Output</* @Nullable */ PromotionCodeRestrictions> restrictions;
+    @Export(name="promotions", refs={List.class,PromotionCodePromotion.class}, tree="[0,1]")
+    private Output</* @Nullable */ List<PromotionCodePromotion>> promotions;
 
-    /**
-     * @return Settings that restrict the redemption of the promotion code.
-     * 
-     */
-    public Output<Optional<PromotionCodeRestrictions>> restrictions() {
+    public Output<Optional<List<PromotionCodePromotion>>> promotions() {
+        return Codegen.optional(this.promotions);
+    }
+    @Export(name="restrictions", refs={List.class,PromotionCodeRestriction.class}, tree="[0,1]")
+    private Output</* @Nullable */ List<PromotionCodeRestriction>> restrictions;
+
+    public Output<Optional<List<PromotionCodeRestriction>>> restrictions() {
         return Codegen.optional(this.restrictions);
     }
     /**
@@ -174,7 +201,7 @@ public class PromotionCode extends com.pulumi.resources.CustomResource {
      * @param name The _unique_ name of the resulting resource.
      * @param args The arguments to use to populate this resource's properties.
      */
-    public PromotionCode(java.lang.String name, PromotionCodeArgs args) {
+    public PromotionCode(java.lang.String name, @Nullable PromotionCodeArgs args) {
         this(name, args, null);
     }
     /**
@@ -183,7 +210,7 @@ public class PromotionCode extends com.pulumi.resources.CustomResource {
      * @param args The arguments to use to populate this resource's properties.
      * @param options A bag of options that control this resource's behavior.
      */
-    public PromotionCode(java.lang.String name, PromotionCodeArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+    public PromotionCode(java.lang.String name, @Nullable PromotionCodeArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
         super("stripe:index/promotionCode:PromotionCode", name, makeArgs(args, options), makeResourceOptions(options, Codegen.empty()), false, Utilities.getPackageRef());
     }
 
@@ -191,7 +218,7 @@ public class PromotionCode extends com.pulumi.resources.CustomResource {
         super("stripe:index/promotionCode:PromotionCode", name, state, makeResourceOptions(options, id), false, Utilities.getPackageRef());
     }
 
-    private static PromotionCodeArgs makeArgs(PromotionCodeArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+    private static PromotionCodeArgs makeArgs(@Nullable PromotionCodeArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
         if (options != null && options.getUrn().isPresent()) {
             return null;
         }

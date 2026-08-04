@@ -7,6 +7,7 @@ import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
 import com.pulumi.exceptions.MissingRequiredPropertyException;
 import com.pulumi.stripe.inputs.V2CoreEventDestinationAmazonEventbridgeArgs;
+import com.pulumi.stripe.inputs.V2CoreEventDestinationAzureEventGridArgs;
 import com.pulumi.stripe.inputs.V2CoreEventDestinationWebhookEndpointArgs;
 import java.lang.String;
 import java.util.List;
@@ -24,15 +25,30 @@ public final class V2CoreEventDestinationArgs extends com.pulumi.resources.Resou
      * Amazon EventBridge configuration.
      * 
      */
-    @Import(name="amazonEventbridge")
-    private @Nullable Output<V2CoreEventDestinationAmazonEventbridgeArgs> amazonEventbridge;
+    @Import(name="amazonEventbridges")
+    private @Nullable Output<List<V2CoreEventDestinationAmazonEventbridgeArgs>> amazonEventbridges;
 
     /**
      * @return Amazon EventBridge configuration.
      * 
      */
-    public Optional<Output<V2CoreEventDestinationAmazonEventbridgeArgs>> amazonEventbridge() {
-        return Optional.ofNullable(this.amazonEventbridge);
+    public Optional<Output<List<V2CoreEventDestinationAmazonEventbridgeArgs>>> amazonEventbridges() {
+        return Optional.ofNullable(this.amazonEventbridges);
+    }
+
+    /**
+     * Azure Event Grid configuration.
+     * 
+     */
+    @Import(name="azureEventGrid")
+    private @Nullable Output<V2CoreEventDestinationAzureEventGridArgs> azureEventGrid;
+
+    /**
+     * @return Azure Event Grid configuration.
+     * 
+     */
+    public Optional<Output<V2CoreEventDestinationAzureEventGridArgs>> azureEventGrid() {
+        return Optional.ofNullable(this.azureEventGrid);
     }
 
     /**
@@ -81,18 +97,43 @@ public final class V2CoreEventDestinationArgs extends com.pulumi.resources.Resou
     }
 
     /**
-     * Where events should be routed from.
+     * Specifies which accounts&#39; events route to this destination.
+     * `{@literal @}self`: Receive events from the account that owns the event destination.
+     * `{@literal @}accounts`: Receive events emitted from other accounts you manage which includes your v1 and v2 accounts.
+     * `{@literal @}organization_members`: Receive events from accounts directly linked to the organization.
+     * `{@literal @}organization_members/{@literal @}accounts`: Receive events from all accounts connected to any platform accounts in the organization.
      * 
      */
     @Import(name="eventsFroms")
     private @Nullable Output<List<String>> eventsFroms;
 
     /**
-     * @return Where events should be routed from.
+     * @return Specifies which accounts&#39; events route to this destination.
+     * `{@literal @}self`: Receive events from the account that owns the event destination.
+     * `{@literal @}accounts`: Receive events emitted from other accounts you manage which includes your v1 and v2 accounts.
+     * `{@literal @}organization_members`: Receive events from accounts directly linked to the organization.
+     * `{@literal @}organization_members/{@literal @}accounts`: Receive events from all accounts connected to any platform accounts in the organization.
      * 
      */
     public Optional<Output<List<String>>> eventsFroms() {
         return Optional.ofNullable(this.eventsFroms);
+    }
+
+    /**
+     * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * Additional fields to include in the response.
+     * 
+     */
+    @Import(name="includes")
+    private @Nullable Output<List<String>> includes;
+
+    /**
+     * @return **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * Additional fields to include in the response.
+     * 
+     */
+    public Optional<Output<List<String>>> includes() {
+        return Optional.ofNullable(this.includes);
     }
 
     /**
@@ -159,30 +200,32 @@ public final class V2CoreEventDestinationArgs extends com.pulumi.resources.Resou
      * Webhook endpoint configuration.
      * 
      */
-    @Import(name="webhookEndpoint")
-    private @Nullable Output<V2CoreEventDestinationWebhookEndpointArgs> webhookEndpoint;
+    @Import(name="webhookEndpoints")
+    private @Nullable Output<List<V2CoreEventDestinationWebhookEndpointArgs>> webhookEndpoints;
 
     /**
      * @return Webhook endpoint configuration.
      * 
      */
-    public Optional<Output<V2CoreEventDestinationWebhookEndpointArgs>> webhookEndpoint() {
-        return Optional.ofNullable(this.webhookEndpoint);
+    public Optional<Output<List<V2CoreEventDestinationWebhookEndpointArgs>>> webhookEndpoints() {
+        return Optional.ofNullable(this.webhookEndpoints);
     }
 
     private V2CoreEventDestinationArgs() {}
 
     private V2CoreEventDestinationArgs(V2CoreEventDestinationArgs $) {
-        this.amazonEventbridge = $.amazonEventbridge;
+        this.amazonEventbridges = $.amazonEventbridges;
+        this.azureEventGrid = $.azureEventGrid;
         this.description = $.description;
         this.enabledEvents = $.enabledEvents;
         this.eventPayload = $.eventPayload;
         this.eventsFroms = $.eventsFroms;
+        this.includes = $.includes;
         this.metadata = $.metadata;
         this.name = $.name;
         this.snapshotApiVersion = $.snapshotApiVersion;
         this.type = $.type;
-        this.webhookEndpoint = $.webhookEndpoint;
+        this.webhookEndpoints = $.webhookEndpoints;
     }
 
     public static Builder builder() {
@@ -204,24 +247,55 @@ public final class V2CoreEventDestinationArgs extends com.pulumi.resources.Resou
         }
 
         /**
-         * @param amazonEventbridge Amazon EventBridge configuration.
+         * @param amazonEventbridges Amazon EventBridge configuration.
          * 
          * @return builder
          * 
          */
-        public Builder amazonEventbridge(@Nullable Output<V2CoreEventDestinationAmazonEventbridgeArgs> amazonEventbridge) {
-            $.amazonEventbridge = amazonEventbridge;
+        public Builder amazonEventbridges(@Nullable Output<List<V2CoreEventDestinationAmazonEventbridgeArgs>> amazonEventbridges) {
+            $.amazonEventbridges = amazonEventbridges;
             return this;
         }
 
         /**
-         * @param amazonEventbridge Amazon EventBridge configuration.
+         * @param amazonEventbridges Amazon EventBridge configuration.
          * 
          * @return builder
          * 
          */
-        public Builder amazonEventbridge(V2CoreEventDestinationAmazonEventbridgeArgs amazonEventbridge) {
-            return amazonEventbridge(Output.of(amazonEventbridge));
+        public Builder amazonEventbridges(List<V2CoreEventDestinationAmazonEventbridgeArgs> amazonEventbridges) {
+            return amazonEventbridges(Output.of(amazonEventbridges));
+        }
+
+        /**
+         * @param amazonEventbridges Amazon EventBridge configuration.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder amazonEventbridges(V2CoreEventDestinationAmazonEventbridgeArgs... amazonEventbridges) {
+            return amazonEventbridges(List.of(amazonEventbridges));
+        }
+
+        /**
+         * @param azureEventGrid Azure Event Grid configuration.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder azureEventGrid(@Nullable Output<V2CoreEventDestinationAzureEventGridArgs> azureEventGrid) {
+            $.azureEventGrid = azureEventGrid;
+            return this;
+        }
+
+        /**
+         * @param azureEventGrid Azure Event Grid configuration.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder azureEventGrid(V2CoreEventDestinationAzureEventGridArgs azureEventGrid) {
+            return azureEventGrid(Output.of(azureEventGrid));
         }
 
         /**
@@ -298,7 +372,11 @@ public final class V2CoreEventDestinationArgs extends com.pulumi.resources.Resou
         }
 
         /**
-         * @param eventsFroms Where events should be routed from.
+         * @param eventsFroms Specifies which accounts&#39; events route to this destination.
+         * `{@literal @}self`: Receive events from the account that owns the event destination.
+         * `{@literal @}accounts`: Receive events emitted from other accounts you manage which includes your v1 and v2 accounts.
+         * `{@literal @}organization_members`: Receive events from accounts directly linked to the organization.
+         * `{@literal @}organization_members/{@literal @}accounts`: Receive events from all accounts connected to any platform accounts in the organization.
          * 
          * @return builder
          * 
@@ -309,7 +387,11 @@ public final class V2CoreEventDestinationArgs extends com.pulumi.resources.Resou
         }
 
         /**
-         * @param eventsFroms Where events should be routed from.
+         * @param eventsFroms Specifies which accounts&#39; events route to this destination.
+         * `{@literal @}self`: Receive events from the account that owns the event destination.
+         * `{@literal @}accounts`: Receive events emitted from other accounts you manage which includes your v1 and v2 accounts.
+         * `{@literal @}organization_members`: Receive events from accounts directly linked to the organization.
+         * `{@literal @}organization_members/{@literal @}accounts`: Receive events from all accounts connected to any platform accounts in the organization.
          * 
          * @return builder
          * 
@@ -319,13 +401,51 @@ public final class V2CoreEventDestinationArgs extends com.pulumi.resources.Resou
         }
 
         /**
-         * @param eventsFroms Where events should be routed from.
+         * @param eventsFroms Specifies which accounts&#39; events route to this destination.
+         * `{@literal @}self`: Receive events from the account that owns the event destination.
+         * `{@literal @}accounts`: Receive events emitted from other accounts you manage which includes your v1 and v2 accounts.
+         * `{@literal @}organization_members`: Receive events from accounts directly linked to the organization.
+         * `{@literal @}organization_members/{@literal @}accounts`: Receive events from all accounts connected to any platform accounts in the organization.
          * 
          * @return builder
          * 
          */
         public Builder eventsFroms(String... eventsFroms) {
             return eventsFroms(List.of(eventsFroms));
+        }
+
+        /**
+         * @param includes **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+         * Additional fields to include in the response.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder includes(@Nullable Output<List<String>> includes) {
+            $.includes = includes;
+            return this;
+        }
+
+        /**
+         * @param includes **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+         * Additional fields to include in the response.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder includes(List<String> includes) {
+            return includes(Output.of(includes));
+        }
+
+        /**
+         * @param includes **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+         * Additional fields to include in the response.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder includes(String... includes) {
+            return includes(List.of(includes));
         }
 
         /**
@@ -413,24 +533,34 @@ public final class V2CoreEventDestinationArgs extends com.pulumi.resources.Resou
         }
 
         /**
-         * @param webhookEndpoint Webhook endpoint configuration.
+         * @param webhookEndpoints Webhook endpoint configuration.
          * 
          * @return builder
          * 
          */
-        public Builder webhookEndpoint(@Nullable Output<V2CoreEventDestinationWebhookEndpointArgs> webhookEndpoint) {
-            $.webhookEndpoint = webhookEndpoint;
+        public Builder webhookEndpoints(@Nullable Output<List<V2CoreEventDestinationWebhookEndpointArgs>> webhookEndpoints) {
+            $.webhookEndpoints = webhookEndpoints;
             return this;
         }
 
         /**
-         * @param webhookEndpoint Webhook endpoint configuration.
+         * @param webhookEndpoints Webhook endpoint configuration.
          * 
          * @return builder
          * 
          */
-        public Builder webhookEndpoint(V2CoreEventDestinationWebhookEndpointArgs webhookEndpoint) {
-            return webhookEndpoint(Output.of(webhookEndpoint));
+        public Builder webhookEndpoints(List<V2CoreEventDestinationWebhookEndpointArgs> webhookEndpoints) {
+            return webhookEndpoints(Output.of(webhookEndpoints));
+        }
+
+        /**
+         * @param webhookEndpoints Webhook endpoint configuration.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder webhookEndpoints(V2CoreEventDestinationWebhookEndpointArgs... webhookEndpoints) {
+            return webhookEndpoints(List.of(webhookEndpoints));
         }
 
         public V2CoreEventDestinationArgs build() {

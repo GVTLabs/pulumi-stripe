@@ -16,7 +16,7 @@ namespace Pulumi.Stripe.Inputs
         private InputList<string>? _products;
 
         /// <summary>
-        /// An array of Product IDs that this Coupon will apply to.
+        /// A list of product IDs this coupon applies to
         /// </summary>
         public InputList<string> Products
         {

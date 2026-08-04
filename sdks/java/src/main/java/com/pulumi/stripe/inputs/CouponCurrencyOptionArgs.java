@@ -16,23 +16,31 @@ public final class CouponCurrencyOptionArgs extends com.pulumi.resources.Resourc
     public static final CouponCurrencyOptionArgs Empty = new CouponCurrencyOptionArgs();
 
     /**
-     * A positive integer representing the amount to subtract from an invoice total.
+     * Amount (in the &lt;span pulumi-lang-nodejs=&#34;`currency`&#34; pulumi-lang-dotnet=&#34;`Currency`&#34; pulumi-lang-go=&#34;`currency`&#34; pulumi-lang-python=&#34;`currency`&#34; pulumi-lang-yaml=&#34;`currency`&#34; pulumi-lang-java=&#34;`currency`&#34; pulumi-lang-hcl=&#34;`currency`&#34;&gt;`currency`&lt;/span&gt; specified) that will be taken off the subtotal of any invoices for this customer.
      * 
      */
     @Import(name="amountOff", required=true)
     private Output<Double> amountOff;
 
     /**
-     * @return A positive integer representing the amount to subtract from an invoice total.
+     * @return Amount (in the &lt;span pulumi-lang-nodejs=&#34;`currency`&#34; pulumi-lang-dotnet=&#34;`Currency`&#34; pulumi-lang-go=&#34;`currency`&#34; pulumi-lang-python=&#34;`currency`&#34; pulumi-lang-yaml=&#34;`currency`&#34; pulumi-lang-java=&#34;`currency`&#34; pulumi-lang-hcl=&#34;`currency`&#34;&gt;`currency`&lt;/span&gt; specified) that will be taken off the subtotal of any invoices for this customer.
      * 
      */
     public Output<Double> amountOff() {
         return this.amountOff;
     }
 
+    /**
+     * Key for this entry.
+     * 
+     */
     @Import(name="key", required=true)
     private Output<String> key;
 
+    /**
+     * @return Key for this entry.
+     * 
+     */
     public Output<String> key() {
         return this.key;
     }
@@ -63,7 +71,7 @@ public final class CouponCurrencyOptionArgs extends com.pulumi.resources.Resourc
         }
 
         /**
-         * @param amountOff A positive integer representing the amount to subtract from an invoice total.
+         * @param amountOff Amount (in the &lt;span pulumi-lang-nodejs=&#34;`currency`&#34; pulumi-lang-dotnet=&#34;`Currency`&#34; pulumi-lang-go=&#34;`currency`&#34; pulumi-lang-python=&#34;`currency`&#34; pulumi-lang-yaml=&#34;`currency`&#34; pulumi-lang-java=&#34;`currency`&#34; pulumi-lang-hcl=&#34;`currency`&#34;&gt;`currency`&lt;/span&gt; specified) that will be taken off the subtotal of any invoices for this customer.
          * 
          * @return builder
          * 
@@ -74,7 +82,7 @@ public final class CouponCurrencyOptionArgs extends com.pulumi.resources.Resourc
         }
 
         /**
-         * @param amountOff A positive integer representing the amount to subtract from an invoice total.
+         * @param amountOff Amount (in the &lt;span pulumi-lang-nodejs=&#34;`currency`&#34; pulumi-lang-dotnet=&#34;`Currency`&#34; pulumi-lang-go=&#34;`currency`&#34; pulumi-lang-python=&#34;`currency`&#34; pulumi-lang-yaml=&#34;`currency`&#34; pulumi-lang-java=&#34;`currency`&#34; pulumi-lang-hcl=&#34;`currency`&#34;&gt;`currency`&lt;/span&gt; specified) that will be taken off the subtotal of any invoices for this customer.
          * 
          * @return builder
          * 
@@ -83,11 +91,23 @@ public final class CouponCurrencyOptionArgs extends com.pulumi.resources.Resourc
             return amountOff(Output.of(amountOff));
         }
 
+        /**
+         * @param key Key for this entry.
+         * 
+         * @return builder
+         * 
+         */
         public Builder key(Output<String> key) {
             $.key = key;
             return this;
         }
 
+        /**
+         * @param key Key for this entry.
+         * 
+         * @return builder
+         * 
+         */
         public Builder key(String key) {
             return key(Output.of(key));
         }

@@ -17,14 +17,14 @@ public final class CouponAppliesToArgs extends com.pulumi.resources.ResourceArgs
     public static final CouponAppliesToArgs Empty = new CouponAppliesToArgs();
 
     /**
-     * An array of Product IDs that this Coupon will apply to.
+     * A list of product IDs this coupon applies to
      * 
      */
     @Import(name="products")
     private @Nullable Output<List<String>> products;
 
     /**
-     * @return An array of Product IDs that this Coupon will apply to.
+     * @return A list of product IDs this coupon applies to
      * 
      */
     public Optional<Output<List<String>>> products() {
@@ -56,7 +56,7 @@ public final class CouponAppliesToArgs extends com.pulumi.resources.ResourceArgs
         }
 
         /**
-         * @param products An array of Product IDs that this Coupon will apply to.
+         * @param products A list of product IDs this coupon applies to
          * 
          * @return builder
          * 
@@ -67,7 +67,7 @@ public final class CouponAppliesToArgs extends com.pulumi.resources.ResourceArgs
         }
 
         /**
-         * @param products An array of Product IDs that this Coupon will apply to.
+         * @param products A list of product IDs this coupon applies to
          * 
          * @return builder
          * 
@@ -77,7 +77,7 @@ public final class CouponAppliesToArgs extends com.pulumi.resources.ResourceArgs
         }
 
         /**
-         * @param products An array of Product IDs that this Coupon will apply to.
+         * @param products A list of product IDs this coupon applies to
          * 
          * @return builder
          * 

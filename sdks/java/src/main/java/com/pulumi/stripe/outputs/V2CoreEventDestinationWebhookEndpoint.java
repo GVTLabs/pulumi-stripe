@@ -18,7 +18,7 @@ public final class V2CoreEventDestinationWebhookEndpoint {
      */
     private @Nullable String signingSecret;
     /**
-     * @return The URL of the webhook endpoint.
+     * @return The URL of the webhook endpoint, includable.
      * 
      */
     private String url;
@@ -32,7 +32,7 @@ public final class V2CoreEventDestinationWebhookEndpoint {
         return Optional.ofNullable(this.signingSecret);
     }
     /**
-     * @return The URL of the webhook endpoint.
+     * @return The URL of the webhook endpoint, includable.
      * 
      */
     public String url() {

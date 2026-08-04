@@ -14,6 +14,10 @@ namespace Pulumi.Stripe.Outputs
     public sealed class PriceCustomUnitAmount
     {
         /// <summary>
+        /// Pass in &lt;span pulumi-lang-nodejs="`true`" pulumi-lang-dotnet="`True`" pulumi-lang-go="`true`" pulumi-lang-python="`true`" pulumi-lang-yaml="`true`" pulumi-lang-java="`true`" pulumi-lang-hcl="`true`"&gt;`true`&lt;/span&gt; to enable &lt;span pulumi-lang-nodejs="`customUnitAmount`" pulumi-lang-dotnet="`CustomUnitAmount`" pulumi-lang-go="`customUnitAmount`" pulumi-lang-python="`custom_unit_amount`" pulumi-lang-yaml="`customUnitAmount`" pulumi-lang-java="`customUnitAmount`" pulumi-lang-hcl="`custom_unit_amount`"&gt;`customUnitAmount`&lt;/span&gt;, otherwise omit &lt;span pulumi-lang-nodejs="`customUnitAmount`" pulumi-lang-dotnet="`CustomUnitAmount`" pulumi-lang-go="`customUnitAmount`" pulumi-lang-python="`custom_unit_amount`" pulumi-lang-yaml="`customUnitAmount`" pulumi-lang-java="`customUnitAmount`" pulumi-lang-hcl="`custom_unit_amount`"&gt;`customUnitAmount`&lt;/span&gt;.
+        /// </summary>
+        public readonly bool Enabled;
+        /// <summary>
         /// The maximum unit amount the customer can specify for this item.
         /// </summary>
         public readonly double? Maximum;
@@ -28,12 +32,15 @@ namespace Pulumi.Stripe.Outputs
 
         [OutputConstructor]
         private PriceCustomUnitAmount(
+            bool enabled,
+
             double? maximum,
 
             double? minimum,
 
             double? preset)
         {
+            Enabled = enabled;
             Maximum = maximum;
             Minimum = minimum;
             Preset = preset;

@@ -4,6 +4,8 @@
 package com.pulumi.stripe.outputs;
 
 import com.pulumi.core.annotations.CustomType;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
+import java.lang.Boolean;
 import java.lang.Double;
 import java.util.Objects;
 import java.util.Optional;
@@ -11,6 +13,11 @@ import javax.annotation.Nullable;
 
 @CustomType
 public final class PriceCustomUnitAmount {
+    /**
+     * @return Pass in &lt;span pulumi-lang-nodejs=&#34;`true`&#34; pulumi-lang-dotnet=&#34;`True`&#34; pulumi-lang-go=&#34;`true`&#34; pulumi-lang-python=&#34;`true`&#34; pulumi-lang-yaml=&#34;`true`&#34; pulumi-lang-java=&#34;`true`&#34; pulumi-lang-hcl=&#34;`true`&#34;&gt;`true`&lt;/span&gt; to enable &lt;span pulumi-lang-nodejs=&#34;`customUnitAmount`&#34; pulumi-lang-dotnet=&#34;`CustomUnitAmount`&#34; pulumi-lang-go=&#34;`customUnitAmount`&#34; pulumi-lang-python=&#34;`custom_unit_amount`&#34; pulumi-lang-yaml=&#34;`customUnitAmount`&#34; pulumi-lang-java=&#34;`customUnitAmount`&#34; pulumi-lang-hcl=&#34;`custom_unit_amount`&#34;&gt;`customUnitAmount`&lt;/span&gt;, otherwise omit &lt;span pulumi-lang-nodejs=&#34;`customUnitAmount`&#34; pulumi-lang-dotnet=&#34;`CustomUnitAmount`&#34; pulumi-lang-go=&#34;`customUnitAmount`&#34; pulumi-lang-python=&#34;`custom_unit_amount`&#34; pulumi-lang-yaml=&#34;`customUnitAmount`&#34; pulumi-lang-java=&#34;`customUnitAmount`&#34; pulumi-lang-hcl=&#34;`custom_unit_amount`&#34;&gt;`customUnitAmount`&lt;/span&gt;.
+     * 
+     */
+    private Boolean enabled;
     /**
      * @return The maximum unit amount the customer can specify for this item.
      * 
@@ -28,6 +35,13 @@ public final class PriceCustomUnitAmount {
     private @Nullable Double preset;
 
     private PriceCustomUnitAmount() {}
+    /**
+     * @return Pass in &lt;span pulumi-lang-nodejs=&#34;`true`&#34; pulumi-lang-dotnet=&#34;`True`&#34; pulumi-lang-go=&#34;`true`&#34; pulumi-lang-python=&#34;`true`&#34; pulumi-lang-yaml=&#34;`true`&#34; pulumi-lang-java=&#34;`true`&#34; pulumi-lang-hcl=&#34;`true`&#34;&gt;`true`&lt;/span&gt; to enable &lt;span pulumi-lang-nodejs=&#34;`customUnitAmount`&#34; pulumi-lang-dotnet=&#34;`CustomUnitAmount`&#34; pulumi-lang-go=&#34;`customUnitAmount`&#34; pulumi-lang-python=&#34;`custom_unit_amount`&#34; pulumi-lang-yaml=&#34;`customUnitAmount`&#34; pulumi-lang-java=&#34;`customUnitAmount`&#34; pulumi-lang-hcl=&#34;`custom_unit_amount`&#34;&gt;`customUnitAmount`&lt;/span&gt;, otherwise omit &lt;span pulumi-lang-nodejs=&#34;`customUnitAmount`&#34; pulumi-lang-dotnet=&#34;`CustomUnitAmount`&#34; pulumi-lang-go=&#34;`customUnitAmount`&#34; pulumi-lang-python=&#34;`custom_unit_amount`&#34; pulumi-lang-yaml=&#34;`customUnitAmount`&#34; pulumi-lang-java=&#34;`customUnitAmount`&#34; pulumi-lang-hcl=&#34;`custom_unit_amount`&#34;&gt;`customUnitAmount`&lt;/span&gt;.
+     * 
+     */
+    public Boolean enabled() {
+        return this.enabled;
+    }
     /**
      * @return The maximum unit amount the customer can specify for this item.
      * 
@@ -59,17 +73,27 @@ public final class PriceCustomUnitAmount {
     }
     @CustomType.Builder
     public static final class Builder {
+        private Boolean enabled;
         private @Nullable Double maximum;
         private @Nullable Double minimum;
         private @Nullable Double preset;
         public Builder() {}
         public Builder(PriceCustomUnitAmount defaults) {
     	      Objects.requireNonNull(defaults);
+    	      this.enabled = defaults.enabled;
     	      this.maximum = defaults.maximum;
     	      this.minimum = defaults.minimum;
     	      this.preset = defaults.preset;
         }
 
+        @CustomType.Setter
+        public Builder enabled(Boolean enabled) {
+            if (enabled == null) {
+              throw new MissingRequiredPropertyException("PriceCustomUnitAmount", "enabled");
+            }
+            this.enabled = enabled;
+            return this;
+        }
         @CustomType.Setter
         public Builder maximum(@Nullable Double maximum) {
 
@@ -90,6 +114,7 @@ public final class PriceCustomUnitAmount {
         }
         public PriceCustomUnitAmount build() {
             final var _resultValue = new PriceCustomUnitAmount();
+            _resultValue.enabled = enabled;
             _resultValue.maximum = maximum;
             _resultValue.minimum = minimum;
             _resultValue.preset = preset;

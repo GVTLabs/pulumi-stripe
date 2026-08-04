@@ -14,12 +14,12 @@ import javax.annotation.Nullable;
 @CustomType
 public final class PriceRecurring {
     /**
-     * @return Specifies billing frequency. Either &lt;span pulumi-lang-nodejs=&#34;`day`&#34; pulumi-lang-dotnet=&#34;`Day`&#34; pulumi-lang-go=&#34;`day`&#34; pulumi-lang-python=&#34;`day`&#34; pulumi-lang-yaml=&#34;`day`&#34; pulumi-lang-java=&#34;`day`&#34; pulumi-lang-hcl=&#34;`day`&#34;&gt;`day`&lt;/span&gt;, &lt;span pulumi-lang-nodejs=&#34;`week`&#34; pulumi-lang-dotnet=&#34;`Week`&#34; pulumi-lang-go=&#34;`week`&#34; pulumi-lang-python=&#34;`week`&#34; pulumi-lang-yaml=&#34;`week`&#34; pulumi-lang-java=&#34;`week`&#34; pulumi-lang-hcl=&#34;`week`&#34;&gt;`week`&lt;/span&gt;, &lt;span pulumi-lang-nodejs=&#34;`month`&#34; pulumi-lang-dotnet=&#34;`Month`&#34; pulumi-lang-go=&#34;`month`&#34; pulumi-lang-python=&#34;`month`&#34; pulumi-lang-yaml=&#34;`month`&#34; pulumi-lang-java=&#34;`month`&#34; pulumi-lang-hcl=&#34;`month`&#34;&gt;`month`&lt;/span&gt; or &lt;span pulumi-lang-nodejs=&#34;`year`&#34; pulumi-lang-dotnet=&#34;`Year`&#34; pulumi-lang-go=&#34;`year`&#34; pulumi-lang-python=&#34;`year`&#34; pulumi-lang-yaml=&#34;`year`&#34; pulumi-lang-java=&#34;`year`&#34; pulumi-lang-hcl=&#34;`year`&#34;&gt;`year`&lt;/span&gt;.
+     * @return The frequency at which a subscription is billed. One of &lt;span pulumi-lang-nodejs=&#34;`day`&#34; pulumi-lang-dotnet=&#34;`Day`&#34; pulumi-lang-go=&#34;`day`&#34; pulumi-lang-python=&#34;`day`&#34; pulumi-lang-yaml=&#34;`day`&#34; pulumi-lang-java=&#34;`day`&#34; pulumi-lang-hcl=&#34;`day`&#34;&gt;`day`&lt;/span&gt;, &lt;span pulumi-lang-nodejs=&#34;`week`&#34; pulumi-lang-dotnet=&#34;`Week`&#34; pulumi-lang-go=&#34;`week`&#34; pulumi-lang-python=&#34;`week`&#34; pulumi-lang-yaml=&#34;`week`&#34; pulumi-lang-java=&#34;`week`&#34; pulumi-lang-hcl=&#34;`week`&#34;&gt;`week`&lt;/span&gt;, &lt;span pulumi-lang-nodejs=&#34;`month`&#34; pulumi-lang-dotnet=&#34;`Month`&#34; pulumi-lang-go=&#34;`month`&#34; pulumi-lang-python=&#34;`month`&#34; pulumi-lang-yaml=&#34;`month`&#34; pulumi-lang-java=&#34;`month`&#34; pulumi-lang-hcl=&#34;`month`&#34;&gt;`month`&lt;/span&gt; or &lt;span pulumi-lang-nodejs=&#34;`year`&#34; pulumi-lang-dotnet=&#34;`Year`&#34; pulumi-lang-go=&#34;`year`&#34; pulumi-lang-python=&#34;`year`&#34; pulumi-lang-yaml=&#34;`year`&#34; pulumi-lang-java=&#34;`year`&#34; pulumi-lang-hcl=&#34;`year`&#34;&gt;`year`&lt;/span&gt;.
      * 
      */
     private String interval;
     /**
-     * @return The number of intervals between subscription billings. For example, `interval=month` and `interval_count=3` bills every 3 months. Maximum of three years interval allowed (3 years, 36 months, or 156 weeks).
+     * @return The number of intervals (specified in the &lt;span pulumi-lang-nodejs=&#34;`interval`&#34; pulumi-lang-dotnet=&#34;`Interval`&#34; pulumi-lang-go=&#34;`interval`&#34; pulumi-lang-python=&#34;`interval`&#34; pulumi-lang-yaml=&#34;`interval`&#34; pulumi-lang-java=&#34;`interval`&#34; pulumi-lang-hcl=&#34;`interval`&#34;&gt;`interval`&lt;/span&gt; attribute) between subscription billings. For example, `interval=month` and `interval_count=3` bills every 3 months.
      * 
      */
     private @Nullable Double intervalCount;
@@ -29,7 +29,7 @@ public final class PriceRecurring {
      */
     private @Nullable String meter;
     /**
-     * @return Default number of trial days when subscribing a customer to this price using [`trial_from_plan=true`](https://stripe.com/docs/api#create_subscription-trial_from_plan).
+     * @return Default number of trial days when subscribing a customer to this price using [`trial_from_plan=true`](https://docs.stripe.com/api#create_subscription-trial_from_plan).
      * 
      */
     private @Nullable Double trialPeriodDays;
@@ -41,14 +41,14 @@ public final class PriceRecurring {
 
     private PriceRecurring() {}
     /**
-     * @return Specifies billing frequency. Either &lt;span pulumi-lang-nodejs=&#34;`day`&#34; pulumi-lang-dotnet=&#34;`Day`&#34; pulumi-lang-go=&#34;`day`&#34; pulumi-lang-python=&#34;`day`&#34; pulumi-lang-yaml=&#34;`day`&#34; pulumi-lang-java=&#34;`day`&#34; pulumi-lang-hcl=&#34;`day`&#34;&gt;`day`&lt;/span&gt;, &lt;span pulumi-lang-nodejs=&#34;`week`&#34; pulumi-lang-dotnet=&#34;`Week`&#34; pulumi-lang-go=&#34;`week`&#34; pulumi-lang-python=&#34;`week`&#34; pulumi-lang-yaml=&#34;`week`&#34; pulumi-lang-java=&#34;`week`&#34; pulumi-lang-hcl=&#34;`week`&#34;&gt;`week`&lt;/span&gt;, &lt;span pulumi-lang-nodejs=&#34;`month`&#34; pulumi-lang-dotnet=&#34;`Month`&#34; pulumi-lang-go=&#34;`month`&#34; pulumi-lang-python=&#34;`month`&#34; pulumi-lang-yaml=&#34;`month`&#34; pulumi-lang-java=&#34;`month`&#34; pulumi-lang-hcl=&#34;`month`&#34;&gt;`month`&lt;/span&gt; or &lt;span pulumi-lang-nodejs=&#34;`year`&#34; pulumi-lang-dotnet=&#34;`Year`&#34; pulumi-lang-go=&#34;`year`&#34; pulumi-lang-python=&#34;`year`&#34; pulumi-lang-yaml=&#34;`year`&#34; pulumi-lang-java=&#34;`year`&#34; pulumi-lang-hcl=&#34;`year`&#34;&gt;`year`&lt;/span&gt;.
+     * @return The frequency at which a subscription is billed. One of &lt;span pulumi-lang-nodejs=&#34;`day`&#34; pulumi-lang-dotnet=&#34;`Day`&#34; pulumi-lang-go=&#34;`day`&#34; pulumi-lang-python=&#34;`day`&#34; pulumi-lang-yaml=&#34;`day`&#34; pulumi-lang-java=&#34;`day`&#34; pulumi-lang-hcl=&#34;`day`&#34;&gt;`day`&lt;/span&gt;, &lt;span pulumi-lang-nodejs=&#34;`week`&#34; pulumi-lang-dotnet=&#34;`Week`&#34; pulumi-lang-go=&#34;`week`&#34; pulumi-lang-python=&#34;`week`&#34; pulumi-lang-yaml=&#34;`week`&#34; pulumi-lang-java=&#34;`week`&#34; pulumi-lang-hcl=&#34;`week`&#34;&gt;`week`&lt;/span&gt;, &lt;span pulumi-lang-nodejs=&#34;`month`&#34; pulumi-lang-dotnet=&#34;`Month`&#34; pulumi-lang-go=&#34;`month`&#34; pulumi-lang-python=&#34;`month`&#34; pulumi-lang-yaml=&#34;`month`&#34; pulumi-lang-java=&#34;`month`&#34; pulumi-lang-hcl=&#34;`month`&#34;&gt;`month`&lt;/span&gt; or &lt;span pulumi-lang-nodejs=&#34;`year`&#34; pulumi-lang-dotnet=&#34;`Year`&#34; pulumi-lang-go=&#34;`year`&#34; pulumi-lang-python=&#34;`year`&#34; pulumi-lang-yaml=&#34;`year`&#34; pulumi-lang-java=&#34;`year`&#34; pulumi-lang-hcl=&#34;`year`&#34;&gt;`year`&lt;/span&gt;.
      * 
      */
     public String interval() {
         return this.interval;
     }
     /**
-     * @return The number of intervals between subscription billings. For example, `interval=month` and `interval_count=3` bills every 3 months. Maximum of three years interval allowed (3 years, 36 months, or 156 weeks).
+     * @return The number of intervals (specified in the &lt;span pulumi-lang-nodejs=&#34;`interval`&#34; pulumi-lang-dotnet=&#34;`Interval`&#34; pulumi-lang-go=&#34;`interval`&#34; pulumi-lang-python=&#34;`interval`&#34; pulumi-lang-yaml=&#34;`interval`&#34; pulumi-lang-java=&#34;`interval`&#34; pulumi-lang-hcl=&#34;`interval`&#34;&gt;`interval`&lt;/span&gt; attribute) between subscription billings. For example, `interval=month` and `interval_count=3` bills every 3 months.
      * 
      */
     public Optional<Double> intervalCount() {
@@ -62,7 +62,7 @@ public final class PriceRecurring {
         return Optional.ofNullable(this.meter);
     }
     /**
-     * @return Default number of trial days when subscribing a customer to this price using [`trial_from_plan=true`](https://stripe.com/docs/api#create_subscription-trial_from_plan).
+     * @return Default number of trial days when subscribing a customer to this price using [`trial_from_plan=true`](https://docs.stripe.com/api#create_subscription-trial_from_plan).
      * 
      */
     public Optional<Double> trialPeriodDays() {

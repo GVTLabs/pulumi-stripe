@@ -12,41 +12,50 @@ namespace Pulumi.Stripe.Inputs
 
     public sealed class PriceCurrencyOptionGetArgs : global::Pulumi.ResourceArgs
     {
+        [Input("customUnitAmounts")]
+        private InputList<Inputs.PriceCurrencyOptionCustomUnitAmountGetArgs>? _customUnitAmounts;
+
         /// <summary>
         /// When set, provides configuration for the amount to be adjusted by the customer during Checkout Sessions and Payment Links.
         /// </summary>
-        [Input("customUnitAmount")]
-        public Input<Inputs.PriceCurrencyOptionCustomUnitAmountGetArgs>? CustomUnitAmount { get; set; }
+        public InputList<Inputs.PriceCurrencyOptionCustomUnitAmountGetArgs> CustomUnitAmounts
+        {
+            get => _customUnitAmounts ?? (_customUnitAmounts = new InputList<Inputs.PriceCurrencyOptionCustomUnitAmountGetArgs>());
+            set => _customUnitAmounts = value;
+        }
 
+        /// <summary>
+        /// Key for this entry.
+        /// </summary>
         [Input("key", required: true)]
         public Input<string> Key { get; set; } = null!;
 
         /// <summary>
-        /// Only required if a [default tax behavior](https://stripe.com/docs/tax/products-prices-tax-categories-tax-behavior#setting-a-default-tax-behavior-(recommended)) was not provided in the Stripe Tax settings. Specifies whether the price is considered inclusive of taxes or exclusive of taxes. One of &lt;span pulumi-lang-nodejs="`inclusive`" pulumi-lang-dotnet="`Inclusive`" pulumi-lang-go="`inclusive`" pulumi-lang-python="`inclusive`" pulumi-lang-yaml="`inclusive`" pulumi-lang-java="`inclusive`" pulumi-lang-hcl="`inclusive`"&gt;`inclusive`&lt;/span&gt;, &lt;span pulumi-lang-nodejs="`exclusive`" pulumi-lang-dotnet="`Exclusive`" pulumi-lang-go="`exclusive`" pulumi-lang-python="`exclusive`" pulumi-lang-yaml="`exclusive`" pulumi-lang-java="`exclusive`" pulumi-lang-hcl="`exclusive`"&gt;`exclusive`&lt;/span&gt;, or &lt;span pulumi-lang-nodejs="`unspecified`" pulumi-lang-dotnet="`Unspecified`" pulumi-lang-go="`unspecified`" pulumi-lang-python="`unspecified`" pulumi-lang-yaml="`unspecified`" pulumi-lang-java="`unspecified`" pulumi-lang-hcl="`unspecified`"&gt;`unspecified`&lt;/span&gt;. Once specified as either &lt;span pulumi-lang-nodejs="`inclusive`" pulumi-lang-dotnet="`Inclusive`" pulumi-lang-go="`inclusive`" pulumi-lang-python="`inclusive`" pulumi-lang-yaml="`inclusive`" pulumi-lang-java="`inclusive`" pulumi-lang-hcl="`inclusive`"&gt;`inclusive`&lt;/span&gt; or &lt;span pulumi-lang-nodejs="`exclusive`" pulumi-lang-dotnet="`Exclusive`" pulumi-lang-go="`exclusive`" pulumi-lang-python="`exclusive`" pulumi-lang-yaml="`exclusive`" pulumi-lang-java="`exclusive`" pulumi-lang-hcl="`exclusive`"&gt;`exclusive`&lt;/span&gt;, it cannot be changed.
+        /// Only required if a [default tax behavior](https://docs.stripe.com/tax/products-prices-tax-categories-tax-behavior#setting-a-default-tax-behavior-(recommended)) was not provided in the Stripe Tax settings. Specifies whether the price is considered inclusive of taxes or exclusive of taxes. One of &lt;span pulumi-lang-nodejs="`inclusive`" pulumi-lang-dotnet="`Inclusive`" pulumi-lang-go="`inclusive`" pulumi-lang-python="`inclusive`" pulumi-lang-yaml="`inclusive`" pulumi-lang-java="`inclusive`" pulumi-lang-hcl="`inclusive`"&gt;`inclusive`&lt;/span&gt;, &lt;span pulumi-lang-nodejs="`exclusive`" pulumi-lang-dotnet="`Exclusive`" pulumi-lang-go="`exclusive`" pulumi-lang-python="`exclusive`" pulumi-lang-yaml="`exclusive`" pulumi-lang-java="`exclusive`" pulumi-lang-hcl="`exclusive`"&gt;`exclusive`&lt;/span&gt;, or &lt;span pulumi-lang-nodejs="`unspecified`" pulumi-lang-dotnet="`Unspecified`" pulumi-lang-go="`unspecified`" pulumi-lang-python="`unspecified`" pulumi-lang-yaml="`unspecified`" pulumi-lang-java="`unspecified`" pulumi-lang-hcl="`unspecified`"&gt;`unspecified`&lt;/span&gt;. Once specified as either &lt;span pulumi-lang-nodejs="`inclusive`" pulumi-lang-dotnet="`Inclusive`" pulumi-lang-go="`inclusive`" pulumi-lang-python="`inclusive`" pulumi-lang-yaml="`inclusive`" pulumi-lang-java="`inclusive`" pulumi-lang-hcl="`inclusive`"&gt;`inclusive`&lt;/span&gt; or &lt;span pulumi-lang-nodejs="`exclusive`" pulumi-lang-dotnet="`Exclusive`" pulumi-lang-go="`exclusive`" pulumi-lang-python="`exclusive`" pulumi-lang-yaml="`exclusive`" pulumi-lang-java="`exclusive`" pulumi-lang-hcl="`exclusive`"&gt;`exclusive`&lt;/span&gt;, it cannot be changed.
         /// </summary>
         [Input("taxBehavior")]
         public Input<string>? TaxBehavior { get; set; }
 
         [Input("tiers")]
-        private InputList<ImmutableArray<string>>? _tiers;
+        private InputList<Inputs.PriceCurrencyOptionTierGetArgs>? _tiers;
 
         /// <summary>
         /// Each element represents a pricing tier. This parameter requires &lt;span pulumi-lang-nodejs="`billingScheme`" pulumi-lang-dotnet="`BillingScheme`" pulumi-lang-go="`billingScheme`" pulumi-lang-python="`billing_scheme`" pulumi-lang-yaml="`billingScheme`" pulumi-lang-java="`billingScheme`" pulumi-lang-hcl="`billing_scheme`"&gt;`billingScheme`&lt;/span&gt; to be set to &lt;span pulumi-lang-nodejs="`tiered`" pulumi-lang-dotnet="`Tiered`" pulumi-lang-go="`tiered`" pulumi-lang-python="`tiered`" pulumi-lang-yaml="`tiered`" pulumi-lang-java="`tiered`" pulumi-lang-hcl="`tiered`"&gt;`tiered`&lt;/span&gt;. See also the documentation for &lt;span pulumi-lang-nodejs="`billingScheme`" pulumi-lang-dotnet="`BillingScheme`" pulumi-lang-go="`billingScheme`" pulumi-lang-python="`billing_scheme`" pulumi-lang-yaml="`billingScheme`" pulumi-lang-java="`billingScheme`" pulumi-lang-hcl="`billing_scheme`"&gt;`billingScheme`&lt;/span&gt;.
         /// </summary>
-        public InputList<ImmutableArray<string>> Tiers
+        public InputList<Inputs.PriceCurrencyOptionTierGetArgs> Tiers
         {
-            get => _tiers ?? (_tiers = new InputList<ImmutableArray<string>>());
+            get => _tiers ?? (_tiers = new InputList<Inputs.PriceCurrencyOptionTierGetArgs>());
             set => _tiers = value;
         }
 
         /// <summary>
-        /// A positive integer in cents (or local equivalent) (or 0 for a free price) representing how much to charge.
+        /// The unit amount in cents (or local equivalent) to be charged, represented as a whole integer if possible. Only set if `billing_scheme=per_unit`.
         /// </summary>
         [Input("unitAmount")]
         public Input<double>? UnitAmount { get; set; }
 
         /// <summary>
-        /// Same as &lt;span pulumi-lang-nodejs="`unitAmount`" pulumi-lang-dotnet="`UnitAmount`" pulumi-lang-go="`unitAmount`" pulumi-lang-python="`unit_amount`" pulumi-lang-yaml="`unitAmount`" pulumi-lang-java="`unitAmount`" pulumi-lang-hcl="`unit_amount`"&gt;`unitAmount`&lt;/span&gt;, but accepts a decimal value in cents (or local equivalent) with at most 12 decimal places. Only one of &lt;span pulumi-lang-nodejs="`unitAmount`" pulumi-lang-dotnet="`UnitAmount`" pulumi-lang-go="`unitAmount`" pulumi-lang-python="`unit_amount`" pulumi-lang-yaml="`unitAmount`" pulumi-lang-java="`unitAmount`" pulumi-lang-hcl="`unit_amount`"&gt;`unitAmount`&lt;/span&gt; and &lt;span pulumi-lang-nodejs="`unitAmountDecimal`" pulumi-lang-dotnet="`UnitAmountDecimal`" pulumi-lang-go="`unitAmountDecimal`" pulumi-lang-python="`unit_amount_decimal`" pulumi-lang-yaml="`unitAmountDecimal`" pulumi-lang-java="`unitAmountDecimal`" pulumi-lang-hcl="`unit_amount_decimal`"&gt;`unitAmountDecimal`&lt;/span&gt; can be set.
+        /// The unit amount in cents (or local equivalent) to be charged, represented as a decimal string with at most 12 decimal places. Only set if `billing_scheme=per_unit`.
         /// </summary>
         [Input("unitAmountDecimal")]
         public Input<string>? UnitAmountDecimal { get; set; }

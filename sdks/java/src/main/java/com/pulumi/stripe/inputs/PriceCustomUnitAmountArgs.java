@@ -5,6 +5,8 @@ package com.pulumi.stripe.inputs;
 
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
+import java.lang.Boolean;
 import java.lang.Double;
 import java.util.Objects;
 import java.util.Optional;
@@ -14,6 +16,21 @@ import javax.annotation.Nullable;
 public final class PriceCustomUnitAmountArgs extends com.pulumi.resources.ResourceArgs {
 
     public static final PriceCustomUnitAmountArgs Empty = new PriceCustomUnitAmountArgs();
+
+    /**
+     * Pass in &lt;span pulumi-lang-nodejs=&#34;`true`&#34; pulumi-lang-dotnet=&#34;`True`&#34; pulumi-lang-go=&#34;`true`&#34; pulumi-lang-python=&#34;`true`&#34; pulumi-lang-yaml=&#34;`true`&#34; pulumi-lang-java=&#34;`true`&#34; pulumi-lang-hcl=&#34;`true`&#34;&gt;`true`&lt;/span&gt; to enable &lt;span pulumi-lang-nodejs=&#34;`customUnitAmount`&#34; pulumi-lang-dotnet=&#34;`CustomUnitAmount`&#34; pulumi-lang-go=&#34;`customUnitAmount`&#34; pulumi-lang-python=&#34;`custom_unit_amount`&#34; pulumi-lang-yaml=&#34;`customUnitAmount`&#34; pulumi-lang-java=&#34;`customUnitAmount`&#34; pulumi-lang-hcl=&#34;`custom_unit_amount`&#34;&gt;`customUnitAmount`&lt;/span&gt;, otherwise omit &lt;span pulumi-lang-nodejs=&#34;`customUnitAmount`&#34; pulumi-lang-dotnet=&#34;`CustomUnitAmount`&#34; pulumi-lang-go=&#34;`customUnitAmount`&#34; pulumi-lang-python=&#34;`custom_unit_amount`&#34; pulumi-lang-yaml=&#34;`customUnitAmount`&#34; pulumi-lang-java=&#34;`customUnitAmount`&#34; pulumi-lang-hcl=&#34;`custom_unit_amount`&#34;&gt;`customUnitAmount`&lt;/span&gt;.
+     * 
+     */
+    @Import(name="enabled", required=true)
+    private Output<Boolean> enabled;
+
+    /**
+     * @return Pass in &lt;span pulumi-lang-nodejs=&#34;`true`&#34; pulumi-lang-dotnet=&#34;`True`&#34; pulumi-lang-go=&#34;`true`&#34; pulumi-lang-python=&#34;`true`&#34; pulumi-lang-yaml=&#34;`true`&#34; pulumi-lang-java=&#34;`true`&#34; pulumi-lang-hcl=&#34;`true`&#34;&gt;`true`&lt;/span&gt; to enable &lt;span pulumi-lang-nodejs=&#34;`customUnitAmount`&#34; pulumi-lang-dotnet=&#34;`CustomUnitAmount`&#34; pulumi-lang-go=&#34;`customUnitAmount`&#34; pulumi-lang-python=&#34;`custom_unit_amount`&#34; pulumi-lang-yaml=&#34;`customUnitAmount`&#34; pulumi-lang-java=&#34;`customUnitAmount`&#34; pulumi-lang-hcl=&#34;`custom_unit_amount`&#34;&gt;`customUnitAmount`&lt;/span&gt;, otherwise omit &lt;span pulumi-lang-nodejs=&#34;`customUnitAmount`&#34; pulumi-lang-dotnet=&#34;`CustomUnitAmount`&#34; pulumi-lang-go=&#34;`customUnitAmount`&#34; pulumi-lang-python=&#34;`custom_unit_amount`&#34; pulumi-lang-yaml=&#34;`customUnitAmount`&#34; pulumi-lang-java=&#34;`customUnitAmount`&#34; pulumi-lang-hcl=&#34;`custom_unit_amount`&#34;&gt;`customUnitAmount`&lt;/span&gt;.
+     * 
+     */
+    public Output<Boolean> enabled() {
+        return this.enabled;
+    }
 
     /**
      * The maximum unit amount the customer can specify for this item.
@@ -63,6 +80,7 @@ public final class PriceCustomUnitAmountArgs extends com.pulumi.resources.Resour
     private PriceCustomUnitAmountArgs() {}
 
     private PriceCustomUnitAmountArgs(PriceCustomUnitAmountArgs $) {
+        this.enabled = $.enabled;
         this.maximum = $.maximum;
         this.minimum = $.minimum;
         this.preset = $.preset;
@@ -84,6 +102,27 @@ public final class PriceCustomUnitAmountArgs extends com.pulumi.resources.Resour
 
         public Builder(PriceCustomUnitAmountArgs defaults) {
             $ = new PriceCustomUnitAmountArgs(Objects.requireNonNull(defaults));
+        }
+
+        /**
+         * @param enabled Pass in &lt;span pulumi-lang-nodejs=&#34;`true`&#34; pulumi-lang-dotnet=&#34;`True`&#34; pulumi-lang-go=&#34;`true`&#34; pulumi-lang-python=&#34;`true`&#34; pulumi-lang-yaml=&#34;`true`&#34; pulumi-lang-java=&#34;`true`&#34; pulumi-lang-hcl=&#34;`true`&#34;&gt;`true`&lt;/span&gt; to enable &lt;span pulumi-lang-nodejs=&#34;`customUnitAmount`&#34; pulumi-lang-dotnet=&#34;`CustomUnitAmount`&#34; pulumi-lang-go=&#34;`customUnitAmount`&#34; pulumi-lang-python=&#34;`custom_unit_amount`&#34; pulumi-lang-yaml=&#34;`customUnitAmount`&#34; pulumi-lang-java=&#34;`customUnitAmount`&#34; pulumi-lang-hcl=&#34;`custom_unit_amount`&#34;&gt;`customUnitAmount`&lt;/span&gt;, otherwise omit &lt;span pulumi-lang-nodejs=&#34;`customUnitAmount`&#34; pulumi-lang-dotnet=&#34;`CustomUnitAmount`&#34; pulumi-lang-go=&#34;`customUnitAmount`&#34; pulumi-lang-python=&#34;`custom_unit_amount`&#34; pulumi-lang-yaml=&#34;`customUnitAmount`&#34; pulumi-lang-java=&#34;`customUnitAmount`&#34; pulumi-lang-hcl=&#34;`custom_unit_amount`&#34;&gt;`customUnitAmount`&lt;/span&gt;.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder enabled(Output<Boolean> enabled) {
+            $.enabled = enabled;
+            return this;
+        }
+
+        /**
+         * @param enabled Pass in &lt;span pulumi-lang-nodejs=&#34;`true`&#34; pulumi-lang-dotnet=&#34;`True`&#34; pulumi-lang-go=&#34;`true`&#34; pulumi-lang-python=&#34;`true`&#34; pulumi-lang-yaml=&#34;`true`&#34; pulumi-lang-java=&#34;`true`&#34; pulumi-lang-hcl=&#34;`true`&#34;&gt;`true`&lt;/span&gt; to enable &lt;span pulumi-lang-nodejs=&#34;`customUnitAmount`&#34; pulumi-lang-dotnet=&#34;`CustomUnitAmount`&#34; pulumi-lang-go=&#34;`customUnitAmount`&#34; pulumi-lang-python=&#34;`custom_unit_amount`&#34; pulumi-lang-yaml=&#34;`customUnitAmount`&#34; pulumi-lang-java=&#34;`customUnitAmount`&#34; pulumi-lang-hcl=&#34;`custom_unit_amount`&#34;&gt;`customUnitAmount`&lt;/span&gt;, otherwise omit &lt;span pulumi-lang-nodejs=&#34;`customUnitAmount`&#34; pulumi-lang-dotnet=&#34;`CustomUnitAmount`&#34; pulumi-lang-go=&#34;`customUnitAmount`&#34; pulumi-lang-python=&#34;`custom_unit_amount`&#34; pulumi-lang-yaml=&#34;`customUnitAmount`&#34; pulumi-lang-java=&#34;`customUnitAmount`&#34; pulumi-lang-hcl=&#34;`custom_unit_amount`&#34;&gt;`customUnitAmount`&lt;/span&gt;.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder enabled(Boolean enabled) {
+            return enabled(Output.of(enabled));
         }
 
         /**
@@ -150,6 +189,9 @@ public final class PriceCustomUnitAmountArgs extends com.pulumi.resources.Resour
         }
 
         public PriceCustomUnitAmountArgs build() {
+            if ($.enabled == null) {
+                throw new MissingRequiredPropertyException("PriceCustomUnitAmountArgs", "enabled");
+            }
             return $;
         }
     }

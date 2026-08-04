@@ -10,6 +10,7 @@ import com.pulumi.core.internal.Codegen;
 import com.pulumi.stripe.TaxRateArgs;
 import com.pulumi.stripe.Utilities;
 import com.pulumi.stripe.inputs.TaxRateState;
+import com.pulumi.stripe.outputs.TaxRateFlatAmount;
 import java.lang.Boolean;
 import java.lang.Double;
 import java.lang.String;
@@ -19,14 +20,14 @@ import javax.annotation.Nullable;
 @ResourceType(type="stripe:index/taxRate:TaxRate")
 public class TaxRate extends com.pulumi.resources.CustomResource {
     /**
-     * Flag determining whether the tax rate is active or inactive (archived). Inactive tax rates cannot be used with new applications or Checkout Sessions, but will still work for subscriptions and invoices that already have it set.
+     * Defaults to &lt;span pulumi-lang-nodejs=&#34;`true`&#34; pulumi-lang-dotnet=&#34;`True`&#34; pulumi-lang-go=&#34;`true`&#34; pulumi-lang-python=&#34;`true`&#34; pulumi-lang-yaml=&#34;`true`&#34; pulumi-lang-java=&#34;`true`&#34; pulumi-lang-hcl=&#34;`true`&#34;&gt;`true`&lt;/span&gt;. When set to &lt;span pulumi-lang-nodejs=&#34;`false`&#34; pulumi-lang-dotnet=&#34;`False`&#34; pulumi-lang-go=&#34;`false`&#34; pulumi-lang-python=&#34;`false`&#34; pulumi-lang-yaml=&#34;`false`&#34; pulumi-lang-java=&#34;`false`&#34; pulumi-lang-hcl=&#34;`false`&#34;&gt;`false`&lt;/span&gt;, this tax rate cannot be used with new applications or Checkout Sessions, but will still work for subscriptions and invoices that already have it set.
      * 
      */
     @Export(name="active", refs={Boolean.class}, tree="[0]")
     private Output<Boolean> active;
 
     /**
-     * @return Flag determining whether the tax rate is active or inactive (archived). Inactive tax rates cannot be used with new applications or Checkout Sessions, but will still work for subscriptions and invoices that already have it set.
+     * @return Defaults to &lt;span pulumi-lang-nodejs=&#34;`true`&#34; pulumi-lang-dotnet=&#34;`True`&#34; pulumi-lang-go=&#34;`true`&#34; pulumi-lang-python=&#34;`true`&#34; pulumi-lang-yaml=&#34;`true`&#34; pulumi-lang-java=&#34;`true`&#34; pulumi-lang-hcl=&#34;`true`&#34;&gt;`true`&lt;/span&gt;. When set to &lt;span pulumi-lang-nodejs=&#34;`false`&#34; pulumi-lang-dotnet=&#34;`False`&#34; pulumi-lang-go=&#34;`false`&#34; pulumi-lang-python=&#34;`false`&#34; pulumi-lang-yaml=&#34;`false`&#34; pulumi-lang-java=&#34;`false`&#34; pulumi-lang-hcl=&#34;`false`&#34;&gt;`false`&lt;/span&gt;, this tax rate cannot be used with new applications or Checkout Sessions, but will still work for subscriptions and invoices that already have it set.
      * 
      */
     public Output<Boolean> active() {
@@ -47,6 +48,20 @@ public class TaxRate extends com.pulumi.resources.CustomResource {
         return this.country;
     }
     /**
+     * Time at which the object was created. Measured in seconds since the Unix epoch.
+     * 
+     */
+    @Export(name="created", refs={Double.class}, tree="[0]")
+    private Output<Double> created;
+
+    /**
+     * @return Time at which the object was created. Measured in seconds since the Unix epoch.
+     * 
+     */
+    public Output<Double> created() {
+        return this.created;
+    }
+    /**
      * An arbitrary string attached to the tax rate for your internal use only. It will not be visible to your customers.
      * 
      */
@@ -61,32 +76,50 @@ public class TaxRate extends com.pulumi.resources.CustomResource {
         return this.description;
     }
     /**
-     * The display name of the tax rate, which will be shown to users.
+     * The display name of the tax rates as it will appear to your customer on their receipt email, PDF, and the hosted invoice page.
      * 
      */
     @Export(name="displayName", refs={String.class}, tree="[0]")
     private Output<String> displayName;
 
     /**
-     * @return The display name of the tax rate, which will be shown to users.
+     * @return The display name of the tax rates as it will appear to your customer on their receipt email, PDF, and the hosted invoice page.
      * 
      */
     public Output<String> displayName() {
         return this.displayName;
     }
     /**
-     * Actual/effective tax rate percentage out of 100. For tax calculations with automatic_tax[enabled]=true, this percentage reflects the rate actually used to calculate tax based on the product&#39;s taxability and whether the user is registered to collect taxes in the corresponding jurisdiction.
+     * Actual/effective tax rate percentage out of 100. For tax calculations with automatic_tax[enabled]=true,
+     * this percentage reflects the rate actually used to calculate tax based on the product&#39;s taxability
+     * and whether the user is registered to collect taxes in the corresponding jurisdiction.
      * 
      */
     @Export(name="effectivePercentage", refs={Double.class}, tree="[0]")
     private Output<Double> effectivePercentage;
 
     /**
-     * @return Actual/effective tax rate percentage out of 100. For tax calculations with automatic_tax[enabled]=true, this percentage reflects the rate actually used to calculate tax based on the product&#39;s taxability and whether the user is registered to collect taxes in the corresponding jurisdiction.
+     * @return Actual/effective tax rate percentage out of 100. For tax calculations with automatic_tax[enabled]=true,
+     * this percentage reflects the rate actually used to calculate tax based on the product&#39;s taxability
+     * and whether the user is registered to collect taxes in the corresponding jurisdiction.
      * 
      */
     public Output<Double> effectivePercentage() {
         return this.effectivePercentage;
+    }
+    /**
+     * The amount of the tax rate when the &lt;span pulumi-lang-nodejs=&#34;`rateType`&#34; pulumi-lang-dotnet=&#34;`RateType`&#34; pulumi-lang-go=&#34;`rateType`&#34; pulumi-lang-python=&#34;`rate_type`&#34; pulumi-lang-yaml=&#34;`rateType`&#34; pulumi-lang-java=&#34;`rateType`&#34; pulumi-lang-hcl=&#34;`rate_type`&#34;&gt;`rateType`&lt;/span&gt; is &lt;span pulumi-lang-nodejs=&#34;`flatAmount`&#34; pulumi-lang-dotnet=&#34;`FlatAmount`&#34; pulumi-lang-go=&#34;`flatAmount`&#34; pulumi-lang-python=&#34;`flat_amount`&#34; pulumi-lang-yaml=&#34;`flatAmount`&#34; pulumi-lang-java=&#34;`flatAmount`&#34; pulumi-lang-hcl=&#34;`flat_amount`&#34;&gt;`flatAmount`&lt;/span&gt;. Tax rates with &lt;span pulumi-lang-nodejs=&#34;`rateType`&#34; pulumi-lang-dotnet=&#34;`RateType`&#34; pulumi-lang-go=&#34;`rateType`&#34; pulumi-lang-python=&#34;`rate_type`&#34; pulumi-lang-yaml=&#34;`rateType`&#34; pulumi-lang-java=&#34;`rateType`&#34; pulumi-lang-hcl=&#34;`rate_type`&#34;&gt;`rateType`&lt;/span&gt; &lt;span pulumi-lang-nodejs=&#34;`percentage`&#34; pulumi-lang-dotnet=&#34;`Percentage`&#34; pulumi-lang-go=&#34;`percentage`&#34; pulumi-lang-python=&#34;`percentage`&#34; pulumi-lang-yaml=&#34;`percentage`&#34; pulumi-lang-java=&#34;`percentage`&#34; pulumi-lang-hcl=&#34;`percentage`&#34;&gt;`percentage`&lt;/span&gt; can vary based on the transaction, resulting in this field being &lt;span pulumi-lang-nodejs=&#34;`null`&#34; pulumi-lang-dotnet=&#34;`Null`&#34; pulumi-lang-go=&#34;`null`&#34; pulumi-lang-python=&#34;`null`&#34; pulumi-lang-yaml=&#34;`null`&#34; pulumi-lang-java=&#34;`null`&#34; pulumi-lang-hcl=&#34;`null`&#34;&gt;`null`&lt;/span&gt;. This field exposes the amount and currency of the flat tax rate.
+     * 
+     */
+    @Export(name="flatAmount", refs={TaxRateFlatAmount.class}, tree="[0]")
+    private Output<TaxRateFlatAmount> flatAmount;
+
+    /**
+     * @return The amount of the tax rate when the &lt;span pulumi-lang-nodejs=&#34;`rateType`&#34; pulumi-lang-dotnet=&#34;`RateType`&#34; pulumi-lang-go=&#34;`rateType`&#34; pulumi-lang-python=&#34;`rate_type`&#34; pulumi-lang-yaml=&#34;`rateType`&#34; pulumi-lang-java=&#34;`rateType`&#34; pulumi-lang-hcl=&#34;`rate_type`&#34;&gt;`rateType`&lt;/span&gt; is &lt;span pulumi-lang-nodejs=&#34;`flatAmount`&#34; pulumi-lang-dotnet=&#34;`FlatAmount`&#34; pulumi-lang-go=&#34;`flatAmount`&#34; pulumi-lang-python=&#34;`flat_amount`&#34; pulumi-lang-yaml=&#34;`flatAmount`&#34; pulumi-lang-java=&#34;`flatAmount`&#34; pulumi-lang-hcl=&#34;`flat_amount`&#34;&gt;`flatAmount`&lt;/span&gt;. Tax rates with &lt;span pulumi-lang-nodejs=&#34;`rateType`&#34; pulumi-lang-dotnet=&#34;`RateType`&#34; pulumi-lang-go=&#34;`rateType`&#34; pulumi-lang-python=&#34;`rate_type`&#34; pulumi-lang-yaml=&#34;`rateType`&#34; pulumi-lang-java=&#34;`rateType`&#34; pulumi-lang-hcl=&#34;`rate_type`&#34;&gt;`rateType`&lt;/span&gt; &lt;span pulumi-lang-nodejs=&#34;`percentage`&#34; pulumi-lang-dotnet=&#34;`Percentage`&#34; pulumi-lang-go=&#34;`percentage`&#34; pulumi-lang-python=&#34;`percentage`&#34; pulumi-lang-yaml=&#34;`percentage`&#34; pulumi-lang-java=&#34;`percentage`&#34; pulumi-lang-hcl=&#34;`percentage`&#34;&gt;`percentage`&lt;/span&gt; can vary based on the transaction, resulting in this field being &lt;span pulumi-lang-nodejs=&#34;`null`&#34; pulumi-lang-dotnet=&#34;`Null`&#34; pulumi-lang-go=&#34;`null`&#34; pulumi-lang-python=&#34;`null`&#34; pulumi-lang-yaml=&#34;`null`&#34; pulumi-lang-java=&#34;`null`&#34; pulumi-lang-hcl=&#34;`null`&#34;&gt;`null`&lt;/span&gt;. This field exposes the amount and currency of the flat tax rate.
+     * 
+     */
+    public Output<TaxRateFlatAmount> flatAmount() {
+        return this.flatAmount;
     }
     /**
      * This specifies if the tax rate is inclusive or exclusive.
@@ -131,28 +164,56 @@ public class TaxRate extends com.pulumi.resources.CustomResource {
         return this.jurisdictionLevel;
     }
     /**
-     * Set of [key-value pairs](https://stripe.com/docs/api/metadata) that you can attach to an object. This can be useful for storing additional information about the object in a structured format. Individual keys can be unset by posting an empty value to them. All keys can be unset by posting an empty value to &lt;span pulumi-lang-nodejs=&#34;`metadata`&#34; pulumi-lang-dotnet=&#34;`Metadata`&#34; pulumi-lang-go=&#34;`metadata`&#34; pulumi-lang-python=&#34;`metadata`&#34; pulumi-lang-yaml=&#34;`metadata`&#34; pulumi-lang-java=&#34;`metadata`&#34; pulumi-lang-hcl=&#34;`metadata`&#34;&gt;`metadata`&lt;/span&gt;.
+     * If the object exists in live mode, the value is &lt;span pulumi-lang-nodejs=&#34;`true`&#34; pulumi-lang-dotnet=&#34;`True`&#34; pulumi-lang-go=&#34;`true`&#34; pulumi-lang-python=&#34;`true`&#34; pulumi-lang-yaml=&#34;`true`&#34; pulumi-lang-java=&#34;`true`&#34; pulumi-lang-hcl=&#34;`true`&#34;&gt;`true`&lt;/span&gt;. If the object exists in test mode, the value is &lt;span pulumi-lang-nodejs=&#34;`false`&#34; pulumi-lang-dotnet=&#34;`False`&#34; pulumi-lang-go=&#34;`false`&#34; pulumi-lang-python=&#34;`false`&#34; pulumi-lang-yaml=&#34;`false`&#34; pulumi-lang-java=&#34;`false`&#34; pulumi-lang-hcl=&#34;`false`&#34;&gt;`false`&lt;/span&gt;.
+     * 
+     */
+    @Export(name="livemode", refs={Boolean.class}, tree="[0]")
+    private Output<Boolean> livemode;
+
+    /**
+     * @return If the object exists in live mode, the value is &lt;span pulumi-lang-nodejs=&#34;`true`&#34; pulumi-lang-dotnet=&#34;`True`&#34; pulumi-lang-go=&#34;`true`&#34; pulumi-lang-python=&#34;`true`&#34; pulumi-lang-yaml=&#34;`true`&#34; pulumi-lang-java=&#34;`true`&#34; pulumi-lang-hcl=&#34;`true`&#34;&gt;`true`&lt;/span&gt;. If the object exists in test mode, the value is &lt;span pulumi-lang-nodejs=&#34;`false`&#34; pulumi-lang-dotnet=&#34;`False`&#34; pulumi-lang-go=&#34;`false`&#34; pulumi-lang-python=&#34;`false`&#34; pulumi-lang-yaml=&#34;`false`&#34; pulumi-lang-java=&#34;`false`&#34; pulumi-lang-hcl=&#34;`false`&#34;&gt;`false`&lt;/span&gt;.
+     * 
+     */
+    public Output<Boolean> livemode() {
+        return this.livemode;
+    }
+    /**
+     * Set of [key-value pairs](https://docs.stripe.com/api/metadata) that you can attach to an object. This can be useful for storing additional information about the object in a structured format.
      * 
      */
     @Export(name="metadata", refs={Map.class,String.class}, tree="[0,1,1]")
     private Output<Map<String,String>> metadata;
 
     /**
-     * @return Set of [key-value pairs](https://stripe.com/docs/api/metadata) that you can attach to an object. This can be useful for storing additional information about the object in a structured format. Individual keys can be unset by posting an empty value to them. All keys can be unset by posting an empty value to &lt;span pulumi-lang-nodejs=&#34;`metadata`&#34; pulumi-lang-dotnet=&#34;`Metadata`&#34; pulumi-lang-go=&#34;`metadata`&#34; pulumi-lang-python=&#34;`metadata`&#34; pulumi-lang-yaml=&#34;`metadata`&#34; pulumi-lang-java=&#34;`metadata`&#34; pulumi-lang-hcl=&#34;`metadata`&#34;&gt;`metadata`&lt;/span&gt;.
+     * @return Set of [key-value pairs](https://docs.stripe.com/api/metadata) that you can attach to an object. This can be useful for storing additional information about the object in a structured format.
      * 
      */
     public Output<Map<String,String>> metadata() {
         return this.metadata;
     }
     /**
-     * This represents the tax rate percent out of 100.
+     * String representing the object&#39;s type. Objects of the same type share the same value.
+     * 
+     */
+    @Export(name="object", refs={String.class}, tree="[0]")
+    private Output<String> object;
+
+    /**
+     * @return String representing the object&#39;s type. Objects of the same type share the same value.
+     * 
+     */
+    public Output<String> object() {
+        return this.object;
+    }
+    /**
+     * Tax rate percentage out of 100. For tax calculations with automatic_tax[enabled]=true, this percentage includes the statutory tax rate of non-taxable jurisdictions.
      * 
      */
     @Export(name="percentage", refs={Double.class}, tree="[0]")
     private Output<Double> percentage;
 
     /**
-     * @return This represents the tax rate percent out of 100.
+     * @return Tax rate percentage out of 100. For tax calculations with automatic_tax[enabled]=true, this percentage includes the statutory tax rate of non-taxable jurisdictions.
      * 
      */
     public Output<Double> percentage() {
@@ -173,14 +234,14 @@ public class TaxRate extends com.pulumi.resources.CustomResource {
         return this.rateType;
     }
     /**
-     * [ISO 3166-2 subdivision code](https://en.wikipedia.org/wiki/ISO_3166-2), without country prefix. For example, \&#34;NY\&#34; for New York, United States.
+     * [ISO 3166-2 subdivision code](https://en.wikipedia.org/wiki/ISO_3166-2), without country prefix. For example, &#34;NY&#34; for New York, United States.
      * 
      */
     @Export(name="state", refs={String.class}, tree="[0]")
     private Output<String> state;
 
     /**
-     * @return [ISO 3166-2 subdivision code](https://en.wikipedia.org/wiki/ISO_3166-2), without country prefix. For example, \&#34;NY\&#34; for New York, United States.
+     * @return [ISO 3166-2 subdivision code](https://en.wikipedia.org/wiki/ISO_3166-2), without country prefix. For example, &#34;NY&#34; for New York, United States.
      * 
      */
     public Output<String> state() {

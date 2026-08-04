@@ -21,53 +21,35 @@ __all__ = ['BillingMeterArgs', 'BillingMeter']
 @pulumi.input_type
 class BillingMeterArgs:
     def __init__(__self__, *,
-                 default_aggregation: pulumi.Input['BillingMeterDefaultAggregationArgs'],
                  display_name: pulumi.Input[_builtins.str],
                  event_name: pulumi.Input[_builtins.str],
-                 customer_mapping: pulumi.Input[Optional['BillingMeterCustomerMappingArgs']] = None,
-                 dimension_payload_keys: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 customer_mappings: pulumi.Input[Optional[Sequence[pulumi.Input['BillingMeterCustomerMappingArgs']]]] = None,
+                 default_aggregations: pulumi.Input[Optional[Sequence[pulumi.Input['BillingMeterDefaultAggregationArgs']]]] = None,
                  event_time_window: pulumi.Input[Optional[_builtins.str]] = None,
-                 value_settings: pulumi.Input[Optional['BillingMeterValueSettingsArgs']] = None):
+                 value_settings: pulumi.Input[Optional[Sequence[pulumi.Input['BillingMeterValueSettingArgs']]]] = None):
         """
         The set of arguments for constructing a BillingMeter resource.
 
-        :param pulumi.Input['BillingMeterDefaultAggregationArgs'] default_aggregation: The default settings to aggregate a meter's events with.
-        :param pulumi.Input[_builtins.str] display_name: The meter’s name. Not visible to the customer.
+        :param pulumi.Input[_builtins.str] display_name: The meter's name.
         :param pulumi.Input[_builtins.str] event_name: The name of the meter event to record usage for. Corresponds with the <span pulumi-lang-nodejs="`eventName`" pulumi-lang-dotnet="`EventName`" pulumi-lang-go="`eventName`" pulumi-lang-python="`event_name`" pulumi-lang-yaml="`eventName`" pulumi-lang-java="`eventName`" pulumi-lang-hcl="`event_name`">`eventName`</span> field on meter events.
-        :param pulumi.Input['BillingMeterCustomerMappingArgs'] customer_mapping: Fields that specify how to map a meter event to a customer.
-        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] dimension_payload_keys: Set of keys that will be used to group meter events by. Each key must be present in the event payload.
         :param pulumi.Input[_builtins.str] event_time_window: The time window which meter events have been pre-aggregated for, if any.
-        :param pulumi.Input['BillingMeterValueSettingsArgs'] value_settings: Fields that specify how to calculate a meter event's value.
         """
-        pulumi.set(__self__, "default_aggregation", default_aggregation)
         pulumi.set(__self__, "display_name", display_name)
         pulumi.set(__self__, "event_name", event_name)
-        if customer_mapping is not None:
-            pulumi.set(__self__, "customer_mapping", customer_mapping)
-        if dimension_payload_keys is not None:
-            pulumi.set(__self__, "dimension_payload_keys", dimension_payload_keys)
+        if customer_mappings is not None:
+            pulumi.set(__self__, "customer_mappings", customer_mappings)
+        if default_aggregations is not None:
+            pulumi.set(__self__, "default_aggregations", default_aggregations)
         if event_time_window is not None:
             pulumi.set(__self__, "event_time_window", event_time_window)
         if value_settings is not None:
             pulumi.set(__self__, "value_settings", value_settings)
 
     @_builtins.property
-    @pulumi.getter(name="defaultAggregation")
-    def default_aggregation(self) -> pulumi.Input['BillingMeterDefaultAggregationArgs']:
-        """
-        The default settings to aggregate a meter's events with.
-        """
-        return pulumi.get(self, "default_aggregation")
-
-    @default_aggregation.setter
-    def default_aggregation(self, value: pulumi.Input['BillingMeterDefaultAggregationArgs']):
-        pulumi.set(self, "default_aggregation", value)
-
-    @_builtins.property
     @pulumi.getter(name="displayName")
     def display_name(self) -> pulumi.Input[_builtins.str]:
         """
-        The meter’s name. Not visible to the customer.
+        The meter's name.
         """
         return pulumi.get(self, "display_name")
 
@@ -88,28 +70,22 @@ class BillingMeterArgs:
         pulumi.set(self, "event_name", value)
 
     @_builtins.property
-    @pulumi.getter(name="customerMapping")
-    def customer_mapping(self) -> pulumi.Input[Optional['BillingMeterCustomerMappingArgs']]:
-        """
-        Fields that specify how to map a meter event to a customer.
-        """
-        return pulumi.get(self, "customer_mapping")
+    @pulumi.getter(name="customerMappings")
+    def customer_mappings(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['BillingMeterCustomerMappingArgs']]]]:
+        return pulumi.get(self, "customer_mappings")
 
-    @customer_mapping.setter
-    def customer_mapping(self, value: pulumi.Input[Optional['BillingMeterCustomerMappingArgs']]):
-        pulumi.set(self, "customer_mapping", value)
+    @customer_mappings.setter
+    def customer_mappings(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['BillingMeterCustomerMappingArgs']]]]):
+        pulumi.set(self, "customer_mappings", value)
 
     @_builtins.property
-    @pulumi.getter(name="dimensionPayloadKeys")
-    def dimension_payload_keys(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
-        """
-        Set of keys that will be used to group meter events by. Each key must be present in the event payload.
-        """
-        return pulumi.get(self, "dimension_payload_keys")
+    @pulumi.getter(name="defaultAggregations")
+    def default_aggregations(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['BillingMeterDefaultAggregationArgs']]]]:
+        return pulumi.get(self, "default_aggregations")
 
-    @dimension_payload_keys.setter
-    def dimension_payload_keys(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
-        pulumi.set(self, "dimension_payload_keys", value)
+    @default_aggregations.setter
+    def default_aggregations(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['BillingMeterDefaultAggregationArgs']]]]):
+        pulumi.set(self, "default_aggregations", value)
 
     @_builtins.property
     @pulumi.getter(name="eventTimeWindow")
@@ -125,98 +101,101 @@ class BillingMeterArgs:
 
     @_builtins.property
     @pulumi.getter(name="valueSettings")
-    def value_settings(self) -> pulumi.Input[Optional['BillingMeterValueSettingsArgs']]:
-        """
-        Fields that specify how to calculate a meter event's value.
-        """
+    def value_settings(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['BillingMeterValueSettingArgs']]]]:
         return pulumi.get(self, "value_settings")
 
     @value_settings.setter
-    def value_settings(self, value: pulumi.Input[Optional['BillingMeterValueSettingsArgs']]):
+    def value_settings(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['BillingMeterValueSettingArgs']]]]):
         pulumi.set(self, "value_settings", value)
 
 
 @pulumi.input_type
 class _BillingMeterState:
     def __init__(__self__, *,
-                 customer_mapping: pulumi.Input[Optional['BillingMeterCustomerMappingArgs']] = None,
-                 default_aggregation: pulumi.Input[Optional['BillingMeterDefaultAggregationArgs']] = None,
-                 dimension_payload_keys: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 created: pulumi.Input[Optional[_builtins.float]] = None,
+                 customer_mappings: pulumi.Input[Optional[Sequence[pulumi.Input['BillingMeterCustomerMappingArgs']]]] = None,
+                 default_aggregations: pulumi.Input[Optional[Sequence[pulumi.Input['BillingMeterDefaultAggregationArgs']]]] = None,
                  display_name: pulumi.Input[Optional[_builtins.str]] = None,
                  event_name: pulumi.Input[Optional[_builtins.str]] = None,
                  event_time_window: pulumi.Input[Optional[_builtins.str]] = None,
+                 livemode: pulumi.Input[Optional[_builtins.bool]] = None,
+                 object: pulumi.Input[Optional[_builtins.str]] = None,
                  status: pulumi.Input[Optional[_builtins.str]] = None,
-                 value_settings: pulumi.Input[Optional['BillingMeterValueSettingsArgs']] = None):
+                 status_transitions: pulumi.Input[Optional['BillingMeterStatusTransitionsArgs']] = None,
+                 updated: pulumi.Input[Optional[_builtins.float]] = None,
+                 value_settings: pulumi.Input[Optional[Sequence[pulumi.Input['BillingMeterValueSettingArgs']]]] = None):
         """
         Input properties used for looking up and filtering BillingMeter resources.
 
-        :param pulumi.Input['BillingMeterCustomerMappingArgs'] customer_mapping: Fields that specify how to map a meter event to a customer.
-        :param pulumi.Input['BillingMeterDefaultAggregationArgs'] default_aggregation: The default settings to aggregate a meter's events with.
-        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] dimension_payload_keys: Set of keys that will be used to group meter events by. Each key must be present in the event payload.
-        :param pulumi.Input[_builtins.str] display_name: The meter’s name. Not visible to the customer.
+        :param pulumi.Input[_builtins.float] created: Time at which the object was created. Measured in seconds since the Unix epoch.
+        :param pulumi.Input[_builtins.str] display_name: The meter's name.
         :param pulumi.Input[_builtins.str] event_name: The name of the meter event to record usage for. Corresponds with the <span pulumi-lang-nodejs="`eventName`" pulumi-lang-dotnet="`EventName`" pulumi-lang-go="`eventName`" pulumi-lang-python="`event_name`" pulumi-lang-yaml="`eventName`" pulumi-lang-java="`eventName`" pulumi-lang-hcl="`event_name`">`eventName`</span> field on meter events.
         :param pulumi.Input[_builtins.str] event_time_window: The time window which meter events have been pre-aggregated for, if any.
+        :param pulumi.Input[_builtins.bool] livemode: If the object exists in live mode, the value is <span pulumi-lang-nodejs="`true`" pulumi-lang-dotnet="`True`" pulumi-lang-go="`true`" pulumi-lang-python="`true`" pulumi-lang-yaml="`true`" pulumi-lang-java="`true`" pulumi-lang-hcl="`true`">`true`</span>. If the object exists in test mode, the value is <span pulumi-lang-nodejs="`false`" pulumi-lang-dotnet="`False`" pulumi-lang-go="`false`" pulumi-lang-python="`false`" pulumi-lang-yaml="`false`" pulumi-lang-java="`false`" pulumi-lang-hcl="`false`">`false`</span>.
+        :param pulumi.Input[_builtins.str] object: String representing the object's type. Objects of the same type share the same value.
         :param pulumi.Input[_builtins.str] status: The meter's status.
-        :param pulumi.Input['BillingMeterValueSettingsArgs'] value_settings: Fields that specify how to calculate a meter event's value.
+        :param pulumi.Input[_builtins.float] updated: Time at which the object was last updated. Measured in seconds since the Unix epoch.
         """
-        if customer_mapping is not None:
-            pulumi.set(__self__, "customer_mapping", customer_mapping)
-        if default_aggregation is not None:
-            pulumi.set(__self__, "default_aggregation", default_aggregation)
-        if dimension_payload_keys is not None:
-            pulumi.set(__self__, "dimension_payload_keys", dimension_payload_keys)
+        if created is not None:
+            pulumi.set(__self__, "created", created)
+        if customer_mappings is not None:
+            pulumi.set(__self__, "customer_mappings", customer_mappings)
+        if default_aggregations is not None:
+            pulumi.set(__self__, "default_aggregations", default_aggregations)
         if display_name is not None:
             pulumi.set(__self__, "display_name", display_name)
         if event_name is not None:
             pulumi.set(__self__, "event_name", event_name)
         if event_time_window is not None:
             pulumi.set(__self__, "event_time_window", event_time_window)
+        if livemode is not None:
+            pulumi.set(__self__, "livemode", livemode)
+        if object is not None:
+            pulumi.set(__self__, "object", object)
         if status is not None:
             pulumi.set(__self__, "status", status)
+        if status_transitions is not None:
+            pulumi.set(__self__, "status_transitions", status_transitions)
+        if updated is not None:
+            pulumi.set(__self__, "updated", updated)
         if value_settings is not None:
             pulumi.set(__self__, "value_settings", value_settings)
 
     @_builtins.property
-    @pulumi.getter(name="customerMapping")
-    def customer_mapping(self) -> pulumi.Input[Optional['BillingMeterCustomerMappingArgs']]:
+    @pulumi.getter
+    def created(self) -> pulumi.Input[Optional[_builtins.float]]:
         """
-        Fields that specify how to map a meter event to a customer.
+        Time at which the object was created. Measured in seconds since the Unix epoch.
         """
-        return pulumi.get(self, "customer_mapping")
+        return pulumi.get(self, "created")
 
-    @customer_mapping.setter
-    def customer_mapping(self, value: pulumi.Input[Optional['BillingMeterCustomerMappingArgs']]):
-        pulumi.set(self, "customer_mapping", value)
-
-    @_builtins.property
-    @pulumi.getter(name="defaultAggregation")
-    def default_aggregation(self) -> pulumi.Input[Optional['BillingMeterDefaultAggregationArgs']]:
-        """
-        The default settings to aggregate a meter's events with.
-        """
-        return pulumi.get(self, "default_aggregation")
-
-    @default_aggregation.setter
-    def default_aggregation(self, value: pulumi.Input[Optional['BillingMeterDefaultAggregationArgs']]):
-        pulumi.set(self, "default_aggregation", value)
+    @created.setter
+    def created(self, value: pulumi.Input[Optional[_builtins.float]]):
+        pulumi.set(self, "created", value)
 
     @_builtins.property
-    @pulumi.getter(name="dimensionPayloadKeys")
-    def dimension_payload_keys(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
-        """
-        Set of keys that will be used to group meter events by. Each key must be present in the event payload.
-        """
-        return pulumi.get(self, "dimension_payload_keys")
+    @pulumi.getter(name="customerMappings")
+    def customer_mappings(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['BillingMeterCustomerMappingArgs']]]]:
+        return pulumi.get(self, "customer_mappings")
 
-    @dimension_payload_keys.setter
-    def dimension_payload_keys(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
-        pulumi.set(self, "dimension_payload_keys", value)
+    @customer_mappings.setter
+    def customer_mappings(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['BillingMeterCustomerMappingArgs']]]]):
+        pulumi.set(self, "customer_mappings", value)
+
+    @_builtins.property
+    @pulumi.getter(name="defaultAggregations")
+    def default_aggregations(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['BillingMeterDefaultAggregationArgs']]]]:
+        return pulumi.get(self, "default_aggregations")
+
+    @default_aggregations.setter
+    def default_aggregations(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['BillingMeterDefaultAggregationArgs']]]]):
+        pulumi.set(self, "default_aggregations", value)
 
     @_builtins.property
     @pulumi.getter(name="displayName")
     def display_name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
-        The meter’s name. Not visible to the customer.
+        The meter's name.
         """
         return pulumi.get(self, "display_name")
 
@@ -250,6 +229,30 @@ class _BillingMeterState:
 
     @_builtins.property
     @pulumi.getter
+    def livemode(self) -> pulumi.Input[Optional[_builtins.bool]]:
+        """
+        If the object exists in live mode, the value is <span pulumi-lang-nodejs="`true`" pulumi-lang-dotnet="`True`" pulumi-lang-go="`true`" pulumi-lang-python="`true`" pulumi-lang-yaml="`true`" pulumi-lang-java="`true`" pulumi-lang-hcl="`true`">`true`</span>. If the object exists in test mode, the value is <span pulumi-lang-nodejs="`false`" pulumi-lang-dotnet="`False`" pulumi-lang-go="`false`" pulumi-lang-python="`false`" pulumi-lang-yaml="`false`" pulumi-lang-java="`false`" pulumi-lang-hcl="`false`">`false`</span>.
+        """
+        return pulumi.get(self, "livemode")
+
+    @livemode.setter
+    def livemode(self, value: pulumi.Input[Optional[_builtins.bool]]):
+        pulumi.set(self, "livemode", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def object(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        String representing the object's type. Objects of the same type share the same value.
+        """
+        return pulumi.get(self, "object")
+
+    @object.setter
+    def object(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "object", value)
+
+    @_builtins.property
+    @pulumi.getter
     def status(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The meter's status.
@@ -261,15 +264,33 @@ class _BillingMeterState:
         pulumi.set(self, "status", value)
 
     @_builtins.property
+    @pulumi.getter(name="statusTransitions")
+    def status_transitions(self) -> pulumi.Input[Optional['BillingMeterStatusTransitionsArgs']]:
+        return pulumi.get(self, "status_transitions")
+
+    @status_transitions.setter
+    def status_transitions(self, value: pulumi.Input[Optional['BillingMeterStatusTransitionsArgs']]):
+        pulumi.set(self, "status_transitions", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def updated(self) -> pulumi.Input[Optional[_builtins.float]]:
+        """
+        Time at which the object was last updated. Measured in seconds since the Unix epoch.
+        """
+        return pulumi.get(self, "updated")
+
+    @updated.setter
+    def updated(self, value: pulumi.Input[Optional[_builtins.float]]):
+        pulumi.set(self, "updated", value)
+
+    @_builtins.property
     @pulumi.getter(name="valueSettings")
-    def value_settings(self) -> pulumi.Input[Optional['BillingMeterValueSettingsArgs']]:
-        """
-        Fields that specify how to calculate a meter event's value.
-        """
+    def value_settings(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['BillingMeterValueSettingArgs']]]]:
         return pulumi.get(self, "value_settings")
 
     @value_settings.setter
-    def value_settings(self, value: pulumi.Input[Optional['BillingMeterValueSettingsArgs']]):
+    def value_settings(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['BillingMeterValueSettingArgs']]]]):
         pulumi.set(self, "value_settings", value)
 
 
@@ -279,26 +300,21 @@ class BillingMeter(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 customer_mapping: pulumi.Input[Optional[Union['BillingMeterCustomerMappingArgs', 'BillingMeterCustomerMappingArgsDict']]] = None,
-                 default_aggregation: pulumi.Input[Optional[Union['BillingMeterDefaultAggregationArgs', 'BillingMeterDefaultAggregationArgsDict']]] = None,
-                 dimension_payload_keys: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 customer_mappings: pulumi.Input[Optional[Sequence[pulumi.Input[Union['BillingMeterCustomerMappingArgs', 'BillingMeterCustomerMappingArgsDict']]]]] = None,
+                 default_aggregations: pulumi.Input[Optional[Sequence[pulumi.Input[Union['BillingMeterDefaultAggregationArgs', 'BillingMeterDefaultAggregationArgsDict']]]]] = None,
                  display_name: pulumi.Input[Optional[_builtins.str]] = None,
                  event_name: pulumi.Input[Optional[_builtins.str]] = None,
                  event_time_window: pulumi.Input[Optional[_builtins.str]] = None,
-                 value_settings: pulumi.Input[Optional[Union['BillingMeterValueSettingsArgs', 'BillingMeterValueSettingsArgsDict']]] = None,
+                 value_settings: pulumi.Input[Optional[Sequence[pulumi.Input[Union['BillingMeterValueSettingArgs', 'BillingMeterValueSettingArgsDict']]]]] = None,
                  __props__=None):
         """
         Create a BillingMeter resource with the given unique name, props, and options.
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[Union['BillingMeterCustomerMappingArgs', 'BillingMeterCustomerMappingArgsDict']] customer_mapping: Fields that specify how to map a meter event to a customer.
-        :param pulumi.Input[Union['BillingMeterDefaultAggregationArgs', 'BillingMeterDefaultAggregationArgsDict']] default_aggregation: The default settings to aggregate a meter's events with.
-        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] dimension_payload_keys: Set of keys that will be used to group meter events by. Each key must be present in the event payload.
-        :param pulumi.Input[_builtins.str] display_name: The meter’s name. Not visible to the customer.
+        :param pulumi.Input[_builtins.str] display_name: The meter's name.
         :param pulumi.Input[_builtins.str] event_name: The name of the meter event to record usage for. Corresponds with the <span pulumi-lang-nodejs="`eventName`" pulumi-lang-dotnet="`EventName`" pulumi-lang-go="`eventName`" pulumi-lang-python="`event_name`" pulumi-lang-yaml="`eventName`" pulumi-lang-java="`eventName`" pulumi-lang-hcl="`event_name`">`eventName`</span> field on meter events.
         :param pulumi.Input[_builtins.str] event_time_window: The time window which meter events have been pre-aggregated for, if any.
-        :param pulumi.Input[Union['BillingMeterValueSettingsArgs', 'BillingMeterValueSettingsArgsDict']] value_settings: Fields that specify how to calculate a meter event's value.
         """
         ...
     @overload
@@ -324,13 +340,12 @@ class BillingMeter(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 customer_mapping: pulumi.Input[Optional[Union['BillingMeterCustomerMappingArgs', 'BillingMeterCustomerMappingArgsDict']]] = None,
-                 default_aggregation: pulumi.Input[Optional[Union['BillingMeterDefaultAggregationArgs', 'BillingMeterDefaultAggregationArgsDict']]] = None,
-                 dimension_payload_keys: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 customer_mappings: pulumi.Input[Optional[Sequence[pulumi.Input[Union['BillingMeterCustomerMappingArgs', 'BillingMeterCustomerMappingArgsDict']]]]] = None,
+                 default_aggregations: pulumi.Input[Optional[Sequence[pulumi.Input[Union['BillingMeterDefaultAggregationArgs', 'BillingMeterDefaultAggregationArgsDict']]]]] = None,
                  display_name: pulumi.Input[Optional[_builtins.str]] = None,
                  event_name: pulumi.Input[Optional[_builtins.str]] = None,
                  event_time_window: pulumi.Input[Optional[_builtins.str]] = None,
-                 value_settings: pulumi.Input[Optional[Union['BillingMeterValueSettingsArgs', 'BillingMeterValueSettingsArgsDict']]] = None,
+                 value_settings: pulumi.Input[Optional[Sequence[pulumi.Input[Union['BillingMeterValueSettingArgs', 'BillingMeterValueSettingArgsDict']]]]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -340,11 +355,8 @@ class BillingMeter(pulumi.CustomResource):
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = BillingMeterArgs.__new__(BillingMeterArgs)
 
-            __props__.__dict__["customer_mapping"] = customer_mapping
-            if default_aggregation is None and not opts.urn:
-                raise TypeError("Missing required property 'default_aggregation'")
-            __props__.__dict__["default_aggregation"] = default_aggregation
-            __props__.__dict__["dimension_payload_keys"] = dimension_payload_keys
+            __props__.__dict__["customer_mappings"] = customer_mappings
+            __props__.__dict__["default_aggregations"] = default_aggregations
             if display_name is None and not opts.urn:
                 raise TypeError("Missing required property 'display_name'")
             __props__.__dict__["display_name"] = display_name
@@ -353,7 +365,12 @@ class BillingMeter(pulumi.CustomResource):
             __props__.__dict__["event_name"] = event_name
             __props__.__dict__["event_time_window"] = event_time_window
             __props__.__dict__["value_settings"] = value_settings
+            __props__.__dict__["created"] = None
+            __props__.__dict__["livemode"] = None
+            __props__.__dict__["object"] = None
             __props__.__dict__["status"] = None
+            __props__.__dict__["status_transitions"] = None
+            __props__.__dict__["updated"] = None
         super(BillingMeter, __self__).__init__(
             'stripe:index/billingMeter:BillingMeter',
             resource_name,
@@ -365,14 +382,18 @@ class BillingMeter(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            customer_mapping: pulumi.Input[Optional[Union['BillingMeterCustomerMappingArgs', 'BillingMeterCustomerMappingArgsDict']]] = None,
-            default_aggregation: pulumi.Input[Optional[Union['BillingMeterDefaultAggregationArgs', 'BillingMeterDefaultAggregationArgsDict']]] = None,
-            dimension_payload_keys: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            created: pulumi.Input[Optional[_builtins.float]] = None,
+            customer_mappings: pulumi.Input[Optional[Sequence[pulumi.Input[Union['BillingMeterCustomerMappingArgs', 'BillingMeterCustomerMappingArgsDict']]]]] = None,
+            default_aggregations: pulumi.Input[Optional[Sequence[pulumi.Input[Union['BillingMeterDefaultAggregationArgs', 'BillingMeterDefaultAggregationArgsDict']]]]] = None,
             display_name: pulumi.Input[Optional[_builtins.str]] = None,
             event_name: pulumi.Input[Optional[_builtins.str]] = None,
             event_time_window: pulumi.Input[Optional[_builtins.str]] = None,
+            livemode: pulumi.Input[Optional[_builtins.bool]] = None,
+            object: pulumi.Input[Optional[_builtins.str]] = None,
             status: pulumi.Input[Optional[_builtins.str]] = None,
-            value_settings: pulumi.Input[Optional[Union['BillingMeterValueSettingsArgs', 'BillingMeterValueSettingsArgsDict']]] = None) -> 'BillingMeter':
+            status_transitions: pulumi.Input[Optional[Union['BillingMeterStatusTransitionsArgs', 'BillingMeterStatusTransitionsArgsDict']]] = None,
+            updated: pulumi.Input[Optional[_builtins.float]] = None,
+            value_settings: pulumi.Input[Optional[Sequence[pulumi.Input[Union['BillingMeterValueSettingArgs', 'BillingMeterValueSettingArgsDict']]]]] = None) -> 'BillingMeter':
         """
         Get an existing BillingMeter resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -380,58 +401,56 @@ class BillingMeter(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[Union['BillingMeterCustomerMappingArgs', 'BillingMeterCustomerMappingArgsDict']] customer_mapping: Fields that specify how to map a meter event to a customer.
-        :param pulumi.Input[Union['BillingMeterDefaultAggregationArgs', 'BillingMeterDefaultAggregationArgsDict']] default_aggregation: The default settings to aggregate a meter's events with.
-        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] dimension_payload_keys: Set of keys that will be used to group meter events by. Each key must be present in the event payload.
-        :param pulumi.Input[_builtins.str] display_name: The meter’s name. Not visible to the customer.
+        :param pulumi.Input[_builtins.float] created: Time at which the object was created. Measured in seconds since the Unix epoch.
+        :param pulumi.Input[_builtins.str] display_name: The meter's name.
         :param pulumi.Input[_builtins.str] event_name: The name of the meter event to record usage for. Corresponds with the <span pulumi-lang-nodejs="`eventName`" pulumi-lang-dotnet="`EventName`" pulumi-lang-go="`eventName`" pulumi-lang-python="`event_name`" pulumi-lang-yaml="`eventName`" pulumi-lang-java="`eventName`" pulumi-lang-hcl="`event_name`">`eventName`</span> field on meter events.
         :param pulumi.Input[_builtins.str] event_time_window: The time window which meter events have been pre-aggregated for, if any.
+        :param pulumi.Input[_builtins.bool] livemode: If the object exists in live mode, the value is <span pulumi-lang-nodejs="`true`" pulumi-lang-dotnet="`True`" pulumi-lang-go="`true`" pulumi-lang-python="`true`" pulumi-lang-yaml="`true`" pulumi-lang-java="`true`" pulumi-lang-hcl="`true`">`true`</span>. If the object exists in test mode, the value is <span pulumi-lang-nodejs="`false`" pulumi-lang-dotnet="`False`" pulumi-lang-go="`false`" pulumi-lang-python="`false`" pulumi-lang-yaml="`false`" pulumi-lang-java="`false`" pulumi-lang-hcl="`false`">`false`</span>.
+        :param pulumi.Input[_builtins.str] object: String representing the object's type. Objects of the same type share the same value.
         :param pulumi.Input[_builtins.str] status: The meter's status.
-        :param pulumi.Input[Union['BillingMeterValueSettingsArgs', 'BillingMeterValueSettingsArgsDict']] value_settings: Fields that specify how to calculate a meter event's value.
+        :param pulumi.Input[_builtins.float] updated: Time at which the object was last updated. Measured in seconds since the Unix epoch.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
         __props__ = _BillingMeterState.__new__(_BillingMeterState)
 
-        __props__.__dict__["customer_mapping"] = customer_mapping
-        __props__.__dict__["default_aggregation"] = default_aggregation
-        __props__.__dict__["dimension_payload_keys"] = dimension_payload_keys
+        __props__.__dict__["created"] = created
+        __props__.__dict__["customer_mappings"] = customer_mappings
+        __props__.__dict__["default_aggregations"] = default_aggregations
         __props__.__dict__["display_name"] = display_name
         __props__.__dict__["event_name"] = event_name
         __props__.__dict__["event_time_window"] = event_time_window
+        __props__.__dict__["livemode"] = livemode
+        __props__.__dict__["object"] = object
         __props__.__dict__["status"] = status
+        __props__.__dict__["status_transitions"] = status_transitions
+        __props__.__dict__["updated"] = updated
         __props__.__dict__["value_settings"] = value_settings
         return BillingMeter(resource_name, opts=opts, __props__=__props__)
 
     @_builtins.property
-    @pulumi.getter(name="customerMapping")
-    def customer_mapping(self) -> pulumi.Output[Optional['outputs.BillingMeterCustomerMapping']]:
+    @pulumi.getter
+    def created(self) -> pulumi.Output[_builtins.float]:
         """
-        Fields that specify how to map a meter event to a customer.
+        Time at which the object was created. Measured in seconds since the Unix epoch.
         """
-        return pulumi.get(self, "customer_mapping")
+        return pulumi.get(self, "created")
 
     @_builtins.property
-    @pulumi.getter(name="defaultAggregation")
-    def default_aggregation(self) -> pulumi.Output['outputs.BillingMeterDefaultAggregation']:
-        """
-        The default settings to aggregate a meter's events with.
-        """
-        return pulumi.get(self, "default_aggregation")
+    @pulumi.getter(name="customerMappings")
+    def customer_mappings(self) -> pulumi.Output[Optional[Sequence['outputs.BillingMeterCustomerMapping']]]:
+        return pulumi.get(self, "customer_mappings")
 
     @_builtins.property
-    @pulumi.getter(name="dimensionPayloadKeys")
-    def dimension_payload_keys(self) -> pulumi.Output[Optional[Sequence[_builtins.str]]]:
-        """
-        Set of keys that will be used to group meter events by. Each key must be present in the event payload.
-        """
-        return pulumi.get(self, "dimension_payload_keys")
+    @pulumi.getter(name="defaultAggregations")
+    def default_aggregations(self) -> pulumi.Output[Optional[Sequence['outputs.BillingMeterDefaultAggregation']]]:
+        return pulumi.get(self, "default_aggregations")
 
     @_builtins.property
     @pulumi.getter(name="displayName")
     def display_name(self) -> pulumi.Output[_builtins.str]:
         """
-        The meter’s name. Not visible to the customer.
+        The meter's name.
         """
         return pulumi.get(self, "display_name")
 
@@ -453,6 +472,22 @@ class BillingMeter(pulumi.CustomResource):
 
     @_builtins.property
     @pulumi.getter
+    def livemode(self) -> pulumi.Output[_builtins.bool]:
+        """
+        If the object exists in live mode, the value is <span pulumi-lang-nodejs="`true`" pulumi-lang-dotnet="`True`" pulumi-lang-go="`true`" pulumi-lang-python="`true`" pulumi-lang-yaml="`true`" pulumi-lang-java="`true`" pulumi-lang-hcl="`true`">`true`</span>. If the object exists in test mode, the value is <span pulumi-lang-nodejs="`false`" pulumi-lang-dotnet="`False`" pulumi-lang-go="`false`" pulumi-lang-python="`false`" pulumi-lang-yaml="`false`" pulumi-lang-java="`false`" pulumi-lang-hcl="`false`">`false`</span>.
+        """
+        return pulumi.get(self, "livemode")
+
+    @_builtins.property
+    @pulumi.getter
+    def object(self) -> pulumi.Output[_builtins.str]:
+        """
+        String representing the object's type. Objects of the same type share the same value.
+        """
+        return pulumi.get(self, "object")
+
+    @_builtins.property
+    @pulumi.getter
     def status(self) -> pulumi.Output[_builtins.str]:
         """
         The meter's status.
@@ -460,10 +495,20 @@ class BillingMeter(pulumi.CustomResource):
         return pulumi.get(self, "status")
 
     @_builtins.property
+    @pulumi.getter(name="statusTransitions")
+    def status_transitions(self) -> pulumi.Output['outputs.BillingMeterStatusTransitions']:
+        return pulumi.get(self, "status_transitions")
+
+    @_builtins.property
+    @pulumi.getter
+    def updated(self) -> pulumi.Output[_builtins.float]:
+        """
+        Time at which the object was last updated. Measured in seconds since the Unix epoch.
+        """
+        return pulumi.get(self, "updated")
+
+    @_builtins.property
     @pulumi.getter(name="valueSettings")
-    def value_settings(self) -> pulumi.Output[Optional['outputs.BillingMeterValueSettings']]:
-        """
-        Fields that specify how to calculate a meter event's value.
-        """
+    def value_settings(self) -> pulumi.Output[Optional[Sequence['outputs.BillingMeterValueSetting']]]:
         return pulumi.get(self, "value_settings")
 

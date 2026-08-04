@@ -7,6 +7,7 @@ import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
 import com.pulumi.stripe.inputs.ShippingRateDeliveryEstimateMaximumArgs;
 import com.pulumi.stripe.inputs.ShippingRateDeliveryEstimateMinimumArgs;
+import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 import javax.annotation.Nullable;
@@ -20,37 +21,37 @@ public final class ShippingRateDeliveryEstimateArgs extends com.pulumi.resources
      * The upper bound of the estimated range. If empty, represents no upper bound i.e., infinite.
      * 
      */
-    @Import(name="maximum")
-    private @Nullable Output<ShippingRateDeliveryEstimateMaximumArgs> maximum;
+    @Import(name="maximums")
+    private @Nullable Output<List<ShippingRateDeliveryEstimateMaximumArgs>> maximums;
 
     /**
      * @return The upper bound of the estimated range. If empty, represents no upper bound i.e., infinite.
      * 
      */
-    public Optional<Output<ShippingRateDeliveryEstimateMaximumArgs>> maximum() {
-        return Optional.ofNullable(this.maximum);
+    public Optional<Output<List<ShippingRateDeliveryEstimateMaximumArgs>>> maximums() {
+        return Optional.ofNullable(this.maximums);
     }
 
     /**
      * The lower bound of the estimated range. If empty, represents no lower bound.
      * 
      */
-    @Import(name="minimum")
-    private @Nullable Output<ShippingRateDeliveryEstimateMinimumArgs> minimum;
+    @Import(name="minimums")
+    private @Nullable Output<List<ShippingRateDeliveryEstimateMinimumArgs>> minimums;
 
     /**
      * @return The lower bound of the estimated range. If empty, represents no lower bound.
      * 
      */
-    public Optional<Output<ShippingRateDeliveryEstimateMinimumArgs>> minimum() {
-        return Optional.ofNullable(this.minimum);
+    public Optional<Output<List<ShippingRateDeliveryEstimateMinimumArgs>>> minimums() {
+        return Optional.ofNullable(this.minimums);
     }
 
     private ShippingRateDeliveryEstimateArgs() {}
 
     private ShippingRateDeliveryEstimateArgs(ShippingRateDeliveryEstimateArgs $) {
-        this.maximum = $.maximum;
-        this.minimum = $.minimum;
+        this.maximums = $.maximums;
+        this.minimums = $.minimums;
     }
 
     public static Builder builder() {
@@ -72,45 +73,65 @@ public final class ShippingRateDeliveryEstimateArgs extends com.pulumi.resources
         }
 
         /**
-         * @param maximum The upper bound of the estimated range. If empty, represents no upper bound i.e., infinite.
+         * @param maximums The upper bound of the estimated range. If empty, represents no upper bound i.e., infinite.
          * 
          * @return builder
          * 
          */
-        public Builder maximum(@Nullable Output<ShippingRateDeliveryEstimateMaximumArgs> maximum) {
-            $.maximum = maximum;
+        public Builder maximums(@Nullable Output<List<ShippingRateDeliveryEstimateMaximumArgs>> maximums) {
+            $.maximums = maximums;
             return this;
         }
 
         /**
-         * @param maximum The upper bound of the estimated range. If empty, represents no upper bound i.e., infinite.
+         * @param maximums The upper bound of the estimated range. If empty, represents no upper bound i.e., infinite.
          * 
          * @return builder
          * 
          */
-        public Builder maximum(ShippingRateDeliveryEstimateMaximumArgs maximum) {
-            return maximum(Output.of(maximum));
+        public Builder maximums(List<ShippingRateDeliveryEstimateMaximumArgs> maximums) {
+            return maximums(Output.of(maximums));
         }
 
         /**
-         * @param minimum The lower bound of the estimated range. If empty, represents no lower bound.
+         * @param maximums The upper bound of the estimated range. If empty, represents no upper bound i.e., infinite.
          * 
          * @return builder
          * 
          */
-        public Builder minimum(@Nullable Output<ShippingRateDeliveryEstimateMinimumArgs> minimum) {
-            $.minimum = minimum;
+        public Builder maximums(ShippingRateDeliveryEstimateMaximumArgs... maximums) {
+            return maximums(List.of(maximums));
+        }
+
+        /**
+         * @param minimums The lower bound of the estimated range. If empty, represents no lower bound.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder minimums(@Nullable Output<List<ShippingRateDeliveryEstimateMinimumArgs>> minimums) {
+            $.minimums = minimums;
             return this;
         }
 
         /**
-         * @param minimum The lower bound of the estimated range. If empty, represents no lower bound.
+         * @param minimums The lower bound of the estimated range. If empty, represents no lower bound.
          * 
          * @return builder
          * 
          */
-        public Builder minimum(ShippingRateDeliveryEstimateMinimumArgs minimum) {
-            return minimum(Output.of(minimum));
+        public Builder minimums(List<ShippingRateDeliveryEstimateMinimumArgs> minimums) {
+            return minimums(Output.of(minimums));
+        }
+
+        /**
+         * @param minimums The lower bound of the estimated range. If empty, represents no lower bound.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder minimums(ShippingRateDeliveryEstimateMinimumArgs... minimums) {
+            return minimums(List.of(minimums));
         }
 
         public ShippingRateDeliveryEstimateArgs build() {

@@ -14,9 +14,12 @@ namespace Pulumi.Stripe.Outputs
     public sealed class CouponCurrencyOption
     {
         /// <summary>
-        /// A positive integer representing the amount to subtract from an invoice total.
+        /// Amount (in the &lt;span pulumi-lang-nodejs="`currency`" pulumi-lang-dotnet="`Currency`" pulumi-lang-go="`currency`" pulumi-lang-python="`currency`" pulumi-lang-yaml="`currency`" pulumi-lang-java="`currency`" pulumi-lang-hcl="`currency`"&gt;`currency`&lt;/span&gt; specified) that will be taken off the subtotal of any invoices for this customer.
         /// </summary>
         public readonly double AmountOff;
+        /// <summary>
+        /// Key for this entry.
+        /// </summary>
         public readonly string Key;
 
         [OutputConstructor]

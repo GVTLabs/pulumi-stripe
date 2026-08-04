@@ -8,7 +8,7 @@ import com.pulumi.core.annotations.Import;
 import com.pulumi.exceptions.MissingRequiredPropertyException;
 import com.pulumi.stripe.inputs.BillingMeterCustomerMappingArgs;
 import com.pulumi.stripe.inputs.BillingMeterDefaultAggregationArgs;
-import com.pulumi.stripe.inputs.BillingMeterValueSettingsArgs;
+import com.pulumi.stripe.inputs.BillingMeterValueSettingArgs;
 import java.lang.String;
 import java.util.List;
 import java.util.Objects;
@@ -20,60 +20,29 @@ public final class BillingMeterArgs extends com.pulumi.resources.ResourceArgs {
 
     public static final BillingMeterArgs Empty = new BillingMeterArgs();
 
-    /**
-     * Fields that specify how to map a meter event to a customer.
-     * 
-     */
-    @Import(name="customerMapping")
-    private @Nullable Output<BillingMeterCustomerMappingArgs> customerMapping;
+    @Import(name="customerMappings")
+    private @Nullable Output<List<BillingMeterCustomerMappingArgs>> customerMappings;
 
-    /**
-     * @return Fields that specify how to map a meter event to a customer.
-     * 
-     */
-    public Optional<Output<BillingMeterCustomerMappingArgs>> customerMapping() {
-        return Optional.ofNullable(this.customerMapping);
+    public Optional<Output<List<BillingMeterCustomerMappingArgs>>> customerMappings() {
+        return Optional.ofNullable(this.customerMappings);
+    }
+
+    @Import(name="defaultAggregations")
+    private @Nullable Output<List<BillingMeterDefaultAggregationArgs>> defaultAggregations;
+
+    public Optional<Output<List<BillingMeterDefaultAggregationArgs>>> defaultAggregations() {
+        return Optional.ofNullable(this.defaultAggregations);
     }
 
     /**
-     * The default settings to aggregate a meter&#39;s events with.
-     * 
-     */
-    @Import(name="defaultAggregation", required=true)
-    private Output<BillingMeterDefaultAggregationArgs> defaultAggregation;
-
-    /**
-     * @return The default settings to aggregate a meter&#39;s events with.
-     * 
-     */
-    public Output<BillingMeterDefaultAggregationArgs> defaultAggregation() {
-        return this.defaultAggregation;
-    }
-
-    /**
-     * Set of keys that will be used to group meter events by. Each key must be present in the event payload.
-     * 
-     */
-    @Import(name="dimensionPayloadKeys")
-    private @Nullable Output<List<String>> dimensionPayloadKeys;
-
-    /**
-     * @return Set of keys that will be used to group meter events by. Each key must be present in the event payload.
-     * 
-     */
-    public Optional<Output<List<String>>> dimensionPayloadKeys() {
-        return Optional.ofNullable(this.dimensionPayloadKeys);
-    }
-
-    /**
-     * The meter’s name. Not visible to the customer.
+     * The meter&#39;s name.
      * 
      */
     @Import(name="displayName", required=true)
     private Output<String> displayName;
 
     /**
-     * @return The meter’s name. Not visible to the customer.
+     * @return The meter&#39;s name.
      * 
      */
     public Output<String> displayName() {
@@ -110,27 +79,18 @@ public final class BillingMeterArgs extends com.pulumi.resources.ResourceArgs {
         return Optional.ofNullable(this.eventTimeWindow);
     }
 
-    /**
-     * Fields that specify how to calculate a meter event&#39;s value.
-     * 
-     */
     @Import(name="valueSettings")
-    private @Nullable Output<BillingMeterValueSettingsArgs> valueSettings;
+    private @Nullable Output<List<BillingMeterValueSettingArgs>> valueSettings;
 
-    /**
-     * @return Fields that specify how to calculate a meter event&#39;s value.
-     * 
-     */
-    public Optional<Output<BillingMeterValueSettingsArgs>> valueSettings() {
+    public Optional<Output<List<BillingMeterValueSettingArgs>>> valueSettings() {
         return Optional.ofNullable(this.valueSettings);
     }
 
     private BillingMeterArgs() {}
 
     private BillingMeterArgs(BillingMeterArgs $) {
-        this.customerMapping = $.customerMapping;
-        this.defaultAggregation = $.defaultAggregation;
-        this.dimensionPayloadKeys = $.dimensionPayloadKeys;
+        this.customerMappings = $.customerMappings;
+        this.defaultAggregations = $.defaultAggregations;
         this.displayName = $.displayName;
         this.eventName = $.eventName;
         this.eventTimeWindow = $.eventTimeWindow;
@@ -155,81 +115,34 @@ public final class BillingMeterArgs extends com.pulumi.resources.ResourceArgs {
             $ = new BillingMeterArgs(Objects.requireNonNull(defaults));
         }
 
-        /**
-         * @param customerMapping Fields that specify how to map a meter event to a customer.
-         * 
-         * @return builder
-         * 
-         */
-        public Builder customerMapping(@Nullable Output<BillingMeterCustomerMappingArgs> customerMapping) {
-            $.customerMapping = customerMapping;
+        public Builder customerMappings(@Nullable Output<List<BillingMeterCustomerMappingArgs>> customerMappings) {
+            $.customerMappings = customerMappings;
             return this;
         }
 
-        /**
-         * @param customerMapping Fields that specify how to map a meter event to a customer.
-         * 
-         * @return builder
-         * 
-         */
-        public Builder customerMapping(BillingMeterCustomerMappingArgs customerMapping) {
-            return customerMapping(Output.of(customerMapping));
+        public Builder customerMappings(List<BillingMeterCustomerMappingArgs> customerMappings) {
+            return customerMappings(Output.of(customerMappings));
         }
 
-        /**
-         * @param defaultAggregation The default settings to aggregate a meter&#39;s events with.
-         * 
-         * @return builder
-         * 
-         */
-        public Builder defaultAggregation(Output<BillingMeterDefaultAggregationArgs> defaultAggregation) {
-            $.defaultAggregation = defaultAggregation;
+        public Builder customerMappings(BillingMeterCustomerMappingArgs... customerMappings) {
+            return customerMappings(List.of(customerMappings));
+        }
+
+        public Builder defaultAggregations(@Nullable Output<List<BillingMeterDefaultAggregationArgs>> defaultAggregations) {
+            $.defaultAggregations = defaultAggregations;
             return this;
         }
 
-        /**
-         * @param defaultAggregation The default settings to aggregate a meter&#39;s events with.
-         * 
-         * @return builder
-         * 
-         */
-        public Builder defaultAggregation(BillingMeterDefaultAggregationArgs defaultAggregation) {
-            return defaultAggregation(Output.of(defaultAggregation));
+        public Builder defaultAggregations(List<BillingMeterDefaultAggregationArgs> defaultAggregations) {
+            return defaultAggregations(Output.of(defaultAggregations));
+        }
+
+        public Builder defaultAggregations(BillingMeterDefaultAggregationArgs... defaultAggregations) {
+            return defaultAggregations(List.of(defaultAggregations));
         }
 
         /**
-         * @param dimensionPayloadKeys Set of keys that will be used to group meter events by. Each key must be present in the event payload.
-         * 
-         * @return builder
-         * 
-         */
-        public Builder dimensionPayloadKeys(@Nullable Output<List<String>> dimensionPayloadKeys) {
-            $.dimensionPayloadKeys = dimensionPayloadKeys;
-            return this;
-        }
-
-        /**
-         * @param dimensionPayloadKeys Set of keys that will be used to group meter events by. Each key must be present in the event payload.
-         * 
-         * @return builder
-         * 
-         */
-        public Builder dimensionPayloadKeys(List<String> dimensionPayloadKeys) {
-            return dimensionPayloadKeys(Output.of(dimensionPayloadKeys));
-        }
-
-        /**
-         * @param dimensionPayloadKeys Set of keys that will be used to group meter events by. Each key must be present in the event payload.
-         * 
-         * @return builder
-         * 
-         */
-        public Builder dimensionPayloadKeys(String... dimensionPayloadKeys) {
-            return dimensionPayloadKeys(List.of(dimensionPayloadKeys));
-        }
-
-        /**
-         * @param displayName The meter’s name. Not visible to the customer.
+         * @param displayName The meter&#39;s name.
          * 
          * @return builder
          * 
@@ -240,7 +153,7 @@ public final class BillingMeterArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param displayName The meter’s name. Not visible to the customer.
+         * @param displayName The meter&#39;s name.
          * 
          * @return builder
          * 
@@ -291,31 +204,20 @@ public final class BillingMeterArgs extends com.pulumi.resources.ResourceArgs {
             return eventTimeWindow(Output.of(eventTimeWindow));
         }
 
-        /**
-         * @param valueSettings Fields that specify how to calculate a meter event&#39;s value.
-         * 
-         * @return builder
-         * 
-         */
-        public Builder valueSettings(@Nullable Output<BillingMeterValueSettingsArgs> valueSettings) {
+        public Builder valueSettings(@Nullable Output<List<BillingMeterValueSettingArgs>> valueSettings) {
             $.valueSettings = valueSettings;
             return this;
         }
 
-        /**
-         * @param valueSettings Fields that specify how to calculate a meter event&#39;s value.
-         * 
-         * @return builder
-         * 
-         */
-        public Builder valueSettings(BillingMeterValueSettingsArgs valueSettings) {
+        public Builder valueSettings(List<BillingMeterValueSettingArgs> valueSettings) {
             return valueSettings(Output.of(valueSettings));
         }
 
+        public Builder valueSettings(BillingMeterValueSettingArgs... valueSettings) {
+            return valueSettings(List.of(valueSettings));
+        }
+
         public BillingMeterArgs build() {
-            if ($.defaultAggregation == null) {
-                throw new MissingRequiredPropertyException("BillingMeterArgs", "defaultAggregation");
-            }
             if ($.displayName == null) {
                 throw new MissingRequiredPropertyException("BillingMeterArgs", "displayName");
             }

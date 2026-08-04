@@ -15,22 +15,26 @@ import (
 type BillingMeter struct {
 	pulumi.CustomResourceState
 
-	// Fields that specify how to map a meter event to a customer.
-	CustomerMapping BillingMeterCustomerMappingPtrOutput `pulumi:"customerMapping"`
-	// The default settings to aggregate a meter's events with.
-	DefaultAggregation BillingMeterDefaultAggregationOutput `pulumi:"defaultAggregation"`
-	// Set of keys that will be used to group meter events by. Each key must be present in the event payload.
-	DimensionPayloadKeys pulumi.StringArrayOutput `pulumi:"dimensionPayloadKeys"`
-	// The meter’s name. Not visible to the customer.
+	// Time at which the object was created. Measured in seconds since the Unix epoch.
+	Created             pulumi.Float64Output                      `pulumi:"created"`
+	CustomerMappings    BillingMeterCustomerMappingArrayOutput    `pulumi:"customerMappings"`
+	DefaultAggregations BillingMeterDefaultAggregationArrayOutput `pulumi:"defaultAggregations"`
+	// The meter's name.
 	DisplayName pulumi.StringOutput `pulumi:"displayName"`
 	// The name of the meter event to record usage for. Corresponds with the <span pulumi-lang-nodejs="`eventName`" pulumi-lang-dotnet="`EventName`" pulumi-lang-go="`eventName`" pulumi-lang-python="`event_name`" pulumi-lang-yaml="`eventName`" pulumi-lang-java="`eventName`" pulumi-lang-hcl="`event_name`">`eventName`</span> field on meter events.
 	EventName pulumi.StringOutput `pulumi:"eventName"`
 	// The time window which meter events have been pre-aggregated for, if any.
 	EventTimeWindow pulumi.StringOutput `pulumi:"eventTimeWindow"`
+	// If the object exists in live mode, the value is <span pulumi-lang-nodejs="`true`" pulumi-lang-dotnet="`True`" pulumi-lang-go="`true`" pulumi-lang-python="`true`" pulumi-lang-yaml="`true`" pulumi-lang-java="`true`" pulumi-lang-hcl="`true`">`true`</span>. If the object exists in test mode, the value is <span pulumi-lang-nodejs="`false`" pulumi-lang-dotnet="`False`" pulumi-lang-go="`false`" pulumi-lang-python="`false`" pulumi-lang-yaml="`false`" pulumi-lang-java="`false`" pulumi-lang-hcl="`false`">`false`</span>.
+	Livemode pulumi.BoolOutput `pulumi:"livemode"`
+	// String representing the object's type. Objects of the same type share the same value.
+	Object pulumi.StringOutput `pulumi:"object"`
 	// The meter's status.
-	Status pulumi.StringOutput `pulumi:"status"`
-	// Fields that specify how to calculate a meter event's value.
-	ValueSettings BillingMeterValueSettingsPtrOutput `pulumi:"valueSettings"`
+	Status            pulumi.StringOutput                 `pulumi:"status"`
+	StatusTransitions BillingMeterStatusTransitionsOutput `pulumi:"statusTransitions"`
+	// Time at which the object was last updated. Measured in seconds since the Unix epoch.
+	Updated       pulumi.Float64Output                `pulumi:"updated"`
+	ValueSettings BillingMeterValueSettingArrayOutput `pulumi:"valueSettings"`
 }
 
 // NewBillingMeter registers a new resource with the given unique name, arguments, and options.
@@ -40,9 +44,6 @@ func NewBillingMeter(ctx *pulumi.Context,
 		return nil, errors.New("missing one or more required arguments")
 	}
 
-	if args.DefaultAggregation == nil {
-		return nil, errors.New("invalid value for required argument 'DefaultAggregation'")
-	}
 	if args.DisplayName == nil {
 		return nil, errors.New("invalid value for required argument 'DisplayName'")
 	}
@@ -80,41 +81,49 @@ func GetBillingMeter(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering BillingMeter resources.
 type billingMeterState struct {
-	// Fields that specify how to map a meter event to a customer.
-	CustomerMapping *BillingMeterCustomerMapping `pulumi:"customerMapping"`
-	// The default settings to aggregate a meter's events with.
-	DefaultAggregation *BillingMeterDefaultAggregation `pulumi:"defaultAggregation"`
-	// Set of keys that will be used to group meter events by. Each key must be present in the event payload.
-	DimensionPayloadKeys []string `pulumi:"dimensionPayloadKeys"`
-	// The meter’s name. Not visible to the customer.
+	// Time at which the object was created. Measured in seconds since the Unix epoch.
+	Created             *float64                         `pulumi:"created"`
+	CustomerMappings    []BillingMeterCustomerMapping    `pulumi:"customerMappings"`
+	DefaultAggregations []BillingMeterDefaultAggregation `pulumi:"defaultAggregations"`
+	// The meter's name.
 	DisplayName *string `pulumi:"displayName"`
 	// The name of the meter event to record usage for. Corresponds with the <span pulumi-lang-nodejs="`eventName`" pulumi-lang-dotnet="`EventName`" pulumi-lang-go="`eventName`" pulumi-lang-python="`event_name`" pulumi-lang-yaml="`eventName`" pulumi-lang-java="`eventName`" pulumi-lang-hcl="`event_name`">`eventName`</span> field on meter events.
 	EventName *string `pulumi:"eventName"`
 	// The time window which meter events have been pre-aggregated for, if any.
 	EventTimeWindow *string `pulumi:"eventTimeWindow"`
+	// If the object exists in live mode, the value is <span pulumi-lang-nodejs="`true`" pulumi-lang-dotnet="`True`" pulumi-lang-go="`true`" pulumi-lang-python="`true`" pulumi-lang-yaml="`true`" pulumi-lang-java="`true`" pulumi-lang-hcl="`true`">`true`</span>. If the object exists in test mode, the value is <span pulumi-lang-nodejs="`false`" pulumi-lang-dotnet="`False`" pulumi-lang-go="`false`" pulumi-lang-python="`false`" pulumi-lang-yaml="`false`" pulumi-lang-java="`false`" pulumi-lang-hcl="`false`">`false`</span>.
+	Livemode *bool `pulumi:"livemode"`
+	// String representing the object's type. Objects of the same type share the same value.
+	Object *string `pulumi:"object"`
 	// The meter's status.
-	Status *string `pulumi:"status"`
-	// Fields that specify how to calculate a meter event's value.
-	ValueSettings *BillingMeterValueSettings `pulumi:"valueSettings"`
+	Status            *string                        `pulumi:"status"`
+	StatusTransitions *BillingMeterStatusTransitions `pulumi:"statusTransitions"`
+	// Time at which the object was last updated. Measured in seconds since the Unix epoch.
+	Updated       *float64                   `pulumi:"updated"`
+	ValueSettings []BillingMeterValueSetting `pulumi:"valueSettings"`
 }
 
 type BillingMeterState struct {
-	// Fields that specify how to map a meter event to a customer.
-	CustomerMapping BillingMeterCustomerMappingPtrInput
-	// The default settings to aggregate a meter's events with.
-	DefaultAggregation BillingMeterDefaultAggregationPtrInput
-	// Set of keys that will be used to group meter events by. Each key must be present in the event payload.
-	DimensionPayloadKeys pulumi.StringArrayInput
-	// The meter’s name. Not visible to the customer.
+	// Time at which the object was created. Measured in seconds since the Unix epoch.
+	Created             pulumi.Float64PtrInput
+	CustomerMappings    BillingMeterCustomerMappingArrayInput
+	DefaultAggregations BillingMeterDefaultAggregationArrayInput
+	// The meter's name.
 	DisplayName pulumi.StringPtrInput
 	// The name of the meter event to record usage for. Corresponds with the <span pulumi-lang-nodejs="`eventName`" pulumi-lang-dotnet="`EventName`" pulumi-lang-go="`eventName`" pulumi-lang-python="`event_name`" pulumi-lang-yaml="`eventName`" pulumi-lang-java="`eventName`" pulumi-lang-hcl="`event_name`">`eventName`</span> field on meter events.
 	EventName pulumi.StringPtrInput
 	// The time window which meter events have been pre-aggregated for, if any.
 	EventTimeWindow pulumi.StringPtrInput
+	// If the object exists in live mode, the value is <span pulumi-lang-nodejs="`true`" pulumi-lang-dotnet="`True`" pulumi-lang-go="`true`" pulumi-lang-python="`true`" pulumi-lang-yaml="`true`" pulumi-lang-java="`true`" pulumi-lang-hcl="`true`">`true`</span>. If the object exists in test mode, the value is <span pulumi-lang-nodejs="`false`" pulumi-lang-dotnet="`False`" pulumi-lang-go="`false`" pulumi-lang-python="`false`" pulumi-lang-yaml="`false`" pulumi-lang-java="`false`" pulumi-lang-hcl="`false`">`false`</span>.
+	Livemode pulumi.BoolPtrInput
+	// String representing the object's type. Objects of the same type share the same value.
+	Object pulumi.StringPtrInput
 	// The meter's status.
-	Status pulumi.StringPtrInput
-	// Fields that specify how to calculate a meter event's value.
-	ValueSettings BillingMeterValueSettingsPtrInput
+	Status            pulumi.StringPtrInput
+	StatusTransitions BillingMeterStatusTransitionsPtrInput
+	// Time at which the object was last updated. Measured in seconds since the Unix epoch.
+	Updated       pulumi.Float64PtrInput
+	ValueSettings BillingMeterValueSettingArrayInput
 }
 
 func (BillingMeterState) ElementType() reflect.Type {
@@ -122,38 +131,28 @@ func (BillingMeterState) ElementType() reflect.Type {
 }
 
 type billingMeterArgs struct {
-	// Fields that specify how to map a meter event to a customer.
-	CustomerMapping *BillingMeterCustomerMapping `pulumi:"customerMapping"`
-	// The default settings to aggregate a meter's events with.
-	DefaultAggregation BillingMeterDefaultAggregation `pulumi:"defaultAggregation"`
-	// Set of keys that will be used to group meter events by. Each key must be present in the event payload.
-	DimensionPayloadKeys []string `pulumi:"dimensionPayloadKeys"`
-	// The meter’s name. Not visible to the customer.
+	CustomerMappings    []BillingMeterCustomerMapping    `pulumi:"customerMappings"`
+	DefaultAggregations []BillingMeterDefaultAggregation `pulumi:"defaultAggregations"`
+	// The meter's name.
 	DisplayName string `pulumi:"displayName"`
 	// The name of the meter event to record usage for. Corresponds with the <span pulumi-lang-nodejs="`eventName`" pulumi-lang-dotnet="`EventName`" pulumi-lang-go="`eventName`" pulumi-lang-python="`event_name`" pulumi-lang-yaml="`eventName`" pulumi-lang-java="`eventName`" pulumi-lang-hcl="`event_name`">`eventName`</span> field on meter events.
 	EventName string `pulumi:"eventName"`
 	// The time window which meter events have been pre-aggregated for, if any.
-	EventTimeWindow *string `pulumi:"eventTimeWindow"`
-	// Fields that specify how to calculate a meter event's value.
-	ValueSettings *BillingMeterValueSettings `pulumi:"valueSettings"`
+	EventTimeWindow *string                    `pulumi:"eventTimeWindow"`
+	ValueSettings   []BillingMeterValueSetting `pulumi:"valueSettings"`
 }
 
 // The set of arguments for constructing a BillingMeter resource.
 type BillingMeterArgs struct {
-	// Fields that specify how to map a meter event to a customer.
-	CustomerMapping BillingMeterCustomerMappingPtrInput
-	// The default settings to aggregate a meter's events with.
-	DefaultAggregation BillingMeterDefaultAggregationInput
-	// Set of keys that will be used to group meter events by. Each key must be present in the event payload.
-	DimensionPayloadKeys pulumi.StringArrayInput
-	// The meter’s name. Not visible to the customer.
+	CustomerMappings    BillingMeterCustomerMappingArrayInput
+	DefaultAggregations BillingMeterDefaultAggregationArrayInput
+	// The meter's name.
 	DisplayName pulumi.StringInput
 	// The name of the meter event to record usage for. Corresponds with the <span pulumi-lang-nodejs="`eventName`" pulumi-lang-dotnet="`EventName`" pulumi-lang-go="`eventName`" pulumi-lang-python="`event_name`" pulumi-lang-yaml="`eventName`" pulumi-lang-java="`eventName`" pulumi-lang-hcl="`event_name`">`eventName`</span> field on meter events.
 	EventName pulumi.StringInput
 	// The time window which meter events have been pre-aggregated for, if any.
 	EventTimeWindow pulumi.StringPtrInput
-	// Fields that specify how to calculate a meter event's value.
-	ValueSettings BillingMeterValueSettingsPtrInput
+	ValueSettings   BillingMeterValueSettingArrayInput
 }
 
 func (BillingMeterArgs) ElementType() reflect.Type {
@@ -193,22 +192,20 @@ func (o BillingMeterOutput) ToBillingMeterOutputWithContext(ctx context.Context)
 	return o
 }
 
-// Fields that specify how to map a meter event to a customer.
-func (o BillingMeterOutput) CustomerMapping() BillingMeterCustomerMappingPtrOutput {
-	return o.ApplyT(func(v *BillingMeter) BillingMeterCustomerMappingPtrOutput { return v.CustomerMapping }).(BillingMeterCustomerMappingPtrOutput)
+// Time at which the object was created. Measured in seconds since the Unix epoch.
+func (o BillingMeterOutput) Created() pulumi.Float64Output {
+	return o.ApplyT(func(v *BillingMeter) pulumi.Float64Output { return v.Created }).(pulumi.Float64Output)
 }
 
-// The default settings to aggregate a meter's events with.
-func (o BillingMeterOutput) DefaultAggregation() BillingMeterDefaultAggregationOutput {
-	return o.ApplyT(func(v *BillingMeter) BillingMeterDefaultAggregationOutput { return v.DefaultAggregation }).(BillingMeterDefaultAggregationOutput)
+func (o BillingMeterOutput) CustomerMappings() BillingMeterCustomerMappingArrayOutput {
+	return o.ApplyT(func(v *BillingMeter) BillingMeterCustomerMappingArrayOutput { return v.CustomerMappings }).(BillingMeterCustomerMappingArrayOutput)
 }
 
-// Set of keys that will be used to group meter events by. Each key must be present in the event payload.
-func (o BillingMeterOutput) DimensionPayloadKeys() pulumi.StringArrayOutput {
-	return o.ApplyT(func(v *BillingMeter) pulumi.StringArrayOutput { return v.DimensionPayloadKeys }).(pulumi.StringArrayOutput)
+func (o BillingMeterOutput) DefaultAggregations() BillingMeterDefaultAggregationArrayOutput {
+	return o.ApplyT(func(v *BillingMeter) BillingMeterDefaultAggregationArrayOutput { return v.DefaultAggregations }).(BillingMeterDefaultAggregationArrayOutput)
 }
 
-// The meter’s name. Not visible to the customer.
+// The meter's name.
 func (o BillingMeterOutput) DisplayName() pulumi.StringOutput {
 	return o.ApplyT(func(v *BillingMeter) pulumi.StringOutput { return v.DisplayName }).(pulumi.StringOutput)
 }
@@ -223,14 +220,32 @@ func (o BillingMeterOutput) EventTimeWindow() pulumi.StringOutput {
 	return o.ApplyT(func(v *BillingMeter) pulumi.StringOutput { return v.EventTimeWindow }).(pulumi.StringOutput)
 }
 
+// If the object exists in live mode, the value is <span pulumi-lang-nodejs="`true`" pulumi-lang-dotnet="`True`" pulumi-lang-go="`true`" pulumi-lang-python="`true`" pulumi-lang-yaml="`true`" pulumi-lang-java="`true`" pulumi-lang-hcl="`true`">`true`</span>. If the object exists in test mode, the value is <span pulumi-lang-nodejs="`false`" pulumi-lang-dotnet="`False`" pulumi-lang-go="`false`" pulumi-lang-python="`false`" pulumi-lang-yaml="`false`" pulumi-lang-java="`false`" pulumi-lang-hcl="`false`">`false`</span>.
+func (o BillingMeterOutput) Livemode() pulumi.BoolOutput {
+	return o.ApplyT(func(v *BillingMeter) pulumi.BoolOutput { return v.Livemode }).(pulumi.BoolOutput)
+}
+
+// String representing the object's type. Objects of the same type share the same value.
+func (o BillingMeterOutput) Object() pulumi.StringOutput {
+	return o.ApplyT(func(v *BillingMeter) pulumi.StringOutput { return v.Object }).(pulumi.StringOutput)
+}
+
 // The meter's status.
 func (o BillingMeterOutput) Status() pulumi.StringOutput {
 	return o.ApplyT(func(v *BillingMeter) pulumi.StringOutput { return v.Status }).(pulumi.StringOutput)
 }
 
-// Fields that specify how to calculate a meter event's value.
-func (o BillingMeterOutput) ValueSettings() BillingMeterValueSettingsPtrOutput {
-	return o.ApplyT(func(v *BillingMeter) BillingMeterValueSettingsPtrOutput { return v.ValueSettings }).(BillingMeterValueSettingsPtrOutput)
+func (o BillingMeterOutput) StatusTransitions() BillingMeterStatusTransitionsOutput {
+	return o.ApplyT(func(v *BillingMeter) BillingMeterStatusTransitionsOutput { return v.StatusTransitions }).(BillingMeterStatusTransitionsOutput)
+}
+
+// Time at which the object was last updated. Measured in seconds since the Unix epoch.
+func (o BillingMeterOutput) Updated() pulumi.Float64Output {
+	return o.ApplyT(func(v *BillingMeter) pulumi.Float64Output { return v.Updated }).(pulumi.Float64Output)
+}
+
+func (o BillingMeterOutput) ValueSettings() BillingMeterValueSettingArrayOutput {
+	return o.ApplyT(func(v *BillingMeter) BillingMeterValueSettingArrayOutput { return v.ValueSettings }).(BillingMeterValueSettingArrayOutput)
 }
 
 func init() {

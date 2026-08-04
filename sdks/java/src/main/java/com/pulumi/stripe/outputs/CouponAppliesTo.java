@@ -12,14 +12,14 @@ import javax.annotation.Nullable;
 @CustomType
 public final class CouponAppliesTo {
     /**
-     * @return An array of Product IDs that this Coupon will apply to.
+     * @return A list of product IDs this coupon applies to
      * 
      */
     private @Nullable List<String> products;
 
     private CouponAppliesTo() {}
     /**
-     * @return An array of Product IDs that this Coupon will apply to.
+     * @return A list of product IDs this coupon applies to
      * 
      */
     public List<String> products() {

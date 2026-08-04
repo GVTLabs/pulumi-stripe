@@ -19,7 +19,7 @@ namespace Pulumi.Stripe.Inputs
         public Input<string>? City { get; set; }
 
         /// <summary>
-        /// A freeform text field for the country. However, in order to activate some tax features, the format should be a two-letter country code ([ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2)).
+        /// Two-letter country code ([ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2)).
         /// </summary>
         [Input("country")]
         public Input<string>? Country { get; set; }
@@ -43,7 +43,7 @@ namespace Pulumi.Stripe.Inputs
         public Input<string>? PostalCode { get; set; }
 
         /// <summary>
-        /// State, county, province, or region.
+        /// State, county, province, or region ([ISO 3166-2](https://en.wikipedia.org/wiki/ISO_3166-2)).
         /// </summary>
         [Input("state")]
         public Input<string>? State { get; set; }

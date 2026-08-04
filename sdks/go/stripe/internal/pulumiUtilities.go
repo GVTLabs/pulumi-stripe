@@ -167,8 +167,8 @@ func callPlainInner(
 // The reference is cached per pulumi.Context so that concurrent inline
 // programs each register with their own engine and receive distinct refs.
 func PkgGetPackageRef(ctx *pulumi.Context) (string, error) {
-	return ctx.GetOrRegisterPackageRef("stripe:0.2.3", func() (*pulumirpc.RegisterPackageRequest, error) {
-		parameter, err := base64.StdEncoding.DecodeString("eyJyZW1vdGUiOnsidXJsIjoicmVnaXN0cnkub3BlbnRvZnUub3JnL3N0cmlwZS9zdHJpcGUiLCJ2ZXJzaW9uIjoiMC4yLjMifX0=")
+	return ctx.GetOrRegisterPackageRef("stripe:0.3.0-beta.3", func() (*pulumirpc.RegisterPackageRequest, error) {
+		parameter, err := base64.StdEncoding.DecodeString("eyJyZW1vdGUiOnsidXJsIjoicmVnaXN0cnkub3BlbnRvZnUub3JnL3N0cmlwZS9zdHJpcGUiLCJ2ZXJzaW9uIjoiMC4zLjAtYmV0YS4zIn19")
 		if err != nil {
 			return nil, err
 		}
@@ -179,7 +179,7 @@ func PkgGetPackageRef(ctx *pulumi.Context) (string, error) {
 			DownloadUrl: "",
 			Parameterization: &pulumirpc.Parameterization{
 				Name:    "stripe",
-				Version: "0.2.3",
+				Version: "0.3.0-beta.3",
 				Value:   parameter,
 			},
 		}, nil
@@ -190,7 +190,7 @@ func PkgGetPackageRef(ctx *pulumi.Context) (string, error) {
 func PkgResourceDefaultOpts(opts []pulumi.ResourceOption) []pulumi.ResourceOption {
 	defaults := []pulumi.ResourceOption{}
 
-	version := semver.MustParse("0.2.3")
+	version := semver.MustParse("0.3.0-beta.3")
 	if !version.Equals(semver.Version{}) {
 		defaults = append(defaults, pulumi.Version(version.String()))
 	}
@@ -201,7 +201,7 @@ func PkgResourceDefaultOpts(opts []pulumi.ResourceOption) []pulumi.ResourceOptio
 func PkgInvokeDefaultOpts(opts []pulumi.InvokeOption) []pulumi.InvokeOption {
 	defaults := []pulumi.InvokeOption{}
 
-	version := semver.MustParse("0.2.3")
+	version := semver.MustParse("0.3.0-beta.3")
 	if !version.Equals(semver.Version{}) {
 		defaults = append(defaults, pulumi.Version(version.String()))
 	}

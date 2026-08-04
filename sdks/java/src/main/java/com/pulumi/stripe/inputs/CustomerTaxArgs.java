@@ -5,7 +5,9 @@ package com.pulumi.stripe.inputs;
 
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
+import com.pulumi.stripe.inputs.CustomerTaxLocationArgs;
 import java.lang.String;
+import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 import javax.annotation.Nullable;
@@ -30,11 +32,34 @@ public final class CustomerTaxArgs extends com.pulumi.resources.ResourceArgs {
         return Optional.ofNullable(this.automaticTax);
     }
 
+    /**
+     * A recent IP address of the customer used for tax reporting and tax location inference.
+     * 
+     */
     @Import(name="ipAddress")
     private @Nullable Output<String> ipAddress;
 
+    /**
+     * @return A recent IP address of the customer used for tax reporting and tax location inference.
+     * 
+     */
     public Optional<Output<String>> ipAddress() {
         return Optional.ofNullable(this.ipAddress);
+    }
+
+    /**
+     * The identified tax location of the customer.
+     * 
+     */
+    @Import(name="locations")
+    private @Nullable Output<List<CustomerTaxLocationArgs>> locations;
+
+    /**
+     * @return The identified tax location of the customer.
+     * 
+     */
+    public Optional<Output<List<CustomerTaxLocationArgs>>> locations() {
+        return Optional.ofNullable(this.locations);
     }
 
     /**
@@ -72,6 +97,7 @@ public final class CustomerTaxArgs extends com.pulumi.resources.ResourceArgs {
     private CustomerTaxArgs(CustomerTaxArgs $) {
         this.automaticTax = $.automaticTax;
         this.ipAddress = $.ipAddress;
+        this.locations = $.locations;
         this.provider = $.provider;
         this.validateLocation = $.validateLocation;
     }
@@ -115,13 +141,56 @@ public final class CustomerTaxArgs extends com.pulumi.resources.ResourceArgs {
             return automaticTax(Output.of(automaticTax));
         }
 
+        /**
+         * @param ipAddress A recent IP address of the customer used for tax reporting and tax location inference.
+         * 
+         * @return builder
+         * 
+         */
         public Builder ipAddress(@Nullable Output<String> ipAddress) {
             $.ipAddress = ipAddress;
             return this;
         }
 
+        /**
+         * @param ipAddress A recent IP address of the customer used for tax reporting and tax location inference.
+         * 
+         * @return builder
+         * 
+         */
         public Builder ipAddress(String ipAddress) {
             return ipAddress(Output.of(ipAddress));
+        }
+
+        /**
+         * @param locations The identified tax location of the customer.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder locations(@Nullable Output<List<CustomerTaxLocationArgs>> locations) {
+            $.locations = locations;
+            return this;
+        }
+
+        /**
+         * @param locations The identified tax location of the customer.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder locations(List<CustomerTaxLocationArgs> locations) {
+            return locations(Output.of(locations));
+        }
+
+        /**
+         * @param locations The identified tax location of the customer.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder locations(CustomerTaxLocationArgs... locations) {
+            return locations(List.of(locations));
         }
 
         /**

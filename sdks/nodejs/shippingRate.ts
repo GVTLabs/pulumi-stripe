@@ -37,29 +37,38 @@ export class ShippingRate extends pulumi.CustomResource {
     /**
      * Whether the shipping rate can be used for new purchases. Defaults to <span pulumi-lang-nodejs="`true`" pulumi-lang-dotnet="`True`" pulumi-lang-go="`true`" pulumi-lang-python="`true`" pulumi-lang-yaml="`true`" pulumi-lang-java="`true`" pulumi-lang-hcl="`true`">`true`</span>.
      */
-    declare public /*out*/ readonly active: pulumi.Output<boolean>;
+    declare public readonly active: pulumi.Output<boolean>;
+    /**
+     * Time at which the object was created. Measured in seconds since the Unix epoch.
+     */
+    declare public /*out*/ readonly created: pulumi.Output<number>;
     /**
      * The estimated range for how long shipping will take, meant to be displayable to the customer. This will appear on CheckoutSessions.
      */
-    declare public readonly deliveryEstimate: pulumi.Output<outputs.ShippingRateDeliveryEstimate | undefined>;
+    declare public readonly deliveryEstimates: pulumi.Output<outputs.ShippingRateDeliveryEstimate[] | undefined>;
     /**
      * The name of the shipping rate, meant to be displayable to the customer. This will appear on CheckoutSessions.
      */
     declare public readonly displayName: pulumi.Output<string>;
+    declare public readonly fixedAmounts: pulumi.Output<outputs.ShippingRateFixedAmount[] | undefined>;
     /**
-     * Describes a fixed amount to charge for shipping. Must be present if type is <span pulumi-lang-nodejs="`fixedAmount`" pulumi-lang-dotnet="`FixedAmount`" pulumi-lang-go="`fixedAmount`" pulumi-lang-python="`fixed_amount`" pulumi-lang-yaml="`fixedAmount`" pulumi-lang-java="`fixedAmount`" pulumi-lang-hcl="`fixed_amount`">`fixedAmount`</span>.
+     * If the object exists in live mode, the value is <span pulumi-lang-nodejs="`true`" pulumi-lang-dotnet="`True`" pulumi-lang-go="`true`" pulumi-lang-python="`true`" pulumi-lang-yaml="`true`" pulumi-lang-java="`true`" pulumi-lang-hcl="`true`">`true`</span>. If the object exists in test mode, the value is <span pulumi-lang-nodejs="`false`" pulumi-lang-dotnet="`False`" pulumi-lang-go="`false`" pulumi-lang-python="`false`" pulumi-lang-yaml="`false`" pulumi-lang-java="`false`" pulumi-lang-hcl="`false`">`false`</span>.
      */
-    declare public readonly fixedAmount: pulumi.Output<outputs.ShippingRateFixedAmount | undefined>;
+    declare public /*out*/ readonly livemode: pulumi.Output<boolean>;
     /**
-     * Set of [key-value pairs](https://stripe.com/docs/api/metadata) that you can attach to an object. This can be useful for storing additional information about the object in a structured format. Individual keys can be unset by posting an empty value to them. All keys can be unset by posting an empty value to <span pulumi-lang-nodejs="`metadata`" pulumi-lang-dotnet="`Metadata`" pulumi-lang-go="`metadata`" pulumi-lang-python="`metadata`" pulumi-lang-yaml="`metadata`" pulumi-lang-java="`metadata`" pulumi-lang-hcl="`metadata`">`metadata`</span>.
+     * Set of [key-value pairs](https://docs.stripe.com/api/metadata) that you can attach to an object. This can be useful for storing additional information about the object in a structured format.
      */
     declare public readonly metadata: pulumi.Output<{[key: string]: string}>;
+    /**
+     * String representing the object's type. Objects of the same type share the same value.
+     */
+    declare public /*out*/ readonly object: pulumi.Output<string>;
     /**
      * Specifies whether the rate is considered inclusive of taxes or exclusive of taxes. One of <span pulumi-lang-nodejs="`inclusive`" pulumi-lang-dotnet="`Inclusive`" pulumi-lang-go="`inclusive`" pulumi-lang-python="`inclusive`" pulumi-lang-yaml="`inclusive`" pulumi-lang-java="`inclusive`" pulumi-lang-hcl="`inclusive`">`inclusive`</span>, <span pulumi-lang-nodejs="`exclusive`" pulumi-lang-dotnet="`Exclusive`" pulumi-lang-go="`exclusive`" pulumi-lang-python="`exclusive`" pulumi-lang-yaml="`exclusive`" pulumi-lang-java="`exclusive`" pulumi-lang-hcl="`exclusive`">`exclusive`</span>, or <span pulumi-lang-nodejs="`unspecified`" pulumi-lang-dotnet="`Unspecified`" pulumi-lang-go="`unspecified`" pulumi-lang-python="`unspecified`" pulumi-lang-yaml="`unspecified`" pulumi-lang-java="`unspecified`" pulumi-lang-hcl="`unspecified`">`unspecified`</span>.
      */
     declare public readonly taxBehavior: pulumi.Output<string>;
     /**
-     * A [tax code](https://stripe.com/docs/tax/tax-categories) ID. The Shipping tax code is <span pulumi-lang-nodejs="`txcd92010001`" pulumi-lang-dotnet="`Txcd92010001`" pulumi-lang-go="`txcd92010001`" pulumi-lang-python="`txcd_92010001`" pulumi-lang-yaml="`txcd92010001`" pulumi-lang-java="`txcd92010001`" pulumi-lang-hcl="`txcd_92010001`">`txcd92010001`</span>.
+     * A [tax code](https://docs.stripe.com/tax/tax-categories) ID. The Shipping tax code is <span pulumi-lang-nodejs="`txcd92010001`" pulumi-lang-dotnet="`Txcd92010001`" pulumi-lang-go="`txcd92010001`" pulumi-lang-python="`txcd_92010001`" pulumi-lang-yaml="`txcd92010001`" pulumi-lang-java="`txcd92010001`" pulumi-lang-hcl="`txcd_92010001`">`txcd92010001`</span>.
      */
     declare public readonly taxCode: pulumi.Output<string>;
     /**
@@ -81,10 +90,13 @@ export class ShippingRate extends pulumi.CustomResource {
         if (opts.id) {
             const state = argsOrState as ShippingRateState | undefined;
             resourceInputs["active"] = state?.active;
-            resourceInputs["deliveryEstimate"] = state?.deliveryEstimate;
+            resourceInputs["created"] = state?.created;
+            resourceInputs["deliveryEstimates"] = state?.deliveryEstimates;
             resourceInputs["displayName"] = state?.displayName;
-            resourceInputs["fixedAmount"] = state?.fixedAmount;
+            resourceInputs["fixedAmounts"] = state?.fixedAmounts;
+            resourceInputs["livemode"] = state?.livemode;
             resourceInputs["metadata"] = state?.metadata;
+            resourceInputs["object"] = state?.object;
             resourceInputs["taxBehavior"] = state?.taxBehavior;
             resourceInputs["taxCode"] = state?.taxCode;
             resourceInputs["type"] = state?.type;
@@ -93,14 +105,17 @@ export class ShippingRate extends pulumi.CustomResource {
             if (args?.displayName === undefined && !opts.urn) {
                 throw new Error("Missing required property 'displayName'");
             }
-            resourceInputs["deliveryEstimate"] = args?.deliveryEstimate;
+            resourceInputs["active"] = args?.active;
+            resourceInputs["deliveryEstimates"] = args?.deliveryEstimates;
             resourceInputs["displayName"] = args?.displayName;
-            resourceInputs["fixedAmount"] = args?.fixedAmount;
+            resourceInputs["fixedAmounts"] = args?.fixedAmounts;
             resourceInputs["metadata"] = args?.metadata;
             resourceInputs["taxBehavior"] = args?.taxBehavior;
             resourceInputs["taxCode"] = args?.taxCode;
             resourceInputs["type"] = args?.type;
-            resourceInputs["active"] = undefined /*out*/;
+            resourceInputs["created"] = undefined /*out*/;
+            resourceInputs["livemode"] = undefined /*out*/;
+            resourceInputs["object"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(ShippingRate.__pulumiType, name, resourceInputs, opts, false /*dependency*/, utilities.getPackage());
@@ -116,27 +131,36 @@ export interface ShippingRateState {
      */
     active?: pulumi.Input<boolean | undefined>;
     /**
+     * Time at which the object was created. Measured in seconds since the Unix epoch.
+     */
+    created?: pulumi.Input<number | undefined>;
+    /**
      * The estimated range for how long shipping will take, meant to be displayable to the customer. This will appear on CheckoutSessions.
      */
-    deliveryEstimate?: pulumi.Input<inputs.ShippingRateDeliveryEstimate | undefined>;
+    deliveryEstimates?: pulumi.Input<pulumi.Input<inputs.ShippingRateDeliveryEstimate>[] | undefined>;
     /**
      * The name of the shipping rate, meant to be displayable to the customer. This will appear on CheckoutSessions.
      */
     displayName?: pulumi.Input<string | undefined>;
+    fixedAmounts?: pulumi.Input<pulumi.Input<inputs.ShippingRateFixedAmount>[] | undefined>;
     /**
-     * Describes a fixed amount to charge for shipping. Must be present if type is <span pulumi-lang-nodejs="`fixedAmount`" pulumi-lang-dotnet="`FixedAmount`" pulumi-lang-go="`fixedAmount`" pulumi-lang-python="`fixed_amount`" pulumi-lang-yaml="`fixedAmount`" pulumi-lang-java="`fixedAmount`" pulumi-lang-hcl="`fixed_amount`">`fixedAmount`</span>.
+     * If the object exists in live mode, the value is <span pulumi-lang-nodejs="`true`" pulumi-lang-dotnet="`True`" pulumi-lang-go="`true`" pulumi-lang-python="`true`" pulumi-lang-yaml="`true`" pulumi-lang-java="`true`" pulumi-lang-hcl="`true`">`true`</span>. If the object exists in test mode, the value is <span pulumi-lang-nodejs="`false`" pulumi-lang-dotnet="`False`" pulumi-lang-go="`false`" pulumi-lang-python="`false`" pulumi-lang-yaml="`false`" pulumi-lang-java="`false`" pulumi-lang-hcl="`false`">`false`</span>.
      */
-    fixedAmount?: pulumi.Input<inputs.ShippingRateFixedAmount | undefined>;
+    livemode?: pulumi.Input<boolean | undefined>;
     /**
-     * Set of [key-value pairs](https://stripe.com/docs/api/metadata) that you can attach to an object. This can be useful for storing additional information about the object in a structured format. Individual keys can be unset by posting an empty value to them. All keys can be unset by posting an empty value to <span pulumi-lang-nodejs="`metadata`" pulumi-lang-dotnet="`Metadata`" pulumi-lang-go="`metadata`" pulumi-lang-python="`metadata`" pulumi-lang-yaml="`metadata`" pulumi-lang-java="`metadata`" pulumi-lang-hcl="`metadata`">`metadata`</span>.
+     * Set of [key-value pairs](https://docs.stripe.com/api/metadata) that you can attach to an object. This can be useful for storing additional information about the object in a structured format.
      */
     metadata?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
+    /**
+     * String representing the object's type. Objects of the same type share the same value.
+     */
+    object?: pulumi.Input<string | undefined>;
     /**
      * Specifies whether the rate is considered inclusive of taxes or exclusive of taxes. One of <span pulumi-lang-nodejs="`inclusive`" pulumi-lang-dotnet="`Inclusive`" pulumi-lang-go="`inclusive`" pulumi-lang-python="`inclusive`" pulumi-lang-yaml="`inclusive`" pulumi-lang-java="`inclusive`" pulumi-lang-hcl="`inclusive`">`inclusive`</span>, <span pulumi-lang-nodejs="`exclusive`" pulumi-lang-dotnet="`Exclusive`" pulumi-lang-go="`exclusive`" pulumi-lang-python="`exclusive`" pulumi-lang-yaml="`exclusive`" pulumi-lang-java="`exclusive`" pulumi-lang-hcl="`exclusive`">`exclusive`</span>, or <span pulumi-lang-nodejs="`unspecified`" pulumi-lang-dotnet="`Unspecified`" pulumi-lang-go="`unspecified`" pulumi-lang-python="`unspecified`" pulumi-lang-yaml="`unspecified`" pulumi-lang-java="`unspecified`" pulumi-lang-hcl="`unspecified`">`unspecified`</span>.
      */
     taxBehavior?: pulumi.Input<string | undefined>;
     /**
-     * A [tax code](https://stripe.com/docs/tax/tax-categories) ID. The Shipping tax code is <span pulumi-lang-nodejs="`txcd92010001`" pulumi-lang-dotnet="`Txcd92010001`" pulumi-lang-go="`txcd92010001`" pulumi-lang-python="`txcd_92010001`" pulumi-lang-yaml="`txcd92010001`" pulumi-lang-java="`txcd92010001`" pulumi-lang-hcl="`txcd_92010001`">`txcd92010001`</span>.
+     * A [tax code](https://docs.stripe.com/tax/tax-categories) ID. The Shipping tax code is <span pulumi-lang-nodejs="`txcd92010001`" pulumi-lang-dotnet="`Txcd92010001`" pulumi-lang-go="`txcd92010001`" pulumi-lang-python="`txcd_92010001`" pulumi-lang-yaml="`txcd92010001`" pulumi-lang-java="`txcd92010001`" pulumi-lang-hcl="`txcd_92010001`">`txcd92010001`</span>.
      */
     taxCode?: pulumi.Input<string | undefined>;
     /**
@@ -150,19 +174,20 @@ export interface ShippingRateState {
  */
 export interface ShippingRateArgs {
     /**
+     * Whether the shipping rate can be used for new purchases. Defaults to <span pulumi-lang-nodejs="`true`" pulumi-lang-dotnet="`True`" pulumi-lang-go="`true`" pulumi-lang-python="`true`" pulumi-lang-yaml="`true`" pulumi-lang-java="`true`" pulumi-lang-hcl="`true`">`true`</span>.
+     */
+    active?: pulumi.Input<boolean | undefined>;
+    /**
      * The estimated range for how long shipping will take, meant to be displayable to the customer. This will appear on CheckoutSessions.
      */
-    deliveryEstimate?: pulumi.Input<inputs.ShippingRateDeliveryEstimate | undefined>;
+    deliveryEstimates?: pulumi.Input<pulumi.Input<inputs.ShippingRateDeliveryEstimate>[] | undefined>;
     /**
      * The name of the shipping rate, meant to be displayable to the customer. This will appear on CheckoutSessions.
      */
     displayName: pulumi.Input<string>;
+    fixedAmounts?: pulumi.Input<pulumi.Input<inputs.ShippingRateFixedAmount>[] | undefined>;
     /**
-     * Describes a fixed amount to charge for shipping. Must be present if type is <span pulumi-lang-nodejs="`fixedAmount`" pulumi-lang-dotnet="`FixedAmount`" pulumi-lang-go="`fixedAmount`" pulumi-lang-python="`fixed_amount`" pulumi-lang-yaml="`fixedAmount`" pulumi-lang-java="`fixedAmount`" pulumi-lang-hcl="`fixed_amount`">`fixedAmount`</span>.
-     */
-    fixedAmount?: pulumi.Input<inputs.ShippingRateFixedAmount | undefined>;
-    /**
-     * Set of [key-value pairs](https://stripe.com/docs/api/metadata) that you can attach to an object. This can be useful for storing additional information about the object in a structured format. Individual keys can be unset by posting an empty value to them. All keys can be unset by posting an empty value to <span pulumi-lang-nodejs="`metadata`" pulumi-lang-dotnet="`Metadata`" pulumi-lang-go="`metadata`" pulumi-lang-python="`metadata`" pulumi-lang-yaml="`metadata`" pulumi-lang-java="`metadata`" pulumi-lang-hcl="`metadata`">`metadata`</span>.
+     * Set of [key-value pairs](https://docs.stripe.com/api/metadata) that you can attach to an object. This can be useful for storing additional information about the object in a structured format.
      */
     metadata?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
     /**
@@ -170,7 +195,7 @@ export interface ShippingRateArgs {
      */
     taxBehavior?: pulumi.Input<string | undefined>;
     /**
-     * A [tax code](https://stripe.com/docs/tax/tax-categories) ID. The Shipping tax code is <span pulumi-lang-nodejs="`txcd92010001`" pulumi-lang-dotnet="`Txcd92010001`" pulumi-lang-go="`txcd92010001`" pulumi-lang-python="`txcd_92010001`" pulumi-lang-yaml="`txcd92010001`" pulumi-lang-java="`txcd92010001`" pulumi-lang-hcl="`txcd_92010001`">`txcd92010001`</span>.
+     * A [tax code](https://docs.stripe.com/tax/tax-categories) ID. The Shipping tax code is <span pulumi-lang-nodejs="`txcd92010001`" pulumi-lang-dotnet="`Txcd92010001`" pulumi-lang-go="`txcd92010001`" pulumi-lang-python="`txcd_92010001`" pulumi-lang-yaml="`txcd92010001`" pulumi-lang-java="`txcd92010001`" pulumi-lang-hcl="`txcd_92010001`">`txcd92010001`</span>.
      */
     taxCode?: pulumi.Input<string | undefined>;
     /**

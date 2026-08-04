@@ -71,8 +71,8 @@ namespace Pulumi.Stripe
                 downloadUrl: "",
                 parameterization: new global::Pulumi.RegisterPackageRequest.PackageParameterization(
                     name: "stripe",
-                    version: "0.2.3",
-                    value: global::System.Convert.FromBase64String("eyJyZW1vdGUiOnsidXJsIjoicmVnaXN0cnkub3BlbnRvZnUub3JnL3N0cmlwZS9zdHJpcGUiLCJ2ZXJzaW9uIjoiMC4yLjMifX0=")));
+                    version: "0.3.0-beta.3",
+                    value: global::System.Convert.FromBase64String("eyJyZW1vdGUiOnsidXJsIjoicmVnaXN0cnkub3BlbnRvZnUub3JnL3N0cmlwZS9zdHJpcGUiLCJ2ZXJzaW9uIjoiMC4zLjAtYmV0YS4zIn19")));
         }
 
         private readonly static string version;

@@ -7,7 +7,10 @@ import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
 import com.pulumi.stripe.inputs.BillingMeterCustomerMappingArgs;
 import com.pulumi.stripe.inputs.BillingMeterDefaultAggregationArgs;
-import com.pulumi.stripe.inputs.BillingMeterValueSettingsArgs;
+import com.pulumi.stripe.inputs.BillingMeterStatusTransitionsArgs;
+import com.pulumi.stripe.inputs.BillingMeterValueSettingArgs;
+import java.lang.Boolean;
+import java.lang.Double;
 import java.lang.String;
 import java.util.List;
 import java.util.Objects;
@@ -20,59 +23,43 @@ public final class BillingMeterState extends com.pulumi.resources.ResourceArgs {
     public static final BillingMeterState Empty = new BillingMeterState();
 
     /**
-     * Fields that specify how to map a meter event to a customer.
+     * Time at which the object was created. Measured in seconds since the Unix epoch.
      * 
      */
-    @Import(name="customerMapping")
-    private @Nullable Output<BillingMeterCustomerMappingArgs> customerMapping;
+    @Import(name="created")
+    private @Nullable Output<Double> created;
 
     /**
-     * @return Fields that specify how to map a meter event to a customer.
+     * @return Time at which the object was created. Measured in seconds since the Unix epoch.
      * 
      */
-    public Optional<Output<BillingMeterCustomerMappingArgs>> customerMapping() {
-        return Optional.ofNullable(this.customerMapping);
+    public Optional<Output<Double>> created() {
+        return Optional.ofNullable(this.created);
+    }
+
+    @Import(name="customerMappings")
+    private @Nullable Output<List<BillingMeterCustomerMappingArgs>> customerMappings;
+
+    public Optional<Output<List<BillingMeterCustomerMappingArgs>>> customerMappings() {
+        return Optional.ofNullable(this.customerMappings);
+    }
+
+    @Import(name="defaultAggregations")
+    private @Nullable Output<List<BillingMeterDefaultAggregationArgs>> defaultAggregations;
+
+    public Optional<Output<List<BillingMeterDefaultAggregationArgs>>> defaultAggregations() {
+        return Optional.ofNullable(this.defaultAggregations);
     }
 
     /**
-     * The default settings to aggregate a meter&#39;s events with.
-     * 
-     */
-    @Import(name="defaultAggregation")
-    private @Nullable Output<BillingMeterDefaultAggregationArgs> defaultAggregation;
-
-    /**
-     * @return The default settings to aggregate a meter&#39;s events with.
-     * 
-     */
-    public Optional<Output<BillingMeterDefaultAggregationArgs>> defaultAggregation() {
-        return Optional.ofNullable(this.defaultAggregation);
-    }
-
-    /**
-     * Set of keys that will be used to group meter events by. Each key must be present in the event payload.
-     * 
-     */
-    @Import(name="dimensionPayloadKeys")
-    private @Nullable Output<List<String>> dimensionPayloadKeys;
-
-    /**
-     * @return Set of keys that will be used to group meter events by. Each key must be present in the event payload.
-     * 
-     */
-    public Optional<Output<List<String>>> dimensionPayloadKeys() {
-        return Optional.ofNullable(this.dimensionPayloadKeys);
-    }
-
-    /**
-     * The meter’s name. Not visible to the customer.
+     * The meter&#39;s name.
      * 
      */
     @Import(name="displayName")
     private @Nullable Output<String> displayName;
 
     /**
-     * @return The meter’s name. Not visible to the customer.
+     * @return The meter&#39;s name.
      * 
      */
     public Optional<Output<String>> displayName() {
@@ -110,6 +97,36 @@ public final class BillingMeterState extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
+     * If the object exists in live mode, the value is &lt;span pulumi-lang-nodejs=&#34;`true`&#34; pulumi-lang-dotnet=&#34;`True`&#34; pulumi-lang-go=&#34;`true`&#34; pulumi-lang-python=&#34;`true`&#34; pulumi-lang-yaml=&#34;`true`&#34; pulumi-lang-java=&#34;`true`&#34; pulumi-lang-hcl=&#34;`true`&#34;&gt;`true`&lt;/span&gt;. If the object exists in test mode, the value is &lt;span pulumi-lang-nodejs=&#34;`false`&#34; pulumi-lang-dotnet=&#34;`False`&#34; pulumi-lang-go=&#34;`false`&#34; pulumi-lang-python=&#34;`false`&#34; pulumi-lang-yaml=&#34;`false`&#34; pulumi-lang-java=&#34;`false`&#34; pulumi-lang-hcl=&#34;`false`&#34;&gt;`false`&lt;/span&gt;.
+     * 
+     */
+    @Import(name="livemode")
+    private @Nullable Output<Boolean> livemode;
+
+    /**
+     * @return If the object exists in live mode, the value is &lt;span pulumi-lang-nodejs=&#34;`true`&#34; pulumi-lang-dotnet=&#34;`True`&#34; pulumi-lang-go=&#34;`true`&#34; pulumi-lang-python=&#34;`true`&#34; pulumi-lang-yaml=&#34;`true`&#34; pulumi-lang-java=&#34;`true`&#34; pulumi-lang-hcl=&#34;`true`&#34;&gt;`true`&lt;/span&gt;. If the object exists in test mode, the value is &lt;span pulumi-lang-nodejs=&#34;`false`&#34; pulumi-lang-dotnet=&#34;`False`&#34; pulumi-lang-go=&#34;`false`&#34; pulumi-lang-python=&#34;`false`&#34; pulumi-lang-yaml=&#34;`false`&#34; pulumi-lang-java=&#34;`false`&#34; pulumi-lang-hcl=&#34;`false`&#34;&gt;`false`&lt;/span&gt;.
+     * 
+     */
+    public Optional<Output<Boolean>> livemode() {
+        return Optional.ofNullable(this.livemode);
+    }
+
+    /**
+     * String representing the object&#39;s type. Objects of the same type share the same value.
+     * 
+     */
+    @Import(name="object")
+    private @Nullable Output<String> object;
+
+    /**
+     * @return String representing the object&#39;s type. Objects of the same type share the same value.
+     * 
+     */
+    public Optional<Output<String>> object() {
+        return Optional.ofNullable(this.object);
+    }
+
+    /**
      * The meter&#39;s status.
      * 
      */
@@ -124,31 +141,49 @@ public final class BillingMeterState extends com.pulumi.resources.ResourceArgs {
         return Optional.ofNullable(this.status);
     }
 
-    /**
-     * Fields that specify how to calculate a meter event&#39;s value.
-     * 
-     */
-    @Import(name="valueSettings")
-    private @Nullable Output<BillingMeterValueSettingsArgs> valueSettings;
+    @Import(name="statusTransitions")
+    private @Nullable Output<BillingMeterStatusTransitionsArgs> statusTransitions;
+
+    public Optional<Output<BillingMeterStatusTransitionsArgs>> statusTransitions() {
+        return Optional.ofNullable(this.statusTransitions);
+    }
 
     /**
-     * @return Fields that specify how to calculate a meter event&#39;s value.
+     * Time at which the object was last updated. Measured in seconds since the Unix epoch.
      * 
      */
-    public Optional<Output<BillingMeterValueSettingsArgs>> valueSettings() {
+    @Import(name="updated")
+    private @Nullable Output<Double> updated;
+
+    /**
+     * @return Time at which the object was last updated. Measured in seconds since the Unix epoch.
+     * 
+     */
+    public Optional<Output<Double>> updated() {
+        return Optional.ofNullable(this.updated);
+    }
+
+    @Import(name="valueSettings")
+    private @Nullable Output<List<BillingMeterValueSettingArgs>> valueSettings;
+
+    public Optional<Output<List<BillingMeterValueSettingArgs>>> valueSettings() {
         return Optional.ofNullable(this.valueSettings);
     }
 
     private BillingMeterState() {}
 
     private BillingMeterState(BillingMeterState $) {
-        this.customerMapping = $.customerMapping;
-        this.defaultAggregation = $.defaultAggregation;
-        this.dimensionPayloadKeys = $.dimensionPayloadKeys;
+        this.created = $.created;
+        this.customerMappings = $.customerMappings;
+        this.defaultAggregations = $.defaultAggregations;
         this.displayName = $.displayName;
         this.eventName = $.eventName;
         this.eventTimeWindow = $.eventTimeWindow;
+        this.livemode = $.livemode;
+        this.object = $.object;
         this.status = $.status;
+        this.statusTransitions = $.statusTransitions;
+        this.updated = $.updated;
         this.valueSettings = $.valueSettings;
     }
 
@@ -171,80 +206,54 @@ public final class BillingMeterState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param customerMapping Fields that specify how to map a meter event to a customer.
+         * @param created Time at which the object was created. Measured in seconds since the Unix epoch.
          * 
          * @return builder
          * 
          */
-        public Builder customerMapping(@Nullable Output<BillingMeterCustomerMappingArgs> customerMapping) {
-            $.customerMapping = customerMapping;
+        public Builder created(@Nullable Output<Double> created) {
+            $.created = created;
             return this;
         }
 
         /**
-         * @param customerMapping Fields that specify how to map a meter event to a customer.
+         * @param created Time at which the object was created. Measured in seconds since the Unix epoch.
          * 
          * @return builder
          * 
          */
-        public Builder customerMapping(BillingMeterCustomerMappingArgs customerMapping) {
-            return customerMapping(Output.of(customerMapping));
+        public Builder created(Double created) {
+            return created(Output.of(created));
         }
 
-        /**
-         * @param defaultAggregation The default settings to aggregate a meter&#39;s events with.
-         * 
-         * @return builder
-         * 
-         */
-        public Builder defaultAggregation(@Nullable Output<BillingMeterDefaultAggregationArgs> defaultAggregation) {
-            $.defaultAggregation = defaultAggregation;
+        public Builder customerMappings(@Nullable Output<List<BillingMeterCustomerMappingArgs>> customerMappings) {
+            $.customerMappings = customerMappings;
             return this;
         }
 
-        /**
-         * @param defaultAggregation The default settings to aggregate a meter&#39;s events with.
-         * 
-         * @return builder
-         * 
-         */
-        public Builder defaultAggregation(BillingMeterDefaultAggregationArgs defaultAggregation) {
-            return defaultAggregation(Output.of(defaultAggregation));
+        public Builder customerMappings(List<BillingMeterCustomerMappingArgs> customerMappings) {
+            return customerMappings(Output.of(customerMappings));
         }
 
-        /**
-         * @param dimensionPayloadKeys Set of keys that will be used to group meter events by. Each key must be present in the event payload.
-         * 
-         * @return builder
-         * 
-         */
-        public Builder dimensionPayloadKeys(@Nullable Output<List<String>> dimensionPayloadKeys) {
-            $.dimensionPayloadKeys = dimensionPayloadKeys;
+        public Builder customerMappings(BillingMeterCustomerMappingArgs... customerMappings) {
+            return customerMappings(List.of(customerMappings));
+        }
+
+        public Builder defaultAggregations(@Nullable Output<List<BillingMeterDefaultAggregationArgs>> defaultAggregations) {
+            $.defaultAggregations = defaultAggregations;
             return this;
         }
 
-        /**
-         * @param dimensionPayloadKeys Set of keys that will be used to group meter events by. Each key must be present in the event payload.
-         * 
-         * @return builder
-         * 
-         */
-        public Builder dimensionPayloadKeys(List<String> dimensionPayloadKeys) {
-            return dimensionPayloadKeys(Output.of(dimensionPayloadKeys));
+        public Builder defaultAggregations(List<BillingMeterDefaultAggregationArgs> defaultAggregations) {
+            return defaultAggregations(Output.of(defaultAggregations));
+        }
+
+        public Builder defaultAggregations(BillingMeterDefaultAggregationArgs... defaultAggregations) {
+            return defaultAggregations(List.of(defaultAggregations));
         }
 
         /**
-         * @param dimensionPayloadKeys Set of keys that will be used to group meter events by. Each key must be present in the event payload.
-         * 
-         * @return builder
-         * 
-         */
-        public Builder dimensionPayloadKeys(String... dimensionPayloadKeys) {
-            return dimensionPayloadKeys(List.of(dimensionPayloadKeys));
-        }
-
-        /**
-         * @param displayName The meter’s name. Not visible to the customer.
+         * @param displayName The meter&#39;s name.
          * 
          * @return builder
          * 
@@ -255,7 +264,7 @@ public final class BillingMeterState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param displayName The meter’s name. Not visible to the customer.
+         * @param displayName The meter&#39;s name.
          * 
          * @return builder
          * 
@@ -307,6 +316,48 @@ public final class BillingMeterState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
+         * @param livemode If the object exists in live mode, the value is &lt;span pulumi-lang-nodejs=&#34;`true`&#34; pulumi-lang-dotnet=&#34;`True`&#34; pulumi-lang-go=&#34;`true`&#34; pulumi-lang-python=&#34;`true`&#34; pulumi-lang-yaml=&#34;`true`&#34; pulumi-lang-java=&#34;`true`&#34; pulumi-lang-hcl=&#34;`true`&#34;&gt;`true`&lt;/span&gt;. If the object exists in test mode, the value is &lt;span pulumi-lang-nodejs=&#34;`false`&#34; pulumi-lang-dotnet=&#34;`False`&#34; pulumi-lang-go=&#34;`false`&#34; pulumi-lang-python=&#34;`false`&#34; pulumi-lang-yaml=&#34;`false`&#34; pulumi-lang-java=&#34;`false`&#34; pulumi-lang-hcl=&#34;`false`&#34;&gt;`false`&lt;/span&gt;.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder livemode(@Nullable Output<Boolean> livemode) {
+            $.livemode = livemode;
+            return this;
+        }
+
+        /**
+         * @param livemode If the object exists in live mode, the value is &lt;span pulumi-lang-nodejs=&#34;`true`&#34; pulumi-lang-dotnet=&#34;`True`&#34; pulumi-lang-go=&#34;`true`&#34; pulumi-lang-python=&#34;`true`&#34; pulumi-lang-yaml=&#34;`true`&#34; pulumi-lang-java=&#34;`true`&#34; pulumi-lang-hcl=&#34;`true`&#34;&gt;`true`&lt;/span&gt;. If the object exists in test mode, the value is &lt;span pulumi-lang-nodejs=&#34;`false`&#34; pulumi-lang-dotnet=&#34;`False`&#34; pulumi-lang-go=&#34;`false`&#34; pulumi-lang-python=&#34;`false`&#34; pulumi-lang-yaml=&#34;`false`&#34; pulumi-lang-java=&#34;`false`&#34; pulumi-lang-hcl=&#34;`false`&#34;&gt;`false`&lt;/span&gt;.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder livemode(Boolean livemode) {
+            return livemode(Output.of(livemode));
+        }
+
+        /**
+         * @param object String representing the object&#39;s type. Objects of the same type share the same value.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder object(@Nullable Output<String> object) {
+            $.object = object;
+            return this;
+        }
+
+        /**
+         * @param object String representing the object&#39;s type. Objects of the same type share the same value.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder object(String object) {
+            return object(Output.of(object));
+        }
+
+        /**
          * @param status The meter&#39;s status.
          * 
          * @return builder
@@ -327,25 +378,47 @@ public final class BillingMeterState extends com.pulumi.resources.ResourceArgs {
             return status(Output.of(status));
         }
 
+        public Builder statusTransitions(@Nullable Output<BillingMeterStatusTransitionsArgs> statusTransitions) {
+            $.statusTransitions = statusTransitions;
+            return this;
+        }
+
+        public Builder statusTransitions(BillingMeterStatusTransitionsArgs statusTransitions) {
+            return statusTransitions(Output.of(statusTransitions));
+        }
+
         /**
-         * @param valueSettings Fields that specify how to calculate a meter event&#39;s value.
+         * @param updated Time at which the object was last updated. Measured in seconds since the Unix epoch.
          * 
          * @return builder
          * 
          */
-        public Builder valueSettings(@Nullable Output<BillingMeterValueSettingsArgs> valueSettings) {
-            $.valueSettings = valueSettings;
+        public Builder updated(@Nullable Output<Double> updated) {
+            $.updated = updated;
             return this;
         }
 
         /**
-         * @param valueSettings Fields that specify how to calculate a meter event&#39;s value.
+         * @param updated Time at which the object was last updated. Measured in seconds since the Unix epoch.
          * 
          * @return builder
          * 
          */
-        public Builder valueSettings(BillingMeterValueSettingsArgs valueSettings) {
+        public Builder updated(Double updated) {
+            return updated(Output.of(updated));
+        }
+
+        public Builder valueSettings(@Nullable Output<List<BillingMeterValueSettingArgs>> valueSettings) {
+            $.valueSettings = valueSettings;
+            return this;
+        }
+
+        public Builder valueSettings(List<BillingMeterValueSettingArgs> valueSettings) {
             return valueSettings(Output.of(valueSettings));
+        }
+
+        public Builder valueSettings(BillingMeterValueSettingArgs... valueSettings) {
+            return valueSettings(List.of(valueSettings));
         }
 
         public BillingMeterState build() {

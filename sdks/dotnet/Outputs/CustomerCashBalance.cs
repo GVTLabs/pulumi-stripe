@@ -14,35 +14,46 @@ namespace Pulumi.Stripe.Outputs
     public sealed class CustomerCashBalance
     {
         /// <summary>
-        /// A hash of all cash balances available to this customer. You cannot delete a customer with any cash balances, even if the balance is 0. Amounts are represented in the [smallest currency unit](https://stripe.com/docs/currencies#zero-decimal).
+        /// A hash of all cash balances available to this customer. You cannot delete a customer with any cash balances, even if the balance is 0. Amounts are represented in the [smallest currency unit](https://docs.stripe.com/currencies#zero-decimal).
         /// </summary>
-        public readonly ImmutableDictionary<string, string>? Available;
+        public readonly ImmutableDictionary<string, double>? Available;
         /// <summary>
         /// The ID of the customer whose cash balance this object represents.
         /// </summary>
         public readonly string? Customer;
         /// <summary>
-        /// The ID of the account whose cash balance this object represents.
+        /// The ID of an Account representing a customer whose cash balance this object represents.
         /// </summary>
         public readonly string? CustomerAccount;
         /// <summary>
-        /// Settings controlling the behavior of the customer's cash balance, such as reconciliation of funds received.
+        /// If the object exists in live mode, the value is &lt;span pulumi-lang-nodejs="`true`" pulumi-lang-dotnet="`True`" pulumi-lang-go="`true`" pulumi-lang-python="`true`" pulumi-lang-yaml="`true`" pulumi-lang-java="`true`" pulumi-lang-hcl="`true`"&gt;`true`&lt;/span&gt;. If the object exists in test mode, the value is &lt;span pulumi-lang-nodejs="`false`" pulumi-lang-dotnet="`False`" pulumi-lang-go="`false`" pulumi-lang-python="`false`" pulumi-lang-yaml="`false`" pulumi-lang-java="`false`" pulumi-lang-hcl="`false`"&gt;`false`&lt;/span&gt;.
         /// </summary>
-        public readonly Outputs.CustomerCashBalanceSettings? Settings;
+        public readonly bool? Livemode;
+        /// <summary>
+        /// String representing the object's type. Objects of the same type share the same value.
+        /// </summary>
+        public readonly string? Object;
+        public readonly ImmutableArray<Outputs.CustomerCashBalanceSetting> Settings;
 
         [OutputConstructor]
         private CustomerCashBalance(
-            ImmutableDictionary<string, string>? available,
+            ImmutableDictionary<string, double>? available,
 
             string? customer,
 
             string? customerAccount,
 
-            Outputs.CustomerCashBalanceSettings? settings)
+            bool? livemode,
+
+            string? @object,
+
+            ImmutableArray<Outputs.CustomerCashBalanceSetting> settings)
         {
             Available = available;
             Customer = customer;
             CustomerAccount = customerAccount;
+            Livemode = livemode;
+            Object = @object;
             Settings = settings;
         }
     }

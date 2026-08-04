@@ -9,7 +9,7 @@
     <PackageProjectUrl></PackageProjectUrl>
     <RepositoryUrl>https://github.com/stripe/terraform-provider-stripe</RepositoryUrl>
     <PackageIcon>logo.png</PackageIcon>
-    <Version>0.2.3</Version>
+    <Version>0.3.0-beta.3</Version>
 
     <TargetFramework>net6.0</TargetFramework>
     <Nullable>enable</Nullable>

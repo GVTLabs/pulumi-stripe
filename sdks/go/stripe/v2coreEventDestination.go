@@ -16,27 +16,46 @@ type V2CoreEventDestination struct {
 	pulumi.CustomResourceState
 
 	// Amazon EventBridge configuration.
-	AmazonEventbridge V2CoreEventDestinationAmazonEventbridgePtrOutput `pulumi:"amazonEventbridge"`
+	AmazonEventbridges V2CoreEventDestinationAmazonEventbridgeArrayOutput `pulumi:"amazonEventbridges"`
+	// Azure Event Grid configuration.
+	AzureEventGrid V2CoreEventDestinationAzureEventGridOutput `pulumi:"azureEventGrid"`
+	// Time at which the object was created.
+	Created pulumi.StringOutput `pulumi:"created"`
 	// An optional description of what the event destination is used for.
 	Description pulumi.StringOutput `pulumi:"description"`
 	// The list of events to enable for this endpoint.
 	EnabledEvents pulumi.StringArrayOutput `pulumi:"enabledEvents"`
 	// Payload type of events being subscribed to.
 	EventPayload pulumi.StringOutput `pulumi:"eventPayload"`
-	// Where events should be routed from.
+	// Specifies which accounts' events route to this destination.
+	// `@self`: Receive events from the account that owns the event destination.
+	// `@accounts`: Receive events emitted from other accounts you manage which includes your v1 and v2 accounts.
+	// `@organization_members`: Receive events from accounts directly linked to the organization.
+	// `@organization_members/@accounts`: Receive events from all accounts connected to any platform accounts in the organization.
 	EventsFroms pulumi.StringArrayOutput `pulumi:"eventsFroms"`
+	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+	// Additional fields to include in the response.
+	Includes pulumi.StringArrayOutput `pulumi:"includes"`
+	// Has the value <span pulumi-lang-nodejs="`true`" pulumi-lang-dotnet="`True`" pulumi-lang-go="`true`" pulumi-lang-python="`true`" pulumi-lang-yaml="`true`" pulumi-lang-java="`true`" pulumi-lang-hcl="`true`">`true`</span> if the object exists in live mode or the value <span pulumi-lang-nodejs="`false`" pulumi-lang-dotnet="`False`" pulumi-lang-go="`false`" pulumi-lang-python="`false`" pulumi-lang-yaml="`false`" pulumi-lang-java="`false`" pulumi-lang-hcl="`false`">`false`</span> if the object exists in test mode.
+	Livemode pulumi.BoolOutput `pulumi:"livemode"`
 	// Metadata.
 	Metadata pulumi.StringMapOutput `pulumi:"metadata"`
 	// Event destination name.
 	Name pulumi.StringOutput `pulumi:"name"`
+	// String representing the object's type. Objects of the same type share the same value of the object field.
+	Object pulumi.StringOutput `pulumi:"object"`
 	// If using the snapshot event payload, the API version events are rendered as.
 	SnapshotApiVersion pulumi.StringOutput `pulumi:"snapshotApiVersion"`
 	// Status. It can be set to either enabled or disabled.
 	Status pulumi.StringOutput `pulumi:"status"`
+	// Additional information about event destination status.
+	StatusDetails V2CoreEventDestinationStatusDetailsOutput `pulumi:"statusDetails"`
 	// Event destination type.
 	Type pulumi.StringOutput `pulumi:"type"`
+	// Time at which the object was last updated.
+	Updated pulumi.StringOutput `pulumi:"updated"`
 	// Webhook endpoint configuration.
-	WebhookEndpoint V2CoreEventDestinationWebhookEndpointPtrOutput `pulumi:"webhookEndpoint"`
+	WebhookEndpoints V2CoreEventDestinationWebhookEndpointArrayOutput `pulumi:"webhookEndpoints"`
 }
 
 // NewV2CoreEventDestination registers a new resource with the given unique name, arguments, and options.
@@ -55,6 +74,13 @@ func NewV2CoreEventDestination(ctx *pulumi.Context,
 	if args.Type == nil {
 		return nil, errors.New("invalid value for required argument 'Type'")
 	}
+	if args.Includes != nil {
+		args.Includes = pulumi.ToSecret(args.Includes).(pulumi.StringArrayInput)
+	}
+	secrets := pulumi.AdditionalSecretOutputs([]string{
+		"includes",
+	})
+	opts = append(opts, secrets)
 	opts = internal.PkgResourceDefaultOpts(opts)
 	ref, err := internal.PkgGetPackageRef(ctx)
 	if err != nil {
@@ -87,52 +113,90 @@ func GetV2CoreEventDestination(ctx *pulumi.Context,
 // Input properties used for looking up and filtering V2CoreEventDestination resources.
 type v2coreEventDestinationState struct {
 	// Amazon EventBridge configuration.
-	AmazonEventbridge *V2CoreEventDestinationAmazonEventbridge `pulumi:"amazonEventbridge"`
+	AmazonEventbridges []V2CoreEventDestinationAmazonEventbridge `pulumi:"amazonEventbridges"`
+	// Azure Event Grid configuration.
+	AzureEventGrid *V2CoreEventDestinationAzureEventGrid `pulumi:"azureEventGrid"`
+	// Time at which the object was created.
+	Created *string `pulumi:"created"`
 	// An optional description of what the event destination is used for.
 	Description *string `pulumi:"description"`
 	// The list of events to enable for this endpoint.
 	EnabledEvents []string `pulumi:"enabledEvents"`
 	// Payload type of events being subscribed to.
 	EventPayload *string `pulumi:"eventPayload"`
-	// Where events should be routed from.
+	// Specifies which accounts' events route to this destination.
+	// `@self`: Receive events from the account that owns the event destination.
+	// `@accounts`: Receive events emitted from other accounts you manage which includes your v1 and v2 accounts.
+	// `@organization_members`: Receive events from accounts directly linked to the organization.
+	// `@organization_members/@accounts`: Receive events from all accounts connected to any platform accounts in the organization.
 	EventsFroms []string `pulumi:"eventsFroms"`
+	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+	// Additional fields to include in the response.
+	Includes []string `pulumi:"includes"`
+	// Has the value <span pulumi-lang-nodejs="`true`" pulumi-lang-dotnet="`True`" pulumi-lang-go="`true`" pulumi-lang-python="`true`" pulumi-lang-yaml="`true`" pulumi-lang-java="`true`" pulumi-lang-hcl="`true`">`true`</span> if the object exists in live mode or the value <span pulumi-lang-nodejs="`false`" pulumi-lang-dotnet="`False`" pulumi-lang-go="`false`" pulumi-lang-python="`false`" pulumi-lang-yaml="`false`" pulumi-lang-java="`false`" pulumi-lang-hcl="`false`">`false`</span> if the object exists in test mode.
+	Livemode *bool `pulumi:"livemode"`
 	// Metadata.
 	Metadata map[string]string `pulumi:"metadata"`
 	// Event destination name.
 	Name *string `pulumi:"name"`
+	// String representing the object's type. Objects of the same type share the same value of the object field.
+	Object *string `pulumi:"object"`
 	// If using the snapshot event payload, the API version events are rendered as.
 	SnapshotApiVersion *string `pulumi:"snapshotApiVersion"`
 	// Status. It can be set to either enabled or disabled.
 	Status *string `pulumi:"status"`
+	// Additional information about event destination status.
+	StatusDetails *V2CoreEventDestinationStatusDetails `pulumi:"statusDetails"`
 	// Event destination type.
 	Type *string `pulumi:"type"`
+	// Time at which the object was last updated.
+	Updated *string `pulumi:"updated"`
 	// Webhook endpoint configuration.
-	WebhookEndpoint *V2CoreEventDestinationWebhookEndpoint `pulumi:"webhookEndpoint"`
+	WebhookEndpoints []V2CoreEventDestinationWebhookEndpoint `pulumi:"webhookEndpoints"`
 }
 
 type V2CoreEventDestinationState struct {
 	// Amazon EventBridge configuration.
-	AmazonEventbridge V2CoreEventDestinationAmazonEventbridgePtrInput
+	AmazonEventbridges V2CoreEventDestinationAmazonEventbridgeArrayInput
+	// Azure Event Grid configuration.
+	AzureEventGrid V2CoreEventDestinationAzureEventGridPtrInput
+	// Time at which the object was created.
+	Created pulumi.StringPtrInput
 	// An optional description of what the event destination is used for.
 	Description pulumi.StringPtrInput
 	// The list of events to enable for this endpoint.
 	EnabledEvents pulumi.StringArrayInput
 	// Payload type of events being subscribed to.
 	EventPayload pulumi.StringPtrInput
-	// Where events should be routed from.
+	// Specifies which accounts' events route to this destination.
+	// `@self`: Receive events from the account that owns the event destination.
+	// `@accounts`: Receive events emitted from other accounts you manage which includes your v1 and v2 accounts.
+	// `@organization_members`: Receive events from accounts directly linked to the organization.
+	// `@organization_members/@accounts`: Receive events from all accounts connected to any platform accounts in the organization.
 	EventsFroms pulumi.StringArrayInput
+	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+	// Additional fields to include in the response.
+	Includes pulumi.StringArrayInput
+	// Has the value <span pulumi-lang-nodejs="`true`" pulumi-lang-dotnet="`True`" pulumi-lang-go="`true`" pulumi-lang-python="`true`" pulumi-lang-yaml="`true`" pulumi-lang-java="`true`" pulumi-lang-hcl="`true`">`true`</span> if the object exists in live mode or the value <span pulumi-lang-nodejs="`false`" pulumi-lang-dotnet="`False`" pulumi-lang-go="`false`" pulumi-lang-python="`false`" pulumi-lang-yaml="`false`" pulumi-lang-java="`false`" pulumi-lang-hcl="`false`">`false`</span> if the object exists in test mode.
+	Livemode pulumi.BoolPtrInput
 	// Metadata.
 	Metadata pulumi.StringMapInput
 	// Event destination name.
 	Name pulumi.StringPtrInput
+	// String representing the object's type. Objects of the same type share the same value of the object field.
+	Object pulumi.StringPtrInput
 	// If using the snapshot event payload, the API version events are rendered as.
 	SnapshotApiVersion pulumi.StringPtrInput
 	// Status. It can be set to either enabled or disabled.
 	Status pulumi.StringPtrInput
+	// Additional information about event destination status.
+	StatusDetails V2CoreEventDestinationStatusDetailsPtrInput
 	// Event destination type.
 	Type pulumi.StringPtrInput
+	// Time at which the object was last updated.
+	Updated pulumi.StringPtrInput
 	// Webhook endpoint configuration.
-	WebhookEndpoint V2CoreEventDestinationWebhookEndpointPtrInput
+	WebhookEndpoints V2CoreEventDestinationWebhookEndpointArrayInput
 }
 
 func (V2CoreEventDestinationState) ElementType() reflect.Type {
@@ -141,15 +205,24 @@ func (V2CoreEventDestinationState) ElementType() reflect.Type {
 
 type v2coreEventDestinationArgs struct {
 	// Amazon EventBridge configuration.
-	AmazonEventbridge *V2CoreEventDestinationAmazonEventbridge `pulumi:"amazonEventbridge"`
+	AmazonEventbridges []V2CoreEventDestinationAmazonEventbridge `pulumi:"amazonEventbridges"`
+	// Azure Event Grid configuration.
+	AzureEventGrid *V2CoreEventDestinationAzureEventGrid `pulumi:"azureEventGrid"`
 	// An optional description of what the event destination is used for.
 	Description *string `pulumi:"description"`
 	// The list of events to enable for this endpoint.
 	EnabledEvents []string `pulumi:"enabledEvents"`
 	// Payload type of events being subscribed to.
 	EventPayload string `pulumi:"eventPayload"`
-	// Where events should be routed from.
+	// Specifies which accounts' events route to this destination.
+	// `@self`: Receive events from the account that owns the event destination.
+	// `@accounts`: Receive events emitted from other accounts you manage which includes your v1 and v2 accounts.
+	// `@organization_members`: Receive events from accounts directly linked to the organization.
+	// `@organization_members/@accounts`: Receive events from all accounts connected to any platform accounts in the organization.
 	EventsFroms []string `pulumi:"eventsFroms"`
+	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+	// Additional fields to include in the response.
+	Includes []string `pulumi:"includes"`
 	// Metadata.
 	Metadata map[string]string `pulumi:"metadata"`
 	// Event destination name.
@@ -159,21 +232,30 @@ type v2coreEventDestinationArgs struct {
 	// Event destination type.
 	Type string `pulumi:"type"`
 	// Webhook endpoint configuration.
-	WebhookEndpoint *V2CoreEventDestinationWebhookEndpoint `pulumi:"webhookEndpoint"`
+	WebhookEndpoints []V2CoreEventDestinationWebhookEndpoint `pulumi:"webhookEndpoints"`
 }
 
 // The set of arguments for constructing a V2CoreEventDestination resource.
 type V2CoreEventDestinationArgs struct {
 	// Amazon EventBridge configuration.
-	AmazonEventbridge V2CoreEventDestinationAmazonEventbridgePtrInput
+	AmazonEventbridges V2CoreEventDestinationAmazonEventbridgeArrayInput
+	// Azure Event Grid configuration.
+	AzureEventGrid V2CoreEventDestinationAzureEventGridPtrInput
 	// An optional description of what the event destination is used for.
 	Description pulumi.StringPtrInput
 	// The list of events to enable for this endpoint.
 	EnabledEvents pulumi.StringArrayInput
 	// Payload type of events being subscribed to.
 	EventPayload pulumi.StringInput
-	// Where events should be routed from.
+	// Specifies which accounts' events route to this destination.
+	// `@self`: Receive events from the account that owns the event destination.
+	// `@accounts`: Receive events emitted from other accounts you manage which includes your v1 and v2 accounts.
+	// `@organization_members`: Receive events from accounts directly linked to the organization.
+	// `@organization_members/@accounts`: Receive events from all accounts connected to any platform accounts in the organization.
 	EventsFroms pulumi.StringArrayInput
+	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+	// Additional fields to include in the response.
+	Includes pulumi.StringArrayInput
 	// Metadata.
 	Metadata pulumi.StringMapInput
 	// Event destination name.
@@ -183,7 +265,7 @@ type V2CoreEventDestinationArgs struct {
 	// Event destination type.
 	Type pulumi.StringInput
 	// Webhook endpoint configuration.
-	WebhookEndpoint V2CoreEventDestinationWebhookEndpointPtrInput
+	WebhookEndpoints V2CoreEventDestinationWebhookEndpointArrayInput
 }
 
 func (V2CoreEventDestinationArgs) ElementType() reflect.Type {
@@ -224,10 +306,20 @@ func (o V2CoreEventDestinationOutput) ToV2CoreEventDestinationOutputWithContext(
 }
 
 // Amazon EventBridge configuration.
-func (o V2CoreEventDestinationOutput) AmazonEventbridge() V2CoreEventDestinationAmazonEventbridgePtrOutput {
-	return o.ApplyT(func(v *V2CoreEventDestination) V2CoreEventDestinationAmazonEventbridgePtrOutput {
-		return v.AmazonEventbridge
-	}).(V2CoreEventDestinationAmazonEventbridgePtrOutput)
+func (o V2CoreEventDestinationOutput) AmazonEventbridges() V2CoreEventDestinationAmazonEventbridgeArrayOutput {
+	return o.ApplyT(func(v *V2CoreEventDestination) V2CoreEventDestinationAmazonEventbridgeArrayOutput {
+		return v.AmazonEventbridges
+	}).(V2CoreEventDestinationAmazonEventbridgeArrayOutput)
+}
+
+// Azure Event Grid configuration.
+func (o V2CoreEventDestinationOutput) AzureEventGrid() V2CoreEventDestinationAzureEventGridOutput {
+	return o.ApplyT(func(v *V2CoreEventDestination) V2CoreEventDestinationAzureEventGridOutput { return v.AzureEventGrid }).(V2CoreEventDestinationAzureEventGridOutput)
+}
+
+// Time at which the object was created.
+func (o V2CoreEventDestinationOutput) Created() pulumi.StringOutput {
+	return o.ApplyT(func(v *V2CoreEventDestination) pulumi.StringOutput { return v.Created }).(pulumi.StringOutput)
 }
 
 // An optional description of what the event destination is used for.
@@ -245,9 +337,24 @@ func (o V2CoreEventDestinationOutput) EventPayload() pulumi.StringOutput {
 	return o.ApplyT(func(v *V2CoreEventDestination) pulumi.StringOutput { return v.EventPayload }).(pulumi.StringOutput)
 }
 
-// Where events should be routed from.
+// Specifies which accounts' events route to this destination.
+// `@self`: Receive events from the account that owns the event destination.
+// `@accounts`: Receive events emitted from other accounts you manage which includes your v1 and v2 accounts.
+// `@organization_members`: Receive events from accounts directly linked to the organization.
+// `@organization_members/@accounts`: Receive events from all accounts connected to any platform accounts in the organization.
 func (o V2CoreEventDestinationOutput) EventsFroms() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v *V2CoreEventDestination) pulumi.StringArrayOutput { return v.EventsFroms }).(pulumi.StringArrayOutput)
+}
+
+// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+// Additional fields to include in the response.
+func (o V2CoreEventDestinationOutput) Includes() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *V2CoreEventDestination) pulumi.StringArrayOutput { return v.Includes }).(pulumi.StringArrayOutput)
+}
+
+// Has the value <span pulumi-lang-nodejs="`true`" pulumi-lang-dotnet="`True`" pulumi-lang-go="`true`" pulumi-lang-python="`true`" pulumi-lang-yaml="`true`" pulumi-lang-java="`true`" pulumi-lang-hcl="`true`">`true`</span> if the object exists in live mode or the value <span pulumi-lang-nodejs="`false`" pulumi-lang-dotnet="`False`" pulumi-lang-go="`false`" pulumi-lang-python="`false`" pulumi-lang-yaml="`false`" pulumi-lang-java="`false`" pulumi-lang-hcl="`false`">`false`</span> if the object exists in test mode.
+func (o V2CoreEventDestinationOutput) Livemode() pulumi.BoolOutput {
+	return o.ApplyT(func(v *V2CoreEventDestination) pulumi.BoolOutput { return v.Livemode }).(pulumi.BoolOutput)
 }
 
 // Metadata.
@@ -260,6 +367,11 @@ func (o V2CoreEventDestinationOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v *V2CoreEventDestination) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
 }
 
+// String representing the object's type. Objects of the same type share the same value of the object field.
+func (o V2CoreEventDestinationOutput) Object() pulumi.StringOutput {
+	return o.ApplyT(func(v *V2CoreEventDestination) pulumi.StringOutput { return v.Object }).(pulumi.StringOutput)
+}
+
 // If using the snapshot event payload, the API version events are rendered as.
 func (o V2CoreEventDestinationOutput) SnapshotApiVersion() pulumi.StringOutput {
 	return o.ApplyT(func(v *V2CoreEventDestination) pulumi.StringOutput { return v.SnapshotApiVersion }).(pulumi.StringOutput)
@@ -270,16 +382,26 @@ func (o V2CoreEventDestinationOutput) Status() pulumi.StringOutput {
 	return o.ApplyT(func(v *V2CoreEventDestination) pulumi.StringOutput { return v.Status }).(pulumi.StringOutput)
 }
 
+// Additional information about event destination status.
+func (o V2CoreEventDestinationOutput) StatusDetails() V2CoreEventDestinationStatusDetailsOutput {
+	return o.ApplyT(func(v *V2CoreEventDestination) V2CoreEventDestinationStatusDetailsOutput { return v.StatusDetails }).(V2CoreEventDestinationStatusDetailsOutput)
+}
+
 // Event destination type.
 func (o V2CoreEventDestinationOutput) Type() pulumi.StringOutput {
 	return o.ApplyT(func(v *V2CoreEventDestination) pulumi.StringOutput { return v.Type }).(pulumi.StringOutput)
 }
 
+// Time at which the object was last updated.
+func (o V2CoreEventDestinationOutput) Updated() pulumi.StringOutput {
+	return o.ApplyT(func(v *V2CoreEventDestination) pulumi.StringOutput { return v.Updated }).(pulumi.StringOutput)
+}
+
 // Webhook endpoint configuration.
-func (o V2CoreEventDestinationOutput) WebhookEndpoint() V2CoreEventDestinationWebhookEndpointPtrOutput {
-	return o.ApplyT(func(v *V2CoreEventDestination) V2CoreEventDestinationWebhookEndpointPtrOutput {
-		return v.WebhookEndpoint
-	}).(V2CoreEventDestinationWebhookEndpointPtrOutput)
+func (o V2CoreEventDestinationOutput) WebhookEndpoints() V2CoreEventDestinationWebhookEndpointArrayOutput {
+	return o.ApplyT(func(v *V2CoreEventDestination) V2CoreEventDestinationWebhookEndpointArrayOutput {
+		return v.WebhookEndpoints
+	}).(V2CoreEventDestinationWebhookEndpointArrayOutput)
 }
 
 func init() {

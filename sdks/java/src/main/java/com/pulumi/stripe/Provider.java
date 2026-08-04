@@ -11,6 +11,7 @@ import com.pulumi.stripe.ProviderArgs;
 import com.pulumi.stripe.Utilities;
 import java.lang.String;
 import java.util.List;
+import java.util.Optional;
 import javax.annotation.Nullable;
 
 /**
@@ -23,18 +24,32 @@ import javax.annotation.Nullable;
 @ResourceType(type="pulumi:providers:stripe")
 public class Provider extends com.pulumi.resources.ProviderResource {
     /**
-     * Stripe API key
+     * Stripe API key. Can also be set via the STRIPE_API_KEY environment variable.
      * 
      */
     @Export(name="apiKey", refs={String.class}, tree="[0]")
-    private Output<String> apiKey;
+    private Output</* @Nullable */ String> apiKey;
 
     /**
-     * @return Stripe API key
+     * @return Stripe API key. Can also be set via the STRIPE_API_KEY environment variable.
      * 
      */
-    public Output<String> apiKey() {
-        return this.apiKey;
+    public Output<Optional<String>> apiKey() {
+        return Codegen.optional(this.apiKey);
+    }
+    /**
+     * Connected account context for Connect-scoped requests. Can also be set via the STRIPE_ACCOUNT environment variable.
+     * 
+     */
+    @Export(name="stripeAccount", refs={String.class}, tree="[0]")
+    private Output</* @Nullable */ String> stripeAccount;
+
+    /**
+     * @return Connected account context for Connect-scoped requests. Can also be set via the STRIPE_ACCOUNT environment variable.
+     * 
+     */
+    public Output<Optional<String>> stripeAccount() {
+        return Codegen.optional(this.stripeAccount);
     }
 
     /**
@@ -49,7 +64,7 @@ public class Provider extends com.pulumi.resources.ProviderResource {
      * @param name The _unique_ name of the resulting resource.
      * @param args The arguments to use to populate this resource's properties.
      */
-    public Provider(java.lang.String name, ProviderArgs args) {
+    public Provider(java.lang.String name, @Nullable ProviderArgs args) {
         this(name, args, null);
     }
     /**
@@ -58,11 +73,11 @@ public class Provider extends com.pulumi.resources.ProviderResource {
      * @param args The arguments to use to populate this resource's properties.
      * @param options A bag of options that control this resource's behavior.
      */
-    public Provider(java.lang.String name, ProviderArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+    public Provider(java.lang.String name, @Nullable ProviderArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
         super("stripe", name, makeArgs(args, options), makeResourceOptions(options, Codegen.empty()), false, Utilities.getPackageRef());
     }
 
-    private static ProviderArgs makeArgs(ProviderArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+    private static ProviderArgs makeArgs(@Nullable ProviderArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
         if (options != null && options.getUrn().isPresent()) {
             return null;
         }

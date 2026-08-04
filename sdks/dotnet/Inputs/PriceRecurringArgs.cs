@@ -13,13 +13,13 @@ namespace Pulumi.Stripe.Inputs
     public sealed class PriceRecurringArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Specifies billing frequency. Either &lt;span pulumi-lang-nodejs="`day`" pulumi-lang-dotnet="`Day`" pulumi-lang-go="`day`" pulumi-lang-python="`day`" pulumi-lang-yaml="`day`" pulumi-lang-java="`day`" pulumi-lang-hcl="`day`"&gt;`day`&lt;/span&gt;, &lt;span pulumi-lang-nodejs="`week`" pulumi-lang-dotnet="`Week`" pulumi-lang-go="`week`" pulumi-lang-python="`week`" pulumi-lang-yaml="`week`" pulumi-lang-java="`week`" pulumi-lang-hcl="`week`"&gt;`week`&lt;/span&gt;, &lt;span pulumi-lang-nodejs="`month`" pulumi-lang-dotnet="`Month`" pulumi-lang-go="`month`" pulumi-lang-python="`month`" pulumi-lang-yaml="`month`" pulumi-lang-java="`month`" pulumi-lang-hcl="`month`"&gt;`month`&lt;/span&gt; or &lt;span pulumi-lang-nodejs="`year`" pulumi-lang-dotnet="`Year`" pulumi-lang-go="`year`" pulumi-lang-python="`year`" pulumi-lang-yaml="`year`" pulumi-lang-java="`year`" pulumi-lang-hcl="`year`"&gt;`year`&lt;/span&gt;.
+        /// The frequency at which a subscription is billed. One of &lt;span pulumi-lang-nodejs="`day`" pulumi-lang-dotnet="`Day`" pulumi-lang-go="`day`" pulumi-lang-python="`day`" pulumi-lang-yaml="`day`" pulumi-lang-java="`day`" pulumi-lang-hcl="`day`"&gt;`day`&lt;/span&gt;, &lt;span pulumi-lang-nodejs="`week`" pulumi-lang-dotnet="`Week`" pulumi-lang-go="`week`" pulumi-lang-python="`week`" pulumi-lang-yaml="`week`" pulumi-lang-java="`week`" pulumi-lang-hcl="`week`"&gt;`week`&lt;/span&gt;, &lt;span pulumi-lang-nodejs="`month`" pulumi-lang-dotnet="`Month`" pulumi-lang-go="`month`" pulumi-lang-python="`month`" pulumi-lang-yaml="`month`" pulumi-lang-java="`month`" pulumi-lang-hcl="`month`"&gt;`month`&lt;/span&gt; or &lt;span pulumi-lang-nodejs="`year`" pulumi-lang-dotnet="`Year`" pulumi-lang-go="`year`" pulumi-lang-python="`year`" pulumi-lang-yaml="`year`" pulumi-lang-java="`year`" pulumi-lang-hcl="`year`"&gt;`year`&lt;/span&gt;.
         /// </summary>
         [Input("interval", required: true)]
         public Input<string> Interval { get; set; } = null!;
 
         /// <summary>
-        /// The number of intervals between subscription billings. For example, `interval=month` and `interval_count=3` bills every 3 months. Maximum of three years interval allowed (3 years, 36 months, or 156 weeks).
+        /// The number of intervals (specified in the &lt;span pulumi-lang-nodejs="`interval`" pulumi-lang-dotnet="`Interval`" pulumi-lang-go="`interval`" pulumi-lang-python="`interval`" pulumi-lang-yaml="`interval`" pulumi-lang-java="`interval`" pulumi-lang-hcl="`interval`"&gt;`interval`&lt;/span&gt; attribute) between subscription billings. For example, `interval=month` and `interval_count=3` bills every 3 months.
         /// </summary>
         [Input("intervalCount")]
         public Input<double>? IntervalCount { get; set; }
@@ -31,7 +31,7 @@ namespace Pulumi.Stripe.Inputs
         public Input<string>? Meter { get; set; }
 
         /// <summary>
-        /// Default number of trial days when subscribing a customer to this price using [`trial_from_plan=true`](https://stripe.com/docs/api#create_subscription-trial_from_plan).
+        /// Default number of trial days when subscribing a customer to this price using [`trial_from_plan=true`](https://docs.stripe.com/api#create_subscription-trial_from_plan).
         /// </summary>
         [Input("trialPeriodDays")]
         public Input<double>? TrialPeriodDays { get; set; }

@@ -22,13 +22,13 @@ __all__ = ['ProductArgs', 'Product']
 class ProductArgs:
     def __init__(__self__, *,
                  active: pulumi.Input[Optional[_builtins.bool]] = None,
-                 default_price_data: pulumi.Input[Optional['ProductDefaultPriceDataArgs']] = None,
+                 default_price_datas: pulumi.Input[Optional[Sequence[pulumi.Input['ProductDefaultPriceDataArgs']]]] = None,
                  description: pulumi.Input[Optional[_builtins.str]] = None,
                  images: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  marketing_features: pulumi.Input[Optional[Sequence[pulumi.Input['ProductMarketingFeatureArgs']]]] = None,
                  metadata: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
                  name: pulumi.Input[Optional[_builtins.str]] = None,
-                 package_dimensions: pulumi.Input[Optional['ProductPackageDimensionsArgs']] = None,
+                 package_dimensions: pulumi.Input[Optional[Sequence[pulumi.Input['ProductPackageDimensionArgs']]]] = None,
                  shippable: pulumi.Input[Optional[_builtins.bool]] = None,
                  statement_descriptor: pulumi.Input[Optional[_builtins.str]] = None,
                  tax_code: pulumi.Input[Optional[_builtins.str]] = None,
@@ -38,25 +38,25 @@ class ProductArgs:
         """
         The set of arguments for constructing a Product resource.
 
-        :param pulumi.Input[_builtins.bool] active: Whether the product is currently available for purchase. Defaults to <span pulumi-lang-nodejs="`true`" pulumi-lang-dotnet="`True`" pulumi-lang-go="`true`" pulumi-lang-python="`true`" pulumi-lang-yaml="`true`" pulumi-lang-java="`true`" pulumi-lang-hcl="`true`">`true`</span>.
-        :param pulumi.Input['ProductDefaultPriceDataArgs'] default_price_data: Data used to generate a new [Price](https://stripe.com/docs/api/prices) object. This Price will be set as the default price for this product.
+        :param pulumi.Input[_builtins.bool] active: Whether the product is currently available for purchase.
+        :param pulumi.Input[Sequence[pulumi.Input['ProductDefaultPriceDataArgs']]] default_price_datas: Data used to generate a new [Price](https://docs.stripe.com/api/prices) object. This Price will be set as the default price for this product.
         :param pulumi.Input[_builtins.str] description: The product's description, meant to be displayable to the customer. Use this field to optionally store a long form explanation of the product being sold for your own rendering purposes.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] images: A list of up to 8 URLs of images for this product, meant to be displayable to the customer.
-        :param pulumi.Input[Sequence[pulumi.Input['ProductMarketingFeatureArgs']]] marketing_features: A list of up to 15 marketing features for this product. These are displayed in [pricing tables](https://stripe.com/docs/payments/checkout/pricing-table).
-        :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] metadata: Set of [key-value pairs](https://stripe.com/docs/api/metadata) that you can attach to an object. This can be useful for storing additional information about the object in a structured format. Individual keys can be unset by posting an empty value to them. All keys can be unset by posting an empty value to <span pulumi-lang-nodejs="`metadata`" pulumi-lang-dotnet="`Metadata`" pulumi-lang-go="`metadata`" pulumi-lang-python="`metadata`" pulumi-lang-yaml="`metadata`" pulumi-lang-java="`metadata`" pulumi-lang-hcl="`metadata`">`metadata`</span>.
+        :param pulumi.Input[Sequence[pulumi.Input['ProductMarketingFeatureArgs']]] marketing_features: A list of up to 15 marketing features for this product. These are displayed in [pricing tables](https://docs.stripe.com/payments/checkout/pricing-table).
+        :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] metadata: Set of [key-value pairs](https://docs.stripe.com/api/metadata) that you can attach to an object. This can be useful for storing additional information about the object in a structured format.
         :param pulumi.Input[_builtins.str] name: The product's name, meant to be displayable to the customer.
-        :param pulumi.Input['ProductPackageDimensionsArgs'] package_dimensions: The dimensions of this product for shipping purposes.
+        :param pulumi.Input[Sequence[pulumi.Input['ProductPackageDimensionArgs']]] package_dimensions: The dimensions of this product for shipping purposes.
         :param pulumi.Input[_builtins.bool] shippable: Whether this product is shipped (i.e., physical goods).
-        :param pulumi.Input[_builtins.str] statement_descriptor: An arbitrary string to be displayed on your customer's credit card or bank statement. While most banks display this information consistently, some may display it incorrectly or not at all. This may be up to 22 characters. The statement description may not include `<`, `>`, `\\`, `\\"`, `'` characters, and will appear on your customer's statement in capital letters. Non-ASCII characters are automatically stripped. It must contain at least one letter. Only used for subscription payments.
-        :param pulumi.Input[_builtins.str] tax_code: A [tax code](https://stripe.com/docs/tax/tax-categories) ID.
-        :param pulumi.Input[_builtins.str] type: The type of the product. Defaults to <span pulumi-lang-nodejs="`service`" pulumi-lang-dotnet="`Service`" pulumi-lang-go="`service`" pulumi-lang-python="`service`" pulumi-lang-yaml="`service`" pulumi-lang-java="`service`" pulumi-lang-hcl="`service`">`service`</span> if not explicitly specified, enabling use of this product with Subscriptions and Plans. Set this parameter to <span pulumi-lang-nodejs="`good`" pulumi-lang-dotnet="`Good`" pulumi-lang-go="`good`" pulumi-lang-python="`good`" pulumi-lang-yaml="`good`" pulumi-lang-java="`good`" pulumi-lang-hcl="`good`">`good`</span> to use this product with Orders and SKUs. On API versions before `2018-02-05`, this field defaults to <span pulumi-lang-nodejs="`good`" pulumi-lang-dotnet="`Good`" pulumi-lang-go="`good`" pulumi-lang-python="`good`" pulumi-lang-yaml="`good`" pulumi-lang-java="`good`" pulumi-lang-hcl="`good`">`good`</span> for compatibility reasons.
+        :param pulumi.Input[_builtins.str] statement_descriptor: Extra information about a product which will appear on your customer's credit card statement. In the case that multiple products are billed at once, the first statement descriptor will be used. Only used for subscription payments.
+        :param pulumi.Input[_builtins.str] tax_code: A [tax code](https://docs.stripe.com/tax/tax-categories) ID.
+        :param pulumi.Input[_builtins.str] type: The type of the product. The product is either of type <span pulumi-lang-nodejs="`good`" pulumi-lang-dotnet="`Good`" pulumi-lang-go="`good`" pulumi-lang-python="`good`" pulumi-lang-yaml="`good`" pulumi-lang-java="`good`" pulumi-lang-hcl="`good`">`good`</span>, which is eligible for use with Orders and SKUs, or <span pulumi-lang-nodejs="`service`" pulumi-lang-dotnet="`Service`" pulumi-lang-go="`service`" pulumi-lang-python="`service`" pulumi-lang-yaml="`service`" pulumi-lang-java="`service`" pulumi-lang-hcl="`service`">`service`</span>, which is eligible for use with Subscriptions and Plans.
         :param pulumi.Input[_builtins.str] unit_label: A label that represents units of this product. When set, this will be included in customers' receipts, invoices, Checkout, and the customer portal.
         :param pulumi.Input[_builtins.str] url: A URL of a publicly-accessible webpage for this product.
         """
         if active is not None:
             pulumi.set(__self__, "active", active)
-        if default_price_data is not None:
-            pulumi.set(__self__, "default_price_data", default_price_data)
+        if default_price_datas is not None:
+            pulumi.set(__self__, "default_price_datas", default_price_datas)
         if description is not None:
             pulumi.set(__self__, "description", description)
         if images is not None:
@@ -86,7 +86,7 @@ class ProductArgs:
     @pulumi.getter
     def active(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
-        Whether the product is currently available for purchase. Defaults to <span pulumi-lang-nodejs="`true`" pulumi-lang-dotnet="`True`" pulumi-lang-go="`true`" pulumi-lang-python="`true`" pulumi-lang-yaml="`true`" pulumi-lang-java="`true`" pulumi-lang-hcl="`true`">`true`</span>.
+        Whether the product is currently available for purchase.
         """
         return pulumi.get(self, "active")
 
@@ -95,16 +95,16 @@ class ProductArgs:
         pulumi.set(self, "active", value)
 
     @_builtins.property
-    @pulumi.getter(name="defaultPriceData")
-    def default_price_data(self) -> pulumi.Input[Optional['ProductDefaultPriceDataArgs']]:
+    @pulumi.getter(name="defaultPriceDatas")
+    def default_price_datas(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['ProductDefaultPriceDataArgs']]]]:
         """
-        Data used to generate a new [Price](https://stripe.com/docs/api/prices) object. This Price will be set as the default price for this product.
+        Data used to generate a new [Price](https://docs.stripe.com/api/prices) object. This Price will be set as the default price for this product.
         """
-        return pulumi.get(self, "default_price_data")
+        return pulumi.get(self, "default_price_datas")
 
-    @default_price_data.setter
-    def default_price_data(self, value: pulumi.Input[Optional['ProductDefaultPriceDataArgs']]):
-        pulumi.set(self, "default_price_data", value)
+    @default_price_datas.setter
+    def default_price_datas(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['ProductDefaultPriceDataArgs']]]]):
+        pulumi.set(self, "default_price_datas", value)
 
     @_builtins.property
     @pulumi.getter
@@ -134,7 +134,7 @@ class ProductArgs:
     @pulumi.getter(name="marketingFeatures")
     def marketing_features(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['ProductMarketingFeatureArgs']]]]:
         """
-        A list of up to 15 marketing features for this product. These are displayed in [pricing tables](https://stripe.com/docs/payments/checkout/pricing-table).
+        A list of up to 15 marketing features for this product. These are displayed in [pricing tables](https://docs.stripe.com/payments/checkout/pricing-table).
         """
         return pulumi.get(self, "marketing_features")
 
@@ -146,7 +146,7 @@ class ProductArgs:
     @pulumi.getter
     def metadata(self) -> pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]:
         """
-        Set of [key-value pairs](https://stripe.com/docs/api/metadata) that you can attach to an object. This can be useful for storing additional information about the object in a structured format. Individual keys can be unset by posting an empty value to them. All keys can be unset by posting an empty value to <span pulumi-lang-nodejs="`metadata`" pulumi-lang-dotnet="`Metadata`" pulumi-lang-go="`metadata`" pulumi-lang-python="`metadata`" pulumi-lang-yaml="`metadata`" pulumi-lang-java="`metadata`" pulumi-lang-hcl="`metadata`">`metadata`</span>.
+        Set of [key-value pairs](https://docs.stripe.com/api/metadata) that you can attach to an object. This can be useful for storing additional information about the object in a structured format.
         """
         return pulumi.get(self, "metadata")
 
@@ -168,14 +168,14 @@ class ProductArgs:
 
     @_builtins.property
     @pulumi.getter(name="packageDimensions")
-    def package_dimensions(self) -> pulumi.Input[Optional['ProductPackageDimensionsArgs']]:
+    def package_dimensions(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['ProductPackageDimensionArgs']]]]:
         """
         The dimensions of this product for shipping purposes.
         """
         return pulumi.get(self, "package_dimensions")
 
     @package_dimensions.setter
-    def package_dimensions(self, value: pulumi.Input[Optional['ProductPackageDimensionsArgs']]):
+    def package_dimensions(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['ProductPackageDimensionArgs']]]]):
         pulumi.set(self, "package_dimensions", value)
 
     @_builtins.property
@@ -194,7 +194,7 @@ class ProductArgs:
     @pulumi.getter(name="statementDescriptor")
     def statement_descriptor(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
-        An arbitrary string to be displayed on your customer's credit card or bank statement. While most banks display this information consistently, some may display it incorrectly or not at all. This may be up to 22 characters. The statement description may not include `<`, `>`, `\\`, `\\"`, `'` characters, and will appear on your customer's statement in capital letters. Non-ASCII characters are automatically stripped. It must contain at least one letter. Only used for subscription payments.
+        Extra information about a product which will appear on your customer's credit card statement. In the case that multiple products are billed at once, the first statement descriptor will be used. Only used for subscription payments.
         """
         return pulumi.get(self, "statement_descriptor")
 
@@ -206,7 +206,7 @@ class ProductArgs:
     @pulumi.getter(name="taxCode")
     def tax_code(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
-        A [tax code](https://stripe.com/docs/tax/tax-categories) ID.
+        A [tax code](https://docs.stripe.com/tax/tax-categories) ID.
         """
         return pulumi.get(self, "tax_code")
 
@@ -218,7 +218,7 @@ class ProductArgs:
     @pulumi.getter
     def type(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
-        The type of the product. Defaults to <span pulumi-lang-nodejs="`service`" pulumi-lang-dotnet="`Service`" pulumi-lang-go="`service`" pulumi-lang-python="`service`" pulumi-lang-yaml="`service`" pulumi-lang-java="`service`" pulumi-lang-hcl="`service`">`service`</span> if not explicitly specified, enabling use of this product with Subscriptions and Plans. Set this parameter to <span pulumi-lang-nodejs="`good`" pulumi-lang-dotnet="`Good`" pulumi-lang-go="`good`" pulumi-lang-python="`good`" pulumi-lang-yaml="`good`" pulumi-lang-java="`good`" pulumi-lang-hcl="`good`">`good`</span> to use this product with Orders and SKUs. On API versions before `2018-02-05`, this field defaults to <span pulumi-lang-nodejs="`good`" pulumi-lang-dotnet="`Good`" pulumi-lang-go="`good`" pulumi-lang-python="`good`" pulumi-lang-yaml="`good`" pulumi-lang-java="`good`" pulumi-lang-hcl="`good`">`good`</span> for compatibility reasons.
+        The type of the product. The product is either of type <span pulumi-lang-nodejs="`good`" pulumi-lang-dotnet="`Good`" pulumi-lang-go="`good`" pulumi-lang-python="`good`" pulumi-lang-yaml="`good`" pulumi-lang-java="`good`" pulumi-lang-hcl="`good`">`good`</span>, which is eligible for use with Orders and SKUs, or <span pulumi-lang-nodejs="`service`" pulumi-lang-dotnet="`Service`" pulumi-lang-go="`service`" pulumi-lang-python="`service`" pulumi-lang-yaml="`service`" pulumi-lang-java="`service`" pulumi-lang-hcl="`service`">`service`</span>, which is eligible for use with Subscriptions and Plans.
         """
         return pulumi.get(self, "type")
 
@@ -255,51 +255,69 @@ class ProductArgs:
 class _ProductState:
     def __init__(__self__, *,
                  active: pulumi.Input[Optional[_builtins.bool]] = None,
-                 default_price_data: pulumi.Input[Optional['ProductDefaultPriceDataArgs']] = None,
+                 created: pulumi.Input[Optional[_builtins.float]] = None,
+                 default_price: pulumi.Input[Optional[_builtins.str]] = None,
+                 default_price_datas: pulumi.Input[Optional[Sequence[pulumi.Input['ProductDefaultPriceDataArgs']]]] = None,
                  description: pulumi.Input[Optional[_builtins.str]] = None,
                  images: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 livemode: pulumi.Input[Optional[_builtins.bool]] = None,
                  marketing_features: pulumi.Input[Optional[Sequence[pulumi.Input['ProductMarketingFeatureArgs']]]] = None,
                  metadata: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
                  name: pulumi.Input[Optional[_builtins.str]] = None,
-                 package_dimensions: pulumi.Input[Optional['ProductPackageDimensionsArgs']] = None,
+                 object: pulumi.Input[Optional[_builtins.str]] = None,
+                 package_dimensions: pulumi.Input[Optional[Sequence[pulumi.Input['ProductPackageDimensionArgs']]]] = None,
                  shippable: pulumi.Input[Optional[_builtins.bool]] = None,
                  statement_descriptor: pulumi.Input[Optional[_builtins.str]] = None,
                  tax_code: pulumi.Input[Optional[_builtins.str]] = None,
                  type: pulumi.Input[Optional[_builtins.str]] = None,
                  unit_label: pulumi.Input[Optional[_builtins.str]] = None,
+                 updated: pulumi.Input[Optional[_builtins.float]] = None,
                  url: pulumi.Input[Optional[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering Product resources.
 
-        :param pulumi.Input[_builtins.bool] active: Whether the product is currently available for purchase. Defaults to <span pulumi-lang-nodejs="`true`" pulumi-lang-dotnet="`True`" pulumi-lang-go="`true`" pulumi-lang-python="`true`" pulumi-lang-yaml="`true`" pulumi-lang-java="`true`" pulumi-lang-hcl="`true`">`true`</span>.
-        :param pulumi.Input['ProductDefaultPriceDataArgs'] default_price_data: Data used to generate a new [Price](https://stripe.com/docs/api/prices) object. This Price will be set as the default price for this product.
+        :param pulumi.Input[_builtins.bool] active: Whether the product is currently available for purchase.
+        :param pulumi.Input[_builtins.float] created: Time at which the object was created. Measured in seconds since the Unix epoch.
+        :param pulumi.Input[_builtins.str] default_price: The ID of the [Price](https://docs.stripe.com/api/prices) object that is the default price for this product.
+        :param pulumi.Input[Sequence[pulumi.Input['ProductDefaultPriceDataArgs']]] default_price_datas: Data used to generate a new [Price](https://docs.stripe.com/api/prices) object. This Price will be set as the default price for this product.
         :param pulumi.Input[_builtins.str] description: The product's description, meant to be displayable to the customer. Use this field to optionally store a long form explanation of the product being sold for your own rendering purposes.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] images: A list of up to 8 URLs of images for this product, meant to be displayable to the customer.
-        :param pulumi.Input[Sequence[pulumi.Input['ProductMarketingFeatureArgs']]] marketing_features: A list of up to 15 marketing features for this product. These are displayed in [pricing tables](https://stripe.com/docs/payments/checkout/pricing-table).
-        :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] metadata: Set of [key-value pairs](https://stripe.com/docs/api/metadata) that you can attach to an object. This can be useful for storing additional information about the object in a structured format. Individual keys can be unset by posting an empty value to them. All keys can be unset by posting an empty value to <span pulumi-lang-nodejs="`metadata`" pulumi-lang-dotnet="`Metadata`" pulumi-lang-go="`metadata`" pulumi-lang-python="`metadata`" pulumi-lang-yaml="`metadata`" pulumi-lang-java="`metadata`" pulumi-lang-hcl="`metadata`">`metadata`</span>.
+        :param pulumi.Input[_builtins.bool] livemode: If the object exists in live mode, the value is <span pulumi-lang-nodejs="`true`" pulumi-lang-dotnet="`True`" pulumi-lang-go="`true`" pulumi-lang-python="`true`" pulumi-lang-yaml="`true`" pulumi-lang-java="`true`" pulumi-lang-hcl="`true`">`true`</span>. If the object exists in test mode, the value is <span pulumi-lang-nodejs="`false`" pulumi-lang-dotnet="`False`" pulumi-lang-go="`false`" pulumi-lang-python="`false`" pulumi-lang-yaml="`false`" pulumi-lang-java="`false`" pulumi-lang-hcl="`false`">`false`</span>.
+        :param pulumi.Input[Sequence[pulumi.Input['ProductMarketingFeatureArgs']]] marketing_features: A list of up to 15 marketing features for this product. These are displayed in [pricing tables](https://docs.stripe.com/payments/checkout/pricing-table).
+        :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] metadata: Set of [key-value pairs](https://docs.stripe.com/api/metadata) that you can attach to an object. This can be useful for storing additional information about the object in a structured format.
         :param pulumi.Input[_builtins.str] name: The product's name, meant to be displayable to the customer.
-        :param pulumi.Input['ProductPackageDimensionsArgs'] package_dimensions: The dimensions of this product for shipping purposes.
+        :param pulumi.Input[_builtins.str] object: String representing the object's type. Objects of the same type share the same value.
+        :param pulumi.Input[Sequence[pulumi.Input['ProductPackageDimensionArgs']]] package_dimensions: The dimensions of this product for shipping purposes.
         :param pulumi.Input[_builtins.bool] shippable: Whether this product is shipped (i.e., physical goods).
-        :param pulumi.Input[_builtins.str] statement_descriptor: An arbitrary string to be displayed on your customer's credit card or bank statement. While most banks display this information consistently, some may display it incorrectly or not at all. This may be up to 22 characters. The statement description may not include `<`, `>`, `\\`, `\\"`, `'` characters, and will appear on your customer's statement in capital letters. Non-ASCII characters are automatically stripped. It must contain at least one letter. Only used for subscription payments.
-        :param pulumi.Input[_builtins.str] tax_code: A [tax code](https://stripe.com/docs/tax/tax-categories) ID.
-        :param pulumi.Input[_builtins.str] type: The type of the product. Defaults to <span pulumi-lang-nodejs="`service`" pulumi-lang-dotnet="`Service`" pulumi-lang-go="`service`" pulumi-lang-python="`service`" pulumi-lang-yaml="`service`" pulumi-lang-java="`service`" pulumi-lang-hcl="`service`">`service`</span> if not explicitly specified, enabling use of this product with Subscriptions and Plans. Set this parameter to <span pulumi-lang-nodejs="`good`" pulumi-lang-dotnet="`Good`" pulumi-lang-go="`good`" pulumi-lang-python="`good`" pulumi-lang-yaml="`good`" pulumi-lang-java="`good`" pulumi-lang-hcl="`good`">`good`</span> to use this product with Orders and SKUs. On API versions before `2018-02-05`, this field defaults to <span pulumi-lang-nodejs="`good`" pulumi-lang-dotnet="`Good`" pulumi-lang-go="`good`" pulumi-lang-python="`good`" pulumi-lang-yaml="`good`" pulumi-lang-java="`good`" pulumi-lang-hcl="`good`">`good`</span> for compatibility reasons.
+        :param pulumi.Input[_builtins.str] statement_descriptor: Extra information about a product which will appear on your customer's credit card statement. In the case that multiple products are billed at once, the first statement descriptor will be used. Only used for subscription payments.
+        :param pulumi.Input[_builtins.str] tax_code: A [tax code](https://docs.stripe.com/tax/tax-categories) ID.
+        :param pulumi.Input[_builtins.str] type: The type of the product. The product is either of type <span pulumi-lang-nodejs="`good`" pulumi-lang-dotnet="`Good`" pulumi-lang-go="`good`" pulumi-lang-python="`good`" pulumi-lang-yaml="`good`" pulumi-lang-java="`good`" pulumi-lang-hcl="`good`">`good`</span>, which is eligible for use with Orders and SKUs, or <span pulumi-lang-nodejs="`service`" pulumi-lang-dotnet="`Service`" pulumi-lang-go="`service`" pulumi-lang-python="`service`" pulumi-lang-yaml="`service`" pulumi-lang-java="`service`" pulumi-lang-hcl="`service`">`service`</span>, which is eligible for use with Subscriptions and Plans.
         :param pulumi.Input[_builtins.str] unit_label: A label that represents units of this product. When set, this will be included in customers' receipts, invoices, Checkout, and the customer portal.
+        :param pulumi.Input[_builtins.float] updated: Time at which the object was last updated. Measured in seconds since the Unix epoch.
         :param pulumi.Input[_builtins.str] url: A URL of a publicly-accessible webpage for this product.
         """
         if active is not None:
             pulumi.set(__self__, "active", active)
-        if default_price_data is not None:
-            pulumi.set(__self__, "default_price_data", default_price_data)
+        if created is not None:
+            pulumi.set(__self__, "created", created)
+        if default_price is not None:
+            pulumi.set(__self__, "default_price", default_price)
+        if default_price_datas is not None:
+            pulumi.set(__self__, "default_price_datas", default_price_datas)
         if description is not None:
             pulumi.set(__self__, "description", description)
         if images is not None:
             pulumi.set(__self__, "images", images)
+        if livemode is not None:
+            pulumi.set(__self__, "livemode", livemode)
         if marketing_features is not None:
             pulumi.set(__self__, "marketing_features", marketing_features)
         if metadata is not None:
             pulumi.set(__self__, "metadata", metadata)
         if name is not None:
             pulumi.set(__self__, "name", name)
+        if object is not None:
+            pulumi.set(__self__, "object", object)
         if package_dimensions is not None:
             pulumi.set(__self__, "package_dimensions", package_dimensions)
         if shippable is not None:
@@ -312,6 +330,8 @@ class _ProductState:
             pulumi.set(__self__, "type", type)
         if unit_label is not None:
             pulumi.set(__self__, "unit_label", unit_label)
+        if updated is not None:
+            pulumi.set(__self__, "updated", updated)
         if url is not None:
             pulumi.set(__self__, "url", url)
 
@@ -319,7 +339,7 @@ class _ProductState:
     @pulumi.getter
     def active(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
-        Whether the product is currently available for purchase. Defaults to <span pulumi-lang-nodejs="`true`" pulumi-lang-dotnet="`True`" pulumi-lang-go="`true`" pulumi-lang-python="`true`" pulumi-lang-yaml="`true`" pulumi-lang-java="`true`" pulumi-lang-hcl="`true`">`true`</span>.
+        Whether the product is currently available for purchase.
         """
         return pulumi.get(self, "active")
 
@@ -328,16 +348,40 @@ class _ProductState:
         pulumi.set(self, "active", value)
 
     @_builtins.property
-    @pulumi.getter(name="defaultPriceData")
-    def default_price_data(self) -> pulumi.Input[Optional['ProductDefaultPriceDataArgs']]:
+    @pulumi.getter
+    def created(self) -> pulumi.Input[Optional[_builtins.float]]:
         """
-        Data used to generate a new [Price](https://stripe.com/docs/api/prices) object. This Price will be set as the default price for this product.
+        Time at which the object was created. Measured in seconds since the Unix epoch.
         """
-        return pulumi.get(self, "default_price_data")
+        return pulumi.get(self, "created")
 
-    @default_price_data.setter
-    def default_price_data(self, value: pulumi.Input[Optional['ProductDefaultPriceDataArgs']]):
-        pulumi.set(self, "default_price_data", value)
+    @created.setter
+    def created(self, value: pulumi.Input[Optional[_builtins.float]]):
+        pulumi.set(self, "created", value)
+
+    @_builtins.property
+    @pulumi.getter(name="defaultPrice")
+    def default_price(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        The ID of the [Price](https://docs.stripe.com/api/prices) object that is the default price for this product.
+        """
+        return pulumi.get(self, "default_price")
+
+    @default_price.setter
+    def default_price(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "default_price", value)
+
+    @_builtins.property
+    @pulumi.getter(name="defaultPriceDatas")
+    def default_price_datas(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['ProductDefaultPriceDataArgs']]]]:
+        """
+        Data used to generate a new [Price](https://docs.stripe.com/api/prices) object. This Price will be set as the default price for this product.
+        """
+        return pulumi.get(self, "default_price_datas")
+
+    @default_price_datas.setter
+    def default_price_datas(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['ProductDefaultPriceDataArgs']]]]):
+        pulumi.set(self, "default_price_datas", value)
 
     @_builtins.property
     @pulumi.getter
@@ -364,10 +408,22 @@ class _ProductState:
         pulumi.set(self, "images", value)
 
     @_builtins.property
+    @pulumi.getter
+    def livemode(self) -> pulumi.Input[Optional[_builtins.bool]]:
+        """
+        If the object exists in live mode, the value is <span pulumi-lang-nodejs="`true`" pulumi-lang-dotnet="`True`" pulumi-lang-go="`true`" pulumi-lang-python="`true`" pulumi-lang-yaml="`true`" pulumi-lang-java="`true`" pulumi-lang-hcl="`true`">`true`</span>. If the object exists in test mode, the value is <span pulumi-lang-nodejs="`false`" pulumi-lang-dotnet="`False`" pulumi-lang-go="`false`" pulumi-lang-python="`false`" pulumi-lang-yaml="`false`" pulumi-lang-java="`false`" pulumi-lang-hcl="`false`">`false`</span>.
+        """
+        return pulumi.get(self, "livemode")
+
+    @livemode.setter
+    def livemode(self, value: pulumi.Input[Optional[_builtins.bool]]):
+        pulumi.set(self, "livemode", value)
+
+    @_builtins.property
     @pulumi.getter(name="marketingFeatures")
     def marketing_features(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['ProductMarketingFeatureArgs']]]]:
         """
-        A list of up to 15 marketing features for this product. These are displayed in [pricing tables](https://stripe.com/docs/payments/checkout/pricing-table).
+        A list of up to 15 marketing features for this product. These are displayed in [pricing tables](https://docs.stripe.com/payments/checkout/pricing-table).
         """
         return pulumi.get(self, "marketing_features")
 
@@ -379,7 +435,7 @@ class _ProductState:
     @pulumi.getter
     def metadata(self) -> pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]:
         """
-        Set of [key-value pairs](https://stripe.com/docs/api/metadata) that you can attach to an object. This can be useful for storing additional information about the object in a structured format. Individual keys can be unset by posting an empty value to them. All keys can be unset by posting an empty value to <span pulumi-lang-nodejs="`metadata`" pulumi-lang-dotnet="`Metadata`" pulumi-lang-go="`metadata`" pulumi-lang-python="`metadata`" pulumi-lang-yaml="`metadata`" pulumi-lang-java="`metadata`" pulumi-lang-hcl="`metadata`">`metadata`</span>.
+        Set of [key-value pairs](https://docs.stripe.com/api/metadata) that you can attach to an object. This can be useful for storing additional information about the object in a structured format.
         """
         return pulumi.get(self, "metadata")
 
@@ -400,15 +456,27 @@ class _ProductState:
         pulumi.set(self, "name", value)
 
     @_builtins.property
+    @pulumi.getter
+    def object(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        String representing the object's type. Objects of the same type share the same value.
+        """
+        return pulumi.get(self, "object")
+
+    @object.setter
+    def object(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "object", value)
+
+    @_builtins.property
     @pulumi.getter(name="packageDimensions")
-    def package_dimensions(self) -> pulumi.Input[Optional['ProductPackageDimensionsArgs']]:
+    def package_dimensions(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['ProductPackageDimensionArgs']]]]:
         """
         The dimensions of this product for shipping purposes.
         """
         return pulumi.get(self, "package_dimensions")
 
     @package_dimensions.setter
-    def package_dimensions(self, value: pulumi.Input[Optional['ProductPackageDimensionsArgs']]):
+    def package_dimensions(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['ProductPackageDimensionArgs']]]]):
         pulumi.set(self, "package_dimensions", value)
 
     @_builtins.property
@@ -427,7 +495,7 @@ class _ProductState:
     @pulumi.getter(name="statementDescriptor")
     def statement_descriptor(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
-        An arbitrary string to be displayed on your customer's credit card or bank statement. While most banks display this information consistently, some may display it incorrectly or not at all. This may be up to 22 characters. The statement description may not include `<`, `>`, `\\`, `\\"`, `'` characters, and will appear on your customer's statement in capital letters. Non-ASCII characters are automatically stripped. It must contain at least one letter. Only used for subscription payments.
+        Extra information about a product which will appear on your customer's credit card statement. In the case that multiple products are billed at once, the first statement descriptor will be used. Only used for subscription payments.
         """
         return pulumi.get(self, "statement_descriptor")
 
@@ -439,7 +507,7 @@ class _ProductState:
     @pulumi.getter(name="taxCode")
     def tax_code(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
-        A [tax code](https://stripe.com/docs/tax/tax-categories) ID.
+        A [tax code](https://docs.stripe.com/tax/tax-categories) ID.
         """
         return pulumi.get(self, "tax_code")
 
@@ -451,7 +519,7 @@ class _ProductState:
     @pulumi.getter
     def type(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
-        The type of the product. Defaults to <span pulumi-lang-nodejs="`service`" pulumi-lang-dotnet="`Service`" pulumi-lang-go="`service`" pulumi-lang-python="`service`" pulumi-lang-yaml="`service`" pulumi-lang-java="`service`" pulumi-lang-hcl="`service`">`service`</span> if not explicitly specified, enabling use of this product with Subscriptions and Plans. Set this parameter to <span pulumi-lang-nodejs="`good`" pulumi-lang-dotnet="`Good`" pulumi-lang-go="`good`" pulumi-lang-python="`good`" pulumi-lang-yaml="`good`" pulumi-lang-java="`good`" pulumi-lang-hcl="`good`">`good`</span> to use this product with Orders and SKUs. On API versions before `2018-02-05`, this field defaults to <span pulumi-lang-nodejs="`good`" pulumi-lang-dotnet="`Good`" pulumi-lang-go="`good`" pulumi-lang-python="`good`" pulumi-lang-yaml="`good`" pulumi-lang-java="`good`" pulumi-lang-hcl="`good`">`good`</span> for compatibility reasons.
+        The type of the product. The product is either of type <span pulumi-lang-nodejs="`good`" pulumi-lang-dotnet="`Good`" pulumi-lang-go="`good`" pulumi-lang-python="`good`" pulumi-lang-yaml="`good`" pulumi-lang-java="`good`" pulumi-lang-hcl="`good`">`good`</span>, which is eligible for use with Orders and SKUs, or <span pulumi-lang-nodejs="`service`" pulumi-lang-dotnet="`Service`" pulumi-lang-go="`service`" pulumi-lang-python="`service`" pulumi-lang-yaml="`service`" pulumi-lang-java="`service`" pulumi-lang-hcl="`service`">`service`</span>, which is eligible for use with Subscriptions and Plans.
         """
         return pulumi.get(self, "type")
 
@@ -473,6 +541,18 @@ class _ProductState:
 
     @_builtins.property
     @pulumi.getter
+    def updated(self) -> pulumi.Input[Optional[_builtins.float]]:
+        """
+        Time at which the object was last updated. Measured in seconds since the Unix epoch.
+        """
+        return pulumi.get(self, "updated")
+
+    @updated.setter
+    def updated(self, value: pulumi.Input[Optional[_builtins.float]]):
+        pulumi.set(self, "updated", value)
+
+    @_builtins.property
+    @pulumi.getter
     def url(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         A URL of a publicly-accessible webpage for this product.
@@ -491,13 +571,13 @@ class Product(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  active: pulumi.Input[Optional[_builtins.bool]] = None,
-                 default_price_data: pulumi.Input[Optional[Union['ProductDefaultPriceDataArgs', 'ProductDefaultPriceDataArgsDict']]] = None,
+                 default_price_datas: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ProductDefaultPriceDataArgs', 'ProductDefaultPriceDataArgsDict']]]]] = None,
                  description: pulumi.Input[Optional[_builtins.str]] = None,
                  images: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  marketing_features: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ProductMarketingFeatureArgs', 'ProductMarketingFeatureArgsDict']]]]] = None,
                  metadata: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
                  name: pulumi.Input[Optional[_builtins.str]] = None,
-                 package_dimensions: pulumi.Input[Optional[Union['ProductPackageDimensionsArgs', 'ProductPackageDimensionsArgsDict']]] = None,
+                 package_dimensions: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ProductPackageDimensionArgs', 'ProductPackageDimensionArgsDict']]]]] = None,
                  shippable: pulumi.Input[Optional[_builtins.bool]] = None,
                  statement_descriptor: pulumi.Input[Optional[_builtins.str]] = None,
                  tax_code: pulumi.Input[Optional[_builtins.str]] = None,
@@ -510,18 +590,18 @@ class Product(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[_builtins.bool] active: Whether the product is currently available for purchase. Defaults to <span pulumi-lang-nodejs="`true`" pulumi-lang-dotnet="`True`" pulumi-lang-go="`true`" pulumi-lang-python="`true`" pulumi-lang-yaml="`true`" pulumi-lang-java="`true`" pulumi-lang-hcl="`true`">`true`</span>.
-        :param pulumi.Input[Union['ProductDefaultPriceDataArgs', 'ProductDefaultPriceDataArgsDict']] default_price_data: Data used to generate a new [Price](https://stripe.com/docs/api/prices) object. This Price will be set as the default price for this product.
+        :param pulumi.Input[_builtins.bool] active: Whether the product is currently available for purchase.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['ProductDefaultPriceDataArgs', 'ProductDefaultPriceDataArgsDict']]]] default_price_datas: Data used to generate a new [Price](https://docs.stripe.com/api/prices) object. This Price will be set as the default price for this product.
         :param pulumi.Input[_builtins.str] description: The product's description, meant to be displayable to the customer. Use this field to optionally store a long form explanation of the product being sold for your own rendering purposes.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] images: A list of up to 8 URLs of images for this product, meant to be displayable to the customer.
-        :param pulumi.Input[Sequence[pulumi.Input[Union['ProductMarketingFeatureArgs', 'ProductMarketingFeatureArgsDict']]]] marketing_features: A list of up to 15 marketing features for this product. These are displayed in [pricing tables](https://stripe.com/docs/payments/checkout/pricing-table).
-        :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] metadata: Set of [key-value pairs](https://stripe.com/docs/api/metadata) that you can attach to an object. This can be useful for storing additional information about the object in a structured format. Individual keys can be unset by posting an empty value to them. All keys can be unset by posting an empty value to <span pulumi-lang-nodejs="`metadata`" pulumi-lang-dotnet="`Metadata`" pulumi-lang-go="`metadata`" pulumi-lang-python="`metadata`" pulumi-lang-yaml="`metadata`" pulumi-lang-java="`metadata`" pulumi-lang-hcl="`metadata`">`metadata`</span>.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['ProductMarketingFeatureArgs', 'ProductMarketingFeatureArgsDict']]]] marketing_features: A list of up to 15 marketing features for this product. These are displayed in [pricing tables](https://docs.stripe.com/payments/checkout/pricing-table).
+        :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] metadata: Set of [key-value pairs](https://docs.stripe.com/api/metadata) that you can attach to an object. This can be useful for storing additional information about the object in a structured format.
         :param pulumi.Input[_builtins.str] name: The product's name, meant to be displayable to the customer.
-        :param pulumi.Input[Union['ProductPackageDimensionsArgs', 'ProductPackageDimensionsArgsDict']] package_dimensions: The dimensions of this product for shipping purposes.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['ProductPackageDimensionArgs', 'ProductPackageDimensionArgsDict']]]] package_dimensions: The dimensions of this product for shipping purposes.
         :param pulumi.Input[_builtins.bool] shippable: Whether this product is shipped (i.e., physical goods).
-        :param pulumi.Input[_builtins.str] statement_descriptor: An arbitrary string to be displayed on your customer's credit card or bank statement. While most banks display this information consistently, some may display it incorrectly or not at all. This may be up to 22 characters. The statement description may not include `<`, `>`, `\\`, `\\"`, `'` characters, and will appear on your customer's statement in capital letters. Non-ASCII characters are automatically stripped. It must contain at least one letter. Only used for subscription payments.
-        :param pulumi.Input[_builtins.str] tax_code: A [tax code](https://stripe.com/docs/tax/tax-categories) ID.
-        :param pulumi.Input[_builtins.str] type: The type of the product. Defaults to <span pulumi-lang-nodejs="`service`" pulumi-lang-dotnet="`Service`" pulumi-lang-go="`service`" pulumi-lang-python="`service`" pulumi-lang-yaml="`service`" pulumi-lang-java="`service`" pulumi-lang-hcl="`service`">`service`</span> if not explicitly specified, enabling use of this product with Subscriptions and Plans. Set this parameter to <span pulumi-lang-nodejs="`good`" pulumi-lang-dotnet="`Good`" pulumi-lang-go="`good`" pulumi-lang-python="`good`" pulumi-lang-yaml="`good`" pulumi-lang-java="`good`" pulumi-lang-hcl="`good`">`good`</span> to use this product with Orders and SKUs. On API versions before `2018-02-05`, this field defaults to <span pulumi-lang-nodejs="`good`" pulumi-lang-dotnet="`Good`" pulumi-lang-go="`good`" pulumi-lang-python="`good`" pulumi-lang-yaml="`good`" pulumi-lang-java="`good`" pulumi-lang-hcl="`good`">`good`</span> for compatibility reasons.
+        :param pulumi.Input[_builtins.str] statement_descriptor: Extra information about a product which will appear on your customer's credit card statement. In the case that multiple products are billed at once, the first statement descriptor will be used. Only used for subscription payments.
+        :param pulumi.Input[_builtins.str] tax_code: A [tax code](https://docs.stripe.com/tax/tax-categories) ID.
+        :param pulumi.Input[_builtins.str] type: The type of the product. The product is either of type <span pulumi-lang-nodejs="`good`" pulumi-lang-dotnet="`Good`" pulumi-lang-go="`good`" pulumi-lang-python="`good`" pulumi-lang-yaml="`good`" pulumi-lang-java="`good`" pulumi-lang-hcl="`good`">`good`</span>, which is eligible for use with Orders and SKUs, or <span pulumi-lang-nodejs="`service`" pulumi-lang-dotnet="`Service`" pulumi-lang-go="`service`" pulumi-lang-python="`service`" pulumi-lang-yaml="`service`" pulumi-lang-java="`service`" pulumi-lang-hcl="`service`">`service`</span>, which is eligible for use with Subscriptions and Plans.
         :param pulumi.Input[_builtins.str] unit_label: A label that represents units of this product. When set, this will be included in customers' receipts, invoices, Checkout, and the customer portal.
         :param pulumi.Input[_builtins.str] url: A URL of a publicly-accessible webpage for this product.
         """
@@ -550,13 +630,13 @@ class Product(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  active: pulumi.Input[Optional[_builtins.bool]] = None,
-                 default_price_data: pulumi.Input[Optional[Union['ProductDefaultPriceDataArgs', 'ProductDefaultPriceDataArgsDict']]] = None,
+                 default_price_datas: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ProductDefaultPriceDataArgs', 'ProductDefaultPriceDataArgsDict']]]]] = None,
                  description: pulumi.Input[Optional[_builtins.str]] = None,
                  images: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  marketing_features: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ProductMarketingFeatureArgs', 'ProductMarketingFeatureArgsDict']]]]] = None,
                  metadata: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
                  name: pulumi.Input[Optional[_builtins.str]] = None,
-                 package_dimensions: pulumi.Input[Optional[Union['ProductPackageDimensionsArgs', 'ProductPackageDimensionsArgsDict']]] = None,
+                 package_dimensions: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ProductPackageDimensionArgs', 'ProductPackageDimensionArgsDict']]]]] = None,
                  shippable: pulumi.Input[Optional[_builtins.bool]] = None,
                  statement_descriptor: pulumi.Input[Optional[_builtins.str]] = None,
                  tax_code: pulumi.Input[Optional[_builtins.str]] = None,
@@ -573,7 +653,7 @@ class Product(pulumi.CustomResource):
             __props__ = ProductArgs.__new__(ProductArgs)
 
             __props__.__dict__["active"] = active
-            __props__.__dict__["default_price_data"] = default_price_data
+            __props__.__dict__["default_price_datas"] = default_price_datas
             __props__.__dict__["description"] = description
             __props__.__dict__["images"] = images
             __props__.__dict__["marketing_features"] = marketing_features
@@ -586,6 +666,11 @@ class Product(pulumi.CustomResource):
             __props__.__dict__["type"] = type
             __props__.__dict__["unit_label"] = unit_label
             __props__.__dict__["url"] = url
+            __props__.__dict__["created"] = None
+            __props__.__dict__["default_price"] = None
+            __props__.__dict__["livemode"] = None
+            __props__.__dict__["object"] = None
+            __props__.__dict__["updated"] = None
         super(Product, __self__).__init__(
             'stripe:index/product:Product',
             resource_name,
@@ -598,18 +683,23 @@ class Product(pulumi.CustomResource):
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
             active: pulumi.Input[Optional[_builtins.bool]] = None,
-            default_price_data: pulumi.Input[Optional[Union['ProductDefaultPriceDataArgs', 'ProductDefaultPriceDataArgsDict']]] = None,
+            created: pulumi.Input[Optional[_builtins.float]] = None,
+            default_price: pulumi.Input[Optional[_builtins.str]] = None,
+            default_price_datas: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ProductDefaultPriceDataArgs', 'ProductDefaultPriceDataArgsDict']]]]] = None,
             description: pulumi.Input[Optional[_builtins.str]] = None,
             images: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            livemode: pulumi.Input[Optional[_builtins.bool]] = None,
             marketing_features: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ProductMarketingFeatureArgs', 'ProductMarketingFeatureArgsDict']]]]] = None,
             metadata: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
             name: pulumi.Input[Optional[_builtins.str]] = None,
-            package_dimensions: pulumi.Input[Optional[Union['ProductPackageDimensionsArgs', 'ProductPackageDimensionsArgsDict']]] = None,
+            object: pulumi.Input[Optional[_builtins.str]] = None,
+            package_dimensions: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ProductPackageDimensionArgs', 'ProductPackageDimensionArgsDict']]]]] = None,
             shippable: pulumi.Input[Optional[_builtins.bool]] = None,
             statement_descriptor: pulumi.Input[Optional[_builtins.str]] = None,
             tax_code: pulumi.Input[Optional[_builtins.str]] = None,
             type: pulumi.Input[Optional[_builtins.str]] = None,
             unit_label: pulumi.Input[Optional[_builtins.str]] = None,
+            updated: pulumi.Input[Optional[_builtins.float]] = None,
             url: pulumi.Input[Optional[_builtins.str]] = None) -> 'Product':
         """
         Get an existing Product resource's state with the given name, id, and optional extra
@@ -618,19 +708,24 @@ class Product(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[_builtins.bool] active: Whether the product is currently available for purchase. Defaults to <span pulumi-lang-nodejs="`true`" pulumi-lang-dotnet="`True`" pulumi-lang-go="`true`" pulumi-lang-python="`true`" pulumi-lang-yaml="`true`" pulumi-lang-java="`true`" pulumi-lang-hcl="`true`">`true`</span>.
-        :param pulumi.Input[Union['ProductDefaultPriceDataArgs', 'ProductDefaultPriceDataArgsDict']] default_price_data: Data used to generate a new [Price](https://stripe.com/docs/api/prices) object. This Price will be set as the default price for this product.
+        :param pulumi.Input[_builtins.bool] active: Whether the product is currently available for purchase.
+        :param pulumi.Input[_builtins.float] created: Time at which the object was created. Measured in seconds since the Unix epoch.
+        :param pulumi.Input[_builtins.str] default_price: The ID of the [Price](https://docs.stripe.com/api/prices) object that is the default price for this product.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['ProductDefaultPriceDataArgs', 'ProductDefaultPriceDataArgsDict']]]] default_price_datas: Data used to generate a new [Price](https://docs.stripe.com/api/prices) object. This Price will be set as the default price for this product.
         :param pulumi.Input[_builtins.str] description: The product's description, meant to be displayable to the customer. Use this field to optionally store a long form explanation of the product being sold for your own rendering purposes.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] images: A list of up to 8 URLs of images for this product, meant to be displayable to the customer.
-        :param pulumi.Input[Sequence[pulumi.Input[Union['ProductMarketingFeatureArgs', 'ProductMarketingFeatureArgsDict']]]] marketing_features: A list of up to 15 marketing features for this product. These are displayed in [pricing tables](https://stripe.com/docs/payments/checkout/pricing-table).
-        :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] metadata: Set of [key-value pairs](https://stripe.com/docs/api/metadata) that you can attach to an object. This can be useful for storing additional information about the object in a structured format. Individual keys can be unset by posting an empty value to them. All keys can be unset by posting an empty value to <span pulumi-lang-nodejs="`metadata`" pulumi-lang-dotnet="`Metadata`" pulumi-lang-go="`metadata`" pulumi-lang-python="`metadata`" pulumi-lang-yaml="`metadata`" pulumi-lang-java="`metadata`" pulumi-lang-hcl="`metadata`">`metadata`</span>.
+        :param pulumi.Input[_builtins.bool] livemode: If the object exists in live mode, the value is <span pulumi-lang-nodejs="`true`" pulumi-lang-dotnet="`True`" pulumi-lang-go="`true`" pulumi-lang-python="`true`" pulumi-lang-yaml="`true`" pulumi-lang-java="`true`" pulumi-lang-hcl="`true`">`true`</span>. If the object exists in test mode, the value is <span pulumi-lang-nodejs="`false`" pulumi-lang-dotnet="`False`" pulumi-lang-go="`false`" pulumi-lang-python="`false`" pulumi-lang-yaml="`false`" pulumi-lang-java="`false`" pulumi-lang-hcl="`false`">`false`</span>.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['ProductMarketingFeatureArgs', 'ProductMarketingFeatureArgsDict']]]] marketing_features: A list of up to 15 marketing features for this product. These are displayed in [pricing tables](https://docs.stripe.com/payments/checkout/pricing-table).
+        :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] metadata: Set of [key-value pairs](https://docs.stripe.com/api/metadata) that you can attach to an object. This can be useful for storing additional information about the object in a structured format.
         :param pulumi.Input[_builtins.str] name: The product's name, meant to be displayable to the customer.
-        :param pulumi.Input[Union['ProductPackageDimensionsArgs', 'ProductPackageDimensionsArgsDict']] package_dimensions: The dimensions of this product for shipping purposes.
+        :param pulumi.Input[_builtins.str] object: String representing the object's type. Objects of the same type share the same value.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['ProductPackageDimensionArgs', 'ProductPackageDimensionArgsDict']]]] package_dimensions: The dimensions of this product for shipping purposes.
         :param pulumi.Input[_builtins.bool] shippable: Whether this product is shipped (i.e., physical goods).
-        :param pulumi.Input[_builtins.str] statement_descriptor: An arbitrary string to be displayed on your customer's credit card or bank statement. While most banks display this information consistently, some may display it incorrectly or not at all. This may be up to 22 characters. The statement description may not include `<`, `>`, `\\`, `\\"`, `'` characters, and will appear on your customer's statement in capital letters. Non-ASCII characters are automatically stripped. It must contain at least one letter. Only used for subscription payments.
-        :param pulumi.Input[_builtins.str] tax_code: A [tax code](https://stripe.com/docs/tax/tax-categories) ID.
-        :param pulumi.Input[_builtins.str] type: The type of the product. Defaults to <span pulumi-lang-nodejs="`service`" pulumi-lang-dotnet="`Service`" pulumi-lang-go="`service`" pulumi-lang-python="`service`" pulumi-lang-yaml="`service`" pulumi-lang-java="`service`" pulumi-lang-hcl="`service`">`service`</span> if not explicitly specified, enabling use of this product with Subscriptions and Plans. Set this parameter to <span pulumi-lang-nodejs="`good`" pulumi-lang-dotnet="`Good`" pulumi-lang-go="`good`" pulumi-lang-python="`good`" pulumi-lang-yaml="`good`" pulumi-lang-java="`good`" pulumi-lang-hcl="`good`">`good`</span> to use this product with Orders and SKUs. On API versions before `2018-02-05`, this field defaults to <span pulumi-lang-nodejs="`good`" pulumi-lang-dotnet="`Good`" pulumi-lang-go="`good`" pulumi-lang-python="`good`" pulumi-lang-yaml="`good`" pulumi-lang-java="`good`" pulumi-lang-hcl="`good`">`good`</span> for compatibility reasons.
+        :param pulumi.Input[_builtins.str] statement_descriptor: Extra information about a product which will appear on your customer's credit card statement. In the case that multiple products are billed at once, the first statement descriptor will be used. Only used for subscription payments.
+        :param pulumi.Input[_builtins.str] tax_code: A [tax code](https://docs.stripe.com/tax/tax-categories) ID.
+        :param pulumi.Input[_builtins.str] type: The type of the product. The product is either of type <span pulumi-lang-nodejs="`good`" pulumi-lang-dotnet="`Good`" pulumi-lang-go="`good`" pulumi-lang-python="`good`" pulumi-lang-yaml="`good`" pulumi-lang-java="`good`" pulumi-lang-hcl="`good`">`good`</span>, which is eligible for use with Orders and SKUs, or <span pulumi-lang-nodejs="`service`" pulumi-lang-dotnet="`Service`" pulumi-lang-go="`service`" pulumi-lang-python="`service`" pulumi-lang-yaml="`service`" pulumi-lang-java="`service`" pulumi-lang-hcl="`service`">`service`</span>, which is eligible for use with Subscriptions and Plans.
         :param pulumi.Input[_builtins.str] unit_label: A label that represents units of this product. When set, this will be included in customers' receipts, invoices, Checkout, and the customer portal.
+        :param pulumi.Input[_builtins.float] updated: Time at which the object was last updated. Measured in seconds since the Unix epoch.
         :param pulumi.Input[_builtins.str] url: A URL of a publicly-accessible webpage for this product.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
@@ -638,36 +733,57 @@ class Product(pulumi.CustomResource):
         __props__ = _ProductState.__new__(_ProductState)
 
         __props__.__dict__["active"] = active
-        __props__.__dict__["default_price_data"] = default_price_data
+        __props__.__dict__["created"] = created
+        __props__.__dict__["default_price"] = default_price
+        __props__.__dict__["default_price_datas"] = default_price_datas
         __props__.__dict__["description"] = description
         __props__.__dict__["images"] = images
+        __props__.__dict__["livemode"] = livemode
         __props__.__dict__["marketing_features"] = marketing_features
         __props__.__dict__["metadata"] = metadata
         __props__.__dict__["name"] = name
+        __props__.__dict__["object"] = object
         __props__.__dict__["package_dimensions"] = package_dimensions
         __props__.__dict__["shippable"] = shippable
         __props__.__dict__["statement_descriptor"] = statement_descriptor
         __props__.__dict__["tax_code"] = tax_code
         __props__.__dict__["type"] = type
         __props__.__dict__["unit_label"] = unit_label
+        __props__.__dict__["updated"] = updated
         __props__.__dict__["url"] = url
         return Product(resource_name, opts=opts, __props__=__props__)
 
     @_builtins.property
     @pulumi.getter
-    def active(self) -> pulumi.Output[Optional[_builtins.bool]]:
+    def active(self) -> pulumi.Output[_builtins.bool]:
         """
-        Whether the product is currently available for purchase. Defaults to <span pulumi-lang-nodejs="`true`" pulumi-lang-dotnet="`True`" pulumi-lang-go="`true`" pulumi-lang-python="`true`" pulumi-lang-yaml="`true`" pulumi-lang-java="`true`" pulumi-lang-hcl="`true`">`true`</span>.
+        Whether the product is currently available for purchase.
         """
         return pulumi.get(self, "active")
 
     @_builtins.property
-    @pulumi.getter(name="defaultPriceData")
-    def default_price_data(self) -> pulumi.Output[Optional['outputs.ProductDefaultPriceData']]:
+    @pulumi.getter
+    def created(self) -> pulumi.Output[_builtins.float]:
         """
-        Data used to generate a new [Price](https://stripe.com/docs/api/prices) object. This Price will be set as the default price for this product.
+        Time at which the object was created. Measured in seconds since the Unix epoch.
         """
-        return pulumi.get(self, "default_price_data")
+        return pulumi.get(self, "created")
+
+    @_builtins.property
+    @pulumi.getter(name="defaultPrice")
+    def default_price(self) -> pulumi.Output[_builtins.str]:
+        """
+        The ID of the [Price](https://docs.stripe.com/api/prices) object that is the default price for this product.
+        """
+        return pulumi.get(self, "default_price")
+
+    @_builtins.property
+    @pulumi.getter(name="defaultPriceDatas")
+    def default_price_datas(self) -> pulumi.Output[Optional[Sequence['outputs.ProductDefaultPriceData']]]:
+        """
+        Data used to generate a new [Price](https://docs.stripe.com/api/prices) object. This Price will be set as the default price for this product.
+        """
+        return pulumi.get(self, "default_price_datas")
 
     @_builtins.property
     @pulumi.getter
@@ -686,10 +802,18 @@ class Product(pulumi.CustomResource):
         return pulumi.get(self, "images")
 
     @_builtins.property
+    @pulumi.getter
+    def livemode(self) -> pulumi.Output[_builtins.bool]:
+        """
+        If the object exists in live mode, the value is <span pulumi-lang-nodejs="`true`" pulumi-lang-dotnet="`True`" pulumi-lang-go="`true`" pulumi-lang-python="`true`" pulumi-lang-yaml="`true`" pulumi-lang-java="`true`" pulumi-lang-hcl="`true`">`true`</span>. If the object exists in test mode, the value is <span pulumi-lang-nodejs="`false`" pulumi-lang-dotnet="`False`" pulumi-lang-go="`false`" pulumi-lang-python="`false`" pulumi-lang-yaml="`false`" pulumi-lang-java="`false`" pulumi-lang-hcl="`false`">`false`</span>.
+        """
+        return pulumi.get(self, "livemode")
+
+    @_builtins.property
     @pulumi.getter(name="marketingFeatures")
     def marketing_features(self) -> pulumi.Output[Optional[Sequence['outputs.ProductMarketingFeature']]]:
         """
-        A list of up to 15 marketing features for this product. These are displayed in [pricing tables](https://stripe.com/docs/payments/checkout/pricing-table).
+        A list of up to 15 marketing features for this product. These are displayed in [pricing tables](https://docs.stripe.com/payments/checkout/pricing-table).
         """
         return pulumi.get(self, "marketing_features")
 
@@ -697,7 +821,7 @@ class Product(pulumi.CustomResource):
     @pulumi.getter
     def metadata(self) -> pulumi.Output[Mapping[str, _builtins.str]]:
         """
-        Set of [key-value pairs](https://stripe.com/docs/api/metadata) that you can attach to an object. This can be useful for storing additional information about the object in a structured format. Individual keys can be unset by posting an empty value to them. All keys can be unset by posting an empty value to <span pulumi-lang-nodejs="`metadata`" pulumi-lang-dotnet="`Metadata`" pulumi-lang-go="`metadata`" pulumi-lang-python="`metadata`" pulumi-lang-yaml="`metadata`" pulumi-lang-java="`metadata`" pulumi-lang-hcl="`metadata`">`metadata`</span>.
+        Set of [key-value pairs](https://docs.stripe.com/api/metadata) that you can attach to an object. This can be useful for storing additional information about the object in a structured format.
         """
         return pulumi.get(self, "metadata")
 
@@ -710,8 +834,16 @@ class Product(pulumi.CustomResource):
         return pulumi.get(self, "name")
 
     @_builtins.property
+    @pulumi.getter
+    def object(self) -> pulumi.Output[_builtins.str]:
+        """
+        String representing the object's type. Objects of the same type share the same value.
+        """
+        return pulumi.get(self, "object")
+
+    @_builtins.property
     @pulumi.getter(name="packageDimensions")
-    def package_dimensions(self) -> pulumi.Output[Optional['outputs.ProductPackageDimensions']]:
+    def package_dimensions(self) -> pulumi.Output[Optional[Sequence['outputs.ProductPackageDimension']]]:
         """
         The dimensions of this product for shipping purposes.
         """
@@ -729,7 +861,7 @@ class Product(pulumi.CustomResource):
     @pulumi.getter(name="statementDescriptor")
     def statement_descriptor(self) -> pulumi.Output[_builtins.str]:
         """
-        An arbitrary string to be displayed on your customer's credit card or bank statement. While most banks display this information consistently, some may display it incorrectly or not at all. This may be up to 22 characters. The statement description may not include `<`, `>`, `\\`, `\\"`, `'` characters, and will appear on your customer's statement in capital letters. Non-ASCII characters are automatically stripped. It must contain at least one letter. Only used for subscription payments.
+        Extra information about a product which will appear on your customer's credit card statement. In the case that multiple products are billed at once, the first statement descriptor will be used. Only used for subscription payments.
         """
         return pulumi.get(self, "statement_descriptor")
 
@@ -737,7 +869,7 @@ class Product(pulumi.CustomResource):
     @pulumi.getter(name="taxCode")
     def tax_code(self) -> pulumi.Output[_builtins.str]:
         """
-        A [tax code](https://stripe.com/docs/tax/tax-categories) ID.
+        A [tax code](https://docs.stripe.com/tax/tax-categories) ID.
         """
         return pulumi.get(self, "tax_code")
 
@@ -745,7 +877,7 @@ class Product(pulumi.CustomResource):
     @pulumi.getter
     def type(self) -> pulumi.Output[_builtins.str]:
         """
-        The type of the product. Defaults to <span pulumi-lang-nodejs="`service`" pulumi-lang-dotnet="`Service`" pulumi-lang-go="`service`" pulumi-lang-python="`service`" pulumi-lang-yaml="`service`" pulumi-lang-java="`service`" pulumi-lang-hcl="`service`">`service`</span> if not explicitly specified, enabling use of this product with Subscriptions and Plans. Set this parameter to <span pulumi-lang-nodejs="`good`" pulumi-lang-dotnet="`Good`" pulumi-lang-go="`good`" pulumi-lang-python="`good`" pulumi-lang-yaml="`good`" pulumi-lang-java="`good`" pulumi-lang-hcl="`good`">`good`</span> to use this product with Orders and SKUs. On API versions before `2018-02-05`, this field defaults to <span pulumi-lang-nodejs="`good`" pulumi-lang-dotnet="`Good`" pulumi-lang-go="`good`" pulumi-lang-python="`good`" pulumi-lang-yaml="`good`" pulumi-lang-java="`good`" pulumi-lang-hcl="`good`">`good`</span> for compatibility reasons.
+        The type of the product. The product is either of type <span pulumi-lang-nodejs="`good`" pulumi-lang-dotnet="`Good`" pulumi-lang-go="`good`" pulumi-lang-python="`good`" pulumi-lang-yaml="`good`" pulumi-lang-java="`good`" pulumi-lang-hcl="`good`">`good`</span>, which is eligible for use with Orders and SKUs, or <span pulumi-lang-nodejs="`service`" pulumi-lang-dotnet="`Service`" pulumi-lang-go="`service`" pulumi-lang-python="`service`" pulumi-lang-yaml="`service`" pulumi-lang-java="`service`" pulumi-lang-hcl="`service`">`service`</span>, which is eligible for use with Subscriptions and Plans.
         """
         return pulumi.get(self, "type")
 
@@ -756,6 +888,14 @@ class Product(pulumi.CustomResource):
         A label that represents units of this product. When set, this will be included in customers' receipts, invoices, Checkout, and the customer portal.
         """
         return pulumi.get(self, "unit_label")
+
+    @_builtins.property
+    @pulumi.getter
+    def updated(self) -> pulumi.Output[_builtins.float]:
+        """
+        Time at which the object was last updated. Measured in seconds since the Unix epoch.
+        """
+        return pulumi.get(self, "updated")
 
     @_builtins.property
     @pulumi.getter

@@ -32,14 +32,14 @@ public final class V2CoreEventDestinationWebhookEndpointArgs extends com.pulumi.
     }
 
     /**
-     * The URL of the webhook endpoint.
+     * The URL of the webhook endpoint, includable.
      * 
      */
     @Import(name="url", required=true)
     private Output<String> url;
 
     /**
-     * @return The URL of the webhook endpoint.
+     * @return The URL of the webhook endpoint, includable.
      * 
      */
     public Output<String> url() {
@@ -93,7 +93,7 @@ public final class V2CoreEventDestinationWebhookEndpointArgs extends com.pulumi.
         }
 
         /**
-         * @param url The URL of the webhook endpoint.
+         * @param url The URL of the webhook endpoint, includable.
          * 
          * @return builder
          * 
@@ -104,7 +104,7 @@ public final class V2CoreEventDestinationWebhookEndpointArgs extends com.pulumi.
         }
 
         /**
-         * @param url The URL of the webhook endpoint.
+         * @param url The URL of the webhook endpoint, includable.
          * 
          * @return builder
          * 

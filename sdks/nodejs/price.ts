@@ -35,13 +35,17 @@ export class Price extends pulumi.CustomResource {
     }
 
     /**
-     * Whether the price can be used for new purchases. Defaults to <span pulumi-lang-nodejs="`true`" pulumi-lang-dotnet="`True`" pulumi-lang-go="`true`" pulumi-lang-python="`true`" pulumi-lang-yaml="`true`" pulumi-lang-java="`true`" pulumi-lang-hcl="`true`">`true`</span>.
+     * Whether the price can be used for new purchases.
      */
-    declare public readonly active: pulumi.Output<boolean | undefined>;
+    declare public readonly active: pulumi.Output<boolean>;
     /**
      * Describes how to compute the price per period. Either <span pulumi-lang-nodejs="`perUnit`" pulumi-lang-dotnet="`PerUnit`" pulumi-lang-go="`perUnit`" pulumi-lang-python="`per_unit`" pulumi-lang-yaml="`perUnit`" pulumi-lang-java="`perUnit`" pulumi-lang-hcl="`per_unit`">`perUnit`</span> or <span pulumi-lang-nodejs="`tiered`" pulumi-lang-dotnet="`Tiered`" pulumi-lang-go="`tiered`" pulumi-lang-python="`tiered`" pulumi-lang-yaml="`tiered`" pulumi-lang-java="`tiered`" pulumi-lang-hcl="`tiered`">`tiered`</span>. <span pulumi-lang-nodejs="`perUnit`" pulumi-lang-dotnet="`PerUnit`" pulumi-lang-go="`perUnit`" pulumi-lang-python="`per_unit`" pulumi-lang-yaml="`perUnit`" pulumi-lang-java="`perUnit`" pulumi-lang-hcl="`per_unit`">`perUnit`</span> indicates that the fixed amount (specified in <span pulumi-lang-nodejs="`unitAmount`" pulumi-lang-dotnet="`UnitAmount`" pulumi-lang-go="`unitAmount`" pulumi-lang-python="`unit_amount`" pulumi-lang-yaml="`unitAmount`" pulumi-lang-java="`unitAmount`" pulumi-lang-hcl="`unit_amount`">`unitAmount`</span> or <span pulumi-lang-nodejs="`unitAmountDecimal`" pulumi-lang-dotnet="`UnitAmountDecimal`" pulumi-lang-go="`unitAmountDecimal`" pulumi-lang-python="`unit_amount_decimal`" pulumi-lang-yaml="`unitAmountDecimal`" pulumi-lang-java="`unitAmountDecimal`" pulumi-lang-hcl="`unit_amount_decimal`">`unitAmountDecimal`</span>) will be charged per unit in <span pulumi-lang-nodejs="`quantity`" pulumi-lang-dotnet="`Quantity`" pulumi-lang-go="`quantity`" pulumi-lang-python="`quantity`" pulumi-lang-yaml="`quantity`" pulumi-lang-java="`quantity`" pulumi-lang-hcl="`quantity`">`quantity`</span> (for prices with `usage_type=licensed`), or per unit of total usage (for prices with `usage_type=metered`). <span pulumi-lang-nodejs="`tiered`" pulumi-lang-dotnet="`Tiered`" pulumi-lang-go="`tiered`" pulumi-lang-python="`tiered`" pulumi-lang-yaml="`tiered`" pulumi-lang-java="`tiered`" pulumi-lang-hcl="`tiered`">`tiered`</span> indicates that the unit pricing will be computed using a tiering strategy as defined using the <span pulumi-lang-nodejs="`tiers`" pulumi-lang-dotnet="`Tiers`" pulumi-lang-go="`tiers`" pulumi-lang-python="`tiers`" pulumi-lang-yaml="`tiers`" pulumi-lang-java="`tiers`" pulumi-lang-hcl="`tiers`">`tiers`</span> and <span pulumi-lang-nodejs="`tiersMode`" pulumi-lang-dotnet="`TiersMode`" pulumi-lang-go="`tiersMode`" pulumi-lang-python="`tiers_mode`" pulumi-lang-yaml="`tiersMode`" pulumi-lang-java="`tiersMode`" pulumi-lang-hcl="`tiers_mode`">`tiersMode`</span> attributes.
      */
     declare public readonly billingScheme: pulumi.Output<string>;
+    /**
+     * Time at which the object was created. Measured in seconds since the Unix epoch.
+     */
+    declare public /*out*/ readonly created: pulumi.Output<number>;
     /**
      * Three-letter [ISO currency code](https://www.iso.org/iso-4217-currency-codes.html), in lowercase. Must be a [supported currency](https://stripe.com/docs/currencies).
      */
@@ -53,13 +57,17 @@ export class Price extends pulumi.CustomResource {
     /**
      * When set, provides configuration for the amount to be adjusted by the customer during Checkout Sessions and Payment Links.
      */
-    declare public readonly customUnitAmount: pulumi.Output<outputs.PriceCustomUnitAmount | undefined>;
+    declare public readonly customUnitAmounts: pulumi.Output<outputs.PriceCustomUnitAmount[] | undefined>;
+    /**
+     * If the object exists in live mode, the value is <span pulumi-lang-nodejs="`true`" pulumi-lang-dotnet="`True`" pulumi-lang-go="`true`" pulumi-lang-python="`true`" pulumi-lang-yaml="`true`" pulumi-lang-java="`true`" pulumi-lang-hcl="`true`">`true`</span>. If the object exists in test mode, the value is <span pulumi-lang-nodejs="`false`" pulumi-lang-dotnet="`False`" pulumi-lang-go="`false`" pulumi-lang-python="`false`" pulumi-lang-yaml="`false`" pulumi-lang-java="`false`" pulumi-lang-hcl="`false`">`false`</span>.
+     */
+    declare public /*out*/ readonly livemode: pulumi.Output<boolean>;
     /**
      * A lookup key used to retrieve prices dynamically from a static string. This may be up to 200 characters.
      */
     declare public readonly lookupKey: pulumi.Output<string>;
     /**
-     * Set of [key-value pairs](https://stripe.com/docs/api/metadata) that you can attach to an object. This can be useful for storing additional information about the object in a structured format. Individual keys can be unset by posting an empty value to them. All keys can be unset by posting an empty value to <span pulumi-lang-nodejs="`metadata`" pulumi-lang-dotnet="`Metadata`" pulumi-lang-go="`metadata`" pulumi-lang-python="`metadata`" pulumi-lang-yaml="`metadata`" pulumi-lang-java="`metadata`" pulumi-lang-hcl="`metadata`">`metadata`</span>.
+     * Set of [key-value pairs](https://docs.stripe.com/api/metadata) that you can attach to an object. This can be useful for storing additional information about the object in a structured format.
      */
     declare public readonly metadata: pulumi.Output<{[key: string]: string}>;
     /**
@@ -67,19 +75,23 @@ export class Price extends pulumi.CustomResource {
      */
     declare public readonly nickname: pulumi.Output<string>;
     /**
-     * The ID of the [Product](https://docs.stripe.com/api/products) that this [Price](https://docs.stripe.com/api/prices) will belong to.
+     * String representing the object's type. Objects of the same type share the same value.
+     */
+    declare public /*out*/ readonly object: pulumi.Output<string>;
+    /**
+     * The ID of the product this price is associated with.
      */
     declare public readonly product: pulumi.Output<string>;
     /**
      * These fields can be used to create a new product that this price will belong to.
      */
-    declare public readonly productData: pulumi.Output<outputs.PriceProductData | undefined>;
+    declare public readonly productDatas: pulumi.Output<outputs.PriceProductData[] | undefined>;
     /**
      * The recurring components of a price such as <span pulumi-lang-nodejs="`interval`" pulumi-lang-dotnet="`Interval`" pulumi-lang-go="`interval`" pulumi-lang-python="`interval`" pulumi-lang-yaml="`interval`" pulumi-lang-java="`interval`" pulumi-lang-hcl="`interval`">`interval`</span> and <span pulumi-lang-nodejs="`usageType`" pulumi-lang-dotnet="`UsageType`" pulumi-lang-go="`usageType`" pulumi-lang-python="`usage_type`" pulumi-lang-yaml="`usageType`" pulumi-lang-java="`usageType`" pulumi-lang-hcl="`usage_type`">`usageType`</span>.
      */
-    declare public readonly recurring: pulumi.Output<outputs.PriceRecurring | undefined>;
+    declare public readonly recurrings: pulumi.Output<outputs.PriceRecurring[] | undefined>;
     /**
-     * Only required if a [default tax behavior](<https://stripe.com/docs/tax/products-prices-tax-categories-tax-behavior#setting-a-default-tax-behavior-(recommended)>) was not provided in the Stripe Tax settings. Specifies whether the price is considered inclusive of taxes or exclusive of taxes. One of <span pulumi-lang-nodejs="`inclusive`" pulumi-lang-dotnet="`Inclusive`" pulumi-lang-go="`inclusive`" pulumi-lang-python="`inclusive`" pulumi-lang-yaml="`inclusive`" pulumi-lang-java="`inclusive`" pulumi-lang-hcl="`inclusive`">`inclusive`</span>, <span pulumi-lang-nodejs="`exclusive`" pulumi-lang-dotnet="`Exclusive`" pulumi-lang-go="`exclusive`" pulumi-lang-python="`exclusive`" pulumi-lang-yaml="`exclusive`" pulumi-lang-java="`exclusive`" pulumi-lang-hcl="`exclusive`">`exclusive`</span>, or <span pulumi-lang-nodejs="`unspecified`" pulumi-lang-dotnet="`Unspecified`" pulumi-lang-go="`unspecified`" pulumi-lang-python="`unspecified`" pulumi-lang-yaml="`unspecified`" pulumi-lang-java="`unspecified`" pulumi-lang-hcl="`unspecified`">`unspecified`</span>. Once specified as either <span pulumi-lang-nodejs="`inclusive`" pulumi-lang-dotnet="`Inclusive`" pulumi-lang-go="`inclusive`" pulumi-lang-python="`inclusive`" pulumi-lang-yaml="`inclusive`" pulumi-lang-java="`inclusive`" pulumi-lang-hcl="`inclusive`">`inclusive`</span> or <span pulumi-lang-nodejs="`exclusive`" pulumi-lang-dotnet="`Exclusive`" pulumi-lang-go="`exclusive`" pulumi-lang-python="`exclusive`" pulumi-lang-yaml="`exclusive`" pulumi-lang-java="`exclusive`" pulumi-lang-hcl="`exclusive`">`exclusive`</span>, it cannot be changed.
+     * Only required if a [default tax behavior](<https://docs.stripe.com/tax/products-prices-tax-categories-tax-behavior#setting-a-default-tax-behavior-(recommended)>) was not provided in the Stripe Tax settings. Specifies whether the price is considered inclusive of taxes or exclusive of taxes. One of <span pulumi-lang-nodejs="`inclusive`" pulumi-lang-dotnet="`Inclusive`" pulumi-lang-go="`inclusive`" pulumi-lang-python="`inclusive`" pulumi-lang-yaml="`inclusive`" pulumi-lang-java="`inclusive`" pulumi-lang-hcl="`inclusive`">`inclusive`</span>, <span pulumi-lang-nodejs="`exclusive`" pulumi-lang-dotnet="`Exclusive`" pulumi-lang-go="`exclusive`" pulumi-lang-python="`exclusive`" pulumi-lang-yaml="`exclusive`" pulumi-lang-java="`exclusive`" pulumi-lang-hcl="`exclusive`">`exclusive`</span>, or <span pulumi-lang-nodejs="`unspecified`" pulumi-lang-dotnet="`Unspecified`" pulumi-lang-go="`unspecified`" pulumi-lang-python="`unspecified`" pulumi-lang-yaml="`unspecified`" pulumi-lang-java="`unspecified`" pulumi-lang-hcl="`unspecified`">`unspecified`</span>. Once specified as either <span pulumi-lang-nodejs="`inclusive`" pulumi-lang-dotnet="`Inclusive`" pulumi-lang-go="`inclusive`" pulumi-lang-python="`inclusive`" pulumi-lang-yaml="`inclusive`" pulumi-lang-java="`inclusive`" pulumi-lang-hcl="`inclusive`">`inclusive`</span> or <span pulumi-lang-nodejs="`exclusive`" pulumi-lang-dotnet="`Exclusive`" pulumi-lang-go="`exclusive`" pulumi-lang-python="`exclusive`" pulumi-lang-yaml="`exclusive`" pulumi-lang-java="`exclusive`" pulumi-lang-hcl="`exclusive`">`exclusive`</span>, it cannot be changed.
      */
     declare public readonly taxBehavior: pulumi.Output<string>;
     /**
@@ -87,19 +99,28 @@ export class Price extends pulumi.CustomResource {
      */
     declare public readonly tiers: pulumi.Output<outputs.PriceTier[] | undefined>;
     /**
-     * Defines if the tiering price should be <span pulumi-lang-nodejs="`graduated`" pulumi-lang-dotnet="`Graduated`" pulumi-lang-go="`graduated`" pulumi-lang-python="`graduated`" pulumi-lang-yaml="`graduated`" pulumi-lang-java="`graduated`" pulumi-lang-hcl="`graduated`">`graduated`</span> or <span pulumi-lang-nodejs="`volume`" pulumi-lang-dotnet="`Volume`" pulumi-lang-go="`volume`" pulumi-lang-python="`volume`" pulumi-lang-yaml="`volume`" pulumi-lang-java="`volume`" pulumi-lang-hcl="`volume`">`volume`</span> based. In <span pulumi-lang-nodejs="`volume`" pulumi-lang-dotnet="`Volume`" pulumi-lang-go="`volume`" pulumi-lang-python="`volume`" pulumi-lang-yaml="`volume`" pulumi-lang-java="`volume`" pulumi-lang-hcl="`volume`">`volume`</span>-based tiering, the maximum quantity within a period determines the per unit price, in <span pulumi-lang-nodejs="`graduated`" pulumi-lang-dotnet="`Graduated`" pulumi-lang-go="`graduated`" pulumi-lang-python="`graduated`" pulumi-lang-yaml="`graduated`" pulumi-lang-java="`graduated`" pulumi-lang-hcl="`graduated`">`graduated`</span> tiering pricing can successively change as the quantity grows.
+     * Defines if the tiering price should be <span pulumi-lang-nodejs="`graduated`" pulumi-lang-dotnet="`Graduated`" pulumi-lang-go="`graduated`" pulumi-lang-python="`graduated`" pulumi-lang-yaml="`graduated`" pulumi-lang-java="`graduated`" pulumi-lang-hcl="`graduated`">`graduated`</span> or <span pulumi-lang-nodejs="`volume`" pulumi-lang-dotnet="`Volume`" pulumi-lang-go="`volume`" pulumi-lang-python="`volume`" pulumi-lang-yaml="`volume`" pulumi-lang-java="`volume`" pulumi-lang-hcl="`volume`">`volume`</span> based. In <span pulumi-lang-nodejs="`volume`" pulumi-lang-dotnet="`Volume`" pulumi-lang-go="`volume`" pulumi-lang-python="`volume`" pulumi-lang-yaml="`volume`" pulumi-lang-java="`volume`" pulumi-lang-hcl="`volume`">`volume`</span>-based tiering, the maximum quantity within a period determines the per unit price. In <span pulumi-lang-nodejs="`graduated`" pulumi-lang-dotnet="`Graduated`" pulumi-lang-go="`graduated`" pulumi-lang-python="`graduated`" pulumi-lang-yaml="`graduated`" pulumi-lang-java="`graduated`" pulumi-lang-hcl="`graduated`">`graduated`</span> tiering, pricing can change as the quantity grows.
      */
     declare public readonly tiersMode: pulumi.Output<string>;
+    /**
+     * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * If set to true, will atomically remove the lookup key from the existing price, and assign it to this price.
+     */
+    declare public readonly transferLookupKey: pulumi.Output<boolean | undefined>;
+    /**
+     * Apply a transformation to the reported usage or set quantity before computing the amount billed. Cannot be combined with <span pulumi-lang-nodejs="`tiers`" pulumi-lang-dotnet="`Tiers`" pulumi-lang-go="`tiers`" pulumi-lang-python="`tiers`" pulumi-lang-yaml="`tiers`" pulumi-lang-java="`tiers`" pulumi-lang-hcl="`tiers`">`tiers`</span>.
+     */
+    declare public readonly transformQuantity: pulumi.Output<outputs.PriceTransformQuantity>;
     /**
      * One of <span pulumi-lang-nodejs="`oneTime`" pulumi-lang-dotnet="`OneTime`" pulumi-lang-go="`oneTime`" pulumi-lang-python="`one_time`" pulumi-lang-yaml="`oneTime`" pulumi-lang-java="`oneTime`" pulumi-lang-hcl="`one_time`">`oneTime`</span> or <span pulumi-lang-nodejs="`recurring`" pulumi-lang-dotnet="`Recurring`" pulumi-lang-go="`recurring`" pulumi-lang-python="`recurring`" pulumi-lang-yaml="`recurring`" pulumi-lang-java="`recurring`" pulumi-lang-hcl="`recurring`">`recurring`</span> depending on whether the price is for a one-time purchase or a recurring (subscription) purchase.
      */
     declare public /*out*/ readonly type: pulumi.Output<string>;
     /**
-     * A positive integer in cents (or local equivalent) (or 0 for a free price) representing how much to charge. One of <span pulumi-lang-nodejs="`unitAmount`" pulumi-lang-dotnet="`UnitAmount`" pulumi-lang-go="`unitAmount`" pulumi-lang-python="`unit_amount`" pulumi-lang-yaml="`unitAmount`" pulumi-lang-java="`unitAmount`" pulumi-lang-hcl="`unit_amount`">`unitAmount`</span>, <span pulumi-lang-nodejs="`unitAmountDecimal`" pulumi-lang-dotnet="`UnitAmountDecimal`" pulumi-lang-go="`unitAmountDecimal`" pulumi-lang-python="`unit_amount_decimal`" pulumi-lang-yaml="`unitAmountDecimal`" pulumi-lang-java="`unitAmountDecimal`" pulumi-lang-hcl="`unit_amount_decimal`">`unitAmountDecimal`</span>, or <span pulumi-lang-nodejs="`customUnitAmount`" pulumi-lang-dotnet="`CustomUnitAmount`" pulumi-lang-go="`customUnitAmount`" pulumi-lang-python="`custom_unit_amount`" pulumi-lang-yaml="`customUnitAmount`" pulumi-lang-java="`customUnitAmount`" pulumi-lang-hcl="`custom_unit_amount`">`customUnitAmount`</span> is required, unless `billing_scheme=tiered`.
+     * The unit amount in cents (or local equivalent) to be charged, represented as a whole integer if possible. Only set if `billing_scheme=per_unit`.
      */
     declare public readonly unitAmount: pulumi.Output<number>;
     /**
-     * Same as <span pulumi-lang-nodejs="`unitAmount`" pulumi-lang-dotnet="`UnitAmount`" pulumi-lang-go="`unitAmount`" pulumi-lang-python="`unit_amount`" pulumi-lang-yaml="`unitAmount`" pulumi-lang-java="`unitAmount`" pulumi-lang-hcl="`unit_amount`">`unitAmount`</span>, but accepts a decimal value in cents (or local equivalent) with at most 12 decimal places. Only one of <span pulumi-lang-nodejs="`unitAmount`" pulumi-lang-dotnet="`UnitAmount`" pulumi-lang-go="`unitAmount`" pulumi-lang-python="`unit_amount`" pulumi-lang-yaml="`unitAmount`" pulumi-lang-java="`unitAmount`" pulumi-lang-hcl="`unit_amount`">`unitAmount`</span> and <span pulumi-lang-nodejs="`unitAmountDecimal`" pulumi-lang-dotnet="`UnitAmountDecimal`" pulumi-lang-go="`unitAmountDecimal`" pulumi-lang-python="`unit_amount_decimal`" pulumi-lang-yaml="`unitAmountDecimal`" pulumi-lang-java="`unitAmountDecimal`" pulumi-lang-hcl="`unit_amount_decimal`">`unitAmountDecimal`</span> can be set.
+     * The unit amount in cents (or local equivalent) to be charged, represented as a decimal string with at most 12 decimal places. Only set if `billing_scheme=per_unit`.
      */
     declare public readonly unitAmountDecimal: pulumi.Output<string>;
 
@@ -118,18 +139,23 @@ export class Price extends pulumi.CustomResource {
             const state = argsOrState as PriceState | undefined;
             resourceInputs["active"] = state?.active;
             resourceInputs["billingScheme"] = state?.billingScheme;
+            resourceInputs["created"] = state?.created;
             resourceInputs["currency"] = state?.currency;
             resourceInputs["currencyOptions"] = state?.currencyOptions;
-            resourceInputs["customUnitAmount"] = state?.customUnitAmount;
+            resourceInputs["customUnitAmounts"] = state?.customUnitAmounts;
+            resourceInputs["livemode"] = state?.livemode;
             resourceInputs["lookupKey"] = state?.lookupKey;
             resourceInputs["metadata"] = state?.metadata;
             resourceInputs["nickname"] = state?.nickname;
+            resourceInputs["object"] = state?.object;
             resourceInputs["product"] = state?.product;
-            resourceInputs["productData"] = state?.productData;
-            resourceInputs["recurring"] = state?.recurring;
+            resourceInputs["productDatas"] = state?.productDatas;
+            resourceInputs["recurrings"] = state?.recurrings;
             resourceInputs["taxBehavior"] = state?.taxBehavior;
             resourceInputs["tiers"] = state?.tiers;
             resourceInputs["tiersMode"] = state?.tiersMode;
+            resourceInputs["transferLookupKey"] = state?.transferLookupKey;
+            resourceInputs["transformQuantity"] = state?.transformQuantity;
             resourceInputs["type"] = state?.type;
             resourceInputs["unitAmount"] = state?.unitAmount;
             resourceInputs["unitAmountDecimal"] = state?.unitAmountDecimal;
@@ -142,21 +168,28 @@ export class Price extends pulumi.CustomResource {
             resourceInputs["billingScheme"] = args?.billingScheme;
             resourceInputs["currency"] = args?.currency;
             resourceInputs["currencyOptions"] = args?.currencyOptions;
-            resourceInputs["customUnitAmount"] = args?.customUnitAmount;
+            resourceInputs["customUnitAmounts"] = args?.customUnitAmounts;
             resourceInputs["lookupKey"] = args?.lookupKey;
             resourceInputs["metadata"] = args?.metadata;
             resourceInputs["nickname"] = args?.nickname;
             resourceInputs["product"] = args?.product;
-            resourceInputs["productData"] = args?.productData;
-            resourceInputs["recurring"] = args?.recurring;
+            resourceInputs["productDatas"] = args?.productDatas;
+            resourceInputs["recurrings"] = args?.recurrings;
             resourceInputs["taxBehavior"] = args?.taxBehavior;
             resourceInputs["tiers"] = args?.tiers;
             resourceInputs["tiersMode"] = args?.tiersMode;
+            resourceInputs["transferLookupKey"] = args?.transferLookupKey ? pulumi.secret(args.transferLookupKey) : undefined;
+            resourceInputs["transformQuantity"] = args?.transformQuantity;
             resourceInputs["unitAmount"] = args?.unitAmount;
             resourceInputs["unitAmountDecimal"] = args?.unitAmountDecimal;
+            resourceInputs["created"] = undefined /*out*/;
+            resourceInputs["livemode"] = undefined /*out*/;
+            resourceInputs["object"] = undefined /*out*/;
             resourceInputs["type"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        const secretOpts = { additionalSecretOutputs: ["transferLookupKey"] };
+        opts = pulumi.mergeOptions(opts, secretOpts);
         super(Price.__pulumiType, name, resourceInputs, opts, false /*dependency*/, utilities.getPackage());
     }
 }
@@ -166,13 +199,17 @@ export class Price extends pulumi.CustomResource {
  */
 export interface PriceState {
     /**
-     * Whether the price can be used for new purchases. Defaults to <span pulumi-lang-nodejs="`true`" pulumi-lang-dotnet="`True`" pulumi-lang-go="`true`" pulumi-lang-python="`true`" pulumi-lang-yaml="`true`" pulumi-lang-java="`true`" pulumi-lang-hcl="`true`">`true`</span>.
+     * Whether the price can be used for new purchases.
      */
     active?: pulumi.Input<boolean | undefined>;
     /**
      * Describes how to compute the price per period. Either <span pulumi-lang-nodejs="`perUnit`" pulumi-lang-dotnet="`PerUnit`" pulumi-lang-go="`perUnit`" pulumi-lang-python="`per_unit`" pulumi-lang-yaml="`perUnit`" pulumi-lang-java="`perUnit`" pulumi-lang-hcl="`per_unit`">`perUnit`</span> or <span pulumi-lang-nodejs="`tiered`" pulumi-lang-dotnet="`Tiered`" pulumi-lang-go="`tiered`" pulumi-lang-python="`tiered`" pulumi-lang-yaml="`tiered`" pulumi-lang-java="`tiered`" pulumi-lang-hcl="`tiered`">`tiered`</span>. <span pulumi-lang-nodejs="`perUnit`" pulumi-lang-dotnet="`PerUnit`" pulumi-lang-go="`perUnit`" pulumi-lang-python="`per_unit`" pulumi-lang-yaml="`perUnit`" pulumi-lang-java="`perUnit`" pulumi-lang-hcl="`per_unit`">`perUnit`</span> indicates that the fixed amount (specified in <span pulumi-lang-nodejs="`unitAmount`" pulumi-lang-dotnet="`UnitAmount`" pulumi-lang-go="`unitAmount`" pulumi-lang-python="`unit_amount`" pulumi-lang-yaml="`unitAmount`" pulumi-lang-java="`unitAmount`" pulumi-lang-hcl="`unit_amount`">`unitAmount`</span> or <span pulumi-lang-nodejs="`unitAmountDecimal`" pulumi-lang-dotnet="`UnitAmountDecimal`" pulumi-lang-go="`unitAmountDecimal`" pulumi-lang-python="`unit_amount_decimal`" pulumi-lang-yaml="`unitAmountDecimal`" pulumi-lang-java="`unitAmountDecimal`" pulumi-lang-hcl="`unit_amount_decimal`">`unitAmountDecimal`</span>) will be charged per unit in <span pulumi-lang-nodejs="`quantity`" pulumi-lang-dotnet="`Quantity`" pulumi-lang-go="`quantity`" pulumi-lang-python="`quantity`" pulumi-lang-yaml="`quantity`" pulumi-lang-java="`quantity`" pulumi-lang-hcl="`quantity`">`quantity`</span> (for prices with `usage_type=licensed`), or per unit of total usage (for prices with `usage_type=metered`). <span pulumi-lang-nodejs="`tiered`" pulumi-lang-dotnet="`Tiered`" pulumi-lang-go="`tiered`" pulumi-lang-python="`tiered`" pulumi-lang-yaml="`tiered`" pulumi-lang-java="`tiered`" pulumi-lang-hcl="`tiered`">`tiered`</span> indicates that the unit pricing will be computed using a tiering strategy as defined using the <span pulumi-lang-nodejs="`tiers`" pulumi-lang-dotnet="`Tiers`" pulumi-lang-go="`tiers`" pulumi-lang-python="`tiers`" pulumi-lang-yaml="`tiers`" pulumi-lang-java="`tiers`" pulumi-lang-hcl="`tiers`">`tiers`</span> and <span pulumi-lang-nodejs="`tiersMode`" pulumi-lang-dotnet="`TiersMode`" pulumi-lang-go="`tiersMode`" pulumi-lang-python="`tiers_mode`" pulumi-lang-yaml="`tiersMode`" pulumi-lang-java="`tiersMode`" pulumi-lang-hcl="`tiers_mode`">`tiersMode`</span> attributes.
      */
     billingScheme?: pulumi.Input<string | undefined>;
+    /**
+     * Time at which the object was created. Measured in seconds since the Unix epoch.
+     */
+    created?: pulumi.Input<number | undefined>;
     /**
      * Three-letter [ISO currency code](https://www.iso.org/iso-4217-currency-codes.html), in lowercase. Must be a [supported currency](https://stripe.com/docs/currencies).
      */
@@ -184,13 +221,17 @@ export interface PriceState {
     /**
      * When set, provides configuration for the amount to be adjusted by the customer during Checkout Sessions and Payment Links.
      */
-    customUnitAmount?: pulumi.Input<inputs.PriceCustomUnitAmount | undefined>;
+    customUnitAmounts?: pulumi.Input<pulumi.Input<inputs.PriceCustomUnitAmount>[] | undefined>;
+    /**
+     * If the object exists in live mode, the value is <span pulumi-lang-nodejs="`true`" pulumi-lang-dotnet="`True`" pulumi-lang-go="`true`" pulumi-lang-python="`true`" pulumi-lang-yaml="`true`" pulumi-lang-java="`true`" pulumi-lang-hcl="`true`">`true`</span>. If the object exists in test mode, the value is <span pulumi-lang-nodejs="`false`" pulumi-lang-dotnet="`False`" pulumi-lang-go="`false`" pulumi-lang-python="`false`" pulumi-lang-yaml="`false`" pulumi-lang-java="`false`" pulumi-lang-hcl="`false`">`false`</span>.
+     */
+    livemode?: pulumi.Input<boolean | undefined>;
     /**
      * A lookup key used to retrieve prices dynamically from a static string. This may be up to 200 characters.
      */
     lookupKey?: pulumi.Input<string | undefined>;
     /**
-     * Set of [key-value pairs](https://stripe.com/docs/api/metadata) that you can attach to an object. This can be useful for storing additional information about the object in a structured format. Individual keys can be unset by posting an empty value to them. All keys can be unset by posting an empty value to <span pulumi-lang-nodejs="`metadata`" pulumi-lang-dotnet="`Metadata`" pulumi-lang-go="`metadata`" pulumi-lang-python="`metadata`" pulumi-lang-yaml="`metadata`" pulumi-lang-java="`metadata`" pulumi-lang-hcl="`metadata`">`metadata`</span>.
+     * Set of [key-value pairs](https://docs.stripe.com/api/metadata) that you can attach to an object. This can be useful for storing additional information about the object in a structured format.
      */
     metadata?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
     /**
@@ -198,19 +239,23 @@ export interface PriceState {
      */
     nickname?: pulumi.Input<string | undefined>;
     /**
-     * The ID of the [Product](https://docs.stripe.com/api/products) that this [Price](https://docs.stripe.com/api/prices) will belong to.
+     * String representing the object's type. Objects of the same type share the same value.
+     */
+    object?: pulumi.Input<string | undefined>;
+    /**
+     * The ID of the product this price is associated with.
      */
     product?: pulumi.Input<string | undefined>;
     /**
      * These fields can be used to create a new product that this price will belong to.
      */
-    productData?: pulumi.Input<inputs.PriceProductData | undefined>;
+    productDatas?: pulumi.Input<pulumi.Input<inputs.PriceProductData>[] | undefined>;
     /**
      * The recurring components of a price such as <span pulumi-lang-nodejs="`interval`" pulumi-lang-dotnet="`Interval`" pulumi-lang-go="`interval`" pulumi-lang-python="`interval`" pulumi-lang-yaml="`interval`" pulumi-lang-java="`interval`" pulumi-lang-hcl="`interval`">`interval`</span> and <span pulumi-lang-nodejs="`usageType`" pulumi-lang-dotnet="`UsageType`" pulumi-lang-go="`usageType`" pulumi-lang-python="`usage_type`" pulumi-lang-yaml="`usageType`" pulumi-lang-java="`usageType`" pulumi-lang-hcl="`usage_type`">`usageType`</span>.
      */
-    recurring?: pulumi.Input<inputs.PriceRecurring | undefined>;
+    recurrings?: pulumi.Input<pulumi.Input<inputs.PriceRecurring>[] | undefined>;
     /**
-     * Only required if a [default tax behavior](<https://stripe.com/docs/tax/products-prices-tax-categories-tax-behavior#setting-a-default-tax-behavior-(recommended)>) was not provided in the Stripe Tax settings. Specifies whether the price is considered inclusive of taxes or exclusive of taxes. One of <span pulumi-lang-nodejs="`inclusive`" pulumi-lang-dotnet="`Inclusive`" pulumi-lang-go="`inclusive`" pulumi-lang-python="`inclusive`" pulumi-lang-yaml="`inclusive`" pulumi-lang-java="`inclusive`" pulumi-lang-hcl="`inclusive`">`inclusive`</span>, <span pulumi-lang-nodejs="`exclusive`" pulumi-lang-dotnet="`Exclusive`" pulumi-lang-go="`exclusive`" pulumi-lang-python="`exclusive`" pulumi-lang-yaml="`exclusive`" pulumi-lang-java="`exclusive`" pulumi-lang-hcl="`exclusive`">`exclusive`</span>, or <span pulumi-lang-nodejs="`unspecified`" pulumi-lang-dotnet="`Unspecified`" pulumi-lang-go="`unspecified`" pulumi-lang-python="`unspecified`" pulumi-lang-yaml="`unspecified`" pulumi-lang-java="`unspecified`" pulumi-lang-hcl="`unspecified`">`unspecified`</span>. Once specified as either <span pulumi-lang-nodejs="`inclusive`" pulumi-lang-dotnet="`Inclusive`" pulumi-lang-go="`inclusive`" pulumi-lang-python="`inclusive`" pulumi-lang-yaml="`inclusive`" pulumi-lang-java="`inclusive`" pulumi-lang-hcl="`inclusive`">`inclusive`</span> or <span pulumi-lang-nodejs="`exclusive`" pulumi-lang-dotnet="`Exclusive`" pulumi-lang-go="`exclusive`" pulumi-lang-python="`exclusive`" pulumi-lang-yaml="`exclusive`" pulumi-lang-java="`exclusive`" pulumi-lang-hcl="`exclusive`">`exclusive`</span>, it cannot be changed.
+     * Only required if a [default tax behavior](<https://docs.stripe.com/tax/products-prices-tax-categories-tax-behavior#setting-a-default-tax-behavior-(recommended)>) was not provided in the Stripe Tax settings. Specifies whether the price is considered inclusive of taxes or exclusive of taxes. One of <span pulumi-lang-nodejs="`inclusive`" pulumi-lang-dotnet="`Inclusive`" pulumi-lang-go="`inclusive`" pulumi-lang-python="`inclusive`" pulumi-lang-yaml="`inclusive`" pulumi-lang-java="`inclusive`" pulumi-lang-hcl="`inclusive`">`inclusive`</span>, <span pulumi-lang-nodejs="`exclusive`" pulumi-lang-dotnet="`Exclusive`" pulumi-lang-go="`exclusive`" pulumi-lang-python="`exclusive`" pulumi-lang-yaml="`exclusive`" pulumi-lang-java="`exclusive`" pulumi-lang-hcl="`exclusive`">`exclusive`</span>, or <span pulumi-lang-nodejs="`unspecified`" pulumi-lang-dotnet="`Unspecified`" pulumi-lang-go="`unspecified`" pulumi-lang-python="`unspecified`" pulumi-lang-yaml="`unspecified`" pulumi-lang-java="`unspecified`" pulumi-lang-hcl="`unspecified`">`unspecified`</span>. Once specified as either <span pulumi-lang-nodejs="`inclusive`" pulumi-lang-dotnet="`Inclusive`" pulumi-lang-go="`inclusive`" pulumi-lang-python="`inclusive`" pulumi-lang-yaml="`inclusive`" pulumi-lang-java="`inclusive`" pulumi-lang-hcl="`inclusive`">`inclusive`</span> or <span pulumi-lang-nodejs="`exclusive`" pulumi-lang-dotnet="`Exclusive`" pulumi-lang-go="`exclusive`" pulumi-lang-python="`exclusive`" pulumi-lang-yaml="`exclusive`" pulumi-lang-java="`exclusive`" pulumi-lang-hcl="`exclusive`">`exclusive`</span>, it cannot be changed.
      */
     taxBehavior?: pulumi.Input<string | undefined>;
     /**
@@ -218,19 +263,28 @@ export interface PriceState {
      */
     tiers?: pulumi.Input<pulumi.Input<inputs.PriceTier>[] | undefined>;
     /**
-     * Defines if the tiering price should be <span pulumi-lang-nodejs="`graduated`" pulumi-lang-dotnet="`Graduated`" pulumi-lang-go="`graduated`" pulumi-lang-python="`graduated`" pulumi-lang-yaml="`graduated`" pulumi-lang-java="`graduated`" pulumi-lang-hcl="`graduated`">`graduated`</span> or <span pulumi-lang-nodejs="`volume`" pulumi-lang-dotnet="`Volume`" pulumi-lang-go="`volume`" pulumi-lang-python="`volume`" pulumi-lang-yaml="`volume`" pulumi-lang-java="`volume`" pulumi-lang-hcl="`volume`">`volume`</span> based. In <span pulumi-lang-nodejs="`volume`" pulumi-lang-dotnet="`Volume`" pulumi-lang-go="`volume`" pulumi-lang-python="`volume`" pulumi-lang-yaml="`volume`" pulumi-lang-java="`volume`" pulumi-lang-hcl="`volume`">`volume`</span>-based tiering, the maximum quantity within a period determines the per unit price, in <span pulumi-lang-nodejs="`graduated`" pulumi-lang-dotnet="`Graduated`" pulumi-lang-go="`graduated`" pulumi-lang-python="`graduated`" pulumi-lang-yaml="`graduated`" pulumi-lang-java="`graduated`" pulumi-lang-hcl="`graduated`">`graduated`</span> tiering pricing can successively change as the quantity grows.
+     * Defines if the tiering price should be <span pulumi-lang-nodejs="`graduated`" pulumi-lang-dotnet="`Graduated`" pulumi-lang-go="`graduated`" pulumi-lang-python="`graduated`" pulumi-lang-yaml="`graduated`" pulumi-lang-java="`graduated`" pulumi-lang-hcl="`graduated`">`graduated`</span> or <span pulumi-lang-nodejs="`volume`" pulumi-lang-dotnet="`Volume`" pulumi-lang-go="`volume`" pulumi-lang-python="`volume`" pulumi-lang-yaml="`volume`" pulumi-lang-java="`volume`" pulumi-lang-hcl="`volume`">`volume`</span> based. In <span pulumi-lang-nodejs="`volume`" pulumi-lang-dotnet="`Volume`" pulumi-lang-go="`volume`" pulumi-lang-python="`volume`" pulumi-lang-yaml="`volume`" pulumi-lang-java="`volume`" pulumi-lang-hcl="`volume`">`volume`</span>-based tiering, the maximum quantity within a period determines the per unit price. In <span pulumi-lang-nodejs="`graduated`" pulumi-lang-dotnet="`Graduated`" pulumi-lang-go="`graduated`" pulumi-lang-python="`graduated`" pulumi-lang-yaml="`graduated`" pulumi-lang-java="`graduated`" pulumi-lang-hcl="`graduated`">`graduated`</span> tiering, pricing can change as the quantity grows.
      */
     tiersMode?: pulumi.Input<string | undefined>;
+    /**
+     * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * If set to true, will atomically remove the lookup key from the existing price, and assign it to this price.
+     */
+    transferLookupKey?: pulumi.Input<boolean | undefined>;
+    /**
+     * Apply a transformation to the reported usage or set quantity before computing the amount billed. Cannot be combined with <span pulumi-lang-nodejs="`tiers`" pulumi-lang-dotnet="`Tiers`" pulumi-lang-go="`tiers`" pulumi-lang-python="`tiers`" pulumi-lang-yaml="`tiers`" pulumi-lang-java="`tiers`" pulumi-lang-hcl="`tiers`">`tiers`</span>.
+     */
+    transformQuantity?: pulumi.Input<inputs.PriceTransformQuantity | undefined>;
     /**
      * One of <span pulumi-lang-nodejs="`oneTime`" pulumi-lang-dotnet="`OneTime`" pulumi-lang-go="`oneTime`" pulumi-lang-python="`one_time`" pulumi-lang-yaml="`oneTime`" pulumi-lang-java="`oneTime`" pulumi-lang-hcl="`one_time`">`oneTime`</span> or <span pulumi-lang-nodejs="`recurring`" pulumi-lang-dotnet="`Recurring`" pulumi-lang-go="`recurring`" pulumi-lang-python="`recurring`" pulumi-lang-yaml="`recurring`" pulumi-lang-java="`recurring`" pulumi-lang-hcl="`recurring`">`recurring`</span> depending on whether the price is for a one-time purchase or a recurring (subscription) purchase.
      */
     type?: pulumi.Input<string | undefined>;
     /**
-     * A positive integer in cents (or local equivalent) (or 0 for a free price) representing how much to charge. One of <span pulumi-lang-nodejs="`unitAmount`" pulumi-lang-dotnet="`UnitAmount`" pulumi-lang-go="`unitAmount`" pulumi-lang-python="`unit_amount`" pulumi-lang-yaml="`unitAmount`" pulumi-lang-java="`unitAmount`" pulumi-lang-hcl="`unit_amount`">`unitAmount`</span>, <span pulumi-lang-nodejs="`unitAmountDecimal`" pulumi-lang-dotnet="`UnitAmountDecimal`" pulumi-lang-go="`unitAmountDecimal`" pulumi-lang-python="`unit_amount_decimal`" pulumi-lang-yaml="`unitAmountDecimal`" pulumi-lang-java="`unitAmountDecimal`" pulumi-lang-hcl="`unit_amount_decimal`">`unitAmountDecimal`</span>, or <span pulumi-lang-nodejs="`customUnitAmount`" pulumi-lang-dotnet="`CustomUnitAmount`" pulumi-lang-go="`customUnitAmount`" pulumi-lang-python="`custom_unit_amount`" pulumi-lang-yaml="`customUnitAmount`" pulumi-lang-java="`customUnitAmount`" pulumi-lang-hcl="`custom_unit_amount`">`customUnitAmount`</span> is required, unless `billing_scheme=tiered`.
+     * The unit amount in cents (or local equivalent) to be charged, represented as a whole integer if possible. Only set if `billing_scheme=per_unit`.
      */
     unitAmount?: pulumi.Input<number | undefined>;
     /**
-     * Same as <span pulumi-lang-nodejs="`unitAmount`" pulumi-lang-dotnet="`UnitAmount`" pulumi-lang-go="`unitAmount`" pulumi-lang-python="`unit_amount`" pulumi-lang-yaml="`unitAmount`" pulumi-lang-java="`unitAmount`" pulumi-lang-hcl="`unit_amount`">`unitAmount`</span>, but accepts a decimal value in cents (or local equivalent) with at most 12 decimal places. Only one of <span pulumi-lang-nodejs="`unitAmount`" pulumi-lang-dotnet="`UnitAmount`" pulumi-lang-go="`unitAmount`" pulumi-lang-python="`unit_amount`" pulumi-lang-yaml="`unitAmount`" pulumi-lang-java="`unitAmount`" pulumi-lang-hcl="`unit_amount`">`unitAmount`</span> and <span pulumi-lang-nodejs="`unitAmountDecimal`" pulumi-lang-dotnet="`UnitAmountDecimal`" pulumi-lang-go="`unitAmountDecimal`" pulumi-lang-python="`unit_amount_decimal`" pulumi-lang-yaml="`unitAmountDecimal`" pulumi-lang-java="`unitAmountDecimal`" pulumi-lang-hcl="`unit_amount_decimal`">`unitAmountDecimal`</span> can be set.
+     * The unit amount in cents (or local equivalent) to be charged, represented as a decimal string with at most 12 decimal places. Only set if `billing_scheme=per_unit`.
      */
     unitAmountDecimal?: pulumi.Input<string | undefined>;
 }
@@ -240,7 +294,7 @@ export interface PriceState {
  */
 export interface PriceArgs {
     /**
-     * Whether the price can be used for new purchases. Defaults to <span pulumi-lang-nodejs="`true`" pulumi-lang-dotnet="`True`" pulumi-lang-go="`true`" pulumi-lang-python="`true`" pulumi-lang-yaml="`true`" pulumi-lang-java="`true`" pulumi-lang-hcl="`true`">`true`</span>.
+     * Whether the price can be used for new purchases.
      */
     active?: pulumi.Input<boolean | undefined>;
     /**
@@ -258,13 +312,13 @@ export interface PriceArgs {
     /**
      * When set, provides configuration for the amount to be adjusted by the customer during Checkout Sessions and Payment Links.
      */
-    customUnitAmount?: pulumi.Input<inputs.PriceCustomUnitAmount | undefined>;
+    customUnitAmounts?: pulumi.Input<pulumi.Input<inputs.PriceCustomUnitAmount>[] | undefined>;
     /**
      * A lookup key used to retrieve prices dynamically from a static string. This may be up to 200 characters.
      */
     lookupKey?: pulumi.Input<string | undefined>;
     /**
-     * Set of [key-value pairs](https://stripe.com/docs/api/metadata) that you can attach to an object. This can be useful for storing additional information about the object in a structured format. Individual keys can be unset by posting an empty value to them. All keys can be unset by posting an empty value to <span pulumi-lang-nodejs="`metadata`" pulumi-lang-dotnet="`Metadata`" pulumi-lang-go="`metadata`" pulumi-lang-python="`metadata`" pulumi-lang-yaml="`metadata`" pulumi-lang-java="`metadata`" pulumi-lang-hcl="`metadata`">`metadata`</span>.
+     * Set of [key-value pairs](https://docs.stripe.com/api/metadata) that you can attach to an object. This can be useful for storing additional information about the object in a structured format.
      */
     metadata?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
     /**
@@ -272,19 +326,19 @@ export interface PriceArgs {
      */
     nickname?: pulumi.Input<string | undefined>;
     /**
-     * The ID of the [Product](https://docs.stripe.com/api/products) that this [Price](https://docs.stripe.com/api/prices) will belong to.
+     * The ID of the product this price is associated with.
      */
     product?: pulumi.Input<string | undefined>;
     /**
      * These fields can be used to create a new product that this price will belong to.
      */
-    productData?: pulumi.Input<inputs.PriceProductData | undefined>;
+    productDatas?: pulumi.Input<pulumi.Input<inputs.PriceProductData>[] | undefined>;
     /**
      * The recurring components of a price such as <span pulumi-lang-nodejs="`interval`" pulumi-lang-dotnet="`Interval`" pulumi-lang-go="`interval`" pulumi-lang-python="`interval`" pulumi-lang-yaml="`interval`" pulumi-lang-java="`interval`" pulumi-lang-hcl="`interval`">`interval`</span> and <span pulumi-lang-nodejs="`usageType`" pulumi-lang-dotnet="`UsageType`" pulumi-lang-go="`usageType`" pulumi-lang-python="`usage_type`" pulumi-lang-yaml="`usageType`" pulumi-lang-java="`usageType`" pulumi-lang-hcl="`usage_type`">`usageType`</span>.
      */
-    recurring?: pulumi.Input<inputs.PriceRecurring | undefined>;
+    recurrings?: pulumi.Input<pulumi.Input<inputs.PriceRecurring>[] | undefined>;
     /**
-     * Only required if a [default tax behavior](<https://stripe.com/docs/tax/products-prices-tax-categories-tax-behavior#setting-a-default-tax-behavior-(recommended)>) was not provided in the Stripe Tax settings. Specifies whether the price is considered inclusive of taxes or exclusive of taxes. One of <span pulumi-lang-nodejs="`inclusive`" pulumi-lang-dotnet="`Inclusive`" pulumi-lang-go="`inclusive`" pulumi-lang-python="`inclusive`" pulumi-lang-yaml="`inclusive`" pulumi-lang-java="`inclusive`" pulumi-lang-hcl="`inclusive`">`inclusive`</span>, <span pulumi-lang-nodejs="`exclusive`" pulumi-lang-dotnet="`Exclusive`" pulumi-lang-go="`exclusive`" pulumi-lang-python="`exclusive`" pulumi-lang-yaml="`exclusive`" pulumi-lang-java="`exclusive`" pulumi-lang-hcl="`exclusive`">`exclusive`</span>, or <span pulumi-lang-nodejs="`unspecified`" pulumi-lang-dotnet="`Unspecified`" pulumi-lang-go="`unspecified`" pulumi-lang-python="`unspecified`" pulumi-lang-yaml="`unspecified`" pulumi-lang-java="`unspecified`" pulumi-lang-hcl="`unspecified`">`unspecified`</span>. Once specified as either <span pulumi-lang-nodejs="`inclusive`" pulumi-lang-dotnet="`Inclusive`" pulumi-lang-go="`inclusive`" pulumi-lang-python="`inclusive`" pulumi-lang-yaml="`inclusive`" pulumi-lang-java="`inclusive`" pulumi-lang-hcl="`inclusive`">`inclusive`</span> or <span pulumi-lang-nodejs="`exclusive`" pulumi-lang-dotnet="`Exclusive`" pulumi-lang-go="`exclusive`" pulumi-lang-python="`exclusive`" pulumi-lang-yaml="`exclusive`" pulumi-lang-java="`exclusive`" pulumi-lang-hcl="`exclusive`">`exclusive`</span>, it cannot be changed.
+     * Only required if a [default tax behavior](<https://docs.stripe.com/tax/products-prices-tax-categories-tax-behavior#setting-a-default-tax-behavior-(recommended)>) was not provided in the Stripe Tax settings. Specifies whether the price is considered inclusive of taxes or exclusive of taxes. One of <span pulumi-lang-nodejs="`inclusive`" pulumi-lang-dotnet="`Inclusive`" pulumi-lang-go="`inclusive`" pulumi-lang-python="`inclusive`" pulumi-lang-yaml="`inclusive`" pulumi-lang-java="`inclusive`" pulumi-lang-hcl="`inclusive`">`inclusive`</span>, <span pulumi-lang-nodejs="`exclusive`" pulumi-lang-dotnet="`Exclusive`" pulumi-lang-go="`exclusive`" pulumi-lang-python="`exclusive`" pulumi-lang-yaml="`exclusive`" pulumi-lang-java="`exclusive`" pulumi-lang-hcl="`exclusive`">`exclusive`</span>, or <span pulumi-lang-nodejs="`unspecified`" pulumi-lang-dotnet="`Unspecified`" pulumi-lang-go="`unspecified`" pulumi-lang-python="`unspecified`" pulumi-lang-yaml="`unspecified`" pulumi-lang-java="`unspecified`" pulumi-lang-hcl="`unspecified`">`unspecified`</span>. Once specified as either <span pulumi-lang-nodejs="`inclusive`" pulumi-lang-dotnet="`Inclusive`" pulumi-lang-go="`inclusive`" pulumi-lang-python="`inclusive`" pulumi-lang-yaml="`inclusive`" pulumi-lang-java="`inclusive`" pulumi-lang-hcl="`inclusive`">`inclusive`</span> or <span pulumi-lang-nodejs="`exclusive`" pulumi-lang-dotnet="`Exclusive`" pulumi-lang-go="`exclusive`" pulumi-lang-python="`exclusive`" pulumi-lang-yaml="`exclusive`" pulumi-lang-java="`exclusive`" pulumi-lang-hcl="`exclusive`">`exclusive`</span>, it cannot be changed.
      */
     taxBehavior?: pulumi.Input<string | undefined>;
     /**
@@ -292,15 +346,24 @@ export interface PriceArgs {
      */
     tiers?: pulumi.Input<pulumi.Input<inputs.PriceTier>[] | undefined>;
     /**
-     * Defines if the tiering price should be <span pulumi-lang-nodejs="`graduated`" pulumi-lang-dotnet="`Graduated`" pulumi-lang-go="`graduated`" pulumi-lang-python="`graduated`" pulumi-lang-yaml="`graduated`" pulumi-lang-java="`graduated`" pulumi-lang-hcl="`graduated`">`graduated`</span> or <span pulumi-lang-nodejs="`volume`" pulumi-lang-dotnet="`Volume`" pulumi-lang-go="`volume`" pulumi-lang-python="`volume`" pulumi-lang-yaml="`volume`" pulumi-lang-java="`volume`" pulumi-lang-hcl="`volume`">`volume`</span> based. In <span pulumi-lang-nodejs="`volume`" pulumi-lang-dotnet="`Volume`" pulumi-lang-go="`volume`" pulumi-lang-python="`volume`" pulumi-lang-yaml="`volume`" pulumi-lang-java="`volume`" pulumi-lang-hcl="`volume`">`volume`</span>-based tiering, the maximum quantity within a period determines the per unit price, in <span pulumi-lang-nodejs="`graduated`" pulumi-lang-dotnet="`Graduated`" pulumi-lang-go="`graduated`" pulumi-lang-python="`graduated`" pulumi-lang-yaml="`graduated`" pulumi-lang-java="`graduated`" pulumi-lang-hcl="`graduated`">`graduated`</span> tiering pricing can successively change as the quantity grows.
+     * Defines if the tiering price should be <span pulumi-lang-nodejs="`graduated`" pulumi-lang-dotnet="`Graduated`" pulumi-lang-go="`graduated`" pulumi-lang-python="`graduated`" pulumi-lang-yaml="`graduated`" pulumi-lang-java="`graduated`" pulumi-lang-hcl="`graduated`">`graduated`</span> or <span pulumi-lang-nodejs="`volume`" pulumi-lang-dotnet="`Volume`" pulumi-lang-go="`volume`" pulumi-lang-python="`volume`" pulumi-lang-yaml="`volume`" pulumi-lang-java="`volume`" pulumi-lang-hcl="`volume`">`volume`</span> based. In <span pulumi-lang-nodejs="`volume`" pulumi-lang-dotnet="`Volume`" pulumi-lang-go="`volume`" pulumi-lang-python="`volume`" pulumi-lang-yaml="`volume`" pulumi-lang-java="`volume`" pulumi-lang-hcl="`volume`">`volume`</span>-based tiering, the maximum quantity within a period determines the per unit price. In <span pulumi-lang-nodejs="`graduated`" pulumi-lang-dotnet="`Graduated`" pulumi-lang-go="`graduated`" pulumi-lang-python="`graduated`" pulumi-lang-yaml="`graduated`" pulumi-lang-java="`graduated`" pulumi-lang-hcl="`graduated`">`graduated`</span> tiering, pricing can change as the quantity grows.
      */
     tiersMode?: pulumi.Input<string | undefined>;
     /**
-     * A positive integer in cents (or local equivalent) (or 0 for a free price) representing how much to charge. One of <span pulumi-lang-nodejs="`unitAmount`" pulumi-lang-dotnet="`UnitAmount`" pulumi-lang-go="`unitAmount`" pulumi-lang-python="`unit_amount`" pulumi-lang-yaml="`unitAmount`" pulumi-lang-java="`unitAmount`" pulumi-lang-hcl="`unit_amount`">`unitAmount`</span>, <span pulumi-lang-nodejs="`unitAmountDecimal`" pulumi-lang-dotnet="`UnitAmountDecimal`" pulumi-lang-go="`unitAmountDecimal`" pulumi-lang-python="`unit_amount_decimal`" pulumi-lang-yaml="`unitAmountDecimal`" pulumi-lang-java="`unitAmountDecimal`" pulumi-lang-hcl="`unit_amount_decimal`">`unitAmountDecimal`</span>, or <span pulumi-lang-nodejs="`customUnitAmount`" pulumi-lang-dotnet="`CustomUnitAmount`" pulumi-lang-go="`customUnitAmount`" pulumi-lang-python="`custom_unit_amount`" pulumi-lang-yaml="`customUnitAmount`" pulumi-lang-java="`customUnitAmount`" pulumi-lang-hcl="`custom_unit_amount`">`customUnitAmount`</span> is required, unless `billing_scheme=tiered`.
+     * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * If set to true, will atomically remove the lookup key from the existing price, and assign it to this price.
+     */
+    transferLookupKey?: pulumi.Input<boolean | undefined>;
+    /**
+     * Apply a transformation to the reported usage or set quantity before computing the amount billed. Cannot be combined with <span pulumi-lang-nodejs="`tiers`" pulumi-lang-dotnet="`Tiers`" pulumi-lang-go="`tiers`" pulumi-lang-python="`tiers`" pulumi-lang-yaml="`tiers`" pulumi-lang-java="`tiers`" pulumi-lang-hcl="`tiers`">`tiers`</span>.
+     */
+    transformQuantity?: pulumi.Input<inputs.PriceTransformQuantity | undefined>;
+    /**
+     * The unit amount in cents (or local equivalent) to be charged, represented as a whole integer if possible. Only set if `billing_scheme=per_unit`.
      */
     unitAmount?: pulumi.Input<number | undefined>;
     /**
-     * Same as <span pulumi-lang-nodejs="`unitAmount`" pulumi-lang-dotnet="`UnitAmount`" pulumi-lang-go="`unitAmount`" pulumi-lang-python="`unit_amount`" pulumi-lang-yaml="`unitAmount`" pulumi-lang-java="`unitAmount`" pulumi-lang-hcl="`unit_amount`">`unitAmount`</span>, but accepts a decimal value in cents (or local equivalent) with at most 12 decimal places. Only one of <span pulumi-lang-nodejs="`unitAmount`" pulumi-lang-dotnet="`UnitAmount`" pulumi-lang-go="`unitAmount`" pulumi-lang-python="`unit_amount`" pulumi-lang-yaml="`unitAmount`" pulumi-lang-java="`unitAmount`" pulumi-lang-hcl="`unit_amount`">`unitAmount`</span> and <span pulumi-lang-nodejs="`unitAmountDecimal`" pulumi-lang-dotnet="`UnitAmountDecimal`" pulumi-lang-go="`unitAmountDecimal`" pulumi-lang-python="`unit_amount_decimal`" pulumi-lang-yaml="`unitAmountDecimal`" pulumi-lang-java="`unitAmountDecimal`" pulumi-lang-hcl="`unit_amount_decimal`">`unitAmountDecimal`</span> can be set.
+     * The unit amount in cents (or local equivalent) to be charged, represented as a decimal string with at most 12 decimal places. Only set if `billing_scheme=per_unit`.
      */
     unitAmountDecimal?: pulumi.Input<string | undefined>;
 }

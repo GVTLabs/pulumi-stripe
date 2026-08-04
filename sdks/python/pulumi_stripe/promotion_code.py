@@ -21,7 +21,6 @@ __all__ = ['PromotionCodeArgs', 'PromotionCode']
 @pulumi.input_type
 class PromotionCodeArgs:
     def __init__(__self__, *,
-                 promotion: pulumi.Input['PromotionCodePromotionArgs'],
                  active: pulumi.Input[Optional[_builtins.bool]] = None,
                  code: pulumi.Input[Optional[_builtins.str]] = None,
                  customer: pulumi.Input[Optional[_builtins.str]] = None,
@@ -29,21 +28,19 @@ class PromotionCodeArgs:
                  expires_at: pulumi.Input[Optional[_builtins.float]] = None,
                  max_redemptions: pulumi.Input[Optional[_builtins.float]] = None,
                  metadata: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-                 restrictions: pulumi.Input[Optional['PromotionCodeRestrictionsArgs']] = None):
+                 promotions: pulumi.Input[Optional[Sequence[pulumi.Input['PromotionCodePromotionArgs']]]] = None,
+                 restrictions: pulumi.Input[Optional[Sequence[pulumi.Input['PromotionCodeRestrictionArgs']]]] = None):
         """
         The set of arguments for constructing a PromotionCode resource.
 
-        :param pulumi.Input['PromotionCodePromotionArgs'] promotion: The promotion referenced by this promotion code.
-        :param pulumi.Input[_builtins.bool] active: Whether the promotion code is currently active.
-        :param pulumi.Input[_builtins.str] code: The customer-facing code. Regardless of case, this code must be unique across all active promotion codes for a specific customer. Valid characters are lower case letters (a-z), upper case letters (A-Z), and digits (0-9). If left blank, we will generate one automatically.
-        :param pulumi.Input[_builtins.str] customer: The customer that this promotion code can be used by. If not set, the promotion code can be used by all customers.
-        :param pulumi.Input[_builtins.str] customer_account: The account that this promotion code can be used by. If not set, the promotion code can be used by all accounts.
-        :param pulumi.Input[_builtins.float] expires_at: The timestamp at which this promotion code will expire. If the coupon has specified a <span pulumi-lang-nodejs="`redeemsBy`" pulumi-lang-dotnet="`RedeemsBy`" pulumi-lang-go="`redeemsBy`" pulumi-lang-python="`redeems_by`" pulumi-lang-yaml="`redeemsBy`" pulumi-lang-java="`redeemsBy`" pulumi-lang-hcl="`redeems_by`">`redeemsBy`</span>, then this value cannot be after the coupon's <span pulumi-lang-nodejs="`redeemsBy`" pulumi-lang-dotnet="`RedeemsBy`" pulumi-lang-go="`redeemsBy`" pulumi-lang-python="`redeems_by`" pulumi-lang-yaml="`redeemsBy`" pulumi-lang-java="`redeemsBy`" pulumi-lang-hcl="`redeems_by`">`redeemsBy`</span>.
-        :param pulumi.Input[_builtins.float] max_redemptions: A positive integer specifying the number of times the promotion code can be redeemed. If the coupon has specified a <span pulumi-lang-nodejs="`maxRedemptions`" pulumi-lang-dotnet="`MaxRedemptions`" pulumi-lang-go="`maxRedemptions`" pulumi-lang-python="`max_redemptions`" pulumi-lang-yaml="`maxRedemptions`" pulumi-lang-java="`maxRedemptions`" pulumi-lang-hcl="`max_redemptions`">`maxRedemptions`</span>, then this value cannot be greater than the coupon's <span pulumi-lang-nodejs="`maxRedemptions`" pulumi-lang-dotnet="`MaxRedemptions`" pulumi-lang-go="`maxRedemptions`" pulumi-lang-python="`max_redemptions`" pulumi-lang-yaml="`maxRedemptions`" pulumi-lang-java="`maxRedemptions`" pulumi-lang-hcl="`max_redemptions`">`maxRedemptions`</span>.
-        :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] metadata: Set of [key-value pairs](https://stripe.com/docs/api/metadata) that you can attach to an object. This can be useful for storing additional information about the object in a structured format. Individual keys can be unset by posting an empty value to them. All keys can be unset by posting an empty value to <span pulumi-lang-nodejs="`metadata`" pulumi-lang-dotnet="`Metadata`" pulumi-lang-go="`metadata`" pulumi-lang-python="`metadata`" pulumi-lang-yaml="`metadata`" pulumi-lang-java="`metadata`" pulumi-lang-hcl="`metadata`">`metadata`</span>.
-        :param pulumi.Input['PromotionCodeRestrictionsArgs'] restrictions: Settings that restrict the redemption of the promotion code.
+        :param pulumi.Input[_builtins.bool] active: Whether the promotion code is currently active. A promotion code is only active if the coupon is also valid.
+        :param pulumi.Input[_builtins.str] code: The customer-facing code. Regardless of case, this code must be unique across all active promotion codes for each customer. Valid characters are lower case letters (a-z), upper case letters (A-Z), digits (0-9), and dashes (-).
+        :param pulumi.Input[_builtins.str] customer: The customer who can use this promotion code.
+        :param pulumi.Input[_builtins.str] customer_account: The account representing the customer who can use this promotion code.
+        :param pulumi.Input[_builtins.float] expires_at: Date at which the promotion code can no longer be redeemed.
+        :param pulumi.Input[_builtins.float] max_redemptions: Maximum number of times this promotion code can be redeemed.
+        :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] metadata: Set of [key-value pairs](https://docs.stripe.com/api/metadata) that you can attach to an object. This can be useful for storing additional information about the object in a structured format.
         """
-        pulumi.set(__self__, "promotion", promotion)
         if active is not None:
             pulumi.set(__self__, "active", active)
         if code is not None:
@@ -58,26 +55,16 @@ class PromotionCodeArgs:
             pulumi.set(__self__, "max_redemptions", max_redemptions)
         if metadata is not None:
             pulumi.set(__self__, "metadata", metadata)
+        if promotions is not None:
+            pulumi.set(__self__, "promotions", promotions)
         if restrictions is not None:
             pulumi.set(__self__, "restrictions", restrictions)
 
     @_builtins.property
     @pulumi.getter
-    def promotion(self) -> pulumi.Input['PromotionCodePromotionArgs']:
-        """
-        The promotion referenced by this promotion code.
-        """
-        return pulumi.get(self, "promotion")
-
-    @promotion.setter
-    def promotion(self, value: pulumi.Input['PromotionCodePromotionArgs']):
-        pulumi.set(self, "promotion", value)
-
-    @_builtins.property
-    @pulumi.getter
     def active(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
-        Whether the promotion code is currently active.
+        Whether the promotion code is currently active. A promotion code is only active if the coupon is also valid.
         """
         return pulumi.get(self, "active")
 
@@ -89,7 +76,7 @@ class PromotionCodeArgs:
     @pulumi.getter
     def code(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
-        The customer-facing code. Regardless of case, this code must be unique across all active promotion codes for a specific customer. Valid characters are lower case letters (a-z), upper case letters (A-Z), and digits (0-9). If left blank, we will generate one automatically.
+        The customer-facing code. Regardless of case, this code must be unique across all active promotion codes for each customer. Valid characters are lower case letters (a-z), upper case letters (A-Z), digits (0-9), and dashes (-).
         """
         return pulumi.get(self, "code")
 
@@ -101,7 +88,7 @@ class PromotionCodeArgs:
     @pulumi.getter
     def customer(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
-        The customer that this promotion code can be used by. If not set, the promotion code can be used by all customers.
+        The customer who can use this promotion code.
         """
         return pulumi.get(self, "customer")
 
@@ -113,7 +100,7 @@ class PromotionCodeArgs:
     @pulumi.getter(name="customerAccount")
     def customer_account(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
-        The account that this promotion code can be used by. If not set, the promotion code can be used by all accounts.
+        The account representing the customer who can use this promotion code.
         """
         return pulumi.get(self, "customer_account")
 
@@ -125,7 +112,7 @@ class PromotionCodeArgs:
     @pulumi.getter(name="expiresAt")
     def expires_at(self) -> pulumi.Input[Optional[_builtins.float]]:
         """
-        The timestamp at which this promotion code will expire. If the coupon has specified a <span pulumi-lang-nodejs="`redeemsBy`" pulumi-lang-dotnet="`RedeemsBy`" pulumi-lang-go="`redeemsBy`" pulumi-lang-python="`redeems_by`" pulumi-lang-yaml="`redeemsBy`" pulumi-lang-java="`redeemsBy`" pulumi-lang-hcl="`redeems_by`">`redeemsBy`</span>, then this value cannot be after the coupon's <span pulumi-lang-nodejs="`redeemsBy`" pulumi-lang-dotnet="`RedeemsBy`" pulumi-lang-go="`redeemsBy`" pulumi-lang-python="`redeems_by`" pulumi-lang-yaml="`redeemsBy`" pulumi-lang-java="`redeemsBy`" pulumi-lang-hcl="`redeems_by`">`redeemsBy`</span>.
+        Date at which the promotion code can no longer be redeemed.
         """
         return pulumi.get(self, "expires_at")
 
@@ -137,7 +124,7 @@ class PromotionCodeArgs:
     @pulumi.getter(name="maxRedemptions")
     def max_redemptions(self) -> pulumi.Input[Optional[_builtins.float]]:
         """
-        A positive integer specifying the number of times the promotion code can be redeemed. If the coupon has specified a <span pulumi-lang-nodejs="`maxRedemptions`" pulumi-lang-dotnet="`MaxRedemptions`" pulumi-lang-go="`maxRedemptions`" pulumi-lang-python="`max_redemptions`" pulumi-lang-yaml="`maxRedemptions`" pulumi-lang-java="`maxRedemptions`" pulumi-lang-hcl="`max_redemptions`">`maxRedemptions`</span>, then this value cannot be greater than the coupon's <span pulumi-lang-nodejs="`maxRedemptions`" pulumi-lang-dotnet="`MaxRedemptions`" pulumi-lang-go="`maxRedemptions`" pulumi-lang-python="`max_redemptions`" pulumi-lang-yaml="`maxRedemptions`" pulumi-lang-java="`maxRedemptions`" pulumi-lang-hcl="`max_redemptions`">`maxRedemptions`</span>.
+        Maximum number of times this promotion code can be redeemed.
         """
         return pulumi.get(self, "max_redemptions")
 
@@ -149,7 +136,7 @@ class PromotionCodeArgs:
     @pulumi.getter
     def metadata(self) -> pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]:
         """
-        Set of [key-value pairs](https://stripe.com/docs/api/metadata) that you can attach to an object. This can be useful for storing additional information about the object in a structured format. Individual keys can be unset by posting an empty value to them. All keys can be unset by posting an empty value to <span pulumi-lang-nodejs="`metadata`" pulumi-lang-dotnet="`Metadata`" pulumi-lang-go="`metadata`" pulumi-lang-python="`metadata`" pulumi-lang-yaml="`metadata`" pulumi-lang-java="`metadata`" pulumi-lang-hcl="`metadata`">`metadata`</span>.
+        Set of [key-value pairs](https://docs.stripe.com/api/metadata) that you can attach to an object. This can be useful for storing additional information about the object in a structured format.
         """
         return pulumi.get(self, "metadata")
 
@@ -159,14 +146,20 @@ class PromotionCodeArgs:
 
     @_builtins.property
     @pulumi.getter
-    def restrictions(self) -> pulumi.Input[Optional['PromotionCodeRestrictionsArgs']]:
-        """
-        Settings that restrict the redemption of the promotion code.
-        """
+    def promotions(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['PromotionCodePromotionArgs']]]]:
+        return pulumi.get(self, "promotions")
+
+    @promotions.setter
+    def promotions(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['PromotionCodePromotionArgs']]]]):
+        pulumi.set(self, "promotions", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def restrictions(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['PromotionCodeRestrictionArgs']]]]:
         return pulumi.get(self, "restrictions")
 
     @restrictions.setter
-    def restrictions(self, value: pulumi.Input[Optional['PromotionCodeRestrictionsArgs']]):
+    def restrictions(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['PromotionCodeRestrictionArgs']]]]):
         pulumi.set(self, "restrictions", value)
 
 
@@ -175,44 +168,54 @@ class _PromotionCodeState:
     def __init__(__self__, *,
                  active: pulumi.Input[Optional[_builtins.bool]] = None,
                  code: pulumi.Input[Optional[_builtins.str]] = None,
+                 created: pulumi.Input[Optional[_builtins.float]] = None,
                  customer: pulumi.Input[Optional[_builtins.str]] = None,
                  customer_account: pulumi.Input[Optional[_builtins.str]] = None,
                  expires_at: pulumi.Input[Optional[_builtins.float]] = None,
+                 livemode: pulumi.Input[Optional[_builtins.bool]] = None,
                  max_redemptions: pulumi.Input[Optional[_builtins.float]] = None,
                  metadata: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-                 promotion: pulumi.Input[Optional['PromotionCodePromotionArgs']] = None,
-                 restrictions: pulumi.Input[Optional['PromotionCodeRestrictionsArgs']] = None,
+                 object: pulumi.Input[Optional[_builtins.str]] = None,
+                 promotions: pulumi.Input[Optional[Sequence[pulumi.Input['PromotionCodePromotionArgs']]]] = None,
+                 restrictions: pulumi.Input[Optional[Sequence[pulumi.Input['PromotionCodeRestrictionArgs']]]] = None,
                  times_redeemed: pulumi.Input[Optional[_builtins.float]] = None):
         """
         Input properties used for looking up and filtering PromotionCode resources.
 
-        :param pulumi.Input[_builtins.bool] active: Whether the promotion code is currently active.
-        :param pulumi.Input[_builtins.str] code: The customer-facing code. Regardless of case, this code must be unique across all active promotion codes for a specific customer. Valid characters are lower case letters (a-z), upper case letters (A-Z), and digits (0-9). If left blank, we will generate one automatically.
-        :param pulumi.Input[_builtins.str] customer: The customer that this promotion code can be used by. If not set, the promotion code can be used by all customers.
-        :param pulumi.Input[_builtins.str] customer_account: The account that this promotion code can be used by. If not set, the promotion code can be used by all accounts.
-        :param pulumi.Input[_builtins.float] expires_at: The timestamp at which this promotion code will expire. If the coupon has specified a <span pulumi-lang-nodejs="`redeemsBy`" pulumi-lang-dotnet="`RedeemsBy`" pulumi-lang-go="`redeemsBy`" pulumi-lang-python="`redeems_by`" pulumi-lang-yaml="`redeemsBy`" pulumi-lang-java="`redeemsBy`" pulumi-lang-hcl="`redeems_by`">`redeemsBy`</span>, then this value cannot be after the coupon's <span pulumi-lang-nodejs="`redeemsBy`" pulumi-lang-dotnet="`RedeemsBy`" pulumi-lang-go="`redeemsBy`" pulumi-lang-python="`redeems_by`" pulumi-lang-yaml="`redeemsBy`" pulumi-lang-java="`redeemsBy`" pulumi-lang-hcl="`redeems_by`">`redeemsBy`</span>.
-        :param pulumi.Input[_builtins.float] max_redemptions: A positive integer specifying the number of times the promotion code can be redeemed. If the coupon has specified a <span pulumi-lang-nodejs="`maxRedemptions`" pulumi-lang-dotnet="`MaxRedemptions`" pulumi-lang-go="`maxRedemptions`" pulumi-lang-python="`max_redemptions`" pulumi-lang-yaml="`maxRedemptions`" pulumi-lang-java="`maxRedemptions`" pulumi-lang-hcl="`max_redemptions`">`maxRedemptions`</span>, then this value cannot be greater than the coupon's <span pulumi-lang-nodejs="`maxRedemptions`" pulumi-lang-dotnet="`MaxRedemptions`" pulumi-lang-go="`maxRedemptions`" pulumi-lang-python="`max_redemptions`" pulumi-lang-yaml="`maxRedemptions`" pulumi-lang-java="`maxRedemptions`" pulumi-lang-hcl="`max_redemptions`">`maxRedemptions`</span>.
-        :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] metadata: Set of [key-value pairs](https://stripe.com/docs/api/metadata) that you can attach to an object. This can be useful for storing additional information about the object in a structured format. Individual keys can be unset by posting an empty value to them. All keys can be unset by posting an empty value to <span pulumi-lang-nodejs="`metadata`" pulumi-lang-dotnet="`Metadata`" pulumi-lang-go="`metadata`" pulumi-lang-python="`metadata`" pulumi-lang-yaml="`metadata`" pulumi-lang-java="`metadata`" pulumi-lang-hcl="`metadata`">`metadata`</span>.
-        :param pulumi.Input['PromotionCodePromotionArgs'] promotion: The promotion referenced by this promotion code.
-        :param pulumi.Input['PromotionCodeRestrictionsArgs'] restrictions: Settings that restrict the redemption of the promotion code.
+        :param pulumi.Input[_builtins.bool] active: Whether the promotion code is currently active. A promotion code is only active if the coupon is also valid.
+        :param pulumi.Input[_builtins.str] code: The customer-facing code. Regardless of case, this code must be unique across all active promotion codes for each customer. Valid characters are lower case letters (a-z), upper case letters (A-Z), digits (0-9), and dashes (-).
+        :param pulumi.Input[_builtins.float] created: Time at which the object was created. Measured in seconds since the Unix epoch.
+        :param pulumi.Input[_builtins.str] customer: The customer who can use this promotion code.
+        :param pulumi.Input[_builtins.str] customer_account: The account representing the customer who can use this promotion code.
+        :param pulumi.Input[_builtins.float] expires_at: Date at which the promotion code can no longer be redeemed.
+        :param pulumi.Input[_builtins.bool] livemode: If the object exists in live mode, the value is <span pulumi-lang-nodejs="`true`" pulumi-lang-dotnet="`True`" pulumi-lang-go="`true`" pulumi-lang-python="`true`" pulumi-lang-yaml="`true`" pulumi-lang-java="`true`" pulumi-lang-hcl="`true`">`true`</span>. If the object exists in test mode, the value is <span pulumi-lang-nodejs="`false`" pulumi-lang-dotnet="`False`" pulumi-lang-go="`false`" pulumi-lang-python="`false`" pulumi-lang-yaml="`false`" pulumi-lang-java="`false`" pulumi-lang-hcl="`false`">`false`</span>.
+        :param pulumi.Input[_builtins.float] max_redemptions: Maximum number of times this promotion code can be redeemed.
+        :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] metadata: Set of [key-value pairs](https://docs.stripe.com/api/metadata) that you can attach to an object. This can be useful for storing additional information about the object in a structured format.
+        :param pulumi.Input[_builtins.str] object: String representing the object's type. Objects of the same type share the same value.
         :param pulumi.Input[_builtins.float] times_redeemed: Number of times this promotion code has been used.
         """
         if active is not None:
             pulumi.set(__self__, "active", active)
         if code is not None:
             pulumi.set(__self__, "code", code)
+        if created is not None:
+            pulumi.set(__self__, "created", created)
         if customer is not None:
             pulumi.set(__self__, "customer", customer)
         if customer_account is not None:
             pulumi.set(__self__, "customer_account", customer_account)
         if expires_at is not None:
             pulumi.set(__self__, "expires_at", expires_at)
+        if livemode is not None:
+            pulumi.set(__self__, "livemode", livemode)
         if max_redemptions is not None:
             pulumi.set(__self__, "max_redemptions", max_redemptions)
         if metadata is not None:
             pulumi.set(__self__, "metadata", metadata)
-        if promotion is not None:
-            pulumi.set(__self__, "promotion", promotion)
+        if object is not None:
+            pulumi.set(__self__, "object", object)
+        if promotions is not None:
+            pulumi.set(__self__, "promotions", promotions)
         if restrictions is not None:
             pulumi.set(__self__, "restrictions", restrictions)
         if times_redeemed is not None:
@@ -222,7 +225,7 @@ class _PromotionCodeState:
     @pulumi.getter
     def active(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
-        Whether the promotion code is currently active.
+        Whether the promotion code is currently active. A promotion code is only active if the coupon is also valid.
         """
         return pulumi.get(self, "active")
 
@@ -234,7 +237,7 @@ class _PromotionCodeState:
     @pulumi.getter
     def code(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
-        The customer-facing code. Regardless of case, this code must be unique across all active promotion codes for a specific customer. Valid characters are lower case letters (a-z), upper case letters (A-Z), and digits (0-9). If left blank, we will generate one automatically.
+        The customer-facing code. Regardless of case, this code must be unique across all active promotion codes for each customer. Valid characters are lower case letters (a-z), upper case letters (A-Z), digits (0-9), and dashes (-).
         """
         return pulumi.get(self, "code")
 
@@ -244,9 +247,21 @@ class _PromotionCodeState:
 
     @_builtins.property
     @pulumi.getter
+    def created(self) -> pulumi.Input[Optional[_builtins.float]]:
+        """
+        Time at which the object was created. Measured in seconds since the Unix epoch.
+        """
+        return pulumi.get(self, "created")
+
+    @created.setter
+    def created(self, value: pulumi.Input[Optional[_builtins.float]]):
+        pulumi.set(self, "created", value)
+
+    @_builtins.property
+    @pulumi.getter
     def customer(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
-        The customer that this promotion code can be used by. If not set, the promotion code can be used by all customers.
+        The customer who can use this promotion code.
         """
         return pulumi.get(self, "customer")
 
@@ -258,7 +273,7 @@ class _PromotionCodeState:
     @pulumi.getter(name="customerAccount")
     def customer_account(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
-        The account that this promotion code can be used by. If not set, the promotion code can be used by all accounts.
+        The account representing the customer who can use this promotion code.
         """
         return pulumi.get(self, "customer_account")
 
@@ -270,7 +285,7 @@ class _PromotionCodeState:
     @pulumi.getter(name="expiresAt")
     def expires_at(self) -> pulumi.Input[Optional[_builtins.float]]:
         """
-        The timestamp at which this promotion code will expire. If the coupon has specified a <span pulumi-lang-nodejs="`redeemsBy`" pulumi-lang-dotnet="`RedeemsBy`" pulumi-lang-go="`redeemsBy`" pulumi-lang-python="`redeems_by`" pulumi-lang-yaml="`redeemsBy`" pulumi-lang-java="`redeemsBy`" pulumi-lang-hcl="`redeems_by`">`redeemsBy`</span>, then this value cannot be after the coupon's <span pulumi-lang-nodejs="`redeemsBy`" pulumi-lang-dotnet="`RedeemsBy`" pulumi-lang-go="`redeemsBy`" pulumi-lang-python="`redeems_by`" pulumi-lang-yaml="`redeemsBy`" pulumi-lang-java="`redeemsBy`" pulumi-lang-hcl="`redeems_by`">`redeemsBy`</span>.
+        Date at which the promotion code can no longer be redeemed.
         """
         return pulumi.get(self, "expires_at")
 
@@ -279,10 +294,22 @@ class _PromotionCodeState:
         pulumi.set(self, "expires_at", value)
 
     @_builtins.property
+    @pulumi.getter
+    def livemode(self) -> pulumi.Input[Optional[_builtins.bool]]:
+        """
+        If the object exists in live mode, the value is <span pulumi-lang-nodejs="`true`" pulumi-lang-dotnet="`True`" pulumi-lang-go="`true`" pulumi-lang-python="`true`" pulumi-lang-yaml="`true`" pulumi-lang-java="`true`" pulumi-lang-hcl="`true`">`true`</span>. If the object exists in test mode, the value is <span pulumi-lang-nodejs="`false`" pulumi-lang-dotnet="`False`" pulumi-lang-go="`false`" pulumi-lang-python="`false`" pulumi-lang-yaml="`false`" pulumi-lang-java="`false`" pulumi-lang-hcl="`false`">`false`</span>.
+        """
+        return pulumi.get(self, "livemode")
+
+    @livemode.setter
+    def livemode(self, value: pulumi.Input[Optional[_builtins.bool]]):
+        pulumi.set(self, "livemode", value)
+
+    @_builtins.property
     @pulumi.getter(name="maxRedemptions")
     def max_redemptions(self) -> pulumi.Input[Optional[_builtins.float]]:
         """
-        A positive integer specifying the number of times the promotion code can be redeemed. If the coupon has specified a <span pulumi-lang-nodejs="`maxRedemptions`" pulumi-lang-dotnet="`MaxRedemptions`" pulumi-lang-go="`maxRedemptions`" pulumi-lang-python="`max_redemptions`" pulumi-lang-yaml="`maxRedemptions`" pulumi-lang-java="`maxRedemptions`" pulumi-lang-hcl="`max_redemptions`">`maxRedemptions`</span>, then this value cannot be greater than the coupon's <span pulumi-lang-nodejs="`maxRedemptions`" pulumi-lang-dotnet="`MaxRedemptions`" pulumi-lang-go="`maxRedemptions`" pulumi-lang-python="`max_redemptions`" pulumi-lang-yaml="`maxRedemptions`" pulumi-lang-java="`maxRedemptions`" pulumi-lang-hcl="`max_redemptions`">`maxRedemptions`</span>.
+        Maximum number of times this promotion code can be redeemed.
         """
         return pulumi.get(self, "max_redemptions")
 
@@ -294,7 +321,7 @@ class _PromotionCodeState:
     @pulumi.getter
     def metadata(self) -> pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]:
         """
-        Set of [key-value pairs](https://stripe.com/docs/api/metadata) that you can attach to an object. This can be useful for storing additional information about the object in a structured format. Individual keys can be unset by posting an empty value to them. All keys can be unset by posting an empty value to <span pulumi-lang-nodejs="`metadata`" pulumi-lang-dotnet="`Metadata`" pulumi-lang-go="`metadata`" pulumi-lang-python="`metadata`" pulumi-lang-yaml="`metadata`" pulumi-lang-java="`metadata`" pulumi-lang-hcl="`metadata`">`metadata`</span>.
+        Set of [key-value pairs](https://docs.stripe.com/api/metadata) that you can attach to an object. This can be useful for storing additional information about the object in a structured format.
         """
         return pulumi.get(self, "metadata")
 
@@ -304,26 +331,32 @@ class _PromotionCodeState:
 
     @_builtins.property
     @pulumi.getter
-    def promotion(self) -> pulumi.Input[Optional['PromotionCodePromotionArgs']]:
+    def object(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
-        The promotion referenced by this promotion code.
+        String representing the object's type. Objects of the same type share the same value.
         """
-        return pulumi.get(self, "promotion")
+        return pulumi.get(self, "object")
 
-    @promotion.setter
-    def promotion(self, value: pulumi.Input[Optional['PromotionCodePromotionArgs']]):
-        pulumi.set(self, "promotion", value)
+    @object.setter
+    def object(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "object", value)
 
     @_builtins.property
     @pulumi.getter
-    def restrictions(self) -> pulumi.Input[Optional['PromotionCodeRestrictionsArgs']]:
-        """
-        Settings that restrict the redemption of the promotion code.
-        """
+    def promotions(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['PromotionCodePromotionArgs']]]]:
+        return pulumi.get(self, "promotions")
+
+    @promotions.setter
+    def promotions(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['PromotionCodePromotionArgs']]]]):
+        pulumi.set(self, "promotions", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def restrictions(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['PromotionCodeRestrictionArgs']]]]:
         return pulumi.get(self, "restrictions")
 
     @restrictions.setter
-    def restrictions(self, value: pulumi.Input[Optional['PromotionCodeRestrictionsArgs']]):
+    def restrictions(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['PromotionCodeRestrictionArgs']]]]):
         pulumi.set(self, "restrictions", value)
 
     @_builtins.property
@@ -352,29 +385,27 @@ class PromotionCode(pulumi.CustomResource):
                  expires_at: pulumi.Input[Optional[_builtins.float]] = None,
                  max_redemptions: pulumi.Input[Optional[_builtins.float]] = None,
                  metadata: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-                 promotion: pulumi.Input[Optional[Union['PromotionCodePromotionArgs', 'PromotionCodePromotionArgsDict']]] = None,
-                 restrictions: pulumi.Input[Optional[Union['PromotionCodeRestrictionsArgs', 'PromotionCodeRestrictionsArgsDict']]] = None,
+                 promotions: pulumi.Input[Optional[Sequence[pulumi.Input[Union['PromotionCodePromotionArgs', 'PromotionCodePromotionArgsDict']]]]] = None,
+                 restrictions: pulumi.Input[Optional[Sequence[pulumi.Input[Union['PromotionCodeRestrictionArgs', 'PromotionCodeRestrictionArgsDict']]]]] = None,
                  __props__=None):
         """
         Create a PromotionCode resource with the given unique name, props, and options.
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[_builtins.bool] active: Whether the promotion code is currently active.
-        :param pulumi.Input[_builtins.str] code: The customer-facing code. Regardless of case, this code must be unique across all active promotion codes for a specific customer. Valid characters are lower case letters (a-z), upper case letters (A-Z), and digits (0-9). If left blank, we will generate one automatically.
-        :param pulumi.Input[_builtins.str] customer: The customer that this promotion code can be used by. If not set, the promotion code can be used by all customers.
-        :param pulumi.Input[_builtins.str] customer_account: The account that this promotion code can be used by. If not set, the promotion code can be used by all accounts.
-        :param pulumi.Input[_builtins.float] expires_at: The timestamp at which this promotion code will expire. If the coupon has specified a <span pulumi-lang-nodejs="`redeemsBy`" pulumi-lang-dotnet="`RedeemsBy`" pulumi-lang-go="`redeemsBy`" pulumi-lang-python="`redeems_by`" pulumi-lang-yaml="`redeemsBy`" pulumi-lang-java="`redeemsBy`" pulumi-lang-hcl="`redeems_by`">`redeemsBy`</span>, then this value cannot be after the coupon's <span pulumi-lang-nodejs="`redeemsBy`" pulumi-lang-dotnet="`RedeemsBy`" pulumi-lang-go="`redeemsBy`" pulumi-lang-python="`redeems_by`" pulumi-lang-yaml="`redeemsBy`" pulumi-lang-java="`redeemsBy`" pulumi-lang-hcl="`redeems_by`">`redeemsBy`</span>.
-        :param pulumi.Input[_builtins.float] max_redemptions: A positive integer specifying the number of times the promotion code can be redeemed. If the coupon has specified a <span pulumi-lang-nodejs="`maxRedemptions`" pulumi-lang-dotnet="`MaxRedemptions`" pulumi-lang-go="`maxRedemptions`" pulumi-lang-python="`max_redemptions`" pulumi-lang-yaml="`maxRedemptions`" pulumi-lang-java="`maxRedemptions`" pulumi-lang-hcl="`max_redemptions`">`maxRedemptions`</span>, then this value cannot be greater than the coupon's <span pulumi-lang-nodejs="`maxRedemptions`" pulumi-lang-dotnet="`MaxRedemptions`" pulumi-lang-go="`maxRedemptions`" pulumi-lang-python="`max_redemptions`" pulumi-lang-yaml="`maxRedemptions`" pulumi-lang-java="`maxRedemptions`" pulumi-lang-hcl="`max_redemptions`">`maxRedemptions`</span>.
-        :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] metadata: Set of [key-value pairs](https://stripe.com/docs/api/metadata) that you can attach to an object. This can be useful for storing additional information about the object in a structured format. Individual keys can be unset by posting an empty value to them. All keys can be unset by posting an empty value to <span pulumi-lang-nodejs="`metadata`" pulumi-lang-dotnet="`Metadata`" pulumi-lang-go="`metadata`" pulumi-lang-python="`metadata`" pulumi-lang-yaml="`metadata`" pulumi-lang-java="`metadata`" pulumi-lang-hcl="`metadata`">`metadata`</span>.
-        :param pulumi.Input[Union['PromotionCodePromotionArgs', 'PromotionCodePromotionArgsDict']] promotion: The promotion referenced by this promotion code.
-        :param pulumi.Input[Union['PromotionCodeRestrictionsArgs', 'PromotionCodeRestrictionsArgsDict']] restrictions: Settings that restrict the redemption of the promotion code.
+        :param pulumi.Input[_builtins.bool] active: Whether the promotion code is currently active. A promotion code is only active if the coupon is also valid.
+        :param pulumi.Input[_builtins.str] code: The customer-facing code. Regardless of case, this code must be unique across all active promotion codes for each customer. Valid characters are lower case letters (a-z), upper case letters (A-Z), digits (0-9), and dashes (-).
+        :param pulumi.Input[_builtins.str] customer: The customer who can use this promotion code.
+        :param pulumi.Input[_builtins.str] customer_account: The account representing the customer who can use this promotion code.
+        :param pulumi.Input[_builtins.float] expires_at: Date at which the promotion code can no longer be redeemed.
+        :param pulumi.Input[_builtins.float] max_redemptions: Maximum number of times this promotion code can be redeemed.
+        :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] metadata: Set of [key-value pairs](https://docs.stripe.com/api/metadata) that you can attach to an object. This can be useful for storing additional information about the object in a structured format.
         """
         ...
     @overload
     def __init__(__self__,
                  resource_name: str,
-                 args: PromotionCodeArgs,
+                 args: Optional[PromotionCodeArgs] = None,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
         Create a PromotionCode resource with the given unique name, props, and options.
@@ -401,8 +432,8 @@ class PromotionCode(pulumi.CustomResource):
                  expires_at: pulumi.Input[Optional[_builtins.float]] = None,
                  max_redemptions: pulumi.Input[Optional[_builtins.float]] = None,
                  metadata: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-                 promotion: pulumi.Input[Optional[Union['PromotionCodePromotionArgs', 'PromotionCodePromotionArgsDict']]] = None,
-                 restrictions: pulumi.Input[Optional[Union['PromotionCodeRestrictionsArgs', 'PromotionCodeRestrictionsArgsDict']]] = None,
+                 promotions: pulumi.Input[Optional[Sequence[pulumi.Input[Union['PromotionCodePromotionArgs', 'PromotionCodePromotionArgsDict']]]]] = None,
+                 restrictions: pulumi.Input[Optional[Sequence[pulumi.Input[Union['PromotionCodeRestrictionArgs', 'PromotionCodeRestrictionArgsDict']]]]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -419,10 +450,11 @@ class PromotionCode(pulumi.CustomResource):
             __props__.__dict__["expires_at"] = expires_at
             __props__.__dict__["max_redemptions"] = max_redemptions
             __props__.__dict__["metadata"] = metadata
-            if promotion is None and not opts.urn:
-                raise TypeError("Missing required property 'promotion'")
-            __props__.__dict__["promotion"] = promotion
+            __props__.__dict__["promotions"] = promotions
             __props__.__dict__["restrictions"] = restrictions
+            __props__.__dict__["created"] = None
+            __props__.__dict__["livemode"] = None
+            __props__.__dict__["object"] = None
             __props__.__dict__["times_redeemed"] = None
         super(PromotionCode, __self__).__init__(
             'stripe:index/promotionCode:PromotionCode',
@@ -437,13 +469,16 @@ class PromotionCode(pulumi.CustomResource):
             opts: Optional[pulumi.ResourceOptions] = None,
             active: pulumi.Input[Optional[_builtins.bool]] = None,
             code: pulumi.Input[Optional[_builtins.str]] = None,
+            created: pulumi.Input[Optional[_builtins.float]] = None,
             customer: pulumi.Input[Optional[_builtins.str]] = None,
             customer_account: pulumi.Input[Optional[_builtins.str]] = None,
             expires_at: pulumi.Input[Optional[_builtins.float]] = None,
+            livemode: pulumi.Input[Optional[_builtins.bool]] = None,
             max_redemptions: pulumi.Input[Optional[_builtins.float]] = None,
             metadata: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-            promotion: pulumi.Input[Optional[Union['PromotionCodePromotionArgs', 'PromotionCodePromotionArgsDict']]] = None,
-            restrictions: pulumi.Input[Optional[Union['PromotionCodeRestrictionsArgs', 'PromotionCodeRestrictionsArgsDict']]] = None,
+            object: pulumi.Input[Optional[_builtins.str]] = None,
+            promotions: pulumi.Input[Optional[Sequence[pulumi.Input[Union['PromotionCodePromotionArgs', 'PromotionCodePromotionArgsDict']]]]] = None,
+            restrictions: pulumi.Input[Optional[Sequence[pulumi.Input[Union['PromotionCodeRestrictionArgs', 'PromotionCodeRestrictionArgsDict']]]]] = None,
             times_redeemed: pulumi.Input[Optional[_builtins.float]] = None) -> 'PromotionCode':
         """
         Get an existing PromotionCode resource's state with the given name, id, and optional extra
@@ -452,15 +487,16 @@ class PromotionCode(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[_builtins.bool] active: Whether the promotion code is currently active.
-        :param pulumi.Input[_builtins.str] code: The customer-facing code. Regardless of case, this code must be unique across all active promotion codes for a specific customer. Valid characters are lower case letters (a-z), upper case letters (A-Z), and digits (0-9). If left blank, we will generate one automatically.
-        :param pulumi.Input[_builtins.str] customer: The customer that this promotion code can be used by. If not set, the promotion code can be used by all customers.
-        :param pulumi.Input[_builtins.str] customer_account: The account that this promotion code can be used by. If not set, the promotion code can be used by all accounts.
-        :param pulumi.Input[_builtins.float] expires_at: The timestamp at which this promotion code will expire. If the coupon has specified a <span pulumi-lang-nodejs="`redeemsBy`" pulumi-lang-dotnet="`RedeemsBy`" pulumi-lang-go="`redeemsBy`" pulumi-lang-python="`redeems_by`" pulumi-lang-yaml="`redeemsBy`" pulumi-lang-java="`redeemsBy`" pulumi-lang-hcl="`redeems_by`">`redeemsBy`</span>, then this value cannot be after the coupon's <span pulumi-lang-nodejs="`redeemsBy`" pulumi-lang-dotnet="`RedeemsBy`" pulumi-lang-go="`redeemsBy`" pulumi-lang-python="`redeems_by`" pulumi-lang-yaml="`redeemsBy`" pulumi-lang-java="`redeemsBy`" pulumi-lang-hcl="`redeems_by`">`redeemsBy`</span>.
-        :param pulumi.Input[_builtins.float] max_redemptions: A positive integer specifying the number of times the promotion code can be redeemed. If the coupon has specified a <span pulumi-lang-nodejs="`maxRedemptions`" pulumi-lang-dotnet="`MaxRedemptions`" pulumi-lang-go="`maxRedemptions`" pulumi-lang-python="`max_redemptions`" pulumi-lang-yaml="`maxRedemptions`" pulumi-lang-java="`maxRedemptions`" pulumi-lang-hcl="`max_redemptions`">`maxRedemptions`</span>, then this value cannot be greater than the coupon's <span pulumi-lang-nodejs="`maxRedemptions`" pulumi-lang-dotnet="`MaxRedemptions`" pulumi-lang-go="`maxRedemptions`" pulumi-lang-python="`max_redemptions`" pulumi-lang-yaml="`maxRedemptions`" pulumi-lang-java="`maxRedemptions`" pulumi-lang-hcl="`max_redemptions`">`maxRedemptions`</span>.
-        :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] metadata: Set of [key-value pairs](https://stripe.com/docs/api/metadata) that you can attach to an object. This can be useful for storing additional information about the object in a structured format. Individual keys can be unset by posting an empty value to them. All keys can be unset by posting an empty value to <span pulumi-lang-nodejs="`metadata`" pulumi-lang-dotnet="`Metadata`" pulumi-lang-go="`metadata`" pulumi-lang-python="`metadata`" pulumi-lang-yaml="`metadata`" pulumi-lang-java="`metadata`" pulumi-lang-hcl="`metadata`">`metadata`</span>.
-        :param pulumi.Input[Union['PromotionCodePromotionArgs', 'PromotionCodePromotionArgsDict']] promotion: The promotion referenced by this promotion code.
-        :param pulumi.Input[Union['PromotionCodeRestrictionsArgs', 'PromotionCodeRestrictionsArgsDict']] restrictions: Settings that restrict the redemption of the promotion code.
+        :param pulumi.Input[_builtins.bool] active: Whether the promotion code is currently active. A promotion code is only active if the coupon is also valid.
+        :param pulumi.Input[_builtins.str] code: The customer-facing code. Regardless of case, this code must be unique across all active promotion codes for each customer. Valid characters are lower case letters (a-z), upper case letters (A-Z), digits (0-9), and dashes (-).
+        :param pulumi.Input[_builtins.float] created: Time at which the object was created. Measured in seconds since the Unix epoch.
+        :param pulumi.Input[_builtins.str] customer: The customer who can use this promotion code.
+        :param pulumi.Input[_builtins.str] customer_account: The account representing the customer who can use this promotion code.
+        :param pulumi.Input[_builtins.float] expires_at: Date at which the promotion code can no longer be redeemed.
+        :param pulumi.Input[_builtins.bool] livemode: If the object exists in live mode, the value is <span pulumi-lang-nodejs="`true`" pulumi-lang-dotnet="`True`" pulumi-lang-go="`true`" pulumi-lang-python="`true`" pulumi-lang-yaml="`true`" pulumi-lang-java="`true`" pulumi-lang-hcl="`true`">`true`</span>. If the object exists in test mode, the value is <span pulumi-lang-nodejs="`false`" pulumi-lang-dotnet="`False`" pulumi-lang-go="`false`" pulumi-lang-python="`false`" pulumi-lang-yaml="`false`" pulumi-lang-java="`false`" pulumi-lang-hcl="`false`">`false`</span>.
+        :param pulumi.Input[_builtins.float] max_redemptions: Maximum number of times this promotion code can be redeemed.
+        :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] metadata: Set of [key-value pairs](https://docs.stripe.com/api/metadata) that you can attach to an object. This can be useful for storing additional information about the object in a structured format.
+        :param pulumi.Input[_builtins.str] object: String representing the object's type. Objects of the same type share the same value.
         :param pulumi.Input[_builtins.float] times_redeemed: Number of times this promotion code has been used.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
@@ -469,12 +505,15 @@ class PromotionCode(pulumi.CustomResource):
 
         __props__.__dict__["active"] = active
         __props__.__dict__["code"] = code
+        __props__.__dict__["created"] = created
         __props__.__dict__["customer"] = customer
         __props__.__dict__["customer_account"] = customer_account
         __props__.__dict__["expires_at"] = expires_at
+        __props__.__dict__["livemode"] = livemode
         __props__.__dict__["max_redemptions"] = max_redemptions
         __props__.__dict__["metadata"] = metadata
-        __props__.__dict__["promotion"] = promotion
+        __props__.__dict__["object"] = object
+        __props__.__dict__["promotions"] = promotions
         __props__.__dict__["restrictions"] = restrictions
         __props__.__dict__["times_redeemed"] = times_redeemed
         return PromotionCode(resource_name, opts=opts, __props__=__props__)
@@ -483,7 +522,7 @@ class PromotionCode(pulumi.CustomResource):
     @pulumi.getter
     def active(self) -> pulumi.Output[_builtins.bool]:
         """
-        Whether the promotion code is currently active.
+        Whether the promotion code is currently active. A promotion code is only active if the coupon is also valid.
         """
         return pulumi.get(self, "active")
 
@@ -491,15 +530,23 @@ class PromotionCode(pulumi.CustomResource):
     @pulumi.getter
     def code(self) -> pulumi.Output[_builtins.str]:
         """
-        The customer-facing code. Regardless of case, this code must be unique across all active promotion codes for a specific customer. Valid characters are lower case letters (a-z), upper case letters (A-Z), and digits (0-9). If left blank, we will generate one automatically.
+        The customer-facing code. Regardless of case, this code must be unique across all active promotion codes for each customer. Valid characters are lower case letters (a-z), upper case letters (A-Z), digits (0-9), and dashes (-).
         """
         return pulumi.get(self, "code")
 
     @_builtins.property
     @pulumi.getter
+    def created(self) -> pulumi.Output[_builtins.float]:
+        """
+        Time at which the object was created. Measured in seconds since the Unix epoch.
+        """
+        return pulumi.get(self, "created")
+
+    @_builtins.property
+    @pulumi.getter
     def customer(self) -> pulumi.Output[_builtins.str]:
         """
-        The customer that this promotion code can be used by. If not set, the promotion code can be used by all customers.
+        The customer who can use this promotion code.
         """
         return pulumi.get(self, "customer")
 
@@ -507,7 +554,7 @@ class PromotionCode(pulumi.CustomResource):
     @pulumi.getter(name="customerAccount")
     def customer_account(self) -> pulumi.Output[_builtins.str]:
         """
-        The account that this promotion code can be used by. If not set, the promotion code can be used by all accounts.
+        The account representing the customer who can use this promotion code.
         """
         return pulumi.get(self, "customer_account")
 
@@ -515,15 +562,23 @@ class PromotionCode(pulumi.CustomResource):
     @pulumi.getter(name="expiresAt")
     def expires_at(self) -> pulumi.Output[_builtins.float]:
         """
-        The timestamp at which this promotion code will expire. If the coupon has specified a <span pulumi-lang-nodejs="`redeemsBy`" pulumi-lang-dotnet="`RedeemsBy`" pulumi-lang-go="`redeemsBy`" pulumi-lang-python="`redeems_by`" pulumi-lang-yaml="`redeemsBy`" pulumi-lang-java="`redeemsBy`" pulumi-lang-hcl="`redeems_by`">`redeemsBy`</span>, then this value cannot be after the coupon's <span pulumi-lang-nodejs="`redeemsBy`" pulumi-lang-dotnet="`RedeemsBy`" pulumi-lang-go="`redeemsBy`" pulumi-lang-python="`redeems_by`" pulumi-lang-yaml="`redeemsBy`" pulumi-lang-java="`redeemsBy`" pulumi-lang-hcl="`redeems_by`">`redeemsBy`</span>.
+        Date at which the promotion code can no longer be redeemed.
         """
         return pulumi.get(self, "expires_at")
+
+    @_builtins.property
+    @pulumi.getter
+    def livemode(self) -> pulumi.Output[_builtins.bool]:
+        """
+        If the object exists in live mode, the value is <span pulumi-lang-nodejs="`true`" pulumi-lang-dotnet="`True`" pulumi-lang-go="`true`" pulumi-lang-python="`true`" pulumi-lang-yaml="`true`" pulumi-lang-java="`true`" pulumi-lang-hcl="`true`">`true`</span>. If the object exists in test mode, the value is <span pulumi-lang-nodejs="`false`" pulumi-lang-dotnet="`False`" pulumi-lang-go="`false`" pulumi-lang-python="`false`" pulumi-lang-yaml="`false`" pulumi-lang-java="`false`" pulumi-lang-hcl="`false`">`false`</span>.
+        """
+        return pulumi.get(self, "livemode")
 
     @_builtins.property
     @pulumi.getter(name="maxRedemptions")
     def max_redemptions(self) -> pulumi.Output[_builtins.float]:
         """
-        A positive integer specifying the number of times the promotion code can be redeemed. If the coupon has specified a <span pulumi-lang-nodejs="`maxRedemptions`" pulumi-lang-dotnet="`MaxRedemptions`" pulumi-lang-go="`maxRedemptions`" pulumi-lang-python="`max_redemptions`" pulumi-lang-yaml="`maxRedemptions`" pulumi-lang-java="`maxRedemptions`" pulumi-lang-hcl="`max_redemptions`">`maxRedemptions`</span>, then this value cannot be greater than the coupon's <span pulumi-lang-nodejs="`maxRedemptions`" pulumi-lang-dotnet="`MaxRedemptions`" pulumi-lang-go="`maxRedemptions`" pulumi-lang-python="`max_redemptions`" pulumi-lang-yaml="`maxRedemptions`" pulumi-lang-java="`maxRedemptions`" pulumi-lang-hcl="`max_redemptions`">`maxRedemptions`</span>.
+        Maximum number of times this promotion code can be redeemed.
         """
         return pulumi.get(self, "max_redemptions")
 
@@ -531,24 +586,26 @@ class PromotionCode(pulumi.CustomResource):
     @pulumi.getter
     def metadata(self) -> pulumi.Output[Mapping[str, _builtins.str]]:
         """
-        Set of [key-value pairs](https://stripe.com/docs/api/metadata) that you can attach to an object. This can be useful for storing additional information about the object in a structured format. Individual keys can be unset by posting an empty value to them. All keys can be unset by posting an empty value to <span pulumi-lang-nodejs="`metadata`" pulumi-lang-dotnet="`Metadata`" pulumi-lang-go="`metadata`" pulumi-lang-python="`metadata`" pulumi-lang-yaml="`metadata`" pulumi-lang-java="`metadata`" pulumi-lang-hcl="`metadata`">`metadata`</span>.
+        Set of [key-value pairs](https://docs.stripe.com/api/metadata) that you can attach to an object. This can be useful for storing additional information about the object in a structured format.
         """
         return pulumi.get(self, "metadata")
 
     @_builtins.property
     @pulumi.getter
-    def promotion(self) -> pulumi.Output['outputs.PromotionCodePromotion']:
+    def object(self) -> pulumi.Output[_builtins.str]:
         """
-        The promotion referenced by this promotion code.
+        String representing the object's type. Objects of the same type share the same value.
         """
-        return pulumi.get(self, "promotion")
+        return pulumi.get(self, "object")
 
     @_builtins.property
     @pulumi.getter
-    def restrictions(self) -> pulumi.Output[Optional['outputs.PromotionCodeRestrictions']]:
-        """
-        Settings that restrict the redemption of the promotion code.
-        """
+    def promotions(self) -> pulumi.Output[Optional[Sequence['outputs.PromotionCodePromotion']]]:
+        return pulumi.get(self, "promotions")
+
+    @_builtins.property
+    @pulumi.getter
+    def restrictions(self) -> pulumi.Output[Optional[Sequence['outputs.PromotionCodeRestriction']]]:
         return pulumi.get(self, "restrictions")
 
     @_builtins.property

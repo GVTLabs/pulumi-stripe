@@ -15,16 +15,24 @@ import (
 type WebhookEndpoint struct {
 	pulumi.CustomResourceState
 
-	// Events sent to this endpoint will be generated with this Stripe Version instead of your account's default Stripe Version.
+	// The API version events are rendered as for this webhook endpoint.
 	ApiVersion pulumi.StringOutput `pulumi:"apiVersion"`
 	// The ID of the associated Connect application.
 	Application pulumi.StringOutput `pulumi:"application"`
 	// Whether this endpoint should receive events from connected accounts (<span pulumi-lang-nodejs="`true`" pulumi-lang-dotnet="`True`" pulumi-lang-go="`true`" pulumi-lang-python="`true`" pulumi-lang-yaml="`true`" pulumi-lang-java="`true`" pulumi-lang-hcl="`true`">`true`</span>), or from your account (<span pulumi-lang-nodejs="`false`" pulumi-lang-dotnet="`False`" pulumi-lang-go="`false`" pulumi-lang-python="`false`" pulumi-lang-yaml="`false`" pulumi-lang-java="`false`" pulumi-lang-hcl="`false`">`false`</span>). Defaults to <span pulumi-lang-nodejs="`false`" pulumi-lang-dotnet="`False`" pulumi-lang-go="`false`" pulumi-lang-python="`false`" pulumi-lang-yaml="`false`" pulumi-lang-java="`false`" pulumi-lang-hcl="`false`">`false`</span>.
-	Connect     pulumi.BoolPtrOutput `pulumi:"connect"`
-	Description pulumi.StringOutput  `pulumi:"description"`
-	// The list of events to enable for this endpoint. You may specify `['*']` to enable all events, except those that require explicit selection.
+	Connect pulumi.BoolPtrOutput `pulumi:"connect"`
+	// Time at which the object was created. Measured in seconds since the Unix epoch.
+	Created pulumi.Float64Output `pulumi:"created"`
+	// An optional description of what the webhook is used for.
+	Description pulumi.StringOutput `pulumi:"description"`
+	// The list of events to enable for this endpoint. `['*']` indicates that all events are enabled, except those that require explicit selection.
 	EnabledEvents pulumi.StringArrayOutput `pulumi:"enabledEvents"`
-	Metadata      pulumi.StringMapOutput   `pulumi:"metadata"`
+	// If the object exists in live mode, the value is <span pulumi-lang-nodejs="`true`" pulumi-lang-dotnet="`True`" pulumi-lang-go="`true`" pulumi-lang-python="`true`" pulumi-lang-yaml="`true`" pulumi-lang-java="`true`" pulumi-lang-hcl="`true`">`true`</span>. If the object exists in test mode, the value is <span pulumi-lang-nodejs="`false`" pulumi-lang-dotnet="`False`" pulumi-lang-go="`false`" pulumi-lang-python="`false`" pulumi-lang-yaml="`false`" pulumi-lang-java="`false`" pulumi-lang-hcl="`false`">`false`</span>.
+	Livemode pulumi.BoolOutput `pulumi:"livemode"`
+	// Set of [key-value pairs](https://docs.stripe.com/api/metadata) that you can attach to an object. This can be useful for storing additional information about the object in a structured format.
+	Metadata pulumi.StringMapOutput `pulumi:"metadata"`
+	// String representing the object's type. Objects of the same type share the same value.
+	Object pulumi.StringOutput `pulumi:"object"`
 	// The endpoint's secret, used to generate [webhook signatures](https://docs.stripe.com/webhooks/signatures). Only returned at creation.
 	Secret pulumi.StringOutput `pulumi:"secret"`
 	// The status of the webhook. It can be <span pulumi-lang-nodejs="`enabled`" pulumi-lang-dotnet="`Enabled`" pulumi-lang-go="`enabled`" pulumi-lang-python="`enabled`" pulumi-lang-yaml="`enabled`" pulumi-lang-java="`enabled`" pulumi-lang-hcl="`enabled`">`enabled`</span> or <span pulumi-lang-nodejs="`disabled`" pulumi-lang-dotnet="`Disabled`" pulumi-lang-go="`disabled`" pulumi-lang-python="`disabled`" pulumi-lang-yaml="`disabled`" pulumi-lang-java="`disabled`" pulumi-lang-hcl="`disabled`">`disabled`</span>.
@@ -81,16 +89,24 @@ func GetWebhookEndpoint(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering WebhookEndpoint resources.
 type webhookEndpointState struct {
-	// Events sent to this endpoint will be generated with this Stripe Version instead of your account's default Stripe Version.
+	// The API version events are rendered as for this webhook endpoint.
 	ApiVersion *string `pulumi:"apiVersion"`
 	// The ID of the associated Connect application.
 	Application *string `pulumi:"application"`
 	// Whether this endpoint should receive events from connected accounts (<span pulumi-lang-nodejs="`true`" pulumi-lang-dotnet="`True`" pulumi-lang-go="`true`" pulumi-lang-python="`true`" pulumi-lang-yaml="`true`" pulumi-lang-java="`true`" pulumi-lang-hcl="`true`">`true`</span>), or from your account (<span pulumi-lang-nodejs="`false`" pulumi-lang-dotnet="`False`" pulumi-lang-go="`false`" pulumi-lang-python="`false`" pulumi-lang-yaml="`false`" pulumi-lang-java="`false`" pulumi-lang-hcl="`false`">`false`</span>). Defaults to <span pulumi-lang-nodejs="`false`" pulumi-lang-dotnet="`False`" pulumi-lang-go="`false`" pulumi-lang-python="`false`" pulumi-lang-yaml="`false`" pulumi-lang-java="`false`" pulumi-lang-hcl="`false`">`false`</span>.
-	Connect     *bool   `pulumi:"connect"`
+	Connect *bool `pulumi:"connect"`
+	// Time at which the object was created. Measured in seconds since the Unix epoch.
+	Created *float64 `pulumi:"created"`
+	// An optional description of what the webhook is used for.
 	Description *string `pulumi:"description"`
-	// The list of events to enable for this endpoint. You may specify `['*']` to enable all events, except those that require explicit selection.
-	EnabledEvents []string          `pulumi:"enabledEvents"`
-	Metadata      map[string]string `pulumi:"metadata"`
+	// The list of events to enable for this endpoint. `['*']` indicates that all events are enabled, except those that require explicit selection.
+	EnabledEvents []string `pulumi:"enabledEvents"`
+	// If the object exists in live mode, the value is <span pulumi-lang-nodejs="`true`" pulumi-lang-dotnet="`True`" pulumi-lang-go="`true`" pulumi-lang-python="`true`" pulumi-lang-yaml="`true`" pulumi-lang-java="`true`" pulumi-lang-hcl="`true`">`true`</span>. If the object exists in test mode, the value is <span pulumi-lang-nodejs="`false`" pulumi-lang-dotnet="`False`" pulumi-lang-go="`false`" pulumi-lang-python="`false`" pulumi-lang-yaml="`false`" pulumi-lang-java="`false`" pulumi-lang-hcl="`false`">`false`</span>.
+	Livemode *bool `pulumi:"livemode"`
+	// Set of [key-value pairs](https://docs.stripe.com/api/metadata) that you can attach to an object. This can be useful for storing additional information about the object in a structured format.
+	Metadata map[string]string `pulumi:"metadata"`
+	// String representing the object's type. Objects of the same type share the same value.
+	Object *string `pulumi:"object"`
 	// The endpoint's secret, used to generate [webhook signatures](https://docs.stripe.com/webhooks/signatures). Only returned at creation.
 	Secret *string `pulumi:"secret"`
 	// The status of the webhook. It can be <span pulumi-lang-nodejs="`enabled`" pulumi-lang-dotnet="`Enabled`" pulumi-lang-go="`enabled`" pulumi-lang-python="`enabled`" pulumi-lang-yaml="`enabled`" pulumi-lang-java="`enabled`" pulumi-lang-hcl="`enabled`">`enabled`</span> or <span pulumi-lang-nodejs="`disabled`" pulumi-lang-dotnet="`Disabled`" pulumi-lang-go="`disabled`" pulumi-lang-python="`disabled`" pulumi-lang-yaml="`disabled`" pulumi-lang-java="`disabled`" pulumi-lang-hcl="`disabled`">`disabled`</span>.
@@ -100,16 +116,24 @@ type webhookEndpointState struct {
 }
 
 type WebhookEndpointState struct {
-	// Events sent to this endpoint will be generated with this Stripe Version instead of your account's default Stripe Version.
+	// The API version events are rendered as for this webhook endpoint.
 	ApiVersion pulumi.StringPtrInput
 	// The ID of the associated Connect application.
 	Application pulumi.StringPtrInput
 	// Whether this endpoint should receive events from connected accounts (<span pulumi-lang-nodejs="`true`" pulumi-lang-dotnet="`True`" pulumi-lang-go="`true`" pulumi-lang-python="`true`" pulumi-lang-yaml="`true`" pulumi-lang-java="`true`" pulumi-lang-hcl="`true`">`true`</span>), or from your account (<span pulumi-lang-nodejs="`false`" pulumi-lang-dotnet="`False`" pulumi-lang-go="`false`" pulumi-lang-python="`false`" pulumi-lang-yaml="`false`" pulumi-lang-java="`false`" pulumi-lang-hcl="`false`">`false`</span>). Defaults to <span pulumi-lang-nodejs="`false`" pulumi-lang-dotnet="`False`" pulumi-lang-go="`false`" pulumi-lang-python="`false`" pulumi-lang-yaml="`false`" pulumi-lang-java="`false`" pulumi-lang-hcl="`false`">`false`</span>.
-	Connect     pulumi.BoolPtrInput
+	Connect pulumi.BoolPtrInput
+	// Time at which the object was created. Measured in seconds since the Unix epoch.
+	Created pulumi.Float64PtrInput
+	// An optional description of what the webhook is used for.
 	Description pulumi.StringPtrInput
-	// The list of events to enable for this endpoint. You may specify `['*']` to enable all events, except those that require explicit selection.
+	// The list of events to enable for this endpoint. `['*']` indicates that all events are enabled, except those that require explicit selection.
 	EnabledEvents pulumi.StringArrayInput
-	Metadata      pulumi.StringMapInput
+	// If the object exists in live mode, the value is <span pulumi-lang-nodejs="`true`" pulumi-lang-dotnet="`True`" pulumi-lang-go="`true`" pulumi-lang-python="`true`" pulumi-lang-yaml="`true`" pulumi-lang-java="`true`" pulumi-lang-hcl="`true`">`true`</span>. If the object exists in test mode, the value is <span pulumi-lang-nodejs="`false`" pulumi-lang-dotnet="`False`" pulumi-lang-go="`false`" pulumi-lang-python="`false`" pulumi-lang-yaml="`false`" pulumi-lang-java="`false`" pulumi-lang-hcl="`false`">`false`</span>.
+	Livemode pulumi.BoolPtrInput
+	// Set of [key-value pairs](https://docs.stripe.com/api/metadata) that you can attach to an object. This can be useful for storing additional information about the object in a structured format.
+	Metadata pulumi.StringMapInput
+	// String representing the object's type. Objects of the same type share the same value.
+	Object pulumi.StringPtrInput
 	// The endpoint's secret, used to generate [webhook signatures](https://docs.stripe.com/webhooks/signatures). Only returned at creation.
 	Secret pulumi.StringPtrInput
 	// The status of the webhook. It can be <span pulumi-lang-nodejs="`enabled`" pulumi-lang-dotnet="`Enabled`" pulumi-lang-go="`enabled`" pulumi-lang-python="`enabled`" pulumi-lang-yaml="`enabled`" pulumi-lang-java="`enabled`" pulumi-lang-hcl="`enabled`">`enabled`</span> or <span pulumi-lang-nodejs="`disabled`" pulumi-lang-dotnet="`Disabled`" pulumi-lang-go="`disabled`" pulumi-lang-python="`disabled`" pulumi-lang-yaml="`disabled`" pulumi-lang-java="`disabled`" pulumi-lang-hcl="`disabled`">`disabled`</span>.
@@ -123,28 +147,32 @@ func (WebhookEndpointState) ElementType() reflect.Type {
 }
 
 type webhookEndpointArgs struct {
-	// Events sent to this endpoint will be generated with this Stripe Version instead of your account's default Stripe Version.
+	// The API version events are rendered as for this webhook endpoint.
 	ApiVersion *string `pulumi:"apiVersion"`
 	// Whether this endpoint should receive events from connected accounts (<span pulumi-lang-nodejs="`true`" pulumi-lang-dotnet="`True`" pulumi-lang-go="`true`" pulumi-lang-python="`true`" pulumi-lang-yaml="`true`" pulumi-lang-java="`true`" pulumi-lang-hcl="`true`">`true`</span>), or from your account (<span pulumi-lang-nodejs="`false`" pulumi-lang-dotnet="`False`" pulumi-lang-go="`false`" pulumi-lang-python="`false`" pulumi-lang-yaml="`false`" pulumi-lang-java="`false`" pulumi-lang-hcl="`false`">`false`</span>). Defaults to <span pulumi-lang-nodejs="`false`" pulumi-lang-dotnet="`False`" pulumi-lang-go="`false`" pulumi-lang-python="`false`" pulumi-lang-yaml="`false`" pulumi-lang-java="`false`" pulumi-lang-hcl="`false`">`false`</span>.
-	Connect     *bool   `pulumi:"connect"`
+	Connect *bool `pulumi:"connect"`
+	// An optional description of what the webhook is used for.
 	Description *string `pulumi:"description"`
-	// The list of events to enable for this endpoint. You may specify `['*']` to enable all events, except those that require explicit selection.
-	EnabledEvents []string          `pulumi:"enabledEvents"`
-	Metadata      map[string]string `pulumi:"metadata"`
+	// The list of events to enable for this endpoint. `['*']` indicates that all events are enabled, except those that require explicit selection.
+	EnabledEvents []string `pulumi:"enabledEvents"`
+	// Set of [key-value pairs](https://docs.stripe.com/api/metadata) that you can attach to an object. This can be useful for storing additional information about the object in a structured format.
+	Metadata map[string]string `pulumi:"metadata"`
 	// The URL of the webhook endpoint.
 	Url string `pulumi:"url"`
 }
 
 // The set of arguments for constructing a WebhookEndpoint resource.
 type WebhookEndpointArgs struct {
-	// Events sent to this endpoint will be generated with this Stripe Version instead of your account's default Stripe Version.
+	// The API version events are rendered as for this webhook endpoint.
 	ApiVersion pulumi.StringPtrInput
 	// Whether this endpoint should receive events from connected accounts (<span pulumi-lang-nodejs="`true`" pulumi-lang-dotnet="`True`" pulumi-lang-go="`true`" pulumi-lang-python="`true`" pulumi-lang-yaml="`true`" pulumi-lang-java="`true`" pulumi-lang-hcl="`true`">`true`</span>), or from your account (<span pulumi-lang-nodejs="`false`" pulumi-lang-dotnet="`False`" pulumi-lang-go="`false`" pulumi-lang-python="`false`" pulumi-lang-yaml="`false`" pulumi-lang-java="`false`" pulumi-lang-hcl="`false`">`false`</span>). Defaults to <span pulumi-lang-nodejs="`false`" pulumi-lang-dotnet="`False`" pulumi-lang-go="`false`" pulumi-lang-python="`false`" pulumi-lang-yaml="`false`" pulumi-lang-java="`false`" pulumi-lang-hcl="`false`">`false`</span>.
-	Connect     pulumi.BoolPtrInput
+	Connect pulumi.BoolPtrInput
+	// An optional description of what the webhook is used for.
 	Description pulumi.StringPtrInput
-	// The list of events to enable for this endpoint. You may specify `['*']` to enable all events, except those that require explicit selection.
+	// The list of events to enable for this endpoint. `['*']` indicates that all events are enabled, except those that require explicit selection.
 	EnabledEvents pulumi.StringArrayInput
-	Metadata      pulumi.StringMapInput
+	// Set of [key-value pairs](https://docs.stripe.com/api/metadata) that you can attach to an object. This can be useful for storing additional information about the object in a structured format.
+	Metadata pulumi.StringMapInput
 	// The URL of the webhook endpoint.
 	Url pulumi.StringInput
 }
@@ -186,7 +214,7 @@ func (o WebhookEndpointOutput) ToWebhookEndpointOutputWithContext(ctx context.Co
 	return o
 }
 
-// Events sent to this endpoint will be generated with this Stripe Version instead of your account's default Stripe Version.
+// The API version events are rendered as for this webhook endpoint.
 func (o WebhookEndpointOutput) ApiVersion() pulumi.StringOutput {
 	return o.ApplyT(func(v *WebhookEndpoint) pulumi.StringOutput { return v.ApiVersion }).(pulumi.StringOutput)
 }
@@ -201,17 +229,34 @@ func (o WebhookEndpointOutput) Connect() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *WebhookEndpoint) pulumi.BoolPtrOutput { return v.Connect }).(pulumi.BoolPtrOutput)
 }
 
+// Time at which the object was created. Measured in seconds since the Unix epoch.
+func (o WebhookEndpointOutput) Created() pulumi.Float64Output {
+	return o.ApplyT(func(v *WebhookEndpoint) pulumi.Float64Output { return v.Created }).(pulumi.Float64Output)
+}
+
+// An optional description of what the webhook is used for.
 func (o WebhookEndpointOutput) Description() pulumi.StringOutput {
 	return o.ApplyT(func(v *WebhookEndpoint) pulumi.StringOutput { return v.Description }).(pulumi.StringOutput)
 }
 
-// The list of events to enable for this endpoint. You may specify `['*']` to enable all events, except those that require explicit selection.
+// The list of events to enable for this endpoint. `['*']` indicates that all events are enabled, except those that require explicit selection.
 func (o WebhookEndpointOutput) EnabledEvents() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v *WebhookEndpoint) pulumi.StringArrayOutput { return v.EnabledEvents }).(pulumi.StringArrayOutput)
 }
 
+// If the object exists in live mode, the value is <span pulumi-lang-nodejs="`true`" pulumi-lang-dotnet="`True`" pulumi-lang-go="`true`" pulumi-lang-python="`true`" pulumi-lang-yaml="`true`" pulumi-lang-java="`true`" pulumi-lang-hcl="`true`">`true`</span>. If the object exists in test mode, the value is <span pulumi-lang-nodejs="`false`" pulumi-lang-dotnet="`False`" pulumi-lang-go="`false`" pulumi-lang-python="`false`" pulumi-lang-yaml="`false`" pulumi-lang-java="`false`" pulumi-lang-hcl="`false`">`false`</span>.
+func (o WebhookEndpointOutput) Livemode() pulumi.BoolOutput {
+	return o.ApplyT(func(v *WebhookEndpoint) pulumi.BoolOutput { return v.Livemode }).(pulumi.BoolOutput)
+}
+
+// Set of [key-value pairs](https://docs.stripe.com/api/metadata) that you can attach to an object. This can be useful for storing additional information about the object in a structured format.
 func (o WebhookEndpointOutput) Metadata() pulumi.StringMapOutput {
 	return o.ApplyT(func(v *WebhookEndpoint) pulumi.StringMapOutput { return v.Metadata }).(pulumi.StringMapOutput)
+}
+
+// String representing the object's type. Objects of the same type share the same value.
+func (o WebhookEndpointOutput) Object() pulumi.StringOutput {
+	return o.ApplyT(func(v *WebhookEndpoint) pulumi.StringOutput { return v.Object }).(pulumi.StringOutput)
 }
 
 // The endpoint's secret, used to generate [webhook signatures](https://docs.stripe.com/webhooks/signatures). Only returned at creation.

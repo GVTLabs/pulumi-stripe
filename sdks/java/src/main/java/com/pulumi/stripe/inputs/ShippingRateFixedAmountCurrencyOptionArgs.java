@@ -32,9 +32,17 @@ public final class ShippingRateFixedAmountCurrencyOptionArgs extends com.pulumi.
         return this.amount;
     }
 
+    /**
+     * Key for this entry.
+     * 
+     */
     @Import(name="key", required=true)
     private Output<String> key;
 
+    /**
+     * @return Key for this entry.
+     * 
+     */
     public Output<String> key() {
         return this.key;
     }
@@ -101,11 +109,23 @@ public final class ShippingRateFixedAmountCurrencyOptionArgs extends com.pulumi.
             return amount(Output.of(amount));
         }
 
+        /**
+         * @param key Key for this entry.
+         * 
+         * @return builder
+         * 
+         */
         public Builder key(Output<String> key) {
             $.key = key;
             return this;
         }
 
+        /**
+         * @param key Key for this entry.
+         * 
+         * @return builder
+         * 
+         */
         public Builder key(String key) {
             return key(Output.of(key));
         }

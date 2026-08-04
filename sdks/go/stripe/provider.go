@@ -7,7 +7,6 @@ import (
 	"context"
 	"reflect"
 
-	"errors"
 	"github.com/gvtlabs/pulumi-stripe/sdks/go/stripe/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
@@ -19,22 +18,21 @@ import (
 type Provider struct {
 	pulumi.ProviderResourceState
 
-	// Stripe API key
-	ApiKey pulumi.StringOutput `pulumi:"apiKey"`
+	// Stripe API key. Can also be set via the STRIPE_API_KEY environment variable.
+	ApiKey pulumi.StringPtrOutput `pulumi:"apiKey"`
+	// Connected account context for Connect-scoped requests. Can also be set via the STRIPE_ACCOUNT environment variable.
+	StripeAccount pulumi.StringPtrOutput `pulumi:"stripeAccount"`
 }
 
 // NewProvider registers a new resource with the given unique name, arguments, and options.
 func NewProvider(ctx *pulumi.Context,
 	name string, args *ProviderArgs, opts ...pulumi.ResourceOption) (*Provider, error) {
 	if args == nil {
-		return nil, errors.New("missing one or more required arguments")
+		args = &ProviderArgs{}
 	}
 
-	if args.ApiKey == nil {
-		return nil, errors.New("invalid value for required argument 'ApiKey'")
-	}
 	if args.ApiKey != nil {
-		args.ApiKey = pulumi.ToSecret(args.ApiKey).(pulumi.StringInput)
+		args.ApiKey = pulumi.ToSecret(args.ApiKey).(pulumi.StringPtrInput)
 	}
 	secrets := pulumi.AdditionalSecretOutputs([]string{
 		"apiKey",
@@ -54,14 +52,18 @@ func NewProvider(ctx *pulumi.Context,
 }
 
 type providerArgs struct {
-	// Stripe API key
-	ApiKey string `pulumi:"apiKey"`
+	// Stripe API key. Can also be set via the STRIPE_API_KEY environment variable.
+	ApiKey *string `pulumi:"apiKey"`
+	// Connected account context for Connect-scoped requests. Can also be set via the STRIPE_ACCOUNT environment variable.
+	StripeAccount *string `pulumi:"stripeAccount"`
 }
 
 // The set of arguments for constructing a Provider resource.
 type ProviderArgs struct {
-	// Stripe API key
-	ApiKey pulumi.StringInput
+	// Stripe API key. Can also be set via the STRIPE_API_KEY environment variable.
+	ApiKey pulumi.StringPtrInput
+	// Connected account context for Connect-scoped requests. Can also be set via the STRIPE_ACCOUNT environment variable.
+	StripeAccount pulumi.StringPtrInput
 }
 
 func (ProviderArgs) ElementType() reflect.Type {
@@ -128,9 +130,14 @@ func (o ProviderOutput) ToProviderOutputWithContext(ctx context.Context) Provide
 	return o
 }
 
-// Stripe API key
-func (o ProviderOutput) ApiKey() pulumi.StringOutput {
-	return o.ApplyT(func(v *Provider) pulumi.StringOutput { return v.ApiKey }).(pulumi.StringOutput)
+// Stripe API key. Can also be set via the STRIPE_API_KEY environment variable.
+func (o ProviderOutput) ApiKey() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Provider) pulumi.StringPtrOutput { return v.ApiKey }).(pulumi.StringPtrOutput)
+}
+
+// Connected account context for Connect-scoped requests. Can also be set via the STRIPE_ACCOUNT environment variable.
+func (o ProviderOutput) StripeAccount() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Provider) pulumi.StringPtrOutput { return v.StripeAccount }).(pulumi.StringPtrOutput)
 }
 
 func init() {

@@ -17,12 +17,16 @@ type EntitlementsFeature struct {
 
 	// Inactive features cannot be attached to new products and will not be returned from the features list endpoint.
 	Active pulumi.BoolOutput `pulumi:"active"`
+	// If the object exists in live mode, the value is <span pulumi-lang-nodejs="`true`" pulumi-lang-dotnet="`True`" pulumi-lang-go="`true`" pulumi-lang-python="`true`" pulumi-lang-yaml="`true`" pulumi-lang-java="`true`" pulumi-lang-hcl="`true`">`true`</span>. If the object exists in test mode, the value is <span pulumi-lang-nodejs="`false`" pulumi-lang-dotnet="`False`" pulumi-lang-go="`false`" pulumi-lang-python="`false`" pulumi-lang-yaml="`false`" pulumi-lang-java="`false`" pulumi-lang-hcl="`false`">`false`</span>.
+	Livemode pulumi.BoolOutput `pulumi:"livemode"`
 	// A unique key you provide as your own system identifier. This may be up to 80 characters.
 	LookupKey pulumi.StringOutput `pulumi:"lookupKey"`
 	// Set of key-value pairs that you can attach to an object. This can be useful for storing additional information about the object in a structured format.
 	Metadata pulumi.StringMapOutput `pulumi:"metadata"`
 	// The feature's name, for your own purpose, not meant to be displayable to the customer.
 	Name pulumi.StringOutput `pulumi:"name"`
+	// String representing the object's type. Objects of the same type share the same value.
+	Object pulumi.StringOutput `pulumi:"object"`
 }
 
 // NewEntitlementsFeature registers a new resource with the given unique name, arguments, and options.
@@ -68,23 +72,31 @@ func GetEntitlementsFeature(ctx *pulumi.Context,
 type entitlementsFeatureState struct {
 	// Inactive features cannot be attached to new products and will not be returned from the features list endpoint.
 	Active *bool `pulumi:"active"`
+	// If the object exists in live mode, the value is <span pulumi-lang-nodejs="`true`" pulumi-lang-dotnet="`True`" pulumi-lang-go="`true`" pulumi-lang-python="`true`" pulumi-lang-yaml="`true`" pulumi-lang-java="`true`" pulumi-lang-hcl="`true`">`true`</span>. If the object exists in test mode, the value is <span pulumi-lang-nodejs="`false`" pulumi-lang-dotnet="`False`" pulumi-lang-go="`false`" pulumi-lang-python="`false`" pulumi-lang-yaml="`false`" pulumi-lang-java="`false`" pulumi-lang-hcl="`false`">`false`</span>.
+	Livemode *bool `pulumi:"livemode"`
 	// A unique key you provide as your own system identifier. This may be up to 80 characters.
 	LookupKey *string `pulumi:"lookupKey"`
 	// Set of key-value pairs that you can attach to an object. This can be useful for storing additional information about the object in a structured format.
 	Metadata map[string]string `pulumi:"metadata"`
 	// The feature's name, for your own purpose, not meant to be displayable to the customer.
 	Name *string `pulumi:"name"`
+	// String representing the object's type. Objects of the same type share the same value.
+	Object *string `pulumi:"object"`
 }
 
 type EntitlementsFeatureState struct {
 	// Inactive features cannot be attached to new products and will not be returned from the features list endpoint.
 	Active pulumi.BoolPtrInput
+	// If the object exists in live mode, the value is <span pulumi-lang-nodejs="`true`" pulumi-lang-dotnet="`True`" pulumi-lang-go="`true`" pulumi-lang-python="`true`" pulumi-lang-yaml="`true`" pulumi-lang-java="`true`" pulumi-lang-hcl="`true`">`true`</span>. If the object exists in test mode, the value is <span pulumi-lang-nodejs="`false`" pulumi-lang-dotnet="`False`" pulumi-lang-go="`false`" pulumi-lang-python="`false`" pulumi-lang-yaml="`false`" pulumi-lang-java="`false`" pulumi-lang-hcl="`false`">`false`</span>.
+	Livemode pulumi.BoolPtrInput
 	// A unique key you provide as your own system identifier. This may be up to 80 characters.
 	LookupKey pulumi.StringPtrInput
 	// Set of key-value pairs that you can attach to an object. This can be useful for storing additional information about the object in a structured format.
 	Metadata pulumi.StringMapInput
 	// The feature's name, for your own purpose, not meant to be displayable to the customer.
 	Name pulumi.StringPtrInput
+	// String representing the object's type. Objects of the same type share the same value.
+	Object pulumi.StringPtrInput
 }
 
 func (EntitlementsFeatureState) ElementType() reflect.Type {
@@ -152,6 +164,11 @@ func (o EntitlementsFeatureOutput) Active() pulumi.BoolOutput {
 	return o.ApplyT(func(v *EntitlementsFeature) pulumi.BoolOutput { return v.Active }).(pulumi.BoolOutput)
 }
 
+// If the object exists in live mode, the value is <span pulumi-lang-nodejs="`true`" pulumi-lang-dotnet="`True`" pulumi-lang-go="`true`" pulumi-lang-python="`true`" pulumi-lang-yaml="`true`" pulumi-lang-java="`true`" pulumi-lang-hcl="`true`">`true`</span>. If the object exists in test mode, the value is <span pulumi-lang-nodejs="`false`" pulumi-lang-dotnet="`False`" pulumi-lang-go="`false`" pulumi-lang-python="`false`" pulumi-lang-yaml="`false`" pulumi-lang-java="`false`" pulumi-lang-hcl="`false`">`false`</span>.
+func (o EntitlementsFeatureOutput) Livemode() pulumi.BoolOutput {
+	return o.ApplyT(func(v *EntitlementsFeature) pulumi.BoolOutput { return v.Livemode }).(pulumi.BoolOutput)
+}
+
 // A unique key you provide as your own system identifier. This may be up to 80 characters.
 func (o EntitlementsFeatureOutput) LookupKey() pulumi.StringOutput {
 	return o.ApplyT(func(v *EntitlementsFeature) pulumi.StringOutput { return v.LookupKey }).(pulumi.StringOutput)
@@ -165,6 +182,11 @@ func (o EntitlementsFeatureOutput) Metadata() pulumi.StringMapOutput {
 // The feature's name, for your own purpose, not meant to be displayable to the customer.
 func (o EntitlementsFeatureOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v *EntitlementsFeature) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+// String representing the object's type. Objects of the same type share the same value.
+func (o EntitlementsFeatureOutput) Object() pulumi.StringOutput {
+	return o.ApplyT(func(v *EntitlementsFeature) pulumi.StringOutput { return v.Object }).(pulumi.StringOutput)
 }
 
 func init() {

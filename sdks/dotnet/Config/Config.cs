@@ -34,12 +34,22 @@ namespace Pulumi.Stripe
 
         private static readonly __Value<string?> _apiKey = new __Value<string?>(() => __config.Get("apiKey"));
         /// <summary>
-        /// Stripe API key
+        /// Stripe API key. Can also be set via the STRIPE_API_KEY environment variable.
         /// </summary>
         public static string? ApiKey
         {
             get => _apiKey.Get();
             set => _apiKey.Set(value);
+        }
+
+        private static readonly __Value<string?> _stripeAccount = new __Value<string?>(() => __config.Get("stripeAccount"));
+        /// <summary>
+        /// Connected account context for Connect-scoped requests. Can also be set via the STRIPE_ACCOUNT environment variable.
+        /// </summary>
+        public static string? StripeAccount
+        {
+            get => _stripeAccount.Get();
+            set => _stripeAccount.Set(value);
         }
 
     }

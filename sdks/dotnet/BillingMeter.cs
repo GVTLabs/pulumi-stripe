@@ -13,25 +13,19 @@ namespace Pulumi.Stripe
     public partial class BillingMeter : global::Pulumi.CustomResource
     {
         /// <summary>
-        /// Fields that specify how to map a meter event to a customer.
+        /// Time at which the object was created. Measured in seconds since the Unix epoch.
         /// </summary>
-        [Output("customerMapping")]
-        public Output<Outputs.BillingMeterCustomerMapping?> CustomerMapping { get; private set; } = null!;
+        [Output("created")]
+        public Output<double> Created { get; private set; } = null!;
+
+        [Output("customerMappings")]
+        public Output<ImmutableArray<Outputs.BillingMeterCustomerMapping>> CustomerMappings { get; private set; } = null!;
+
+        [Output("defaultAggregations")]
+        public Output<ImmutableArray<Outputs.BillingMeterDefaultAggregation>> DefaultAggregations { get; private set; } = null!;
 
         /// <summary>
-        /// The default settings to aggregate a meter's events with.
-        /// </summary>
-        [Output("defaultAggregation")]
-        public Output<Outputs.BillingMeterDefaultAggregation> DefaultAggregation { get; private set; } = null!;
-
-        /// <summary>
-        /// Set of keys that will be used to group meter events by. Each key must be present in the event payload.
-        /// </summary>
-        [Output("dimensionPayloadKeys")]
-        public Output<ImmutableArray<string>> DimensionPayloadKeys { get; private set; } = null!;
-
-        /// <summary>
-        /// The meter’s name. Not visible to the customer.
+        /// The meter's name.
         /// </summary>
         [Output("displayName")]
         public Output<string> DisplayName { get; private set; } = null!;
@@ -49,16 +43,34 @@ namespace Pulumi.Stripe
         public Output<string> EventTimeWindow { get; private set; } = null!;
 
         /// <summary>
+        /// If the object exists in live mode, the value is &lt;span pulumi-lang-nodejs="`true`" pulumi-lang-dotnet="`True`" pulumi-lang-go="`true`" pulumi-lang-python="`true`" pulumi-lang-yaml="`true`" pulumi-lang-java="`true`" pulumi-lang-hcl="`true`"&gt;`true`&lt;/span&gt;. If the object exists in test mode, the value is &lt;span pulumi-lang-nodejs="`false`" pulumi-lang-dotnet="`False`" pulumi-lang-go="`false`" pulumi-lang-python="`false`" pulumi-lang-yaml="`false`" pulumi-lang-java="`false`" pulumi-lang-hcl="`false`"&gt;`false`&lt;/span&gt;.
+        /// </summary>
+        [Output("livemode")]
+        public Output<bool> Livemode { get; private set; } = null!;
+
+        /// <summary>
+        /// String representing the object's type. Objects of the same type share the same value.
+        /// </summary>
+        [Output("object")]
+        public Output<string> Object { get; private set; } = null!;
+
+        /// <summary>
         /// The meter's status.
         /// </summary>
         [Output("status")]
         public Output<string> Status { get; private set; } = null!;
 
+        [Output("statusTransitions")]
+        public Output<Outputs.BillingMeterStatusTransitions> StatusTransitions { get; private set; } = null!;
+
         /// <summary>
-        /// Fields that specify how to calculate a meter event's value.
+        /// Time at which the object was last updated. Measured in seconds since the Unix epoch.
         /// </summary>
+        [Output("updated")]
+        public Output<double> Updated { get; private set; } = null!;
+
         [Output("valueSettings")]
-        public Output<Outputs.BillingMeterValueSettings?> ValueSettings { get; private set; } = null!;
+        public Output<ImmutableArray<Outputs.BillingMeterValueSetting>> ValueSettings { get; private set; } = null!;
 
 
         /// <summary>
@@ -106,32 +118,24 @@ namespace Pulumi.Stripe
 
     public sealed class BillingMeterArgs : global::Pulumi.ResourceArgs
     {
-        /// <summary>
-        /// Fields that specify how to map a meter event to a customer.
-        /// </summary>
-        [Input("customerMapping")]
-        public Input<Inputs.BillingMeterCustomerMappingArgs>? CustomerMapping { get; set; }
-
-        /// <summary>
-        /// The default settings to aggregate a meter's events with.
-        /// </summary>
-        [Input("defaultAggregation", required: true)]
-        public Input<Inputs.BillingMeterDefaultAggregationArgs> DefaultAggregation { get; set; } = null!;
-
-        [Input("dimensionPayloadKeys")]
-        private InputList<string>? _dimensionPayloadKeys;
-
-        /// <summary>
-        /// Set of keys that will be used to group meter events by. Each key must be present in the event payload.
-        /// </summary>
-        public InputList<string> DimensionPayloadKeys
+        [Input("customerMappings")]
+        private InputList<Inputs.BillingMeterCustomerMappingArgs>? _customerMappings;
+        public InputList<Inputs.BillingMeterCustomerMappingArgs> CustomerMappings
         {
-            get => _dimensionPayloadKeys ?? (_dimensionPayloadKeys = new InputList<string>());
-            set => _dimensionPayloadKeys = value;
+            get => _customerMappings ?? (_customerMappings = new InputList<Inputs.BillingMeterCustomerMappingArgs>());
+            set => _customerMappings = value;
+        }
+
+        [Input("defaultAggregations")]
+        private InputList<Inputs.BillingMeterDefaultAggregationArgs>? _defaultAggregations;
+        public InputList<Inputs.BillingMeterDefaultAggregationArgs> DefaultAggregations
+        {
+            get => _defaultAggregations ?? (_defaultAggregations = new InputList<Inputs.BillingMeterDefaultAggregationArgs>());
+            set => _defaultAggregations = value;
         }
 
         /// <summary>
-        /// The meter’s name. Not visible to the customer.
+        /// The meter's name.
         /// </summary>
         [Input("displayName", required: true)]
         public Input<string> DisplayName { get; set; } = null!;
@@ -148,11 +152,13 @@ namespace Pulumi.Stripe
         [Input("eventTimeWindow")]
         public Input<string>? EventTimeWindow { get; set; }
 
-        /// <summary>
-        /// Fields that specify how to calculate a meter event's value.
-        /// </summary>
         [Input("valueSettings")]
-        public Input<Inputs.BillingMeterValueSettingsArgs>? ValueSettings { get; set; }
+        private InputList<Inputs.BillingMeterValueSettingArgs>? _valueSettings;
+        public InputList<Inputs.BillingMeterValueSettingArgs> ValueSettings
+        {
+            get => _valueSettings ?? (_valueSettings = new InputList<Inputs.BillingMeterValueSettingArgs>());
+            set => _valueSettings = value;
+        }
 
         public BillingMeterArgs()
         {
@@ -163,31 +169,29 @@ namespace Pulumi.Stripe
     public sealed class BillingMeterState : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Fields that specify how to map a meter event to a customer.
+        /// Time at which the object was created. Measured in seconds since the Unix epoch.
         /// </summary>
-        [Input("customerMapping")]
-        public Input<Inputs.BillingMeterCustomerMappingGetArgs>? CustomerMapping { get; set; }
+        [Input("created")]
+        public Input<double>? Created { get; set; }
 
-        /// <summary>
-        /// The default settings to aggregate a meter's events with.
-        /// </summary>
-        [Input("defaultAggregation")]
-        public Input<Inputs.BillingMeterDefaultAggregationGetArgs>? DefaultAggregation { get; set; }
-
-        [Input("dimensionPayloadKeys")]
-        private InputList<string>? _dimensionPayloadKeys;
-
-        /// <summary>
-        /// Set of keys that will be used to group meter events by. Each key must be present in the event payload.
-        /// </summary>
-        public InputList<string> DimensionPayloadKeys
+        [Input("customerMappings")]
+        private InputList<Inputs.BillingMeterCustomerMappingGetArgs>? _customerMappings;
+        public InputList<Inputs.BillingMeterCustomerMappingGetArgs> CustomerMappings
         {
-            get => _dimensionPayloadKeys ?? (_dimensionPayloadKeys = new InputList<string>());
-            set => _dimensionPayloadKeys = value;
+            get => _customerMappings ?? (_customerMappings = new InputList<Inputs.BillingMeterCustomerMappingGetArgs>());
+            set => _customerMappings = value;
+        }
+
+        [Input("defaultAggregations")]
+        private InputList<Inputs.BillingMeterDefaultAggregationGetArgs>? _defaultAggregations;
+        public InputList<Inputs.BillingMeterDefaultAggregationGetArgs> DefaultAggregations
+        {
+            get => _defaultAggregations ?? (_defaultAggregations = new InputList<Inputs.BillingMeterDefaultAggregationGetArgs>());
+            set => _defaultAggregations = value;
         }
 
         /// <summary>
-        /// The meter’s name. Not visible to the customer.
+        /// The meter's name.
         /// </summary>
         [Input("displayName")]
         public Input<string>? DisplayName { get; set; }
@@ -205,16 +209,39 @@ namespace Pulumi.Stripe
         public Input<string>? EventTimeWindow { get; set; }
 
         /// <summary>
+        /// If the object exists in live mode, the value is &lt;span pulumi-lang-nodejs="`true`" pulumi-lang-dotnet="`True`" pulumi-lang-go="`true`" pulumi-lang-python="`true`" pulumi-lang-yaml="`true`" pulumi-lang-java="`true`" pulumi-lang-hcl="`true`"&gt;`true`&lt;/span&gt;. If the object exists in test mode, the value is &lt;span pulumi-lang-nodejs="`false`" pulumi-lang-dotnet="`False`" pulumi-lang-go="`false`" pulumi-lang-python="`false`" pulumi-lang-yaml="`false`" pulumi-lang-java="`false`" pulumi-lang-hcl="`false`"&gt;`false`&lt;/span&gt;.
+        /// </summary>
+        [Input("livemode")]
+        public Input<bool>? Livemode { get; set; }
+
+        /// <summary>
+        /// String representing the object's type. Objects of the same type share the same value.
+        /// </summary>
+        [Input("object")]
+        public Input<string>? Object { get; set; }
+
+        /// <summary>
         /// The meter's status.
         /// </summary>
         [Input("status")]
         public Input<string>? Status { get; set; }
 
+        [Input("statusTransitions")]
+        public Input<Inputs.BillingMeterStatusTransitionsGetArgs>? StatusTransitions { get; set; }
+
         /// <summary>
-        /// Fields that specify how to calculate a meter event's value.
+        /// Time at which the object was last updated. Measured in seconds since the Unix epoch.
         /// </summary>
+        [Input("updated")]
+        public Input<double>? Updated { get; set; }
+
         [Input("valueSettings")]
-        public Input<Inputs.BillingMeterValueSettingsGetArgs>? ValueSettings { get; set; }
+        private InputList<Inputs.BillingMeterValueSettingGetArgs>? _valueSettings;
+        public InputList<Inputs.BillingMeterValueSettingGetArgs> ValueSettings
+        {
+            get => _valueSettings ?? (_valueSettings = new InputList<Inputs.BillingMeterValueSettingGetArgs>());
+            set => _valueSettings = value;
+        }
 
         public BillingMeterState()
         {

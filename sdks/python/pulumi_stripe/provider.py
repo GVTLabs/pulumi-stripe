@@ -19,25 +19,42 @@ __all__ = ['ProviderArgs', 'Provider']
 @pulumi.input_type
 class ProviderArgs:
     def __init__(__self__, *,
-                 api_key: pulumi.Input[_builtins.str]):
+                 api_key: pulumi.Input[Optional[_builtins.str]] = None,
+                 stripe_account: pulumi.Input[Optional[_builtins.str]] = None):
         """
         The set of arguments for constructing a Provider resource.
 
-        :param pulumi.Input[_builtins.str] api_key: Stripe API key
+        :param pulumi.Input[_builtins.str] api_key: Stripe API key. Can also be set via the STRIPE_API_KEY environment variable.
+        :param pulumi.Input[_builtins.str] stripe_account: Connected account context for Connect-scoped requests. Can also be set via the STRIPE_ACCOUNT environment variable.
         """
-        pulumi.set(__self__, "api_key", api_key)
+        if api_key is not None:
+            pulumi.set(__self__, "api_key", api_key)
+        if stripe_account is not None:
+            pulumi.set(__self__, "stripe_account", stripe_account)
 
     @_builtins.property
     @pulumi.getter(name="apiKey")
-    def api_key(self) -> pulumi.Input[_builtins.str]:
+    def api_key(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
-        Stripe API key
+        Stripe API key. Can also be set via the STRIPE_API_KEY environment variable.
         """
         return pulumi.get(self, "api_key")
 
     @api_key.setter
-    def api_key(self, value: pulumi.Input[_builtins.str]):
+    def api_key(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "api_key", value)
+
+    @_builtins.property
+    @pulumi.getter(name="stripeAccount")
+    def stripe_account(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        Connected account context for Connect-scoped requests. Can also be set via the STRIPE_ACCOUNT environment variable.
+        """
+        return pulumi.get(self, "stripe_account")
+
+    @stripe_account.setter
+    def stripe_account(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "stripe_account", value)
 
 
 @pulumi.type_token("pulumi:providers:stripe")
@@ -47,6 +64,7 @@ class Provider(pulumi.ProviderResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  api_key: pulumi.Input[Optional[_builtins.str]] = None,
+                 stripe_account: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         """
         The provider type for the stripe package. By default, resources use package-wide configuration
@@ -57,13 +75,14 @@ class Provider(pulumi.ProviderResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[_builtins.str] api_key: Stripe API key
+        :param pulumi.Input[_builtins.str] api_key: Stripe API key. Can also be set via the STRIPE_API_KEY environment variable.
+        :param pulumi.Input[_builtins.str] stripe_account: Connected account context for Connect-scoped requests. Can also be set via the STRIPE_ACCOUNT environment variable.
         """
         ...
     @overload
     def __init__(__self__,
                  resource_name: str,
-                 args: ProviderArgs,
+                 args: Optional[ProviderArgs] = None,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
         The provider type for the stripe package. By default, resources use package-wide configuration
@@ -88,6 +107,7 @@ class Provider(pulumi.ProviderResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  api_key: pulumi.Input[Optional[_builtins.str]] = None,
+                 stripe_account: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -97,9 +117,8 @@ class Provider(pulumi.ProviderResource):
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = ProviderArgs.__new__(ProviderArgs)
 
-            if api_key is None and not opts.urn:
-                raise TypeError("Missing required property 'api_key'")
             __props__.__dict__["api_key"] = None if api_key is None else pulumi.Output.secret(api_key)
+            __props__.__dict__["stripe_account"] = stripe_account
         secret_opts = pulumi.ResourceOptions(additional_secret_outputs=["apiKey"])
         opts = pulumi.ResourceOptions.merge(opts, secret_opts)
         super(Provider, __self__).__init__(
@@ -111,11 +130,19 @@ class Provider(pulumi.ProviderResource):
 
     @_builtins.property
     @pulumi.getter(name="apiKey")
-    def api_key(self) -> pulumi.Output[_builtins.str]:
+    def api_key(self) -> pulumi.Output[Optional[_builtins.str]]:
         """
-        Stripe API key
+        Stripe API key. Can also be set via the STRIPE_API_KEY environment variable.
         """
         return pulumi.get(self, "api_key")
+
+    @_builtins.property
+    @pulumi.getter(name="stripeAccount")
+    def stripe_account(self) -> pulumi.Output[Optional[_builtins.str]]:
+        """
+        Connected account context for Connect-scoped requests. Can also be set via the STRIPE_ACCOUNT environment variable.
+        """
+        return pulumi.get(self, "stripe_account")
 
     @pulumi.output_type
     class TerraformConfigResult:

@@ -18,7 +18,7 @@ namespace Pulumi.Stripe.Outputs
         /// </summary>
         public readonly string EventPayloadKey;
         /// <summary>
-        /// The method for mapping a meter event to a customer. Must be &lt;span pulumi-lang-nodejs="`byId`" pulumi-lang-dotnet="`ById`" pulumi-lang-go="`byId`" pulumi-lang-python="`by_id`" pulumi-lang-yaml="`byId`" pulumi-lang-java="`byId`" pulumi-lang-hcl="`by_id`"&gt;`byId`&lt;/span&gt;.
+        /// The method for mapping a meter event to a customer.
         /// </summary>
         public readonly string Type;
 

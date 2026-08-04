@@ -6,7 +6,10 @@ package com.pulumi.stripe.inputs;
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
 import com.pulumi.stripe.inputs.V2CoreEventDestinationAmazonEventbridgeArgs;
+import com.pulumi.stripe.inputs.V2CoreEventDestinationAzureEventGridArgs;
+import com.pulumi.stripe.inputs.V2CoreEventDestinationStatusDetailsArgs;
 import com.pulumi.stripe.inputs.V2CoreEventDestinationWebhookEndpointArgs;
+import java.lang.Boolean;
 import java.lang.String;
 import java.util.List;
 import java.util.Map;
@@ -23,15 +26,45 @@ public final class V2CoreEventDestinationState extends com.pulumi.resources.Reso
      * Amazon EventBridge configuration.
      * 
      */
-    @Import(name="amazonEventbridge")
-    private @Nullable Output<V2CoreEventDestinationAmazonEventbridgeArgs> amazonEventbridge;
+    @Import(name="amazonEventbridges")
+    private @Nullable Output<List<V2CoreEventDestinationAmazonEventbridgeArgs>> amazonEventbridges;
 
     /**
      * @return Amazon EventBridge configuration.
      * 
      */
-    public Optional<Output<V2CoreEventDestinationAmazonEventbridgeArgs>> amazonEventbridge() {
-        return Optional.ofNullable(this.amazonEventbridge);
+    public Optional<Output<List<V2CoreEventDestinationAmazonEventbridgeArgs>>> amazonEventbridges() {
+        return Optional.ofNullable(this.amazonEventbridges);
+    }
+
+    /**
+     * Azure Event Grid configuration.
+     * 
+     */
+    @Import(name="azureEventGrid")
+    private @Nullable Output<V2CoreEventDestinationAzureEventGridArgs> azureEventGrid;
+
+    /**
+     * @return Azure Event Grid configuration.
+     * 
+     */
+    public Optional<Output<V2CoreEventDestinationAzureEventGridArgs>> azureEventGrid() {
+        return Optional.ofNullable(this.azureEventGrid);
+    }
+
+    /**
+     * Time at which the object was created.
+     * 
+     */
+    @Import(name="created")
+    private @Nullable Output<String> created;
+
+    /**
+     * @return Time at which the object was created.
+     * 
+     */
+    public Optional<Output<String>> created() {
+        return Optional.ofNullable(this.created);
     }
 
     /**
@@ -80,18 +113,58 @@ public final class V2CoreEventDestinationState extends com.pulumi.resources.Reso
     }
 
     /**
-     * Where events should be routed from.
+     * Specifies which accounts&#39; events route to this destination.
+     * `{@literal @}self`: Receive events from the account that owns the event destination.
+     * `{@literal @}accounts`: Receive events emitted from other accounts you manage which includes your v1 and v2 accounts.
+     * `{@literal @}organization_members`: Receive events from accounts directly linked to the organization.
+     * `{@literal @}organization_members/{@literal @}accounts`: Receive events from all accounts connected to any platform accounts in the organization.
      * 
      */
     @Import(name="eventsFroms")
     private @Nullable Output<List<String>> eventsFroms;
 
     /**
-     * @return Where events should be routed from.
+     * @return Specifies which accounts&#39; events route to this destination.
+     * `{@literal @}self`: Receive events from the account that owns the event destination.
+     * `{@literal @}accounts`: Receive events emitted from other accounts you manage which includes your v1 and v2 accounts.
+     * `{@literal @}organization_members`: Receive events from accounts directly linked to the organization.
+     * `{@literal @}organization_members/{@literal @}accounts`: Receive events from all accounts connected to any platform accounts in the organization.
      * 
      */
     public Optional<Output<List<String>>> eventsFroms() {
         return Optional.ofNullable(this.eventsFroms);
+    }
+
+    /**
+     * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * Additional fields to include in the response.
+     * 
+     */
+    @Import(name="includes")
+    private @Nullable Output<List<String>> includes;
+
+    /**
+     * @return **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * Additional fields to include in the response.
+     * 
+     */
+    public Optional<Output<List<String>>> includes() {
+        return Optional.ofNullable(this.includes);
+    }
+
+    /**
+     * Has the value &lt;span pulumi-lang-nodejs=&#34;`true`&#34; pulumi-lang-dotnet=&#34;`True`&#34; pulumi-lang-go=&#34;`true`&#34; pulumi-lang-python=&#34;`true`&#34; pulumi-lang-yaml=&#34;`true`&#34; pulumi-lang-java=&#34;`true`&#34; pulumi-lang-hcl=&#34;`true`&#34;&gt;`true`&lt;/span&gt; if the object exists in live mode or the value &lt;span pulumi-lang-nodejs=&#34;`false`&#34; pulumi-lang-dotnet=&#34;`False`&#34; pulumi-lang-go=&#34;`false`&#34; pulumi-lang-python=&#34;`false`&#34; pulumi-lang-yaml=&#34;`false`&#34; pulumi-lang-java=&#34;`false`&#34; pulumi-lang-hcl=&#34;`false`&#34;&gt;`false`&lt;/span&gt; if the object exists in test mode.
+     * 
+     */
+    @Import(name="livemode")
+    private @Nullable Output<Boolean> livemode;
+
+    /**
+     * @return Has the value &lt;span pulumi-lang-nodejs=&#34;`true`&#34; pulumi-lang-dotnet=&#34;`True`&#34; pulumi-lang-go=&#34;`true`&#34; pulumi-lang-python=&#34;`true`&#34; pulumi-lang-yaml=&#34;`true`&#34; pulumi-lang-java=&#34;`true`&#34; pulumi-lang-hcl=&#34;`true`&#34;&gt;`true`&lt;/span&gt; if the object exists in live mode or the value &lt;span pulumi-lang-nodejs=&#34;`false`&#34; pulumi-lang-dotnet=&#34;`False`&#34; pulumi-lang-go=&#34;`false`&#34; pulumi-lang-python=&#34;`false`&#34; pulumi-lang-yaml=&#34;`false`&#34; pulumi-lang-java=&#34;`false`&#34; pulumi-lang-hcl=&#34;`false`&#34;&gt;`false`&lt;/span&gt; if the object exists in test mode.
+     * 
+     */
+    public Optional<Output<Boolean>> livemode() {
+        return Optional.ofNullable(this.livemode);
     }
 
     /**
@@ -125,6 +198,21 @@ public final class V2CoreEventDestinationState extends com.pulumi.resources.Reso
     }
 
     /**
+     * String representing the object&#39;s type. Objects of the same type share the same value of the object field.
+     * 
+     */
+    @Import(name="object")
+    private @Nullable Output<String> object;
+
+    /**
+     * @return String representing the object&#39;s type. Objects of the same type share the same value of the object field.
+     * 
+     */
+    public Optional<Output<String>> object() {
+        return Optional.ofNullable(this.object);
+    }
+
+    /**
      * If using the snapshot event payload, the API version events are rendered as.
      * 
      */
@@ -155,6 +243,21 @@ public final class V2CoreEventDestinationState extends com.pulumi.resources.Reso
     }
 
     /**
+     * Additional information about event destination status.
+     * 
+     */
+    @Import(name="statusDetails")
+    private @Nullable Output<V2CoreEventDestinationStatusDetailsArgs> statusDetails;
+
+    /**
+     * @return Additional information about event destination status.
+     * 
+     */
+    public Optional<Output<V2CoreEventDestinationStatusDetailsArgs>> statusDetails() {
+        return Optional.ofNullable(this.statusDetails);
+    }
+
+    /**
      * Event destination type.
      * 
      */
@@ -170,34 +273,56 @@ public final class V2CoreEventDestinationState extends com.pulumi.resources.Reso
     }
 
     /**
+     * Time at which the object was last updated.
+     * 
+     */
+    @Import(name="updated")
+    private @Nullable Output<String> updated;
+
+    /**
+     * @return Time at which the object was last updated.
+     * 
+     */
+    public Optional<Output<String>> updated() {
+        return Optional.ofNullable(this.updated);
+    }
+
+    /**
      * Webhook endpoint configuration.
      * 
      */
-    @Import(name="webhookEndpoint")
-    private @Nullable Output<V2CoreEventDestinationWebhookEndpointArgs> webhookEndpoint;
+    @Import(name="webhookEndpoints")
+    private @Nullable Output<List<V2CoreEventDestinationWebhookEndpointArgs>> webhookEndpoints;
 
     /**
      * @return Webhook endpoint configuration.
      * 
      */
-    public Optional<Output<V2CoreEventDestinationWebhookEndpointArgs>> webhookEndpoint() {
-        return Optional.ofNullable(this.webhookEndpoint);
+    public Optional<Output<List<V2CoreEventDestinationWebhookEndpointArgs>>> webhookEndpoints() {
+        return Optional.ofNullable(this.webhookEndpoints);
     }
 
     private V2CoreEventDestinationState() {}
 
     private V2CoreEventDestinationState(V2CoreEventDestinationState $) {
-        this.amazonEventbridge = $.amazonEventbridge;
+        this.amazonEventbridges = $.amazonEventbridges;
+        this.azureEventGrid = $.azureEventGrid;
+        this.created = $.created;
         this.description = $.description;
         this.enabledEvents = $.enabledEvents;
         this.eventPayload = $.eventPayload;
         this.eventsFroms = $.eventsFroms;
+        this.includes = $.includes;
+        this.livemode = $.livemode;
         this.metadata = $.metadata;
         this.name = $.name;
+        this.object = $.object;
         this.snapshotApiVersion = $.snapshotApiVersion;
         this.status = $.status;
+        this.statusDetails = $.statusDetails;
         this.type = $.type;
-        this.webhookEndpoint = $.webhookEndpoint;
+        this.updated = $.updated;
+        this.webhookEndpoints = $.webhookEndpoints;
     }
 
     public static Builder builder() {
@@ -219,24 +344,76 @@ public final class V2CoreEventDestinationState extends com.pulumi.resources.Reso
         }
 
         /**
-         * @param amazonEventbridge Amazon EventBridge configuration.
+         * @param amazonEventbridges Amazon EventBridge configuration.
          * 
          * @return builder
          * 
          */
-        public Builder amazonEventbridge(@Nullable Output<V2CoreEventDestinationAmazonEventbridgeArgs> amazonEventbridge) {
-            $.amazonEventbridge = amazonEventbridge;
+        public Builder amazonEventbridges(@Nullable Output<List<V2CoreEventDestinationAmazonEventbridgeArgs>> amazonEventbridges) {
+            $.amazonEventbridges = amazonEventbridges;
             return this;
         }
 
         /**
-         * @param amazonEventbridge Amazon EventBridge configuration.
+         * @param amazonEventbridges Amazon EventBridge configuration.
          * 
          * @return builder
          * 
          */
-        public Builder amazonEventbridge(V2CoreEventDestinationAmazonEventbridgeArgs amazonEventbridge) {
-            return amazonEventbridge(Output.of(amazonEventbridge));
+        public Builder amazonEventbridges(List<V2CoreEventDestinationAmazonEventbridgeArgs> amazonEventbridges) {
+            return amazonEventbridges(Output.of(amazonEventbridges));
+        }
+
+        /**
+         * @param amazonEventbridges Amazon EventBridge configuration.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder amazonEventbridges(V2CoreEventDestinationAmazonEventbridgeArgs... amazonEventbridges) {
+            return amazonEventbridges(List.of(amazonEventbridges));
+        }
+
+        /**
+         * @param azureEventGrid Azure Event Grid configuration.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder azureEventGrid(@Nullable Output<V2CoreEventDestinationAzureEventGridArgs> azureEventGrid) {
+            $.azureEventGrid = azureEventGrid;
+            return this;
+        }
+
+        /**
+         * @param azureEventGrid Azure Event Grid configuration.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder azureEventGrid(V2CoreEventDestinationAzureEventGridArgs azureEventGrid) {
+            return azureEventGrid(Output.of(azureEventGrid));
+        }
+
+        /**
+         * @param created Time at which the object was created.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder created(@Nullable Output<String> created) {
+            $.created = created;
+            return this;
+        }
+
+        /**
+         * @param created Time at which the object was created.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder created(String created) {
+            return created(Output.of(created));
         }
 
         /**
@@ -313,7 +490,11 @@ public final class V2CoreEventDestinationState extends com.pulumi.resources.Reso
         }
 
         /**
-         * @param eventsFroms Where events should be routed from.
+         * @param eventsFroms Specifies which accounts&#39; events route to this destination.
+         * `{@literal @}self`: Receive events from the account that owns the event destination.
+         * `{@literal @}accounts`: Receive events emitted from other accounts you manage which includes your v1 and v2 accounts.
+         * `{@literal @}organization_members`: Receive events from accounts directly linked to the organization.
+         * `{@literal @}organization_members/{@literal @}accounts`: Receive events from all accounts connected to any platform accounts in the organization.
          * 
          * @return builder
          * 
@@ -324,7 +505,11 @@ public final class V2CoreEventDestinationState extends com.pulumi.resources.Reso
         }
 
         /**
-         * @param eventsFroms Where events should be routed from.
+         * @param eventsFroms Specifies which accounts&#39; events route to this destination.
+         * `{@literal @}self`: Receive events from the account that owns the event destination.
+         * `{@literal @}accounts`: Receive events emitted from other accounts you manage which includes your v1 and v2 accounts.
+         * `{@literal @}organization_members`: Receive events from accounts directly linked to the organization.
+         * `{@literal @}organization_members/{@literal @}accounts`: Receive events from all accounts connected to any platform accounts in the organization.
          * 
          * @return builder
          * 
@@ -334,13 +519,72 @@ public final class V2CoreEventDestinationState extends com.pulumi.resources.Reso
         }
 
         /**
-         * @param eventsFroms Where events should be routed from.
+         * @param eventsFroms Specifies which accounts&#39; events route to this destination.
+         * `{@literal @}self`: Receive events from the account that owns the event destination.
+         * `{@literal @}accounts`: Receive events emitted from other accounts you manage which includes your v1 and v2 accounts.
+         * `{@literal @}organization_members`: Receive events from accounts directly linked to the organization.
+         * `{@literal @}organization_members/{@literal @}accounts`: Receive events from all accounts connected to any platform accounts in the organization.
          * 
          * @return builder
          * 
          */
         public Builder eventsFroms(String... eventsFroms) {
             return eventsFroms(List.of(eventsFroms));
+        }
+
+        /**
+         * @param includes **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+         * Additional fields to include in the response.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder includes(@Nullable Output<List<String>> includes) {
+            $.includes = includes;
+            return this;
+        }
+
+        /**
+         * @param includes **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+         * Additional fields to include in the response.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder includes(List<String> includes) {
+            return includes(Output.of(includes));
+        }
+
+        /**
+         * @param includes **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+         * Additional fields to include in the response.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder includes(String... includes) {
+            return includes(List.of(includes));
+        }
+
+        /**
+         * @param livemode Has the value &lt;span pulumi-lang-nodejs=&#34;`true`&#34; pulumi-lang-dotnet=&#34;`True`&#34; pulumi-lang-go=&#34;`true`&#34; pulumi-lang-python=&#34;`true`&#34; pulumi-lang-yaml=&#34;`true`&#34; pulumi-lang-java=&#34;`true`&#34; pulumi-lang-hcl=&#34;`true`&#34;&gt;`true`&lt;/span&gt; if the object exists in live mode or the value &lt;span pulumi-lang-nodejs=&#34;`false`&#34; pulumi-lang-dotnet=&#34;`False`&#34; pulumi-lang-go=&#34;`false`&#34; pulumi-lang-python=&#34;`false`&#34; pulumi-lang-yaml=&#34;`false`&#34; pulumi-lang-java=&#34;`false`&#34; pulumi-lang-hcl=&#34;`false`&#34;&gt;`false`&lt;/span&gt; if the object exists in test mode.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder livemode(@Nullable Output<Boolean> livemode) {
+            $.livemode = livemode;
+            return this;
+        }
+
+        /**
+         * @param livemode Has the value &lt;span pulumi-lang-nodejs=&#34;`true`&#34; pulumi-lang-dotnet=&#34;`True`&#34; pulumi-lang-go=&#34;`true`&#34; pulumi-lang-python=&#34;`true`&#34; pulumi-lang-yaml=&#34;`true`&#34; pulumi-lang-java=&#34;`true`&#34; pulumi-lang-hcl=&#34;`true`&#34;&gt;`true`&lt;/span&gt; if the object exists in live mode or the value &lt;span pulumi-lang-nodejs=&#34;`false`&#34; pulumi-lang-dotnet=&#34;`False`&#34; pulumi-lang-go=&#34;`false`&#34; pulumi-lang-python=&#34;`false`&#34; pulumi-lang-yaml=&#34;`false`&#34; pulumi-lang-java=&#34;`false`&#34; pulumi-lang-hcl=&#34;`false`&#34;&gt;`false`&lt;/span&gt; if the object exists in test mode.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder livemode(Boolean livemode) {
+            return livemode(Output.of(livemode));
         }
 
         /**
@@ -386,6 +630,27 @@ public final class V2CoreEventDestinationState extends com.pulumi.resources.Reso
         }
 
         /**
+         * @param object String representing the object&#39;s type. Objects of the same type share the same value of the object field.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder object(@Nullable Output<String> object) {
+            $.object = object;
+            return this;
+        }
+
+        /**
+         * @param object String representing the object&#39;s type. Objects of the same type share the same value of the object field.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder object(String object) {
+            return object(Output.of(object));
+        }
+
+        /**
          * @param snapshotApiVersion If using the snapshot event payload, the API version events are rendered as.
          * 
          * @return builder
@@ -428,6 +693,27 @@ public final class V2CoreEventDestinationState extends com.pulumi.resources.Reso
         }
 
         /**
+         * @param statusDetails Additional information about event destination status.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder statusDetails(@Nullable Output<V2CoreEventDestinationStatusDetailsArgs> statusDetails) {
+            $.statusDetails = statusDetails;
+            return this;
+        }
+
+        /**
+         * @param statusDetails Additional information about event destination status.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder statusDetails(V2CoreEventDestinationStatusDetailsArgs statusDetails) {
+            return statusDetails(Output.of(statusDetails));
+        }
+
+        /**
          * @param type Event destination type.
          * 
          * @return builder
@@ -449,24 +735,55 @@ public final class V2CoreEventDestinationState extends com.pulumi.resources.Reso
         }
 
         /**
-         * @param webhookEndpoint Webhook endpoint configuration.
+         * @param updated Time at which the object was last updated.
          * 
          * @return builder
          * 
          */
-        public Builder webhookEndpoint(@Nullable Output<V2CoreEventDestinationWebhookEndpointArgs> webhookEndpoint) {
-            $.webhookEndpoint = webhookEndpoint;
+        public Builder updated(@Nullable Output<String> updated) {
+            $.updated = updated;
             return this;
         }
 
         /**
-         * @param webhookEndpoint Webhook endpoint configuration.
+         * @param updated Time at which the object was last updated.
          * 
          * @return builder
          * 
          */
-        public Builder webhookEndpoint(V2CoreEventDestinationWebhookEndpointArgs webhookEndpoint) {
-            return webhookEndpoint(Output.of(webhookEndpoint));
+        public Builder updated(String updated) {
+            return updated(Output.of(updated));
+        }
+
+        /**
+         * @param webhookEndpoints Webhook endpoint configuration.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder webhookEndpoints(@Nullable Output<List<V2CoreEventDestinationWebhookEndpointArgs>> webhookEndpoints) {
+            $.webhookEndpoints = webhookEndpoints;
+            return this;
+        }
+
+        /**
+         * @param webhookEndpoints Webhook endpoint configuration.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder webhookEndpoints(List<V2CoreEventDestinationWebhookEndpointArgs> webhookEndpoints) {
+            return webhookEndpoints(Output.of(webhookEndpoints));
+        }
+
+        /**
+         * @param webhookEndpoints Webhook endpoint configuration.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder webhookEndpoints(V2CoreEventDestinationWebhookEndpointArgs... webhookEndpoints) {
+            return webhookEndpoints(List.of(webhookEndpoints));
         }
 
         public V2CoreEventDestinationState build() {

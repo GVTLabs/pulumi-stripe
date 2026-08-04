@@ -22,7 +22,7 @@ namespace Pulumi.Stripe.Outputs
         /// </summary>
         public readonly string? Id;
         /// <summary>
-        /// Set of [key-value pairs](https://stripe.com/docs/api/metadata) that you can attach to an object. This can be useful for storing additional information about the object in a structured format. Individual keys can be unset by posting an empty value to them. All keys can be unset by posting an empty value to &lt;span pulumi-lang-nodejs="`metadata`" pulumi-lang-dotnet="`Metadata`" pulumi-lang-go="`metadata`" pulumi-lang-python="`metadata`" pulumi-lang-yaml="`metadata`" pulumi-lang-java="`metadata`" pulumi-lang-hcl="`metadata`"&gt;`metadata`&lt;/span&gt;.
+        /// Set of [key-value pairs](https://docs.stripe.com/api/metadata) that you can attach to an object. This can be useful for storing additional information about the object in a structured format. Individual keys can be unset by posting an empty value to them. All keys can be unset by posting an empty value to &lt;span pulumi-lang-nodejs="`metadata`" pulumi-lang-dotnet="`Metadata`" pulumi-lang-go="`metadata`" pulumi-lang-python="`metadata`" pulumi-lang-yaml="`metadata`" pulumi-lang-java="`metadata`" pulumi-lang-hcl="`metadata`"&gt;`metadata`&lt;/span&gt;.
         /// </summary>
         public readonly ImmutableDictionary<string, string>? Metadata;
         /// <summary>
@@ -30,11 +30,13 @@ namespace Pulumi.Stripe.Outputs
         /// </summary>
         public readonly string Name;
         /// <summary>
-        /// An arbitrary string to be displayed on your customer's credit card or bank statement. While most banks display this information consistently, some may display it incorrectly or not at all. This may be up to 22 characters. The statement description may not include `&lt;`, `&gt;`, `\`, `\"`, `'` characters, and will appear on your customer's statement in capital letters. Non-ASCII characters are automatically stripped.
+        /// An arbitrary string to be displayed on your customer's credit card or bank statement. While most banks display this information consistently, some may display it incorrectly or not at all.
+        /// 
+        /// This may be up to 22 characters. The statement description may not include `&lt;`, `&gt;`, `\`, `"`, `'` characters, and will appear on your customer's statement in capital letters. Non-ASCII characters are automatically stripped.
         /// </summary>
         public readonly string? StatementDescriptor;
         /// <summary>
-        /// A [tax code](https://stripe.com/docs/tax/tax-categories) ID.
+        /// A [tax code](https://docs.stripe.com/tax/tax-categories) ID.
         /// </summary>
         public readonly string? TaxCode;
         /// <summary>

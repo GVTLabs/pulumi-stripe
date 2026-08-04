@@ -30,14 +30,14 @@ public final class BillingMeterCustomerMappingArgs extends com.pulumi.resources.
     }
 
     /**
-     * The method for mapping a meter event to a customer. Must be &lt;span pulumi-lang-nodejs=&#34;`byId`&#34; pulumi-lang-dotnet=&#34;`ById`&#34; pulumi-lang-go=&#34;`byId`&#34; pulumi-lang-python=&#34;`by_id`&#34; pulumi-lang-yaml=&#34;`byId`&#34; pulumi-lang-java=&#34;`byId`&#34; pulumi-lang-hcl=&#34;`by_id`&#34;&gt;`byId`&lt;/span&gt;.
+     * The method for mapping a meter event to a customer.
      * 
      */
     @Import(name="type", required=true)
     private Output<String> type;
 
     /**
-     * @return The method for mapping a meter event to a customer. Must be &lt;span pulumi-lang-nodejs=&#34;`byId`&#34; pulumi-lang-dotnet=&#34;`ById`&#34; pulumi-lang-go=&#34;`byId`&#34; pulumi-lang-python=&#34;`by_id`&#34; pulumi-lang-yaml=&#34;`byId`&#34; pulumi-lang-java=&#34;`byId`&#34; pulumi-lang-hcl=&#34;`by_id`&#34;&gt;`byId`&lt;/span&gt;.
+     * @return The method for mapping a meter event to a customer.
      * 
      */
     public Output<String> type() {
@@ -91,7 +91,7 @@ public final class BillingMeterCustomerMappingArgs extends com.pulumi.resources.
         }
 
         /**
-         * @param type The method for mapping a meter event to a customer. Must be &lt;span pulumi-lang-nodejs=&#34;`byId`&#34; pulumi-lang-dotnet=&#34;`ById`&#34; pulumi-lang-go=&#34;`byId`&#34; pulumi-lang-python=&#34;`by_id`&#34; pulumi-lang-yaml=&#34;`byId`&#34; pulumi-lang-java=&#34;`byId`&#34; pulumi-lang-hcl=&#34;`by_id`&#34;&gt;`byId`&lt;/span&gt;.
+         * @param type The method for mapping a meter event to a customer.
          * 
          * @return builder
          * 
@@ -102,7 +102,7 @@ public final class BillingMeterCustomerMappingArgs extends com.pulumi.resources.
         }
 
         /**
-         * @param type The method for mapping a meter event to a customer. Must be &lt;span pulumi-lang-nodejs=&#34;`byId`&#34; pulumi-lang-dotnet=&#34;`ById`&#34; pulumi-lang-go=&#34;`byId`&#34; pulumi-lang-python=&#34;`by_id`&#34; pulumi-lang-yaml=&#34;`byId`&#34; pulumi-lang-java=&#34;`byId`&#34; pulumi-lang-hcl=&#34;`by_id`&#34;&gt;`byId`&lt;/span&gt;.
+         * @param type The method for mapping a meter event to a customer.
          * 
          * @return builder
          * 

@@ -76,25 +76,33 @@ class EntitlementsFeatureArgs:
 class _EntitlementsFeatureState:
     def __init__(__self__, *,
                  active: pulumi.Input[Optional[_builtins.bool]] = None,
+                 livemode: pulumi.Input[Optional[_builtins.bool]] = None,
                  lookup_key: pulumi.Input[Optional[_builtins.str]] = None,
                  metadata: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-                 name: pulumi.Input[Optional[_builtins.str]] = None):
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 object: pulumi.Input[Optional[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering EntitlementsFeature resources.
 
         :param pulumi.Input[_builtins.bool] active: Inactive features cannot be attached to new products and will not be returned from the features list endpoint.
+        :param pulumi.Input[_builtins.bool] livemode: If the object exists in live mode, the value is <span pulumi-lang-nodejs="`true`" pulumi-lang-dotnet="`True`" pulumi-lang-go="`true`" pulumi-lang-python="`true`" pulumi-lang-yaml="`true`" pulumi-lang-java="`true`" pulumi-lang-hcl="`true`">`true`</span>. If the object exists in test mode, the value is <span pulumi-lang-nodejs="`false`" pulumi-lang-dotnet="`False`" pulumi-lang-go="`false`" pulumi-lang-python="`false`" pulumi-lang-yaml="`false`" pulumi-lang-java="`false`" pulumi-lang-hcl="`false`">`false`</span>.
         :param pulumi.Input[_builtins.str] lookup_key: A unique key you provide as your own system identifier. This may be up to 80 characters.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] metadata: Set of key-value pairs that you can attach to an object. This can be useful for storing additional information about the object in a structured format.
         :param pulumi.Input[_builtins.str] name: The feature's name, for your own purpose, not meant to be displayable to the customer.
+        :param pulumi.Input[_builtins.str] object: String representing the object's type. Objects of the same type share the same value.
         """
         if active is not None:
             pulumi.set(__self__, "active", active)
+        if livemode is not None:
+            pulumi.set(__self__, "livemode", livemode)
         if lookup_key is not None:
             pulumi.set(__self__, "lookup_key", lookup_key)
         if metadata is not None:
             pulumi.set(__self__, "metadata", metadata)
         if name is not None:
             pulumi.set(__self__, "name", name)
+        if object is not None:
+            pulumi.set(__self__, "object", object)
 
     @_builtins.property
     @pulumi.getter
@@ -107,6 +115,18 @@ class _EntitlementsFeatureState:
     @active.setter
     def active(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "active", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def livemode(self) -> pulumi.Input[Optional[_builtins.bool]]:
+        """
+        If the object exists in live mode, the value is <span pulumi-lang-nodejs="`true`" pulumi-lang-dotnet="`True`" pulumi-lang-go="`true`" pulumi-lang-python="`true`" pulumi-lang-yaml="`true`" pulumi-lang-java="`true`" pulumi-lang-hcl="`true`">`true`</span>. If the object exists in test mode, the value is <span pulumi-lang-nodejs="`false`" pulumi-lang-dotnet="`False`" pulumi-lang-go="`false`" pulumi-lang-python="`false`" pulumi-lang-yaml="`false`" pulumi-lang-java="`false`" pulumi-lang-hcl="`false`">`false`</span>.
+        """
+        return pulumi.get(self, "livemode")
+
+    @livemode.setter
+    def livemode(self, value: pulumi.Input[Optional[_builtins.bool]]):
+        pulumi.set(self, "livemode", value)
 
     @_builtins.property
     @pulumi.getter(name="lookupKey")
@@ -143,6 +163,18 @@ class _EntitlementsFeatureState:
     @name.setter
     def name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "name", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def object(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        String representing the object's type. Objects of the same type share the same value.
+        """
+        return pulumi.get(self, "object")
+
+    @object.setter
+    def object(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "object", value)
 
 
 @pulumi.type_token("stripe:index/entitlementsFeature:EntitlementsFeature")
@@ -206,6 +238,8 @@ class EntitlementsFeature(pulumi.CustomResource):
             __props__.__dict__["metadata"] = metadata
             __props__.__dict__["name"] = name
             __props__.__dict__["active"] = None
+            __props__.__dict__["livemode"] = None
+            __props__.__dict__["object"] = None
         super(EntitlementsFeature, __self__).__init__(
             'stripe:index/entitlementsFeature:EntitlementsFeature',
             resource_name,
@@ -218,9 +252,11 @@ class EntitlementsFeature(pulumi.CustomResource):
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
             active: pulumi.Input[Optional[_builtins.bool]] = None,
+            livemode: pulumi.Input[Optional[_builtins.bool]] = None,
             lookup_key: pulumi.Input[Optional[_builtins.str]] = None,
             metadata: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-            name: pulumi.Input[Optional[_builtins.str]] = None) -> 'EntitlementsFeature':
+            name: pulumi.Input[Optional[_builtins.str]] = None,
+            object: pulumi.Input[Optional[_builtins.str]] = None) -> 'EntitlementsFeature':
         """
         Get an existing EntitlementsFeature resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -229,18 +265,22 @@ class EntitlementsFeature(pulumi.CustomResource):
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.bool] active: Inactive features cannot be attached to new products and will not be returned from the features list endpoint.
+        :param pulumi.Input[_builtins.bool] livemode: If the object exists in live mode, the value is <span pulumi-lang-nodejs="`true`" pulumi-lang-dotnet="`True`" pulumi-lang-go="`true`" pulumi-lang-python="`true`" pulumi-lang-yaml="`true`" pulumi-lang-java="`true`" pulumi-lang-hcl="`true`">`true`</span>. If the object exists in test mode, the value is <span pulumi-lang-nodejs="`false`" pulumi-lang-dotnet="`False`" pulumi-lang-go="`false`" pulumi-lang-python="`false`" pulumi-lang-yaml="`false`" pulumi-lang-java="`false`" pulumi-lang-hcl="`false`">`false`</span>.
         :param pulumi.Input[_builtins.str] lookup_key: A unique key you provide as your own system identifier. This may be up to 80 characters.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] metadata: Set of key-value pairs that you can attach to an object. This can be useful for storing additional information about the object in a structured format.
         :param pulumi.Input[_builtins.str] name: The feature's name, for your own purpose, not meant to be displayable to the customer.
+        :param pulumi.Input[_builtins.str] object: String representing the object's type. Objects of the same type share the same value.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
         __props__ = _EntitlementsFeatureState.__new__(_EntitlementsFeatureState)
 
         __props__.__dict__["active"] = active
+        __props__.__dict__["livemode"] = livemode
         __props__.__dict__["lookup_key"] = lookup_key
         __props__.__dict__["metadata"] = metadata
         __props__.__dict__["name"] = name
+        __props__.__dict__["object"] = object
         return EntitlementsFeature(resource_name, opts=opts, __props__=__props__)
 
     @_builtins.property
@@ -250,6 +290,14 @@ class EntitlementsFeature(pulumi.CustomResource):
         Inactive features cannot be attached to new products and will not be returned from the features list endpoint.
         """
         return pulumi.get(self, "active")
+
+    @_builtins.property
+    @pulumi.getter
+    def livemode(self) -> pulumi.Output[_builtins.bool]:
+        """
+        If the object exists in live mode, the value is <span pulumi-lang-nodejs="`true`" pulumi-lang-dotnet="`True`" pulumi-lang-go="`true`" pulumi-lang-python="`true`" pulumi-lang-yaml="`true`" pulumi-lang-java="`true`" pulumi-lang-hcl="`true`">`true`</span>. If the object exists in test mode, the value is <span pulumi-lang-nodejs="`false`" pulumi-lang-dotnet="`False`" pulumi-lang-go="`false`" pulumi-lang-python="`false`" pulumi-lang-yaml="`false`" pulumi-lang-java="`false`" pulumi-lang-hcl="`false`">`false`</span>.
+        """
+        return pulumi.get(self, "livemode")
 
     @_builtins.property
     @pulumi.getter(name="lookupKey")
@@ -274,4 +322,12 @@ class EntitlementsFeature(pulumi.CustomResource):
         The feature's name, for your own purpose, not meant to be displayable to the customer.
         """
         return pulumi.get(self, "name")
+
+    @_builtins.property
+    @pulumi.getter
+    def object(self) -> pulumi.Output[_builtins.str]:
+        """
+        String representing the object's type. Objects of the same type share the same value.
+        """
+        return pulumi.get(self, "object")
 

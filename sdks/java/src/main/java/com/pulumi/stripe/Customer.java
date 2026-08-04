@@ -12,7 +12,7 @@ import com.pulumi.stripe.Utilities;
 import com.pulumi.stripe.inputs.CustomerState;
 import com.pulumi.stripe.outputs.CustomerAddress;
 import com.pulumi.stripe.outputs.CustomerCashBalance;
-import com.pulumi.stripe.outputs.CustomerInvoiceSettings;
+import com.pulumi.stripe.outputs.CustomerInvoiceSetting;
 import com.pulumi.stripe.outputs.CustomerShipping;
 import com.pulumi.stripe.outputs.CustomerTax;
 import com.pulumi.stripe.outputs.CustomerTaxIdData;
@@ -26,45 +26,75 @@ import javax.annotation.Nullable;
 
 @ResourceType(type="stripe:index/customer:Customer")
 public class Customer extends com.pulumi.resources.CustomResource {
-    @Export(name="address", refs={CustomerAddress.class}, tree="[0]")
-    private Output</* @Nullable */ CustomerAddress> address;
+    /**
+     * The customer&#39;s address.
+     * 
+     */
+    @Export(name="addresses", refs={List.class,CustomerAddress.class}, tree="[0,1]")
+    private Output</* @Nullable */ List<CustomerAddress>> addresses;
 
-    public Output<Optional<CustomerAddress>> address() {
-        return Codegen.optional(this.address);
+    /**
+     * @return The customer&#39;s address.
+     * 
+     */
+    public Output<Optional<List<CustomerAddress>>> addresses() {
+        return Codegen.optional(this.addresses);
     }
     /**
-     * An integer amount in cents (or local equivalent) that represents the customer&#39;s current balance, which affect the customer&#39;s future invoices. A negative amount represents a credit that decreases the amount due on an invoice; a positive amount increases the amount due on an invoice.
+     * The current balance, if any, that&#39;s stored on the customer in their default currency. If negative, the customer has credit to apply to their next invoice. If positive, the customer has an amount owed that&#39;s added to their next invoice. The balance only considers amounts that Stripe hasn&#39;t successfully applied to any invoice. It doesn&#39;t reflect unpaid invoices. This balance is only taken into account after invoices finalize. For multi-currency balances, see &lt;span pulumi-lang-nodejs=&#34;[invoiceCreditBalance]&#34; pulumi-lang-dotnet=&#34;[InvoiceCreditBalance]&#34; pulumi-lang-go=&#34;[invoiceCreditBalance]&#34; pulumi-lang-python=&#34;[invoice_credit_balance]&#34; pulumi-lang-yaml=&#34;[invoiceCreditBalance]&#34; pulumi-lang-java=&#34;[invoiceCreditBalance]&#34; pulumi-lang-hcl=&#34;[invoice_credit_balance]&#34;&gt;[invoiceCreditBalance]&lt;/span&gt;(https://docs.stripe.com/api/customers/object#customer_object-invoice_credit_balance).
      * 
      */
     @Export(name="balance", refs={Double.class}, tree="[0]")
     private Output<Double> balance;
 
     /**
-     * @return An integer amount in cents (or local equivalent) that represents the customer&#39;s current balance, which affect the customer&#39;s future invoices. A negative amount represents a credit that decreases the amount due on an invoice; a positive amount increases the amount due on an invoice.
+     * @return The current balance, if any, that&#39;s stored on the customer in their default currency. If negative, the customer has credit to apply to their next invoice. If positive, the customer has an amount owed that&#39;s added to their next invoice. The balance only considers amounts that Stripe hasn&#39;t successfully applied to any invoice. It doesn&#39;t reflect unpaid invoices. This balance is only taken into account after invoices finalize. For multi-currency balances, see &lt;span pulumi-lang-nodejs=&#34;[invoiceCreditBalance]&#34; pulumi-lang-dotnet=&#34;[InvoiceCreditBalance]&#34; pulumi-lang-go=&#34;[invoiceCreditBalance]&#34; pulumi-lang-python=&#34;[invoice_credit_balance]&#34; pulumi-lang-yaml=&#34;[invoiceCreditBalance]&#34; pulumi-lang-java=&#34;[invoiceCreditBalance]&#34; pulumi-lang-hcl=&#34;[invoice_credit_balance]&#34;&gt;[invoiceCreditBalance]&lt;/span&gt;(https://docs.stripe.com/api/customers/object#customer_object-invoice_credit_balance).
      * 
      */
     public Output<Double> balance() {
         return this.balance;
     }
+    /**
+     * The customer&#39;s business name.
+     * 
+     */
     @Export(name="businessName", refs={String.class}, tree="[0]")
     private Output<String> businessName;
 
+    /**
+     * @return The customer&#39;s business name.
+     * 
+     */
     public Output<String> businessName() {
         return this.businessName;
     }
     /**
-     * Balance information and default balance settings for this customer.
+     * The current funds being held by Stripe on behalf of the customer. You can apply these funds towards payment intents when the source is &lt;span pulumi-lang-nodejs=&#34;&#34;cashBalance&#34;&#34; pulumi-lang-dotnet=&#34;&#34;CashBalance&#34;&#34; pulumi-lang-go=&#34;&#34;cashBalance&#34;&#34; pulumi-lang-python=&#34;&#34;cash_balance&#34;&#34; pulumi-lang-yaml=&#34;&#34;cashBalance&#34;&#34; pulumi-lang-java=&#34;&#34;cashBalance&#34;&#34; pulumi-lang-hcl=&#34;&#34;cash_balance&#34;&#34;&gt;&#34;cashBalance&#34;&lt;/span&gt;. The `settings&lt;span pulumi-lang-nodejs=&#34;[reconciliationMode]&#34; pulumi-lang-dotnet=&#34;[ReconciliationMode]&#34; pulumi-lang-go=&#34;[reconciliationMode]&#34; pulumi-lang-python=&#34;[reconciliation_mode]&#34; pulumi-lang-yaml=&#34;[reconciliationMode]&#34; pulumi-lang-java=&#34;[reconciliationMode]&#34; pulumi-lang-hcl=&#34;[reconciliation_mode]&#34;&gt;[reconciliationMode]&lt;/span&gt;` field describes if these funds apply to these payment intents manually or automatically.
      * 
      */
-    @Export(name="cashBalance", refs={CustomerCashBalance.class}, tree="[0]")
-    private Output</* @Nullable */ CustomerCashBalance> cashBalance;
+    @Export(name="cashBalances", refs={List.class,CustomerCashBalance.class}, tree="[0,1]")
+    private Output</* @Nullable */ List<CustomerCashBalance>> cashBalances;
 
     /**
-     * @return Balance information and default balance settings for this customer.
+     * @return The current funds being held by Stripe on behalf of the customer. You can apply these funds towards payment intents when the source is &lt;span pulumi-lang-nodejs=&#34;&#34;cashBalance&#34;&#34; pulumi-lang-dotnet=&#34;&#34;CashBalance&#34;&#34; pulumi-lang-go=&#34;&#34;cashBalance&#34;&#34; pulumi-lang-python=&#34;&#34;cash_balance&#34;&#34; pulumi-lang-yaml=&#34;&#34;cashBalance&#34;&#34; pulumi-lang-java=&#34;&#34;cashBalance&#34;&#34; pulumi-lang-hcl=&#34;&#34;cash_balance&#34;&#34;&gt;&#34;cashBalance&#34;&lt;/span&gt;. The `settings&lt;span pulumi-lang-nodejs=&#34;[reconciliationMode]&#34; pulumi-lang-dotnet=&#34;[ReconciliationMode]&#34; pulumi-lang-go=&#34;[reconciliationMode]&#34; pulumi-lang-python=&#34;[reconciliation_mode]&#34; pulumi-lang-yaml=&#34;[reconciliationMode]&#34; pulumi-lang-java=&#34;[reconciliationMode]&#34; pulumi-lang-hcl=&#34;[reconciliation_mode]&#34;&gt;[reconciliationMode]&lt;/span&gt;` field describes if these funds apply to these payment intents manually or automatically.
      * 
      */
-    public Output<Optional<CustomerCashBalance>> cashBalance() {
-        return Codegen.optional(this.cashBalance);
+    public Output<Optional<List<CustomerCashBalance>>> cashBalances() {
+        return Codegen.optional(this.cashBalances);
+    }
+    /**
+     * Time at which the object was created. Measured in seconds since the Unix epoch.
+     * 
+     */
+    @Export(name="created", refs={Double.class}, tree="[0]")
+    private Output<Double> created;
+
+    /**
+     * @return Time at which the object was created. Measured in seconds since the Unix epoch.
+     * 
+     */
+    public Output<Double> created() {
+        return this.created;
     }
     /**
      * Three-letter [ISO code for the currency](https://stripe.com/docs/currencies) the customer can be charged in for recurring billing purposes.
@@ -80,91 +110,175 @@ public class Customer extends com.pulumi.resources.CustomResource {
     public Output<String> currency() {
         return this.currency;
     }
+    /**
+     * The ID of an Account representing a customer. You can use this ID with any v1 API that accepts a&lt;span pulumi-lang-nodejs=&#34; customerAccount &#34; pulumi-lang-dotnet=&#34; CustomerAccount &#34; pulumi-lang-go=&#34; customerAccount &#34; pulumi-lang-python=&#34; customer_account &#34; pulumi-lang-yaml=&#34; customerAccount &#34; pulumi-lang-java=&#34; customerAccount &#34; pulumi-lang-hcl=&#34; customer_account &#34;&gt; customerAccount &lt;/span&gt;parameter.
+     * 
+     */
     @Export(name="customerAccount", refs={String.class}, tree="[0]")
     private Output<String> customerAccount;
 
+    /**
+     * @return The ID of an Account representing a customer. You can use this ID with any v1 API that accepts a&lt;span pulumi-lang-nodejs=&#34; customerAccount &#34; pulumi-lang-dotnet=&#34; CustomerAccount &#34; pulumi-lang-go=&#34; customerAccount &#34; pulumi-lang-python=&#34; customer_account &#34; pulumi-lang-yaml=&#34; customerAccount &#34; pulumi-lang-java=&#34; customerAccount &#34; pulumi-lang-hcl=&#34; customer_account &#34;&gt; customerAccount &lt;/span&gt;parameter.
+     * 
+     */
     public Output<String> customerAccount() {
         return this.customerAccount;
     }
     /**
-     * Tracks the most recent state change on any invoice belonging to the customer. Paying an invoice or marking it uncollectible via the API will set this field to false. An automatic payment failure or passing the `invoice.due_date` will set this field to &lt;span pulumi-lang-nodejs=&#34;`true`&#34; pulumi-lang-dotnet=&#34;`True`&#34; pulumi-lang-go=&#34;`true`&#34; pulumi-lang-python=&#34;`true`&#34; pulumi-lang-yaml=&#34;`true`&#34; pulumi-lang-java=&#34;`true`&#34; pulumi-lang-hcl=&#34;`true`&#34;&gt;`true`&lt;/span&gt;. If an invoice becomes uncollectible by [dunning](https://stripe.com/docs/billing/automatic-collection), &lt;span pulumi-lang-nodejs=&#34;`delinquent`&#34; pulumi-lang-dotnet=&#34;`Delinquent`&#34; pulumi-lang-go=&#34;`delinquent`&#34; pulumi-lang-python=&#34;`delinquent`&#34; pulumi-lang-yaml=&#34;`delinquent`&#34; pulumi-lang-java=&#34;`delinquent`&#34; pulumi-lang-hcl=&#34;`delinquent`&#34;&gt;`delinquent`&lt;/span&gt; doesn&#39;t reset to &lt;span pulumi-lang-nodejs=&#34;`false`&#34; pulumi-lang-dotnet=&#34;`False`&#34; pulumi-lang-go=&#34;`false`&#34; pulumi-lang-python=&#34;`false`&#34; pulumi-lang-yaml=&#34;`false`&#34; pulumi-lang-java=&#34;`false`&#34; pulumi-lang-hcl=&#34;`false`&#34;&gt;`false`&lt;/span&gt;. If you care whether the customer has paid their most recent subscription invoice, use `subscription.status` instead. Paying or marking uncollectible any customer invoice regardless of whether it is the latest invoice for a subscription will always set this field to &lt;span pulumi-lang-nodejs=&#34;`false`&#34; pulumi-lang-dotnet=&#34;`False`&#34; pulumi-lang-go=&#34;`false`&#34; pulumi-lang-python=&#34;`false`&#34; pulumi-lang-yaml=&#34;`false`&#34; pulumi-lang-java=&#34;`false`&#34; pulumi-lang-hcl=&#34;`false`&#34;&gt;`false`&lt;/span&gt;.
+     * ID of the default payment source for the customer.
+     * 
+     * If you use payment methods created through the PaymentMethods API, see the [invoice_settings.default_payment_method](https://docs.stripe.com/api/customers/object#customer_object-invoice_settings-default_payment_method) field instead.
+     * 
+     */
+    @Export(name="defaultSource", refs={String.class}, tree="[0]")
+    private Output<String> defaultSource;
+
+    /**
+     * @return ID of the default payment source for the customer.
+     * 
+     * If you use payment methods created through the PaymentMethods API, see the [invoice_settings.default_payment_method](https://docs.stripe.com/api/customers/object#customer_object-invoice_settings-default_payment_method) field instead.
+     * 
+     */
+    public Output<String> defaultSource() {
+        return this.defaultSource;
+    }
+    /**
+     * Tracks the most recent state change on any invoice belonging to the customer. Paying an invoice or marking it uncollectible via the API will set this field to false. An automatic payment failure or passing the `invoice.due_date` will set this field to &lt;span pulumi-lang-nodejs=&#34;`true`&#34; pulumi-lang-dotnet=&#34;`True`&#34; pulumi-lang-go=&#34;`true`&#34; pulumi-lang-python=&#34;`true`&#34; pulumi-lang-yaml=&#34;`true`&#34; pulumi-lang-java=&#34;`true`&#34; pulumi-lang-hcl=&#34;`true`&#34;&gt;`true`&lt;/span&gt;.
+     * 
+     * If an invoice becomes uncollectible by [dunning](https://docs.stripe.com/billing/automatic-collection), &lt;span pulumi-lang-nodejs=&#34;`delinquent`&#34; pulumi-lang-dotnet=&#34;`Delinquent`&#34; pulumi-lang-go=&#34;`delinquent`&#34; pulumi-lang-python=&#34;`delinquent`&#34; pulumi-lang-yaml=&#34;`delinquent`&#34; pulumi-lang-java=&#34;`delinquent`&#34; pulumi-lang-hcl=&#34;`delinquent`&#34;&gt;`delinquent`&lt;/span&gt; doesn&#39;t reset to &lt;span pulumi-lang-nodejs=&#34;`false`&#34; pulumi-lang-dotnet=&#34;`False`&#34; pulumi-lang-go=&#34;`false`&#34; pulumi-lang-python=&#34;`false`&#34; pulumi-lang-yaml=&#34;`false`&#34; pulumi-lang-java=&#34;`false`&#34; pulumi-lang-hcl=&#34;`false`&#34;&gt;`false`&lt;/span&gt;.
+     * 
+     * If you care whether the customer has paid their most recent subscription invoice, use `subscription.status` instead. Paying or marking uncollectible any customer invoice regardless of whether it is the latest invoice for a subscription will always set this field to &lt;span pulumi-lang-nodejs=&#34;`false`&#34; pulumi-lang-dotnet=&#34;`False`&#34; pulumi-lang-go=&#34;`false`&#34; pulumi-lang-python=&#34;`false`&#34; pulumi-lang-yaml=&#34;`false`&#34; pulumi-lang-java=&#34;`false`&#34; pulumi-lang-hcl=&#34;`false`&#34;&gt;`false`&lt;/span&gt;.
      * 
      */
     @Export(name="delinquent", refs={Boolean.class}, tree="[0]")
     private Output<Boolean> delinquent;
 
     /**
-     * @return Tracks the most recent state change on any invoice belonging to the customer. Paying an invoice or marking it uncollectible via the API will set this field to false. An automatic payment failure or passing the `invoice.due_date` will set this field to &lt;span pulumi-lang-nodejs=&#34;`true`&#34; pulumi-lang-dotnet=&#34;`True`&#34; pulumi-lang-go=&#34;`true`&#34; pulumi-lang-python=&#34;`true`&#34; pulumi-lang-yaml=&#34;`true`&#34; pulumi-lang-java=&#34;`true`&#34; pulumi-lang-hcl=&#34;`true`&#34;&gt;`true`&lt;/span&gt;. If an invoice becomes uncollectible by [dunning](https://stripe.com/docs/billing/automatic-collection), &lt;span pulumi-lang-nodejs=&#34;`delinquent`&#34; pulumi-lang-dotnet=&#34;`Delinquent`&#34; pulumi-lang-go=&#34;`delinquent`&#34; pulumi-lang-python=&#34;`delinquent`&#34; pulumi-lang-yaml=&#34;`delinquent`&#34; pulumi-lang-java=&#34;`delinquent`&#34; pulumi-lang-hcl=&#34;`delinquent`&#34;&gt;`delinquent`&lt;/span&gt; doesn&#39;t reset to &lt;span pulumi-lang-nodejs=&#34;`false`&#34; pulumi-lang-dotnet=&#34;`False`&#34; pulumi-lang-go=&#34;`false`&#34; pulumi-lang-python=&#34;`false`&#34; pulumi-lang-yaml=&#34;`false`&#34; pulumi-lang-java=&#34;`false`&#34; pulumi-lang-hcl=&#34;`false`&#34;&gt;`false`&lt;/span&gt;. If you care whether the customer has paid their most recent subscription invoice, use `subscription.status` instead. Paying or marking uncollectible any customer invoice regardless of whether it is the latest invoice for a subscription will always set this field to &lt;span pulumi-lang-nodejs=&#34;`false`&#34; pulumi-lang-dotnet=&#34;`False`&#34; pulumi-lang-go=&#34;`false`&#34; pulumi-lang-python=&#34;`false`&#34; pulumi-lang-yaml=&#34;`false`&#34; pulumi-lang-java=&#34;`false`&#34; pulumi-lang-hcl=&#34;`false`&#34;&gt;`false`&lt;/span&gt;.
+     * @return Tracks the most recent state change on any invoice belonging to the customer. Paying an invoice or marking it uncollectible via the API will set this field to false. An automatic payment failure or passing the `invoice.due_date` will set this field to &lt;span pulumi-lang-nodejs=&#34;`true`&#34; pulumi-lang-dotnet=&#34;`True`&#34; pulumi-lang-go=&#34;`true`&#34; pulumi-lang-python=&#34;`true`&#34; pulumi-lang-yaml=&#34;`true`&#34; pulumi-lang-java=&#34;`true`&#34; pulumi-lang-hcl=&#34;`true`&#34;&gt;`true`&lt;/span&gt;.
+     * 
+     * If an invoice becomes uncollectible by [dunning](https://docs.stripe.com/billing/automatic-collection), &lt;span pulumi-lang-nodejs=&#34;`delinquent`&#34; pulumi-lang-dotnet=&#34;`Delinquent`&#34; pulumi-lang-go=&#34;`delinquent`&#34; pulumi-lang-python=&#34;`delinquent`&#34; pulumi-lang-yaml=&#34;`delinquent`&#34; pulumi-lang-java=&#34;`delinquent`&#34; pulumi-lang-hcl=&#34;`delinquent`&#34;&gt;`delinquent`&lt;/span&gt; doesn&#39;t reset to &lt;span pulumi-lang-nodejs=&#34;`false`&#34; pulumi-lang-dotnet=&#34;`False`&#34; pulumi-lang-go=&#34;`false`&#34; pulumi-lang-python=&#34;`false`&#34; pulumi-lang-yaml=&#34;`false`&#34; pulumi-lang-java=&#34;`false`&#34; pulumi-lang-hcl=&#34;`false`&#34;&gt;`false`&lt;/span&gt;.
+     * 
+     * If you care whether the customer has paid their most recent subscription invoice, use `subscription.status` instead. Paying or marking uncollectible any customer invoice regardless of whether it is the latest invoice for a subscription will always set this field to &lt;span pulumi-lang-nodejs=&#34;`false`&#34; pulumi-lang-dotnet=&#34;`False`&#34; pulumi-lang-go=&#34;`false`&#34; pulumi-lang-python=&#34;`false`&#34; pulumi-lang-yaml=&#34;`false`&#34; pulumi-lang-java=&#34;`false`&#34; pulumi-lang-hcl=&#34;`false`&#34;&gt;`false`&lt;/span&gt;.
      * 
      */
     public Output<Boolean> delinquent() {
         return this.delinquent;
     }
     /**
-     * An arbitrary string that you can attach to a customer object. It is displayed alongside the customer in the dashboard.
+     * An arbitrary string attached to the object. Often useful for displaying to users.
      * 
      */
     @Export(name="description", refs={String.class}, tree="[0]")
     private Output<String> description;
 
     /**
-     * @return An arbitrary string that you can attach to a customer object. It is displayed alongside the customer in the dashboard.
+     * @return An arbitrary string attached to the object. Often useful for displaying to users.
      * 
      */
     public Output<String> description() {
         return this.description;
     }
     /**
-     * Customer&#39;s email address. It&#39;s displayed alongside the customer in your dashboard and can be useful for searching and tracking. This may be up to *512 characters*.
+     * Describes the current discount active on the customer, if there is one.
+     * 
+     */
+    @Export(name="discount", refs={String.class}, tree="[0]")
+    private Output<String> discount;
+
+    /**
+     * @return Describes the current discount active on the customer, if there is one.
+     * 
+     */
+    public Output<String> discount() {
+        return this.discount;
+    }
+    /**
+     * The customer&#39;s email address.
      * 
      */
     @Export(name="email", refs={String.class}, tree="[0]")
     private Output<String> email;
 
     /**
-     * @return Customer&#39;s email address. It&#39;s displayed alongside the customer in your dashboard and can be useful for searching and tracking. This may be up to *512 characters*.
+     * @return The customer&#39;s email address.
      * 
      */
     public Output<String> email() {
         return this.email;
     }
+    /**
+     * The customer&#39;s individual name.
+     * 
+     */
     @Export(name="individualName", refs={String.class}, tree="[0]")
     private Output<String> individualName;
 
+    /**
+     * @return The customer&#39;s individual name.
+     * 
+     */
     public Output<String> individualName() {
         return this.individualName;
     }
     /**
-     * The prefix for the customer used to generate unique invoice numbers. Must be 3–12 uppercase letters or numbers.
+     * The current multi-currency balances, if any, that&#39;s stored on the customer. If positive in a currency, the customer has a credit to apply to their next invoice denominated in that currency. If negative, the customer has an amount owed that&#39;s added to their next invoice denominated in that currency. These balances don&#39;t apply to unpaid invoices. They solely track amounts that Stripe hasn&#39;t successfully applied to any invoice. Stripe only applies a balance in a specific currency to an invoice after that invoice (which is in the same currency) finalizes.
+     * 
+     */
+    @Export(name="invoiceCreditBalance", refs={Map.class,String.class,Double.class}, tree="[0,1,2]")
+    private Output<Map<String,Double>> invoiceCreditBalance;
+
+    /**
+     * @return The current multi-currency balances, if any, that&#39;s stored on the customer. If positive in a currency, the customer has a credit to apply to their next invoice denominated in that currency. If negative, the customer has an amount owed that&#39;s added to their next invoice denominated in that currency. These balances don&#39;t apply to unpaid invoices. They solely track amounts that Stripe hasn&#39;t successfully applied to any invoice. Stripe only applies a balance in a specific currency to an invoice after that invoice (which is in the same currency) finalizes.
+     * 
+     */
+    public Output<Map<String,Double>> invoiceCreditBalance() {
+        return this.invoiceCreditBalance;
+    }
+    /**
+     * The prefix for the customer used to generate unique invoice numbers.
      * 
      */
     @Export(name="invoicePrefix", refs={String.class}, tree="[0]")
     private Output<String> invoicePrefix;
 
     /**
-     * @return The prefix for the customer used to generate unique invoice numbers. Must be 3–12 uppercase letters or numbers.
+     * @return The prefix for the customer used to generate unique invoice numbers.
      * 
      */
     public Output<String> invoicePrefix() {
         return this.invoicePrefix;
     }
-    /**
-     * Default invoice settings for this customer.
-     * 
-     */
-    @Export(name="invoiceSettings", refs={CustomerInvoiceSettings.class}, tree="[0]")
-    private Output</* @Nullable */ CustomerInvoiceSettings> invoiceSettings;
+    @Export(name="invoiceSettings", refs={List.class,CustomerInvoiceSetting.class}, tree="[0,1]")
+    private Output</* @Nullable */ List<CustomerInvoiceSetting>> invoiceSettings;
 
-    /**
-     * @return Default invoice settings for this customer.
-     * 
-     */
-    public Output<Optional<CustomerInvoiceSettings>> invoiceSettings() {
+    public Output<Optional<List<CustomerInvoiceSetting>>> invoiceSettings() {
         return Codegen.optional(this.invoiceSettings);
     }
+    /**
+     * If the object exists in live mode, the value is &lt;span pulumi-lang-nodejs=&#34;`true`&#34; pulumi-lang-dotnet=&#34;`True`&#34; pulumi-lang-go=&#34;`true`&#34; pulumi-lang-python=&#34;`true`&#34; pulumi-lang-yaml=&#34;`true`&#34; pulumi-lang-java=&#34;`true`&#34; pulumi-lang-hcl=&#34;`true`&#34;&gt;`true`&lt;/span&gt;. If the object exists in test mode, the value is &lt;span pulumi-lang-nodejs=&#34;`false`&#34; pulumi-lang-dotnet=&#34;`False`&#34; pulumi-lang-go=&#34;`false`&#34; pulumi-lang-python=&#34;`false`&#34; pulumi-lang-yaml=&#34;`false`&#34; pulumi-lang-java=&#34;`false`&#34; pulumi-lang-hcl=&#34;`false`&#34;&gt;`false`&lt;/span&gt;.
+     * 
+     */
+    @Export(name="livemode", refs={Boolean.class}, tree="[0]")
+    private Output<Boolean> livemode;
+
+    /**
+     * @return If the object exists in live mode, the value is &lt;span pulumi-lang-nodejs=&#34;`true`&#34; pulumi-lang-dotnet=&#34;`True`&#34; pulumi-lang-go=&#34;`true`&#34; pulumi-lang-python=&#34;`true`&#34; pulumi-lang-yaml=&#34;`true`&#34; pulumi-lang-java=&#34;`true`&#34; pulumi-lang-hcl=&#34;`true`&#34;&gt;`true`&lt;/span&gt;. If the object exists in test mode, the value is &lt;span pulumi-lang-nodejs=&#34;`false`&#34; pulumi-lang-dotnet=&#34;`False`&#34; pulumi-lang-go=&#34;`false`&#34; pulumi-lang-python=&#34;`false`&#34; pulumi-lang-yaml=&#34;`false`&#34; pulumi-lang-java=&#34;`false`&#34; pulumi-lang-hcl=&#34;`false`&#34;&gt;`false`&lt;/span&gt;.
+     * 
+     */
+    public Output<Boolean> livemode() {
+        return this.livemode;
+    }
+    /**
+     * Set of [key-value pairs](https://docs.stripe.com/api/metadata) that you can attach to an object. This can be useful for storing additional information about the object in a structured format.
+     * 
+     */
     @Export(name="metadata", refs={Map.class,String.class}, tree="[0,1,1]")
     private Output<Map<String,String>> metadata;
 
+    /**
+     * @return Set of [key-value pairs](https://docs.stripe.com/api/metadata) that you can attach to an object. This can be useful for storing additional information about the object in a structured format.
+     * 
+     */
     public Output<Map<String,String>> metadata() {
         return this.metadata;
     }
@@ -183,18 +297,32 @@ public class Customer extends com.pulumi.resources.CustomResource {
         return this.name;
     }
     /**
-     * The sequence to be used on the customer&#39;s next invoice. Defaults to 1.
+     * The suffix of the customer&#39;s next invoice number (for example, 0001). When the account uses account level sequencing, this parameter is ignored in API requests and the field omitted in API responses.
      * 
      */
     @Export(name="nextInvoiceSequence", refs={Double.class}, tree="[0]")
     private Output<Double> nextInvoiceSequence;
 
     /**
-     * @return The sequence to be used on the customer&#39;s next invoice. Defaults to 1.
+     * @return The suffix of the customer&#39;s next invoice number (for example, 0001). When the account uses account level sequencing, this parameter is ignored in API requests and the field omitted in API responses.
      * 
      */
     public Output<Double> nextInvoiceSequence() {
         return this.nextInvoiceSequence;
+    }
+    /**
+     * String representing the object&#39;s type. Objects of the same type share the same value.
+     * 
+     */
+    @Export(name="object", refs={String.class}, tree="[0]")
+    private Output<String> object;
+
+    /**
+     * @return String representing the object&#39;s type. Objects of the same type share the same value.
+     * 
+     */
+    public Output<String> object() {
+        return this.object;
     }
     @Export(name="paymentMethod", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> paymentMethod;
@@ -217,48 +345,56 @@ public class Customer extends com.pulumi.resources.CustomResource {
         return this.phone;
     }
     /**
-     * Customer&#39;s preferred languages, ordered by preference.
+     * The customer&#39;s preferred locales (languages), ordered by preference.
      * 
      */
     @Export(name="preferredLocales", refs={List.class,String.class}, tree="[0,1]")
-    private Output</* @Nullable */ List<String>> preferredLocales;
+    private Output<List<String>> preferredLocales;
 
     /**
-     * @return Customer&#39;s preferred languages, ordered by preference.
+     * @return The customer&#39;s preferred locales (languages), ordered by preference.
      * 
      */
-    public Output<Optional<List<String>>> preferredLocales() {
-        return Codegen.optional(this.preferredLocales);
-    }
-    @Export(name="shipping", refs={CustomerShipping.class}, tree="[0]")
-    private Output</* @Nullable */ CustomerShipping> shipping;
-
-    public Output<Optional<CustomerShipping>> shipping() {
-        return Codegen.optional(this.shipping);
+    public Output<List<String>> preferredLocales() {
+        return this.preferredLocales;
     }
     /**
-     * Tax details about the customer.
+     * Mailing and shipping address for the customer. Appears on invoices emailed to this customer.
      * 
      */
-    @Export(name="tax", refs={CustomerTax.class}, tree="[0]")
-    private Output</* @Nullable */ CustomerTax> tax;
+    @Export(name="shippings", refs={List.class,CustomerShipping.class}, tree="[0,1]")
+    private Output</* @Nullable */ List<CustomerShipping>> shippings;
 
     /**
-     * @return Tax details about the customer.
+     * @return Mailing and shipping address for the customer. Appears on invoices emailed to this customer.
      * 
      */
-    public Output<Optional<CustomerTax>> tax() {
-        return Codegen.optional(this.tax);
+    public Output<Optional<List<CustomerShipping>>> shippings() {
+        return Codegen.optional(this.shippings);
     }
     /**
-     * The customer&#39;s tax exemption. One of &lt;span pulumi-lang-nodejs=&#34;`none`&#34; pulumi-lang-dotnet=&#34;`None`&#34; pulumi-lang-go=&#34;`none`&#34; pulumi-lang-python=&#34;`none`&#34; pulumi-lang-yaml=&#34;`none`&#34; pulumi-lang-java=&#34;`none`&#34; pulumi-lang-hcl=&#34;`none`&#34;&gt;`none`&lt;/span&gt;, &lt;span pulumi-lang-nodejs=&#34;`exempt`&#34; pulumi-lang-dotnet=&#34;`Exempt`&#34; pulumi-lang-go=&#34;`exempt`&#34; pulumi-lang-python=&#34;`exempt`&#34; pulumi-lang-yaml=&#34;`exempt`&#34; pulumi-lang-java=&#34;`exempt`&#34; pulumi-lang-hcl=&#34;`exempt`&#34;&gt;`exempt`&lt;/span&gt;, or &lt;span pulumi-lang-nodejs=&#34;`reverse`&#34; pulumi-lang-dotnet=&#34;`Reverse`&#34; pulumi-lang-go=&#34;`reverse`&#34; pulumi-lang-python=&#34;`reverse`&#34; pulumi-lang-yaml=&#34;`reverse`&#34; pulumi-lang-java=&#34;`reverse`&#34; pulumi-lang-hcl=&#34;`reverse`&#34;&gt;`reverse`&lt;/span&gt;.
+     * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * 
+     */
+    @Export(name="source", refs={String.class}, tree="[0]")
+    private Output</* @Nullable */ String> source;
+
+    /**
+     * @return **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * 
+     */
+    public Output<Optional<String>> source() {
+        return Codegen.optional(this.source);
+    }
+    /**
+     * Describes the customer&#39;s tax exemption status, which is &lt;span pulumi-lang-nodejs=&#34;`none`&#34; pulumi-lang-dotnet=&#34;`None`&#34; pulumi-lang-go=&#34;`none`&#34; pulumi-lang-python=&#34;`none`&#34; pulumi-lang-yaml=&#34;`none`&#34; pulumi-lang-java=&#34;`none`&#34; pulumi-lang-hcl=&#34;`none`&#34;&gt;`none`&lt;/span&gt;, &lt;span pulumi-lang-nodejs=&#34;`exempt`&#34; pulumi-lang-dotnet=&#34;`Exempt`&#34; pulumi-lang-go=&#34;`exempt`&#34; pulumi-lang-python=&#34;`exempt`&#34; pulumi-lang-yaml=&#34;`exempt`&#34; pulumi-lang-java=&#34;`exempt`&#34; pulumi-lang-hcl=&#34;`exempt`&#34;&gt;`exempt`&lt;/span&gt;, or &lt;span pulumi-lang-nodejs=&#34;`reverse`&#34; pulumi-lang-dotnet=&#34;`Reverse`&#34; pulumi-lang-go=&#34;`reverse`&#34; pulumi-lang-python=&#34;`reverse`&#34; pulumi-lang-yaml=&#34;`reverse`&#34; pulumi-lang-java=&#34;`reverse`&#34; pulumi-lang-hcl=&#34;`reverse`&#34;&gt;`reverse`&lt;/span&gt;. When set to &lt;span pulumi-lang-nodejs=&#34;`reverse`&#34; pulumi-lang-dotnet=&#34;`Reverse`&#34; pulumi-lang-go=&#34;`reverse`&#34; pulumi-lang-python=&#34;`reverse`&#34; pulumi-lang-yaml=&#34;`reverse`&#34; pulumi-lang-java=&#34;`reverse`&#34; pulumi-lang-hcl=&#34;`reverse`&#34;&gt;`reverse`&lt;/span&gt;, invoice and receipt PDFs include the following text: **&#34;Reverse charge&#34;**.
      * 
      */
     @Export(name="taxExempt", refs={String.class}, tree="[0]")
     private Output<String> taxExempt;
 
     /**
-     * @return The customer&#39;s tax exemption. One of &lt;span pulumi-lang-nodejs=&#34;`none`&#34; pulumi-lang-dotnet=&#34;`None`&#34; pulumi-lang-go=&#34;`none`&#34; pulumi-lang-python=&#34;`none`&#34; pulumi-lang-yaml=&#34;`none`&#34; pulumi-lang-java=&#34;`none`&#34; pulumi-lang-hcl=&#34;`none`&#34;&gt;`none`&lt;/span&gt;, &lt;span pulumi-lang-nodejs=&#34;`exempt`&#34; pulumi-lang-dotnet=&#34;`Exempt`&#34; pulumi-lang-go=&#34;`exempt`&#34; pulumi-lang-python=&#34;`exempt`&#34; pulumi-lang-yaml=&#34;`exempt`&#34; pulumi-lang-java=&#34;`exempt`&#34; pulumi-lang-hcl=&#34;`exempt`&#34;&gt;`exempt`&lt;/span&gt;, or &lt;span pulumi-lang-nodejs=&#34;`reverse`&#34; pulumi-lang-dotnet=&#34;`Reverse`&#34; pulumi-lang-go=&#34;`reverse`&#34; pulumi-lang-python=&#34;`reverse`&#34; pulumi-lang-yaml=&#34;`reverse`&#34; pulumi-lang-java=&#34;`reverse`&#34; pulumi-lang-hcl=&#34;`reverse`&#34;&gt;`reverse`&lt;/span&gt;.
+     * @return Describes the customer&#39;s tax exemption status, which is &lt;span pulumi-lang-nodejs=&#34;`none`&#34; pulumi-lang-dotnet=&#34;`None`&#34; pulumi-lang-go=&#34;`none`&#34; pulumi-lang-python=&#34;`none`&#34; pulumi-lang-yaml=&#34;`none`&#34; pulumi-lang-java=&#34;`none`&#34; pulumi-lang-hcl=&#34;`none`&#34;&gt;`none`&lt;/span&gt;, &lt;span pulumi-lang-nodejs=&#34;`exempt`&#34; pulumi-lang-dotnet=&#34;`Exempt`&#34; pulumi-lang-go=&#34;`exempt`&#34; pulumi-lang-python=&#34;`exempt`&#34; pulumi-lang-yaml=&#34;`exempt`&#34; pulumi-lang-java=&#34;`exempt`&#34; pulumi-lang-hcl=&#34;`exempt`&#34;&gt;`exempt`&lt;/span&gt;, or &lt;span pulumi-lang-nodejs=&#34;`reverse`&#34; pulumi-lang-dotnet=&#34;`Reverse`&#34; pulumi-lang-go=&#34;`reverse`&#34; pulumi-lang-python=&#34;`reverse`&#34; pulumi-lang-yaml=&#34;`reverse`&#34; pulumi-lang-java=&#34;`reverse`&#34; pulumi-lang-hcl=&#34;`reverse`&#34;&gt;`reverse`&lt;/span&gt;. When set to &lt;span pulumi-lang-nodejs=&#34;`reverse`&#34; pulumi-lang-dotnet=&#34;`Reverse`&#34; pulumi-lang-go=&#34;`reverse`&#34; pulumi-lang-python=&#34;`reverse`&#34; pulumi-lang-yaml=&#34;`reverse`&#34; pulumi-lang-java=&#34;`reverse`&#34; pulumi-lang-hcl=&#34;`reverse`&#34;&gt;`reverse`&lt;/span&gt;, invoice and receipt PDFs include the following text: **&#34;Reverse charge&#34;**.
      * 
      */
     public Output<String> taxExempt() {
@@ -278,19 +414,39 @@ public class Customer extends com.pulumi.resources.CustomResource {
     public Output<Optional<List<CustomerTaxIdData>>> taxIdDatas() {
         return Codegen.optional(this.taxIdDatas);
     }
+    @Export(name="taxes", refs={List.class,CustomerTax.class}, tree="[0,1]")
+    private Output</* @Nullable */ List<CustomerTax>> taxes;
+
+    public Output<Optional<List<CustomerTax>>> taxes() {
+        return Codegen.optional(this.taxes);
+    }
     /**
-     * ID of the test clock to attach to the customer.
+     * ID of the test clock that this customer belongs to.
      * 
      */
     @Export(name="testClock", refs={String.class}, tree="[0]")
     private Output<String> testClock;
 
     /**
-     * @return ID of the test clock to attach to the customer.
+     * @return ID of the test clock that this customer belongs to.
      * 
      */
     public Output<String> testClock() {
         return this.testClock;
+    }
+    /**
+     * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * 
+     */
+    @Export(name="validate", refs={Boolean.class}, tree="[0]")
+    private Output</* @Nullable */ Boolean> validate;
+
+    /**
+     * @return **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * 
+     */
+    public Output<Optional<Boolean>> validate() {
+        return Codegen.optional(this.validate);
     }
 
     /**
@@ -332,6 +488,10 @@ public class Customer extends com.pulumi.resources.CustomResource {
     private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<java.lang.String> id) {
         var defaultOptions = com.pulumi.resources.CustomResourceOptions.builder()
             .version(Utilities.getVersion())
+            .additionalSecretOutputs(List.of(
+                "source",
+                "validate"
+            ))
             .build();
         return com.pulumi.resources.CustomResourceOptions.merge(defaultOptions, options, id);
     }

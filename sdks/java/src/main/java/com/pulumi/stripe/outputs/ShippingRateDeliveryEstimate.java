@@ -6,8 +6,8 @@ package com.pulumi.stripe.outputs;
 import com.pulumi.core.annotations.CustomType;
 import com.pulumi.stripe.outputs.ShippingRateDeliveryEstimateMaximum;
 import com.pulumi.stripe.outputs.ShippingRateDeliveryEstimateMinimum;
+import java.util.List;
 import java.util.Objects;
-import java.util.Optional;
 import javax.annotation.Nullable;
 
 @CustomType
@@ -16,27 +16,27 @@ public final class ShippingRateDeliveryEstimate {
      * @return The upper bound of the estimated range. If empty, represents no upper bound i.e., infinite.
      * 
      */
-    private @Nullable ShippingRateDeliveryEstimateMaximum maximum;
+    private @Nullable List<ShippingRateDeliveryEstimateMaximum> maximums;
     /**
      * @return The lower bound of the estimated range. If empty, represents no lower bound.
      * 
      */
-    private @Nullable ShippingRateDeliveryEstimateMinimum minimum;
+    private @Nullable List<ShippingRateDeliveryEstimateMinimum> minimums;
 
     private ShippingRateDeliveryEstimate() {}
     /**
      * @return The upper bound of the estimated range. If empty, represents no upper bound i.e., infinite.
      * 
      */
-    public Optional<ShippingRateDeliveryEstimateMaximum> maximum() {
-        return Optional.ofNullable(this.maximum);
+    public List<ShippingRateDeliveryEstimateMaximum> maximums() {
+        return this.maximums == null ? List.of() : this.maximums;
     }
     /**
      * @return The lower bound of the estimated range. If empty, represents no lower bound.
      * 
      */
-    public Optional<ShippingRateDeliveryEstimateMinimum> minimum() {
-        return Optional.ofNullable(this.minimum);
+    public List<ShippingRateDeliveryEstimateMinimum> minimums() {
+        return this.minimums == null ? List.of() : this.minimums;
     }
 
     public static Builder builder() {
@@ -48,31 +48,37 @@ public final class ShippingRateDeliveryEstimate {
     }
     @CustomType.Builder
     public static final class Builder {
-        private @Nullable ShippingRateDeliveryEstimateMaximum maximum;
-        private @Nullable ShippingRateDeliveryEstimateMinimum minimum;
+        private @Nullable List<ShippingRateDeliveryEstimateMaximum> maximums;
+        private @Nullable List<ShippingRateDeliveryEstimateMinimum> minimums;
         public Builder() {}
         public Builder(ShippingRateDeliveryEstimate defaults) {
     	      Objects.requireNonNull(defaults);
-    	      this.maximum = defaults.maximum;
-    	      this.minimum = defaults.minimum;
+    	      this.maximums = defaults.maximums;
+    	      this.minimums = defaults.minimums;
         }
 
         @CustomType.Setter
-        public Builder maximum(@Nullable ShippingRateDeliveryEstimateMaximum maximum) {
+        public Builder maximums(@Nullable List<ShippingRateDeliveryEstimateMaximum> maximums) {
 
-            this.maximum = maximum;
+            this.maximums = maximums;
             return this;
         }
+        public Builder maximums(ShippingRateDeliveryEstimateMaximum... maximums) {
+            return maximums(List.of(maximums));
+        }
         @CustomType.Setter
-        public Builder minimum(@Nullable ShippingRateDeliveryEstimateMinimum minimum) {
+        public Builder minimums(@Nullable List<ShippingRateDeliveryEstimateMinimum> minimums) {
 
-            this.minimum = minimum;
+            this.minimums = minimums;
             return this;
+        }
+        public Builder minimums(ShippingRateDeliveryEstimateMinimum... minimums) {
+            return minimums(List.of(minimums));
         }
         public ShippingRateDeliveryEstimate build() {
             final var _resultValue = new ShippingRateDeliveryEstimate();
-            _resultValue.maximum = maximum;
-            _resultValue.minimum = minimum;
+            _resultValue.maximums = maximums;
+            _resultValue.minimums = minimums;
             return _resultValue;
         }
     }

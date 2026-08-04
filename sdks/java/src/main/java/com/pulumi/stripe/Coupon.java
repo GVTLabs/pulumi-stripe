@@ -12,7 +12,6 @@ import com.pulumi.stripe.Utilities;
 import com.pulumi.stripe.inputs.CouponState;
 import com.pulumi.stripe.outputs.CouponAppliesTo;
 import com.pulumi.stripe.outputs.CouponCurrencyOption;
-import com.pulumi.stripe.outputs.CouponScript;
 import java.lang.Boolean;
 import java.lang.Double;
 import java.lang.String;
@@ -24,164 +23,192 @@ import javax.annotation.Nullable;
 @ResourceType(type="stripe:index/coupon:Coupon")
 public class Coupon extends com.pulumi.resources.CustomResource {
     /**
-     * A positive integer representing the amount to subtract from an invoice total (required if &lt;span pulumi-lang-nodejs=&#34;`percentOff`&#34; pulumi-lang-dotnet=&#34;`PercentOff`&#34; pulumi-lang-go=&#34;`percentOff`&#34; pulumi-lang-python=&#34;`percent_off`&#34; pulumi-lang-yaml=&#34;`percentOff`&#34; pulumi-lang-java=&#34;`percentOff`&#34; pulumi-lang-hcl=&#34;`percent_off`&#34;&gt;`percentOff`&lt;/span&gt; is not passed).
+     * Amount (in the &lt;span pulumi-lang-nodejs=&#34;`currency`&#34; pulumi-lang-dotnet=&#34;`Currency`&#34; pulumi-lang-go=&#34;`currency`&#34; pulumi-lang-python=&#34;`currency`&#34; pulumi-lang-yaml=&#34;`currency`&#34; pulumi-lang-java=&#34;`currency`&#34; pulumi-lang-hcl=&#34;`currency`&#34;&gt;`currency`&lt;/span&gt; specified) that will be taken off the subtotal of any invoices for this customer.
      * 
      */
     @Export(name="amountOff", refs={Double.class}, tree="[0]")
     private Output<Double> amountOff;
 
     /**
-     * @return A positive integer representing the amount to subtract from an invoice total (required if &lt;span pulumi-lang-nodejs=&#34;`percentOff`&#34; pulumi-lang-dotnet=&#34;`PercentOff`&#34; pulumi-lang-go=&#34;`percentOff`&#34; pulumi-lang-python=&#34;`percent_off`&#34; pulumi-lang-yaml=&#34;`percentOff`&#34; pulumi-lang-java=&#34;`percentOff`&#34; pulumi-lang-hcl=&#34;`percent_off`&#34;&gt;`percentOff`&lt;/span&gt; is not passed).
+     * @return Amount (in the &lt;span pulumi-lang-nodejs=&#34;`currency`&#34; pulumi-lang-dotnet=&#34;`Currency`&#34; pulumi-lang-go=&#34;`currency`&#34; pulumi-lang-python=&#34;`currency`&#34; pulumi-lang-yaml=&#34;`currency`&#34; pulumi-lang-java=&#34;`currency`&#34; pulumi-lang-hcl=&#34;`currency`&#34;&gt;`currency`&lt;/span&gt; specified) that will be taken off the subtotal of any invoices for this customer.
      * 
      */
     public Output<Double> amountOff() {
         return this.amountOff;
     }
-    /**
-     * A hash containing directions for what this Coupon will apply discounts to.
-     * 
-     */
-    @Export(name="appliesTo", refs={CouponAppliesTo.class}, tree="[0]")
-    private Output</* @Nullable */ CouponAppliesTo> appliesTo;
+    @Export(name="appliesTos", refs={List.class,CouponAppliesTo.class}, tree="[0,1]")
+    private Output</* @Nullable */ List<CouponAppliesTo>> appliesTos;
 
-    /**
-     * @return A hash containing directions for what this Coupon will apply discounts to.
-     * 
-     */
-    public Output<Optional<CouponAppliesTo>> appliesTo() {
-        return Codegen.optional(this.appliesTo);
+    public Output<Optional<List<CouponAppliesTo>>> appliesTos() {
+        return Codegen.optional(this.appliesTos);
     }
     /**
-     * Three-letter [ISO code for the currency](https://stripe.com/docs/currencies) of the &lt;span pulumi-lang-nodejs=&#34;`amountOff`&#34; pulumi-lang-dotnet=&#34;`AmountOff`&#34; pulumi-lang-go=&#34;`amountOff`&#34; pulumi-lang-python=&#34;`amount_off`&#34; pulumi-lang-yaml=&#34;`amountOff`&#34; pulumi-lang-java=&#34;`amountOff`&#34; pulumi-lang-hcl=&#34;`amount_off`&#34;&gt;`amountOff`&lt;/span&gt; parameter (required if &lt;span pulumi-lang-nodejs=&#34;`amountOff`&#34; pulumi-lang-dotnet=&#34;`AmountOff`&#34; pulumi-lang-go=&#34;`amountOff`&#34; pulumi-lang-python=&#34;`amount_off`&#34; pulumi-lang-yaml=&#34;`amountOff`&#34; pulumi-lang-java=&#34;`amountOff`&#34; pulumi-lang-hcl=&#34;`amount_off`&#34;&gt;`amountOff`&lt;/span&gt; is passed).
+     * Time at which the object was created. Measured in seconds since the Unix epoch.
+     * 
+     */
+    @Export(name="created", refs={Double.class}, tree="[0]")
+    private Output<Double> created;
+
+    /**
+     * @return Time at which the object was created. Measured in seconds since the Unix epoch.
+     * 
+     */
+    public Output<Double> created() {
+        return this.created;
+    }
+    /**
+     * If &lt;span pulumi-lang-nodejs=&#34;`amountOff`&#34; pulumi-lang-dotnet=&#34;`AmountOff`&#34; pulumi-lang-go=&#34;`amountOff`&#34; pulumi-lang-python=&#34;`amount_off`&#34; pulumi-lang-yaml=&#34;`amountOff`&#34; pulumi-lang-java=&#34;`amountOff`&#34; pulumi-lang-hcl=&#34;`amount_off`&#34;&gt;`amountOff`&lt;/span&gt; has been set, the three-letter [ISO code for the currency](https://stripe.com/docs/currencies) of the amount to take off.
      * 
      */
     @Export(name="currency", refs={String.class}, tree="[0]")
     private Output<String> currency;
 
     /**
-     * @return Three-letter [ISO code for the currency](https://stripe.com/docs/currencies) of the &lt;span pulumi-lang-nodejs=&#34;`amountOff`&#34; pulumi-lang-dotnet=&#34;`AmountOff`&#34; pulumi-lang-go=&#34;`amountOff`&#34; pulumi-lang-python=&#34;`amount_off`&#34; pulumi-lang-yaml=&#34;`amountOff`&#34; pulumi-lang-java=&#34;`amountOff`&#34; pulumi-lang-hcl=&#34;`amount_off`&#34;&gt;`amountOff`&lt;/span&gt; parameter (required if &lt;span pulumi-lang-nodejs=&#34;`amountOff`&#34; pulumi-lang-dotnet=&#34;`AmountOff`&#34; pulumi-lang-go=&#34;`amountOff`&#34; pulumi-lang-python=&#34;`amount_off`&#34; pulumi-lang-yaml=&#34;`amountOff`&#34; pulumi-lang-java=&#34;`amountOff`&#34; pulumi-lang-hcl=&#34;`amount_off`&#34;&gt;`amountOff`&lt;/span&gt; is passed).
+     * @return If &lt;span pulumi-lang-nodejs=&#34;`amountOff`&#34; pulumi-lang-dotnet=&#34;`AmountOff`&#34; pulumi-lang-go=&#34;`amountOff`&#34; pulumi-lang-python=&#34;`amount_off`&#34; pulumi-lang-yaml=&#34;`amountOff`&#34; pulumi-lang-java=&#34;`amountOff`&#34; pulumi-lang-hcl=&#34;`amount_off`&#34;&gt;`amountOff`&lt;/span&gt; has been set, the three-letter [ISO code for the currency](https://stripe.com/docs/currencies) of the amount to take off.
      * 
      */
     public Output<String> currency() {
         return this.currency;
     }
     /**
-     * Coupons defined in each available currency option (only supported if &lt;span pulumi-lang-nodejs=&#34;`amountOff`&#34; pulumi-lang-dotnet=&#34;`AmountOff`&#34; pulumi-lang-go=&#34;`amountOff`&#34; pulumi-lang-python=&#34;`amount_off`&#34; pulumi-lang-yaml=&#34;`amountOff`&#34; pulumi-lang-java=&#34;`amountOff`&#34; pulumi-lang-hcl=&#34;`amount_off`&#34;&gt;`amountOff`&lt;/span&gt; is passed). Each key must be a three-letter [ISO currency code](https://www.iso.org/iso-4217-currency-codes.html) and a [supported currency](https://stripe.com/docs/currencies).
+     * Coupons defined in each available currency option. Each key must be a three-letter [ISO currency code](https://www.iso.org/iso-4217-currency-codes.html) and a [supported currency](https://stripe.com/docs/currencies).
      * 
      */
     @Export(name="currencyOptions", refs={List.class,CouponCurrencyOption.class}, tree="[0,1]")
     private Output</* @Nullable */ List<CouponCurrencyOption>> currencyOptions;
 
     /**
-     * @return Coupons defined in each available currency option (only supported if &lt;span pulumi-lang-nodejs=&#34;`amountOff`&#34; pulumi-lang-dotnet=&#34;`AmountOff`&#34; pulumi-lang-go=&#34;`amountOff`&#34; pulumi-lang-python=&#34;`amount_off`&#34; pulumi-lang-yaml=&#34;`amountOff`&#34; pulumi-lang-java=&#34;`amountOff`&#34; pulumi-lang-hcl=&#34;`amount_off`&#34;&gt;`amountOff`&lt;/span&gt; is passed). Each key must be a three-letter [ISO currency code](https://www.iso.org/iso-4217-currency-codes.html) and a [supported currency](https://stripe.com/docs/currencies).
+     * @return Coupons defined in each available currency option. Each key must be a three-letter [ISO currency code](https://www.iso.org/iso-4217-currency-codes.html) and a [supported currency](https://stripe.com/docs/currencies).
      * 
      */
     public Output<Optional<List<CouponCurrencyOption>>> currencyOptions() {
         return Codegen.optional(this.currencyOptions);
     }
     /**
-     * Specifies how long the discount will be in effect if used on a subscription. Defaults to &lt;span pulumi-lang-nodejs=&#34;`once`&#34; pulumi-lang-dotnet=&#34;`Once`&#34; pulumi-lang-go=&#34;`once`&#34; pulumi-lang-python=&#34;`once`&#34; pulumi-lang-yaml=&#34;`once`&#34; pulumi-lang-java=&#34;`once`&#34; pulumi-lang-hcl=&#34;`once`&#34;&gt;`once`&lt;/span&gt;.
+     * One of &lt;span pulumi-lang-nodejs=&#34;`forever`&#34; pulumi-lang-dotnet=&#34;`Forever`&#34; pulumi-lang-go=&#34;`forever`&#34; pulumi-lang-python=&#34;`forever`&#34; pulumi-lang-yaml=&#34;`forever`&#34; pulumi-lang-java=&#34;`forever`&#34; pulumi-lang-hcl=&#34;`forever`&#34;&gt;`forever`&lt;/span&gt;, &lt;span pulumi-lang-nodejs=&#34;`once`&#34; pulumi-lang-dotnet=&#34;`Once`&#34; pulumi-lang-go=&#34;`once`&#34; pulumi-lang-python=&#34;`once`&#34; pulumi-lang-yaml=&#34;`once`&#34; pulumi-lang-java=&#34;`once`&#34; pulumi-lang-hcl=&#34;`once`&#34;&gt;`once`&lt;/span&gt;, or &lt;span pulumi-lang-nodejs=&#34;`repeating`&#34; pulumi-lang-dotnet=&#34;`Repeating`&#34; pulumi-lang-go=&#34;`repeating`&#34; pulumi-lang-python=&#34;`repeating`&#34; pulumi-lang-yaml=&#34;`repeating`&#34; pulumi-lang-java=&#34;`repeating`&#34; pulumi-lang-hcl=&#34;`repeating`&#34;&gt;`repeating`&lt;/span&gt;. Describes how long a customer who applies this coupon will get the discount.
      * 
      */
     @Export(name="duration", refs={String.class}, tree="[0]")
     private Output<String> duration;
 
     /**
-     * @return Specifies how long the discount will be in effect if used on a subscription. Defaults to &lt;span pulumi-lang-nodejs=&#34;`once`&#34; pulumi-lang-dotnet=&#34;`Once`&#34; pulumi-lang-go=&#34;`once`&#34; pulumi-lang-python=&#34;`once`&#34; pulumi-lang-yaml=&#34;`once`&#34; pulumi-lang-java=&#34;`once`&#34; pulumi-lang-hcl=&#34;`once`&#34;&gt;`once`&lt;/span&gt;.
+     * @return One of &lt;span pulumi-lang-nodejs=&#34;`forever`&#34; pulumi-lang-dotnet=&#34;`Forever`&#34; pulumi-lang-go=&#34;`forever`&#34; pulumi-lang-python=&#34;`forever`&#34; pulumi-lang-yaml=&#34;`forever`&#34; pulumi-lang-java=&#34;`forever`&#34; pulumi-lang-hcl=&#34;`forever`&#34;&gt;`forever`&lt;/span&gt;, &lt;span pulumi-lang-nodejs=&#34;`once`&#34; pulumi-lang-dotnet=&#34;`Once`&#34; pulumi-lang-go=&#34;`once`&#34; pulumi-lang-python=&#34;`once`&#34; pulumi-lang-yaml=&#34;`once`&#34; pulumi-lang-java=&#34;`once`&#34; pulumi-lang-hcl=&#34;`once`&#34;&gt;`once`&lt;/span&gt;, or &lt;span pulumi-lang-nodejs=&#34;`repeating`&#34; pulumi-lang-dotnet=&#34;`Repeating`&#34; pulumi-lang-go=&#34;`repeating`&#34; pulumi-lang-python=&#34;`repeating`&#34; pulumi-lang-yaml=&#34;`repeating`&#34; pulumi-lang-java=&#34;`repeating`&#34; pulumi-lang-hcl=&#34;`repeating`&#34;&gt;`repeating`&lt;/span&gt;. Describes how long a customer who applies this coupon will get the discount.
      * 
      */
     public Output<String> duration() {
         return this.duration;
     }
     /**
-     * Required only if &lt;span pulumi-lang-nodejs=&#34;`duration`&#34; pulumi-lang-dotnet=&#34;`Duration`&#34; pulumi-lang-go=&#34;`duration`&#34; pulumi-lang-python=&#34;`duration`&#34; pulumi-lang-yaml=&#34;`duration`&#34; pulumi-lang-java=&#34;`duration`&#34; pulumi-lang-hcl=&#34;`duration`&#34;&gt;`duration`&lt;/span&gt; is &lt;span pulumi-lang-nodejs=&#34;`repeating`&#34; pulumi-lang-dotnet=&#34;`Repeating`&#34; pulumi-lang-go=&#34;`repeating`&#34; pulumi-lang-python=&#34;`repeating`&#34; pulumi-lang-yaml=&#34;`repeating`&#34; pulumi-lang-java=&#34;`repeating`&#34; pulumi-lang-hcl=&#34;`repeating`&#34;&gt;`repeating`&lt;/span&gt;, in which case it must be a positive integer that specifies the number of months the discount will be in effect.
+     * If &lt;span pulumi-lang-nodejs=&#34;`duration`&#34; pulumi-lang-dotnet=&#34;`Duration`&#34; pulumi-lang-go=&#34;`duration`&#34; pulumi-lang-python=&#34;`duration`&#34; pulumi-lang-yaml=&#34;`duration`&#34; pulumi-lang-java=&#34;`duration`&#34; pulumi-lang-hcl=&#34;`duration`&#34;&gt;`duration`&lt;/span&gt; is &lt;span pulumi-lang-nodejs=&#34;`repeating`&#34; pulumi-lang-dotnet=&#34;`Repeating`&#34; pulumi-lang-go=&#34;`repeating`&#34; pulumi-lang-python=&#34;`repeating`&#34; pulumi-lang-yaml=&#34;`repeating`&#34; pulumi-lang-java=&#34;`repeating`&#34; pulumi-lang-hcl=&#34;`repeating`&#34;&gt;`repeating`&lt;/span&gt;, the number of months the coupon applies. Null if coupon &lt;span pulumi-lang-nodejs=&#34;`duration`&#34; pulumi-lang-dotnet=&#34;`Duration`&#34; pulumi-lang-go=&#34;`duration`&#34; pulumi-lang-python=&#34;`duration`&#34; pulumi-lang-yaml=&#34;`duration`&#34; pulumi-lang-java=&#34;`duration`&#34; pulumi-lang-hcl=&#34;`duration`&#34;&gt;`duration`&lt;/span&gt; is &lt;span pulumi-lang-nodejs=&#34;`forever`&#34; pulumi-lang-dotnet=&#34;`Forever`&#34; pulumi-lang-go=&#34;`forever`&#34; pulumi-lang-python=&#34;`forever`&#34; pulumi-lang-yaml=&#34;`forever`&#34; pulumi-lang-java=&#34;`forever`&#34; pulumi-lang-hcl=&#34;`forever`&#34;&gt;`forever`&lt;/span&gt; or &lt;span pulumi-lang-nodejs=&#34;`once`&#34; pulumi-lang-dotnet=&#34;`Once`&#34; pulumi-lang-go=&#34;`once`&#34; pulumi-lang-python=&#34;`once`&#34; pulumi-lang-yaml=&#34;`once`&#34; pulumi-lang-java=&#34;`once`&#34; pulumi-lang-hcl=&#34;`once`&#34;&gt;`once`&lt;/span&gt;.
      * 
      */
     @Export(name="durationInMonths", refs={Double.class}, tree="[0]")
     private Output<Double> durationInMonths;
 
     /**
-     * @return Required only if &lt;span pulumi-lang-nodejs=&#34;`duration`&#34; pulumi-lang-dotnet=&#34;`Duration`&#34; pulumi-lang-go=&#34;`duration`&#34; pulumi-lang-python=&#34;`duration`&#34; pulumi-lang-yaml=&#34;`duration`&#34; pulumi-lang-java=&#34;`duration`&#34; pulumi-lang-hcl=&#34;`duration`&#34;&gt;`duration`&lt;/span&gt; is &lt;span pulumi-lang-nodejs=&#34;`repeating`&#34; pulumi-lang-dotnet=&#34;`Repeating`&#34; pulumi-lang-go=&#34;`repeating`&#34; pulumi-lang-python=&#34;`repeating`&#34; pulumi-lang-yaml=&#34;`repeating`&#34; pulumi-lang-java=&#34;`repeating`&#34; pulumi-lang-hcl=&#34;`repeating`&#34;&gt;`repeating`&lt;/span&gt;, in which case it must be a positive integer that specifies the number of months the discount will be in effect.
+     * @return If &lt;span pulumi-lang-nodejs=&#34;`duration`&#34; pulumi-lang-dotnet=&#34;`Duration`&#34; pulumi-lang-go=&#34;`duration`&#34; pulumi-lang-python=&#34;`duration`&#34; pulumi-lang-yaml=&#34;`duration`&#34; pulumi-lang-java=&#34;`duration`&#34; pulumi-lang-hcl=&#34;`duration`&#34;&gt;`duration`&lt;/span&gt; is &lt;span pulumi-lang-nodejs=&#34;`repeating`&#34; pulumi-lang-dotnet=&#34;`Repeating`&#34; pulumi-lang-go=&#34;`repeating`&#34; pulumi-lang-python=&#34;`repeating`&#34; pulumi-lang-yaml=&#34;`repeating`&#34; pulumi-lang-java=&#34;`repeating`&#34; pulumi-lang-hcl=&#34;`repeating`&#34;&gt;`repeating`&lt;/span&gt;, the number of months the coupon applies. Null if coupon &lt;span pulumi-lang-nodejs=&#34;`duration`&#34; pulumi-lang-dotnet=&#34;`Duration`&#34; pulumi-lang-go=&#34;`duration`&#34; pulumi-lang-python=&#34;`duration`&#34; pulumi-lang-yaml=&#34;`duration`&#34; pulumi-lang-java=&#34;`duration`&#34; pulumi-lang-hcl=&#34;`duration`&#34;&gt;`duration`&lt;/span&gt; is &lt;span pulumi-lang-nodejs=&#34;`forever`&#34; pulumi-lang-dotnet=&#34;`Forever`&#34; pulumi-lang-go=&#34;`forever`&#34; pulumi-lang-python=&#34;`forever`&#34; pulumi-lang-yaml=&#34;`forever`&#34; pulumi-lang-java=&#34;`forever`&#34; pulumi-lang-hcl=&#34;`forever`&#34;&gt;`forever`&lt;/span&gt; or &lt;span pulumi-lang-nodejs=&#34;`once`&#34; pulumi-lang-dotnet=&#34;`Once`&#34; pulumi-lang-go=&#34;`once`&#34; pulumi-lang-python=&#34;`once`&#34; pulumi-lang-yaml=&#34;`once`&#34; pulumi-lang-java=&#34;`once`&#34; pulumi-lang-hcl=&#34;`once`&#34;&gt;`once`&lt;/span&gt;.
      * 
      */
     public Output<Double> durationInMonths() {
         return this.durationInMonths;
     }
     /**
-     * A positive integer specifying the number of times the coupon can be redeemed before it&#39;s no longer valid. For example, you might have a 50% off coupon that the first 20 readers of your blog can use.
+     * If the object exists in live mode, the value is &lt;span pulumi-lang-nodejs=&#34;`true`&#34; pulumi-lang-dotnet=&#34;`True`&#34; pulumi-lang-go=&#34;`true`&#34; pulumi-lang-python=&#34;`true`&#34; pulumi-lang-yaml=&#34;`true`&#34; pulumi-lang-java=&#34;`true`&#34; pulumi-lang-hcl=&#34;`true`&#34;&gt;`true`&lt;/span&gt;. If the object exists in test mode, the value is &lt;span pulumi-lang-nodejs=&#34;`false`&#34; pulumi-lang-dotnet=&#34;`False`&#34; pulumi-lang-go=&#34;`false`&#34; pulumi-lang-python=&#34;`false`&#34; pulumi-lang-yaml=&#34;`false`&#34; pulumi-lang-java=&#34;`false`&#34; pulumi-lang-hcl=&#34;`false`&#34;&gt;`false`&lt;/span&gt;.
+     * 
+     */
+    @Export(name="livemode", refs={Boolean.class}, tree="[0]")
+    private Output<Boolean> livemode;
+
+    /**
+     * @return If the object exists in live mode, the value is &lt;span pulumi-lang-nodejs=&#34;`true`&#34; pulumi-lang-dotnet=&#34;`True`&#34; pulumi-lang-go=&#34;`true`&#34; pulumi-lang-python=&#34;`true`&#34; pulumi-lang-yaml=&#34;`true`&#34; pulumi-lang-java=&#34;`true`&#34; pulumi-lang-hcl=&#34;`true`&#34;&gt;`true`&lt;/span&gt;. If the object exists in test mode, the value is &lt;span pulumi-lang-nodejs=&#34;`false`&#34; pulumi-lang-dotnet=&#34;`False`&#34; pulumi-lang-go=&#34;`false`&#34; pulumi-lang-python=&#34;`false`&#34; pulumi-lang-yaml=&#34;`false`&#34; pulumi-lang-java=&#34;`false`&#34; pulumi-lang-hcl=&#34;`false`&#34;&gt;`false`&lt;/span&gt;.
+     * 
+     */
+    public Output<Boolean> livemode() {
+        return this.livemode;
+    }
+    /**
+     * Maximum number of times this coupon can be redeemed, in total, across all customers, before it is no longer valid.
      * 
      */
     @Export(name="maxRedemptions", refs={Double.class}, tree="[0]")
     private Output<Double> maxRedemptions;
 
     /**
-     * @return A positive integer specifying the number of times the coupon can be redeemed before it&#39;s no longer valid. For example, you might have a 50% off coupon that the first 20 readers of your blog can use.
+     * @return Maximum number of times this coupon can be redeemed, in total, across all customers, before it is no longer valid.
      * 
      */
     public Output<Double> maxRedemptions() {
         return this.maxRedemptions;
     }
+    /**
+     * Set of [key-value pairs](https://docs.stripe.com/api/metadata) that you can attach to an object. This can be useful for storing additional information about the object in a structured format.
+     * 
+     */
     @Export(name="metadata", refs={Map.class,String.class}, tree="[0,1,1]")
     private Output<Map<String,String>> metadata;
 
+    /**
+     * @return Set of [key-value pairs](https://docs.stripe.com/api/metadata) that you can attach to an object. This can be useful for storing additional information about the object in a structured format.
+     * 
+     */
     public Output<Map<String,String>> metadata() {
         return this.metadata;
     }
     /**
-     * Name of the coupon displayed to customers on, for instance invoices, or receipts. By default the &lt;span pulumi-lang-nodejs=&#34;`id`&#34; pulumi-lang-dotnet=&#34;`Id`&#34; pulumi-lang-go=&#34;`id`&#34; pulumi-lang-python=&#34;`id`&#34; pulumi-lang-yaml=&#34;`id`&#34; pulumi-lang-java=&#34;`id`&#34; pulumi-lang-hcl=&#34;`id`&#34;&gt;`id`&lt;/span&gt; is shown if &lt;span pulumi-lang-nodejs=&#34;`name`&#34; pulumi-lang-dotnet=&#34;`Name`&#34; pulumi-lang-go=&#34;`name`&#34; pulumi-lang-python=&#34;`name`&#34; pulumi-lang-yaml=&#34;`name`&#34; pulumi-lang-java=&#34;`name`&#34; pulumi-lang-hcl=&#34;`name`&#34;&gt;`name`&lt;/span&gt; is not set.
+     * Name of the coupon displayed to customers on for instance invoices or receipts.
      * 
      */
     @Export(name="name", refs={String.class}, tree="[0]")
     private Output<String> name;
 
     /**
-     * @return Name of the coupon displayed to customers on, for instance invoices, or receipts. By default the &lt;span pulumi-lang-nodejs=&#34;`id`&#34; pulumi-lang-dotnet=&#34;`Id`&#34; pulumi-lang-go=&#34;`id`&#34; pulumi-lang-python=&#34;`id`&#34; pulumi-lang-yaml=&#34;`id`&#34; pulumi-lang-java=&#34;`id`&#34; pulumi-lang-hcl=&#34;`id`&#34;&gt;`id`&lt;/span&gt; is shown if &lt;span pulumi-lang-nodejs=&#34;`name`&#34; pulumi-lang-dotnet=&#34;`Name`&#34; pulumi-lang-go=&#34;`name`&#34; pulumi-lang-python=&#34;`name`&#34; pulumi-lang-yaml=&#34;`name`&#34; pulumi-lang-java=&#34;`name`&#34; pulumi-lang-hcl=&#34;`name`&#34;&gt;`name`&lt;/span&gt; is not set.
+     * @return Name of the coupon displayed to customers on for instance invoices or receipts.
      * 
      */
     public Output<String> name() {
         return this.name;
     }
     /**
-     * A positive float larger than 0, and smaller or equal to 100, that represents the discount the coupon will apply (required if &lt;span pulumi-lang-nodejs=&#34;`amountOff`&#34; pulumi-lang-dotnet=&#34;`AmountOff`&#34; pulumi-lang-go=&#34;`amountOff`&#34; pulumi-lang-python=&#34;`amount_off`&#34; pulumi-lang-yaml=&#34;`amountOff`&#34; pulumi-lang-java=&#34;`amountOff`&#34; pulumi-lang-hcl=&#34;`amount_off`&#34;&gt;`amountOff`&lt;/span&gt; is not passed).
+     * String representing the object&#39;s type. Objects of the same type share the same value.
+     * 
+     */
+    @Export(name="object", refs={String.class}, tree="[0]")
+    private Output<String> object;
+
+    /**
+     * @return String representing the object&#39;s type. Objects of the same type share the same value.
+     * 
+     */
+    public Output<String> object() {
+        return this.object;
+    }
+    /**
+     * Percent that will be taken off the subtotal of any invoices for this customer for the duration of the coupon. For example, a coupon with&lt;span pulumi-lang-nodejs=&#34; percentOff &#34; pulumi-lang-dotnet=&#34; PercentOff &#34; pulumi-lang-go=&#34; percentOff &#34; pulumi-lang-python=&#34; percent_off &#34; pulumi-lang-yaml=&#34; percentOff &#34; pulumi-lang-java=&#34; percentOff &#34; pulumi-lang-hcl=&#34; percent_off &#34;&gt; percentOff &lt;/span&gt;of 50 will make a $ (or local equivalent)100 invoice $ (or local equivalent)50 instead.
      * 
      */
     @Export(name="percentOff", refs={Double.class}, tree="[0]")
     private Output<Double> percentOff;
 
     /**
-     * @return A positive float larger than 0, and smaller or equal to 100, that represents the discount the coupon will apply (required if &lt;span pulumi-lang-nodejs=&#34;`amountOff`&#34; pulumi-lang-dotnet=&#34;`AmountOff`&#34; pulumi-lang-go=&#34;`amountOff`&#34; pulumi-lang-python=&#34;`amount_off`&#34; pulumi-lang-yaml=&#34;`amountOff`&#34; pulumi-lang-java=&#34;`amountOff`&#34; pulumi-lang-hcl=&#34;`amount_off`&#34;&gt;`amountOff`&lt;/span&gt; is not passed).
+     * @return Percent that will be taken off the subtotal of any invoices for this customer for the duration of the coupon. For example, a coupon with&lt;span pulumi-lang-nodejs=&#34; percentOff &#34; pulumi-lang-dotnet=&#34; PercentOff &#34; pulumi-lang-go=&#34; percentOff &#34; pulumi-lang-python=&#34; percent_off &#34; pulumi-lang-yaml=&#34; percentOff &#34; pulumi-lang-java=&#34; percentOff &#34; pulumi-lang-hcl=&#34; percent_off &#34;&gt; percentOff &lt;/span&gt;of 50 will make a $ (or local equivalent)100 invoice $ (or local equivalent)50 instead.
      * 
      */
     public Output<Double> percentOff() {
         return this.percentOff;
     }
     /**
-     * Unix timestamp specifying the last time at which the coupon can be redeemed. After the&lt;span pulumi-lang-nodejs=&#34; redeemBy &#34; pulumi-lang-dotnet=&#34; RedeemBy &#34; pulumi-lang-go=&#34; redeemBy &#34; pulumi-lang-python=&#34; redeem_by &#34; pulumi-lang-yaml=&#34; redeemBy &#34; pulumi-lang-java=&#34; redeemBy &#34; pulumi-lang-hcl=&#34; redeem_by &#34;&gt; redeemBy &lt;/span&gt;date, the coupon can no longer be applied to new customers.
+     * Date after which the coupon can no longer be redeemed.
      * 
      */
     @Export(name="redeemBy", refs={Double.class}, tree="[0]")
     private Output<Double> redeemBy;
 
     /**
-     * @return Unix timestamp specifying the last time at which the coupon can be redeemed. After the&lt;span pulumi-lang-nodejs=&#34; redeemBy &#34; pulumi-lang-dotnet=&#34; RedeemBy &#34; pulumi-lang-go=&#34; redeemBy &#34; pulumi-lang-python=&#34; redeem_by &#34; pulumi-lang-yaml=&#34; redeemBy &#34; pulumi-lang-java=&#34; redeemBy &#34; pulumi-lang-hcl=&#34; redeem_by &#34;&gt; redeemBy &lt;/span&gt;date, the coupon can no longer be applied to new customers.
+     * @return Date after which the coupon can no longer be redeemed.
      * 
      */
     public Output<Double> redeemBy() {
         return this.redeemBy;
-    }
-    /**
-     * Configuration of the [script](https://docs.stripe.com/billing/subscriptions/script-coupons) used to calculate the discount.
-     * 
-     */
-    @Export(name="script", refs={CouponScript.class}, tree="[0]")
-    private Output</* @Nullable */ CouponScript> script;
-
-    /**
-     * @return Configuration of the [script](https://docs.stripe.com/billing/subscriptions/script-coupons) used to calculate the discount.
-     * 
-     */
-    public Output<Optional<CouponScript>> script() {
-        return Codegen.optional(this.script);
     }
     /**
      * Number of times this coupon has been applied to a customer.
@@ -196,20 +223,6 @@ public class Coupon extends com.pulumi.resources.CustomResource {
      */
     public Output<Double> timesRedeemed() {
         return this.timesRedeemed;
-    }
-    /**
-     * One of &lt;span pulumi-lang-nodejs=&#34;`amountOff`&#34; pulumi-lang-dotnet=&#34;`AmountOff`&#34; pulumi-lang-go=&#34;`amountOff`&#34; pulumi-lang-python=&#34;`amount_off`&#34; pulumi-lang-yaml=&#34;`amountOff`&#34; pulumi-lang-java=&#34;`amountOff`&#34; pulumi-lang-hcl=&#34;`amount_off`&#34;&gt;`amountOff`&lt;/span&gt;, &lt;span pulumi-lang-nodejs=&#34;`percentOff`&#34; pulumi-lang-dotnet=&#34;`PercentOff`&#34; pulumi-lang-go=&#34;`percentOff`&#34; pulumi-lang-python=&#34;`percent_off`&#34; pulumi-lang-yaml=&#34;`percentOff`&#34; pulumi-lang-java=&#34;`percentOff`&#34; pulumi-lang-hcl=&#34;`percent_off`&#34;&gt;`percentOff`&lt;/span&gt;, or &lt;span pulumi-lang-nodejs=&#34;`script`&#34; pulumi-lang-dotnet=&#34;`Script`&#34; pulumi-lang-go=&#34;`script`&#34; pulumi-lang-python=&#34;`script`&#34; pulumi-lang-yaml=&#34;`script`&#34; pulumi-lang-java=&#34;`script`&#34; pulumi-lang-hcl=&#34;`script`&#34;&gt;`script`&lt;/span&gt;. Describes the type of coupon logic used to calculate the discount.
-     * 
-     */
-    @Export(name="type", refs={String.class}, tree="[0]")
-    private Output<String> type;
-
-    /**
-     * @return One of &lt;span pulumi-lang-nodejs=&#34;`amountOff`&#34; pulumi-lang-dotnet=&#34;`AmountOff`&#34; pulumi-lang-go=&#34;`amountOff`&#34; pulumi-lang-python=&#34;`amount_off`&#34; pulumi-lang-yaml=&#34;`amountOff`&#34; pulumi-lang-java=&#34;`amountOff`&#34; pulumi-lang-hcl=&#34;`amount_off`&#34;&gt;`amountOff`&lt;/span&gt;, &lt;span pulumi-lang-nodejs=&#34;`percentOff`&#34; pulumi-lang-dotnet=&#34;`PercentOff`&#34; pulumi-lang-go=&#34;`percentOff`&#34; pulumi-lang-python=&#34;`percent_off`&#34; pulumi-lang-yaml=&#34;`percentOff`&#34; pulumi-lang-java=&#34;`percentOff`&#34; pulumi-lang-hcl=&#34;`percent_off`&#34;&gt;`percentOff`&lt;/span&gt;, or &lt;span pulumi-lang-nodejs=&#34;`script`&#34; pulumi-lang-dotnet=&#34;`Script`&#34; pulumi-lang-go=&#34;`script`&#34; pulumi-lang-python=&#34;`script`&#34; pulumi-lang-yaml=&#34;`script`&#34; pulumi-lang-java=&#34;`script`&#34; pulumi-lang-hcl=&#34;`script`&#34;&gt;`script`&lt;/span&gt;. Describes the type of coupon logic used to calculate the discount.
-     * 
-     */
-    public Output<String> type() {
-        return this.type;
     }
     /**
      * Taking account of the above properties, whether this coupon can still be applied to a customer.

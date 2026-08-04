@@ -15,14 +15,14 @@ public final class BillingMeterDefaultAggregationArgs extends com.pulumi.resourc
     public static final BillingMeterDefaultAggregationArgs Empty = new BillingMeterDefaultAggregationArgs();
 
     /**
-     * Specifies how events are aggregated. Allowed values are &lt;span pulumi-lang-nodejs=&#34;`count`&#34; pulumi-lang-dotnet=&#34;`Count`&#34; pulumi-lang-go=&#34;`count`&#34; pulumi-lang-python=&#34;`count`&#34; pulumi-lang-yaml=&#34;`count`&#34; pulumi-lang-java=&#34;`count`&#34; pulumi-lang-hcl=&#34;`count`&#34;&gt;`count`&lt;/span&gt; to count the number of events, &lt;span pulumi-lang-nodejs=&#34;`sum`&#34; pulumi-lang-dotnet=&#34;`Sum`&#34; pulumi-lang-go=&#34;`sum`&#34; pulumi-lang-python=&#34;`sum`&#34; pulumi-lang-yaml=&#34;`sum`&#34; pulumi-lang-java=&#34;`sum`&#34; pulumi-lang-hcl=&#34;`sum`&#34;&gt;`sum`&lt;/span&gt; to sum each event&#39;s value and &lt;span pulumi-lang-nodejs=&#34;`last`&#34; pulumi-lang-dotnet=&#34;`Last`&#34; pulumi-lang-go=&#34;`last`&#34; pulumi-lang-python=&#34;`last`&#34; pulumi-lang-yaml=&#34;`last`&#34; pulumi-lang-java=&#34;`last`&#34; pulumi-lang-hcl=&#34;`last`&#34;&gt;`last`&lt;/span&gt; to take the last event&#39;s value in the window.
+     * Specifies how events are aggregated.
      * 
      */
     @Import(name="formula", required=true)
     private Output<String> formula;
 
     /**
-     * @return Specifies how events are aggregated. Allowed values are &lt;span pulumi-lang-nodejs=&#34;`count`&#34; pulumi-lang-dotnet=&#34;`Count`&#34; pulumi-lang-go=&#34;`count`&#34; pulumi-lang-python=&#34;`count`&#34; pulumi-lang-yaml=&#34;`count`&#34; pulumi-lang-java=&#34;`count`&#34; pulumi-lang-hcl=&#34;`count`&#34;&gt;`count`&lt;/span&gt; to count the number of events, &lt;span pulumi-lang-nodejs=&#34;`sum`&#34; pulumi-lang-dotnet=&#34;`Sum`&#34; pulumi-lang-go=&#34;`sum`&#34; pulumi-lang-python=&#34;`sum`&#34; pulumi-lang-yaml=&#34;`sum`&#34; pulumi-lang-java=&#34;`sum`&#34; pulumi-lang-hcl=&#34;`sum`&#34;&gt;`sum`&lt;/span&gt; to sum each event&#39;s value and &lt;span pulumi-lang-nodejs=&#34;`last`&#34; pulumi-lang-dotnet=&#34;`Last`&#34; pulumi-lang-go=&#34;`last`&#34; pulumi-lang-python=&#34;`last`&#34; pulumi-lang-yaml=&#34;`last`&#34; pulumi-lang-java=&#34;`last`&#34; pulumi-lang-hcl=&#34;`last`&#34;&gt;`last`&lt;/span&gt; to take the last event&#39;s value in the window.
+     * @return Specifies how events are aggregated.
      * 
      */
     public Output<String> formula() {
@@ -54,7 +54,7 @@ public final class BillingMeterDefaultAggregationArgs extends com.pulumi.resourc
         }
 
         /**
-         * @param formula Specifies how events are aggregated. Allowed values are &lt;span pulumi-lang-nodejs=&#34;`count`&#34; pulumi-lang-dotnet=&#34;`Count`&#34; pulumi-lang-go=&#34;`count`&#34; pulumi-lang-python=&#34;`count`&#34; pulumi-lang-yaml=&#34;`count`&#34; pulumi-lang-java=&#34;`count`&#34; pulumi-lang-hcl=&#34;`count`&#34;&gt;`count`&lt;/span&gt; to count the number of events, &lt;span pulumi-lang-nodejs=&#34;`sum`&#34; pulumi-lang-dotnet=&#34;`Sum`&#34; pulumi-lang-go=&#34;`sum`&#34; pulumi-lang-python=&#34;`sum`&#34; pulumi-lang-yaml=&#34;`sum`&#34; pulumi-lang-java=&#34;`sum`&#34; pulumi-lang-hcl=&#34;`sum`&#34;&gt;`sum`&lt;/span&gt; to sum each event&#39;s value and &lt;span pulumi-lang-nodejs=&#34;`last`&#34; pulumi-lang-dotnet=&#34;`Last`&#34; pulumi-lang-go=&#34;`last`&#34; pulumi-lang-python=&#34;`last`&#34; pulumi-lang-yaml=&#34;`last`&#34; pulumi-lang-java=&#34;`last`&#34; pulumi-lang-hcl=&#34;`last`&#34;&gt;`last`&lt;/span&gt; to take the last event&#39;s value in the window.
+         * @param formula Specifies how events are aggregated.
          * 
          * @return builder
          * 
@@ -65,7 +65,7 @@ public final class BillingMeterDefaultAggregationArgs extends com.pulumi.resourc
         }
 
         /**
-         * @param formula Specifies how events are aggregated. Allowed values are &lt;span pulumi-lang-nodejs=&#34;`count`&#34; pulumi-lang-dotnet=&#34;`Count`&#34; pulumi-lang-go=&#34;`count`&#34; pulumi-lang-python=&#34;`count`&#34; pulumi-lang-yaml=&#34;`count`&#34; pulumi-lang-java=&#34;`count`&#34; pulumi-lang-hcl=&#34;`count`&#34;&gt;`count`&lt;/span&gt; to count the number of events, &lt;span pulumi-lang-nodejs=&#34;`sum`&#34; pulumi-lang-dotnet=&#34;`Sum`&#34; pulumi-lang-go=&#34;`sum`&#34; pulumi-lang-python=&#34;`sum`&#34; pulumi-lang-yaml=&#34;`sum`&#34; pulumi-lang-java=&#34;`sum`&#34; pulumi-lang-hcl=&#34;`sum`&#34;&gt;`sum`&lt;/span&gt; to sum each event&#39;s value and &lt;span pulumi-lang-nodejs=&#34;`last`&#34; pulumi-lang-dotnet=&#34;`Last`&#34; pulumi-lang-go=&#34;`last`&#34; pulumi-lang-python=&#34;`last`&#34; pulumi-lang-yaml=&#34;`last`&#34; pulumi-lang-java=&#34;`last`&#34; pulumi-lang-hcl=&#34;`last`&#34;&gt;`last`&lt;/span&gt; to take the last event&#39;s value in the window.
+         * @param formula Specifies how events are aggregated.
          * 
          * @return builder
          * 

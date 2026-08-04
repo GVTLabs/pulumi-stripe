@@ -5,12 +5,12 @@ package com.pulumi.stripe;
 
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
-import com.pulumi.exceptions.MissingRequiredPropertyException;
 import com.pulumi.stripe.inputs.PromotionCodePromotionArgs;
-import com.pulumi.stripe.inputs.PromotionCodeRestrictionsArgs;
+import com.pulumi.stripe.inputs.PromotionCodeRestrictionArgs;
 import java.lang.Boolean;
 import java.lang.Double;
 import java.lang.String;
+import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
@@ -22,14 +22,14 @@ public final class PromotionCodeArgs extends com.pulumi.resources.ResourceArgs {
     public static final PromotionCodeArgs Empty = new PromotionCodeArgs();
 
     /**
-     * Whether the promotion code is currently active.
+     * Whether the promotion code is currently active. A promotion code is only active if the coupon is also valid.
      * 
      */
     @Import(name="active")
     private @Nullable Output<Boolean> active;
 
     /**
-     * @return Whether the promotion code is currently active.
+     * @return Whether the promotion code is currently active. A promotion code is only active if the coupon is also valid.
      * 
      */
     public Optional<Output<Boolean>> active() {
@@ -37,14 +37,14 @@ public final class PromotionCodeArgs extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * The customer-facing code. Regardless of case, this code must be unique across all active promotion codes for a specific customer. Valid characters are lower case letters (a-z), upper case letters (A-Z), and digits (0-9). If left blank, we will generate one automatically.
+     * The customer-facing code. Regardless of case, this code must be unique across all active promotion codes for each customer. Valid characters are lower case letters (a-z), upper case letters (A-Z), digits (0-9), and dashes (-).
      * 
      */
     @Import(name="code")
     private @Nullable Output<String> code;
 
     /**
-     * @return The customer-facing code. Regardless of case, this code must be unique across all active promotion codes for a specific customer. Valid characters are lower case letters (a-z), upper case letters (A-Z), and digits (0-9). If left blank, we will generate one automatically.
+     * @return The customer-facing code. Regardless of case, this code must be unique across all active promotion codes for each customer. Valid characters are lower case letters (a-z), upper case letters (A-Z), digits (0-9), and dashes (-).
      * 
      */
     public Optional<Output<String>> code() {
@@ -52,14 +52,14 @@ public final class PromotionCodeArgs extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * The customer that this promotion code can be used by. If not set, the promotion code can be used by all customers.
+     * The customer who can use this promotion code.
      * 
      */
     @Import(name="customer")
     private @Nullable Output<String> customer;
 
     /**
-     * @return The customer that this promotion code can be used by. If not set, the promotion code can be used by all customers.
+     * @return The customer who can use this promotion code.
      * 
      */
     public Optional<Output<String>> customer() {
@@ -67,14 +67,14 @@ public final class PromotionCodeArgs extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * The account that this promotion code can be used by. If not set, the promotion code can be used by all accounts.
+     * The account representing the customer who can use this promotion code.
      * 
      */
     @Import(name="customerAccount")
     private @Nullable Output<String> customerAccount;
 
     /**
-     * @return The account that this promotion code can be used by. If not set, the promotion code can be used by all accounts.
+     * @return The account representing the customer who can use this promotion code.
      * 
      */
     public Optional<Output<String>> customerAccount() {
@@ -82,14 +82,14 @@ public final class PromotionCodeArgs extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * The timestamp at which this promotion code will expire. If the coupon has specified a &lt;span pulumi-lang-nodejs=&#34;`redeemsBy`&#34; pulumi-lang-dotnet=&#34;`RedeemsBy`&#34; pulumi-lang-go=&#34;`redeemsBy`&#34; pulumi-lang-python=&#34;`redeems_by`&#34; pulumi-lang-yaml=&#34;`redeemsBy`&#34; pulumi-lang-java=&#34;`redeemsBy`&#34; pulumi-lang-hcl=&#34;`redeems_by`&#34;&gt;`redeemsBy`&lt;/span&gt;, then this value cannot be after the coupon&#39;s &lt;span pulumi-lang-nodejs=&#34;`redeemsBy`&#34; pulumi-lang-dotnet=&#34;`RedeemsBy`&#34; pulumi-lang-go=&#34;`redeemsBy`&#34; pulumi-lang-python=&#34;`redeems_by`&#34; pulumi-lang-yaml=&#34;`redeemsBy`&#34; pulumi-lang-java=&#34;`redeemsBy`&#34; pulumi-lang-hcl=&#34;`redeems_by`&#34;&gt;`redeemsBy`&lt;/span&gt;.
+     * Date at which the promotion code can no longer be redeemed.
      * 
      */
     @Import(name="expiresAt")
     private @Nullable Output<Double> expiresAt;
 
     /**
-     * @return The timestamp at which this promotion code will expire. If the coupon has specified a &lt;span pulumi-lang-nodejs=&#34;`redeemsBy`&#34; pulumi-lang-dotnet=&#34;`RedeemsBy`&#34; pulumi-lang-go=&#34;`redeemsBy`&#34; pulumi-lang-python=&#34;`redeems_by`&#34; pulumi-lang-yaml=&#34;`redeemsBy`&#34; pulumi-lang-java=&#34;`redeemsBy`&#34; pulumi-lang-hcl=&#34;`redeems_by`&#34;&gt;`redeemsBy`&lt;/span&gt;, then this value cannot be after the coupon&#39;s &lt;span pulumi-lang-nodejs=&#34;`redeemsBy`&#34; pulumi-lang-dotnet=&#34;`RedeemsBy`&#34; pulumi-lang-go=&#34;`redeemsBy`&#34; pulumi-lang-python=&#34;`redeems_by`&#34; pulumi-lang-yaml=&#34;`redeemsBy`&#34; pulumi-lang-java=&#34;`redeemsBy`&#34; pulumi-lang-hcl=&#34;`redeems_by`&#34;&gt;`redeemsBy`&lt;/span&gt;.
+     * @return Date at which the promotion code can no longer be redeemed.
      * 
      */
     public Optional<Output<Double>> expiresAt() {
@@ -97,14 +97,14 @@ public final class PromotionCodeArgs extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * A positive integer specifying the number of times the promotion code can be redeemed. If the coupon has specified a &lt;span pulumi-lang-nodejs=&#34;`maxRedemptions`&#34; pulumi-lang-dotnet=&#34;`MaxRedemptions`&#34; pulumi-lang-go=&#34;`maxRedemptions`&#34; pulumi-lang-python=&#34;`max_redemptions`&#34; pulumi-lang-yaml=&#34;`maxRedemptions`&#34; pulumi-lang-java=&#34;`maxRedemptions`&#34; pulumi-lang-hcl=&#34;`max_redemptions`&#34;&gt;`maxRedemptions`&lt;/span&gt;, then this value cannot be greater than the coupon&#39;s &lt;span pulumi-lang-nodejs=&#34;`maxRedemptions`&#34; pulumi-lang-dotnet=&#34;`MaxRedemptions`&#34; pulumi-lang-go=&#34;`maxRedemptions`&#34; pulumi-lang-python=&#34;`max_redemptions`&#34; pulumi-lang-yaml=&#34;`maxRedemptions`&#34; pulumi-lang-java=&#34;`maxRedemptions`&#34; pulumi-lang-hcl=&#34;`max_redemptions`&#34;&gt;`maxRedemptions`&lt;/span&gt;.
+     * Maximum number of times this promotion code can be redeemed.
      * 
      */
     @Import(name="maxRedemptions")
     private @Nullable Output<Double> maxRedemptions;
 
     /**
-     * @return A positive integer specifying the number of times the promotion code can be redeemed. If the coupon has specified a &lt;span pulumi-lang-nodejs=&#34;`maxRedemptions`&#34; pulumi-lang-dotnet=&#34;`MaxRedemptions`&#34; pulumi-lang-go=&#34;`maxRedemptions`&#34; pulumi-lang-python=&#34;`max_redemptions`&#34; pulumi-lang-yaml=&#34;`maxRedemptions`&#34; pulumi-lang-java=&#34;`maxRedemptions`&#34; pulumi-lang-hcl=&#34;`max_redemptions`&#34;&gt;`maxRedemptions`&lt;/span&gt;, then this value cannot be greater than the coupon&#39;s &lt;span pulumi-lang-nodejs=&#34;`maxRedemptions`&#34; pulumi-lang-dotnet=&#34;`MaxRedemptions`&#34; pulumi-lang-go=&#34;`maxRedemptions`&#34; pulumi-lang-python=&#34;`max_redemptions`&#34; pulumi-lang-yaml=&#34;`maxRedemptions`&#34; pulumi-lang-java=&#34;`maxRedemptions`&#34; pulumi-lang-hcl=&#34;`max_redemptions`&#34;&gt;`maxRedemptions`&lt;/span&gt;.
+     * @return Maximum number of times this promotion code can be redeemed.
      * 
      */
     public Optional<Output<Double>> maxRedemptions() {
@@ -112,47 +112,31 @@ public final class PromotionCodeArgs extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * Set of [key-value pairs](https://stripe.com/docs/api/metadata) that you can attach to an object. This can be useful for storing additional information about the object in a structured format. Individual keys can be unset by posting an empty value to them. All keys can be unset by posting an empty value to &lt;span pulumi-lang-nodejs=&#34;`metadata`&#34; pulumi-lang-dotnet=&#34;`Metadata`&#34; pulumi-lang-go=&#34;`metadata`&#34; pulumi-lang-python=&#34;`metadata`&#34; pulumi-lang-yaml=&#34;`metadata`&#34; pulumi-lang-java=&#34;`metadata`&#34; pulumi-lang-hcl=&#34;`metadata`&#34;&gt;`metadata`&lt;/span&gt;.
+     * Set of [key-value pairs](https://docs.stripe.com/api/metadata) that you can attach to an object. This can be useful for storing additional information about the object in a structured format.
      * 
      */
     @Import(name="metadata")
     private @Nullable Output<Map<String,String>> metadata;
 
     /**
-     * @return Set of [key-value pairs](https://stripe.com/docs/api/metadata) that you can attach to an object. This can be useful for storing additional information about the object in a structured format. Individual keys can be unset by posting an empty value to them. All keys can be unset by posting an empty value to &lt;span pulumi-lang-nodejs=&#34;`metadata`&#34; pulumi-lang-dotnet=&#34;`Metadata`&#34; pulumi-lang-go=&#34;`metadata`&#34; pulumi-lang-python=&#34;`metadata`&#34; pulumi-lang-yaml=&#34;`metadata`&#34; pulumi-lang-java=&#34;`metadata`&#34; pulumi-lang-hcl=&#34;`metadata`&#34;&gt;`metadata`&lt;/span&gt;.
+     * @return Set of [key-value pairs](https://docs.stripe.com/api/metadata) that you can attach to an object. This can be useful for storing additional information about the object in a structured format.
      * 
      */
     public Optional<Output<Map<String,String>>> metadata() {
         return Optional.ofNullable(this.metadata);
     }
 
-    /**
-     * The promotion referenced by this promotion code.
-     * 
-     */
-    @Import(name="promotion", required=true)
-    private Output<PromotionCodePromotionArgs> promotion;
+    @Import(name="promotions")
+    private @Nullable Output<List<PromotionCodePromotionArgs>> promotions;
 
-    /**
-     * @return The promotion referenced by this promotion code.
-     * 
-     */
-    public Output<PromotionCodePromotionArgs> promotion() {
-        return this.promotion;
+    public Optional<Output<List<PromotionCodePromotionArgs>>> promotions() {
+        return Optional.ofNullable(this.promotions);
     }
 
-    /**
-     * Settings that restrict the redemption of the promotion code.
-     * 
-     */
     @Import(name="restrictions")
-    private @Nullable Output<PromotionCodeRestrictionsArgs> restrictions;
+    private @Nullable Output<List<PromotionCodeRestrictionArgs>> restrictions;
 
-    /**
-     * @return Settings that restrict the redemption of the promotion code.
-     * 
-     */
-    public Optional<Output<PromotionCodeRestrictionsArgs>> restrictions() {
+    public Optional<Output<List<PromotionCodeRestrictionArgs>>> restrictions() {
         return Optional.ofNullable(this.restrictions);
     }
 
@@ -166,7 +150,7 @@ public final class PromotionCodeArgs extends com.pulumi.resources.ResourceArgs {
         this.expiresAt = $.expiresAt;
         this.maxRedemptions = $.maxRedemptions;
         this.metadata = $.metadata;
-        this.promotion = $.promotion;
+        this.promotions = $.promotions;
         this.restrictions = $.restrictions;
     }
 
@@ -189,7 +173,7 @@ public final class PromotionCodeArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param active Whether the promotion code is currently active.
+         * @param active Whether the promotion code is currently active. A promotion code is only active if the coupon is also valid.
          * 
          * @return builder
          * 
@@ -200,7 +184,7 @@ public final class PromotionCodeArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param active Whether the promotion code is currently active.
+         * @param active Whether the promotion code is currently active. A promotion code is only active if the coupon is also valid.
          * 
          * @return builder
          * 
@@ -210,7 +194,7 @@ public final class PromotionCodeArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param code The customer-facing code. Regardless of case, this code must be unique across all active promotion codes for a specific customer. Valid characters are lower case letters (a-z), upper case letters (A-Z), and digits (0-9). If left blank, we will generate one automatically.
+         * @param code The customer-facing code. Regardless of case, this code must be unique across all active promotion codes for each customer. Valid characters are lower case letters (a-z), upper case letters (A-Z), digits (0-9), and dashes (-).
          * 
          * @return builder
          * 
@@ -221,7 +205,7 @@ public final class PromotionCodeArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param code The customer-facing code. Regardless of case, this code must be unique across all active promotion codes for a specific customer. Valid characters are lower case letters (a-z), upper case letters (A-Z), and digits (0-9). If left blank, we will generate one automatically.
+         * @param code The customer-facing code. Regardless of case, this code must be unique across all active promotion codes for each customer. Valid characters are lower case letters (a-z), upper case letters (A-Z), digits (0-9), and dashes (-).
          * 
          * @return builder
          * 
@@ -231,7 +215,7 @@ public final class PromotionCodeArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param customer The customer that this promotion code can be used by. If not set, the promotion code can be used by all customers.
+         * @param customer The customer who can use this promotion code.
          * 
          * @return builder
          * 
@@ -242,7 +226,7 @@ public final class PromotionCodeArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param customer The customer that this promotion code can be used by. If not set, the promotion code can be used by all customers.
+         * @param customer The customer who can use this promotion code.
          * 
          * @return builder
          * 
@@ -252,7 +236,7 @@ public final class PromotionCodeArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param customerAccount The account that this promotion code can be used by. If not set, the promotion code can be used by all accounts.
+         * @param customerAccount The account representing the customer who can use this promotion code.
          * 
          * @return builder
          * 
@@ -263,7 +247,7 @@ public final class PromotionCodeArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param customerAccount The account that this promotion code can be used by. If not set, the promotion code can be used by all accounts.
+         * @param customerAccount The account representing the customer who can use this promotion code.
          * 
          * @return builder
          * 
@@ -273,7 +257,7 @@ public final class PromotionCodeArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param expiresAt The timestamp at which this promotion code will expire. If the coupon has specified a &lt;span pulumi-lang-nodejs=&#34;`redeemsBy`&#34; pulumi-lang-dotnet=&#34;`RedeemsBy`&#34; pulumi-lang-go=&#34;`redeemsBy`&#34; pulumi-lang-python=&#34;`redeems_by`&#34; pulumi-lang-yaml=&#34;`redeemsBy`&#34; pulumi-lang-java=&#34;`redeemsBy`&#34; pulumi-lang-hcl=&#34;`redeems_by`&#34;&gt;`redeemsBy`&lt;/span&gt;, then this value cannot be after the coupon&#39;s &lt;span pulumi-lang-nodejs=&#34;`redeemsBy`&#34; pulumi-lang-dotnet=&#34;`RedeemsBy`&#34; pulumi-lang-go=&#34;`redeemsBy`&#34; pulumi-lang-python=&#34;`redeems_by`&#34; pulumi-lang-yaml=&#34;`redeemsBy`&#34; pulumi-lang-java=&#34;`redeemsBy`&#34; pulumi-lang-hcl=&#34;`redeems_by`&#34;&gt;`redeemsBy`&lt;/span&gt;.
+         * @param expiresAt Date at which the promotion code can no longer be redeemed.
          * 
          * @return builder
          * 
@@ -284,7 +268,7 @@ public final class PromotionCodeArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param expiresAt The timestamp at which this promotion code will expire. If the coupon has specified a &lt;span pulumi-lang-nodejs=&#34;`redeemsBy`&#34; pulumi-lang-dotnet=&#34;`RedeemsBy`&#34; pulumi-lang-go=&#34;`redeemsBy`&#34; pulumi-lang-python=&#34;`redeems_by`&#34; pulumi-lang-yaml=&#34;`redeemsBy`&#34; pulumi-lang-java=&#34;`redeemsBy`&#34; pulumi-lang-hcl=&#34;`redeems_by`&#34;&gt;`redeemsBy`&lt;/span&gt;, then this value cannot be after the coupon&#39;s &lt;span pulumi-lang-nodejs=&#34;`redeemsBy`&#34; pulumi-lang-dotnet=&#34;`RedeemsBy`&#34; pulumi-lang-go=&#34;`redeemsBy`&#34; pulumi-lang-python=&#34;`redeems_by`&#34; pulumi-lang-yaml=&#34;`redeemsBy`&#34; pulumi-lang-java=&#34;`redeemsBy`&#34; pulumi-lang-hcl=&#34;`redeems_by`&#34;&gt;`redeemsBy`&lt;/span&gt;.
+         * @param expiresAt Date at which the promotion code can no longer be redeemed.
          * 
          * @return builder
          * 
@@ -294,7 +278,7 @@ public final class PromotionCodeArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param maxRedemptions A positive integer specifying the number of times the promotion code can be redeemed. If the coupon has specified a &lt;span pulumi-lang-nodejs=&#34;`maxRedemptions`&#34; pulumi-lang-dotnet=&#34;`MaxRedemptions`&#34; pulumi-lang-go=&#34;`maxRedemptions`&#34; pulumi-lang-python=&#34;`max_redemptions`&#34; pulumi-lang-yaml=&#34;`maxRedemptions`&#34; pulumi-lang-java=&#34;`maxRedemptions`&#34; pulumi-lang-hcl=&#34;`max_redemptions`&#34;&gt;`maxRedemptions`&lt;/span&gt;, then this value cannot be greater than the coupon&#39;s &lt;span pulumi-lang-nodejs=&#34;`maxRedemptions`&#34; pulumi-lang-dotnet=&#34;`MaxRedemptions`&#34; pulumi-lang-go=&#34;`maxRedemptions`&#34; pulumi-lang-python=&#34;`max_redemptions`&#34; pulumi-lang-yaml=&#34;`maxRedemptions`&#34; pulumi-lang-java=&#34;`maxRedemptions`&#34; pulumi-lang-hcl=&#34;`max_redemptions`&#34;&gt;`maxRedemptions`&lt;/span&gt;.
+         * @param maxRedemptions Maximum number of times this promotion code can be redeemed.
          * 
          * @return builder
          * 
@@ -305,7 +289,7 @@ public final class PromotionCodeArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param maxRedemptions A positive integer specifying the number of times the promotion code can be redeemed. If the coupon has specified a &lt;span pulumi-lang-nodejs=&#34;`maxRedemptions`&#34; pulumi-lang-dotnet=&#34;`MaxRedemptions`&#34; pulumi-lang-go=&#34;`maxRedemptions`&#34; pulumi-lang-python=&#34;`max_redemptions`&#34; pulumi-lang-yaml=&#34;`maxRedemptions`&#34; pulumi-lang-java=&#34;`maxRedemptions`&#34; pulumi-lang-hcl=&#34;`max_redemptions`&#34;&gt;`maxRedemptions`&lt;/span&gt;, then this value cannot be greater than the coupon&#39;s &lt;span pulumi-lang-nodejs=&#34;`maxRedemptions`&#34; pulumi-lang-dotnet=&#34;`MaxRedemptions`&#34; pulumi-lang-go=&#34;`maxRedemptions`&#34; pulumi-lang-python=&#34;`max_redemptions`&#34; pulumi-lang-yaml=&#34;`maxRedemptions`&#34; pulumi-lang-java=&#34;`maxRedemptions`&#34; pulumi-lang-hcl=&#34;`max_redemptions`&#34;&gt;`maxRedemptions`&lt;/span&gt;.
+         * @param maxRedemptions Maximum number of times this promotion code can be redeemed.
          * 
          * @return builder
          * 
@@ -315,7 +299,7 @@ public final class PromotionCodeArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param metadata Set of [key-value pairs](https://stripe.com/docs/api/metadata) that you can attach to an object. This can be useful for storing additional information about the object in a structured format. Individual keys can be unset by posting an empty value to them. All keys can be unset by posting an empty value to &lt;span pulumi-lang-nodejs=&#34;`metadata`&#34; pulumi-lang-dotnet=&#34;`Metadata`&#34; pulumi-lang-go=&#34;`metadata`&#34; pulumi-lang-python=&#34;`metadata`&#34; pulumi-lang-yaml=&#34;`metadata`&#34; pulumi-lang-java=&#34;`metadata`&#34; pulumi-lang-hcl=&#34;`metadata`&#34;&gt;`metadata`&lt;/span&gt;.
+         * @param metadata Set of [key-value pairs](https://docs.stripe.com/api/metadata) that you can attach to an object. This can be useful for storing additional information about the object in a structured format.
          * 
          * @return builder
          * 
@@ -326,7 +310,7 @@ public final class PromotionCodeArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param metadata Set of [key-value pairs](https://stripe.com/docs/api/metadata) that you can attach to an object. This can be useful for storing additional information about the object in a structured format. Individual keys can be unset by posting an empty value to them. All keys can be unset by posting an empty value to &lt;span pulumi-lang-nodejs=&#34;`metadata`&#34; pulumi-lang-dotnet=&#34;`Metadata`&#34; pulumi-lang-go=&#34;`metadata`&#34; pulumi-lang-python=&#34;`metadata`&#34; pulumi-lang-yaml=&#34;`metadata`&#34; pulumi-lang-java=&#34;`metadata`&#34; pulumi-lang-hcl=&#34;`metadata`&#34;&gt;`metadata`&lt;/span&gt;.
+         * @param metadata Set of [key-value pairs](https://docs.stripe.com/api/metadata) that you can attach to an object. This can be useful for storing additional information about the object in a structured format.
          * 
          * @return builder
          * 
@@ -335,52 +319,33 @@ public final class PromotionCodeArgs extends com.pulumi.resources.ResourceArgs {
             return metadata(Output.of(metadata));
         }
 
-        /**
-         * @param promotion The promotion referenced by this promotion code.
-         * 
-         * @return builder
-         * 
-         */
-        public Builder promotion(Output<PromotionCodePromotionArgs> promotion) {
-            $.promotion = promotion;
+        public Builder promotions(@Nullable Output<List<PromotionCodePromotionArgs>> promotions) {
+            $.promotions = promotions;
             return this;
         }
 
-        /**
-         * @param promotion The promotion referenced by this promotion code.
-         * 
-         * @return builder
-         * 
-         */
-        public Builder promotion(PromotionCodePromotionArgs promotion) {
-            return promotion(Output.of(promotion));
+        public Builder promotions(List<PromotionCodePromotionArgs> promotions) {
+            return promotions(Output.of(promotions));
         }
 
-        /**
-         * @param restrictions Settings that restrict the redemption of the promotion code.
-         * 
-         * @return builder
-         * 
-         */
-        public Builder restrictions(@Nullable Output<PromotionCodeRestrictionsArgs> restrictions) {
+        public Builder promotions(PromotionCodePromotionArgs... promotions) {
+            return promotions(List.of(promotions));
+        }
+
+        public Builder restrictions(@Nullable Output<List<PromotionCodeRestrictionArgs>> restrictions) {
             $.restrictions = restrictions;
             return this;
         }
 
-        /**
-         * @param restrictions Settings that restrict the redemption of the promotion code.
-         * 
-         * @return builder
-         * 
-         */
-        public Builder restrictions(PromotionCodeRestrictionsArgs restrictions) {
+        public Builder restrictions(List<PromotionCodeRestrictionArgs> restrictions) {
             return restrictions(Output.of(restrictions));
         }
 
+        public Builder restrictions(PromotionCodeRestrictionArgs... restrictions) {
+            return restrictions(List.of(restrictions));
+        }
+
         public PromotionCodeArgs build() {
-            if ($.promotion == null) {
-                throw new MissingRequiredPropertyException("PromotionCodeArgs", "promotion");
-            }
             return $;
         }
     }

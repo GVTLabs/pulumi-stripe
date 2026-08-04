@@ -12,11 +12,13 @@ namespace Pulumi.Stripe.Inputs
 
     public sealed class CustomerShippingGetArgs : global::Pulumi.ResourceArgs
     {
-        /// <summary>
-        /// Customer shipping address.
-        /// </summary>
-        [Input("address", required: true)]
-        public Input<Inputs.CustomerShippingAddressGetArgs> Address { get; set; } = null!;
+        [Input("addresses")]
+        private InputList<Inputs.CustomerShippingAddressGetArgs>? _addresses;
+        public InputList<Inputs.CustomerShippingAddressGetArgs> Addresses
+        {
+            get => _addresses ?? (_addresses = new InputList<Inputs.CustomerShippingAddressGetArgs>());
+            set => _addresses = value;
+        }
 
         /// <summary>
         /// The delivery service that shipped a physical product, such as Fedex, UPS, USPS, etc.
@@ -25,13 +27,13 @@ namespace Pulumi.Stripe.Inputs
         public Input<string>? Carrier { get; set; }
 
         /// <summary>
-        /// Customer name.
+        /// Recipient name.
         /// </summary>
         [Input("name", required: true)]
         public Input<string> Name { get; set; } = null!;
 
         /// <summary>
-        /// Customer phone (including extension).
+        /// Recipient phone (including extension).
         /// </summary>
         [Input("phone")]
         public Input<string>? Phone { get; set; }

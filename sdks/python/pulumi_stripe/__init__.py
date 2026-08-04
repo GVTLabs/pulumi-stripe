@@ -6,25 +6,54 @@ import builtins as _builtins
 from . import _utilities
 import typing
 # Export this package's modules as members:
+from .apple_pay_domain import *
+from .billing_alert import *
+from .billing_credit_grant import *
 from .billing_meter import *
+from .billing_portal_configuration import *
+from .charge import *
+from .climate_order import *
 from .coupon import *
+from .credit_note import *
 from .customer import *
+from .customer_balance_transaction import *
 from .entitlements_feature import *
-from .get_billing_meter import *
+from .file import *
+from .file_link import *
+from .invoice import *
+from .invoice_item import *
+from .issuing_card import *
+from .issuing_cardholder import *
+from .issuing_dispute import *
+from .issuing_personalization_design import *
+from .payment_intent import *
+from .payment_link import *
+from .payment_method import *
+from .payment_method_configuration import *
+from .payment_method_domain import *
+from .person import *
+from .plan import *
 from .price import *
 from .product import *
+from .product_feature import *
 from .promotion_code import *
 from .provider import *
+from .quote import *
+from .radar_value_list import *
+from .radar_value_list_item import *
+from .setup_intent import *
 from .shipping_rate import *
+from .source import *
+from .subscription import *
+from .subscription_item import *
+from .subscription_schedule import *
+from .tax_id import *
 from .tax_rate import *
-from .v2_billing_license_fee import *
-from .v2_billing_licensed_item import *
-from .v2_billing_metered_item import *
-from .v2_billing_pricing_plan import *
-from .v2_billing_pricing_plan_component import *
-from .v2_billing_rate_card import *
-from .v2_billing_rate_card_rate import *
-from .v2_billing_service_action import *
+from .tax_registration import *
+from .terminal_configuration import *
+from .terminal_location import *
+from .terminal_reader import *
+from .treasury_financial_account import *
 from .v2_core_event_destination import *
 from .webhook_endpoint import *
 from ._inputs import *
@@ -42,10 +71,58 @@ _utilities.register(
 [
  {
   "pkg": "stripe",
+  "mod": "index/applePayDomain",
+  "fqn": "pulumi_stripe",
+  "classes": {
+   "stripe:index/applePayDomain:ApplePayDomain": "ApplePayDomain"
+  }
+ },
+ {
+  "pkg": "stripe",
+  "mod": "index/billingAlert",
+  "fqn": "pulumi_stripe",
+  "classes": {
+   "stripe:index/billingAlert:BillingAlert": "BillingAlert"
+  }
+ },
+ {
+  "pkg": "stripe",
+  "mod": "index/billingCreditGrant",
+  "fqn": "pulumi_stripe",
+  "classes": {
+   "stripe:index/billingCreditGrant:BillingCreditGrant": "BillingCreditGrant"
+  }
+ },
+ {
+  "pkg": "stripe",
   "mod": "index/billingMeter",
   "fqn": "pulumi_stripe",
   "classes": {
    "stripe:index/billingMeter:BillingMeter": "BillingMeter"
+  }
+ },
+ {
+  "pkg": "stripe",
+  "mod": "index/billingPortalConfiguration",
+  "fqn": "pulumi_stripe",
+  "classes": {
+   "stripe:index/billingPortalConfiguration:BillingPortalConfiguration": "BillingPortalConfiguration"
+  }
+ },
+ {
+  "pkg": "stripe",
+  "mod": "index/charge",
+  "fqn": "pulumi_stripe",
+  "classes": {
+   "stripe:index/charge:Charge": "Charge"
+  }
+ },
+ {
+  "pkg": "stripe",
+  "mod": "index/climateOrder",
+  "fqn": "pulumi_stripe",
+  "classes": {
+   "stripe:index/climateOrder:ClimateOrder": "ClimateOrder"
   }
  },
  {
@@ -58,6 +135,14 @@ _utilities.register(
  },
  {
   "pkg": "stripe",
+  "mod": "index/creditNote",
+  "fqn": "pulumi_stripe",
+  "classes": {
+   "stripe:index/creditNote:CreditNote": "CreditNote"
+  }
+ },
+ {
+  "pkg": "stripe",
   "mod": "index/customer",
   "fqn": "pulumi_stripe",
   "classes": {
@@ -66,10 +151,138 @@ _utilities.register(
  },
  {
   "pkg": "stripe",
+  "mod": "index/customerBalanceTransaction",
+  "fqn": "pulumi_stripe",
+  "classes": {
+   "stripe:index/customerBalanceTransaction:CustomerBalanceTransaction": "CustomerBalanceTransaction"
+  }
+ },
+ {
+  "pkg": "stripe",
   "mod": "index/entitlementsFeature",
   "fqn": "pulumi_stripe",
   "classes": {
    "stripe:index/entitlementsFeature:EntitlementsFeature": "EntitlementsFeature"
+  }
+ },
+ {
+  "pkg": "stripe",
+  "mod": "index/file",
+  "fqn": "pulumi_stripe",
+  "classes": {
+   "stripe:index/file:File": "File"
+  }
+ },
+ {
+  "pkg": "stripe",
+  "mod": "index/fileLink",
+  "fqn": "pulumi_stripe",
+  "classes": {
+   "stripe:index/fileLink:FileLink": "FileLink"
+  }
+ },
+ {
+  "pkg": "stripe",
+  "mod": "index/invoice",
+  "fqn": "pulumi_stripe",
+  "classes": {
+   "stripe:index/invoice:Invoice": "Invoice"
+  }
+ },
+ {
+  "pkg": "stripe",
+  "mod": "index/invoiceItem",
+  "fqn": "pulumi_stripe",
+  "classes": {
+   "stripe:index/invoiceItem:InvoiceItem": "InvoiceItem"
+  }
+ },
+ {
+  "pkg": "stripe",
+  "mod": "index/issuingCard",
+  "fqn": "pulumi_stripe",
+  "classes": {
+   "stripe:index/issuingCard:IssuingCard": "IssuingCard"
+  }
+ },
+ {
+  "pkg": "stripe",
+  "mod": "index/issuingCardholder",
+  "fqn": "pulumi_stripe",
+  "classes": {
+   "stripe:index/issuingCardholder:IssuingCardholder": "IssuingCardholder"
+  }
+ },
+ {
+  "pkg": "stripe",
+  "mod": "index/issuingDispute",
+  "fqn": "pulumi_stripe",
+  "classes": {
+   "stripe:index/issuingDispute:IssuingDispute": "IssuingDispute"
+  }
+ },
+ {
+  "pkg": "stripe",
+  "mod": "index/issuingPersonalizationDesign",
+  "fqn": "pulumi_stripe",
+  "classes": {
+   "stripe:index/issuingPersonalizationDesign:IssuingPersonalizationDesign": "IssuingPersonalizationDesign"
+  }
+ },
+ {
+  "pkg": "stripe",
+  "mod": "index/paymentIntent",
+  "fqn": "pulumi_stripe",
+  "classes": {
+   "stripe:index/paymentIntent:PaymentIntent": "PaymentIntent"
+  }
+ },
+ {
+  "pkg": "stripe",
+  "mod": "index/paymentLink",
+  "fqn": "pulumi_stripe",
+  "classes": {
+   "stripe:index/paymentLink:PaymentLink": "PaymentLink"
+  }
+ },
+ {
+  "pkg": "stripe",
+  "mod": "index/paymentMethod",
+  "fqn": "pulumi_stripe",
+  "classes": {
+   "stripe:index/paymentMethod:PaymentMethod": "PaymentMethod"
+  }
+ },
+ {
+  "pkg": "stripe",
+  "mod": "index/paymentMethodConfiguration",
+  "fqn": "pulumi_stripe",
+  "classes": {
+   "stripe:index/paymentMethodConfiguration:PaymentMethodConfiguration": "PaymentMethodConfiguration"
+  }
+ },
+ {
+  "pkg": "stripe",
+  "mod": "index/paymentMethodDomain",
+  "fqn": "pulumi_stripe",
+  "classes": {
+   "stripe:index/paymentMethodDomain:PaymentMethodDomain": "PaymentMethodDomain"
+  }
+ },
+ {
+  "pkg": "stripe",
+  "mod": "index/person",
+  "fqn": "pulumi_stripe",
+  "classes": {
+   "stripe:index/person:Person": "Person"
+  }
+ },
+ {
+  "pkg": "stripe",
+  "mod": "index/plan",
+  "fqn": "pulumi_stripe",
+  "classes": {
+   "stripe:index/plan:Plan": "Plan"
   }
  },
  {
@@ -90,10 +303,50 @@ _utilities.register(
  },
  {
   "pkg": "stripe",
+  "mod": "index/productFeature",
+  "fqn": "pulumi_stripe",
+  "classes": {
+   "stripe:index/productFeature:ProductFeature": "ProductFeature"
+  }
+ },
+ {
+  "pkg": "stripe",
   "mod": "index/promotionCode",
   "fqn": "pulumi_stripe",
   "classes": {
    "stripe:index/promotionCode:PromotionCode": "PromotionCode"
+  }
+ },
+ {
+  "pkg": "stripe",
+  "mod": "index/quote",
+  "fqn": "pulumi_stripe",
+  "classes": {
+   "stripe:index/quote:Quote": "Quote"
+  }
+ },
+ {
+  "pkg": "stripe",
+  "mod": "index/radarValueList",
+  "fqn": "pulumi_stripe",
+  "classes": {
+   "stripe:index/radarValueList:RadarValueList": "RadarValueList"
+  }
+ },
+ {
+  "pkg": "stripe",
+  "mod": "index/radarValueListItem",
+  "fqn": "pulumi_stripe",
+  "classes": {
+   "stripe:index/radarValueListItem:RadarValueListItem": "RadarValueListItem"
+  }
+ },
+ {
+  "pkg": "stripe",
+  "mod": "index/setupIntent",
+  "fqn": "pulumi_stripe",
+  "classes": {
+   "stripe:index/setupIntent:SetupIntent": "SetupIntent"
   }
  },
  {
@@ -106,6 +359,46 @@ _utilities.register(
  },
  {
   "pkg": "stripe",
+  "mod": "index/source",
+  "fqn": "pulumi_stripe",
+  "classes": {
+   "stripe:index/source:Source": "Source"
+  }
+ },
+ {
+  "pkg": "stripe",
+  "mod": "index/subscription",
+  "fqn": "pulumi_stripe",
+  "classes": {
+   "stripe:index/subscription:Subscription": "Subscription"
+  }
+ },
+ {
+  "pkg": "stripe",
+  "mod": "index/subscriptionItem",
+  "fqn": "pulumi_stripe",
+  "classes": {
+   "stripe:index/subscriptionItem:SubscriptionItem": "SubscriptionItem"
+  }
+ },
+ {
+  "pkg": "stripe",
+  "mod": "index/subscriptionSchedule",
+  "fqn": "pulumi_stripe",
+  "classes": {
+   "stripe:index/subscriptionSchedule:SubscriptionSchedule": "SubscriptionSchedule"
+  }
+ },
+ {
+  "pkg": "stripe",
+  "mod": "index/taxId",
+  "fqn": "pulumi_stripe",
+  "classes": {
+   "stripe:index/taxId:TaxId": "TaxId"
+  }
+ },
+ {
+  "pkg": "stripe",
   "mod": "index/taxRate",
   "fqn": "pulumi_stripe",
   "classes": {
@@ -114,66 +407,42 @@ _utilities.register(
  },
  {
   "pkg": "stripe",
-  "mod": "index/v2BillingLicenseFee",
+  "mod": "index/taxRegistration",
   "fqn": "pulumi_stripe",
   "classes": {
-   "stripe:index/v2BillingLicenseFee:V2BillingLicenseFee": "V2BillingLicenseFee"
+   "stripe:index/taxRegistration:TaxRegistration": "TaxRegistration"
   }
  },
  {
   "pkg": "stripe",
-  "mod": "index/v2BillingLicensedItem",
+  "mod": "index/terminalConfiguration",
   "fqn": "pulumi_stripe",
   "classes": {
-   "stripe:index/v2BillingLicensedItem:V2BillingLicensedItem": "V2BillingLicensedItem"
+   "stripe:index/terminalConfiguration:TerminalConfiguration": "TerminalConfiguration"
   }
  },
  {
   "pkg": "stripe",
-  "mod": "index/v2BillingMeteredItem",
+  "mod": "index/terminalLocation",
   "fqn": "pulumi_stripe",
   "classes": {
-   "stripe:index/v2BillingMeteredItem:V2BillingMeteredItem": "V2BillingMeteredItem"
+   "stripe:index/terminalLocation:TerminalLocation": "TerminalLocation"
   }
  },
  {
   "pkg": "stripe",
-  "mod": "index/v2BillingPricingPlan",
+  "mod": "index/terminalReader",
   "fqn": "pulumi_stripe",
   "classes": {
-   "stripe:index/v2BillingPricingPlan:V2BillingPricingPlan": "V2BillingPricingPlan"
+   "stripe:index/terminalReader:TerminalReader": "TerminalReader"
   }
  },
  {
   "pkg": "stripe",
-  "mod": "index/v2BillingPricingPlanComponent",
+  "mod": "index/treasuryFinancialAccount",
   "fqn": "pulumi_stripe",
   "classes": {
-   "stripe:index/v2BillingPricingPlanComponent:V2BillingPricingPlanComponent": "V2BillingPricingPlanComponent"
-  }
- },
- {
-  "pkg": "stripe",
-  "mod": "index/v2BillingRateCard",
-  "fqn": "pulumi_stripe",
-  "classes": {
-   "stripe:index/v2BillingRateCard:V2BillingRateCard": "V2BillingRateCard"
-  }
- },
- {
-  "pkg": "stripe",
-  "mod": "index/v2BillingRateCardRate",
-  "fqn": "pulumi_stripe",
-  "classes": {
-   "stripe:index/v2BillingRateCardRate:V2BillingRateCardRate": "V2BillingRateCardRate"
-  }
- },
- {
-  "pkg": "stripe",
-  "mod": "index/v2BillingServiceAction",
-  "fqn": "pulumi_stripe",
-  "classes": {
-   "stripe:index/v2BillingServiceAction:V2BillingServiceAction": "V2BillingServiceAction"
+   "stripe:index/treasuryFinancialAccount:TreasuryFinancialAccount": "TreasuryFinancialAccount"
   }
  },
  {

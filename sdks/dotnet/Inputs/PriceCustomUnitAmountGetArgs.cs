@@ -13,6 +13,12 @@ namespace Pulumi.Stripe.Inputs
     public sealed class PriceCustomUnitAmountGetArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
+        /// Pass in &lt;span pulumi-lang-nodejs="`true`" pulumi-lang-dotnet="`True`" pulumi-lang-go="`true`" pulumi-lang-python="`true`" pulumi-lang-yaml="`true`" pulumi-lang-java="`true`" pulumi-lang-hcl="`true`"&gt;`true`&lt;/span&gt; to enable &lt;span pulumi-lang-nodejs="`customUnitAmount`" pulumi-lang-dotnet="`CustomUnitAmount`" pulumi-lang-go="`customUnitAmount`" pulumi-lang-python="`custom_unit_amount`" pulumi-lang-yaml="`customUnitAmount`" pulumi-lang-java="`customUnitAmount`" pulumi-lang-hcl="`custom_unit_amount`"&gt;`customUnitAmount`&lt;/span&gt;, otherwise omit &lt;span pulumi-lang-nodejs="`customUnitAmount`" pulumi-lang-dotnet="`CustomUnitAmount`" pulumi-lang-go="`customUnitAmount`" pulumi-lang-python="`custom_unit_amount`" pulumi-lang-yaml="`customUnitAmount`" pulumi-lang-java="`customUnitAmount`" pulumi-lang-hcl="`custom_unit_amount`"&gt;`customUnitAmount`&lt;/span&gt;.
+        /// </summary>
+        [Input("enabled", required: true)]
+        public Input<bool> Enabled { get; set; } = null!;
+
+        /// <summary>
         /// The maximum unit amount the customer can specify for this item.
         /// </summary>
         [Input("maximum")]

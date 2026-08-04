@@ -10,6 +10,7 @@ import com.pulumi.stripe.inputs.PriceCustomUnitAmountArgs;
 import com.pulumi.stripe.inputs.PriceProductDataArgs;
 import com.pulumi.stripe.inputs.PriceRecurringArgs;
 import com.pulumi.stripe.inputs.PriceTierArgs;
+import com.pulumi.stripe.inputs.PriceTransformQuantityArgs;
 import java.lang.Boolean;
 import java.lang.Double;
 import java.lang.String;
@@ -25,14 +26,14 @@ public final class PriceState extends com.pulumi.resources.ResourceArgs {
     public static final PriceState Empty = new PriceState();
 
     /**
-     * Whether the price can be used for new purchases. Defaults to &lt;span pulumi-lang-nodejs=&#34;`true`&#34; pulumi-lang-dotnet=&#34;`True`&#34; pulumi-lang-go=&#34;`true`&#34; pulumi-lang-python=&#34;`true`&#34; pulumi-lang-yaml=&#34;`true`&#34; pulumi-lang-java=&#34;`true`&#34; pulumi-lang-hcl=&#34;`true`&#34;&gt;`true`&lt;/span&gt;.
+     * Whether the price can be used for new purchases.
      * 
      */
     @Import(name="active")
     private @Nullable Output<Boolean> active;
 
     /**
-     * @return Whether the price can be used for new purchases. Defaults to &lt;span pulumi-lang-nodejs=&#34;`true`&#34; pulumi-lang-dotnet=&#34;`True`&#34; pulumi-lang-go=&#34;`true`&#34; pulumi-lang-python=&#34;`true`&#34; pulumi-lang-yaml=&#34;`true`&#34; pulumi-lang-java=&#34;`true`&#34; pulumi-lang-hcl=&#34;`true`&#34;&gt;`true`&lt;/span&gt;.
+     * @return Whether the price can be used for new purchases.
      * 
      */
     public Optional<Output<Boolean>> active() {
@@ -52,6 +53,21 @@ public final class PriceState extends com.pulumi.resources.ResourceArgs {
      */
     public Optional<Output<String>> billingScheme() {
         return Optional.ofNullable(this.billingScheme);
+    }
+
+    /**
+     * Time at which the object was created. Measured in seconds since the Unix epoch.
+     * 
+     */
+    @Import(name="created")
+    private @Nullable Output<Double> created;
+
+    /**
+     * @return Time at which the object was created. Measured in seconds since the Unix epoch.
+     * 
+     */
+    public Optional<Output<Double>> created() {
+        return Optional.ofNullable(this.created);
     }
 
     /**
@@ -88,15 +104,30 @@ public final class PriceState extends com.pulumi.resources.ResourceArgs {
      * When set, provides configuration for the amount to be adjusted by the customer during Checkout Sessions and Payment Links.
      * 
      */
-    @Import(name="customUnitAmount")
-    private @Nullable Output<PriceCustomUnitAmountArgs> customUnitAmount;
+    @Import(name="customUnitAmounts")
+    private @Nullable Output<List<PriceCustomUnitAmountArgs>> customUnitAmounts;
 
     /**
      * @return When set, provides configuration for the amount to be adjusted by the customer during Checkout Sessions and Payment Links.
      * 
      */
-    public Optional<Output<PriceCustomUnitAmountArgs>> customUnitAmount() {
-        return Optional.ofNullable(this.customUnitAmount);
+    public Optional<Output<List<PriceCustomUnitAmountArgs>>> customUnitAmounts() {
+        return Optional.ofNullable(this.customUnitAmounts);
+    }
+
+    /**
+     * If the object exists in live mode, the value is &lt;span pulumi-lang-nodejs=&#34;`true`&#34; pulumi-lang-dotnet=&#34;`True`&#34; pulumi-lang-go=&#34;`true`&#34; pulumi-lang-python=&#34;`true`&#34; pulumi-lang-yaml=&#34;`true`&#34; pulumi-lang-java=&#34;`true`&#34; pulumi-lang-hcl=&#34;`true`&#34;&gt;`true`&lt;/span&gt;. If the object exists in test mode, the value is &lt;span pulumi-lang-nodejs=&#34;`false`&#34; pulumi-lang-dotnet=&#34;`False`&#34; pulumi-lang-go=&#34;`false`&#34; pulumi-lang-python=&#34;`false`&#34; pulumi-lang-yaml=&#34;`false`&#34; pulumi-lang-java=&#34;`false`&#34; pulumi-lang-hcl=&#34;`false`&#34;&gt;`false`&lt;/span&gt;.
+     * 
+     */
+    @Import(name="livemode")
+    private @Nullable Output<Boolean> livemode;
+
+    /**
+     * @return If the object exists in live mode, the value is &lt;span pulumi-lang-nodejs=&#34;`true`&#34; pulumi-lang-dotnet=&#34;`True`&#34; pulumi-lang-go=&#34;`true`&#34; pulumi-lang-python=&#34;`true`&#34; pulumi-lang-yaml=&#34;`true`&#34; pulumi-lang-java=&#34;`true`&#34; pulumi-lang-hcl=&#34;`true`&#34;&gt;`true`&lt;/span&gt;. If the object exists in test mode, the value is &lt;span pulumi-lang-nodejs=&#34;`false`&#34; pulumi-lang-dotnet=&#34;`False`&#34; pulumi-lang-go=&#34;`false`&#34; pulumi-lang-python=&#34;`false`&#34; pulumi-lang-yaml=&#34;`false`&#34; pulumi-lang-java=&#34;`false`&#34; pulumi-lang-hcl=&#34;`false`&#34;&gt;`false`&lt;/span&gt;.
+     * 
+     */
+    public Optional<Output<Boolean>> livemode() {
+        return Optional.ofNullable(this.livemode);
     }
 
     /**
@@ -115,14 +146,14 @@ public final class PriceState extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * Set of [key-value pairs](https://stripe.com/docs/api/metadata) that you can attach to an object. This can be useful for storing additional information about the object in a structured format. Individual keys can be unset by posting an empty value to them. All keys can be unset by posting an empty value to &lt;span pulumi-lang-nodejs=&#34;`metadata`&#34; pulumi-lang-dotnet=&#34;`Metadata`&#34; pulumi-lang-go=&#34;`metadata`&#34; pulumi-lang-python=&#34;`metadata`&#34; pulumi-lang-yaml=&#34;`metadata`&#34; pulumi-lang-java=&#34;`metadata`&#34; pulumi-lang-hcl=&#34;`metadata`&#34;&gt;`metadata`&lt;/span&gt;.
+     * Set of [key-value pairs](https://docs.stripe.com/api/metadata) that you can attach to an object. This can be useful for storing additional information about the object in a structured format.
      * 
      */
     @Import(name="metadata")
     private @Nullable Output<Map<String,String>> metadata;
 
     /**
-     * @return Set of [key-value pairs](https://stripe.com/docs/api/metadata) that you can attach to an object. This can be useful for storing additional information about the object in a structured format. Individual keys can be unset by posting an empty value to them. All keys can be unset by posting an empty value to &lt;span pulumi-lang-nodejs=&#34;`metadata`&#34; pulumi-lang-dotnet=&#34;`Metadata`&#34; pulumi-lang-go=&#34;`metadata`&#34; pulumi-lang-python=&#34;`metadata`&#34; pulumi-lang-yaml=&#34;`metadata`&#34; pulumi-lang-java=&#34;`metadata`&#34; pulumi-lang-hcl=&#34;`metadata`&#34;&gt;`metadata`&lt;/span&gt;.
+     * @return Set of [key-value pairs](https://docs.stripe.com/api/metadata) that you can attach to an object. This can be useful for storing additional information about the object in a structured format.
      * 
      */
     public Optional<Output<Map<String,String>>> metadata() {
@@ -145,14 +176,29 @@ public final class PriceState extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * The ID of the [Product](https://docs.stripe.com/api/products) that this [Price](https://docs.stripe.com/api/prices) will belong to.
+     * String representing the object&#39;s type. Objects of the same type share the same value.
+     * 
+     */
+    @Import(name="object")
+    private @Nullable Output<String> object;
+
+    /**
+     * @return String representing the object&#39;s type. Objects of the same type share the same value.
+     * 
+     */
+    public Optional<Output<String>> object() {
+        return Optional.ofNullable(this.object);
+    }
+
+    /**
+     * The ID of the product this price is associated with.
      * 
      */
     @Import(name="product")
     private @Nullable Output<String> product;
 
     /**
-     * @return The ID of the [Product](https://docs.stripe.com/api/products) that this [Price](https://docs.stripe.com/api/prices) will belong to.
+     * @return The ID of the product this price is associated with.
      * 
      */
     public Optional<Output<String>> product() {
@@ -163,41 +209,41 @@ public final class PriceState extends com.pulumi.resources.ResourceArgs {
      * These fields can be used to create a new product that this price will belong to.
      * 
      */
-    @Import(name="productData")
-    private @Nullable Output<PriceProductDataArgs> productData;
+    @Import(name="productDatas")
+    private @Nullable Output<List<PriceProductDataArgs>> productDatas;
 
     /**
      * @return These fields can be used to create a new product that this price will belong to.
      * 
      */
-    public Optional<Output<PriceProductDataArgs>> productData() {
-        return Optional.ofNullable(this.productData);
+    public Optional<Output<List<PriceProductDataArgs>>> productDatas() {
+        return Optional.ofNullable(this.productDatas);
     }
 
     /**
      * The recurring components of a price such as &lt;span pulumi-lang-nodejs=&#34;`interval`&#34; pulumi-lang-dotnet=&#34;`Interval`&#34; pulumi-lang-go=&#34;`interval`&#34; pulumi-lang-python=&#34;`interval`&#34; pulumi-lang-yaml=&#34;`interval`&#34; pulumi-lang-java=&#34;`interval`&#34; pulumi-lang-hcl=&#34;`interval`&#34;&gt;`interval`&lt;/span&gt; and &lt;span pulumi-lang-nodejs=&#34;`usageType`&#34; pulumi-lang-dotnet=&#34;`UsageType`&#34; pulumi-lang-go=&#34;`usageType`&#34; pulumi-lang-python=&#34;`usage_type`&#34; pulumi-lang-yaml=&#34;`usageType`&#34; pulumi-lang-java=&#34;`usageType`&#34; pulumi-lang-hcl=&#34;`usage_type`&#34;&gt;`usageType`&lt;/span&gt;.
      * 
      */
-    @Import(name="recurring")
-    private @Nullable Output<PriceRecurringArgs> recurring;
+    @Import(name="recurrings")
+    private @Nullable Output<List<PriceRecurringArgs>> recurrings;
 
     /**
      * @return The recurring components of a price such as &lt;span pulumi-lang-nodejs=&#34;`interval`&#34; pulumi-lang-dotnet=&#34;`Interval`&#34; pulumi-lang-go=&#34;`interval`&#34; pulumi-lang-python=&#34;`interval`&#34; pulumi-lang-yaml=&#34;`interval`&#34; pulumi-lang-java=&#34;`interval`&#34; pulumi-lang-hcl=&#34;`interval`&#34;&gt;`interval`&lt;/span&gt; and &lt;span pulumi-lang-nodejs=&#34;`usageType`&#34; pulumi-lang-dotnet=&#34;`UsageType`&#34; pulumi-lang-go=&#34;`usageType`&#34; pulumi-lang-python=&#34;`usage_type`&#34; pulumi-lang-yaml=&#34;`usageType`&#34; pulumi-lang-java=&#34;`usageType`&#34; pulumi-lang-hcl=&#34;`usage_type`&#34;&gt;`usageType`&lt;/span&gt;.
      * 
      */
-    public Optional<Output<PriceRecurringArgs>> recurring() {
-        return Optional.ofNullable(this.recurring);
+    public Optional<Output<List<PriceRecurringArgs>>> recurrings() {
+        return Optional.ofNullable(this.recurrings);
     }
 
     /**
-     * Only required if a [default tax behavior](&lt;https://stripe.com/docs/tax/products-prices-tax-categories-tax-behavior#setting-a-default-tax-behavior-(recommended)&gt;) was not provided in the Stripe Tax settings. Specifies whether the price is considered inclusive of taxes or exclusive of taxes. One of &lt;span pulumi-lang-nodejs=&#34;`inclusive`&#34; pulumi-lang-dotnet=&#34;`Inclusive`&#34; pulumi-lang-go=&#34;`inclusive`&#34; pulumi-lang-python=&#34;`inclusive`&#34; pulumi-lang-yaml=&#34;`inclusive`&#34; pulumi-lang-java=&#34;`inclusive`&#34; pulumi-lang-hcl=&#34;`inclusive`&#34;&gt;`inclusive`&lt;/span&gt;, &lt;span pulumi-lang-nodejs=&#34;`exclusive`&#34; pulumi-lang-dotnet=&#34;`Exclusive`&#34; pulumi-lang-go=&#34;`exclusive`&#34; pulumi-lang-python=&#34;`exclusive`&#34; pulumi-lang-yaml=&#34;`exclusive`&#34; pulumi-lang-java=&#34;`exclusive`&#34; pulumi-lang-hcl=&#34;`exclusive`&#34;&gt;`exclusive`&lt;/span&gt;, or &lt;span pulumi-lang-nodejs=&#34;`unspecified`&#34; pulumi-lang-dotnet=&#34;`Unspecified`&#34; pulumi-lang-go=&#34;`unspecified`&#34; pulumi-lang-python=&#34;`unspecified`&#34; pulumi-lang-yaml=&#34;`unspecified`&#34; pulumi-lang-java=&#34;`unspecified`&#34; pulumi-lang-hcl=&#34;`unspecified`&#34;&gt;`unspecified`&lt;/span&gt;. Once specified as either &lt;span pulumi-lang-nodejs=&#34;`inclusive`&#34; pulumi-lang-dotnet=&#34;`Inclusive`&#34; pulumi-lang-go=&#34;`inclusive`&#34; pulumi-lang-python=&#34;`inclusive`&#34; pulumi-lang-yaml=&#34;`inclusive`&#34; pulumi-lang-java=&#34;`inclusive`&#34; pulumi-lang-hcl=&#34;`inclusive`&#34;&gt;`inclusive`&lt;/span&gt; or &lt;span pulumi-lang-nodejs=&#34;`exclusive`&#34; pulumi-lang-dotnet=&#34;`Exclusive`&#34; pulumi-lang-go=&#34;`exclusive`&#34; pulumi-lang-python=&#34;`exclusive`&#34; pulumi-lang-yaml=&#34;`exclusive`&#34; pulumi-lang-java=&#34;`exclusive`&#34; pulumi-lang-hcl=&#34;`exclusive`&#34;&gt;`exclusive`&lt;/span&gt;, it cannot be changed.
+     * Only required if a [default tax behavior](&lt;https://docs.stripe.com/tax/products-prices-tax-categories-tax-behavior#setting-a-default-tax-behavior-(recommended)&gt;) was not provided in the Stripe Tax settings. Specifies whether the price is considered inclusive of taxes or exclusive of taxes. One of &lt;span pulumi-lang-nodejs=&#34;`inclusive`&#34; pulumi-lang-dotnet=&#34;`Inclusive`&#34; pulumi-lang-go=&#34;`inclusive`&#34; pulumi-lang-python=&#34;`inclusive`&#34; pulumi-lang-yaml=&#34;`inclusive`&#34; pulumi-lang-java=&#34;`inclusive`&#34; pulumi-lang-hcl=&#34;`inclusive`&#34;&gt;`inclusive`&lt;/span&gt;, &lt;span pulumi-lang-nodejs=&#34;`exclusive`&#34; pulumi-lang-dotnet=&#34;`Exclusive`&#34; pulumi-lang-go=&#34;`exclusive`&#34; pulumi-lang-python=&#34;`exclusive`&#34; pulumi-lang-yaml=&#34;`exclusive`&#34; pulumi-lang-java=&#34;`exclusive`&#34; pulumi-lang-hcl=&#34;`exclusive`&#34;&gt;`exclusive`&lt;/span&gt;, or &lt;span pulumi-lang-nodejs=&#34;`unspecified`&#34; pulumi-lang-dotnet=&#34;`Unspecified`&#34; pulumi-lang-go=&#34;`unspecified`&#34; pulumi-lang-python=&#34;`unspecified`&#34; pulumi-lang-yaml=&#34;`unspecified`&#34; pulumi-lang-java=&#34;`unspecified`&#34; pulumi-lang-hcl=&#34;`unspecified`&#34;&gt;`unspecified`&lt;/span&gt;. Once specified as either &lt;span pulumi-lang-nodejs=&#34;`inclusive`&#34; pulumi-lang-dotnet=&#34;`Inclusive`&#34; pulumi-lang-go=&#34;`inclusive`&#34; pulumi-lang-python=&#34;`inclusive`&#34; pulumi-lang-yaml=&#34;`inclusive`&#34; pulumi-lang-java=&#34;`inclusive`&#34; pulumi-lang-hcl=&#34;`inclusive`&#34;&gt;`inclusive`&lt;/span&gt; or &lt;span pulumi-lang-nodejs=&#34;`exclusive`&#34; pulumi-lang-dotnet=&#34;`Exclusive`&#34; pulumi-lang-go=&#34;`exclusive`&#34; pulumi-lang-python=&#34;`exclusive`&#34; pulumi-lang-yaml=&#34;`exclusive`&#34; pulumi-lang-java=&#34;`exclusive`&#34; pulumi-lang-hcl=&#34;`exclusive`&#34;&gt;`exclusive`&lt;/span&gt;, it cannot be changed.
      * 
      */
     @Import(name="taxBehavior")
     private @Nullable Output<String> taxBehavior;
 
     /**
-     * @return Only required if a [default tax behavior](&lt;https://stripe.com/docs/tax/products-prices-tax-categories-tax-behavior#setting-a-default-tax-behavior-(recommended)&gt;) was not provided in the Stripe Tax settings. Specifies whether the price is considered inclusive of taxes or exclusive of taxes. One of &lt;span pulumi-lang-nodejs=&#34;`inclusive`&#34; pulumi-lang-dotnet=&#34;`Inclusive`&#34; pulumi-lang-go=&#34;`inclusive`&#34; pulumi-lang-python=&#34;`inclusive`&#34; pulumi-lang-yaml=&#34;`inclusive`&#34; pulumi-lang-java=&#34;`inclusive`&#34; pulumi-lang-hcl=&#34;`inclusive`&#34;&gt;`inclusive`&lt;/span&gt;, &lt;span pulumi-lang-nodejs=&#34;`exclusive`&#34; pulumi-lang-dotnet=&#34;`Exclusive`&#34; pulumi-lang-go=&#34;`exclusive`&#34; pulumi-lang-python=&#34;`exclusive`&#34; pulumi-lang-yaml=&#34;`exclusive`&#34; pulumi-lang-java=&#34;`exclusive`&#34; pulumi-lang-hcl=&#34;`exclusive`&#34;&gt;`exclusive`&lt;/span&gt;, or &lt;span pulumi-lang-nodejs=&#34;`unspecified`&#34; pulumi-lang-dotnet=&#34;`Unspecified`&#34; pulumi-lang-go=&#34;`unspecified`&#34; pulumi-lang-python=&#34;`unspecified`&#34; pulumi-lang-yaml=&#34;`unspecified`&#34; pulumi-lang-java=&#34;`unspecified`&#34; pulumi-lang-hcl=&#34;`unspecified`&#34;&gt;`unspecified`&lt;/span&gt;. Once specified as either &lt;span pulumi-lang-nodejs=&#34;`inclusive`&#34; pulumi-lang-dotnet=&#34;`Inclusive`&#34; pulumi-lang-go=&#34;`inclusive`&#34; pulumi-lang-python=&#34;`inclusive`&#34; pulumi-lang-yaml=&#34;`inclusive`&#34; pulumi-lang-java=&#34;`inclusive`&#34; pulumi-lang-hcl=&#34;`inclusive`&#34;&gt;`inclusive`&lt;/span&gt; or &lt;span pulumi-lang-nodejs=&#34;`exclusive`&#34; pulumi-lang-dotnet=&#34;`Exclusive`&#34; pulumi-lang-go=&#34;`exclusive`&#34; pulumi-lang-python=&#34;`exclusive`&#34; pulumi-lang-yaml=&#34;`exclusive`&#34; pulumi-lang-java=&#34;`exclusive`&#34; pulumi-lang-hcl=&#34;`exclusive`&#34;&gt;`exclusive`&lt;/span&gt;, it cannot be changed.
+     * @return Only required if a [default tax behavior](&lt;https://docs.stripe.com/tax/products-prices-tax-categories-tax-behavior#setting-a-default-tax-behavior-(recommended)&gt;) was not provided in the Stripe Tax settings. Specifies whether the price is considered inclusive of taxes or exclusive of taxes. One of &lt;span pulumi-lang-nodejs=&#34;`inclusive`&#34; pulumi-lang-dotnet=&#34;`Inclusive`&#34; pulumi-lang-go=&#34;`inclusive`&#34; pulumi-lang-python=&#34;`inclusive`&#34; pulumi-lang-yaml=&#34;`inclusive`&#34; pulumi-lang-java=&#34;`inclusive`&#34; pulumi-lang-hcl=&#34;`inclusive`&#34;&gt;`inclusive`&lt;/span&gt;, &lt;span pulumi-lang-nodejs=&#34;`exclusive`&#34; pulumi-lang-dotnet=&#34;`Exclusive`&#34; pulumi-lang-go=&#34;`exclusive`&#34; pulumi-lang-python=&#34;`exclusive`&#34; pulumi-lang-yaml=&#34;`exclusive`&#34; pulumi-lang-java=&#34;`exclusive`&#34; pulumi-lang-hcl=&#34;`exclusive`&#34;&gt;`exclusive`&lt;/span&gt;, or &lt;span pulumi-lang-nodejs=&#34;`unspecified`&#34; pulumi-lang-dotnet=&#34;`Unspecified`&#34; pulumi-lang-go=&#34;`unspecified`&#34; pulumi-lang-python=&#34;`unspecified`&#34; pulumi-lang-yaml=&#34;`unspecified`&#34; pulumi-lang-java=&#34;`unspecified`&#34; pulumi-lang-hcl=&#34;`unspecified`&#34;&gt;`unspecified`&lt;/span&gt;. Once specified as either &lt;span pulumi-lang-nodejs=&#34;`inclusive`&#34; pulumi-lang-dotnet=&#34;`Inclusive`&#34; pulumi-lang-go=&#34;`inclusive`&#34; pulumi-lang-python=&#34;`inclusive`&#34; pulumi-lang-yaml=&#34;`inclusive`&#34; pulumi-lang-java=&#34;`inclusive`&#34; pulumi-lang-hcl=&#34;`inclusive`&#34;&gt;`inclusive`&lt;/span&gt; or &lt;span pulumi-lang-nodejs=&#34;`exclusive`&#34; pulumi-lang-dotnet=&#34;`Exclusive`&#34; pulumi-lang-go=&#34;`exclusive`&#34; pulumi-lang-python=&#34;`exclusive`&#34; pulumi-lang-yaml=&#34;`exclusive`&#34; pulumi-lang-java=&#34;`exclusive`&#34; pulumi-lang-hcl=&#34;`exclusive`&#34;&gt;`exclusive`&lt;/span&gt;, it cannot be changed.
      * 
      */
     public Optional<Output<String>> taxBehavior() {
@@ -220,18 +266,50 @@ public final class PriceState extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * Defines if the tiering price should be &lt;span pulumi-lang-nodejs=&#34;`graduated`&#34; pulumi-lang-dotnet=&#34;`Graduated`&#34; pulumi-lang-go=&#34;`graduated`&#34; pulumi-lang-python=&#34;`graduated`&#34; pulumi-lang-yaml=&#34;`graduated`&#34; pulumi-lang-java=&#34;`graduated`&#34; pulumi-lang-hcl=&#34;`graduated`&#34;&gt;`graduated`&lt;/span&gt; or &lt;span pulumi-lang-nodejs=&#34;`volume`&#34; pulumi-lang-dotnet=&#34;`Volume`&#34; pulumi-lang-go=&#34;`volume`&#34; pulumi-lang-python=&#34;`volume`&#34; pulumi-lang-yaml=&#34;`volume`&#34; pulumi-lang-java=&#34;`volume`&#34; pulumi-lang-hcl=&#34;`volume`&#34;&gt;`volume`&lt;/span&gt; based. In &lt;span pulumi-lang-nodejs=&#34;`volume`&#34; pulumi-lang-dotnet=&#34;`Volume`&#34; pulumi-lang-go=&#34;`volume`&#34; pulumi-lang-python=&#34;`volume`&#34; pulumi-lang-yaml=&#34;`volume`&#34; pulumi-lang-java=&#34;`volume`&#34; pulumi-lang-hcl=&#34;`volume`&#34;&gt;`volume`&lt;/span&gt;-based tiering, the maximum quantity within a period determines the per unit price, in &lt;span pulumi-lang-nodejs=&#34;`graduated`&#34; pulumi-lang-dotnet=&#34;`Graduated`&#34; pulumi-lang-go=&#34;`graduated`&#34; pulumi-lang-python=&#34;`graduated`&#34; pulumi-lang-yaml=&#34;`graduated`&#34; pulumi-lang-java=&#34;`graduated`&#34; pulumi-lang-hcl=&#34;`graduated`&#34;&gt;`graduated`&lt;/span&gt; tiering pricing can successively change as the quantity grows.
+     * Defines if the tiering price should be &lt;span pulumi-lang-nodejs=&#34;`graduated`&#34; pulumi-lang-dotnet=&#34;`Graduated`&#34; pulumi-lang-go=&#34;`graduated`&#34; pulumi-lang-python=&#34;`graduated`&#34; pulumi-lang-yaml=&#34;`graduated`&#34; pulumi-lang-java=&#34;`graduated`&#34; pulumi-lang-hcl=&#34;`graduated`&#34;&gt;`graduated`&lt;/span&gt; or &lt;span pulumi-lang-nodejs=&#34;`volume`&#34; pulumi-lang-dotnet=&#34;`Volume`&#34; pulumi-lang-go=&#34;`volume`&#34; pulumi-lang-python=&#34;`volume`&#34; pulumi-lang-yaml=&#34;`volume`&#34; pulumi-lang-java=&#34;`volume`&#34; pulumi-lang-hcl=&#34;`volume`&#34;&gt;`volume`&lt;/span&gt; based. In &lt;span pulumi-lang-nodejs=&#34;`volume`&#34; pulumi-lang-dotnet=&#34;`Volume`&#34; pulumi-lang-go=&#34;`volume`&#34; pulumi-lang-python=&#34;`volume`&#34; pulumi-lang-yaml=&#34;`volume`&#34; pulumi-lang-java=&#34;`volume`&#34; pulumi-lang-hcl=&#34;`volume`&#34;&gt;`volume`&lt;/span&gt;-based tiering, the maximum quantity within a period determines the per unit price. In &lt;span pulumi-lang-nodejs=&#34;`graduated`&#34; pulumi-lang-dotnet=&#34;`Graduated`&#34; pulumi-lang-go=&#34;`graduated`&#34; pulumi-lang-python=&#34;`graduated`&#34; pulumi-lang-yaml=&#34;`graduated`&#34; pulumi-lang-java=&#34;`graduated`&#34; pulumi-lang-hcl=&#34;`graduated`&#34;&gt;`graduated`&lt;/span&gt; tiering, pricing can change as the quantity grows.
      * 
      */
     @Import(name="tiersMode")
     private @Nullable Output<String> tiersMode;
 
     /**
-     * @return Defines if the tiering price should be &lt;span pulumi-lang-nodejs=&#34;`graduated`&#34; pulumi-lang-dotnet=&#34;`Graduated`&#34; pulumi-lang-go=&#34;`graduated`&#34; pulumi-lang-python=&#34;`graduated`&#34; pulumi-lang-yaml=&#34;`graduated`&#34; pulumi-lang-java=&#34;`graduated`&#34; pulumi-lang-hcl=&#34;`graduated`&#34;&gt;`graduated`&lt;/span&gt; or &lt;span pulumi-lang-nodejs=&#34;`volume`&#34; pulumi-lang-dotnet=&#34;`Volume`&#34; pulumi-lang-go=&#34;`volume`&#34; pulumi-lang-python=&#34;`volume`&#34; pulumi-lang-yaml=&#34;`volume`&#34; pulumi-lang-java=&#34;`volume`&#34; pulumi-lang-hcl=&#34;`volume`&#34;&gt;`volume`&lt;/span&gt; based. In &lt;span pulumi-lang-nodejs=&#34;`volume`&#34; pulumi-lang-dotnet=&#34;`Volume`&#34; pulumi-lang-go=&#34;`volume`&#34; pulumi-lang-python=&#34;`volume`&#34; pulumi-lang-yaml=&#34;`volume`&#34; pulumi-lang-java=&#34;`volume`&#34; pulumi-lang-hcl=&#34;`volume`&#34;&gt;`volume`&lt;/span&gt;-based tiering, the maximum quantity within a period determines the per unit price, in &lt;span pulumi-lang-nodejs=&#34;`graduated`&#34; pulumi-lang-dotnet=&#34;`Graduated`&#34; pulumi-lang-go=&#34;`graduated`&#34; pulumi-lang-python=&#34;`graduated`&#34; pulumi-lang-yaml=&#34;`graduated`&#34; pulumi-lang-java=&#34;`graduated`&#34; pulumi-lang-hcl=&#34;`graduated`&#34;&gt;`graduated`&lt;/span&gt; tiering pricing can successively change as the quantity grows.
+     * @return Defines if the tiering price should be &lt;span pulumi-lang-nodejs=&#34;`graduated`&#34; pulumi-lang-dotnet=&#34;`Graduated`&#34; pulumi-lang-go=&#34;`graduated`&#34; pulumi-lang-python=&#34;`graduated`&#34; pulumi-lang-yaml=&#34;`graduated`&#34; pulumi-lang-java=&#34;`graduated`&#34; pulumi-lang-hcl=&#34;`graduated`&#34;&gt;`graduated`&lt;/span&gt; or &lt;span pulumi-lang-nodejs=&#34;`volume`&#34; pulumi-lang-dotnet=&#34;`Volume`&#34; pulumi-lang-go=&#34;`volume`&#34; pulumi-lang-python=&#34;`volume`&#34; pulumi-lang-yaml=&#34;`volume`&#34; pulumi-lang-java=&#34;`volume`&#34; pulumi-lang-hcl=&#34;`volume`&#34;&gt;`volume`&lt;/span&gt; based. In &lt;span pulumi-lang-nodejs=&#34;`volume`&#34; pulumi-lang-dotnet=&#34;`Volume`&#34; pulumi-lang-go=&#34;`volume`&#34; pulumi-lang-python=&#34;`volume`&#34; pulumi-lang-yaml=&#34;`volume`&#34; pulumi-lang-java=&#34;`volume`&#34; pulumi-lang-hcl=&#34;`volume`&#34;&gt;`volume`&lt;/span&gt;-based tiering, the maximum quantity within a period determines the per unit price. In &lt;span pulumi-lang-nodejs=&#34;`graduated`&#34; pulumi-lang-dotnet=&#34;`Graduated`&#34; pulumi-lang-go=&#34;`graduated`&#34; pulumi-lang-python=&#34;`graduated`&#34; pulumi-lang-yaml=&#34;`graduated`&#34; pulumi-lang-java=&#34;`graduated`&#34; pulumi-lang-hcl=&#34;`graduated`&#34;&gt;`graduated`&lt;/span&gt; tiering, pricing can change as the quantity grows.
      * 
      */
     public Optional<Output<String>> tiersMode() {
         return Optional.ofNullable(this.tiersMode);
+    }
+
+    /**
+     * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * If set to true, will atomically remove the lookup key from the existing price, and assign it to this price.
+     * 
+     */
+    @Import(name="transferLookupKey")
+    private @Nullable Output<Boolean> transferLookupKey;
+
+    /**
+     * @return **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * If set to true, will atomically remove the lookup key from the existing price, and assign it to this price.
+     * 
+     */
+    public Optional<Output<Boolean>> transferLookupKey() {
+        return Optional.ofNullable(this.transferLookupKey);
+    }
+
+    /**
+     * Apply a transformation to the reported usage or set quantity before computing the amount billed. Cannot be combined with &lt;span pulumi-lang-nodejs=&#34;`tiers`&#34; pulumi-lang-dotnet=&#34;`Tiers`&#34; pulumi-lang-go=&#34;`tiers`&#34; pulumi-lang-python=&#34;`tiers`&#34; pulumi-lang-yaml=&#34;`tiers`&#34; pulumi-lang-java=&#34;`tiers`&#34; pulumi-lang-hcl=&#34;`tiers`&#34;&gt;`tiers`&lt;/span&gt;.
+     * 
+     */
+    @Import(name="transformQuantity")
+    private @Nullable Output<PriceTransformQuantityArgs> transformQuantity;
+
+    /**
+     * @return Apply a transformation to the reported usage or set quantity before computing the amount billed. Cannot be combined with &lt;span pulumi-lang-nodejs=&#34;`tiers`&#34; pulumi-lang-dotnet=&#34;`Tiers`&#34; pulumi-lang-go=&#34;`tiers`&#34; pulumi-lang-python=&#34;`tiers`&#34; pulumi-lang-yaml=&#34;`tiers`&#34; pulumi-lang-java=&#34;`tiers`&#34; pulumi-lang-hcl=&#34;`tiers`&#34;&gt;`tiers`&lt;/span&gt;.
+     * 
+     */
+    public Optional<Output<PriceTransformQuantityArgs>> transformQuantity() {
+        return Optional.ofNullable(this.transformQuantity);
     }
 
     /**
@@ -250,14 +328,14 @@ public final class PriceState extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * A positive integer in cents (or local equivalent) (or 0 for a free price) representing how much to charge. One of &lt;span pulumi-lang-nodejs=&#34;`unitAmount`&#34; pulumi-lang-dotnet=&#34;`UnitAmount`&#34; pulumi-lang-go=&#34;`unitAmount`&#34; pulumi-lang-python=&#34;`unit_amount`&#34; pulumi-lang-yaml=&#34;`unitAmount`&#34; pulumi-lang-java=&#34;`unitAmount`&#34; pulumi-lang-hcl=&#34;`unit_amount`&#34;&gt;`unitAmount`&lt;/span&gt;, &lt;span pulumi-lang-nodejs=&#34;`unitAmountDecimal`&#34; pulumi-lang-dotnet=&#34;`UnitAmountDecimal`&#34; pulumi-lang-go=&#34;`unitAmountDecimal`&#34; pulumi-lang-python=&#34;`unit_amount_decimal`&#34; pulumi-lang-yaml=&#34;`unitAmountDecimal`&#34; pulumi-lang-java=&#34;`unitAmountDecimal`&#34; pulumi-lang-hcl=&#34;`unit_amount_decimal`&#34;&gt;`unitAmountDecimal`&lt;/span&gt;, or &lt;span pulumi-lang-nodejs=&#34;`customUnitAmount`&#34; pulumi-lang-dotnet=&#34;`CustomUnitAmount`&#34; pulumi-lang-go=&#34;`customUnitAmount`&#34; pulumi-lang-python=&#34;`custom_unit_amount`&#34; pulumi-lang-yaml=&#34;`customUnitAmount`&#34; pulumi-lang-java=&#34;`customUnitAmount`&#34; pulumi-lang-hcl=&#34;`custom_unit_amount`&#34;&gt;`customUnitAmount`&lt;/span&gt; is required, unless `billing_scheme=tiered`.
+     * The unit amount in cents (or local equivalent) to be charged, represented as a whole integer if possible. Only set if `billing_scheme=per_unit`.
      * 
      */
     @Import(name="unitAmount")
     private @Nullable Output<Double> unitAmount;
 
     /**
-     * @return A positive integer in cents (or local equivalent) (or 0 for a free price) representing how much to charge. One of &lt;span pulumi-lang-nodejs=&#34;`unitAmount`&#34; pulumi-lang-dotnet=&#34;`UnitAmount`&#34; pulumi-lang-go=&#34;`unitAmount`&#34; pulumi-lang-python=&#34;`unit_amount`&#34; pulumi-lang-yaml=&#34;`unitAmount`&#34; pulumi-lang-java=&#34;`unitAmount`&#34; pulumi-lang-hcl=&#34;`unit_amount`&#34;&gt;`unitAmount`&lt;/span&gt;, &lt;span pulumi-lang-nodejs=&#34;`unitAmountDecimal`&#34; pulumi-lang-dotnet=&#34;`UnitAmountDecimal`&#34; pulumi-lang-go=&#34;`unitAmountDecimal`&#34; pulumi-lang-python=&#34;`unit_amount_decimal`&#34; pulumi-lang-yaml=&#34;`unitAmountDecimal`&#34; pulumi-lang-java=&#34;`unitAmountDecimal`&#34; pulumi-lang-hcl=&#34;`unit_amount_decimal`&#34;&gt;`unitAmountDecimal`&lt;/span&gt;, or &lt;span pulumi-lang-nodejs=&#34;`customUnitAmount`&#34; pulumi-lang-dotnet=&#34;`CustomUnitAmount`&#34; pulumi-lang-go=&#34;`customUnitAmount`&#34; pulumi-lang-python=&#34;`custom_unit_amount`&#34; pulumi-lang-yaml=&#34;`customUnitAmount`&#34; pulumi-lang-java=&#34;`customUnitAmount`&#34; pulumi-lang-hcl=&#34;`custom_unit_amount`&#34;&gt;`customUnitAmount`&lt;/span&gt; is required, unless `billing_scheme=tiered`.
+     * @return The unit amount in cents (or local equivalent) to be charged, represented as a whole integer if possible. Only set if `billing_scheme=per_unit`.
      * 
      */
     public Optional<Output<Double>> unitAmount() {
@@ -265,14 +343,14 @@ public final class PriceState extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * Same as &lt;span pulumi-lang-nodejs=&#34;`unitAmount`&#34; pulumi-lang-dotnet=&#34;`UnitAmount`&#34; pulumi-lang-go=&#34;`unitAmount`&#34; pulumi-lang-python=&#34;`unit_amount`&#34; pulumi-lang-yaml=&#34;`unitAmount`&#34; pulumi-lang-java=&#34;`unitAmount`&#34; pulumi-lang-hcl=&#34;`unit_amount`&#34;&gt;`unitAmount`&lt;/span&gt;, but accepts a decimal value in cents (or local equivalent) with at most 12 decimal places. Only one of &lt;span pulumi-lang-nodejs=&#34;`unitAmount`&#34; pulumi-lang-dotnet=&#34;`UnitAmount`&#34; pulumi-lang-go=&#34;`unitAmount`&#34; pulumi-lang-python=&#34;`unit_amount`&#34; pulumi-lang-yaml=&#34;`unitAmount`&#34; pulumi-lang-java=&#34;`unitAmount`&#34; pulumi-lang-hcl=&#34;`unit_amount`&#34;&gt;`unitAmount`&lt;/span&gt; and &lt;span pulumi-lang-nodejs=&#34;`unitAmountDecimal`&#34; pulumi-lang-dotnet=&#34;`UnitAmountDecimal`&#34; pulumi-lang-go=&#34;`unitAmountDecimal`&#34; pulumi-lang-python=&#34;`unit_amount_decimal`&#34; pulumi-lang-yaml=&#34;`unitAmountDecimal`&#34; pulumi-lang-java=&#34;`unitAmountDecimal`&#34; pulumi-lang-hcl=&#34;`unit_amount_decimal`&#34;&gt;`unitAmountDecimal`&lt;/span&gt; can be set.
+     * The unit amount in cents (or local equivalent) to be charged, represented as a decimal string with at most 12 decimal places. Only set if `billing_scheme=per_unit`.
      * 
      */
     @Import(name="unitAmountDecimal")
     private @Nullable Output<String> unitAmountDecimal;
 
     /**
-     * @return Same as &lt;span pulumi-lang-nodejs=&#34;`unitAmount`&#34; pulumi-lang-dotnet=&#34;`UnitAmount`&#34; pulumi-lang-go=&#34;`unitAmount`&#34; pulumi-lang-python=&#34;`unit_amount`&#34; pulumi-lang-yaml=&#34;`unitAmount`&#34; pulumi-lang-java=&#34;`unitAmount`&#34; pulumi-lang-hcl=&#34;`unit_amount`&#34;&gt;`unitAmount`&lt;/span&gt;, but accepts a decimal value in cents (or local equivalent) with at most 12 decimal places. Only one of &lt;span pulumi-lang-nodejs=&#34;`unitAmount`&#34; pulumi-lang-dotnet=&#34;`UnitAmount`&#34; pulumi-lang-go=&#34;`unitAmount`&#34; pulumi-lang-python=&#34;`unit_amount`&#34; pulumi-lang-yaml=&#34;`unitAmount`&#34; pulumi-lang-java=&#34;`unitAmount`&#34; pulumi-lang-hcl=&#34;`unit_amount`&#34;&gt;`unitAmount`&lt;/span&gt; and &lt;span pulumi-lang-nodejs=&#34;`unitAmountDecimal`&#34; pulumi-lang-dotnet=&#34;`UnitAmountDecimal`&#34; pulumi-lang-go=&#34;`unitAmountDecimal`&#34; pulumi-lang-python=&#34;`unit_amount_decimal`&#34; pulumi-lang-yaml=&#34;`unitAmountDecimal`&#34; pulumi-lang-java=&#34;`unitAmountDecimal`&#34; pulumi-lang-hcl=&#34;`unit_amount_decimal`&#34;&gt;`unitAmountDecimal`&lt;/span&gt; can be set.
+     * @return The unit amount in cents (or local equivalent) to be charged, represented as a decimal string with at most 12 decimal places. Only set if `billing_scheme=per_unit`.
      * 
      */
     public Optional<Output<String>> unitAmountDecimal() {
@@ -284,18 +362,23 @@ public final class PriceState extends com.pulumi.resources.ResourceArgs {
     private PriceState(PriceState $) {
         this.active = $.active;
         this.billingScheme = $.billingScheme;
+        this.created = $.created;
         this.currency = $.currency;
         this.currencyOptions = $.currencyOptions;
-        this.customUnitAmount = $.customUnitAmount;
+        this.customUnitAmounts = $.customUnitAmounts;
+        this.livemode = $.livemode;
         this.lookupKey = $.lookupKey;
         this.metadata = $.metadata;
         this.nickname = $.nickname;
+        this.object = $.object;
         this.product = $.product;
-        this.productData = $.productData;
-        this.recurring = $.recurring;
+        this.productDatas = $.productDatas;
+        this.recurrings = $.recurrings;
         this.taxBehavior = $.taxBehavior;
         this.tiers = $.tiers;
         this.tiersMode = $.tiersMode;
+        this.transferLookupKey = $.transferLookupKey;
+        this.transformQuantity = $.transformQuantity;
         this.type = $.type;
         this.unitAmount = $.unitAmount;
         this.unitAmountDecimal = $.unitAmountDecimal;
@@ -320,7 +403,7 @@ public final class PriceState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param active Whether the price can be used for new purchases. Defaults to &lt;span pulumi-lang-nodejs=&#34;`true`&#34; pulumi-lang-dotnet=&#34;`True`&#34; pulumi-lang-go=&#34;`true`&#34; pulumi-lang-python=&#34;`true`&#34; pulumi-lang-yaml=&#34;`true`&#34; pulumi-lang-java=&#34;`true`&#34; pulumi-lang-hcl=&#34;`true`&#34;&gt;`true`&lt;/span&gt;.
+         * @param active Whether the price can be used for new purchases.
          * 
          * @return builder
          * 
@@ -331,7 +414,7 @@ public final class PriceState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param active Whether the price can be used for new purchases. Defaults to &lt;span pulumi-lang-nodejs=&#34;`true`&#34; pulumi-lang-dotnet=&#34;`True`&#34; pulumi-lang-go=&#34;`true`&#34; pulumi-lang-python=&#34;`true`&#34; pulumi-lang-yaml=&#34;`true`&#34; pulumi-lang-java=&#34;`true`&#34; pulumi-lang-hcl=&#34;`true`&#34;&gt;`true`&lt;/span&gt;.
+         * @param active Whether the price can be used for new purchases.
          * 
          * @return builder
          * 
@@ -359,6 +442,27 @@ public final class PriceState extends com.pulumi.resources.ResourceArgs {
          */
         public Builder billingScheme(String billingScheme) {
             return billingScheme(Output.of(billingScheme));
+        }
+
+        /**
+         * @param created Time at which the object was created. Measured in seconds since the Unix epoch.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder created(@Nullable Output<Double> created) {
+            $.created = created;
+            return this;
+        }
+
+        /**
+         * @param created Time at which the object was created. Measured in seconds since the Unix epoch.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder created(Double created) {
+            return created(Output.of(created));
         }
 
         /**
@@ -414,24 +518,55 @@ public final class PriceState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param customUnitAmount When set, provides configuration for the amount to be adjusted by the customer during Checkout Sessions and Payment Links.
+         * @param customUnitAmounts When set, provides configuration for the amount to be adjusted by the customer during Checkout Sessions and Payment Links.
          * 
          * @return builder
          * 
          */
-        public Builder customUnitAmount(@Nullable Output<PriceCustomUnitAmountArgs> customUnitAmount) {
-            $.customUnitAmount = customUnitAmount;
+        public Builder customUnitAmounts(@Nullable Output<List<PriceCustomUnitAmountArgs>> customUnitAmounts) {
+            $.customUnitAmounts = customUnitAmounts;
             return this;
         }
 
         /**
-         * @param customUnitAmount When set, provides configuration for the amount to be adjusted by the customer during Checkout Sessions and Payment Links.
+         * @param customUnitAmounts When set, provides configuration for the amount to be adjusted by the customer during Checkout Sessions and Payment Links.
          * 
          * @return builder
          * 
          */
-        public Builder customUnitAmount(PriceCustomUnitAmountArgs customUnitAmount) {
-            return customUnitAmount(Output.of(customUnitAmount));
+        public Builder customUnitAmounts(List<PriceCustomUnitAmountArgs> customUnitAmounts) {
+            return customUnitAmounts(Output.of(customUnitAmounts));
+        }
+
+        /**
+         * @param customUnitAmounts When set, provides configuration for the amount to be adjusted by the customer during Checkout Sessions and Payment Links.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder customUnitAmounts(PriceCustomUnitAmountArgs... customUnitAmounts) {
+            return customUnitAmounts(List.of(customUnitAmounts));
+        }
+
+        /**
+         * @param livemode If the object exists in live mode, the value is &lt;span pulumi-lang-nodejs=&#34;`true`&#34; pulumi-lang-dotnet=&#34;`True`&#34; pulumi-lang-go=&#34;`true`&#34; pulumi-lang-python=&#34;`true`&#34; pulumi-lang-yaml=&#34;`true`&#34; pulumi-lang-java=&#34;`true`&#34; pulumi-lang-hcl=&#34;`true`&#34;&gt;`true`&lt;/span&gt;. If the object exists in test mode, the value is &lt;span pulumi-lang-nodejs=&#34;`false`&#34; pulumi-lang-dotnet=&#34;`False`&#34; pulumi-lang-go=&#34;`false`&#34; pulumi-lang-python=&#34;`false`&#34; pulumi-lang-yaml=&#34;`false`&#34; pulumi-lang-java=&#34;`false`&#34; pulumi-lang-hcl=&#34;`false`&#34;&gt;`false`&lt;/span&gt;.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder livemode(@Nullable Output<Boolean> livemode) {
+            $.livemode = livemode;
+            return this;
+        }
+
+        /**
+         * @param livemode If the object exists in live mode, the value is &lt;span pulumi-lang-nodejs=&#34;`true`&#34; pulumi-lang-dotnet=&#34;`True`&#34; pulumi-lang-go=&#34;`true`&#34; pulumi-lang-python=&#34;`true`&#34; pulumi-lang-yaml=&#34;`true`&#34; pulumi-lang-java=&#34;`true`&#34; pulumi-lang-hcl=&#34;`true`&#34;&gt;`true`&lt;/span&gt;. If the object exists in test mode, the value is &lt;span pulumi-lang-nodejs=&#34;`false`&#34; pulumi-lang-dotnet=&#34;`False`&#34; pulumi-lang-go=&#34;`false`&#34; pulumi-lang-python=&#34;`false`&#34; pulumi-lang-yaml=&#34;`false`&#34; pulumi-lang-java=&#34;`false`&#34; pulumi-lang-hcl=&#34;`false`&#34;&gt;`false`&lt;/span&gt;.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder livemode(Boolean livemode) {
+            return livemode(Output.of(livemode));
         }
 
         /**
@@ -456,7 +591,7 @@ public final class PriceState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param metadata Set of [key-value pairs](https://stripe.com/docs/api/metadata) that you can attach to an object. This can be useful for storing additional information about the object in a structured format. Individual keys can be unset by posting an empty value to them. All keys can be unset by posting an empty value to &lt;span pulumi-lang-nodejs=&#34;`metadata`&#34; pulumi-lang-dotnet=&#34;`Metadata`&#34; pulumi-lang-go=&#34;`metadata`&#34; pulumi-lang-python=&#34;`metadata`&#34; pulumi-lang-yaml=&#34;`metadata`&#34; pulumi-lang-java=&#34;`metadata`&#34; pulumi-lang-hcl=&#34;`metadata`&#34;&gt;`metadata`&lt;/span&gt;.
+         * @param metadata Set of [key-value pairs](https://docs.stripe.com/api/metadata) that you can attach to an object. This can be useful for storing additional information about the object in a structured format.
          * 
          * @return builder
          * 
@@ -467,7 +602,7 @@ public final class PriceState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param metadata Set of [key-value pairs](https://stripe.com/docs/api/metadata) that you can attach to an object. This can be useful for storing additional information about the object in a structured format. Individual keys can be unset by posting an empty value to them. All keys can be unset by posting an empty value to &lt;span pulumi-lang-nodejs=&#34;`metadata`&#34; pulumi-lang-dotnet=&#34;`Metadata`&#34; pulumi-lang-go=&#34;`metadata`&#34; pulumi-lang-python=&#34;`metadata`&#34; pulumi-lang-yaml=&#34;`metadata`&#34; pulumi-lang-java=&#34;`metadata`&#34; pulumi-lang-hcl=&#34;`metadata`&#34;&gt;`metadata`&lt;/span&gt;.
+         * @param metadata Set of [key-value pairs](https://docs.stripe.com/api/metadata) that you can attach to an object. This can be useful for storing additional information about the object in a structured format.
          * 
          * @return builder
          * 
@@ -498,7 +633,28 @@ public final class PriceState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param product The ID of the [Product](https://docs.stripe.com/api/products) that this [Price](https://docs.stripe.com/api/prices) will belong to.
+         * @param object String representing the object&#39;s type. Objects of the same type share the same value.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder object(@Nullable Output<String> object) {
+            $.object = object;
+            return this;
+        }
+
+        /**
+         * @param object String representing the object&#39;s type. Objects of the same type share the same value.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder object(String object) {
+            return object(Output.of(object));
+        }
+
+        /**
+         * @param product The ID of the product this price is associated with.
          * 
          * @return builder
          * 
@@ -509,7 +665,7 @@ public final class PriceState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param product The ID of the [Product](https://docs.stripe.com/api/products) that this [Price](https://docs.stripe.com/api/prices) will belong to.
+         * @param product The ID of the product this price is associated with.
          * 
          * @return builder
          * 
@@ -519,49 +675,69 @@ public final class PriceState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param productData These fields can be used to create a new product that this price will belong to.
+         * @param productDatas These fields can be used to create a new product that this price will belong to.
          * 
          * @return builder
          * 
          */
-        public Builder productData(@Nullable Output<PriceProductDataArgs> productData) {
-            $.productData = productData;
+        public Builder productDatas(@Nullable Output<List<PriceProductDataArgs>> productDatas) {
+            $.productDatas = productDatas;
             return this;
         }
 
         /**
-         * @param productData These fields can be used to create a new product that this price will belong to.
+         * @param productDatas These fields can be used to create a new product that this price will belong to.
          * 
          * @return builder
          * 
          */
-        public Builder productData(PriceProductDataArgs productData) {
-            return productData(Output.of(productData));
+        public Builder productDatas(List<PriceProductDataArgs> productDatas) {
+            return productDatas(Output.of(productDatas));
         }
 
         /**
-         * @param recurring The recurring components of a price such as &lt;span pulumi-lang-nodejs=&#34;`interval`&#34; pulumi-lang-dotnet=&#34;`Interval`&#34; pulumi-lang-go=&#34;`interval`&#34; pulumi-lang-python=&#34;`interval`&#34; pulumi-lang-yaml=&#34;`interval`&#34; pulumi-lang-java=&#34;`interval`&#34; pulumi-lang-hcl=&#34;`interval`&#34;&gt;`interval`&lt;/span&gt; and &lt;span pulumi-lang-nodejs=&#34;`usageType`&#34; pulumi-lang-dotnet=&#34;`UsageType`&#34; pulumi-lang-go=&#34;`usageType`&#34; pulumi-lang-python=&#34;`usage_type`&#34; pulumi-lang-yaml=&#34;`usageType`&#34; pulumi-lang-java=&#34;`usageType`&#34; pulumi-lang-hcl=&#34;`usage_type`&#34;&gt;`usageType`&lt;/span&gt;.
+         * @param productDatas These fields can be used to create a new product that this price will belong to.
          * 
          * @return builder
          * 
          */
-        public Builder recurring(@Nullable Output<PriceRecurringArgs> recurring) {
-            $.recurring = recurring;
+        public Builder productDatas(PriceProductDataArgs... productDatas) {
+            return productDatas(List.of(productDatas));
+        }
+
+        /**
+         * @param recurrings The recurring components of a price such as &lt;span pulumi-lang-nodejs=&#34;`interval`&#34; pulumi-lang-dotnet=&#34;`Interval`&#34; pulumi-lang-go=&#34;`interval`&#34; pulumi-lang-python=&#34;`interval`&#34; pulumi-lang-yaml=&#34;`interval`&#34; pulumi-lang-java=&#34;`interval`&#34; pulumi-lang-hcl=&#34;`interval`&#34;&gt;`interval`&lt;/span&gt; and &lt;span pulumi-lang-nodejs=&#34;`usageType`&#34; pulumi-lang-dotnet=&#34;`UsageType`&#34; pulumi-lang-go=&#34;`usageType`&#34; pulumi-lang-python=&#34;`usage_type`&#34; pulumi-lang-yaml=&#34;`usageType`&#34; pulumi-lang-java=&#34;`usageType`&#34; pulumi-lang-hcl=&#34;`usage_type`&#34;&gt;`usageType`&lt;/span&gt;.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder recurrings(@Nullable Output<List<PriceRecurringArgs>> recurrings) {
+            $.recurrings = recurrings;
             return this;
         }
 
         /**
-         * @param recurring The recurring components of a price such as &lt;span pulumi-lang-nodejs=&#34;`interval`&#34; pulumi-lang-dotnet=&#34;`Interval`&#34; pulumi-lang-go=&#34;`interval`&#34; pulumi-lang-python=&#34;`interval`&#34; pulumi-lang-yaml=&#34;`interval`&#34; pulumi-lang-java=&#34;`interval`&#34; pulumi-lang-hcl=&#34;`interval`&#34;&gt;`interval`&lt;/span&gt; and &lt;span pulumi-lang-nodejs=&#34;`usageType`&#34; pulumi-lang-dotnet=&#34;`UsageType`&#34; pulumi-lang-go=&#34;`usageType`&#34; pulumi-lang-python=&#34;`usage_type`&#34; pulumi-lang-yaml=&#34;`usageType`&#34; pulumi-lang-java=&#34;`usageType`&#34; pulumi-lang-hcl=&#34;`usage_type`&#34;&gt;`usageType`&lt;/span&gt;.
+         * @param recurrings The recurring components of a price such as &lt;span pulumi-lang-nodejs=&#34;`interval`&#34; pulumi-lang-dotnet=&#34;`Interval`&#34; pulumi-lang-go=&#34;`interval`&#34; pulumi-lang-python=&#34;`interval`&#34; pulumi-lang-yaml=&#34;`interval`&#34; pulumi-lang-java=&#34;`interval`&#34; pulumi-lang-hcl=&#34;`interval`&#34;&gt;`interval`&lt;/span&gt; and &lt;span pulumi-lang-nodejs=&#34;`usageType`&#34; pulumi-lang-dotnet=&#34;`UsageType`&#34; pulumi-lang-go=&#34;`usageType`&#34; pulumi-lang-python=&#34;`usage_type`&#34; pulumi-lang-yaml=&#34;`usageType`&#34; pulumi-lang-java=&#34;`usageType`&#34; pulumi-lang-hcl=&#34;`usage_type`&#34;&gt;`usageType`&lt;/span&gt;.
          * 
          * @return builder
          * 
          */
-        public Builder recurring(PriceRecurringArgs recurring) {
-            return recurring(Output.of(recurring));
+        public Builder recurrings(List<PriceRecurringArgs> recurrings) {
+            return recurrings(Output.of(recurrings));
         }
 
         /**
-         * @param taxBehavior Only required if a [default tax behavior](&lt;https://stripe.com/docs/tax/products-prices-tax-categories-tax-behavior#setting-a-default-tax-behavior-(recommended)&gt;) was not provided in the Stripe Tax settings. Specifies whether the price is considered inclusive of taxes or exclusive of taxes. One of &lt;span pulumi-lang-nodejs=&#34;`inclusive`&#34; pulumi-lang-dotnet=&#34;`Inclusive`&#34; pulumi-lang-go=&#34;`inclusive`&#34; pulumi-lang-python=&#34;`inclusive`&#34; pulumi-lang-yaml=&#34;`inclusive`&#34; pulumi-lang-java=&#34;`inclusive`&#34; pulumi-lang-hcl=&#34;`inclusive`&#34;&gt;`inclusive`&lt;/span&gt;, &lt;span pulumi-lang-nodejs=&#34;`exclusive`&#34; pulumi-lang-dotnet=&#34;`Exclusive`&#34; pulumi-lang-go=&#34;`exclusive`&#34; pulumi-lang-python=&#34;`exclusive`&#34; pulumi-lang-yaml=&#34;`exclusive`&#34; pulumi-lang-java=&#34;`exclusive`&#34; pulumi-lang-hcl=&#34;`exclusive`&#34;&gt;`exclusive`&lt;/span&gt;, or &lt;span pulumi-lang-nodejs=&#34;`unspecified`&#34; pulumi-lang-dotnet=&#34;`Unspecified`&#34; pulumi-lang-go=&#34;`unspecified`&#34; pulumi-lang-python=&#34;`unspecified`&#34; pulumi-lang-yaml=&#34;`unspecified`&#34; pulumi-lang-java=&#34;`unspecified`&#34; pulumi-lang-hcl=&#34;`unspecified`&#34;&gt;`unspecified`&lt;/span&gt;. Once specified as either &lt;span pulumi-lang-nodejs=&#34;`inclusive`&#34; pulumi-lang-dotnet=&#34;`Inclusive`&#34; pulumi-lang-go=&#34;`inclusive`&#34; pulumi-lang-python=&#34;`inclusive`&#34; pulumi-lang-yaml=&#34;`inclusive`&#34; pulumi-lang-java=&#34;`inclusive`&#34; pulumi-lang-hcl=&#34;`inclusive`&#34;&gt;`inclusive`&lt;/span&gt; or &lt;span pulumi-lang-nodejs=&#34;`exclusive`&#34; pulumi-lang-dotnet=&#34;`Exclusive`&#34; pulumi-lang-go=&#34;`exclusive`&#34; pulumi-lang-python=&#34;`exclusive`&#34; pulumi-lang-yaml=&#34;`exclusive`&#34; pulumi-lang-java=&#34;`exclusive`&#34; pulumi-lang-hcl=&#34;`exclusive`&#34;&gt;`exclusive`&lt;/span&gt;, it cannot be changed.
+         * @param recurrings The recurring components of a price such as &lt;span pulumi-lang-nodejs=&#34;`interval`&#34; pulumi-lang-dotnet=&#34;`Interval`&#34; pulumi-lang-go=&#34;`interval`&#34; pulumi-lang-python=&#34;`interval`&#34; pulumi-lang-yaml=&#34;`interval`&#34; pulumi-lang-java=&#34;`interval`&#34; pulumi-lang-hcl=&#34;`interval`&#34;&gt;`interval`&lt;/span&gt; and &lt;span pulumi-lang-nodejs=&#34;`usageType`&#34; pulumi-lang-dotnet=&#34;`UsageType`&#34; pulumi-lang-go=&#34;`usageType`&#34; pulumi-lang-python=&#34;`usage_type`&#34; pulumi-lang-yaml=&#34;`usageType`&#34; pulumi-lang-java=&#34;`usageType`&#34; pulumi-lang-hcl=&#34;`usage_type`&#34;&gt;`usageType`&lt;/span&gt;.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder recurrings(PriceRecurringArgs... recurrings) {
+            return recurrings(List.of(recurrings));
+        }
+
+        /**
+         * @param taxBehavior Only required if a [default tax behavior](&lt;https://docs.stripe.com/tax/products-prices-tax-categories-tax-behavior#setting-a-default-tax-behavior-(recommended)&gt;) was not provided in the Stripe Tax settings. Specifies whether the price is considered inclusive of taxes or exclusive of taxes. One of &lt;span pulumi-lang-nodejs=&#34;`inclusive`&#34; pulumi-lang-dotnet=&#34;`Inclusive`&#34; pulumi-lang-go=&#34;`inclusive`&#34; pulumi-lang-python=&#34;`inclusive`&#34; pulumi-lang-yaml=&#34;`inclusive`&#34; pulumi-lang-java=&#34;`inclusive`&#34; pulumi-lang-hcl=&#34;`inclusive`&#34;&gt;`inclusive`&lt;/span&gt;, &lt;span pulumi-lang-nodejs=&#34;`exclusive`&#34; pulumi-lang-dotnet=&#34;`Exclusive`&#34; pulumi-lang-go=&#34;`exclusive`&#34; pulumi-lang-python=&#34;`exclusive`&#34; pulumi-lang-yaml=&#34;`exclusive`&#34; pulumi-lang-java=&#34;`exclusive`&#34; pulumi-lang-hcl=&#34;`exclusive`&#34;&gt;`exclusive`&lt;/span&gt;, or &lt;span pulumi-lang-nodejs=&#34;`unspecified`&#34; pulumi-lang-dotnet=&#34;`Unspecified`&#34; pulumi-lang-go=&#34;`unspecified`&#34; pulumi-lang-python=&#34;`unspecified`&#34; pulumi-lang-yaml=&#34;`unspecified`&#34; pulumi-lang-java=&#34;`unspecified`&#34; pulumi-lang-hcl=&#34;`unspecified`&#34;&gt;`unspecified`&lt;/span&gt;. Once specified as either &lt;span pulumi-lang-nodejs=&#34;`inclusive`&#34; pulumi-lang-dotnet=&#34;`Inclusive`&#34; pulumi-lang-go=&#34;`inclusive`&#34; pulumi-lang-python=&#34;`inclusive`&#34; pulumi-lang-yaml=&#34;`inclusive`&#34; pulumi-lang-java=&#34;`inclusive`&#34; pulumi-lang-hcl=&#34;`inclusive`&#34;&gt;`inclusive`&lt;/span&gt; or &lt;span pulumi-lang-nodejs=&#34;`exclusive`&#34; pulumi-lang-dotnet=&#34;`Exclusive`&#34; pulumi-lang-go=&#34;`exclusive`&#34; pulumi-lang-python=&#34;`exclusive`&#34; pulumi-lang-yaml=&#34;`exclusive`&#34; pulumi-lang-java=&#34;`exclusive`&#34; pulumi-lang-hcl=&#34;`exclusive`&#34;&gt;`exclusive`&lt;/span&gt;, it cannot be changed.
          * 
          * @return builder
          * 
@@ -572,7 +748,7 @@ public final class PriceState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param taxBehavior Only required if a [default tax behavior](&lt;https://stripe.com/docs/tax/products-prices-tax-categories-tax-behavior#setting-a-default-tax-behavior-(recommended)&gt;) was not provided in the Stripe Tax settings. Specifies whether the price is considered inclusive of taxes or exclusive of taxes. One of &lt;span pulumi-lang-nodejs=&#34;`inclusive`&#34; pulumi-lang-dotnet=&#34;`Inclusive`&#34; pulumi-lang-go=&#34;`inclusive`&#34; pulumi-lang-python=&#34;`inclusive`&#34; pulumi-lang-yaml=&#34;`inclusive`&#34; pulumi-lang-java=&#34;`inclusive`&#34; pulumi-lang-hcl=&#34;`inclusive`&#34;&gt;`inclusive`&lt;/span&gt;, &lt;span pulumi-lang-nodejs=&#34;`exclusive`&#34; pulumi-lang-dotnet=&#34;`Exclusive`&#34; pulumi-lang-go=&#34;`exclusive`&#34; pulumi-lang-python=&#34;`exclusive`&#34; pulumi-lang-yaml=&#34;`exclusive`&#34; pulumi-lang-java=&#34;`exclusive`&#34; pulumi-lang-hcl=&#34;`exclusive`&#34;&gt;`exclusive`&lt;/span&gt;, or &lt;span pulumi-lang-nodejs=&#34;`unspecified`&#34; pulumi-lang-dotnet=&#34;`Unspecified`&#34; pulumi-lang-go=&#34;`unspecified`&#34; pulumi-lang-python=&#34;`unspecified`&#34; pulumi-lang-yaml=&#34;`unspecified`&#34; pulumi-lang-java=&#34;`unspecified`&#34; pulumi-lang-hcl=&#34;`unspecified`&#34;&gt;`unspecified`&lt;/span&gt;. Once specified as either &lt;span pulumi-lang-nodejs=&#34;`inclusive`&#34; pulumi-lang-dotnet=&#34;`Inclusive`&#34; pulumi-lang-go=&#34;`inclusive`&#34; pulumi-lang-python=&#34;`inclusive`&#34; pulumi-lang-yaml=&#34;`inclusive`&#34; pulumi-lang-java=&#34;`inclusive`&#34; pulumi-lang-hcl=&#34;`inclusive`&#34;&gt;`inclusive`&lt;/span&gt; or &lt;span pulumi-lang-nodejs=&#34;`exclusive`&#34; pulumi-lang-dotnet=&#34;`Exclusive`&#34; pulumi-lang-go=&#34;`exclusive`&#34; pulumi-lang-python=&#34;`exclusive`&#34; pulumi-lang-yaml=&#34;`exclusive`&#34; pulumi-lang-java=&#34;`exclusive`&#34; pulumi-lang-hcl=&#34;`exclusive`&#34;&gt;`exclusive`&lt;/span&gt;, it cannot be changed.
+         * @param taxBehavior Only required if a [default tax behavior](&lt;https://docs.stripe.com/tax/products-prices-tax-categories-tax-behavior#setting-a-default-tax-behavior-(recommended)&gt;) was not provided in the Stripe Tax settings. Specifies whether the price is considered inclusive of taxes or exclusive of taxes. One of &lt;span pulumi-lang-nodejs=&#34;`inclusive`&#34; pulumi-lang-dotnet=&#34;`Inclusive`&#34; pulumi-lang-go=&#34;`inclusive`&#34; pulumi-lang-python=&#34;`inclusive`&#34; pulumi-lang-yaml=&#34;`inclusive`&#34; pulumi-lang-java=&#34;`inclusive`&#34; pulumi-lang-hcl=&#34;`inclusive`&#34;&gt;`inclusive`&lt;/span&gt;, &lt;span pulumi-lang-nodejs=&#34;`exclusive`&#34; pulumi-lang-dotnet=&#34;`Exclusive`&#34; pulumi-lang-go=&#34;`exclusive`&#34; pulumi-lang-python=&#34;`exclusive`&#34; pulumi-lang-yaml=&#34;`exclusive`&#34; pulumi-lang-java=&#34;`exclusive`&#34; pulumi-lang-hcl=&#34;`exclusive`&#34;&gt;`exclusive`&lt;/span&gt;, or &lt;span pulumi-lang-nodejs=&#34;`unspecified`&#34; pulumi-lang-dotnet=&#34;`Unspecified`&#34; pulumi-lang-go=&#34;`unspecified`&#34; pulumi-lang-python=&#34;`unspecified`&#34; pulumi-lang-yaml=&#34;`unspecified`&#34; pulumi-lang-java=&#34;`unspecified`&#34; pulumi-lang-hcl=&#34;`unspecified`&#34;&gt;`unspecified`&lt;/span&gt;. Once specified as either &lt;span pulumi-lang-nodejs=&#34;`inclusive`&#34; pulumi-lang-dotnet=&#34;`Inclusive`&#34; pulumi-lang-go=&#34;`inclusive`&#34; pulumi-lang-python=&#34;`inclusive`&#34; pulumi-lang-yaml=&#34;`inclusive`&#34; pulumi-lang-java=&#34;`inclusive`&#34; pulumi-lang-hcl=&#34;`inclusive`&#34;&gt;`inclusive`&lt;/span&gt; or &lt;span pulumi-lang-nodejs=&#34;`exclusive`&#34; pulumi-lang-dotnet=&#34;`Exclusive`&#34; pulumi-lang-go=&#34;`exclusive`&#34; pulumi-lang-python=&#34;`exclusive`&#34; pulumi-lang-yaml=&#34;`exclusive`&#34; pulumi-lang-java=&#34;`exclusive`&#34; pulumi-lang-hcl=&#34;`exclusive`&#34;&gt;`exclusive`&lt;/span&gt;, it cannot be changed.
          * 
          * @return builder
          * 
@@ -613,7 +789,7 @@ public final class PriceState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param tiersMode Defines if the tiering price should be &lt;span pulumi-lang-nodejs=&#34;`graduated`&#34; pulumi-lang-dotnet=&#34;`Graduated`&#34; pulumi-lang-go=&#34;`graduated`&#34; pulumi-lang-python=&#34;`graduated`&#34; pulumi-lang-yaml=&#34;`graduated`&#34; pulumi-lang-java=&#34;`graduated`&#34; pulumi-lang-hcl=&#34;`graduated`&#34;&gt;`graduated`&lt;/span&gt; or &lt;span pulumi-lang-nodejs=&#34;`volume`&#34; pulumi-lang-dotnet=&#34;`Volume`&#34; pulumi-lang-go=&#34;`volume`&#34; pulumi-lang-python=&#34;`volume`&#34; pulumi-lang-yaml=&#34;`volume`&#34; pulumi-lang-java=&#34;`volume`&#34; pulumi-lang-hcl=&#34;`volume`&#34;&gt;`volume`&lt;/span&gt; based. In &lt;span pulumi-lang-nodejs=&#34;`volume`&#34; pulumi-lang-dotnet=&#34;`Volume`&#34; pulumi-lang-go=&#34;`volume`&#34; pulumi-lang-python=&#34;`volume`&#34; pulumi-lang-yaml=&#34;`volume`&#34; pulumi-lang-java=&#34;`volume`&#34; pulumi-lang-hcl=&#34;`volume`&#34;&gt;`volume`&lt;/span&gt;-based tiering, the maximum quantity within a period determines the per unit price, in &lt;span pulumi-lang-nodejs=&#34;`graduated`&#34; pulumi-lang-dotnet=&#34;`Graduated`&#34; pulumi-lang-go=&#34;`graduated`&#34; pulumi-lang-python=&#34;`graduated`&#34; pulumi-lang-yaml=&#34;`graduated`&#34; pulumi-lang-java=&#34;`graduated`&#34; pulumi-lang-hcl=&#34;`graduated`&#34;&gt;`graduated`&lt;/span&gt; tiering pricing can successively change as the quantity grows.
+         * @param tiersMode Defines if the tiering price should be &lt;span pulumi-lang-nodejs=&#34;`graduated`&#34; pulumi-lang-dotnet=&#34;`Graduated`&#34; pulumi-lang-go=&#34;`graduated`&#34; pulumi-lang-python=&#34;`graduated`&#34; pulumi-lang-yaml=&#34;`graduated`&#34; pulumi-lang-java=&#34;`graduated`&#34; pulumi-lang-hcl=&#34;`graduated`&#34;&gt;`graduated`&lt;/span&gt; or &lt;span pulumi-lang-nodejs=&#34;`volume`&#34; pulumi-lang-dotnet=&#34;`Volume`&#34; pulumi-lang-go=&#34;`volume`&#34; pulumi-lang-python=&#34;`volume`&#34; pulumi-lang-yaml=&#34;`volume`&#34; pulumi-lang-java=&#34;`volume`&#34; pulumi-lang-hcl=&#34;`volume`&#34;&gt;`volume`&lt;/span&gt; based. In &lt;span pulumi-lang-nodejs=&#34;`volume`&#34; pulumi-lang-dotnet=&#34;`Volume`&#34; pulumi-lang-go=&#34;`volume`&#34; pulumi-lang-python=&#34;`volume`&#34; pulumi-lang-yaml=&#34;`volume`&#34; pulumi-lang-java=&#34;`volume`&#34; pulumi-lang-hcl=&#34;`volume`&#34;&gt;`volume`&lt;/span&gt;-based tiering, the maximum quantity within a period determines the per unit price. In &lt;span pulumi-lang-nodejs=&#34;`graduated`&#34; pulumi-lang-dotnet=&#34;`Graduated`&#34; pulumi-lang-go=&#34;`graduated`&#34; pulumi-lang-python=&#34;`graduated`&#34; pulumi-lang-yaml=&#34;`graduated`&#34; pulumi-lang-java=&#34;`graduated`&#34; pulumi-lang-hcl=&#34;`graduated`&#34;&gt;`graduated`&lt;/span&gt; tiering, pricing can change as the quantity grows.
          * 
          * @return builder
          * 
@@ -624,13 +800,57 @@ public final class PriceState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param tiersMode Defines if the tiering price should be &lt;span pulumi-lang-nodejs=&#34;`graduated`&#34; pulumi-lang-dotnet=&#34;`Graduated`&#34; pulumi-lang-go=&#34;`graduated`&#34; pulumi-lang-python=&#34;`graduated`&#34; pulumi-lang-yaml=&#34;`graduated`&#34; pulumi-lang-java=&#34;`graduated`&#34; pulumi-lang-hcl=&#34;`graduated`&#34;&gt;`graduated`&lt;/span&gt; or &lt;span pulumi-lang-nodejs=&#34;`volume`&#34; pulumi-lang-dotnet=&#34;`Volume`&#34; pulumi-lang-go=&#34;`volume`&#34; pulumi-lang-python=&#34;`volume`&#34; pulumi-lang-yaml=&#34;`volume`&#34; pulumi-lang-java=&#34;`volume`&#34; pulumi-lang-hcl=&#34;`volume`&#34;&gt;`volume`&lt;/span&gt; based. In &lt;span pulumi-lang-nodejs=&#34;`volume`&#34; pulumi-lang-dotnet=&#34;`Volume`&#34; pulumi-lang-go=&#34;`volume`&#34; pulumi-lang-python=&#34;`volume`&#34; pulumi-lang-yaml=&#34;`volume`&#34; pulumi-lang-java=&#34;`volume`&#34; pulumi-lang-hcl=&#34;`volume`&#34;&gt;`volume`&lt;/span&gt;-based tiering, the maximum quantity within a period determines the per unit price, in &lt;span pulumi-lang-nodejs=&#34;`graduated`&#34; pulumi-lang-dotnet=&#34;`Graduated`&#34; pulumi-lang-go=&#34;`graduated`&#34; pulumi-lang-python=&#34;`graduated`&#34; pulumi-lang-yaml=&#34;`graduated`&#34; pulumi-lang-java=&#34;`graduated`&#34; pulumi-lang-hcl=&#34;`graduated`&#34;&gt;`graduated`&lt;/span&gt; tiering pricing can successively change as the quantity grows.
+         * @param tiersMode Defines if the tiering price should be &lt;span pulumi-lang-nodejs=&#34;`graduated`&#34; pulumi-lang-dotnet=&#34;`Graduated`&#34; pulumi-lang-go=&#34;`graduated`&#34; pulumi-lang-python=&#34;`graduated`&#34; pulumi-lang-yaml=&#34;`graduated`&#34; pulumi-lang-java=&#34;`graduated`&#34; pulumi-lang-hcl=&#34;`graduated`&#34;&gt;`graduated`&lt;/span&gt; or &lt;span pulumi-lang-nodejs=&#34;`volume`&#34; pulumi-lang-dotnet=&#34;`Volume`&#34; pulumi-lang-go=&#34;`volume`&#34; pulumi-lang-python=&#34;`volume`&#34; pulumi-lang-yaml=&#34;`volume`&#34; pulumi-lang-java=&#34;`volume`&#34; pulumi-lang-hcl=&#34;`volume`&#34;&gt;`volume`&lt;/span&gt; based. In &lt;span pulumi-lang-nodejs=&#34;`volume`&#34; pulumi-lang-dotnet=&#34;`Volume`&#34; pulumi-lang-go=&#34;`volume`&#34; pulumi-lang-python=&#34;`volume`&#34; pulumi-lang-yaml=&#34;`volume`&#34; pulumi-lang-java=&#34;`volume`&#34; pulumi-lang-hcl=&#34;`volume`&#34;&gt;`volume`&lt;/span&gt;-based tiering, the maximum quantity within a period determines the per unit price. In &lt;span pulumi-lang-nodejs=&#34;`graduated`&#34; pulumi-lang-dotnet=&#34;`Graduated`&#34; pulumi-lang-go=&#34;`graduated`&#34; pulumi-lang-python=&#34;`graduated`&#34; pulumi-lang-yaml=&#34;`graduated`&#34; pulumi-lang-java=&#34;`graduated`&#34; pulumi-lang-hcl=&#34;`graduated`&#34;&gt;`graduated`&lt;/span&gt; tiering, pricing can change as the quantity grows.
          * 
          * @return builder
          * 
          */
         public Builder tiersMode(String tiersMode) {
             return tiersMode(Output.of(tiersMode));
+        }
+
+        /**
+         * @param transferLookupKey **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+         * If set to true, will atomically remove the lookup key from the existing price, and assign it to this price.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder transferLookupKey(@Nullable Output<Boolean> transferLookupKey) {
+            $.transferLookupKey = transferLookupKey;
+            return this;
+        }
+
+        /**
+         * @param transferLookupKey **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+         * If set to true, will atomically remove the lookup key from the existing price, and assign it to this price.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder transferLookupKey(Boolean transferLookupKey) {
+            return transferLookupKey(Output.of(transferLookupKey));
+        }
+
+        /**
+         * @param transformQuantity Apply a transformation to the reported usage or set quantity before computing the amount billed. Cannot be combined with &lt;span pulumi-lang-nodejs=&#34;`tiers`&#34; pulumi-lang-dotnet=&#34;`Tiers`&#34; pulumi-lang-go=&#34;`tiers`&#34; pulumi-lang-python=&#34;`tiers`&#34; pulumi-lang-yaml=&#34;`tiers`&#34; pulumi-lang-java=&#34;`tiers`&#34; pulumi-lang-hcl=&#34;`tiers`&#34;&gt;`tiers`&lt;/span&gt;.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder transformQuantity(@Nullable Output<PriceTransformQuantityArgs> transformQuantity) {
+            $.transformQuantity = transformQuantity;
+            return this;
+        }
+
+        /**
+         * @param transformQuantity Apply a transformation to the reported usage or set quantity before computing the amount billed. Cannot be combined with &lt;span pulumi-lang-nodejs=&#34;`tiers`&#34; pulumi-lang-dotnet=&#34;`Tiers`&#34; pulumi-lang-go=&#34;`tiers`&#34; pulumi-lang-python=&#34;`tiers`&#34; pulumi-lang-yaml=&#34;`tiers`&#34; pulumi-lang-java=&#34;`tiers`&#34; pulumi-lang-hcl=&#34;`tiers`&#34;&gt;`tiers`&lt;/span&gt;.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder transformQuantity(PriceTransformQuantityArgs transformQuantity) {
+            return transformQuantity(Output.of(transformQuantity));
         }
 
         /**
@@ -655,7 +875,7 @@ public final class PriceState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param unitAmount A positive integer in cents (or local equivalent) (or 0 for a free price) representing how much to charge. One of &lt;span pulumi-lang-nodejs=&#34;`unitAmount`&#34; pulumi-lang-dotnet=&#34;`UnitAmount`&#34; pulumi-lang-go=&#34;`unitAmount`&#34; pulumi-lang-python=&#34;`unit_amount`&#34; pulumi-lang-yaml=&#34;`unitAmount`&#34; pulumi-lang-java=&#34;`unitAmount`&#34; pulumi-lang-hcl=&#34;`unit_amount`&#34;&gt;`unitAmount`&lt;/span&gt;, &lt;span pulumi-lang-nodejs=&#34;`unitAmountDecimal`&#34; pulumi-lang-dotnet=&#34;`UnitAmountDecimal`&#34; pulumi-lang-go=&#34;`unitAmountDecimal`&#34; pulumi-lang-python=&#34;`unit_amount_decimal`&#34; pulumi-lang-yaml=&#34;`unitAmountDecimal`&#34; pulumi-lang-java=&#34;`unitAmountDecimal`&#34; pulumi-lang-hcl=&#34;`unit_amount_decimal`&#34;&gt;`unitAmountDecimal`&lt;/span&gt;, or &lt;span pulumi-lang-nodejs=&#34;`customUnitAmount`&#34; pulumi-lang-dotnet=&#34;`CustomUnitAmount`&#34; pulumi-lang-go=&#34;`customUnitAmount`&#34; pulumi-lang-python=&#34;`custom_unit_amount`&#34; pulumi-lang-yaml=&#34;`customUnitAmount`&#34; pulumi-lang-java=&#34;`customUnitAmount`&#34; pulumi-lang-hcl=&#34;`custom_unit_amount`&#34;&gt;`customUnitAmount`&lt;/span&gt; is required, unless `billing_scheme=tiered`.
+         * @param unitAmount The unit amount in cents (or local equivalent) to be charged, represented as a whole integer if possible. Only set if `billing_scheme=per_unit`.
          * 
          * @return builder
          * 
@@ -666,7 +886,7 @@ public final class PriceState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param unitAmount A positive integer in cents (or local equivalent) (or 0 for a free price) representing how much to charge. One of &lt;span pulumi-lang-nodejs=&#34;`unitAmount`&#34; pulumi-lang-dotnet=&#34;`UnitAmount`&#34; pulumi-lang-go=&#34;`unitAmount`&#34; pulumi-lang-python=&#34;`unit_amount`&#34; pulumi-lang-yaml=&#34;`unitAmount`&#34; pulumi-lang-java=&#34;`unitAmount`&#34; pulumi-lang-hcl=&#34;`unit_amount`&#34;&gt;`unitAmount`&lt;/span&gt;, &lt;span pulumi-lang-nodejs=&#34;`unitAmountDecimal`&#34; pulumi-lang-dotnet=&#34;`UnitAmountDecimal`&#34; pulumi-lang-go=&#34;`unitAmountDecimal`&#34; pulumi-lang-python=&#34;`unit_amount_decimal`&#34; pulumi-lang-yaml=&#34;`unitAmountDecimal`&#34; pulumi-lang-java=&#34;`unitAmountDecimal`&#34; pulumi-lang-hcl=&#34;`unit_amount_decimal`&#34;&gt;`unitAmountDecimal`&lt;/span&gt;, or &lt;span pulumi-lang-nodejs=&#34;`customUnitAmount`&#34; pulumi-lang-dotnet=&#34;`CustomUnitAmount`&#34; pulumi-lang-go=&#34;`customUnitAmount`&#34; pulumi-lang-python=&#34;`custom_unit_amount`&#34; pulumi-lang-yaml=&#34;`customUnitAmount`&#34; pulumi-lang-java=&#34;`customUnitAmount`&#34; pulumi-lang-hcl=&#34;`custom_unit_amount`&#34;&gt;`customUnitAmount`&lt;/span&gt; is required, unless `billing_scheme=tiered`.
+         * @param unitAmount The unit amount in cents (or local equivalent) to be charged, represented as a whole integer if possible. Only set if `billing_scheme=per_unit`.
          * 
          * @return builder
          * 
@@ -676,7 +896,7 @@ public final class PriceState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param unitAmountDecimal Same as &lt;span pulumi-lang-nodejs=&#34;`unitAmount`&#34; pulumi-lang-dotnet=&#34;`UnitAmount`&#34; pulumi-lang-go=&#34;`unitAmount`&#34; pulumi-lang-python=&#34;`unit_amount`&#34; pulumi-lang-yaml=&#34;`unitAmount`&#34; pulumi-lang-java=&#34;`unitAmount`&#34; pulumi-lang-hcl=&#34;`unit_amount`&#34;&gt;`unitAmount`&lt;/span&gt;, but accepts a decimal value in cents (or local equivalent) with at most 12 decimal places. Only one of &lt;span pulumi-lang-nodejs=&#34;`unitAmount`&#34; pulumi-lang-dotnet=&#34;`UnitAmount`&#34; pulumi-lang-go=&#34;`unitAmount`&#34; pulumi-lang-python=&#34;`unit_amount`&#34; pulumi-lang-yaml=&#34;`unitAmount`&#34; pulumi-lang-java=&#34;`unitAmount`&#34; pulumi-lang-hcl=&#34;`unit_amount`&#34;&gt;`unitAmount`&lt;/span&gt; and &lt;span pulumi-lang-nodejs=&#34;`unitAmountDecimal`&#34; pulumi-lang-dotnet=&#34;`UnitAmountDecimal`&#34; pulumi-lang-go=&#34;`unitAmountDecimal`&#34; pulumi-lang-python=&#34;`unit_amount_decimal`&#34; pulumi-lang-yaml=&#34;`unitAmountDecimal`&#34; pulumi-lang-java=&#34;`unitAmountDecimal`&#34; pulumi-lang-hcl=&#34;`unit_amount_decimal`&#34;&gt;`unitAmountDecimal`&lt;/span&gt; can be set.
+         * @param unitAmountDecimal The unit amount in cents (or local equivalent) to be charged, represented as a decimal string with at most 12 decimal places. Only set if `billing_scheme=per_unit`.
          * 
          * @return builder
          * 
@@ -687,7 +907,7 @@ public final class PriceState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param unitAmountDecimal Same as &lt;span pulumi-lang-nodejs=&#34;`unitAmount`&#34; pulumi-lang-dotnet=&#34;`UnitAmount`&#34; pulumi-lang-go=&#34;`unitAmount`&#34; pulumi-lang-python=&#34;`unit_amount`&#34; pulumi-lang-yaml=&#34;`unitAmount`&#34; pulumi-lang-java=&#34;`unitAmount`&#34; pulumi-lang-hcl=&#34;`unit_amount`&#34;&gt;`unitAmount`&lt;/span&gt;, but accepts a decimal value in cents (or local equivalent) with at most 12 decimal places. Only one of &lt;span pulumi-lang-nodejs=&#34;`unitAmount`&#34; pulumi-lang-dotnet=&#34;`UnitAmount`&#34; pulumi-lang-go=&#34;`unitAmount`&#34; pulumi-lang-python=&#34;`unit_amount`&#34; pulumi-lang-yaml=&#34;`unitAmount`&#34; pulumi-lang-java=&#34;`unitAmount`&#34; pulumi-lang-hcl=&#34;`unit_amount`&#34;&gt;`unitAmount`&lt;/span&gt; and &lt;span pulumi-lang-nodejs=&#34;`unitAmountDecimal`&#34; pulumi-lang-dotnet=&#34;`UnitAmountDecimal`&#34; pulumi-lang-go=&#34;`unitAmountDecimal`&#34; pulumi-lang-python=&#34;`unit_amount_decimal`&#34; pulumi-lang-yaml=&#34;`unitAmountDecimal`&#34; pulumi-lang-java=&#34;`unitAmountDecimal`&#34; pulumi-lang-hcl=&#34;`unit_amount_decimal`&#34;&gt;`unitAmountDecimal`&lt;/span&gt; can be set.
+         * @param unitAmountDecimal The unit amount in cents (or local equivalent) to be charged, represented as a decimal string with at most 12 decimal places. Only set if `billing_scheme=per_unit`.
          * 
          * @return builder
          * 

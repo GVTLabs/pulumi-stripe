@@ -2,6 +2,8 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
+import * as inputs from "./types/input";
+import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 export class TaxRate extends pulumi.CustomResource {
@@ -33,7 +35,7 @@ export class TaxRate extends pulumi.CustomResource {
     }
 
     /**
-     * Flag determining whether the tax rate is active or inactive (archived). Inactive tax rates cannot be used with new applications or Checkout Sessions, but will still work for subscriptions and invoices that already have it set.
+     * Defaults to <span pulumi-lang-nodejs="`true`" pulumi-lang-dotnet="`True`" pulumi-lang-go="`true`" pulumi-lang-python="`true`" pulumi-lang-yaml="`true`" pulumi-lang-java="`true`" pulumi-lang-hcl="`true`">`true`</span>. When set to <span pulumi-lang-nodejs="`false`" pulumi-lang-dotnet="`False`" pulumi-lang-go="`false`" pulumi-lang-python="`false`" pulumi-lang-yaml="`false`" pulumi-lang-java="`false`" pulumi-lang-hcl="`false`">`false`</span>, this tax rate cannot be used with new applications or Checkout Sessions, but will still work for subscriptions and invoices that already have it set.
      */
     declare public readonly active: pulumi.Output<boolean>;
     /**
@@ -41,17 +43,27 @@ export class TaxRate extends pulumi.CustomResource {
      */
     declare public readonly country: pulumi.Output<string>;
     /**
+     * Time at which the object was created. Measured in seconds since the Unix epoch.
+     */
+    declare public /*out*/ readonly created: pulumi.Output<number>;
+    /**
      * An arbitrary string attached to the tax rate for your internal use only. It will not be visible to your customers.
      */
     declare public readonly description: pulumi.Output<string>;
     /**
-     * The display name of the tax rate, which will be shown to users.
+     * The display name of the tax rates as it will appear to your customer on their receipt email, PDF, and the hosted invoice page.
      */
     declare public readonly displayName: pulumi.Output<string>;
     /**
-     * Actual/effective tax rate percentage out of 100. For tax calculations with automatic_tax[enabled]=true, this percentage reflects the rate actually used to calculate tax based on the product's taxability and whether the user is registered to collect taxes in the corresponding jurisdiction.
+     * Actual/effective tax rate percentage out of 100. For tax calculations with automatic_tax[enabled]=true,
+     * this percentage reflects the rate actually used to calculate tax based on the product's taxability
+     * and whether the user is registered to collect taxes in the corresponding jurisdiction.
      */
     declare public /*out*/ readonly effectivePercentage: pulumi.Output<number>;
+    /**
+     * The amount of the tax rate when the <span pulumi-lang-nodejs="`rateType`" pulumi-lang-dotnet="`RateType`" pulumi-lang-go="`rateType`" pulumi-lang-python="`rate_type`" pulumi-lang-yaml="`rateType`" pulumi-lang-java="`rateType`" pulumi-lang-hcl="`rate_type`">`rateType`</span> is <span pulumi-lang-nodejs="`flatAmount`" pulumi-lang-dotnet="`FlatAmount`" pulumi-lang-go="`flatAmount`" pulumi-lang-python="`flat_amount`" pulumi-lang-yaml="`flatAmount`" pulumi-lang-java="`flatAmount`" pulumi-lang-hcl="`flat_amount`">`flatAmount`</span>. Tax rates with <span pulumi-lang-nodejs="`rateType`" pulumi-lang-dotnet="`RateType`" pulumi-lang-go="`rateType`" pulumi-lang-python="`rate_type`" pulumi-lang-yaml="`rateType`" pulumi-lang-java="`rateType`" pulumi-lang-hcl="`rate_type`">`rateType`</span> <span pulumi-lang-nodejs="`percentage`" pulumi-lang-dotnet="`Percentage`" pulumi-lang-go="`percentage`" pulumi-lang-python="`percentage`" pulumi-lang-yaml="`percentage`" pulumi-lang-java="`percentage`" pulumi-lang-hcl="`percentage`">`percentage`</span> can vary based on the transaction, resulting in this field being <span pulumi-lang-nodejs="`null`" pulumi-lang-dotnet="`Null`" pulumi-lang-go="`null`" pulumi-lang-python="`null`" pulumi-lang-yaml="`null`" pulumi-lang-java="`null`" pulumi-lang-hcl="`null`">`null`</span>. This field exposes the amount and currency of the flat tax rate.
+     */
+    declare public /*out*/ readonly flatAmount: pulumi.Output<outputs.TaxRateFlatAmount>;
     /**
      * This specifies if the tax rate is inclusive or exclusive.
      */
@@ -65,11 +77,19 @@ export class TaxRate extends pulumi.CustomResource {
      */
     declare public /*out*/ readonly jurisdictionLevel: pulumi.Output<string>;
     /**
-     * Set of [key-value pairs](https://stripe.com/docs/api/metadata) that you can attach to an object. This can be useful for storing additional information about the object in a structured format. Individual keys can be unset by posting an empty value to them. All keys can be unset by posting an empty value to <span pulumi-lang-nodejs="`metadata`" pulumi-lang-dotnet="`Metadata`" pulumi-lang-go="`metadata`" pulumi-lang-python="`metadata`" pulumi-lang-yaml="`metadata`" pulumi-lang-java="`metadata`" pulumi-lang-hcl="`metadata`">`metadata`</span>.
+     * If the object exists in live mode, the value is <span pulumi-lang-nodejs="`true`" pulumi-lang-dotnet="`True`" pulumi-lang-go="`true`" pulumi-lang-python="`true`" pulumi-lang-yaml="`true`" pulumi-lang-java="`true`" pulumi-lang-hcl="`true`">`true`</span>. If the object exists in test mode, the value is <span pulumi-lang-nodejs="`false`" pulumi-lang-dotnet="`False`" pulumi-lang-go="`false`" pulumi-lang-python="`false`" pulumi-lang-yaml="`false`" pulumi-lang-java="`false`" pulumi-lang-hcl="`false`">`false`</span>.
+     */
+    declare public /*out*/ readonly livemode: pulumi.Output<boolean>;
+    /**
+     * Set of [key-value pairs](https://docs.stripe.com/api/metadata) that you can attach to an object. This can be useful for storing additional information about the object in a structured format.
      */
     declare public readonly metadata: pulumi.Output<{[key: string]: string}>;
     /**
-     * This represents the tax rate percent out of 100.
+     * String representing the object's type. Objects of the same type share the same value.
+     */
+    declare public /*out*/ readonly object: pulumi.Output<string>;
+    /**
+     * Tax rate percentage out of 100. For tax calculations with automatic_tax[enabled]=true, this percentage includes the statutory tax rate of non-taxable jurisdictions.
      */
     declare public readonly percentage: pulumi.Output<number>;
     /**
@@ -77,7 +97,7 @@ export class TaxRate extends pulumi.CustomResource {
      */
     declare public /*out*/ readonly rateType: pulumi.Output<string>;
     /**
-     * [ISO 3166-2 subdivision code](https://en.wikipedia.org/wiki/ISO_3166-2), without country prefix. For example, \"NY\" for New York, United States.
+     * [ISO 3166-2 subdivision code](https://en.wikipedia.org/wiki/ISO_3166-2), without country prefix. For example, "NY" for New York, United States.
      */
     declare public readonly state: pulumi.Output<string>;
     /**
@@ -100,13 +120,17 @@ export class TaxRate extends pulumi.CustomResource {
             const state = argsOrState as TaxRateState | undefined;
             resourceInputs["active"] = state?.active;
             resourceInputs["country"] = state?.country;
+            resourceInputs["created"] = state?.created;
             resourceInputs["description"] = state?.description;
             resourceInputs["displayName"] = state?.displayName;
             resourceInputs["effectivePercentage"] = state?.effectivePercentage;
+            resourceInputs["flatAmount"] = state?.flatAmount;
             resourceInputs["inclusive"] = state?.inclusive;
             resourceInputs["jurisdiction"] = state?.jurisdiction;
             resourceInputs["jurisdictionLevel"] = state?.jurisdictionLevel;
+            resourceInputs["livemode"] = state?.livemode;
             resourceInputs["metadata"] = state?.metadata;
+            resourceInputs["object"] = state?.object;
             resourceInputs["percentage"] = state?.percentage;
             resourceInputs["rateType"] = state?.rateType;
             resourceInputs["state"] = state?.state;
@@ -132,8 +156,12 @@ export class TaxRate extends pulumi.CustomResource {
             resourceInputs["percentage"] = args?.percentage;
             resourceInputs["state"] = args?.state;
             resourceInputs["taxType"] = args?.taxType;
+            resourceInputs["created"] = undefined /*out*/;
             resourceInputs["effectivePercentage"] = undefined /*out*/;
+            resourceInputs["flatAmount"] = undefined /*out*/;
             resourceInputs["jurisdictionLevel"] = undefined /*out*/;
+            resourceInputs["livemode"] = undefined /*out*/;
+            resourceInputs["object"] = undefined /*out*/;
             resourceInputs["rateType"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
@@ -146,7 +174,7 @@ export class TaxRate extends pulumi.CustomResource {
  */
 export interface TaxRateState {
     /**
-     * Flag determining whether the tax rate is active or inactive (archived). Inactive tax rates cannot be used with new applications or Checkout Sessions, but will still work for subscriptions and invoices that already have it set.
+     * Defaults to <span pulumi-lang-nodejs="`true`" pulumi-lang-dotnet="`True`" pulumi-lang-go="`true`" pulumi-lang-python="`true`" pulumi-lang-yaml="`true`" pulumi-lang-java="`true`" pulumi-lang-hcl="`true`">`true`</span>. When set to <span pulumi-lang-nodejs="`false`" pulumi-lang-dotnet="`False`" pulumi-lang-go="`false`" pulumi-lang-python="`false`" pulumi-lang-yaml="`false`" pulumi-lang-java="`false`" pulumi-lang-hcl="`false`">`false`</span>, this tax rate cannot be used with new applications or Checkout Sessions, but will still work for subscriptions and invoices that already have it set.
      */
     active?: pulumi.Input<boolean | undefined>;
     /**
@@ -154,17 +182,27 @@ export interface TaxRateState {
      */
     country?: pulumi.Input<string | undefined>;
     /**
+     * Time at which the object was created. Measured in seconds since the Unix epoch.
+     */
+    created?: pulumi.Input<number | undefined>;
+    /**
      * An arbitrary string attached to the tax rate for your internal use only. It will not be visible to your customers.
      */
     description?: pulumi.Input<string | undefined>;
     /**
-     * The display name of the tax rate, which will be shown to users.
+     * The display name of the tax rates as it will appear to your customer on their receipt email, PDF, and the hosted invoice page.
      */
     displayName?: pulumi.Input<string | undefined>;
     /**
-     * Actual/effective tax rate percentage out of 100. For tax calculations with automatic_tax[enabled]=true, this percentage reflects the rate actually used to calculate tax based on the product's taxability and whether the user is registered to collect taxes in the corresponding jurisdiction.
+     * Actual/effective tax rate percentage out of 100. For tax calculations with automatic_tax[enabled]=true,
+     * this percentage reflects the rate actually used to calculate tax based on the product's taxability
+     * and whether the user is registered to collect taxes in the corresponding jurisdiction.
      */
     effectivePercentage?: pulumi.Input<number | undefined>;
+    /**
+     * The amount of the tax rate when the <span pulumi-lang-nodejs="`rateType`" pulumi-lang-dotnet="`RateType`" pulumi-lang-go="`rateType`" pulumi-lang-python="`rate_type`" pulumi-lang-yaml="`rateType`" pulumi-lang-java="`rateType`" pulumi-lang-hcl="`rate_type`">`rateType`</span> is <span pulumi-lang-nodejs="`flatAmount`" pulumi-lang-dotnet="`FlatAmount`" pulumi-lang-go="`flatAmount`" pulumi-lang-python="`flat_amount`" pulumi-lang-yaml="`flatAmount`" pulumi-lang-java="`flatAmount`" pulumi-lang-hcl="`flat_amount`">`flatAmount`</span>. Tax rates with <span pulumi-lang-nodejs="`rateType`" pulumi-lang-dotnet="`RateType`" pulumi-lang-go="`rateType`" pulumi-lang-python="`rate_type`" pulumi-lang-yaml="`rateType`" pulumi-lang-java="`rateType`" pulumi-lang-hcl="`rate_type`">`rateType`</span> <span pulumi-lang-nodejs="`percentage`" pulumi-lang-dotnet="`Percentage`" pulumi-lang-go="`percentage`" pulumi-lang-python="`percentage`" pulumi-lang-yaml="`percentage`" pulumi-lang-java="`percentage`" pulumi-lang-hcl="`percentage`">`percentage`</span> can vary based on the transaction, resulting in this field being <span pulumi-lang-nodejs="`null`" pulumi-lang-dotnet="`Null`" pulumi-lang-go="`null`" pulumi-lang-python="`null`" pulumi-lang-yaml="`null`" pulumi-lang-java="`null`" pulumi-lang-hcl="`null`">`null`</span>. This field exposes the amount and currency of the flat tax rate.
+     */
+    flatAmount?: pulumi.Input<inputs.TaxRateFlatAmount | undefined>;
     /**
      * This specifies if the tax rate is inclusive or exclusive.
      */
@@ -178,11 +216,19 @@ export interface TaxRateState {
      */
     jurisdictionLevel?: pulumi.Input<string | undefined>;
     /**
-     * Set of [key-value pairs](https://stripe.com/docs/api/metadata) that you can attach to an object. This can be useful for storing additional information about the object in a structured format. Individual keys can be unset by posting an empty value to them. All keys can be unset by posting an empty value to <span pulumi-lang-nodejs="`metadata`" pulumi-lang-dotnet="`Metadata`" pulumi-lang-go="`metadata`" pulumi-lang-python="`metadata`" pulumi-lang-yaml="`metadata`" pulumi-lang-java="`metadata`" pulumi-lang-hcl="`metadata`">`metadata`</span>.
+     * If the object exists in live mode, the value is <span pulumi-lang-nodejs="`true`" pulumi-lang-dotnet="`True`" pulumi-lang-go="`true`" pulumi-lang-python="`true`" pulumi-lang-yaml="`true`" pulumi-lang-java="`true`" pulumi-lang-hcl="`true`">`true`</span>. If the object exists in test mode, the value is <span pulumi-lang-nodejs="`false`" pulumi-lang-dotnet="`False`" pulumi-lang-go="`false`" pulumi-lang-python="`false`" pulumi-lang-yaml="`false`" pulumi-lang-java="`false`" pulumi-lang-hcl="`false`">`false`</span>.
+     */
+    livemode?: pulumi.Input<boolean | undefined>;
+    /**
+     * Set of [key-value pairs](https://docs.stripe.com/api/metadata) that you can attach to an object. This can be useful for storing additional information about the object in a structured format.
      */
     metadata?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
     /**
-     * This represents the tax rate percent out of 100.
+     * String representing the object's type. Objects of the same type share the same value.
+     */
+    object?: pulumi.Input<string | undefined>;
+    /**
+     * Tax rate percentage out of 100. For tax calculations with automatic_tax[enabled]=true, this percentage includes the statutory tax rate of non-taxable jurisdictions.
      */
     percentage?: pulumi.Input<number | undefined>;
     /**
@@ -190,7 +236,7 @@ export interface TaxRateState {
      */
     rateType?: pulumi.Input<string | undefined>;
     /**
-     * [ISO 3166-2 subdivision code](https://en.wikipedia.org/wiki/ISO_3166-2), without country prefix. For example, \"NY\" for New York, United States.
+     * [ISO 3166-2 subdivision code](https://en.wikipedia.org/wiki/ISO_3166-2), without country prefix. For example, "NY" for New York, United States.
      */
     state?: pulumi.Input<string | undefined>;
     /**
@@ -204,7 +250,7 @@ export interface TaxRateState {
  */
 export interface TaxRateArgs {
     /**
-     * Flag determining whether the tax rate is active or inactive (archived). Inactive tax rates cannot be used with new applications or Checkout Sessions, but will still work for subscriptions and invoices that already have it set.
+     * Defaults to <span pulumi-lang-nodejs="`true`" pulumi-lang-dotnet="`True`" pulumi-lang-go="`true`" pulumi-lang-python="`true`" pulumi-lang-yaml="`true`" pulumi-lang-java="`true`" pulumi-lang-hcl="`true`">`true`</span>. When set to <span pulumi-lang-nodejs="`false`" pulumi-lang-dotnet="`False`" pulumi-lang-go="`false`" pulumi-lang-python="`false`" pulumi-lang-yaml="`false`" pulumi-lang-java="`false`" pulumi-lang-hcl="`false`">`false`</span>, this tax rate cannot be used with new applications or Checkout Sessions, but will still work for subscriptions and invoices that already have it set.
      */
     active?: pulumi.Input<boolean | undefined>;
     /**
@@ -216,7 +262,7 @@ export interface TaxRateArgs {
      */
     description?: pulumi.Input<string | undefined>;
     /**
-     * The display name of the tax rate, which will be shown to users.
+     * The display name of the tax rates as it will appear to your customer on their receipt email, PDF, and the hosted invoice page.
      */
     displayName: pulumi.Input<string>;
     /**
@@ -228,15 +274,15 @@ export interface TaxRateArgs {
      */
     jurisdiction?: pulumi.Input<string | undefined>;
     /**
-     * Set of [key-value pairs](https://stripe.com/docs/api/metadata) that you can attach to an object. This can be useful for storing additional information about the object in a structured format. Individual keys can be unset by posting an empty value to them. All keys can be unset by posting an empty value to <span pulumi-lang-nodejs="`metadata`" pulumi-lang-dotnet="`Metadata`" pulumi-lang-go="`metadata`" pulumi-lang-python="`metadata`" pulumi-lang-yaml="`metadata`" pulumi-lang-java="`metadata`" pulumi-lang-hcl="`metadata`">`metadata`</span>.
+     * Set of [key-value pairs](https://docs.stripe.com/api/metadata) that you can attach to an object. This can be useful for storing additional information about the object in a structured format.
      */
     metadata?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
     /**
-     * This represents the tax rate percent out of 100.
+     * Tax rate percentage out of 100. For tax calculations with automatic_tax[enabled]=true, this percentage includes the statutory tax rate of non-taxable jurisdictions.
      */
     percentage: pulumi.Input<number>;
     /**
-     * [ISO 3166-2 subdivision code](https://en.wikipedia.org/wiki/ISO_3166-2), without country prefix. For example, \"NY\" for New York, United States.
+     * [ISO 3166-2 subdivision code](https://en.wikipedia.org/wiki/ISO_3166-2), without country prefix. For example, "NY" for New York, United States.
      */
     state?: pulumi.Input<string | undefined>;
     /**

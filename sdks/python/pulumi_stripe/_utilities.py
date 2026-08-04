@@ -323,7 +323,7 @@ def get_plugin_download_url():
 	return None
 
 def get_version():
-    return "0.2.3"
+    return "0.3.0-beta.3"
 
 async def get_package() -> str:
 	return await pulumi.runtime.register_package(
@@ -332,6 +332,6 @@ async def get_package() -> str:
 		base_provider_download_url=get_plugin_download_url() or "",
 		package_name="stripe",
 		package_version=get_version(),
-		base64_parameter="eyJyZW1vdGUiOnsidXJsIjoicmVnaXN0cnkub3BlbnRvZnUub3JnL3N0cmlwZS9zdHJpcGUiLCJ2ZXJzaW9uIjoiMC4yLjMifX0=",
+		base64_parameter="eyJyZW1vdGUiOnsidXJsIjoicmVnaXN0cnkub3BlbnRvZnUub3JnL3N0cmlwZS9zdHJpcGUiLCJ2ZXJzaW9uIjoiMC4zLjAtYmV0YS4zIn19",
 	)
 	

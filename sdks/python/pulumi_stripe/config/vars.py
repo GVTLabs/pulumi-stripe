@@ -23,7 +23,14 @@ class _ExportableConfig(types.ModuleType):
     @_builtins.property
     def api_key(self) -> Optional[str]:
         """
-        Stripe API key
+        Stripe API key. Can also be set via the STRIPE_API_KEY environment variable.
         """
         return __config__.get('apiKey')
+
+    @_builtins.property
+    def stripe_account(self) -> Optional[str]:
+        """
+        Connected account context for Connect-scoped requests. Can also be set via the STRIPE_ACCOUNT environment variable.
+        """
+        return __config__.get('stripeAccount')
 

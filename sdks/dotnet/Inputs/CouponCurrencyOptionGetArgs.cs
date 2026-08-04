@@ -13,11 +13,14 @@ namespace Pulumi.Stripe.Inputs
     public sealed class CouponCurrencyOptionGetArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// A positive integer representing the amount to subtract from an invoice total.
+        /// Amount (in the &lt;span pulumi-lang-nodejs="`currency`" pulumi-lang-dotnet="`Currency`" pulumi-lang-go="`currency`" pulumi-lang-python="`currency`" pulumi-lang-yaml="`currency`" pulumi-lang-java="`currency`" pulumi-lang-hcl="`currency`"&gt;`currency`&lt;/span&gt; specified) that will be taken off the subtotal of any invoices for this customer.
         /// </summary>
         [Input("amountOff", required: true)]
         public Input<double> AmountOff { get; set; } = null!;
 
+        /// <summary>
+        /// Key for this entry.
+        /// </summary>
         [Input("key", required: true)]
         public Input<string> Key { get; set; } = null!;
 

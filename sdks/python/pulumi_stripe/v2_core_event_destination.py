@@ -24,44 +24,57 @@ class V2CoreEventDestinationArgs:
                  enabled_events: pulumi.Input[Sequence[pulumi.Input[_builtins.str]]],
                  event_payload: pulumi.Input[_builtins.str],
                  type: pulumi.Input[_builtins.str],
-                 amazon_eventbridge: pulumi.Input[Optional['V2CoreEventDestinationAmazonEventbridgeArgs']] = None,
+                 amazon_eventbridges: pulumi.Input[Optional[Sequence[pulumi.Input['V2CoreEventDestinationAmazonEventbridgeArgs']]]] = None,
+                 azure_event_grid: pulumi.Input[Optional['V2CoreEventDestinationAzureEventGridArgs']] = None,
                  description: pulumi.Input[Optional[_builtins.str]] = None,
                  events_froms: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 includes: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  metadata: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
                  name: pulumi.Input[Optional[_builtins.str]] = None,
                  snapshot_api_version: pulumi.Input[Optional[_builtins.str]] = None,
-                 webhook_endpoint: pulumi.Input[Optional['V2CoreEventDestinationWebhookEndpointArgs']] = None):
+                 webhook_endpoints: pulumi.Input[Optional[Sequence[pulumi.Input['V2CoreEventDestinationWebhookEndpointArgs']]]] = None):
         """
         The set of arguments for constructing a V2CoreEventDestination resource.
 
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] enabled_events: The list of events to enable for this endpoint.
         :param pulumi.Input[_builtins.str] event_payload: Payload type of events being subscribed to.
         :param pulumi.Input[_builtins.str] type: Event destination type.
-        :param pulumi.Input['V2CoreEventDestinationAmazonEventbridgeArgs'] amazon_eventbridge: Amazon EventBridge configuration.
+        :param pulumi.Input[Sequence[pulumi.Input['V2CoreEventDestinationAmazonEventbridgeArgs']]] amazon_eventbridges: Amazon EventBridge configuration.
+        :param pulumi.Input['V2CoreEventDestinationAzureEventGridArgs'] azure_event_grid: Azure Event Grid configuration.
         :param pulumi.Input[_builtins.str] description: An optional description of what the event destination is used for.
-        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] events_froms: Where events should be routed from.
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] events_froms: Specifies which accounts' events route to this destination.
+               `@self`: Receive events from the account that owns the event destination.
+               `@accounts`: Receive events emitted from other accounts you manage which includes your v1 and v2 accounts.
+               `@organization_members`: Receive events from accounts directly linked to the organization.
+               `@organization_members/@accounts`: Receive events from all accounts connected to any platform accounts in the organization.
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] includes: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+               Additional fields to include in the response.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] metadata: Metadata.
         :param pulumi.Input[_builtins.str] name: Event destination name.
         :param pulumi.Input[_builtins.str] snapshot_api_version: If using the snapshot event payload, the API version events are rendered as.
-        :param pulumi.Input['V2CoreEventDestinationWebhookEndpointArgs'] webhook_endpoint: Webhook endpoint configuration.
+        :param pulumi.Input[Sequence[pulumi.Input['V2CoreEventDestinationWebhookEndpointArgs']]] webhook_endpoints: Webhook endpoint configuration.
         """
         pulumi.set(__self__, "enabled_events", enabled_events)
         pulumi.set(__self__, "event_payload", event_payload)
         pulumi.set(__self__, "type", type)
-        if amazon_eventbridge is not None:
-            pulumi.set(__self__, "amazon_eventbridge", amazon_eventbridge)
+        if amazon_eventbridges is not None:
+            pulumi.set(__self__, "amazon_eventbridges", amazon_eventbridges)
+        if azure_event_grid is not None:
+            pulumi.set(__self__, "azure_event_grid", azure_event_grid)
         if description is not None:
             pulumi.set(__self__, "description", description)
         if events_froms is not None:
             pulumi.set(__self__, "events_froms", events_froms)
+        if includes is not None:
+            pulumi.set(__self__, "includes", includes)
         if metadata is not None:
             pulumi.set(__self__, "metadata", metadata)
         if name is not None:
             pulumi.set(__self__, "name", name)
         if snapshot_api_version is not None:
             pulumi.set(__self__, "snapshot_api_version", snapshot_api_version)
-        if webhook_endpoint is not None:
-            pulumi.set(__self__, "webhook_endpoint", webhook_endpoint)
+        if webhook_endpoints is not None:
+            pulumi.set(__self__, "webhook_endpoints", webhook_endpoints)
 
     @_builtins.property
     @pulumi.getter(name="enabledEvents")
@@ -100,16 +113,28 @@ class V2CoreEventDestinationArgs:
         pulumi.set(self, "type", value)
 
     @_builtins.property
-    @pulumi.getter(name="amazonEventbridge")
-    def amazon_eventbridge(self) -> pulumi.Input[Optional['V2CoreEventDestinationAmazonEventbridgeArgs']]:
+    @pulumi.getter(name="amazonEventbridges")
+    def amazon_eventbridges(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['V2CoreEventDestinationAmazonEventbridgeArgs']]]]:
         """
         Amazon EventBridge configuration.
         """
-        return pulumi.get(self, "amazon_eventbridge")
+        return pulumi.get(self, "amazon_eventbridges")
 
-    @amazon_eventbridge.setter
-    def amazon_eventbridge(self, value: pulumi.Input[Optional['V2CoreEventDestinationAmazonEventbridgeArgs']]):
-        pulumi.set(self, "amazon_eventbridge", value)
+    @amazon_eventbridges.setter
+    def amazon_eventbridges(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['V2CoreEventDestinationAmazonEventbridgeArgs']]]]):
+        pulumi.set(self, "amazon_eventbridges", value)
+
+    @_builtins.property
+    @pulumi.getter(name="azureEventGrid")
+    def azure_event_grid(self) -> pulumi.Input[Optional['V2CoreEventDestinationAzureEventGridArgs']]:
+        """
+        Azure Event Grid configuration.
+        """
+        return pulumi.get(self, "azure_event_grid")
+
+    @azure_event_grid.setter
+    def azure_event_grid(self, value: pulumi.Input[Optional['V2CoreEventDestinationAzureEventGridArgs']]):
+        pulumi.set(self, "azure_event_grid", value)
 
     @_builtins.property
     @pulumi.getter
@@ -127,13 +152,30 @@ class V2CoreEventDestinationArgs:
     @pulumi.getter(name="eventsFroms")
     def events_froms(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
-        Where events should be routed from.
+        Specifies which accounts' events route to this destination.
+        `@self`: Receive events from the account that owns the event destination.
+        `@accounts`: Receive events emitted from other accounts you manage which includes your v1 and v2 accounts.
+        `@organization_members`: Receive events from accounts directly linked to the organization.
+        `@organization_members/@accounts`: Receive events from all accounts connected to any platform accounts in the organization.
         """
         return pulumi.get(self, "events_froms")
 
     @events_froms.setter
     def events_froms(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "events_froms", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def includes(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
+        """
+        **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        Additional fields to include in the response.
+        """
+        return pulumi.get(self, "includes")
+
+    @includes.setter
+    def includes(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
+        pulumi.set(self, "includes", value)
 
     @_builtins.property
     @pulumi.getter
@@ -172,49 +214,72 @@ class V2CoreEventDestinationArgs:
         pulumi.set(self, "snapshot_api_version", value)
 
     @_builtins.property
-    @pulumi.getter(name="webhookEndpoint")
-    def webhook_endpoint(self) -> pulumi.Input[Optional['V2CoreEventDestinationWebhookEndpointArgs']]:
+    @pulumi.getter(name="webhookEndpoints")
+    def webhook_endpoints(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['V2CoreEventDestinationWebhookEndpointArgs']]]]:
         """
         Webhook endpoint configuration.
         """
-        return pulumi.get(self, "webhook_endpoint")
+        return pulumi.get(self, "webhook_endpoints")
 
-    @webhook_endpoint.setter
-    def webhook_endpoint(self, value: pulumi.Input[Optional['V2CoreEventDestinationWebhookEndpointArgs']]):
-        pulumi.set(self, "webhook_endpoint", value)
+    @webhook_endpoints.setter
+    def webhook_endpoints(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['V2CoreEventDestinationWebhookEndpointArgs']]]]):
+        pulumi.set(self, "webhook_endpoints", value)
 
 
 @pulumi.input_type
 class _V2CoreEventDestinationState:
     def __init__(__self__, *,
-                 amazon_eventbridge: pulumi.Input[Optional['V2CoreEventDestinationAmazonEventbridgeArgs']] = None,
+                 amazon_eventbridges: pulumi.Input[Optional[Sequence[pulumi.Input['V2CoreEventDestinationAmazonEventbridgeArgs']]]] = None,
+                 azure_event_grid: pulumi.Input[Optional['V2CoreEventDestinationAzureEventGridArgs']] = None,
+                 created: pulumi.Input[Optional[_builtins.str]] = None,
                  description: pulumi.Input[Optional[_builtins.str]] = None,
                  enabled_events: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  event_payload: pulumi.Input[Optional[_builtins.str]] = None,
                  events_froms: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 includes: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 livemode: pulumi.Input[Optional[_builtins.bool]] = None,
                  metadata: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
                  name: pulumi.Input[Optional[_builtins.str]] = None,
+                 object: pulumi.Input[Optional[_builtins.str]] = None,
                  snapshot_api_version: pulumi.Input[Optional[_builtins.str]] = None,
                  status: pulumi.Input[Optional[_builtins.str]] = None,
+                 status_details: pulumi.Input[Optional['V2CoreEventDestinationStatusDetailsArgs']] = None,
                  type: pulumi.Input[Optional[_builtins.str]] = None,
-                 webhook_endpoint: pulumi.Input[Optional['V2CoreEventDestinationWebhookEndpointArgs']] = None):
+                 updated: pulumi.Input[Optional[_builtins.str]] = None,
+                 webhook_endpoints: pulumi.Input[Optional[Sequence[pulumi.Input['V2CoreEventDestinationWebhookEndpointArgs']]]] = None):
         """
         Input properties used for looking up and filtering V2CoreEventDestination resources.
 
-        :param pulumi.Input['V2CoreEventDestinationAmazonEventbridgeArgs'] amazon_eventbridge: Amazon EventBridge configuration.
+        :param pulumi.Input[Sequence[pulumi.Input['V2CoreEventDestinationAmazonEventbridgeArgs']]] amazon_eventbridges: Amazon EventBridge configuration.
+        :param pulumi.Input['V2CoreEventDestinationAzureEventGridArgs'] azure_event_grid: Azure Event Grid configuration.
+        :param pulumi.Input[_builtins.str] created: Time at which the object was created.
         :param pulumi.Input[_builtins.str] description: An optional description of what the event destination is used for.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] enabled_events: The list of events to enable for this endpoint.
         :param pulumi.Input[_builtins.str] event_payload: Payload type of events being subscribed to.
-        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] events_froms: Where events should be routed from.
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] events_froms: Specifies which accounts' events route to this destination.
+               `@self`: Receive events from the account that owns the event destination.
+               `@accounts`: Receive events emitted from other accounts you manage which includes your v1 and v2 accounts.
+               `@organization_members`: Receive events from accounts directly linked to the organization.
+               `@organization_members/@accounts`: Receive events from all accounts connected to any platform accounts in the organization.
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] includes: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+               Additional fields to include in the response.
+        :param pulumi.Input[_builtins.bool] livemode: Has the value <span pulumi-lang-nodejs="`true`" pulumi-lang-dotnet="`True`" pulumi-lang-go="`true`" pulumi-lang-python="`true`" pulumi-lang-yaml="`true`" pulumi-lang-java="`true`" pulumi-lang-hcl="`true`">`true`</span> if the object exists in live mode or the value <span pulumi-lang-nodejs="`false`" pulumi-lang-dotnet="`False`" pulumi-lang-go="`false`" pulumi-lang-python="`false`" pulumi-lang-yaml="`false`" pulumi-lang-java="`false`" pulumi-lang-hcl="`false`">`false`</span> if the object exists in test mode.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] metadata: Metadata.
         :param pulumi.Input[_builtins.str] name: Event destination name.
+        :param pulumi.Input[_builtins.str] object: String representing the object's type. Objects of the same type share the same value of the object field.
         :param pulumi.Input[_builtins.str] snapshot_api_version: If using the snapshot event payload, the API version events are rendered as.
         :param pulumi.Input[_builtins.str] status: Status. It can be set to either enabled or disabled.
+        :param pulumi.Input['V2CoreEventDestinationStatusDetailsArgs'] status_details: Additional information about event destination status.
         :param pulumi.Input[_builtins.str] type: Event destination type.
-        :param pulumi.Input['V2CoreEventDestinationWebhookEndpointArgs'] webhook_endpoint: Webhook endpoint configuration.
+        :param pulumi.Input[_builtins.str] updated: Time at which the object was last updated.
+        :param pulumi.Input[Sequence[pulumi.Input['V2CoreEventDestinationWebhookEndpointArgs']]] webhook_endpoints: Webhook endpoint configuration.
         """
-        if amazon_eventbridge is not None:
-            pulumi.set(__self__, "amazon_eventbridge", amazon_eventbridge)
+        if amazon_eventbridges is not None:
+            pulumi.set(__self__, "amazon_eventbridges", amazon_eventbridges)
+        if azure_event_grid is not None:
+            pulumi.set(__self__, "azure_event_grid", azure_event_grid)
+        if created is not None:
+            pulumi.set(__self__, "created", created)
         if description is not None:
             pulumi.set(__self__, "description", description)
         if enabled_events is not None:
@@ -223,30 +288,64 @@ class _V2CoreEventDestinationState:
             pulumi.set(__self__, "event_payload", event_payload)
         if events_froms is not None:
             pulumi.set(__self__, "events_froms", events_froms)
+        if includes is not None:
+            pulumi.set(__self__, "includes", includes)
+        if livemode is not None:
+            pulumi.set(__self__, "livemode", livemode)
         if metadata is not None:
             pulumi.set(__self__, "metadata", metadata)
         if name is not None:
             pulumi.set(__self__, "name", name)
+        if object is not None:
+            pulumi.set(__self__, "object", object)
         if snapshot_api_version is not None:
             pulumi.set(__self__, "snapshot_api_version", snapshot_api_version)
         if status is not None:
             pulumi.set(__self__, "status", status)
+        if status_details is not None:
+            pulumi.set(__self__, "status_details", status_details)
         if type is not None:
             pulumi.set(__self__, "type", type)
-        if webhook_endpoint is not None:
-            pulumi.set(__self__, "webhook_endpoint", webhook_endpoint)
+        if updated is not None:
+            pulumi.set(__self__, "updated", updated)
+        if webhook_endpoints is not None:
+            pulumi.set(__self__, "webhook_endpoints", webhook_endpoints)
 
     @_builtins.property
-    @pulumi.getter(name="amazonEventbridge")
-    def amazon_eventbridge(self) -> pulumi.Input[Optional['V2CoreEventDestinationAmazonEventbridgeArgs']]:
+    @pulumi.getter(name="amazonEventbridges")
+    def amazon_eventbridges(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['V2CoreEventDestinationAmazonEventbridgeArgs']]]]:
         """
         Amazon EventBridge configuration.
         """
-        return pulumi.get(self, "amazon_eventbridge")
+        return pulumi.get(self, "amazon_eventbridges")
 
-    @amazon_eventbridge.setter
-    def amazon_eventbridge(self, value: pulumi.Input[Optional['V2CoreEventDestinationAmazonEventbridgeArgs']]):
-        pulumi.set(self, "amazon_eventbridge", value)
+    @amazon_eventbridges.setter
+    def amazon_eventbridges(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['V2CoreEventDestinationAmazonEventbridgeArgs']]]]):
+        pulumi.set(self, "amazon_eventbridges", value)
+
+    @_builtins.property
+    @pulumi.getter(name="azureEventGrid")
+    def azure_event_grid(self) -> pulumi.Input[Optional['V2CoreEventDestinationAzureEventGridArgs']]:
+        """
+        Azure Event Grid configuration.
+        """
+        return pulumi.get(self, "azure_event_grid")
+
+    @azure_event_grid.setter
+    def azure_event_grid(self, value: pulumi.Input[Optional['V2CoreEventDestinationAzureEventGridArgs']]):
+        pulumi.set(self, "azure_event_grid", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def created(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        Time at which the object was created.
+        """
+        return pulumi.get(self, "created")
+
+    @created.setter
+    def created(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "created", value)
 
     @_builtins.property
     @pulumi.getter
@@ -288,13 +387,42 @@ class _V2CoreEventDestinationState:
     @pulumi.getter(name="eventsFroms")
     def events_froms(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
-        Where events should be routed from.
+        Specifies which accounts' events route to this destination.
+        `@self`: Receive events from the account that owns the event destination.
+        `@accounts`: Receive events emitted from other accounts you manage which includes your v1 and v2 accounts.
+        `@organization_members`: Receive events from accounts directly linked to the organization.
+        `@organization_members/@accounts`: Receive events from all accounts connected to any platform accounts in the organization.
         """
         return pulumi.get(self, "events_froms")
 
     @events_froms.setter
     def events_froms(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "events_froms", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def includes(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
+        """
+        **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        Additional fields to include in the response.
+        """
+        return pulumi.get(self, "includes")
+
+    @includes.setter
+    def includes(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
+        pulumi.set(self, "includes", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def livemode(self) -> pulumi.Input[Optional[_builtins.bool]]:
+        """
+        Has the value <span pulumi-lang-nodejs="`true`" pulumi-lang-dotnet="`True`" pulumi-lang-go="`true`" pulumi-lang-python="`true`" pulumi-lang-yaml="`true`" pulumi-lang-java="`true`" pulumi-lang-hcl="`true`">`true`</span> if the object exists in live mode or the value <span pulumi-lang-nodejs="`false`" pulumi-lang-dotnet="`False`" pulumi-lang-go="`false`" pulumi-lang-python="`false`" pulumi-lang-yaml="`false`" pulumi-lang-java="`false`" pulumi-lang-hcl="`false`">`false`</span> if the object exists in test mode.
+        """
+        return pulumi.get(self, "livemode")
+
+    @livemode.setter
+    def livemode(self, value: pulumi.Input[Optional[_builtins.bool]]):
+        pulumi.set(self, "livemode", value)
 
     @_builtins.property
     @pulumi.getter
@@ -321,6 +449,18 @@ class _V2CoreEventDestinationState:
         pulumi.set(self, "name", value)
 
     @_builtins.property
+    @pulumi.getter
+    def object(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        String representing the object's type. Objects of the same type share the same value of the object field.
+        """
+        return pulumi.get(self, "object")
+
+    @object.setter
+    def object(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "object", value)
+
+    @_builtins.property
     @pulumi.getter(name="snapshotApiVersion")
     def snapshot_api_version(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
@@ -345,6 +485,18 @@ class _V2CoreEventDestinationState:
         pulumi.set(self, "status", value)
 
     @_builtins.property
+    @pulumi.getter(name="statusDetails")
+    def status_details(self) -> pulumi.Input[Optional['V2CoreEventDestinationStatusDetailsArgs']]:
+        """
+        Additional information about event destination status.
+        """
+        return pulumi.get(self, "status_details")
+
+    @status_details.setter
+    def status_details(self, value: pulumi.Input[Optional['V2CoreEventDestinationStatusDetailsArgs']]):
+        pulumi.set(self, "status_details", value)
+
+    @_builtins.property
     @pulumi.getter
     def type(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
@@ -357,16 +509,28 @@ class _V2CoreEventDestinationState:
         pulumi.set(self, "type", value)
 
     @_builtins.property
-    @pulumi.getter(name="webhookEndpoint")
-    def webhook_endpoint(self) -> pulumi.Input[Optional['V2CoreEventDestinationWebhookEndpointArgs']]:
+    @pulumi.getter
+    def updated(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        Time at which the object was last updated.
+        """
+        return pulumi.get(self, "updated")
+
+    @updated.setter
+    def updated(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "updated", value)
+
+    @_builtins.property
+    @pulumi.getter(name="webhookEndpoints")
+    def webhook_endpoints(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['V2CoreEventDestinationWebhookEndpointArgs']]]]:
         """
         Webhook endpoint configuration.
         """
-        return pulumi.get(self, "webhook_endpoint")
+        return pulumi.get(self, "webhook_endpoints")
 
-    @webhook_endpoint.setter
-    def webhook_endpoint(self, value: pulumi.Input[Optional['V2CoreEventDestinationWebhookEndpointArgs']]):
-        pulumi.set(self, "webhook_endpoint", value)
+    @webhook_endpoints.setter
+    def webhook_endpoints(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['V2CoreEventDestinationWebhookEndpointArgs']]]]):
+        pulumi.set(self, "webhook_endpoints", value)
 
 
 @pulumi.type_token("stripe:index/v2CoreEventDestination:V2CoreEventDestination")
@@ -375,32 +539,41 @@ class V2CoreEventDestination(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 amazon_eventbridge: pulumi.Input[Optional[Union['V2CoreEventDestinationAmazonEventbridgeArgs', 'V2CoreEventDestinationAmazonEventbridgeArgsDict']]] = None,
+                 amazon_eventbridges: pulumi.Input[Optional[Sequence[pulumi.Input[Union['V2CoreEventDestinationAmazonEventbridgeArgs', 'V2CoreEventDestinationAmazonEventbridgeArgsDict']]]]] = None,
+                 azure_event_grid: pulumi.Input[Optional[Union['V2CoreEventDestinationAzureEventGridArgs', 'V2CoreEventDestinationAzureEventGridArgsDict']]] = None,
                  description: pulumi.Input[Optional[_builtins.str]] = None,
                  enabled_events: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  event_payload: pulumi.Input[Optional[_builtins.str]] = None,
                  events_froms: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 includes: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  metadata: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
                  name: pulumi.Input[Optional[_builtins.str]] = None,
                  snapshot_api_version: pulumi.Input[Optional[_builtins.str]] = None,
                  type: pulumi.Input[Optional[_builtins.str]] = None,
-                 webhook_endpoint: pulumi.Input[Optional[Union['V2CoreEventDestinationWebhookEndpointArgs', 'V2CoreEventDestinationWebhookEndpointArgsDict']]] = None,
+                 webhook_endpoints: pulumi.Input[Optional[Sequence[pulumi.Input[Union['V2CoreEventDestinationWebhookEndpointArgs', 'V2CoreEventDestinationWebhookEndpointArgsDict']]]]] = None,
                  __props__=None):
         """
         Create a V2CoreEventDestination resource with the given unique name, props, and options.
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[Union['V2CoreEventDestinationAmazonEventbridgeArgs', 'V2CoreEventDestinationAmazonEventbridgeArgsDict']] amazon_eventbridge: Amazon EventBridge configuration.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['V2CoreEventDestinationAmazonEventbridgeArgs', 'V2CoreEventDestinationAmazonEventbridgeArgsDict']]]] amazon_eventbridges: Amazon EventBridge configuration.
+        :param pulumi.Input[Union['V2CoreEventDestinationAzureEventGridArgs', 'V2CoreEventDestinationAzureEventGridArgsDict']] azure_event_grid: Azure Event Grid configuration.
         :param pulumi.Input[_builtins.str] description: An optional description of what the event destination is used for.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] enabled_events: The list of events to enable for this endpoint.
         :param pulumi.Input[_builtins.str] event_payload: Payload type of events being subscribed to.
-        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] events_froms: Where events should be routed from.
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] events_froms: Specifies which accounts' events route to this destination.
+               `@self`: Receive events from the account that owns the event destination.
+               `@accounts`: Receive events emitted from other accounts you manage which includes your v1 and v2 accounts.
+               `@organization_members`: Receive events from accounts directly linked to the organization.
+               `@organization_members/@accounts`: Receive events from all accounts connected to any platform accounts in the organization.
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] includes: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+               Additional fields to include in the response.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] metadata: Metadata.
         :param pulumi.Input[_builtins.str] name: Event destination name.
         :param pulumi.Input[_builtins.str] snapshot_api_version: If using the snapshot event payload, the API version events are rendered as.
         :param pulumi.Input[_builtins.str] type: Event destination type.
-        :param pulumi.Input[Union['V2CoreEventDestinationWebhookEndpointArgs', 'V2CoreEventDestinationWebhookEndpointArgsDict']] webhook_endpoint: Webhook endpoint configuration.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['V2CoreEventDestinationWebhookEndpointArgs', 'V2CoreEventDestinationWebhookEndpointArgsDict']]]] webhook_endpoints: Webhook endpoint configuration.
         """
         ...
     @overload
@@ -426,16 +599,18 @@ class V2CoreEventDestination(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 amazon_eventbridge: pulumi.Input[Optional[Union['V2CoreEventDestinationAmazonEventbridgeArgs', 'V2CoreEventDestinationAmazonEventbridgeArgsDict']]] = None,
+                 amazon_eventbridges: pulumi.Input[Optional[Sequence[pulumi.Input[Union['V2CoreEventDestinationAmazonEventbridgeArgs', 'V2CoreEventDestinationAmazonEventbridgeArgsDict']]]]] = None,
+                 azure_event_grid: pulumi.Input[Optional[Union['V2CoreEventDestinationAzureEventGridArgs', 'V2CoreEventDestinationAzureEventGridArgsDict']]] = None,
                  description: pulumi.Input[Optional[_builtins.str]] = None,
                  enabled_events: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  event_payload: pulumi.Input[Optional[_builtins.str]] = None,
                  events_froms: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 includes: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  metadata: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
                  name: pulumi.Input[Optional[_builtins.str]] = None,
                  snapshot_api_version: pulumi.Input[Optional[_builtins.str]] = None,
                  type: pulumi.Input[Optional[_builtins.str]] = None,
-                 webhook_endpoint: pulumi.Input[Optional[Union['V2CoreEventDestinationWebhookEndpointArgs', 'V2CoreEventDestinationWebhookEndpointArgsDict']]] = None,
+                 webhook_endpoints: pulumi.Input[Optional[Sequence[pulumi.Input[Union['V2CoreEventDestinationWebhookEndpointArgs', 'V2CoreEventDestinationWebhookEndpointArgsDict']]]]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -445,7 +620,8 @@ class V2CoreEventDestination(pulumi.CustomResource):
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = V2CoreEventDestinationArgs.__new__(V2CoreEventDestinationArgs)
 
-            __props__.__dict__["amazon_eventbridge"] = amazon_eventbridge
+            __props__.__dict__["amazon_eventbridges"] = amazon_eventbridges
+            __props__.__dict__["azure_event_grid"] = azure_event_grid
             __props__.__dict__["description"] = description
             if enabled_events is None and not opts.urn:
                 raise TypeError("Missing required property 'enabled_events'")
@@ -454,14 +630,22 @@ class V2CoreEventDestination(pulumi.CustomResource):
                 raise TypeError("Missing required property 'event_payload'")
             __props__.__dict__["event_payload"] = event_payload
             __props__.__dict__["events_froms"] = events_froms
+            __props__.__dict__["includes"] = None if includes is None else pulumi.Output.secret(includes)
             __props__.__dict__["metadata"] = metadata
             __props__.__dict__["name"] = name
             __props__.__dict__["snapshot_api_version"] = snapshot_api_version
             if type is None and not opts.urn:
                 raise TypeError("Missing required property 'type'")
             __props__.__dict__["type"] = type
-            __props__.__dict__["webhook_endpoint"] = webhook_endpoint
+            __props__.__dict__["webhook_endpoints"] = webhook_endpoints
+            __props__.__dict__["created"] = None
+            __props__.__dict__["livemode"] = None
+            __props__.__dict__["object"] = None
             __props__.__dict__["status"] = None
+            __props__.__dict__["status_details"] = None
+            __props__.__dict__["updated"] = None
+        secret_opts = pulumi.ResourceOptions(additional_secret_outputs=["includes"])
+        opts = pulumi.ResourceOptions.merge(opts, secret_opts)
         super(V2CoreEventDestination, __self__).__init__(
             'stripe:index/v2CoreEventDestination:V2CoreEventDestination',
             resource_name,
@@ -473,17 +657,24 @@ class V2CoreEventDestination(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            amazon_eventbridge: pulumi.Input[Optional[Union['V2CoreEventDestinationAmazonEventbridgeArgs', 'V2CoreEventDestinationAmazonEventbridgeArgsDict']]] = None,
+            amazon_eventbridges: pulumi.Input[Optional[Sequence[pulumi.Input[Union['V2CoreEventDestinationAmazonEventbridgeArgs', 'V2CoreEventDestinationAmazonEventbridgeArgsDict']]]]] = None,
+            azure_event_grid: pulumi.Input[Optional[Union['V2CoreEventDestinationAzureEventGridArgs', 'V2CoreEventDestinationAzureEventGridArgsDict']]] = None,
+            created: pulumi.Input[Optional[_builtins.str]] = None,
             description: pulumi.Input[Optional[_builtins.str]] = None,
             enabled_events: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
             event_payload: pulumi.Input[Optional[_builtins.str]] = None,
             events_froms: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            includes: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            livemode: pulumi.Input[Optional[_builtins.bool]] = None,
             metadata: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
             name: pulumi.Input[Optional[_builtins.str]] = None,
+            object: pulumi.Input[Optional[_builtins.str]] = None,
             snapshot_api_version: pulumi.Input[Optional[_builtins.str]] = None,
             status: pulumi.Input[Optional[_builtins.str]] = None,
+            status_details: pulumi.Input[Optional[Union['V2CoreEventDestinationStatusDetailsArgs', 'V2CoreEventDestinationStatusDetailsArgsDict']]] = None,
             type: pulumi.Input[Optional[_builtins.str]] = None,
-            webhook_endpoint: pulumi.Input[Optional[Union['V2CoreEventDestinationWebhookEndpointArgs', 'V2CoreEventDestinationWebhookEndpointArgsDict']]] = None) -> 'V2CoreEventDestination':
+            updated: pulumi.Input[Optional[_builtins.str]] = None,
+            webhook_endpoints: pulumi.Input[Optional[Sequence[pulumi.Input[Union['V2CoreEventDestinationWebhookEndpointArgs', 'V2CoreEventDestinationWebhookEndpointArgsDict']]]]] = None) -> 'V2CoreEventDestination':
         """
         Get an existing V2CoreEventDestination resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -491,42 +682,77 @@ class V2CoreEventDestination(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[Union['V2CoreEventDestinationAmazonEventbridgeArgs', 'V2CoreEventDestinationAmazonEventbridgeArgsDict']] amazon_eventbridge: Amazon EventBridge configuration.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['V2CoreEventDestinationAmazonEventbridgeArgs', 'V2CoreEventDestinationAmazonEventbridgeArgsDict']]]] amazon_eventbridges: Amazon EventBridge configuration.
+        :param pulumi.Input[Union['V2CoreEventDestinationAzureEventGridArgs', 'V2CoreEventDestinationAzureEventGridArgsDict']] azure_event_grid: Azure Event Grid configuration.
+        :param pulumi.Input[_builtins.str] created: Time at which the object was created.
         :param pulumi.Input[_builtins.str] description: An optional description of what the event destination is used for.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] enabled_events: The list of events to enable for this endpoint.
         :param pulumi.Input[_builtins.str] event_payload: Payload type of events being subscribed to.
-        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] events_froms: Where events should be routed from.
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] events_froms: Specifies which accounts' events route to this destination.
+               `@self`: Receive events from the account that owns the event destination.
+               `@accounts`: Receive events emitted from other accounts you manage which includes your v1 and v2 accounts.
+               `@organization_members`: Receive events from accounts directly linked to the organization.
+               `@organization_members/@accounts`: Receive events from all accounts connected to any platform accounts in the organization.
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] includes: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+               Additional fields to include in the response.
+        :param pulumi.Input[_builtins.bool] livemode: Has the value <span pulumi-lang-nodejs="`true`" pulumi-lang-dotnet="`True`" pulumi-lang-go="`true`" pulumi-lang-python="`true`" pulumi-lang-yaml="`true`" pulumi-lang-java="`true`" pulumi-lang-hcl="`true`">`true`</span> if the object exists in live mode or the value <span pulumi-lang-nodejs="`false`" pulumi-lang-dotnet="`False`" pulumi-lang-go="`false`" pulumi-lang-python="`false`" pulumi-lang-yaml="`false`" pulumi-lang-java="`false`" pulumi-lang-hcl="`false`">`false`</span> if the object exists in test mode.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] metadata: Metadata.
         :param pulumi.Input[_builtins.str] name: Event destination name.
+        :param pulumi.Input[_builtins.str] object: String representing the object's type. Objects of the same type share the same value of the object field.
         :param pulumi.Input[_builtins.str] snapshot_api_version: If using the snapshot event payload, the API version events are rendered as.
         :param pulumi.Input[_builtins.str] status: Status. It can be set to either enabled or disabled.
+        :param pulumi.Input[Union['V2CoreEventDestinationStatusDetailsArgs', 'V2CoreEventDestinationStatusDetailsArgsDict']] status_details: Additional information about event destination status.
         :param pulumi.Input[_builtins.str] type: Event destination type.
-        :param pulumi.Input[Union['V2CoreEventDestinationWebhookEndpointArgs', 'V2CoreEventDestinationWebhookEndpointArgsDict']] webhook_endpoint: Webhook endpoint configuration.
+        :param pulumi.Input[_builtins.str] updated: Time at which the object was last updated.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['V2CoreEventDestinationWebhookEndpointArgs', 'V2CoreEventDestinationWebhookEndpointArgsDict']]]] webhook_endpoints: Webhook endpoint configuration.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
         __props__ = _V2CoreEventDestinationState.__new__(_V2CoreEventDestinationState)
 
-        __props__.__dict__["amazon_eventbridge"] = amazon_eventbridge
+        __props__.__dict__["amazon_eventbridges"] = amazon_eventbridges
+        __props__.__dict__["azure_event_grid"] = azure_event_grid
+        __props__.__dict__["created"] = created
         __props__.__dict__["description"] = description
         __props__.__dict__["enabled_events"] = enabled_events
         __props__.__dict__["event_payload"] = event_payload
         __props__.__dict__["events_froms"] = events_froms
+        __props__.__dict__["includes"] = includes
+        __props__.__dict__["livemode"] = livemode
         __props__.__dict__["metadata"] = metadata
         __props__.__dict__["name"] = name
+        __props__.__dict__["object"] = object
         __props__.__dict__["snapshot_api_version"] = snapshot_api_version
         __props__.__dict__["status"] = status
+        __props__.__dict__["status_details"] = status_details
         __props__.__dict__["type"] = type
-        __props__.__dict__["webhook_endpoint"] = webhook_endpoint
+        __props__.__dict__["updated"] = updated
+        __props__.__dict__["webhook_endpoints"] = webhook_endpoints
         return V2CoreEventDestination(resource_name, opts=opts, __props__=__props__)
 
     @_builtins.property
-    @pulumi.getter(name="amazonEventbridge")
-    def amazon_eventbridge(self) -> pulumi.Output[Optional['outputs.V2CoreEventDestinationAmazonEventbridge']]:
+    @pulumi.getter(name="amazonEventbridges")
+    def amazon_eventbridges(self) -> pulumi.Output[Optional[Sequence['outputs.V2CoreEventDestinationAmazonEventbridge']]]:
         """
         Amazon EventBridge configuration.
         """
-        return pulumi.get(self, "amazon_eventbridge")
+        return pulumi.get(self, "amazon_eventbridges")
+
+    @_builtins.property
+    @pulumi.getter(name="azureEventGrid")
+    def azure_event_grid(self) -> pulumi.Output['outputs.V2CoreEventDestinationAzureEventGrid']:
+        """
+        Azure Event Grid configuration.
+        """
+        return pulumi.get(self, "azure_event_grid")
+
+    @_builtins.property
+    @pulumi.getter
+    def created(self) -> pulumi.Output[_builtins.str]:
+        """
+        Time at which the object was created.
+        """
+        return pulumi.get(self, "created")
 
     @_builtins.property
     @pulumi.getter
@@ -556,9 +782,30 @@ class V2CoreEventDestination(pulumi.CustomResource):
     @pulumi.getter(name="eventsFroms")
     def events_froms(self) -> pulumi.Output[Sequence[_builtins.str]]:
         """
-        Where events should be routed from.
+        Specifies which accounts' events route to this destination.
+        `@self`: Receive events from the account that owns the event destination.
+        `@accounts`: Receive events emitted from other accounts you manage which includes your v1 and v2 accounts.
+        `@organization_members`: Receive events from accounts directly linked to the organization.
+        `@organization_members/@accounts`: Receive events from all accounts connected to any platform accounts in the organization.
         """
         return pulumi.get(self, "events_froms")
+
+    @_builtins.property
+    @pulumi.getter
+    def includes(self) -> pulumi.Output[Optional[Sequence[_builtins.str]]]:
+        """
+        **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        Additional fields to include in the response.
+        """
+        return pulumi.get(self, "includes")
+
+    @_builtins.property
+    @pulumi.getter
+    def livemode(self) -> pulumi.Output[_builtins.bool]:
+        """
+        Has the value <span pulumi-lang-nodejs="`true`" pulumi-lang-dotnet="`True`" pulumi-lang-go="`true`" pulumi-lang-python="`true`" pulumi-lang-yaml="`true`" pulumi-lang-java="`true`" pulumi-lang-hcl="`true`">`true`</span> if the object exists in live mode or the value <span pulumi-lang-nodejs="`false`" pulumi-lang-dotnet="`False`" pulumi-lang-go="`false`" pulumi-lang-python="`false`" pulumi-lang-yaml="`false`" pulumi-lang-java="`false`" pulumi-lang-hcl="`false`">`false`</span> if the object exists in test mode.
+        """
+        return pulumi.get(self, "livemode")
 
     @_builtins.property
     @pulumi.getter
@@ -577,6 +824,14 @@ class V2CoreEventDestination(pulumi.CustomResource):
         return pulumi.get(self, "name")
 
     @_builtins.property
+    @pulumi.getter
+    def object(self) -> pulumi.Output[_builtins.str]:
+        """
+        String representing the object's type. Objects of the same type share the same value of the object field.
+        """
+        return pulumi.get(self, "object")
+
+    @_builtins.property
     @pulumi.getter(name="snapshotApiVersion")
     def snapshot_api_version(self) -> pulumi.Output[_builtins.str]:
         """
@@ -593,6 +848,14 @@ class V2CoreEventDestination(pulumi.CustomResource):
         return pulumi.get(self, "status")
 
     @_builtins.property
+    @pulumi.getter(name="statusDetails")
+    def status_details(self) -> pulumi.Output['outputs.V2CoreEventDestinationStatusDetails']:
+        """
+        Additional information about event destination status.
+        """
+        return pulumi.get(self, "status_details")
+
+    @_builtins.property
     @pulumi.getter
     def type(self) -> pulumi.Output[_builtins.str]:
         """
@@ -601,10 +864,18 @@ class V2CoreEventDestination(pulumi.CustomResource):
         return pulumi.get(self, "type")
 
     @_builtins.property
-    @pulumi.getter(name="webhookEndpoint")
-    def webhook_endpoint(self) -> pulumi.Output[Optional['outputs.V2CoreEventDestinationWebhookEndpoint']]:
+    @pulumi.getter
+    def updated(self) -> pulumi.Output[_builtins.str]:
+        """
+        Time at which the object was last updated.
+        """
+        return pulumi.get(self, "updated")
+
+    @_builtins.property
+    @pulumi.getter(name="webhookEndpoints")
+    def webhook_endpoints(self) -> pulumi.Output[Optional[Sequence['outputs.V2CoreEventDestinationWebhookEndpoint']]]:
         """
         Webhook endpoint configuration.
         """
-        return pulumi.get(self, "webhook_endpoint")
+        return pulumi.get(self, "webhook_endpoints")
 

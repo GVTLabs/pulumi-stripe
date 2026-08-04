@@ -29,7 +29,7 @@ namespace Pulumi.Stripe.Inputs
         }
 
         /// <summary>
-        /// The URL of the webhook endpoint.
+        /// The URL of the webhook endpoint, includable.
         /// </summary>
         [Input("url", required: true)]
         public Input<string> Url { get; set; } = null!;

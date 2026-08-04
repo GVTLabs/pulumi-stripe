@@ -13,7 +13,7 @@ namespace Pulumi.Stripe.Inputs
     public sealed class BillingMeterDefaultAggregationGetArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Specifies how events are aggregated. Allowed values are &lt;span pulumi-lang-nodejs="`count`" pulumi-lang-dotnet="`Count`" pulumi-lang-go="`count`" pulumi-lang-python="`count`" pulumi-lang-yaml="`count`" pulumi-lang-java="`count`" pulumi-lang-hcl="`count`"&gt;`count`&lt;/span&gt; to count the number of events, &lt;span pulumi-lang-nodejs="`sum`" pulumi-lang-dotnet="`Sum`" pulumi-lang-go="`sum`" pulumi-lang-python="`sum`" pulumi-lang-yaml="`sum`" pulumi-lang-java="`sum`" pulumi-lang-hcl="`sum`"&gt;`sum`&lt;/span&gt; to sum each event's value and &lt;span pulumi-lang-nodejs="`last`" pulumi-lang-dotnet="`Last`" pulumi-lang-go="`last`" pulumi-lang-python="`last`" pulumi-lang-yaml="`last`" pulumi-lang-java="`last`" pulumi-lang-hcl="`last`"&gt;`last`&lt;/span&gt; to take the last event's value in the window.
+        /// Specifies how events are aggregated.
         /// </summary>
         [Input("formula", required: true)]
         public Input<string> Formula { get; set; } = null!;

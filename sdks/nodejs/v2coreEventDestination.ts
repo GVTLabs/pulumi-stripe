@@ -37,7 +37,15 @@ export class V2CoreEventDestination extends pulumi.CustomResource {
     /**
      * Amazon EventBridge configuration.
      */
-    declare public readonly amazonEventbridge: pulumi.Output<outputs.V2CoreEventDestinationAmazonEventbridge | undefined>;
+    declare public readonly amazonEventbridges: pulumi.Output<outputs.V2CoreEventDestinationAmazonEventbridge[] | undefined>;
+    /**
+     * Azure Event Grid configuration.
+     */
+    declare public readonly azureEventGrid: pulumi.Output<outputs.V2CoreEventDestinationAzureEventGrid>;
+    /**
+     * Time at which the object was created.
+     */
+    declare public /*out*/ readonly created: pulumi.Output<string>;
     /**
      * An optional description of what the event destination is used for.
      */
@@ -51,9 +59,22 @@ export class V2CoreEventDestination extends pulumi.CustomResource {
      */
     declare public readonly eventPayload: pulumi.Output<string>;
     /**
-     * Where events should be routed from.
+     * Specifies which accounts' events route to this destination.
+     * `@self`: Receive events from the account that owns the event destination.
+     * `@accounts`: Receive events emitted from other accounts you manage which includes your v1 and v2 accounts.
+     * `@organization_members`: Receive events from accounts directly linked to the organization.
+     * `@organization_members/@accounts`: Receive events from all accounts connected to any platform accounts in the organization.
      */
     declare public readonly eventsFroms: pulumi.Output<string[]>;
+    /**
+     * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * Additional fields to include in the response.
+     */
+    declare public readonly includes: pulumi.Output<string[] | undefined>;
+    /**
+     * Has the value <span pulumi-lang-nodejs="`true`" pulumi-lang-dotnet="`True`" pulumi-lang-go="`true`" pulumi-lang-python="`true`" pulumi-lang-yaml="`true`" pulumi-lang-java="`true`" pulumi-lang-hcl="`true`">`true`</span> if the object exists in live mode or the value <span pulumi-lang-nodejs="`false`" pulumi-lang-dotnet="`False`" pulumi-lang-go="`false`" pulumi-lang-python="`false`" pulumi-lang-yaml="`false`" pulumi-lang-java="`false`" pulumi-lang-hcl="`false`">`false`</span> if the object exists in test mode.
+     */
+    declare public /*out*/ readonly livemode: pulumi.Output<boolean>;
     /**
      * Metadata.
      */
@@ -63,6 +84,10 @@ export class V2CoreEventDestination extends pulumi.CustomResource {
      */
     declare public readonly name: pulumi.Output<string>;
     /**
+     * String representing the object's type. Objects of the same type share the same value of the object field.
+     */
+    declare public /*out*/ readonly object: pulumi.Output<string>;
+    /**
      * If using the snapshot event payload, the API version events are rendered as.
      */
     declare public readonly snapshotApiVersion: pulumi.Output<string>;
@@ -71,13 +96,21 @@ export class V2CoreEventDestination extends pulumi.CustomResource {
      */
     declare public /*out*/ readonly status: pulumi.Output<string>;
     /**
+     * Additional information about event destination status.
+     */
+    declare public /*out*/ readonly statusDetails: pulumi.Output<outputs.V2CoreEventDestinationStatusDetails>;
+    /**
      * Event destination type.
      */
     declare public readonly type: pulumi.Output<string>;
     /**
+     * Time at which the object was last updated.
+     */
+    declare public /*out*/ readonly updated: pulumi.Output<string>;
+    /**
      * Webhook endpoint configuration.
      */
-    declare public readonly webhookEndpoint: pulumi.Output<outputs.V2CoreEventDestinationWebhookEndpoint | undefined>;
+    declare public readonly webhookEndpoints: pulumi.Output<outputs.V2CoreEventDestinationWebhookEndpoint[] | undefined>;
 
     /**
      * Create a V2CoreEventDestination resource with the given unique name, arguments, and options.
@@ -92,17 +125,24 @@ export class V2CoreEventDestination extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as V2CoreEventDestinationState | undefined;
-            resourceInputs["amazonEventbridge"] = state?.amazonEventbridge;
+            resourceInputs["amazonEventbridges"] = state?.amazonEventbridges;
+            resourceInputs["azureEventGrid"] = state?.azureEventGrid;
+            resourceInputs["created"] = state?.created;
             resourceInputs["description"] = state?.description;
             resourceInputs["enabledEvents"] = state?.enabledEvents;
             resourceInputs["eventPayload"] = state?.eventPayload;
             resourceInputs["eventsFroms"] = state?.eventsFroms;
+            resourceInputs["includes"] = state?.includes;
+            resourceInputs["livemode"] = state?.livemode;
             resourceInputs["metadata"] = state?.metadata;
             resourceInputs["name"] = state?.name;
+            resourceInputs["object"] = state?.object;
             resourceInputs["snapshotApiVersion"] = state?.snapshotApiVersion;
             resourceInputs["status"] = state?.status;
+            resourceInputs["statusDetails"] = state?.statusDetails;
             resourceInputs["type"] = state?.type;
-            resourceInputs["webhookEndpoint"] = state?.webhookEndpoint;
+            resourceInputs["updated"] = state?.updated;
+            resourceInputs["webhookEndpoints"] = state?.webhookEndpoints;
         } else {
             const args = argsOrState as V2CoreEventDestinationArgs | undefined;
             if (args?.enabledEvents === undefined && !opts.urn) {
@@ -114,19 +154,28 @@ export class V2CoreEventDestination extends pulumi.CustomResource {
             if (args?.type === undefined && !opts.urn) {
                 throw new Error("Missing required property 'type'");
             }
-            resourceInputs["amazonEventbridge"] = args?.amazonEventbridge;
+            resourceInputs["amazonEventbridges"] = args?.amazonEventbridges;
+            resourceInputs["azureEventGrid"] = args?.azureEventGrid;
             resourceInputs["description"] = args?.description;
             resourceInputs["enabledEvents"] = args?.enabledEvents;
             resourceInputs["eventPayload"] = args?.eventPayload;
             resourceInputs["eventsFroms"] = args?.eventsFroms;
+            resourceInputs["includes"] = args?.includes ? pulumi.secret(args.includes) : undefined;
             resourceInputs["metadata"] = args?.metadata;
             resourceInputs["name"] = args?.name;
             resourceInputs["snapshotApiVersion"] = args?.snapshotApiVersion;
             resourceInputs["type"] = args?.type;
-            resourceInputs["webhookEndpoint"] = args?.webhookEndpoint;
+            resourceInputs["webhookEndpoints"] = args?.webhookEndpoints;
+            resourceInputs["created"] = undefined /*out*/;
+            resourceInputs["livemode"] = undefined /*out*/;
+            resourceInputs["object"] = undefined /*out*/;
             resourceInputs["status"] = undefined /*out*/;
+            resourceInputs["statusDetails"] = undefined /*out*/;
+            resourceInputs["updated"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        const secretOpts = { additionalSecretOutputs: ["includes"] };
+        opts = pulumi.mergeOptions(opts, secretOpts);
         super(V2CoreEventDestination.__pulumiType, name, resourceInputs, opts, false /*dependency*/, utilities.getPackage());
     }
 }
@@ -138,7 +187,15 @@ export interface V2CoreEventDestinationState {
     /**
      * Amazon EventBridge configuration.
      */
-    amazonEventbridge?: pulumi.Input<inputs.V2CoreEventDestinationAmazonEventbridge | undefined>;
+    amazonEventbridges?: pulumi.Input<pulumi.Input<inputs.V2CoreEventDestinationAmazonEventbridge>[] | undefined>;
+    /**
+     * Azure Event Grid configuration.
+     */
+    azureEventGrid?: pulumi.Input<inputs.V2CoreEventDestinationAzureEventGrid | undefined>;
+    /**
+     * Time at which the object was created.
+     */
+    created?: pulumi.Input<string | undefined>;
     /**
      * An optional description of what the event destination is used for.
      */
@@ -152,9 +209,22 @@ export interface V2CoreEventDestinationState {
      */
     eventPayload?: pulumi.Input<string | undefined>;
     /**
-     * Where events should be routed from.
+     * Specifies which accounts' events route to this destination.
+     * `@self`: Receive events from the account that owns the event destination.
+     * `@accounts`: Receive events emitted from other accounts you manage which includes your v1 and v2 accounts.
+     * `@organization_members`: Receive events from accounts directly linked to the organization.
+     * `@organization_members/@accounts`: Receive events from all accounts connected to any platform accounts in the organization.
      */
     eventsFroms?: pulumi.Input<pulumi.Input<string>[] | undefined>;
+    /**
+     * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * Additional fields to include in the response.
+     */
+    includes?: pulumi.Input<pulumi.Input<string>[] | undefined>;
+    /**
+     * Has the value <span pulumi-lang-nodejs="`true`" pulumi-lang-dotnet="`True`" pulumi-lang-go="`true`" pulumi-lang-python="`true`" pulumi-lang-yaml="`true`" pulumi-lang-java="`true`" pulumi-lang-hcl="`true`">`true`</span> if the object exists in live mode or the value <span pulumi-lang-nodejs="`false`" pulumi-lang-dotnet="`False`" pulumi-lang-go="`false`" pulumi-lang-python="`false`" pulumi-lang-yaml="`false`" pulumi-lang-java="`false`" pulumi-lang-hcl="`false`">`false`</span> if the object exists in test mode.
+     */
+    livemode?: pulumi.Input<boolean | undefined>;
     /**
      * Metadata.
      */
@@ -164,6 +234,10 @@ export interface V2CoreEventDestinationState {
      */
     name?: pulumi.Input<string | undefined>;
     /**
+     * String representing the object's type. Objects of the same type share the same value of the object field.
+     */
+    object?: pulumi.Input<string | undefined>;
+    /**
      * If using the snapshot event payload, the API version events are rendered as.
      */
     snapshotApiVersion?: pulumi.Input<string | undefined>;
@@ -172,13 +246,21 @@ export interface V2CoreEventDestinationState {
      */
     status?: pulumi.Input<string | undefined>;
     /**
+     * Additional information about event destination status.
+     */
+    statusDetails?: pulumi.Input<inputs.V2CoreEventDestinationStatusDetails | undefined>;
+    /**
      * Event destination type.
      */
     type?: pulumi.Input<string | undefined>;
     /**
+     * Time at which the object was last updated.
+     */
+    updated?: pulumi.Input<string | undefined>;
+    /**
      * Webhook endpoint configuration.
      */
-    webhookEndpoint?: pulumi.Input<inputs.V2CoreEventDestinationWebhookEndpoint | undefined>;
+    webhookEndpoints?: pulumi.Input<pulumi.Input<inputs.V2CoreEventDestinationWebhookEndpoint>[] | undefined>;
 }
 
 /**
@@ -188,7 +270,11 @@ export interface V2CoreEventDestinationArgs {
     /**
      * Amazon EventBridge configuration.
      */
-    amazonEventbridge?: pulumi.Input<inputs.V2CoreEventDestinationAmazonEventbridge | undefined>;
+    amazonEventbridges?: pulumi.Input<pulumi.Input<inputs.V2CoreEventDestinationAmazonEventbridge>[] | undefined>;
+    /**
+     * Azure Event Grid configuration.
+     */
+    azureEventGrid?: pulumi.Input<inputs.V2CoreEventDestinationAzureEventGrid | undefined>;
     /**
      * An optional description of what the event destination is used for.
      */
@@ -202,9 +288,18 @@ export interface V2CoreEventDestinationArgs {
      */
     eventPayload: pulumi.Input<string>;
     /**
-     * Where events should be routed from.
+     * Specifies which accounts' events route to this destination.
+     * `@self`: Receive events from the account that owns the event destination.
+     * `@accounts`: Receive events emitted from other accounts you manage which includes your v1 and v2 accounts.
+     * `@organization_members`: Receive events from accounts directly linked to the organization.
+     * `@organization_members/@accounts`: Receive events from all accounts connected to any platform accounts in the organization.
      */
     eventsFroms?: pulumi.Input<pulumi.Input<string>[] | undefined>;
+    /**
+     * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * Additional fields to include in the response.
+     */
+    includes?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * Metadata.
      */
@@ -224,5 +319,5 @@ export interface V2CoreEventDestinationArgs {
     /**
      * Webhook endpoint configuration.
      */
-    webhookEndpoint?: pulumi.Input<inputs.V2CoreEventDestinationWebhookEndpoint | undefined>;
+    webhookEndpoints?: pulumi.Input<pulumi.Input<inputs.V2CoreEventDestinationWebhookEndpoint>[] | undefined>;
 }

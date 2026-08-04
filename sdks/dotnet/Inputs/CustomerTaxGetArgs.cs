@@ -18,8 +18,23 @@ namespace Pulumi.Stripe.Inputs
         [Input("automaticTax")]
         public Input<string>? AutomaticTax { get; set; }
 
+        /// <summary>
+        /// A recent IP address of the customer used for tax reporting and tax location inference.
+        /// </summary>
         [Input("ipAddress")]
         public Input<string>? IpAddress { get; set; }
+
+        [Input("locations")]
+        private InputList<Inputs.CustomerTaxLocationGetArgs>? _locations;
+
+        /// <summary>
+        /// The identified tax location of the customer.
+        /// </summary>
+        public InputList<Inputs.CustomerTaxLocationGetArgs> Locations
+        {
+            get => _locations ?? (_locations = new InputList<Inputs.CustomerTaxLocationGetArgs>());
+            set => _locations = value;
+        }
 
         /// <summary>
         /// The tax calculation provider used for location resolution. Defaults to &lt;span pulumi-lang-nodejs="`stripe`" pulumi-lang-dotnet="`Stripe`" pulumi-lang-go="`stripe`" pulumi-lang-python="`stripe`" pulumi-lang-yaml="`stripe`" pulumi-lang-java="`stripe`" pulumi-lang-hcl="`stripe`"&gt;`stripe`&lt;/span&gt; when not using a [third-party provider](https://www.terraform.io/tax/third-party-apps).

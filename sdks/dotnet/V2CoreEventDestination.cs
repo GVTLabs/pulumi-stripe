@@ -15,8 +15,20 @@ namespace Pulumi.Stripe
         /// <summary>
         /// Amazon EventBridge configuration.
         /// </summary>
-        [Output("amazonEventbridge")]
-        public Output<Outputs.V2CoreEventDestinationAmazonEventbridge?> AmazonEventbridge { get; private set; } = null!;
+        [Output("amazonEventbridges")]
+        public Output<ImmutableArray<Outputs.V2CoreEventDestinationAmazonEventbridge>> AmazonEventbridges { get; private set; } = null!;
+
+        /// <summary>
+        /// Azure Event Grid configuration.
+        /// </summary>
+        [Output("azureEventGrid")]
+        public Output<Outputs.V2CoreEventDestinationAzureEventGrid> AzureEventGrid { get; private set; } = null!;
+
+        /// <summary>
+        /// Time at which the object was created.
+        /// </summary>
+        [Output("created")]
+        public Output<string> Created { get; private set; } = null!;
 
         /// <summary>
         /// An optional description of what the event destination is used for.
@@ -37,10 +49,27 @@ namespace Pulumi.Stripe
         public Output<string> EventPayload { get; private set; } = null!;
 
         /// <summary>
-        /// Where events should be routed from.
+        /// Specifies which accounts' events route to this destination.
+        /// `@self`: Receive events from the account that owns the event destination.
+        /// `@accounts`: Receive events emitted from other accounts you manage which includes your v1 and v2 accounts.
+        /// `@organization_members`: Receive events from accounts directly linked to the organization.
+        /// `@organization_members/@accounts`: Receive events from all accounts connected to any platform accounts in the organization.
         /// </summary>
         [Output("eventsFroms")]
         public Output<ImmutableArray<string>> EventsFroms { get; private set; } = null!;
+
+        /// <summary>
+        /// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        /// Additional fields to include in the response.
+        /// </summary>
+        [Output("includes")]
+        public Output<ImmutableArray<string>> Includes { get; private set; } = null!;
+
+        /// <summary>
+        /// Has the value &lt;span pulumi-lang-nodejs="`true`" pulumi-lang-dotnet="`True`" pulumi-lang-go="`true`" pulumi-lang-python="`true`" pulumi-lang-yaml="`true`" pulumi-lang-java="`true`" pulumi-lang-hcl="`true`"&gt;`true`&lt;/span&gt; if the object exists in live mode or the value &lt;span pulumi-lang-nodejs="`false`" pulumi-lang-dotnet="`False`" pulumi-lang-go="`false`" pulumi-lang-python="`false`" pulumi-lang-yaml="`false`" pulumi-lang-java="`false`" pulumi-lang-hcl="`false`"&gt;`false`&lt;/span&gt; if the object exists in test mode.
+        /// </summary>
+        [Output("livemode")]
+        public Output<bool> Livemode { get; private set; } = null!;
 
         /// <summary>
         /// Metadata.
@@ -55,6 +84,12 @@ namespace Pulumi.Stripe
         public Output<string> Name { get; private set; } = null!;
 
         /// <summary>
+        /// String representing the object's type. Objects of the same type share the same value of the object field.
+        /// </summary>
+        [Output("object")]
+        public Output<string> Object { get; private set; } = null!;
+
+        /// <summary>
         /// If using the snapshot event payload, the API version events are rendered as.
         /// </summary>
         [Output("snapshotApiVersion")]
@@ -67,16 +102,28 @@ namespace Pulumi.Stripe
         public Output<string> Status { get; private set; } = null!;
 
         /// <summary>
+        /// Additional information about event destination status.
+        /// </summary>
+        [Output("statusDetails")]
+        public Output<Outputs.V2CoreEventDestinationStatusDetails> StatusDetails { get; private set; } = null!;
+
+        /// <summary>
         /// Event destination type.
         /// </summary>
         [Output("type")]
         public Output<string> Type { get; private set; } = null!;
 
         /// <summary>
+        /// Time at which the object was last updated.
+        /// </summary>
+        [Output("updated")]
+        public Output<string> Updated { get; private set; } = null!;
+
+        /// <summary>
         /// Webhook endpoint configuration.
         /// </summary>
-        [Output("webhookEndpoint")]
-        public Output<Outputs.V2CoreEventDestinationWebhookEndpoint?> WebhookEndpoint { get; private set; } = null!;
+        [Output("webhookEndpoints")]
+        public Output<ImmutableArray<Outputs.V2CoreEventDestinationWebhookEndpoint>> WebhookEndpoints { get; private set; } = null!;
 
 
         /// <summary>
@@ -101,6 +148,10 @@ namespace Pulumi.Stripe
             var defaultOptions = new CustomResourceOptions
             {
                 Version = Utilities.Version,
+                AdditionalSecretOutputs =
+                {
+                    "includes",
+                },
             };
             var merged = CustomResourceOptions.Merge(defaultOptions, options);
             // Override the ID if one was specified for consistency with other language SDKs.
@@ -124,11 +175,23 @@ namespace Pulumi.Stripe
 
     public sealed class V2CoreEventDestinationArgs : global::Pulumi.ResourceArgs
     {
+        [Input("amazonEventbridges")]
+        private InputList<Inputs.V2CoreEventDestinationAmazonEventbridgeArgs>? _amazonEventbridges;
+
         /// <summary>
         /// Amazon EventBridge configuration.
         /// </summary>
-        [Input("amazonEventbridge")]
-        public Input<Inputs.V2CoreEventDestinationAmazonEventbridgeArgs>? AmazonEventbridge { get; set; }
+        public InputList<Inputs.V2CoreEventDestinationAmazonEventbridgeArgs> AmazonEventbridges
+        {
+            get => _amazonEventbridges ?? (_amazonEventbridges = new InputList<Inputs.V2CoreEventDestinationAmazonEventbridgeArgs>());
+            set => _amazonEventbridges = value;
+        }
+
+        /// <summary>
+        /// Azure Event Grid configuration.
+        /// </summary>
+        [Input("azureEventGrid")]
+        public Input<Inputs.V2CoreEventDestinationAzureEventGridArgs>? AzureEventGrid { get; set; }
 
         /// <summary>
         /// An optional description of what the event destination is used for.
@@ -158,12 +221,33 @@ namespace Pulumi.Stripe
         private InputList<string>? _eventsFroms;
 
         /// <summary>
-        /// Where events should be routed from.
+        /// Specifies which accounts' events route to this destination.
+        /// `@self`: Receive events from the account that owns the event destination.
+        /// `@accounts`: Receive events emitted from other accounts you manage which includes your v1 and v2 accounts.
+        /// `@organization_members`: Receive events from accounts directly linked to the organization.
+        /// `@organization_members/@accounts`: Receive events from all accounts connected to any platform accounts in the organization.
         /// </summary>
         public InputList<string> EventsFroms
         {
             get => _eventsFroms ?? (_eventsFroms = new InputList<string>());
             set => _eventsFroms = value;
+        }
+
+        [Input("includes")]
+        private InputList<string>? _includes;
+
+        /// <summary>
+        /// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        /// Additional fields to include in the response.
+        /// </summary>
+        public InputList<string> Includes
+        {
+            get => _includes ?? (_includes = new InputList<string>());
+            set
+            {
+                var emptySecret = Output.CreateSecret(ImmutableArray.Create<string>());
+                _includes = Output.All(value, emptySecret).Apply(v => v[0]);
+            }
         }
 
         [Input("metadata")]
@@ -196,11 +280,17 @@ namespace Pulumi.Stripe
         [Input("type", required: true)]
         public Input<string> Type { get; set; } = null!;
 
+        [Input("webhookEndpoints")]
+        private InputList<Inputs.V2CoreEventDestinationWebhookEndpointArgs>? _webhookEndpoints;
+
         /// <summary>
         /// Webhook endpoint configuration.
         /// </summary>
-        [Input("webhookEndpoint")]
-        public Input<Inputs.V2CoreEventDestinationWebhookEndpointArgs>? WebhookEndpoint { get; set; }
+        public InputList<Inputs.V2CoreEventDestinationWebhookEndpointArgs> WebhookEndpoints
+        {
+            get => _webhookEndpoints ?? (_webhookEndpoints = new InputList<Inputs.V2CoreEventDestinationWebhookEndpointArgs>());
+            set => _webhookEndpoints = value;
+        }
 
         public V2CoreEventDestinationArgs()
         {
@@ -210,11 +300,29 @@ namespace Pulumi.Stripe
 
     public sealed class V2CoreEventDestinationState : global::Pulumi.ResourceArgs
     {
+        [Input("amazonEventbridges")]
+        private InputList<Inputs.V2CoreEventDestinationAmazonEventbridgeGetArgs>? _amazonEventbridges;
+
         /// <summary>
         /// Amazon EventBridge configuration.
         /// </summary>
-        [Input("amazonEventbridge")]
-        public Input<Inputs.V2CoreEventDestinationAmazonEventbridgeGetArgs>? AmazonEventbridge { get; set; }
+        public InputList<Inputs.V2CoreEventDestinationAmazonEventbridgeGetArgs> AmazonEventbridges
+        {
+            get => _amazonEventbridges ?? (_amazonEventbridges = new InputList<Inputs.V2CoreEventDestinationAmazonEventbridgeGetArgs>());
+            set => _amazonEventbridges = value;
+        }
+
+        /// <summary>
+        /// Azure Event Grid configuration.
+        /// </summary>
+        [Input("azureEventGrid")]
+        public Input<Inputs.V2CoreEventDestinationAzureEventGridGetArgs>? AzureEventGrid { get; set; }
+
+        /// <summary>
+        /// Time at which the object was created.
+        /// </summary>
+        [Input("created")]
+        public Input<string>? Created { get; set; }
 
         /// <summary>
         /// An optional description of what the event destination is used for.
@@ -244,13 +352,40 @@ namespace Pulumi.Stripe
         private InputList<string>? _eventsFroms;
 
         /// <summary>
-        /// Where events should be routed from.
+        /// Specifies which accounts' events route to this destination.
+        /// `@self`: Receive events from the account that owns the event destination.
+        /// `@accounts`: Receive events emitted from other accounts you manage which includes your v1 and v2 accounts.
+        /// `@organization_members`: Receive events from accounts directly linked to the organization.
+        /// `@organization_members/@accounts`: Receive events from all accounts connected to any platform accounts in the organization.
         /// </summary>
         public InputList<string> EventsFroms
         {
             get => _eventsFroms ?? (_eventsFroms = new InputList<string>());
             set => _eventsFroms = value;
         }
+
+        [Input("includes")]
+        private InputList<string>? _includes;
+
+        /// <summary>
+        /// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        /// Additional fields to include in the response.
+        /// </summary>
+        public InputList<string> Includes
+        {
+            get => _includes ?? (_includes = new InputList<string>());
+            set
+            {
+                var emptySecret = Output.CreateSecret(ImmutableArray.Create<string>());
+                _includes = Output.All(value, emptySecret).Apply(v => v[0]);
+            }
+        }
+
+        /// <summary>
+        /// Has the value &lt;span pulumi-lang-nodejs="`true`" pulumi-lang-dotnet="`True`" pulumi-lang-go="`true`" pulumi-lang-python="`true`" pulumi-lang-yaml="`true`" pulumi-lang-java="`true`" pulumi-lang-hcl="`true`"&gt;`true`&lt;/span&gt; if the object exists in live mode or the value &lt;span pulumi-lang-nodejs="`false`" pulumi-lang-dotnet="`False`" pulumi-lang-go="`false`" pulumi-lang-python="`false`" pulumi-lang-yaml="`false`" pulumi-lang-java="`false`" pulumi-lang-hcl="`false`"&gt;`false`&lt;/span&gt; if the object exists in test mode.
+        /// </summary>
+        [Input("livemode")]
+        public Input<bool>? Livemode { get; set; }
 
         [Input("metadata")]
         private InputMap<string>? _metadata;
@@ -271,6 +406,12 @@ namespace Pulumi.Stripe
         public Input<string>? Name { get; set; }
 
         /// <summary>
+        /// String representing the object's type. Objects of the same type share the same value of the object field.
+        /// </summary>
+        [Input("object")]
+        public Input<string>? Object { get; set; }
+
+        /// <summary>
         /// If using the snapshot event payload, the API version events are rendered as.
         /// </summary>
         [Input("snapshotApiVersion")]
@@ -283,16 +424,34 @@ namespace Pulumi.Stripe
         public Input<string>? Status { get; set; }
 
         /// <summary>
+        /// Additional information about event destination status.
+        /// </summary>
+        [Input("statusDetails")]
+        public Input<Inputs.V2CoreEventDestinationStatusDetailsGetArgs>? StatusDetails { get; set; }
+
+        /// <summary>
         /// Event destination type.
         /// </summary>
         [Input("type")]
         public Input<string>? Type { get; set; }
 
         /// <summary>
+        /// Time at which the object was last updated.
+        /// </summary>
+        [Input("updated")]
+        public Input<string>? Updated { get; set; }
+
+        [Input("webhookEndpoints")]
+        private InputList<Inputs.V2CoreEventDestinationWebhookEndpointGetArgs>? _webhookEndpoints;
+
+        /// <summary>
         /// Webhook endpoint configuration.
         /// </summary>
-        [Input("webhookEndpoint")]
-        public Input<Inputs.V2CoreEventDestinationWebhookEndpointGetArgs>? WebhookEndpoint { get; set; }
+        public InputList<Inputs.V2CoreEventDestinationWebhookEndpointGetArgs> WebhookEndpoints
+        {
+            get => _webhookEndpoints ?? (_webhookEndpoints = new InputList<Inputs.V2CoreEventDestinationWebhookEndpointGetArgs>());
+            set => _webhookEndpoints = value;
+        }
 
         public V2CoreEventDestinationState()
         {

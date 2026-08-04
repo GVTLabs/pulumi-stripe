@@ -14,33 +14,35 @@ import (
 type Coupon struct {
 	pulumi.CustomResourceState
 
-	// A positive integer representing the amount to subtract from an invoice total (required if <span pulumi-lang-nodejs="`percentOff`" pulumi-lang-dotnet="`PercentOff`" pulumi-lang-go="`percentOff`" pulumi-lang-python="`percent_off`" pulumi-lang-yaml="`percentOff`" pulumi-lang-java="`percentOff`" pulumi-lang-hcl="`percent_off`">`percentOff`</span> is not passed).
-	AmountOff pulumi.Float64Output `pulumi:"amountOff"`
-	// A hash containing directions for what this Coupon will apply discounts to.
-	AppliesTo CouponAppliesToPtrOutput `pulumi:"appliesTo"`
-	// Three-letter [ISO code for the currency](https://stripe.com/docs/currencies) of the <span pulumi-lang-nodejs="`amountOff`" pulumi-lang-dotnet="`AmountOff`" pulumi-lang-go="`amountOff`" pulumi-lang-python="`amount_off`" pulumi-lang-yaml="`amountOff`" pulumi-lang-java="`amountOff`" pulumi-lang-hcl="`amount_off`">`amountOff`</span> parameter (required if <span pulumi-lang-nodejs="`amountOff`" pulumi-lang-dotnet="`AmountOff`" pulumi-lang-go="`amountOff`" pulumi-lang-python="`amount_off`" pulumi-lang-yaml="`amountOff`" pulumi-lang-java="`amountOff`" pulumi-lang-hcl="`amount_off`">`amountOff`</span> is passed).
+	// Amount (in the <span pulumi-lang-nodejs="`currency`" pulumi-lang-dotnet="`Currency`" pulumi-lang-go="`currency`" pulumi-lang-python="`currency`" pulumi-lang-yaml="`currency`" pulumi-lang-java="`currency`" pulumi-lang-hcl="`currency`">`currency`</span> specified) that will be taken off the subtotal of any invoices for this customer.
+	AmountOff  pulumi.Float64Output       `pulumi:"amountOff"`
+	AppliesTos CouponAppliesToArrayOutput `pulumi:"appliesTos"`
+	// Time at which the object was created. Measured in seconds since the Unix epoch.
+	Created pulumi.Float64Output `pulumi:"created"`
+	// If <span pulumi-lang-nodejs="`amountOff`" pulumi-lang-dotnet="`AmountOff`" pulumi-lang-go="`amountOff`" pulumi-lang-python="`amount_off`" pulumi-lang-yaml="`amountOff`" pulumi-lang-java="`amountOff`" pulumi-lang-hcl="`amount_off`">`amountOff`</span> has been set, the three-letter [ISO code for the currency](https://stripe.com/docs/currencies) of the amount to take off.
 	Currency pulumi.StringOutput `pulumi:"currency"`
-	// Coupons defined in each available currency option (only supported if <span pulumi-lang-nodejs="`amountOff`" pulumi-lang-dotnet="`AmountOff`" pulumi-lang-go="`amountOff`" pulumi-lang-python="`amount_off`" pulumi-lang-yaml="`amountOff`" pulumi-lang-java="`amountOff`" pulumi-lang-hcl="`amount_off`">`amountOff`</span> is passed). Each key must be a three-letter [ISO currency code](https://www.iso.org/iso-4217-currency-codes.html) and a [supported currency](https://stripe.com/docs/currencies).
+	// Coupons defined in each available currency option. Each key must be a three-letter [ISO currency code](https://www.iso.org/iso-4217-currency-codes.html) and a [supported currency](https://stripe.com/docs/currencies).
 	CurrencyOptions CouponCurrencyOptionArrayOutput `pulumi:"currencyOptions"`
-	// Specifies how long the discount will be in effect if used on a subscription. Defaults to <span pulumi-lang-nodejs="`once`" pulumi-lang-dotnet="`Once`" pulumi-lang-go="`once`" pulumi-lang-python="`once`" pulumi-lang-yaml="`once`" pulumi-lang-java="`once`" pulumi-lang-hcl="`once`">`once`</span>.
+	// One of <span pulumi-lang-nodejs="`forever`" pulumi-lang-dotnet="`Forever`" pulumi-lang-go="`forever`" pulumi-lang-python="`forever`" pulumi-lang-yaml="`forever`" pulumi-lang-java="`forever`" pulumi-lang-hcl="`forever`">`forever`</span>, <span pulumi-lang-nodejs="`once`" pulumi-lang-dotnet="`Once`" pulumi-lang-go="`once`" pulumi-lang-python="`once`" pulumi-lang-yaml="`once`" pulumi-lang-java="`once`" pulumi-lang-hcl="`once`">`once`</span>, or <span pulumi-lang-nodejs="`repeating`" pulumi-lang-dotnet="`Repeating`" pulumi-lang-go="`repeating`" pulumi-lang-python="`repeating`" pulumi-lang-yaml="`repeating`" pulumi-lang-java="`repeating`" pulumi-lang-hcl="`repeating`">`repeating`</span>. Describes how long a customer who applies this coupon will get the discount.
 	Duration pulumi.StringOutput `pulumi:"duration"`
-	// Required only if <span pulumi-lang-nodejs="`duration`" pulumi-lang-dotnet="`Duration`" pulumi-lang-go="`duration`" pulumi-lang-python="`duration`" pulumi-lang-yaml="`duration`" pulumi-lang-java="`duration`" pulumi-lang-hcl="`duration`">`duration`</span> is <span pulumi-lang-nodejs="`repeating`" pulumi-lang-dotnet="`Repeating`" pulumi-lang-go="`repeating`" pulumi-lang-python="`repeating`" pulumi-lang-yaml="`repeating`" pulumi-lang-java="`repeating`" pulumi-lang-hcl="`repeating`">`repeating`</span>, in which case it must be a positive integer that specifies the number of months the discount will be in effect.
+	// If <span pulumi-lang-nodejs="`duration`" pulumi-lang-dotnet="`Duration`" pulumi-lang-go="`duration`" pulumi-lang-python="`duration`" pulumi-lang-yaml="`duration`" pulumi-lang-java="`duration`" pulumi-lang-hcl="`duration`">`duration`</span> is <span pulumi-lang-nodejs="`repeating`" pulumi-lang-dotnet="`Repeating`" pulumi-lang-go="`repeating`" pulumi-lang-python="`repeating`" pulumi-lang-yaml="`repeating`" pulumi-lang-java="`repeating`" pulumi-lang-hcl="`repeating`">`repeating`</span>, the number of months the coupon applies. Null if coupon <span pulumi-lang-nodejs="`duration`" pulumi-lang-dotnet="`Duration`" pulumi-lang-go="`duration`" pulumi-lang-python="`duration`" pulumi-lang-yaml="`duration`" pulumi-lang-java="`duration`" pulumi-lang-hcl="`duration`">`duration`</span> is <span pulumi-lang-nodejs="`forever`" pulumi-lang-dotnet="`Forever`" pulumi-lang-go="`forever`" pulumi-lang-python="`forever`" pulumi-lang-yaml="`forever`" pulumi-lang-java="`forever`" pulumi-lang-hcl="`forever`">`forever`</span> or <span pulumi-lang-nodejs="`once`" pulumi-lang-dotnet="`Once`" pulumi-lang-go="`once`" pulumi-lang-python="`once`" pulumi-lang-yaml="`once`" pulumi-lang-java="`once`" pulumi-lang-hcl="`once`">`once`</span>.
 	DurationInMonths pulumi.Float64Output `pulumi:"durationInMonths"`
-	// A positive integer specifying the number of times the coupon can be redeemed before it's no longer valid. For example, you might have a 50% off coupon that the first 20 readers of your blog can use.
-	MaxRedemptions pulumi.Float64Output   `pulumi:"maxRedemptions"`
-	Metadata       pulumi.StringMapOutput `pulumi:"metadata"`
-	// Name of the coupon displayed to customers on, for instance invoices, or receipts. By default the <span pulumi-lang-nodejs="`id`" pulumi-lang-dotnet="`Id`" pulumi-lang-go="`id`" pulumi-lang-python="`id`" pulumi-lang-yaml="`id`" pulumi-lang-java="`id`" pulumi-lang-hcl="`id`">`id`</span> is shown if <span pulumi-lang-nodejs="`name`" pulumi-lang-dotnet="`Name`" pulumi-lang-go="`name`" pulumi-lang-python="`name`" pulumi-lang-yaml="`name`" pulumi-lang-java="`name`" pulumi-lang-hcl="`name`">`name`</span> is not set.
+	// If the object exists in live mode, the value is <span pulumi-lang-nodejs="`true`" pulumi-lang-dotnet="`True`" pulumi-lang-go="`true`" pulumi-lang-python="`true`" pulumi-lang-yaml="`true`" pulumi-lang-java="`true`" pulumi-lang-hcl="`true`">`true`</span>. If the object exists in test mode, the value is <span pulumi-lang-nodejs="`false`" pulumi-lang-dotnet="`False`" pulumi-lang-go="`false`" pulumi-lang-python="`false`" pulumi-lang-yaml="`false`" pulumi-lang-java="`false`" pulumi-lang-hcl="`false`">`false`</span>.
+	Livemode pulumi.BoolOutput `pulumi:"livemode"`
+	// Maximum number of times this coupon can be redeemed, in total, across all customers, before it is no longer valid.
+	MaxRedemptions pulumi.Float64Output `pulumi:"maxRedemptions"`
+	// Set of [key-value pairs](https://docs.stripe.com/api/metadata) that you can attach to an object. This can be useful for storing additional information about the object in a structured format.
+	Metadata pulumi.StringMapOutput `pulumi:"metadata"`
+	// Name of the coupon displayed to customers on for instance invoices or receipts.
 	Name pulumi.StringOutput `pulumi:"name"`
-	// A positive float larger than 0, and smaller or equal to 100, that represents the discount the coupon will apply (required if <span pulumi-lang-nodejs="`amountOff`" pulumi-lang-dotnet="`AmountOff`" pulumi-lang-go="`amountOff`" pulumi-lang-python="`amount_off`" pulumi-lang-yaml="`amountOff`" pulumi-lang-java="`amountOff`" pulumi-lang-hcl="`amount_off`">`amountOff`</span> is not passed).
+	// String representing the object's type. Objects of the same type share the same value.
+	Object pulumi.StringOutput `pulumi:"object"`
+	// Percent that will be taken off the subtotal of any invoices for this customer for the duration of the coupon. For example, a coupon with<span pulumi-lang-nodejs=" percentOff " pulumi-lang-dotnet=" PercentOff " pulumi-lang-go=" percentOff " pulumi-lang-python=" percent_off " pulumi-lang-yaml=" percentOff " pulumi-lang-java=" percentOff " pulumi-lang-hcl=" percent_off "> percentOff </span>of 50 will make a $ (or local equivalent)100 invoice $ (or local equivalent)50 instead.
 	PercentOff pulumi.Float64Output `pulumi:"percentOff"`
-	// Unix timestamp specifying the last time at which the coupon can be redeemed. After the<span pulumi-lang-nodejs=" redeemBy " pulumi-lang-dotnet=" RedeemBy " pulumi-lang-go=" redeemBy " pulumi-lang-python=" redeem_by " pulumi-lang-yaml=" redeemBy " pulumi-lang-java=" redeemBy " pulumi-lang-hcl=" redeem_by "> redeemBy </span>date, the coupon can no longer be applied to new customers.
+	// Date after which the coupon can no longer be redeemed.
 	RedeemBy pulumi.Float64Output `pulumi:"redeemBy"`
-	// Configuration of the [script](https://docs.stripe.com/billing/subscriptions/script-coupons) used to calculate the discount.
-	Script CouponScriptPtrOutput `pulumi:"script"`
 	// Number of times this coupon has been applied to a customer.
 	TimesRedeemed pulumi.Float64Output `pulumi:"timesRedeemed"`
-	// One of <span pulumi-lang-nodejs="`amountOff`" pulumi-lang-dotnet="`AmountOff`" pulumi-lang-go="`amountOff`" pulumi-lang-python="`amount_off`" pulumi-lang-yaml="`amountOff`" pulumi-lang-java="`amountOff`" pulumi-lang-hcl="`amount_off`">`amountOff`</span>, <span pulumi-lang-nodejs="`percentOff`" pulumi-lang-dotnet="`PercentOff`" pulumi-lang-go="`percentOff`" pulumi-lang-python="`percent_off`" pulumi-lang-yaml="`percentOff`" pulumi-lang-java="`percentOff`" pulumi-lang-hcl="`percent_off`">`percentOff`</span>, or <span pulumi-lang-nodejs="`script`" pulumi-lang-dotnet="`Script`" pulumi-lang-go="`script`" pulumi-lang-python="`script`" pulumi-lang-yaml="`script`" pulumi-lang-java="`script`" pulumi-lang-hcl="`script`">`script`</span>. Describes the type of coupon logic used to calculate the discount.
-	Type pulumi.StringOutput `pulumi:"type"`
 	// Taking account of the above properties, whether this coupon can still be applied to a customer.
 	Valid pulumi.BoolOutput `pulumi:"valid"`
 }
@@ -83,65 +85,69 @@ func GetCoupon(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering Coupon resources.
 type couponState struct {
-	// A positive integer representing the amount to subtract from an invoice total (required if <span pulumi-lang-nodejs="`percentOff`" pulumi-lang-dotnet="`PercentOff`" pulumi-lang-go="`percentOff`" pulumi-lang-python="`percent_off`" pulumi-lang-yaml="`percentOff`" pulumi-lang-java="`percentOff`" pulumi-lang-hcl="`percent_off`">`percentOff`</span> is not passed).
-	AmountOff *float64 `pulumi:"amountOff"`
-	// A hash containing directions for what this Coupon will apply discounts to.
-	AppliesTo *CouponAppliesTo `pulumi:"appliesTo"`
-	// Three-letter [ISO code for the currency](https://stripe.com/docs/currencies) of the <span pulumi-lang-nodejs="`amountOff`" pulumi-lang-dotnet="`AmountOff`" pulumi-lang-go="`amountOff`" pulumi-lang-python="`amount_off`" pulumi-lang-yaml="`amountOff`" pulumi-lang-java="`amountOff`" pulumi-lang-hcl="`amount_off`">`amountOff`</span> parameter (required if <span pulumi-lang-nodejs="`amountOff`" pulumi-lang-dotnet="`AmountOff`" pulumi-lang-go="`amountOff`" pulumi-lang-python="`amount_off`" pulumi-lang-yaml="`amountOff`" pulumi-lang-java="`amountOff`" pulumi-lang-hcl="`amount_off`">`amountOff`</span> is passed).
+	// Amount (in the <span pulumi-lang-nodejs="`currency`" pulumi-lang-dotnet="`Currency`" pulumi-lang-go="`currency`" pulumi-lang-python="`currency`" pulumi-lang-yaml="`currency`" pulumi-lang-java="`currency`" pulumi-lang-hcl="`currency`">`currency`</span> specified) that will be taken off the subtotal of any invoices for this customer.
+	AmountOff  *float64          `pulumi:"amountOff"`
+	AppliesTos []CouponAppliesTo `pulumi:"appliesTos"`
+	// Time at which the object was created. Measured in seconds since the Unix epoch.
+	Created *float64 `pulumi:"created"`
+	// If <span pulumi-lang-nodejs="`amountOff`" pulumi-lang-dotnet="`AmountOff`" pulumi-lang-go="`amountOff`" pulumi-lang-python="`amount_off`" pulumi-lang-yaml="`amountOff`" pulumi-lang-java="`amountOff`" pulumi-lang-hcl="`amount_off`">`amountOff`</span> has been set, the three-letter [ISO code for the currency](https://stripe.com/docs/currencies) of the amount to take off.
 	Currency *string `pulumi:"currency"`
-	// Coupons defined in each available currency option (only supported if <span pulumi-lang-nodejs="`amountOff`" pulumi-lang-dotnet="`AmountOff`" pulumi-lang-go="`amountOff`" pulumi-lang-python="`amount_off`" pulumi-lang-yaml="`amountOff`" pulumi-lang-java="`amountOff`" pulumi-lang-hcl="`amount_off`">`amountOff`</span> is passed). Each key must be a three-letter [ISO currency code](https://www.iso.org/iso-4217-currency-codes.html) and a [supported currency](https://stripe.com/docs/currencies).
+	// Coupons defined in each available currency option. Each key must be a three-letter [ISO currency code](https://www.iso.org/iso-4217-currency-codes.html) and a [supported currency](https://stripe.com/docs/currencies).
 	CurrencyOptions []CouponCurrencyOption `pulumi:"currencyOptions"`
-	// Specifies how long the discount will be in effect if used on a subscription. Defaults to <span pulumi-lang-nodejs="`once`" pulumi-lang-dotnet="`Once`" pulumi-lang-go="`once`" pulumi-lang-python="`once`" pulumi-lang-yaml="`once`" pulumi-lang-java="`once`" pulumi-lang-hcl="`once`">`once`</span>.
+	// One of <span pulumi-lang-nodejs="`forever`" pulumi-lang-dotnet="`Forever`" pulumi-lang-go="`forever`" pulumi-lang-python="`forever`" pulumi-lang-yaml="`forever`" pulumi-lang-java="`forever`" pulumi-lang-hcl="`forever`">`forever`</span>, <span pulumi-lang-nodejs="`once`" pulumi-lang-dotnet="`Once`" pulumi-lang-go="`once`" pulumi-lang-python="`once`" pulumi-lang-yaml="`once`" pulumi-lang-java="`once`" pulumi-lang-hcl="`once`">`once`</span>, or <span pulumi-lang-nodejs="`repeating`" pulumi-lang-dotnet="`Repeating`" pulumi-lang-go="`repeating`" pulumi-lang-python="`repeating`" pulumi-lang-yaml="`repeating`" pulumi-lang-java="`repeating`" pulumi-lang-hcl="`repeating`">`repeating`</span>. Describes how long a customer who applies this coupon will get the discount.
 	Duration *string `pulumi:"duration"`
-	// Required only if <span pulumi-lang-nodejs="`duration`" pulumi-lang-dotnet="`Duration`" pulumi-lang-go="`duration`" pulumi-lang-python="`duration`" pulumi-lang-yaml="`duration`" pulumi-lang-java="`duration`" pulumi-lang-hcl="`duration`">`duration`</span> is <span pulumi-lang-nodejs="`repeating`" pulumi-lang-dotnet="`Repeating`" pulumi-lang-go="`repeating`" pulumi-lang-python="`repeating`" pulumi-lang-yaml="`repeating`" pulumi-lang-java="`repeating`" pulumi-lang-hcl="`repeating`">`repeating`</span>, in which case it must be a positive integer that specifies the number of months the discount will be in effect.
+	// If <span pulumi-lang-nodejs="`duration`" pulumi-lang-dotnet="`Duration`" pulumi-lang-go="`duration`" pulumi-lang-python="`duration`" pulumi-lang-yaml="`duration`" pulumi-lang-java="`duration`" pulumi-lang-hcl="`duration`">`duration`</span> is <span pulumi-lang-nodejs="`repeating`" pulumi-lang-dotnet="`Repeating`" pulumi-lang-go="`repeating`" pulumi-lang-python="`repeating`" pulumi-lang-yaml="`repeating`" pulumi-lang-java="`repeating`" pulumi-lang-hcl="`repeating`">`repeating`</span>, the number of months the coupon applies. Null if coupon <span pulumi-lang-nodejs="`duration`" pulumi-lang-dotnet="`Duration`" pulumi-lang-go="`duration`" pulumi-lang-python="`duration`" pulumi-lang-yaml="`duration`" pulumi-lang-java="`duration`" pulumi-lang-hcl="`duration`">`duration`</span> is <span pulumi-lang-nodejs="`forever`" pulumi-lang-dotnet="`Forever`" pulumi-lang-go="`forever`" pulumi-lang-python="`forever`" pulumi-lang-yaml="`forever`" pulumi-lang-java="`forever`" pulumi-lang-hcl="`forever`">`forever`</span> or <span pulumi-lang-nodejs="`once`" pulumi-lang-dotnet="`Once`" pulumi-lang-go="`once`" pulumi-lang-python="`once`" pulumi-lang-yaml="`once`" pulumi-lang-java="`once`" pulumi-lang-hcl="`once`">`once`</span>.
 	DurationInMonths *float64 `pulumi:"durationInMonths"`
-	// A positive integer specifying the number of times the coupon can be redeemed before it's no longer valid. For example, you might have a 50% off coupon that the first 20 readers of your blog can use.
-	MaxRedemptions *float64          `pulumi:"maxRedemptions"`
-	Metadata       map[string]string `pulumi:"metadata"`
-	// Name of the coupon displayed to customers on, for instance invoices, or receipts. By default the <span pulumi-lang-nodejs="`id`" pulumi-lang-dotnet="`Id`" pulumi-lang-go="`id`" pulumi-lang-python="`id`" pulumi-lang-yaml="`id`" pulumi-lang-java="`id`" pulumi-lang-hcl="`id`">`id`</span> is shown if <span pulumi-lang-nodejs="`name`" pulumi-lang-dotnet="`Name`" pulumi-lang-go="`name`" pulumi-lang-python="`name`" pulumi-lang-yaml="`name`" pulumi-lang-java="`name`" pulumi-lang-hcl="`name`">`name`</span> is not set.
+	// If the object exists in live mode, the value is <span pulumi-lang-nodejs="`true`" pulumi-lang-dotnet="`True`" pulumi-lang-go="`true`" pulumi-lang-python="`true`" pulumi-lang-yaml="`true`" pulumi-lang-java="`true`" pulumi-lang-hcl="`true`">`true`</span>. If the object exists in test mode, the value is <span pulumi-lang-nodejs="`false`" pulumi-lang-dotnet="`False`" pulumi-lang-go="`false`" pulumi-lang-python="`false`" pulumi-lang-yaml="`false`" pulumi-lang-java="`false`" pulumi-lang-hcl="`false`">`false`</span>.
+	Livemode *bool `pulumi:"livemode"`
+	// Maximum number of times this coupon can be redeemed, in total, across all customers, before it is no longer valid.
+	MaxRedemptions *float64 `pulumi:"maxRedemptions"`
+	// Set of [key-value pairs](https://docs.stripe.com/api/metadata) that you can attach to an object. This can be useful for storing additional information about the object in a structured format.
+	Metadata map[string]string `pulumi:"metadata"`
+	// Name of the coupon displayed to customers on for instance invoices or receipts.
 	Name *string `pulumi:"name"`
-	// A positive float larger than 0, and smaller or equal to 100, that represents the discount the coupon will apply (required if <span pulumi-lang-nodejs="`amountOff`" pulumi-lang-dotnet="`AmountOff`" pulumi-lang-go="`amountOff`" pulumi-lang-python="`amount_off`" pulumi-lang-yaml="`amountOff`" pulumi-lang-java="`amountOff`" pulumi-lang-hcl="`amount_off`">`amountOff`</span> is not passed).
+	// String representing the object's type. Objects of the same type share the same value.
+	Object *string `pulumi:"object"`
+	// Percent that will be taken off the subtotal of any invoices for this customer for the duration of the coupon. For example, a coupon with<span pulumi-lang-nodejs=" percentOff " pulumi-lang-dotnet=" PercentOff " pulumi-lang-go=" percentOff " pulumi-lang-python=" percent_off " pulumi-lang-yaml=" percentOff " pulumi-lang-java=" percentOff " pulumi-lang-hcl=" percent_off "> percentOff </span>of 50 will make a $ (or local equivalent)100 invoice $ (or local equivalent)50 instead.
 	PercentOff *float64 `pulumi:"percentOff"`
-	// Unix timestamp specifying the last time at which the coupon can be redeemed. After the<span pulumi-lang-nodejs=" redeemBy " pulumi-lang-dotnet=" RedeemBy " pulumi-lang-go=" redeemBy " pulumi-lang-python=" redeem_by " pulumi-lang-yaml=" redeemBy " pulumi-lang-java=" redeemBy " pulumi-lang-hcl=" redeem_by "> redeemBy </span>date, the coupon can no longer be applied to new customers.
+	// Date after which the coupon can no longer be redeemed.
 	RedeemBy *float64 `pulumi:"redeemBy"`
-	// Configuration of the [script](https://docs.stripe.com/billing/subscriptions/script-coupons) used to calculate the discount.
-	Script *CouponScript `pulumi:"script"`
 	// Number of times this coupon has been applied to a customer.
 	TimesRedeemed *float64 `pulumi:"timesRedeemed"`
-	// One of <span pulumi-lang-nodejs="`amountOff`" pulumi-lang-dotnet="`AmountOff`" pulumi-lang-go="`amountOff`" pulumi-lang-python="`amount_off`" pulumi-lang-yaml="`amountOff`" pulumi-lang-java="`amountOff`" pulumi-lang-hcl="`amount_off`">`amountOff`</span>, <span pulumi-lang-nodejs="`percentOff`" pulumi-lang-dotnet="`PercentOff`" pulumi-lang-go="`percentOff`" pulumi-lang-python="`percent_off`" pulumi-lang-yaml="`percentOff`" pulumi-lang-java="`percentOff`" pulumi-lang-hcl="`percent_off`">`percentOff`</span>, or <span pulumi-lang-nodejs="`script`" pulumi-lang-dotnet="`Script`" pulumi-lang-go="`script`" pulumi-lang-python="`script`" pulumi-lang-yaml="`script`" pulumi-lang-java="`script`" pulumi-lang-hcl="`script`">`script`</span>. Describes the type of coupon logic used to calculate the discount.
-	Type *string `pulumi:"type"`
 	// Taking account of the above properties, whether this coupon can still be applied to a customer.
 	Valid *bool `pulumi:"valid"`
 }
 
 type CouponState struct {
-	// A positive integer representing the amount to subtract from an invoice total (required if <span pulumi-lang-nodejs="`percentOff`" pulumi-lang-dotnet="`PercentOff`" pulumi-lang-go="`percentOff`" pulumi-lang-python="`percent_off`" pulumi-lang-yaml="`percentOff`" pulumi-lang-java="`percentOff`" pulumi-lang-hcl="`percent_off`">`percentOff`</span> is not passed).
-	AmountOff pulumi.Float64PtrInput
-	// A hash containing directions for what this Coupon will apply discounts to.
-	AppliesTo CouponAppliesToPtrInput
-	// Three-letter [ISO code for the currency](https://stripe.com/docs/currencies) of the <span pulumi-lang-nodejs="`amountOff`" pulumi-lang-dotnet="`AmountOff`" pulumi-lang-go="`amountOff`" pulumi-lang-python="`amount_off`" pulumi-lang-yaml="`amountOff`" pulumi-lang-java="`amountOff`" pulumi-lang-hcl="`amount_off`">`amountOff`</span> parameter (required if <span pulumi-lang-nodejs="`amountOff`" pulumi-lang-dotnet="`AmountOff`" pulumi-lang-go="`amountOff`" pulumi-lang-python="`amount_off`" pulumi-lang-yaml="`amountOff`" pulumi-lang-java="`amountOff`" pulumi-lang-hcl="`amount_off`">`amountOff`</span> is passed).
+	// Amount (in the <span pulumi-lang-nodejs="`currency`" pulumi-lang-dotnet="`Currency`" pulumi-lang-go="`currency`" pulumi-lang-python="`currency`" pulumi-lang-yaml="`currency`" pulumi-lang-java="`currency`" pulumi-lang-hcl="`currency`">`currency`</span> specified) that will be taken off the subtotal of any invoices for this customer.
+	AmountOff  pulumi.Float64PtrInput
+	AppliesTos CouponAppliesToArrayInput
+	// Time at which the object was created. Measured in seconds since the Unix epoch.
+	Created pulumi.Float64PtrInput
+	// If <span pulumi-lang-nodejs="`amountOff`" pulumi-lang-dotnet="`AmountOff`" pulumi-lang-go="`amountOff`" pulumi-lang-python="`amount_off`" pulumi-lang-yaml="`amountOff`" pulumi-lang-java="`amountOff`" pulumi-lang-hcl="`amount_off`">`amountOff`</span> has been set, the three-letter [ISO code for the currency](https://stripe.com/docs/currencies) of the amount to take off.
 	Currency pulumi.StringPtrInput
-	// Coupons defined in each available currency option (only supported if <span pulumi-lang-nodejs="`amountOff`" pulumi-lang-dotnet="`AmountOff`" pulumi-lang-go="`amountOff`" pulumi-lang-python="`amount_off`" pulumi-lang-yaml="`amountOff`" pulumi-lang-java="`amountOff`" pulumi-lang-hcl="`amount_off`">`amountOff`</span> is passed). Each key must be a three-letter [ISO currency code](https://www.iso.org/iso-4217-currency-codes.html) and a [supported currency](https://stripe.com/docs/currencies).
+	// Coupons defined in each available currency option. Each key must be a three-letter [ISO currency code](https://www.iso.org/iso-4217-currency-codes.html) and a [supported currency](https://stripe.com/docs/currencies).
 	CurrencyOptions CouponCurrencyOptionArrayInput
-	// Specifies how long the discount will be in effect if used on a subscription. Defaults to <span pulumi-lang-nodejs="`once`" pulumi-lang-dotnet="`Once`" pulumi-lang-go="`once`" pulumi-lang-python="`once`" pulumi-lang-yaml="`once`" pulumi-lang-java="`once`" pulumi-lang-hcl="`once`">`once`</span>.
+	// One of <span pulumi-lang-nodejs="`forever`" pulumi-lang-dotnet="`Forever`" pulumi-lang-go="`forever`" pulumi-lang-python="`forever`" pulumi-lang-yaml="`forever`" pulumi-lang-java="`forever`" pulumi-lang-hcl="`forever`">`forever`</span>, <span pulumi-lang-nodejs="`once`" pulumi-lang-dotnet="`Once`" pulumi-lang-go="`once`" pulumi-lang-python="`once`" pulumi-lang-yaml="`once`" pulumi-lang-java="`once`" pulumi-lang-hcl="`once`">`once`</span>, or <span pulumi-lang-nodejs="`repeating`" pulumi-lang-dotnet="`Repeating`" pulumi-lang-go="`repeating`" pulumi-lang-python="`repeating`" pulumi-lang-yaml="`repeating`" pulumi-lang-java="`repeating`" pulumi-lang-hcl="`repeating`">`repeating`</span>. Describes how long a customer who applies this coupon will get the discount.
 	Duration pulumi.StringPtrInput
-	// Required only if <span pulumi-lang-nodejs="`duration`" pulumi-lang-dotnet="`Duration`" pulumi-lang-go="`duration`" pulumi-lang-python="`duration`" pulumi-lang-yaml="`duration`" pulumi-lang-java="`duration`" pulumi-lang-hcl="`duration`">`duration`</span> is <span pulumi-lang-nodejs="`repeating`" pulumi-lang-dotnet="`Repeating`" pulumi-lang-go="`repeating`" pulumi-lang-python="`repeating`" pulumi-lang-yaml="`repeating`" pulumi-lang-java="`repeating`" pulumi-lang-hcl="`repeating`">`repeating`</span>, in which case it must be a positive integer that specifies the number of months the discount will be in effect.
+	// If <span pulumi-lang-nodejs="`duration`" pulumi-lang-dotnet="`Duration`" pulumi-lang-go="`duration`" pulumi-lang-python="`duration`" pulumi-lang-yaml="`duration`" pulumi-lang-java="`duration`" pulumi-lang-hcl="`duration`">`duration`</span> is <span pulumi-lang-nodejs="`repeating`" pulumi-lang-dotnet="`Repeating`" pulumi-lang-go="`repeating`" pulumi-lang-python="`repeating`" pulumi-lang-yaml="`repeating`" pulumi-lang-java="`repeating`" pulumi-lang-hcl="`repeating`">`repeating`</span>, the number of months the coupon applies. Null if coupon <span pulumi-lang-nodejs="`duration`" pulumi-lang-dotnet="`Duration`" pulumi-lang-go="`duration`" pulumi-lang-python="`duration`" pulumi-lang-yaml="`duration`" pulumi-lang-java="`duration`" pulumi-lang-hcl="`duration`">`duration`</span> is <span pulumi-lang-nodejs="`forever`" pulumi-lang-dotnet="`Forever`" pulumi-lang-go="`forever`" pulumi-lang-python="`forever`" pulumi-lang-yaml="`forever`" pulumi-lang-java="`forever`" pulumi-lang-hcl="`forever`">`forever`</span> or <span pulumi-lang-nodejs="`once`" pulumi-lang-dotnet="`Once`" pulumi-lang-go="`once`" pulumi-lang-python="`once`" pulumi-lang-yaml="`once`" pulumi-lang-java="`once`" pulumi-lang-hcl="`once`">`once`</span>.
 	DurationInMonths pulumi.Float64PtrInput
-	// A positive integer specifying the number of times the coupon can be redeemed before it's no longer valid. For example, you might have a 50% off coupon that the first 20 readers of your blog can use.
+	// If the object exists in live mode, the value is <span pulumi-lang-nodejs="`true`" pulumi-lang-dotnet="`True`" pulumi-lang-go="`true`" pulumi-lang-python="`true`" pulumi-lang-yaml="`true`" pulumi-lang-java="`true`" pulumi-lang-hcl="`true`">`true`</span>. If the object exists in test mode, the value is <span pulumi-lang-nodejs="`false`" pulumi-lang-dotnet="`False`" pulumi-lang-go="`false`" pulumi-lang-python="`false`" pulumi-lang-yaml="`false`" pulumi-lang-java="`false`" pulumi-lang-hcl="`false`">`false`</span>.
+	Livemode pulumi.BoolPtrInput
+	// Maximum number of times this coupon can be redeemed, in total, across all customers, before it is no longer valid.
 	MaxRedemptions pulumi.Float64PtrInput
-	Metadata       pulumi.StringMapInput
-	// Name of the coupon displayed to customers on, for instance invoices, or receipts. By default the <span pulumi-lang-nodejs="`id`" pulumi-lang-dotnet="`Id`" pulumi-lang-go="`id`" pulumi-lang-python="`id`" pulumi-lang-yaml="`id`" pulumi-lang-java="`id`" pulumi-lang-hcl="`id`">`id`</span> is shown if <span pulumi-lang-nodejs="`name`" pulumi-lang-dotnet="`Name`" pulumi-lang-go="`name`" pulumi-lang-python="`name`" pulumi-lang-yaml="`name`" pulumi-lang-java="`name`" pulumi-lang-hcl="`name`">`name`</span> is not set.
+	// Set of [key-value pairs](https://docs.stripe.com/api/metadata) that you can attach to an object. This can be useful for storing additional information about the object in a structured format.
+	Metadata pulumi.StringMapInput
+	// Name of the coupon displayed to customers on for instance invoices or receipts.
 	Name pulumi.StringPtrInput
-	// A positive float larger than 0, and smaller or equal to 100, that represents the discount the coupon will apply (required if <span pulumi-lang-nodejs="`amountOff`" pulumi-lang-dotnet="`AmountOff`" pulumi-lang-go="`amountOff`" pulumi-lang-python="`amount_off`" pulumi-lang-yaml="`amountOff`" pulumi-lang-java="`amountOff`" pulumi-lang-hcl="`amount_off`">`amountOff`</span> is not passed).
+	// String representing the object's type. Objects of the same type share the same value.
+	Object pulumi.StringPtrInput
+	// Percent that will be taken off the subtotal of any invoices for this customer for the duration of the coupon. For example, a coupon with<span pulumi-lang-nodejs=" percentOff " pulumi-lang-dotnet=" PercentOff " pulumi-lang-go=" percentOff " pulumi-lang-python=" percent_off " pulumi-lang-yaml=" percentOff " pulumi-lang-java=" percentOff " pulumi-lang-hcl=" percent_off "> percentOff </span>of 50 will make a $ (or local equivalent)100 invoice $ (or local equivalent)50 instead.
 	PercentOff pulumi.Float64PtrInput
-	// Unix timestamp specifying the last time at which the coupon can be redeemed. After the<span pulumi-lang-nodejs=" redeemBy " pulumi-lang-dotnet=" RedeemBy " pulumi-lang-go=" redeemBy " pulumi-lang-python=" redeem_by " pulumi-lang-yaml=" redeemBy " pulumi-lang-java=" redeemBy " pulumi-lang-hcl=" redeem_by "> redeemBy </span>date, the coupon can no longer be applied to new customers.
+	// Date after which the coupon can no longer be redeemed.
 	RedeemBy pulumi.Float64PtrInput
-	// Configuration of the [script](https://docs.stripe.com/billing/subscriptions/script-coupons) used to calculate the discount.
-	Script CouponScriptPtrInput
 	// Number of times this coupon has been applied to a customer.
 	TimesRedeemed pulumi.Float64PtrInput
-	// One of <span pulumi-lang-nodejs="`amountOff`" pulumi-lang-dotnet="`AmountOff`" pulumi-lang-go="`amountOff`" pulumi-lang-python="`amount_off`" pulumi-lang-yaml="`amountOff`" pulumi-lang-java="`amountOff`" pulumi-lang-hcl="`amount_off`">`amountOff`</span>, <span pulumi-lang-nodejs="`percentOff`" pulumi-lang-dotnet="`PercentOff`" pulumi-lang-go="`percentOff`" pulumi-lang-python="`percent_off`" pulumi-lang-yaml="`percentOff`" pulumi-lang-java="`percentOff`" pulumi-lang-hcl="`percent_off`">`percentOff`</span>, or <span pulumi-lang-nodejs="`script`" pulumi-lang-dotnet="`Script`" pulumi-lang-go="`script`" pulumi-lang-python="`script`" pulumi-lang-yaml="`script`" pulumi-lang-java="`script`" pulumi-lang-hcl="`script`">`script`</span>. Describes the type of coupon logic used to calculate the discount.
-	Type pulumi.StringPtrInput
 	// Taking account of the above properties, whether this coupon can still be applied to a customer.
 	Valid pulumi.BoolPtrInput
 }
@@ -151,56 +157,52 @@ func (CouponState) ElementType() reflect.Type {
 }
 
 type couponArgs struct {
-	// A positive integer representing the amount to subtract from an invoice total (required if <span pulumi-lang-nodejs="`percentOff`" pulumi-lang-dotnet="`PercentOff`" pulumi-lang-go="`percentOff`" pulumi-lang-python="`percent_off`" pulumi-lang-yaml="`percentOff`" pulumi-lang-java="`percentOff`" pulumi-lang-hcl="`percent_off`">`percentOff`</span> is not passed).
-	AmountOff *float64 `pulumi:"amountOff"`
-	// A hash containing directions for what this Coupon will apply discounts to.
-	AppliesTo *CouponAppliesTo `pulumi:"appliesTo"`
-	// Three-letter [ISO code for the currency](https://stripe.com/docs/currencies) of the <span pulumi-lang-nodejs="`amountOff`" pulumi-lang-dotnet="`AmountOff`" pulumi-lang-go="`amountOff`" pulumi-lang-python="`amount_off`" pulumi-lang-yaml="`amountOff`" pulumi-lang-java="`amountOff`" pulumi-lang-hcl="`amount_off`">`amountOff`</span> parameter (required if <span pulumi-lang-nodejs="`amountOff`" pulumi-lang-dotnet="`AmountOff`" pulumi-lang-go="`amountOff`" pulumi-lang-python="`amount_off`" pulumi-lang-yaml="`amountOff`" pulumi-lang-java="`amountOff`" pulumi-lang-hcl="`amount_off`">`amountOff`</span> is passed).
+	// Amount (in the <span pulumi-lang-nodejs="`currency`" pulumi-lang-dotnet="`Currency`" pulumi-lang-go="`currency`" pulumi-lang-python="`currency`" pulumi-lang-yaml="`currency`" pulumi-lang-java="`currency`" pulumi-lang-hcl="`currency`">`currency`</span> specified) that will be taken off the subtotal of any invoices for this customer.
+	AmountOff  *float64          `pulumi:"amountOff"`
+	AppliesTos []CouponAppliesTo `pulumi:"appliesTos"`
+	// If <span pulumi-lang-nodejs="`amountOff`" pulumi-lang-dotnet="`AmountOff`" pulumi-lang-go="`amountOff`" pulumi-lang-python="`amount_off`" pulumi-lang-yaml="`amountOff`" pulumi-lang-java="`amountOff`" pulumi-lang-hcl="`amount_off`">`amountOff`</span> has been set, the three-letter [ISO code for the currency](https://stripe.com/docs/currencies) of the amount to take off.
 	Currency *string `pulumi:"currency"`
-	// Coupons defined in each available currency option (only supported if <span pulumi-lang-nodejs="`amountOff`" pulumi-lang-dotnet="`AmountOff`" pulumi-lang-go="`amountOff`" pulumi-lang-python="`amount_off`" pulumi-lang-yaml="`amountOff`" pulumi-lang-java="`amountOff`" pulumi-lang-hcl="`amount_off`">`amountOff`</span> is passed). Each key must be a three-letter [ISO currency code](https://www.iso.org/iso-4217-currency-codes.html) and a [supported currency](https://stripe.com/docs/currencies).
+	// Coupons defined in each available currency option. Each key must be a three-letter [ISO currency code](https://www.iso.org/iso-4217-currency-codes.html) and a [supported currency](https://stripe.com/docs/currencies).
 	CurrencyOptions []CouponCurrencyOption `pulumi:"currencyOptions"`
-	// Specifies how long the discount will be in effect if used on a subscription. Defaults to <span pulumi-lang-nodejs="`once`" pulumi-lang-dotnet="`Once`" pulumi-lang-go="`once`" pulumi-lang-python="`once`" pulumi-lang-yaml="`once`" pulumi-lang-java="`once`" pulumi-lang-hcl="`once`">`once`</span>.
+	// One of <span pulumi-lang-nodejs="`forever`" pulumi-lang-dotnet="`Forever`" pulumi-lang-go="`forever`" pulumi-lang-python="`forever`" pulumi-lang-yaml="`forever`" pulumi-lang-java="`forever`" pulumi-lang-hcl="`forever`">`forever`</span>, <span pulumi-lang-nodejs="`once`" pulumi-lang-dotnet="`Once`" pulumi-lang-go="`once`" pulumi-lang-python="`once`" pulumi-lang-yaml="`once`" pulumi-lang-java="`once`" pulumi-lang-hcl="`once`">`once`</span>, or <span pulumi-lang-nodejs="`repeating`" pulumi-lang-dotnet="`Repeating`" pulumi-lang-go="`repeating`" pulumi-lang-python="`repeating`" pulumi-lang-yaml="`repeating`" pulumi-lang-java="`repeating`" pulumi-lang-hcl="`repeating`">`repeating`</span>. Describes how long a customer who applies this coupon will get the discount.
 	Duration *string `pulumi:"duration"`
-	// Required only if <span pulumi-lang-nodejs="`duration`" pulumi-lang-dotnet="`Duration`" pulumi-lang-go="`duration`" pulumi-lang-python="`duration`" pulumi-lang-yaml="`duration`" pulumi-lang-java="`duration`" pulumi-lang-hcl="`duration`">`duration`</span> is <span pulumi-lang-nodejs="`repeating`" pulumi-lang-dotnet="`Repeating`" pulumi-lang-go="`repeating`" pulumi-lang-python="`repeating`" pulumi-lang-yaml="`repeating`" pulumi-lang-java="`repeating`" pulumi-lang-hcl="`repeating`">`repeating`</span>, in which case it must be a positive integer that specifies the number of months the discount will be in effect.
+	// If <span pulumi-lang-nodejs="`duration`" pulumi-lang-dotnet="`Duration`" pulumi-lang-go="`duration`" pulumi-lang-python="`duration`" pulumi-lang-yaml="`duration`" pulumi-lang-java="`duration`" pulumi-lang-hcl="`duration`">`duration`</span> is <span pulumi-lang-nodejs="`repeating`" pulumi-lang-dotnet="`Repeating`" pulumi-lang-go="`repeating`" pulumi-lang-python="`repeating`" pulumi-lang-yaml="`repeating`" pulumi-lang-java="`repeating`" pulumi-lang-hcl="`repeating`">`repeating`</span>, the number of months the coupon applies. Null if coupon <span pulumi-lang-nodejs="`duration`" pulumi-lang-dotnet="`Duration`" pulumi-lang-go="`duration`" pulumi-lang-python="`duration`" pulumi-lang-yaml="`duration`" pulumi-lang-java="`duration`" pulumi-lang-hcl="`duration`">`duration`</span> is <span pulumi-lang-nodejs="`forever`" pulumi-lang-dotnet="`Forever`" pulumi-lang-go="`forever`" pulumi-lang-python="`forever`" pulumi-lang-yaml="`forever`" pulumi-lang-java="`forever`" pulumi-lang-hcl="`forever`">`forever`</span> or <span pulumi-lang-nodejs="`once`" pulumi-lang-dotnet="`Once`" pulumi-lang-go="`once`" pulumi-lang-python="`once`" pulumi-lang-yaml="`once`" pulumi-lang-java="`once`" pulumi-lang-hcl="`once`">`once`</span>.
 	DurationInMonths *float64 `pulumi:"durationInMonths"`
-	// A positive integer specifying the number of times the coupon can be redeemed before it's no longer valid. For example, you might have a 50% off coupon that the first 20 readers of your blog can use.
-	MaxRedemptions *float64          `pulumi:"maxRedemptions"`
-	Metadata       map[string]string `pulumi:"metadata"`
-	// Name of the coupon displayed to customers on, for instance invoices, or receipts. By default the <span pulumi-lang-nodejs="`id`" pulumi-lang-dotnet="`Id`" pulumi-lang-go="`id`" pulumi-lang-python="`id`" pulumi-lang-yaml="`id`" pulumi-lang-java="`id`" pulumi-lang-hcl="`id`">`id`</span> is shown if <span pulumi-lang-nodejs="`name`" pulumi-lang-dotnet="`Name`" pulumi-lang-go="`name`" pulumi-lang-python="`name`" pulumi-lang-yaml="`name`" pulumi-lang-java="`name`" pulumi-lang-hcl="`name`">`name`</span> is not set.
+	// Maximum number of times this coupon can be redeemed, in total, across all customers, before it is no longer valid.
+	MaxRedemptions *float64 `pulumi:"maxRedemptions"`
+	// Set of [key-value pairs](https://docs.stripe.com/api/metadata) that you can attach to an object. This can be useful for storing additional information about the object in a structured format.
+	Metadata map[string]string `pulumi:"metadata"`
+	// Name of the coupon displayed to customers on for instance invoices or receipts.
 	Name *string `pulumi:"name"`
-	// A positive float larger than 0, and smaller or equal to 100, that represents the discount the coupon will apply (required if <span pulumi-lang-nodejs="`amountOff`" pulumi-lang-dotnet="`AmountOff`" pulumi-lang-go="`amountOff`" pulumi-lang-python="`amount_off`" pulumi-lang-yaml="`amountOff`" pulumi-lang-java="`amountOff`" pulumi-lang-hcl="`amount_off`">`amountOff`</span> is not passed).
+	// Percent that will be taken off the subtotal of any invoices for this customer for the duration of the coupon. For example, a coupon with<span pulumi-lang-nodejs=" percentOff " pulumi-lang-dotnet=" PercentOff " pulumi-lang-go=" percentOff " pulumi-lang-python=" percent_off " pulumi-lang-yaml=" percentOff " pulumi-lang-java=" percentOff " pulumi-lang-hcl=" percent_off "> percentOff </span>of 50 will make a $ (or local equivalent)100 invoice $ (or local equivalent)50 instead.
 	PercentOff *float64 `pulumi:"percentOff"`
-	// Unix timestamp specifying the last time at which the coupon can be redeemed. After the<span pulumi-lang-nodejs=" redeemBy " pulumi-lang-dotnet=" RedeemBy " pulumi-lang-go=" redeemBy " pulumi-lang-python=" redeem_by " pulumi-lang-yaml=" redeemBy " pulumi-lang-java=" redeemBy " pulumi-lang-hcl=" redeem_by "> redeemBy </span>date, the coupon can no longer be applied to new customers.
+	// Date after which the coupon can no longer be redeemed.
 	RedeemBy *float64 `pulumi:"redeemBy"`
-	// Configuration of the [script](https://docs.stripe.com/billing/subscriptions/script-coupons) used to calculate the discount.
-	Script *CouponScript `pulumi:"script"`
 }
 
 // The set of arguments for constructing a Coupon resource.
 type CouponArgs struct {
-	// A positive integer representing the amount to subtract from an invoice total (required if <span pulumi-lang-nodejs="`percentOff`" pulumi-lang-dotnet="`PercentOff`" pulumi-lang-go="`percentOff`" pulumi-lang-python="`percent_off`" pulumi-lang-yaml="`percentOff`" pulumi-lang-java="`percentOff`" pulumi-lang-hcl="`percent_off`">`percentOff`</span> is not passed).
-	AmountOff pulumi.Float64PtrInput
-	// A hash containing directions for what this Coupon will apply discounts to.
-	AppliesTo CouponAppliesToPtrInput
-	// Three-letter [ISO code for the currency](https://stripe.com/docs/currencies) of the <span pulumi-lang-nodejs="`amountOff`" pulumi-lang-dotnet="`AmountOff`" pulumi-lang-go="`amountOff`" pulumi-lang-python="`amount_off`" pulumi-lang-yaml="`amountOff`" pulumi-lang-java="`amountOff`" pulumi-lang-hcl="`amount_off`">`amountOff`</span> parameter (required if <span pulumi-lang-nodejs="`amountOff`" pulumi-lang-dotnet="`AmountOff`" pulumi-lang-go="`amountOff`" pulumi-lang-python="`amount_off`" pulumi-lang-yaml="`amountOff`" pulumi-lang-java="`amountOff`" pulumi-lang-hcl="`amount_off`">`amountOff`</span> is passed).
+	// Amount (in the <span pulumi-lang-nodejs="`currency`" pulumi-lang-dotnet="`Currency`" pulumi-lang-go="`currency`" pulumi-lang-python="`currency`" pulumi-lang-yaml="`currency`" pulumi-lang-java="`currency`" pulumi-lang-hcl="`currency`">`currency`</span> specified) that will be taken off the subtotal of any invoices for this customer.
+	AmountOff  pulumi.Float64PtrInput
+	AppliesTos CouponAppliesToArrayInput
+	// If <span pulumi-lang-nodejs="`amountOff`" pulumi-lang-dotnet="`AmountOff`" pulumi-lang-go="`amountOff`" pulumi-lang-python="`amount_off`" pulumi-lang-yaml="`amountOff`" pulumi-lang-java="`amountOff`" pulumi-lang-hcl="`amount_off`">`amountOff`</span> has been set, the three-letter [ISO code for the currency](https://stripe.com/docs/currencies) of the amount to take off.
 	Currency pulumi.StringPtrInput
-	// Coupons defined in each available currency option (only supported if <span pulumi-lang-nodejs="`amountOff`" pulumi-lang-dotnet="`AmountOff`" pulumi-lang-go="`amountOff`" pulumi-lang-python="`amount_off`" pulumi-lang-yaml="`amountOff`" pulumi-lang-java="`amountOff`" pulumi-lang-hcl="`amount_off`">`amountOff`</span> is passed). Each key must be a three-letter [ISO currency code](https://www.iso.org/iso-4217-currency-codes.html) and a [supported currency](https://stripe.com/docs/currencies).
+	// Coupons defined in each available currency option. Each key must be a three-letter [ISO currency code](https://www.iso.org/iso-4217-currency-codes.html) and a [supported currency](https://stripe.com/docs/currencies).
 	CurrencyOptions CouponCurrencyOptionArrayInput
-	// Specifies how long the discount will be in effect if used on a subscription. Defaults to <span pulumi-lang-nodejs="`once`" pulumi-lang-dotnet="`Once`" pulumi-lang-go="`once`" pulumi-lang-python="`once`" pulumi-lang-yaml="`once`" pulumi-lang-java="`once`" pulumi-lang-hcl="`once`">`once`</span>.
+	// One of <span pulumi-lang-nodejs="`forever`" pulumi-lang-dotnet="`Forever`" pulumi-lang-go="`forever`" pulumi-lang-python="`forever`" pulumi-lang-yaml="`forever`" pulumi-lang-java="`forever`" pulumi-lang-hcl="`forever`">`forever`</span>, <span pulumi-lang-nodejs="`once`" pulumi-lang-dotnet="`Once`" pulumi-lang-go="`once`" pulumi-lang-python="`once`" pulumi-lang-yaml="`once`" pulumi-lang-java="`once`" pulumi-lang-hcl="`once`">`once`</span>, or <span pulumi-lang-nodejs="`repeating`" pulumi-lang-dotnet="`Repeating`" pulumi-lang-go="`repeating`" pulumi-lang-python="`repeating`" pulumi-lang-yaml="`repeating`" pulumi-lang-java="`repeating`" pulumi-lang-hcl="`repeating`">`repeating`</span>. Describes how long a customer who applies this coupon will get the discount.
 	Duration pulumi.StringPtrInput
-	// Required only if <span pulumi-lang-nodejs="`duration`" pulumi-lang-dotnet="`Duration`" pulumi-lang-go="`duration`" pulumi-lang-python="`duration`" pulumi-lang-yaml="`duration`" pulumi-lang-java="`duration`" pulumi-lang-hcl="`duration`">`duration`</span> is <span pulumi-lang-nodejs="`repeating`" pulumi-lang-dotnet="`Repeating`" pulumi-lang-go="`repeating`" pulumi-lang-python="`repeating`" pulumi-lang-yaml="`repeating`" pulumi-lang-java="`repeating`" pulumi-lang-hcl="`repeating`">`repeating`</span>, in which case it must be a positive integer that specifies the number of months the discount will be in effect.
+	// If <span pulumi-lang-nodejs="`duration`" pulumi-lang-dotnet="`Duration`" pulumi-lang-go="`duration`" pulumi-lang-python="`duration`" pulumi-lang-yaml="`duration`" pulumi-lang-java="`duration`" pulumi-lang-hcl="`duration`">`duration`</span> is <span pulumi-lang-nodejs="`repeating`" pulumi-lang-dotnet="`Repeating`" pulumi-lang-go="`repeating`" pulumi-lang-python="`repeating`" pulumi-lang-yaml="`repeating`" pulumi-lang-java="`repeating`" pulumi-lang-hcl="`repeating`">`repeating`</span>, the number of months the coupon applies. Null if coupon <span pulumi-lang-nodejs="`duration`" pulumi-lang-dotnet="`Duration`" pulumi-lang-go="`duration`" pulumi-lang-python="`duration`" pulumi-lang-yaml="`duration`" pulumi-lang-java="`duration`" pulumi-lang-hcl="`duration`">`duration`</span> is <span pulumi-lang-nodejs="`forever`" pulumi-lang-dotnet="`Forever`" pulumi-lang-go="`forever`" pulumi-lang-python="`forever`" pulumi-lang-yaml="`forever`" pulumi-lang-java="`forever`" pulumi-lang-hcl="`forever`">`forever`</span> or <span pulumi-lang-nodejs="`once`" pulumi-lang-dotnet="`Once`" pulumi-lang-go="`once`" pulumi-lang-python="`once`" pulumi-lang-yaml="`once`" pulumi-lang-java="`once`" pulumi-lang-hcl="`once`">`once`</span>.
 	DurationInMonths pulumi.Float64PtrInput
-	// A positive integer specifying the number of times the coupon can be redeemed before it's no longer valid. For example, you might have a 50% off coupon that the first 20 readers of your blog can use.
+	// Maximum number of times this coupon can be redeemed, in total, across all customers, before it is no longer valid.
 	MaxRedemptions pulumi.Float64PtrInput
-	Metadata       pulumi.StringMapInput
-	// Name of the coupon displayed to customers on, for instance invoices, or receipts. By default the <span pulumi-lang-nodejs="`id`" pulumi-lang-dotnet="`Id`" pulumi-lang-go="`id`" pulumi-lang-python="`id`" pulumi-lang-yaml="`id`" pulumi-lang-java="`id`" pulumi-lang-hcl="`id`">`id`</span> is shown if <span pulumi-lang-nodejs="`name`" pulumi-lang-dotnet="`Name`" pulumi-lang-go="`name`" pulumi-lang-python="`name`" pulumi-lang-yaml="`name`" pulumi-lang-java="`name`" pulumi-lang-hcl="`name`">`name`</span> is not set.
+	// Set of [key-value pairs](https://docs.stripe.com/api/metadata) that you can attach to an object. This can be useful for storing additional information about the object in a structured format.
+	Metadata pulumi.StringMapInput
+	// Name of the coupon displayed to customers on for instance invoices or receipts.
 	Name pulumi.StringPtrInput
-	// A positive float larger than 0, and smaller or equal to 100, that represents the discount the coupon will apply (required if <span pulumi-lang-nodejs="`amountOff`" pulumi-lang-dotnet="`AmountOff`" pulumi-lang-go="`amountOff`" pulumi-lang-python="`amount_off`" pulumi-lang-yaml="`amountOff`" pulumi-lang-java="`amountOff`" pulumi-lang-hcl="`amount_off`">`amountOff`</span> is not passed).
+	// Percent that will be taken off the subtotal of any invoices for this customer for the duration of the coupon. For example, a coupon with<span pulumi-lang-nodejs=" percentOff " pulumi-lang-dotnet=" PercentOff " pulumi-lang-go=" percentOff " pulumi-lang-python=" percent_off " pulumi-lang-yaml=" percentOff " pulumi-lang-java=" percentOff " pulumi-lang-hcl=" percent_off "> percentOff </span>of 50 will make a $ (or local equivalent)100 invoice $ (or local equivalent)50 instead.
 	PercentOff pulumi.Float64PtrInput
-	// Unix timestamp specifying the last time at which the coupon can be redeemed. After the<span pulumi-lang-nodejs=" redeemBy " pulumi-lang-dotnet=" RedeemBy " pulumi-lang-go=" redeemBy " pulumi-lang-python=" redeem_by " pulumi-lang-yaml=" redeemBy " pulumi-lang-java=" redeemBy " pulumi-lang-hcl=" redeem_by "> redeemBy </span>date, the coupon can no longer be applied to new customers.
+	// Date after which the coupon can no longer be redeemed.
 	RedeemBy pulumi.Float64PtrInput
-	// Configuration of the [script](https://docs.stripe.com/billing/subscriptions/script-coupons) used to calculate the discount.
-	Script CouponScriptPtrInput
 }
 
 func (CouponArgs) ElementType() reflect.Type {
@@ -240,73 +242,78 @@ func (o CouponOutput) ToCouponOutputWithContext(ctx context.Context) CouponOutpu
 	return o
 }
 
-// A positive integer representing the amount to subtract from an invoice total (required if <span pulumi-lang-nodejs="`percentOff`" pulumi-lang-dotnet="`PercentOff`" pulumi-lang-go="`percentOff`" pulumi-lang-python="`percent_off`" pulumi-lang-yaml="`percentOff`" pulumi-lang-java="`percentOff`" pulumi-lang-hcl="`percent_off`">`percentOff`</span> is not passed).
+// Amount (in the <span pulumi-lang-nodejs="`currency`" pulumi-lang-dotnet="`Currency`" pulumi-lang-go="`currency`" pulumi-lang-python="`currency`" pulumi-lang-yaml="`currency`" pulumi-lang-java="`currency`" pulumi-lang-hcl="`currency`">`currency`</span> specified) that will be taken off the subtotal of any invoices for this customer.
 func (o CouponOutput) AmountOff() pulumi.Float64Output {
 	return o.ApplyT(func(v *Coupon) pulumi.Float64Output { return v.AmountOff }).(pulumi.Float64Output)
 }
 
-// A hash containing directions for what this Coupon will apply discounts to.
-func (o CouponOutput) AppliesTo() CouponAppliesToPtrOutput {
-	return o.ApplyT(func(v *Coupon) CouponAppliesToPtrOutput { return v.AppliesTo }).(CouponAppliesToPtrOutput)
+func (o CouponOutput) AppliesTos() CouponAppliesToArrayOutput {
+	return o.ApplyT(func(v *Coupon) CouponAppliesToArrayOutput { return v.AppliesTos }).(CouponAppliesToArrayOutput)
 }
 
-// Three-letter [ISO code for the currency](https://stripe.com/docs/currencies) of the <span pulumi-lang-nodejs="`amountOff`" pulumi-lang-dotnet="`AmountOff`" pulumi-lang-go="`amountOff`" pulumi-lang-python="`amount_off`" pulumi-lang-yaml="`amountOff`" pulumi-lang-java="`amountOff`" pulumi-lang-hcl="`amount_off`">`amountOff`</span> parameter (required if <span pulumi-lang-nodejs="`amountOff`" pulumi-lang-dotnet="`AmountOff`" pulumi-lang-go="`amountOff`" pulumi-lang-python="`amount_off`" pulumi-lang-yaml="`amountOff`" pulumi-lang-java="`amountOff`" pulumi-lang-hcl="`amount_off`">`amountOff`</span> is passed).
+// Time at which the object was created. Measured in seconds since the Unix epoch.
+func (o CouponOutput) Created() pulumi.Float64Output {
+	return o.ApplyT(func(v *Coupon) pulumi.Float64Output { return v.Created }).(pulumi.Float64Output)
+}
+
+// If <span pulumi-lang-nodejs="`amountOff`" pulumi-lang-dotnet="`AmountOff`" pulumi-lang-go="`amountOff`" pulumi-lang-python="`amount_off`" pulumi-lang-yaml="`amountOff`" pulumi-lang-java="`amountOff`" pulumi-lang-hcl="`amount_off`">`amountOff`</span> has been set, the three-letter [ISO code for the currency](https://stripe.com/docs/currencies) of the amount to take off.
 func (o CouponOutput) Currency() pulumi.StringOutput {
 	return o.ApplyT(func(v *Coupon) pulumi.StringOutput { return v.Currency }).(pulumi.StringOutput)
 }
 
-// Coupons defined in each available currency option (only supported if <span pulumi-lang-nodejs="`amountOff`" pulumi-lang-dotnet="`AmountOff`" pulumi-lang-go="`amountOff`" pulumi-lang-python="`amount_off`" pulumi-lang-yaml="`amountOff`" pulumi-lang-java="`amountOff`" pulumi-lang-hcl="`amount_off`">`amountOff`</span> is passed). Each key must be a three-letter [ISO currency code](https://www.iso.org/iso-4217-currency-codes.html) and a [supported currency](https://stripe.com/docs/currencies).
+// Coupons defined in each available currency option. Each key must be a three-letter [ISO currency code](https://www.iso.org/iso-4217-currency-codes.html) and a [supported currency](https://stripe.com/docs/currencies).
 func (o CouponOutput) CurrencyOptions() CouponCurrencyOptionArrayOutput {
 	return o.ApplyT(func(v *Coupon) CouponCurrencyOptionArrayOutput { return v.CurrencyOptions }).(CouponCurrencyOptionArrayOutput)
 }
 
-// Specifies how long the discount will be in effect if used on a subscription. Defaults to <span pulumi-lang-nodejs="`once`" pulumi-lang-dotnet="`Once`" pulumi-lang-go="`once`" pulumi-lang-python="`once`" pulumi-lang-yaml="`once`" pulumi-lang-java="`once`" pulumi-lang-hcl="`once`">`once`</span>.
+// One of <span pulumi-lang-nodejs="`forever`" pulumi-lang-dotnet="`Forever`" pulumi-lang-go="`forever`" pulumi-lang-python="`forever`" pulumi-lang-yaml="`forever`" pulumi-lang-java="`forever`" pulumi-lang-hcl="`forever`">`forever`</span>, <span pulumi-lang-nodejs="`once`" pulumi-lang-dotnet="`Once`" pulumi-lang-go="`once`" pulumi-lang-python="`once`" pulumi-lang-yaml="`once`" pulumi-lang-java="`once`" pulumi-lang-hcl="`once`">`once`</span>, or <span pulumi-lang-nodejs="`repeating`" pulumi-lang-dotnet="`Repeating`" pulumi-lang-go="`repeating`" pulumi-lang-python="`repeating`" pulumi-lang-yaml="`repeating`" pulumi-lang-java="`repeating`" pulumi-lang-hcl="`repeating`">`repeating`</span>. Describes how long a customer who applies this coupon will get the discount.
 func (o CouponOutput) Duration() pulumi.StringOutput {
 	return o.ApplyT(func(v *Coupon) pulumi.StringOutput { return v.Duration }).(pulumi.StringOutput)
 }
 
-// Required only if <span pulumi-lang-nodejs="`duration`" pulumi-lang-dotnet="`Duration`" pulumi-lang-go="`duration`" pulumi-lang-python="`duration`" pulumi-lang-yaml="`duration`" pulumi-lang-java="`duration`" pulumi-lang-hcl="`duration`">`duration`</span> is <span pulumi-lang-nodejs="`repeating`" pulumi-lang-dotnet="`Repeating`" pulumi-lang-go="`repeating`" pulumi-lang-python="`repeating`" pulumi-lang-yaml="`repeating`" pulumi-lang-java="`repeating`" pulumi-lang-hcl="`repeating`">`repeating`</span>, in which case it must be a positive integer that specifies the number of months the discount will be in effect.
+// If <span pulumi-lang-nodejs="`duration`" pulumi-lang-dotnet="`Duration`" pulumi-lang-go="`duration`" pulumi-lang-python="`duration`" pulumi-lang-yaml="`duration`" pulumi-lang-java="`duration`" pulumi-lang-hcl="`duration`">`duration`</span> is <span pulumi-lang-nodejs="`repeating`" pulumi-lang-dotnet="`Repeating`" pulumi-lang-go="`repeating`" pulumi-lang-python="`repeating`" pulumi-lang-yaml="`repeating`" pulumi-lang-java="`repeating`" pulumi-lang-hcl="`repeating`">`repeating`</span>, the number of months the coupon applies. Null if coupon <span pulumi-lang-nodejs="`duration`" pulumi-lang-dotnet="`Duration`" pulumi-lang-go="`duration`" pulumi-lang-python="`duration`" pulumi-lang-yaml="`duration`" pulumi-lang-java="`duration`" pulumi-lang-hcl="`duration`">`duration`</span> is <span pulumi-lang-nodejs="`forever`" pulumi-lang-dotnet="`Forever`" pulumi-lang-go="`forever`" pulumi-lang-python="`forever`" pulumi-lang-yaml="`forever`" pulumi-lang-java="`forever`" pulumi-lang-hcl="`forever`">`forever`</span> or <span pulumi-lang-nodejs="`once`" pulumi-lang-dotnet="`Once`" pulumi-lang-go="`once`" pulumi-lang-python="`once`" pulumi-lang-yaml="`once`" pulumi-lang-java="`once`" pulumi-lang-hcl="`once`">`once`</span>.
 func (o CouponOutput) DurationInMonths() pulumi.Float64Output {
 	return o.ApplyT(func(v *Coupon) pulumi.Float64Output { return v.DurationInMonths }).(pulumi.Float64Output)
 }
 
-// A positive integer specifying the number of times the coupon can be redeemed before it's no longer valid. For example, you might have a 50% off coupon that the first 20 readers of your blog can use.
+// If the object exists in live mode, the value is <span pulumi-lang-nodejs="`true`" pulumi-lang-dotnet="`True`" pulumi-lang-go="`true`" pulumi-lang-python="`true`" pulumi-lang-yaml="`true`" pulumi-lang-java="`true`" pulumi-lang-hcl="`true`">`true`</span>. If the object exists in test mode, the value is <span pulumi-lang-nodejs="`false`" pulumi-lang-dotnet="`False`" pulumi-lang-go="`false`" pulumi-lang-python="`false`" pulumi-lang-yaml="`false`" pulumi-lang-java="`false`" pulumi-lang-hcl="`false`">`false`</span>.
+func (o CouponOutput) Livemode() pulumi.BoolOutput {
+	return o.ApplyT(func(v *Coupon) pulumi.BoolOutput { return v.Livemode }).(pulumi.BoolOutput)
+}
+
+// Maximum number of times this coupon can be redeemed, in total, across all customers, before it is no longer valid.
 func (o CouponOutput) MaxRedemptions() pulumi.Float64Output {
 	return o.ApplyT(func(v *Coupon) pulumi.Float64Output { return v.MaxRedemptions }).(pulumi.Float64Output)
 }
 
+// Set of [key-value pairs](https://docs.stripe.com/api/metadata) that you can attach to an object. This can be useful for storing additional information about the object in a structured format.
 func (o CouponOutput) Metadata() pulumi.StringMapOutput {
 	return o.ApplyT(func(v *Coupon) pulumi.StringMapOutput { return v.Metadata }).(pulumi.StringMapOutput)
 }
 
-// Name of the coupon displayed to customers on, for instance invoices, or receipts. By default the <span pulumi-lang-nodejs="`id`" pulumi-lang-dotnet="`Id`" pulumi-lang-go="`id`" pulumi-lang-python="`id`" pulumi-lang-yaml="`id`" pulumi-lang-java="`id`" pulumi-lang-hcl="`id`">`id`</span> is shown if <span pulumi-lang-nodejs="`name`" pulumi-lang-dotnet="`Name`" pulumi-lang-go="`name`" pulumi-lang-python="`name`" pulumi-lang-yaml="`name`" pulumi-lang-java="`name`" pulumi-lang-hcl="`name`">`name`</span> is not set.
+// Name of the coupon displayed to customers on for instance invoices or receipts.
 func (o CouponOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v *Coupon) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
 }
 
-// A positive float larger than 0, and smaller or equal to 100, that represents the discount the coupon will apply (required if <span pulumi-lang-nodejs="`amountOff`" pulumi-lang-dotnet="`AmountOff`" pulumi-lang-go="`amountOff`" pulumi-lang-python="`amount_off`" pulumi-lang-yaml="`amountOff`" pulumi-lang-java="`amountOff`" pulumi-lang-hcl="`amount_off`">`amountOff`</span> is not passed).
+// String representing the object's type. Objects of the same type share the same value.
+func (o CouponOutput) Object() pulumi.StringOutput {
+	return o.ApplyT(func(v *Coupon) pulumi.StringOutput { return v.Object }).(pulumi.StringOutput)
+}
+
+// Percent that will be taken off the subtotal of any invoices for this customer for the duration of the coupon. For example, a coupon with<span pulumi-lang-nodejs=" percentOff " pulumi-lang-dotnet=" PercentOff " pulumi-lang-go=" percentOff " pulumi-lang-python=" percent_off " pulumi-lang-yaml=" percentOff " pulumi-lang-java=" percentOff " pulumi-lang-hcl=" percent_off "> percentOff </span>of 50 will make a $ (or local equivalent)100 invoice $ (or local equivalent)50 instead.
 func (o CouponOutput) PercentOff() pulumi.Float64Output {
 	return o.ApplyT(func(v *Coupon) pulumi.Float64Output { return v.PercentOff }).(pulumi.Float64Output)
 }
 
-// Unix timestamp specifying the last time at which the coupon can be redeemed. After the<span pulumi-lang-nodejs=" redeemBy " pulumi-lang-dotnet=" RedeemBy " pulumi-lang-go=" redeemBy " pulumi-lang-python=" redeem_by " pulumi-lang-yaml=" redeemBy " pulumi-lang-java=" redeemBy " pulumi-lang-hcl=" redeem_by "> redeemBy </span>date, the coupon can no longer be applied to new customers.
+// Date after which the coupon can no longer be redeemed.
 func (o CouponOutput) RedeemBy() pulumi.Float64Output {
 	return o.ApplyT(func(v *Coupon) pulumi.Float64Output { return v.RedeemBy }).(pulumi.Float64Output)
-}
-
-// Configuration of the [script](https://docs.stripe.com/billing/subscriptions/script-coupons) used to calculate the discount.
-func (o CouponOutput) Script() CouponScriptPtrOutput {
-	return o.ApplyT(func(v *Coupon) CouponScriptPtrOutput { return v.Script }).(CouponScriptPtrOutput)
 }
 
 // Number of times this coupon has been applied to a customer.
 func (o CouponOutput) TimesRedeemed() pulumi.Float64Output {
 	return o.ApplyT(func(v *Coupon) pulumi.Float64Output { return v.TimesRedeemed }).(pulumi.Float64Output)
-}
-
-// One of <span pulumi-lang-nodejs="`amountOff`" pulumi-lang-dotnet="`AmountOff`" pulumi-lang-go="`amountOff`" pulumi-lang-python="`amount_off`" pulumi-lang-yaml="`amountOff`" pulumi-lang-java="`amountOff`" pulumi-lang-hcl="`amount_off`">`amountOff`</span>, <span pulumi-lang-nodejs="`percentOff`" pulumi-lang-dotnet="`PercentOff`" pulumi-lang-go="`percentOff`" pulumi-lang-python="`percent_off`" pulumi-lang-yaml="`percentOff`" pulumi-lang-java="`percentOff`" pulumi-lang-hcl="`percent_off`">`percentOff`</span>, or <span pulumi-lang-nodejs="`script`" pulumi-lang-dotnet="`Script`" pulumi-lang-go="`script`" pulumi-lang-python="`script`" pulumi-lang-yaml="`script`" pulumi-lang-java="`script`" pulumi-lang-hcl="`script`">`script`</span>. Describes the type of coupon logic used to calculate the discount.
-func (o CouponOutput) Type() pulumi.StringOutput {
-	return o.ApplyT(func(v *Coupon) pulumi.StringOutput { return v.Type }).(pulumi.StringOutput)
 }
 
 // Taking account of the above properties, whether this coupon can still be applied to a customer.

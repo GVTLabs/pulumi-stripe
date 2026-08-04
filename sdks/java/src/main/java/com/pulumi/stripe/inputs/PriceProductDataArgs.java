@@ -49,14 +49,14 @@ public final class PriceProductDataArgs extends com.pulumi.resources.ResourceArg
     }
 
     /**
-     * Set of [key-value pairs](https://stripe.com/docs/api/metadata) that you can attach to an object. This can be useful for storing additional information about the object in a structured format. Individual keys can be unset by posting an empty value to them. All keys can be unset by posting an empty value to &lt;span pulumi-lang-nodejs=&#34;`metadata`&#34; pulumi-lang-dotnet=&#34;`Metadata`&#34; pulumi-lang-go=&#34;`metadata`&#34; pulumi-lang-python=&#34;`metadata`&#34; pulumi-lang-yaml=&#34;`metadata`&#34; pulumi-lang-java=&#34;`metadata`&#34; pulumi-lang-hcl=&#34;`metadata`&#34;&gt;`metadata`&lt;/span&gt;.
+     * Set of [key-value pairs](https://docs.stripe.com/api/metadata) that you can attach to an object. This can be useful for storing additional information about the object in a structured format. Individual keys can be unset by posting an empty value to them. All keys can be unset by posting an empty value to &lt;span pulumi-lang-nodejs=&#34;`metadata`&#34; pulumi-lang-dotnet=&#34;`Metadata`&#34; pulumi-lang-go=&#34;`metadata`&#34; pulumi-lang-python=&#34;`metadata`&#34; pulumi-lang-yaml=&#34;`metadata`&#34; pulumi-lang-java=&#34;`metadata`&#34; pulumi-lang-hcl=&#34;`metadata`&#34;&gt;`metadata`&lt;/span&gt;.
      * 
      */
     @Import(name="metadata")
     private @Nullable Output<Map<String,String>> metadata;
 
     /**
-     * @return Set of [key-value pairs](https://stripe.com/docs/api/metadata) that you can attach to an object. This can be useful for storing additional information about the object in a structured format. Individual keys can be unset by posting an empty value to them. All keys can be unset by posting an empty value to &lt;span pulumi-lang-nodejs=&#34;`metadata`&#34; pulumi-lang-dotnet=&#34;`Metadata`&#34; pulumi-lang-go=&#34;`metadata`&#34; pulumi-lang-python=&#34;`metadata`&#34; pulumi-lang-yaml=&#34;`metadata`&#34; pulumi-lang-java=&#34;`metadata`&#34; pulumi-lang-hcl=&#34;`metadata`&#34;&gt;`metadata`&lt;/span&gt;.
+     * @return Set of [key-value pairs](https://docs.stripe.com/api/metadata) that you can attach to an object. This can be useful for storing additional information about the object in a structured format. Individual keys can be unset by posting an empty value to them. All keys can be unset by posting an empty value to &lt;span pulumi-lang-nodejs=&#34;`metadata`&#34; pulumi-lang-dotnet=&#34;`Metadata`&#34; pulumi-lang-go=&#34;`metadata`&#34; pulumi-lang-python=&#34;`metadata`&#34; pulumi-lang-yaml=&#34;`metadata`&#34; pulumi-lang-java=&#34;`metadata`&#34; pulumi-lang-hcl=&#34;`metadata`&#34;&gt;`metadata`&lt;/span&gt;.
      * 
      */
     public Optional<Output<Map<String,String>>> metadata() {
@@ -79,14 +79,18 @@ public final class PriceProductDataArgs extends com.pulumi.resources.ResourceArg
     }
 
     /**
-     * An arbitrary string to be displayed on your customer&#39;s credit card or bank statement. While most banks display this information consistently, some may display it incorrectly or not at all. This may be up to 22 characters. The statement description may not include `&lt;`, `&gt;`, `\`, `\&#34;`, `&#39;` characters, and will appear on your customer&#39;s statement in capital letters. Non-ASCII characters are automatically stripped.
+     * An arbitrary string to be displayed on your customer&#39;s credit card or bank statement. While most banks display this information consistently, some may display it incorrectly or not at all.
+     * 
+     * This may be up to 22 characters. The statement description may not include `&lt;`, `&gt;`, `\`, `&#34;`, `&#39;` characters, and will appear on your customer&#39;s statement in capital letters. Non-ASCII characters are automatically stripped.
      * 
      */
     @Import(name="statementDescriptor")
     private @Nullable Output<String> statementDescriptor;
 
     /**
-     * @return An arbitrary string to be displayed on your customer&#39;s credit card or bank statement. While most banks display this information consistently, some may display it incorrectly or not at all. This may be up to 22 characters. The statement description may not include `&lt;`, `&gt;`, `\`, `\&#34;`, `&#39;` characters, and will appear on your customer&#39;s statement in capital letters. Non-ASCII characters are automatically stripped.
+     * @return An arbitrary string to be displayed on your customer&#39;s credit card or bank statement. While most banks display this information consistently, some may display it incorrectly or not at all.
+     * 
+     * This may be up to 22 characters. The statement description may not include `&lt;`, `&gt;`, `\`, `&#34;`, `&#39;` characters, and will appear on your customer&#39;s statement in capital letters. Non-ASCII characters are automatically stripped.
      * 
      */
     public Optional<Output<String>> statementDescriptor() {
@@ -94,14 +98,14 @@ public final class PriceProductDataArgs extends com.pulumi.resources.ResourceArg
     }
 
     /**
-     * A [tax code](https://stripe.com/docs/tax/tax-categories) ID.
+     * A [tax code](https://docs.stripe.com/tax/tax-categories) ID.
      * 
      */
     @Import(name="taxCode")
     private @Nullable Output<String> taxCode;
 
     /**
-     * @return A [tax code](https://stripe.com/docs/tax/tax-categories) ID.
+     * @return A [tax code](https://docs.stripe.com/tax/tax-categories) ID.
      * 
      */
     public Optional<Output<String>> taxCode() {
@@ -196,7 +200,7 @@ public final class PriceProductDataArgs extends com.pulumi.resources.ResourceArg
         }
 
         /**
-         * @param metadata Set of [key-value pairs](https://stripe.com/docs/api/metadata) that you can attach to an object. This can be useful for storing additional information about the object in a structured format. Individual keys can be unset by posting an empty value to them. All keys can be unset by posting an empty value to &lt;span pulumi-lang-nodejs=&#34;`metadata`&#34; pulumi-lang-dotnet=&#34;`Metadata`&#34; pulumi-lang-go=&#34;`metadata`&#34; pulumi-lang-python=&#34;`metadata`&#34; pulumi-lang-yaml=&#34;`metadata`&#34; pulumi-lang-java=&#34;`metadata`&#34; pulumi-lang-hcl=&#34;`metadata`&#34;&gt;`metadata`&lt;/span&gt;.
+         * @param metadata Set of [key-value pairs](https://docs.stripe.com/api/metadata) that you can attach to an object. This can be useful for storing additional information about the object in a structured format. Individual keys can be unset by posting an empty value to them. All keys can be unset by posting an empty value to &lt;span pulumi-lang-nodejs=&#34;`metadata`&#34; pulumi-lang-dotnet=&#34;`Metadata`&#34; pulumi-lang-go=&#34;`metadata`&#34; pulumi-lang-python=&#34;`metadata`&#34; pulumi-lang-yaml=&#34;`metadata`&#34; pulumi-lang-java=&#34;`metadata`&#34; pulumi-lang-hcl=&#34;`metadata`&#34;&gt;`metadata`&lt;/span&gt;.
          * 
          * @return builder
          * 
@@ -207,7 +211,7 @@ public final class PriceProductDataArgs extends com.pulumi.resources.ResourceArg
         }
 
         /**
-         * @param metadata Set of [key-value pairs](https://stripe.com/docs/api/metadata) that you can attach to an object. This can be useful for storing additional information about the object in a structured format. Individual keys can be unset by posting an empty value to them. All keys can be unset by posting an empty value to &lt;span pulumi-lang-nodejs=&#34;`metadata`&#34; pulumi-lang-dotnet=&#34;`Metadata`&#34; pulumi-lang-go=&#34;`metadata`&#34; pulumi-lang-python=&#34;`metadata`&#34; pulumi-lang-yaml=&#34;`metadata`&#34; pulumi-lang-java=&#34;`metadata`&#34; pulumi-lang-hcl=&#34;`metadata`&#34;&gt;`metadata`&lt;/span&gt;.
+         * @param metadata Set of [key-value pairs](https://docs.stripe.com/api/metadata) that you can attach to an object. This can be useful for storing additional information about the object in a structured format. Individual keys can be unset by posting an empty value to them. All keys can be unset by posting an empty value to &lt;span pulumi-lang-nodejs=&#34;`metadata`&#34; pulumi-lang-dotnet=&#34;`Metadata`&#34; pulumi-lang-go=&#34;`metadata`&#34; pulumi-lang-python=&#34;`metadata`&#34; pulumi-lang-yaml=&#34;`metadata`&#34; pulumi-lang-java=&#34;`metadata`&#34; pulumi-lang-hcl=&#34;`metadata`&#34;&gt;`metadata`&lt;/span&gt;.
          * 
          * @return builder
          * 
@@ -238,7 +242,9 @@ public final class PriceProductDataArgs extends com.pulumi.resources.ResourceArg
         }
 
         /**
-         * @param statementDescriptor An arbitrary string to be displayed on your customer&#39;s credit card or bank statement. While most banks display this information consistently, some may display it incorrectly or not at all. This may be up to 22 characters. The statement description may not include `&lt;`, `&gt;`, `\`, `\&#34;`, `&#39;` characters, and will appear on your customer&#39;s statement in capital letters. Non-ASCII characters are automatically stripped.
+         * @param statementDescriptor An arbitrary string to be displayed on your customer&#39;s credit card or bank statement. While most banks display this information consistently, some may display it incorrectly or not at all.
+         * 
+         * This may be up to 22 characters. The statement description may not include `&lt;`, `&gt;`, `\`, `&#34;`, `&#39;` characters, and will appear on your customer&#39;s statement in capital letters. Non-ASCII characters are automatically stripped.
          * 
          * @return builder
          * 
@@ -249,7 +255,9 @@ public final class PriceProductDataArgs extends com.pulumi.resources.ResourceArg
         }
 
         /**
-         * @param statementDescriptor An arbitrary string to be displayed on your customer&#39;s credit card or bank statement. While most banks display this information consistently, some may display it incorrectly or not at all. This may be up to 22 characters. The statement description may not include `&lt;`, `&gt;`, `\`, `\&#34;`, `&#39;` characters, and will appear on your customer&#39;s statement in capital letters. Non-ASCII characters are automatically stripped.
+         * @param statementDescriptor An arbitrary string to be displayed on your customer&#39;s credit card or bank statement. While most banks display this information consistently, some may display it incorrectly or not at all.
+         * 
+         * This may be up to 22 characters. The statement description may not include `&lt;`, `&gt;`, `\`, `&#34;`, `&#39;` characters, and will appear on your customer&#39;s statement in capital letters. Non-ASCII characters are automatically stripped.
          * 
          * @return builder
          * 
@@ -259,7 +267,7 @@ public final class PriceProductDataArgs extends com.pulumi.resources.ResourceArg
         }
 
         /**
-         * @param taxCode A [tax code](https://stripe.com/docs/tax/tax-categories) ID.
+         * @param taxCode A [tax code](https://docs.stripe.com/tax/tax-categories) ID.
          * 
          * @return builder
          * 
@@ -270,7 +278,7 @@ public final class PriceProductDataArgs extends com.pulumi.resources.ResourceArg
         }
 
         /**
-         * @param taxCode A [tax code](https://stripe.com/docs/tax/tax-categories) ID.
+         * @param taxCode A [tax code](https://docs.stripe.com/tax/tax-categories) ID.
          * 
          * @return builder
          * 

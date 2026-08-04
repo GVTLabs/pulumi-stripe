@@ -18,7 +18,7 @@ namespace Pulumi.Stripe.Outputs
         /// </summary>
         public readonly string? SigningSecret;
         /// <summary>
-        /// The URL of the webhook endpoint.
+        /// The URL of the webhook endpoint, includable.
         /// </summary>
         public readonly string Url;
 

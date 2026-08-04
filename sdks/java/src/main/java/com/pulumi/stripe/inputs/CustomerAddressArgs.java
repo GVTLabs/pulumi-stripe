@@ -31,14 +31,14 @@ public final class CustomerAddressArgs extends com.pulumi.resources.ResourceArgs
     }
 
     /**
-     * A freeform text field for the country. However, in order to activate some tax features, the format should be a two-letter country code ([ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2)).
+     * Two-letter country code ([ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2)).
      * 
      */
     @Import(name="country")
     private @Nullable Output<String> country;
 
     /**
-     * @return A freeform text field for the country. However, in order to activate some tax features, the format should be a two-letter country code ([ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2)).
+     * @return Two-letter country code ([ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2)).
      * 
      */
     public Optional<Output<String>> country() {
@@ -91,14 +91,14 @@ public final class CustomerAddressArgs extends com.pulumi.resources.ResourceArgs
     }
 
     /**
-     * State, county, province, or region.
+     * State, county, province, or region ([ISO 3166-2](https://en.wikipedia.org/wiki/ISO_3166-2)).
      * 
      */
     @Import(name="state")
     private @Nullable Output<String> state;
 
     /**
-     * @return State, county, province, or region.
+     * @return State, county, province, or region ([ISO 3166-2](https://en.wikipedia.org/wiki/ISO_3166-2)).
      * 
      */
     public Optional<Output<String>> state() {
@@ -156,7 +156,7 @@ public final class CustomerAddressArgs extends com.pulumi.resources.ResourceArgs
         }
 
         /**
-         * @param country A freeform text field for the country. However, in order to activate some tax features, the format should be a two-letter country code ([ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2)).
+         * @param country Two-letter country code ([ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2)).
          * 
          * @return builder
          * 
@@ -167,7 +167,7 @@ public final class CustomerAddressArgs extends com.pulumi.resources.ResourceArgs
         }
 
         /**
-         * @param country A freeform text field for the country. However, in order to activate some tax features, the format should be a two-letter country code ([ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2)).
+         * @param country Two-letter country code ([ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2)).
          * 
          * @return builder
          * 
@@ -240,7 +240,7 @@ public final class CustomerAddressArgs extends com.pulumi.resources.ResourceArgs
         }
 
         /**
-         * @param state State, county, province, or region.
+         * @param state State, county, province, or region ([ISO 3166-2](https://en.wikipedia.org/wiki/ISO_3166-2)).
          * 
          * @return builder
          * 
@@ -251,7 +251,7 @@ public final class CustomerAddressArgs extends com.pulumi.resources.ResourceArgs
         }
 
         /**
-         * @param state State, county, province, or region.
+         * @param state State, county, province, or region ([ISO 3166-2](https://en.wikipedia.org/wiki/ISO_3166-2)).
          * 
          * @return builder
          * 

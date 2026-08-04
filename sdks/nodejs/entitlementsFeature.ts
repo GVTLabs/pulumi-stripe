@@ -37,6 +37,10 @@ export class EntitlementsFeature extends pulumi.CustomResource {
      */
     declare public /*out*/ readonly active: pulumi.Output<boolean>;
     /**
+     * If the object exists in live mode, the value is <span pulumi-lang-nodejs="`true`" pulumi-lang-dotnet="`True`" pulumi-lang-go="`true`" pulumi-lang-python="`true`" pulumi-lang-yaml="`true`" pulumi-lang-java="`true`" pulumi-lang-hcl="`true`">`true`</span>. If the object exists in test mode, the value is <span pulumi-lang-nodejs="`false`" pulumi-lang-dotnet="`False`" pulumi-lang-go="`false`" pulumi-lang-python="`false`" pulumi-lang-yaml="`false`" pulumi-lang-java="`false`" pulumi-lang-hcl="`false`">`false`</span>.
+     */
+    declare public /*out*/ readonly livemode: pulumi.Output<boolean>;
+    /**
      * A unique key you provide as your own system identifier. This may be up to 80 characters.
      */
     declare public readonly lookupKey: pulumi.Output<string>;
@@ -48,6 +52,10 @@ export class EntitlementsFeature extends pulumi.CustomResource {
      * The feature's name, for your own purpose, not meant to be displayable to the customer.
      */
     declare public readonly name: pulumi.Output<string>;
+    /**
+     * String representing the object's type. Objects of the same type share the same value.
+     */
+    declare public /*out*/ readonly object: pulumi.Output<string>;
 
     /**
      * Create a EntitlementsFeature resource with the given unique name, arguments, and options.
@@ -63,9 +71,11 @@ export class EntitlementsFeature extends pulumi.CustomResource {
         if (opts.id) {
             const state = argsOrState as EntitlementsFeatureState | undefined;
             resourceInputs["active"] = state?.active;
+            resourceInputs["livemode"] = state?.livemode;
             resourceInputs["lookupKey"] = state?.lookupKey;
             resourceInputs["metadata"] = state?.metadata;
             resourceInputs["name"] = state?.name;
+            resourceInputs["object"] = state?.object;
         } else {
             const args = argsOrState as EntitlementsFeatureArgs | undefined;
             if (args?.lookupKey === undefined && !opts.urn) {
@@ -75,6 +85,8 @@ export class EntitlementsFeature extends pulumi.CustomResource {
             resourceInputs["metadata"] = args?.metadata;
             resourceInputs["name"] = args?.name;
             resourceInputs["active"] = undefined /*out*/;
+            resourceInputs["livemode"] = undefined /*out*/;
+            resourceInputs["object"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(EntitlementsFeature.__pulumiType, name, resourceInputs, opts, false /*dependency*/, utilities.getPackage());
@@ -90,6 +102,10 @@ export interface EntitlementsFeatureState {
      */
     active?: pulumi.Input<boolean | undefined>;
     /**
+     * If the object exists in live mode, the value is <span pulumi-lang-nodejs="`true`" pulumi-lang-dotnet="`True`" pulumi-lang-go="`true`" pulumi-lang-python="`true`" pulumi-lang-yaml="`true`" pulumi-lang-java="`true`" pulumi-lang-hcl="`true`">`true`</span>. If the object exists in test mode, the value is <span pulumi-lang-nodejs="`false`" pulumi-lang-dotnet="`False`" pulumi-lang-go="`false`" pulumi-lang-python="`false`" pulumi-lang-yaml="`false`" pulumi-lang-java="`false`" pulumi-lang-hcl="`false`">`false`</span>.
+     */
+    livemode?: pulumi.Input<boolean | undefined>;
+    /**
      * A unique key you provide as your own system identifier. This may be up to 80 characters.
      */
     lookupKey?: pulumi.Input<string | undefined>;
@@ -101,6 +117,10 @@ export interface EntitlementsFeatureState {
      * The feature's name, for your own purpose, not meant to be displayable to the customer.
      */
     name?: pulumi.Input<string | undefined>;
+    /**
+     * String representing the object's type. Objects of the same type share the same value.
+     */
+    object?: pulumi.Input<string | undefined>;
 }
 
 /**
