@@ -175,7 +175,7 @@ func PkgGetPackageRef(ctx *pulumi.Context) (string, error) {
 
 		return &pulumirpc.RegisterPackageRequest{
 			Name:        "terraform-provider",
-			Version:     "1.1.4",
+			Version:     "1.2.1",
 			DownloadUrl: "",
 			Parameterization: &pulumirpc.Parameterization{
 				Name:    "stripe",

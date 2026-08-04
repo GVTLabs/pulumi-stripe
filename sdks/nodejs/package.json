@@ -16,7 +16,7 @@
     "pulumi": {
         "resource": true,
         "name": "terraform-provider",
-        "version": "1.1.4",
+        "version": "1.2.1",
         "parameterization": {
             "name": "stripe",
             "version": "0.3.0-beta.3",

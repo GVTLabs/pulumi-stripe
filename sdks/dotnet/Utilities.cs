@@ -67,7 +67,7 @@ namespace Pulumi.Stripe
         {
             return new global::Pulumi.RegisterPackageRequest(
                 name: "terraform-provider",
-                version: "1.1.4",
+                version: "1.2.1",
                 downloadUrl: "",
                 parameterization: new global::Pulumi.RegisterPackageRequest.PackageParameterization(
                     name: "stripe",

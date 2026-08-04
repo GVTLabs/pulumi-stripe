@@ -109,7 +109,7 @@ public class Utilities {
 			// Base provider name
 			"terraform-provider",
 			// Base provider version
-			"1.1.4",
+			"1.2.1",
 			// Base provider download URL
 			"",
 			// Package name
