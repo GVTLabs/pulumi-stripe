@@ -67,12 +67,12 @@ namespace Pulumi.Stripe
         {
             return new global::Pulumi.RegisterPackageRequest(
                 name: "terraform-provider",
-                version: "1.2.1",
+                version: "1.3.0",
                 downloadUrl: "",
                 parameterization: new global::Pulumi.RegisterPackageRequest.PackageParameterization(
                     name: "stripe",
-                    version: "0.3.0-beta.3",
-                    value: global::System.Convert.FromBase64String("eyJyZW1vdGUiOnsidXJsIjoicmVnaXN0cnkub3BlbnRvZnUub3JnL3N0cmlwZS9zdHJpcGUiLCJ2ZXJzaW9uIjoiMC4zLjAtYmV0YS4zIn19")));
+                    version: "0.3.0-beta.4",
+                    value: global::System.Convert.FromBase64String("eyJyZW1vdGUiOnsidXJsIjoicmVnaXN0cnkub3BlbnRvZnUub3JnL3N0cmlwZS9zdHJpcGUiLCJ2ZXJzaW9uIjoiMC4zLjAtYmV0YS40In19")));
         }
 
         private readonly static string version;
