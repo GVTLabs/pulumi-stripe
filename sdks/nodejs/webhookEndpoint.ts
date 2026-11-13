@@ -18,6 +18,17 @@ export class WebhookEndpoint extends pulumi.CustomResource {
         return new WebhookEndpoint(name, <any>state, { ...opts, id: id });
     }
 
+    /**
+     * Check whether an existing WebhookEndpoint resource with the given ID exists.
+     *
+     * @param id The _unique_ provider ID of the resource to check.
+     * @param state Any extra arguments used during the lookup.
+     * @param opts Optional settings to control the behavior of the CustomResource.
+     */
+    public static exists(id: pulumi.Input<string>, state?: WebhookEndpointState, opts?: pulumi.CustomResourceOptions): pulumi.Output<boolean> {
+        return pulumi.runtime.existsResource("stripe:index/webhookEndpoint:WebhookEndpoint", id, <any>state || {}, { ...opts }, utilities.getPackage());
+    }
+
     /** @internal */
     public static readonly __pulumiType = 'stripe:index/webhookEndpoint:WebhookEndpoint';
 
@@ -33,7 +44,7 @@ export class WebhookEndpoint extends pulumi.CustomResource {
     }
 
     /**
-     * The API version events are rendered as for this webhook endpoint.
+     * The API version that events are rendered as for this webhook endpoint. You can't change this value after you create the endpoint.
      */
     declare public readonly apiVersion: pulumi.Output<string>;
     /**
@@ -139,7 +150,7 @@ export class WebhookEndpoint extends pulumi.CustomResource {
  */
 export interface WebhookEndpointState {
     /**
-     * The API version events are rendered as for this webhook endpoint.
+     * The API version that events are rendered as for this webhook endpoint. You can't change this value after you create the endpoint.
      */
     apiVersion?: pulumi.Input<string | undefined>;
     /**
@@ -193,7 +204,7 @@ export interface WebhookEndpointState {
  */
 export interface WebhookEndpointArgs {
     /**
-     * The API version events are rendered as for this webhook endpoint.
+     * The API version that events are rendered as for this webhook endpoint. You can't change this value after you create the endpoint.
      */
     apiVersion?: pulumi.Input<string | undefined>;
     /**

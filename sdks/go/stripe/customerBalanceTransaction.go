@@ -151,6 +151,18 @@ func (CustomerBalanceTransactionState) ElementType() reflect.Type {
 	return reflect.TypeOf((*customerBalanceTransactionState)(nil)).Elem()
 }
 
+// CustomerBalanceTransactionExists checks whether an existing CustomerBalanceTransaction resource with the given ID exists.
+func CustomerBalanceTransactionExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *CustomerBalanceTransactionState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	ref, err := internal.PkgGetPackageRef(ctx)
+	if err != nil {
+		return pulumi.Bool(false).ToBoolOutput().ApplyT(func(bool) (bool, error) {
+			return false, err
+		}).(pulumi.BoolOutput)
+	}
+	return ctx.ExistsResource("stripe:index/customerBalanceTransaction:CustomerBalanceTransaction", id, state, ref, opts...)
+}
+
 type customerBalanceTransactionArgs struct {
 	// The amount of the transaction. A negative value is a credit for the customer's balance, and a positive value is a debit to the customer's <span pulumi-lang-nodejs="`balance`" pulumi-lang-dotnet="`Balance`" pulumi-lang-go="`balance`" pulumi-lang-python="`balance`" pulumi-lang-yaml="`balance`" pulumi-lang-java="`balance`" pulumi-lang-hcl="`balance`">`balance`</span>.
 	Amount float64 `pulumi:"amount"`

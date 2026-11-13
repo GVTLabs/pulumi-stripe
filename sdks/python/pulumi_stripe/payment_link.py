@@ -64,7 +64,7 @@ class PaymentLinkArgs:
         :param pulumi.Input[_builtins.str] billing_address_collection: Configuration for collecting the customer's billing address. Defaults to <span pulumi-lang-nodejs="`auto`" pulumi-lang-dotnet="`Auto`" pulumi-lang-go="`auto`" pulumi-lang-python="`auto`" pulumi-lang-yaml="`auto`" pulumi-lang-java="`auto`" pulumi-lang-hcl="`auto`">`auto`</span>.
         :param pulumi.Input['PaymentLinkConsentCollectionArgs'] consent_collection: When set, provides configuration to gather active consent from customers.
         :param pulumi.Input[_builtins.str] currency: Three-letter [ISO currency code](https://www.iso.org/iso-4217-currency-codes.html), in lowercase. Must be a [supported currency](https://stripe.com/docs/currencies).
-        :param pulumi.Input[Sequence[pulumi.Input['PaymentLinkCustomFieldArgs']]] custom_fields: Collect additional information from your customer using custom fields. Up to 3 fields are supported. You can't set this parameter if <span pulumi-lang-nodejs="`uiMode`" pulumi-lang-dotnet="`UiMode`" pulumi-lang-go="`uiMode`" pulumi-lang-python="`ui_mode`" pulumi-lang-yaml="`uiMode`" pulumi-lang-java="`uiMode`" pulumi-lang-hcl="`ui_mode`">`uiMode`</span> is <span pulumi-lang-nodejs="`custom`" pulumi-lang-dotnet="`Custom`" pulumi-lang-go="`custom`" pulumi-lang-python="`custom`" pulumi-lang-yaml="`custom`" pulumi-lang-java="`custom`" pulumi-lang-hcl="`custom`">`custom`</span>.
+        :param pulumi.Input[Sequence[pulumi.Input['PaymentLinkCustomFieldArgs']]] custom_fields: Collect additional information from your customer using custom fields. Up to 3 fields are supported. You can't set this parameter if <span pulumi-lang-nodejs="`uiMode`" pulumi-lang-dotnet="`UiMode`" pulumi-lang-go="`uiMode`" pulumi-lang-python="`ui_mode`" pulumi-lang-yaml="`uiMode`" pulumi-lang-java="`uiMode`" pulumi-lang-hcl="`ui_mode`">`uiMode`</span> is <span pulumi-lang-nodejs="`elements`" pulumi-lang-dotnet="`Elements`" pulumi-lang-go="`elements`" pulumi-lang-python="`elements`" pulumi-lang-yaml="`elements`" pulumi-lang-java="`elements`" pulumi-lang-hcl="`elements`">`elements`</span>.
         :param pulumi.Input[_builtins.str] customer_creation: Configuration for Customer creation during checkout.
         :param pulumi.Input[_builtins.str] inactive_message: The custom message to be displayed to a customer when a payment link is no longer active.
         :param pulumi.Input['PaymentLinkInvoiceCreationArgs'] invoice_creation: Configuration for creating invoice for payment mode payment links.
@@ -265,7 +265,7 @@ class PaymentLinkArgs:
     @pulumi.getter(name="customFields")
     def custom_fields(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['PaymentLinkCustomFieldArgs']]]]:
         """
-        Collect additional information from your customer using custom fields. Up to 3 fields are supported. You can't set this parameter if <span pulumi-lang-nodejs="`uiMode`" pulumi-lang-dotnet="`UiMode`" pulumi-lang-go="`uiMode`" pulumi-lang-python="`ui_mode`" pulumi-lang-yaml="`uiMode`" pulumi-lang-java="`uiMode`" pulumi-lang-hcl="`ui_mode`">`uiMode`</span> is <span pulumi-lang-nodejs="`custom`" pulumi-lang-dotnet="`Custom`" pulumi-lang-go="`custom`" pulumi-lang-python="`custom`" pulumi-lang-yaml="`custom`" pulumi-lang-java="`custom`" pulumi-lang-hcl="`custom`">`custom`</span>.
+        Collect additional information from your customer using custom fields. Up to 3 fields are supported. You can't set this parameter if <span pulumi-lang-nodejs="`uiMode`" pulumi-lang-dotnet="`UiMode`" pulumi-lang-go="`uiMode`" pulumi-lang-python="`ui_mode`" pulumi-lang-yaml="`uiMode`" pulumi-lang-java="`uiMode`" pulumi-lang-hcl="`ui_mode`">`uiMode`</span> is <span pulumi-lang-nodejs="`elements`" pulumi-lang-dotnet="`Elements`" pulumi-lang-go="`elements`" pulumi-lang-python="`elements`" pulumi-lang-yaml="`elements`" pulumi-lang-java="`elements`" pulumi-lang-hcl="`elements`">`elements`</span>.
         """
         return pulumi.get(self, "custom_fields")
 
@@ -564,7 +564,7 @@ class _PaymentLinkState:
         :param pulumi.Input[_builtins.str] billing_address_collection: Configuration for collecting the customer's billing address. Defaults to <span pulumi-lang-nodejs="`auto`" pulumi-lang-dotnet="`Auto`" pulumi-lang-go="`auto`" pulumi-lang-python="`auto`" pulumi-lang-yaml="`auto`" pulumi-lang-java="`auto`" pulumi-lang-hcl="`auto`">`auto`</span>.
         :param pulumi.Input['PaymentLinkConsentCollectionArgs'] consent_collection: When set, provides configuration to gather active consent from customers.
         :param pulumi.Input[_builtins.str] currency: Three-letter [ISO currency code](https://www.iso.org/iso-4217-currency-codes.html), in lowercase. Must be a [supported currency](https://stripe.com/docs/currencies).
-        :param pulumi.Input[Sequence[pulumi.Input['PaymentLinkCustomFieldArgs']]] custom_fields: Collect additional information from your customer using custom fields. Up to 3 fields are supported. You can't set this parameter if <span pulumi-lang-nodejs="`uiMode`" pulumi-lang-dotnet="`UiMode`" pulumi-lang-go="`uiMode`" pulumi-lang-python="`ui_mode`" pulumi-lang-yaml="`uiMode`" pulumi-lang-java="`uiMode`" pulumi-lang-hcl="`ui_mode`">`uiMode`</span> is <span pulumi-lang-nodejs="`custom`" pulumi-lang-dotnet="`Custom`" pulumi-lang-go="`custom`" pulumi-lang-python="`custom`" pulumi-lang-yaml="`custom`" pulumi-lang-java="`custom`" pulumi-lang-hcl="`custom`">`custom`</span>.
+        :param pulumi.Input[Sequence[pulumi.Input['PaymentLinkCustomFieldArgs']]] custom_fields: Collect additional information from your customer using custom fields. Up to 3 fields are supported. You can't set this parameter if <span pulumi-lang-nodejs="`uiMode`" pulumi-lang-dotnet="`UiMode`" pulumi-lang-go="`uiMode`" pulumi-lang-python="`ui_mode`" pulumi-lang-yaml="`uiMode`" pulumi-lang-java="`uiMode`" pulumi-lang-hcl="`ui_mode`">`uiMode`</span> is <span pulumi-lang-nodejs="`elements`" pulumi-lang-dotnet="`Elements`" pulumi-lang-go="`elements`" pulumi-lang-python="`elements`" pulumi-lang-yaml="`elements`" pulumi-lang-java="`elements`" pulumi-lang-hcl="`elements`">`elements`</span>.
         :param pulumi.Input[_builtins.str] customer_creation: Configuration for Customer creation during checkout.
         :param pulumi.Input[_builtins.str] inactive_message: The custom message to be displayed to a customer when a payment link is no longer active.
         :param pulumi.Input['PaymentLinkInvoiceCreationArgs'] invoice_creation: Configuration for creating invoice for payment mode payment links.
@@ -778,7 +778,7 @@ class _PaymentLinkState:
     @pulumi.getter(name="customFields")
     def custom_fields(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['PaymentLinkCustomFieldArgs']]]]:
         """
-        Collect additional information from your customer using custom fields. Up to 3 fields are supported. You can't set this parameter if <span pulumi-lang-nodejs="`uiMode`" pulumi-lang-dotnet="`UiMode`" pulumi-lang-go="`uiMode`" pulumi-lang-python="`ui_mode`" pulumi-lang-yaml="`uiMode`" pulumi-lang-java="`uiMode`" pulumi-lang-hcl="`ui_mode`">`uiMode`</span> is <span pulumi-lang-nodejs="`custom`" pulumi-lang-dotnet="`Custom`" pulumi-lang-go="`custom`" pulumi-lang-python="`custom`" pulumi-lang-yaml="`custom`" pulumi-lang-java="`custom`" pulumi-lang-hcl="`custom`">`custom`</span>.
+        Collect additional information from your customer using custom fields. Up to 3 fields are supported. You can't set this parameter if <span pulumi-lang-nodejs="`uiMode`" pulumi-lang-dotnet="`UiMode`" pulumi-lang-go="`uiMode`" pulumi-lang-python="`ui_mode`" pulumi-lang-yaml="`uiMode`" pulumi-lang-java="`uiMode`" pulumi-lang-hcl="`ui_mode`">`uiMode`</span> is <span pulumi-lang-nodejs="`elements`" pulumi-lang-dotnet="`Elements`" pulumi-lang-go="`elements`" pulumi-lang-python="`elements`" pulumi-lang-yaml="`elements`" pulumi-lang-java="`elements`" pulumi-lang-hcl="`elements`">`elements`</span>.
         """
         return pulumi.get(self, "custom_fields")
 
@@ -1082,37 +1082,37 @@ class PaymentLink(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  active: pulumi.Input[Optional[_builtins.bool]] = None,
-                 after_completion: pulumi.Input[Optional[Union['PaymentLinkAfterCompletionArgs', 'PaymentLinkAfterCompletionArgsDict']]] = None,
+                 after_completion: pulumi.Input[Optional[Union['PaymentLinkAfterCompletionArgs', 'PaymentLinkAfterCompletionArgsDict', 'outputs.PaymentLinkAfterCompletion']]] = None,
                  allow_promotion_codes: pulumi.Input[Optional[_builtins.bool]] = None,
                  application_fee_amount: pulumi.Input[Optional[_builtins.float]] = None,
                  application_fee_percent: pulumi.Input[Optional[_builtins.float]] = None,
-                 automatic_tax: pulumi.Input[Optional[Union['PaymentLinkAutomaticTaxArgs', 'PaymentLinkAutomaticTaxArgsDict']]] = None,
+                 automatic_tax: pulumi.Input[Optional[Union['PaymentLinkAutomaticTaxArgs', 'PaymentLinkAutomaticTaxArgsDict', 'outputs.PaymentLinkAutomaticTax']]] = None,
                  billing_address_collection: pulumi.Input[Optional[_builtins.str]] = None,
-                 consent_collection: pulumi.Input[Optional[Union['PaymentLinkConsentCollectionArgs', 'PaymentLinkConsentCollectionArgsDict']]] = None,
+                 consent_collection: pulumi.Input[Optional[Union['PaymentLinkConsentCollectionArgs', 'PaymentLinkConsentCollectionArgsDict', 'outputs.PaymentLinkConsentCollection']]] = None,
                  currency: pulumi.Input[Optional[_builtins.str]] = None,
-                 custom_fields: pulumi.Input[Optional[Sequence[pulumi.Input[Union['PaymentLinkCustomFieldArgs', 'PaymentLinkCustomFieldArgsDict']]]]] = None,
-                 custom_text: pulumi.Input[Optional[Union['PaymentLinkCustomTextArgs', 'PaymentLinkCustomTextArgsDict']]] = None,
+                 custom_fields: pulumi.Input[Optional[Sequence[pulumi.Input[Union['PaymentLinkCustomFieldArgs', 'PaymentLinkCustomFieldArgsDict', 'outputs.PaymentLinkCustomField']]]]] = None,
+                 custom_text: pulumi.Input[Optional[Union['PaymentLinkCustomTextArgs', 'PaymentLinkCustomTextArgsDict', 'outputs.PaymentLinkCustomText']]] = None,
                  customer_creation: pulumi.Input[Optional[_builtins.str]] = None,
                  inactive_message: pulumi.Input[Optional[_builtins.str]] = None,
-                 invoice_creation: pulumi.Input[Optional[Union['PaymentLinkInvoiceCreationArgs', 'PaymentLinkInvoiceCreationArgsDict']]] = None,
-                 line_items: pulumi.Input[Optional[Sequence[pulumi.Input[Union['PaymentLinkLineItemArgs', 'PaymentLinkLineItemArgsDict']]]]] = None,
-                 managed_payments: pulumi.Input[Optional[Union['PaymentLinkManagedPaymentsArgs', 'PaymentLinkManagedPaymentsArgsDict']]] = None,
+                 invoice_creation: pulumi.Input[Optional[Union['PaymentLinkInvoiceCreationArgs', 'PaymentLinkInvoiceCreationArgsDict', 'outputs.PaymentLinkInvoiceCreation']]] = None,
+                 line_items: pulumi.Input[Optional[Sequence[pulumi.Input[Union['PaymentLinkLineItemArgs', 'PaymentLinkLineItemArgsDict', 'outputs.PaymentLinkLineItem']]]]] = None,
+                 managed_payments: pulumi.Input[Optional[Union['PaymentLinkManagedPaymentsArgs', 'PaymentLinkManagedPaymentsArgsDict', 'outputs.PaymentLinkManagedPayments']]] = None,
                  metadata: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-                 name_collection: pulumi.Input[Optional[Union['PaymentLinkNameCollectionArgs', 'PaymentLinkNameCollectionArgsDict']]] = None,
+                 name_collection: pulumi.Input[Optional[Union['PaymentLinkNameCollectionArgs', 'PaymentLinkNameCollectionArgsDict', 'outputs.PaymentLinkNameCollection']]] = None,
                  on_behalf_of: pulumi.Input[Optional[_builtins.str]] = None,
-                 optional_items: pulumi.Input[Optional[Sequence[pulumi.Input[Union['PaymentLinkOptionalItemArgs', 'PaymentLinkOptionalItemArgsDict']]]]] = None,
-                 payment_intent_data: pulumi.Input[Optional[Union['PaymentLinkPaymentIntentDataArgs', 'PaymentLinkPaymentIntentDataArgsDict']]] = None,
+                 optional_items: pulumi.Input[Optional[Sequence[pulumi.Input[Union['PaymentLinkOptionalItemArgs', 'PaymentLinkOptionalItemArgsDict', 'outputs.PaymentLinkOptionalItem']]]]] = None,
+                 payment_intent_data: pulumi.Input[Optional[Union['PaymentLinkPaymentIntentDataArgs', 'PaymentLinkPaymentIntentDataArgsDict', 'outputs.PaymentLinkPaymentIntentData']]] = None,
                  payment_method_collection: pulumi.Input[Optional[_builtins.str]] = None,
-                 payment_method_options: pulumi.Input[Optional[Union['PaymentLinkPaymentMethodOptionsArgs', 'PaymentLinkPaymentMethodOptionsArgsDict']]] = None,
+                 payment_method_options: pulumi.Input[Optional[Union['PaymentLinkPaymentMethodOptionsArgs', 'PaymentLinkPaymentMethodOptionsArgsDict', 'outputs.PaymentLinkPaymentMethodOptions']]] = None,
                  payment_method_types: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 phone_number_collection: pulumi.Input[Optional[Union['PaymentLinkPhoneNumberCollectionArgs', 'PaymentLinkPhoneNumberCollectionArgsDict']]] = None,
-                 restrictions: pulumi.Input[Optional[Union['PaymentLinkRestrictionsArgs', 'PaymentLinkRestrictionsArgsDict']]] = None,
-                 shipping_address_collection: pulumi.Input[Optional[Union['PaymentLinkShippingAddressCollectionArgs', 'PaymentLinkShippingAddressCollectionArgsDict']]] = None,
-                 shipping_options: pulumi.Input[Optional[Sequence[pulumi.Input[Union['PaymentLinkShippingOptionArgs', 'PaymentLinkShippingOptionArgsDict']]]]] = None,
+                 phone_number_collection: pulumi.Input[Optional[Union['PaymentLinkPhoneNumberCollectionArgs', 'PaymentLinkPhoneNumberCollectionArgsDict', 'outputs.PaymentLinkPhoneNumberCollection']]] = None,
+                 restrictions: pulumi.Input[Optional[Union['PaymentLinkRestrictionsArgs', 'PaymentLinkRestrictionsArgsDict', 'outputs.PaymentLinkRestrictions']]] = None,
+                 shipping_address_collection: pulumi.Input[Optional[Union['PaymentLinkShippingAddressCollectionArgs', 'PaymentLinkShippingAddressCollectionArgsDict', 'outputs.PaymentLinkShippingAddressCollection']]] = None,
+                 shipping_options: pulumi.Input[Optional[Sequence[pulumi.Input[Union['PaymentLinkShippingOptionArgs', 'PaymentLinkShippingOptionArgsDict', 'outputs.PaymentLinkShippingOption']]]]] = None,
                  submit_type: pulumi.Input[Optional[_builtins.str]] = None,
-                 subscription_data: pulumi.Input[Optional[Union['PaymentLinkSubscriptionDataArgs', 'PaymentLinkSubscriptionDataArgsDict']]] = None,
-                 tax_id_collection: pulumi.Input[Optional[Union['PaymentLinkTaxIdCollectionArgs', 'PaymentLinkTaxIdCollectionArgsDict']]] = None,
-                 transfer_data: pulumi.Input[Optional[Union['PaymentLinkTransferDataArgs', 'PaymentLinkTransferDataArgsDict']]] = None,
+                 subscription_data: pulumi.Input[Optional[Union['PaymentLinkSubscriptionDataArgs', 'PaymentLinkSubscriptionDataArgsDict', 'outputs.PaymentLinkSubscriptionData']]] = None,
+                 tax_id_collection: pulumi.Input[Optional[Union['PaymentLinkTaxIdCollectionArgs', 'PaymentLinkTaxIdCollectionArgsDict', 'outputs.PaymentLinkTaxIdCollection']]] = None,
+                 transfer_data: pulumi.Input[Optional[Union['PaymentLinkTransferDataArgs', 'PaymentLinkTransferDataArgsDict', 'outputs.PaymentLinkTransferData']]] = None,
                  __props__=None):
         """
         Create a PaymentLink resource with the given unique name, props, and options.
@@ -1124,27 +1124,27 @@ class PaymentLink(pulumi.CustomResource):
         :param pulumi.Input[_builtins.float] application_fee_amount: The amount of the application fee (if any) that will be requested to be applied to the payment and transferred to the application owner's Stripe account.
         :param pulumi.Input[_builtins.float] application_fee_percent: This represents the percentage of the subscription invoice total that will be transferred to the application owner's Stripe account.
         :param pulumi.Input[_builtins.str] billing_address_collection: Configuration for collecting the customer's billing address. Defaults to <span pulumi-lang-nodejs="`auto`" pulumi-lang-dotnet="`Auto`" pulumi-lang-go="`auto`" pulumi-lang-python="`auto`" pulumi-lang-yaml="`auto`" pulumi-lang-java="`auto`" pulumi-lang-hcl="`auto`">`auto`</span>.
-        :param pulumi.Input[Union['PaymentLinkConsentCollectionArgs', 'PaymentLinkConsentCollectionArgsDict']] consent_collection: When set, provides configuration to gather active consent from customers.
+        :param pulumi.Input[Union['PaymentLinkConsentCollectionArgs', 'PaymentLinkConsentCollectionArgsDict', 'outputs.PaymentLinkConsentCollection']] consent_collection: When set, provides configuration to gather active consent from customers.
         :param pulumi.Input[_builtins.str] currency: Three-letter [ISO currency code](https://www.iso.org/iso-4217-currency-codes.html), in lowercase. Must be a [supported currency](https://stripe.com/docs/currencies).
-        :param pulumi.Input[Sequence[pulumi.Input[Union['PaymentLinkCustomFieldArgs', 'PaymentLinkCustomFieldArgsDict']]]] custom_fields: Collect additional information from your customer using custom fields. Up to 3 fields are supported. You can't set this parameter if <span pulumi-lang-nodejs="`uiMode`" pulumi-lang-dotnet="`UiMode`" pulumi-lang-go="`uiMode`" pulumi-lang-python="`ui_mode`" pulumi-lang-yaml="`uiMode`" pulumi-lang-java="`uiMode`" pulumi-lang-hcl="`ui_mode`">`uiMode`</span> is <span pulumi-lang-nodejs="`custom`" pulumi-lang-dotnet="`Custom`" pulumi-lang-go="`custom`" pulumi-lang-python="`custom`" pulumi-lang-yaml="`custom`" pulumi-lang-java="`custom`" pulumi-lang-hcl="`custom`">`custom`</span>.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['PaymentLinkCustomFieldArgs', 'PaymentLinkCustomFieldArgsDict', 'outputs.PaymentLinkCustomField']]]] custom_fields: Collect additional information from your customer using custom fields. Up to 3 fields are supported. You can't set this parameter if <span pulumi-lang-nodejs="`uiMode`" pulumi-lang-dotnet="`UiMode`" pulumi-lang-go="`uiMode`" pulumi-lang-python="`ui_mode`" pulumi-lang-yaml="`uiMode`" pulumi-lang-java="`uiMode`" pulumi-lang-hcl="`ui_mode`">`uiMode`</span> is <span pulumi-lang-nodejs="`elements`" pulumi-lang-dotnet="`Elements`" pulumi-lang-go="`elements`" pulumi-lang-python="`elements`" pulumi-lang-yaml="`elements`" pulumi-lang-java="`elements`" pulumi-lang-hcl="`elements`">`elements`</span>.
         :param pulumi.Input[_builtins.str] customer_creation: Configuration for Customer creation during checkout.
         :param pulumi.Input[_builtins.str] inactive_message: The custom message to be displayed to a customer when a payment link is no longer active.
-        :param pulumi.Input[Union['PaymentLinkInvoiceCreationArgs', 'PaymentLinkInvoiceCreationArgsDict']] invoice_creation: Configuration for creating invoice for payment mode payment links.
-        :param pulumi.Input[Sequence[pulumi.Input[Union['PaymentLinkLineItemArgs', 'PaymentLinkLineItemArgsDict']]]] line_items: The line items representing what is being sold.
-        :param pulumi.Input[Union['PaymentLinkManagedPaymentsArgs', 'PaymentLinkManagedPaymentsArgsDict']] managed_payments: Settings for Managed Payments for this Payment Link and resulting [CheckoutSessions](https://www.terraform.io/api/checkout/sessions/object), [PaymentIntents](https://www.terraform.io/api/payment_intents/object), [Invoices](https://www.terraform.io/api/invoices/object), and [Subscriptions](https://www.terraform.io/api/subscriptions/object).
+        :param pulumi.Input[Union['PaymentLinkInvoiceCreationArgs', 'PaymentLinkInvoiceCreationArgsDict', 'outputs.PaymentLinkInvoiceCreation']] invoice_creation: Configuration for creating invoice for payment mode payment links.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['PaymentLinkLineItemArgs', 'PaymentLinkLineItemArgsDict', 'outputs.PaymentLinkLineItem']]]] line_items: The line items representing what is being sold.
+        :param pulumi.Input[Union['PaymentLinkManagedPaymentsArgs', 'PaymentLinkManagedPaymentsArgsDict', 'outputs.PaymentLinkManagedPayments']] managed_payments: Settings for Managed Payments for this Payment Link and resulting [CheckoutSessions](https://www.terraform.io/api/checkout/sessions/object), [PaymentIntents](https://www.terraform.io/api/payment_intents/object), [Invoices](https://www.terraform.io/api/invoices/object), and [Subscriptions](https://www.terraform.io/api/subscriptions/object).
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] metadata: Set of [key-value pairs](https://docs.stripe.com/api/metadata) that you can attach to an object. This can be useful for storing additional information about the object in a structured format.
         :param pulumi.Input[_builtins.str] on_behalf_of: The account on behalf of which to charge. See the [Connect documentation](https://support.stripe.com/questions/sending-invoices-on-behalf-of-connected-accounts) for details.
-        :param pulumi.Input[Sequence[pulumi.Input[Union['PaymentLinkOptionalItemArgs', 'PaymentLinkOptionalItemArgsDict']]]] optional_items: The optional items presented to the customer at checkout.
-        :param pulumi.Input[Union['PaymentLinkPaymentIntentDataArgs', 'PaymentLinkPaymentIntentDataArgsDict']] payment_intent_data: Indicates the parameters to be passed to PaymentIntent creation during checkout.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['PaymentLinkOptionalItemArgs', 'PaymentLinkOptionalItemArgsDict', 'outputs.PaymentLinkOptionalItem']]]] optional_items: The optional items presented to the customer at checkout.
+        :param pulumi.Input[Union['PaymentLinkPaymentIntentDataArgs', 'PaymentLinkPaymentIntentDataArgsDict', 'outputs.PaymentLinkPaymentIntentData']] payment_intent_data: Indicates the parameters to be passed to PaymentIntent creation during checkout.
         :param pulumi.Input[_builtins.str] payment_method_collection: Configuration for collecting a payment method during checkout. Defaults to <span pulumi-lang-nodejs="`always`" pulumi-lang-dotnet="`Always`" pulumi-lang-go="`always`" pulumi-lang-python="`always`" pulumi-lang-yaml="`always`" pulumi-lang-java="`always`" pulumi-lang-hcl="`always`">`always`</span>.
-        :param pulumi.Input[Union['PaymentLinkPaymentMethodOptionsArgs', 'PaymentLinkPaymentMethodOptionsArgsDict']] payment_method_options: Payment-method-specific configuration.
+        :param pulumi.Input[Union['PaymentLinkPaymentMethodOptionsArgs', 'PaymentLinkPaymentMethodOptionsArgsDict', 'outputs.PaymentLinkPaymentMethodOptions']] payment_method_options: Payment-method-specific configuration.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] payment_method_types: The list of payment method types that customers can use. When <span pulumi-lang-nodejs="`null`" pulumi-lang-dotnet="`Null`" pulumi-lang-go="`null`" pulumi-lang-python="`null`" pulumi-lang-yaml="`null`" pulumi-lang-java="`null`" pulumi-lang-hcl="`null`">`null`</span>, Stripe will dynamically show relevant payment methods you've enabled in your [payment method settings](https://dashboard.stripe.com/settings/payment_methods).
-        :param pulumi.Input[Union['PaymentLinkRestrictionsArgs', 'PaymentLinkRestrictionsArgsDict']] restrictions: Settings that restrict the usage of a payment link.
-        :param pulumi.Input[Union['PaymentLinkShippingAddressCollectionArgs', 'PaymentLinkShippingAddressCollectionArgsDict']] shipping_address_collection: Configuration for collecting the customer's shipping address.
-        :param pulumi.Input[Sequence[pulumi.Input[Union['PaymentLinkShippingOptionArgs', 'PaymentLinkShippingOptionArgsDict']]]] shipping_options: The shipping rate options applied to the session.
+        :param pulumi.Input[Union['PaymentLinkRestrictionsArgs', 'PaymentLinkRestrictionsArgsDict', 'outputs.PaymentLinkRestrictions']] restrictions: Settings that restrict the usage of a payment link.
+        :param pulumi.Input[Union['PaymentLinkShippingAddressCollectionArgs', 'PaymentLinkShippingAddressCollectionArgsDict', 'outputs.PaymentLinkShippingAddressCollection']] shipping_address_collection: Configuration for collecting the customer's shipping address.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['PaymentLinkShippingOptionArgs', 'PaymentLinkShippingOptionArgsDict', 'outputs.PaymentLinkShippingOption']]]] shipping_options: The shipping rate options applied to the session.
         :param pulumi.Input[_builtins.str] submit_type: Indicates the type of transaction being performed which customizes relevant text on the page, such as the submit button.
-        :param pulumi.Input[Union['PaymentLinkSubscriptionDataArgs', 'PaymentLinkSubscriptionDataArgsDict']] subscription_data: When creating a subscription, the specified configuration data will be used. There must be at least one line item with a recurring price to use <span pulumi-lang-nodejs="`subscriptionData`" pulumi-lang-dotnet="`SubscriptionData`" pulumi-lang-go="`subscriptionData`" pulumi-lang-python="`subscription_data`" pulumi-lang-yaml="`subscriptionData`" pulumi-lang-java="`subscriptionData`" pulumi-lang-hcl="`subscription_data`">`subscriptionData`</span>.
-        :param pulumi.Input[Union['PaymentLinkTransferDataArgs', 'PaymentLinkTransferDataArgsDict']] transfer_data: The account (if any) the payments will be attributed to for tax reporting, and where funds from each payment will be transferred to.
+        :param pulumi.Input[Union['PaymentLinkSubscriptionDataArgs', 'PaymentLinkSubscriptionDataArgsDict', 'outputs.PaymentLinkSubscriptionData']] subscription_data: When creating a subscription, the specified configuration data will be used. There must be at least one line item with a recurring price to use <span pulumi-lang-nodejs="`subscriptionData`" pulumi-lang-dotnet="`SubscriptionData`" pulumi-lang-go="`subscriptionData`" pulumi-lang-python="`subscription_data`" pulumi-lang-yaml="`subscriptionData`" pulumi-lang-java="`subscriptionData`" pulumi-lang-hcl="`subscription_data`">`subscriptionData`</span>.
+        :param pulumi.Input[Union['PaymentLinkTransferDataArgs', 'PaymentLinkTransferDataArgsDict', 'outputs.PaymentLinkTransferData']] transfer_data: The account (if any) the payments will be attributed to for tax reporting, and where funds from each payment will be transferred to.
         """
         ...
     @overload
@@ -1171,37 +1171,37 @@ class PaymentLink(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  active: pulumi.Input[Optional[_builtins.bool]] = None,
-                 after_completion: pulumi.Input[Optional[Union['PaymentLinkAfterCompletionArgs', 'PaymentLinkAfterCompletionArgsDict']]] = None,
+                 after_completion: pulumi.Input[Optional[Union['PaymentLinkAfterCompletionArgs', 'PaymentLinkAfterCompletionArgsDict', 'outputs.PaymentLinkAfterCompletion']]] = None,
                  allow_promotion_codes: pulumi.Input[Optional[_builtins.bool]] = None,
                  application_fee_amount: pulumi.Input[Optional[_builtins.float]] = None,
                  application_fee_percent: pulumi.Input[Optional[_builtins.float]] = None,
-                 automatic_tax: pulumi.Input[Optional[Union['PaymentLinkAutomaticTaxArgs', 'PaymentLinkAutomaticTaxArgsDict']]] = None,
+                 automatic_tax: pulumi.Input[Optional[Union['PaymentLinkAutomaticTaxArgs', 'PaymentLinkAutomaticTaxArgsDict', 'outputs.PaymentLinkAutomaticTax']]] = None,
                  billing_address_collection: pulumi.Input[Optional[_builtins.str]] = None,
-                 consent_collection: pulumi.Input[Optional[Union['PaymentLinkConsentCollectionArgs', 'PaymentLinkConsentCollectionArgsDict']]] = None,
+                 consent_collection: pulumi.Input[Optional[Union['PaymentLinkConsentCollectionArgs', 'PaymentLinkConsentCollectionArgsDict', 'outputs.PaymentLinkConsentCollection']]] = None,
                  currency: pulumi.Input[Optional[_builtins.str]] = None,
-                 custom_fields: pulumi.Input[Optional[Sequence[pulumi.Input[Union['PaymentLinkCustomFieldArgs', 'PaymentLinkCustomFieldArgsDict']]]]] = None,
-                 custom_text: pulumi.Input[Optional[Union['PaymentLinkCustomTextArgs', 'PaymentLinkCustomTextArgsDict']]] = None,
+                 custom_fields: pulumi.Input[Optional[Sequence[pulumi.Input[Union['PaymentLinkCustomFieldArgs', 'PaymentLinkCustomFieldArgsDict', 'outputs.PaymentLinkCustomField']]]]] = None,
+                 custom_text: pulumi.Input[Optional[Union['PaymentLinkCustomTextArgs', 'PaymentLinkCustomTextArgsDict', 'outputs.PaymentLinkCustomText']]] = None,
                  customer_creation: pulumi.Input[Optional[_builtins.str]] = None,
                  inactive_message: pulumi.Input[Optional[_builtins.str]] = None,
-                 invoice_creation: pulumi.Input[Optional[Union['PaymentLinkInvoiceCreationArgs', 'PaymentLinkInvoiceCreationArgsDict']]] = None,
-                 line_items: pulumi.Input[Optional[Sequence[pulumi.Input[Union['PaymentLinkLineItemArgs', 'PaymentLinkLineItemArgsDict']]]]] = None,
-                 managed_payments: pulumi.Input[Optional[Union['PaymentLinkManagedPaymentsArgs', 'PaymentLinkManagedPaymentsArgsDict']]] = None,
+                 invoice_creation: pulumi.Input[Optional[Union['PaymentLinkInvoiceCreationArgs', 'PaymentLinkInvoiceCreationArgsDict', 'outputs.PaymentLinkInvoiceCreation']]] = None,
+                 line_items: pulumi.Input[Optional[Sequence[pulumi.Input[Union['PaymentLinkLineItemArgs', 'PaymentLinkLineItemArgsDict', 'outputs.PaymentLinkLineItem']]]]] = None,
+                 managed_payments: pulumi.Input[Optional[Union['PaymentLinkManagedPaymentsArgs', 'PaymentLinkManagedPaymentsArgsDict', 'outputs.PaymentLinkManagedPayments']]] = None,
                  metadata: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-                 name_collection: pulumi.Input[Optional[Union['PaymentLinkNameCollectionArgs', 'PaymentLinkNameCollectionArgsDict']]] = None,
+                 name_collection: pulumi.Input[Optional[Union['PaymentLinkNameCollectionArgs', 'PaymentLinkNameCollectionArgsDict', 'outputs.PaymentLinkNameCollection']]] = None,
                  on_behalf_of: pulumi.Input[Optional[_builtins.str]] = None,
-                 optional_items: pulumi.Input[Optional[Sequence[pulumi.Input[Union['PaymentLinkOptionalItemArgs', 'PaymentLinkOptionalItemArgsDict']]]]] = None,
-                 payment_intent_data: pulumi.Input[Optional[Union['PaymentLinkPaymentIntentDataArgs', 'PaymentLinkPaymentIntentDataArgsDict']]] = None,
+                 optional_items: pulumi.Input[Optional[Sequence[pulumi.Input[Union['PaymentLinkOptionalItemArgs', 'PaymentLinkOptionalItemArgsDict', 'outputs.PaymentLinkOptionalItem']]]]] = None,
+                 payment_intent_data: pulumi.Input[Optional[Union['PaymentLinkPaymentIntentDataArgs', 'PaymentLinkPaymentIntentDataArgsDict', 'outputs.PaymentLinkPaymentIntentData']]] = None,
                  payment_method_collection: pulumi.Input[Optional[_builtins.str]] = None,
-                 payment_method_options: pulumi.Input[Optional[Union['PaymentLinkPaymentMethodOptionsArgs', 'PaymentLinkPaymentMethodOptionsArgsDict']]] = None,
+                 payment_method_options: pulumi.Input[Optional[Union['PaymentLinkPaymentMethodOptionsArgs', 'PaymentLinkPaymentMethodOptionsArgsDict', 'outputs.PaymentLinkPaymentMethodOptions']]] = None,
                  payment_method_types: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 phone_number_collection: pulumi.Input[Optional[Union['PaymentLinkPhoneNumberCollectionArgs', 'PaymentLinkPhoneNumberCollectionArgsDict']]] = None,
-                 restrictions: pulumi.Input[Optional[Union['PaymentLinkRestrictionsArgs', 'PaymentLinkRestrictionsArgsDict']]] = None,
-                 shipping_address_collection: pulumi.Input[Optional[Union['PaymentLinkShippingAddressCollectionArgs', 'PaymentLinkShippingAddressCollectionArgsDict']]] = None,
-                 shipping_options: pulumi.Input[Optional[Sequence[pulumi.Input[Union['PaymentLinkShippingOptionArgs', 'PaymentLinkShippingOptionArgsDict']]]]] = None,
+                 phone_number_collection: pulumi.Input[Optional[Union['PaymentLinkPhoneNumberCollectionArgs', 'PaymentLinkPhoneNumberCollectionArgsDict', 'outputs.PaymentLinkPhoneNumberCollection']]] = None,
+                 restrictions: pulumi.Input[Optional[Union['PaymentLinkRestrictionsArgs', 'PaymentLinkRestrictionsArgsDict', 'outputs.PaymentLinkRestrictions']]] = None,
+                 shipping_address_collection: pulumi.Input[Optional[Union['PaymentLinkShippingAddressCollectionArgs', 'PaymentLinkShippingAddressCollectionArgsDict', 'outputs.PaymentLinkShippingAddressCollection']]] = None,
+                 shipping_options: pulumi.Input[Optional[Sequence[pulumi.Input[Union['PaymentLinkShippingOptionArgs', 'PaymentLinkShippingOptionArgsDict', 'outputs.PaymentLinkShippingOption']]]]] = None,
                  submit_type: pulumi.Input[Optional[_builtins.str]] = None,
-                 subscription_data: pulumi.Input[Optional[Union['PaymentLinkSubscriptionDataArgs', 'PaymentLinkSubscriptionDataArgsDict']]] = None,
-                 tax_id_collection: pulumi.Input[Optional[Union['PaymentLinkTaxIdCollectionArgs', 'PaymentLinkTaxIdCollectionArgsDict']]] = None,
-                 transfer_data: pulumi.Input[Optional[Union['PaymentLinkTransferDataArgs', 'PaymentLinkTransferDataArgsDict']]] = None,
+                 subscription_data: pulumi.Input[Optional[Union['PaymentLinkSubscriptionDataArgs', 'PaymentLinkSubscriptionDataArgsDict', 'outputs.PaymentLinkSubscriptionData']]] = None,
+                 tax_id_collection: pulumi.Input[Optional[Union['PaymentLinkTaxIdCollectionArgs', 'PaymentLinkTaxIdCollectionArgsDict', 'outputs.PaymentLinkTaxIdCollection']]] = None,
+                 transfer_data: pulumi.Input[Optional[Union['PaymentLinkTransferDataArgs', 'PaymentLinkTransferDataArgsDict', 'outputs.PaymentLinkTransferData']]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -1261,40 +1261,40 @@ class PaymentLink(pulumi.CustomResource):
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
             active: pulumi.Input[Optional[_builtins.bool]] = None,
-            after_completion: pulumi.Input[Optional[Union['PaymentLinkAfterCompletionArgs', 'PaymentLinkAfterCompletionArgsDict']]] = None,
+            after_completion: pulumi.Input[Optional[Union['PaymentLinkAfterCompletionArgs', 'PaymentLinkAfterCompletionArgsDict', 'outputs.PaymentLinkAfterCompletion']]] = None,
             allow_promotion_codes: pulumi.Input[Optional[_builtins.bool]] = None,
             application: pulumi.Input[Optional[_builtins.str]] = None,
             application_fee_amount: pulumi.Input[Optional[_builtins.float]] = None,
             application_fee_percent: pulumi.Input[Optional[_builtins.float]] = None,
-            automatic_tax: pulumi.Input[Optional[Union['PaymentLinkAutomaticTaxArgs', 'PaymentLinkAutomaticTaxArgsDict']]] = None,
+            automatic_tax: pulumi.Input[Optional[Union['PaymentLinkAutomaticTaxArgs', 'PaymentLinkAutomaticTaxArgsDict', 'outputs.PaymentLinkAutomaticTax']]] = None,
             billing_address_collection: pulumi.Input[Optional[_builtins.str]] = None,
-            consent_collection: pulumi.Input[Optional[Union['PaymentLinkConsentCollectionArgs', 'PaymentLinkConsentCollectionArgsDict']]] = None,
+            consent_collection: pulumi.Input[Optional[Union['PaymentLinkConsentCollectionArgs', 'PaymentLinkConsentCollectionArgsDict', 'outputs.PaymentLinkConsentCollection']]] = None,
             currency: pulumi.Input[Optional[_builtins.str]] = None,
-            custom_fields: pulumi.Input[Optional[Sequence[pulumi.Input[Union['PaymentLinkCustomFieldArgs', 'PaymentLinkCustomFieldArgsDict']]]]] = None,
-            custom_text: pulumi.Input[Optional[Union['PaymentLinkCustomTextArgs', 'PaymentLinkCustomTextArgsDict']]] = None,
+            custom_fields: pulumi.Input[Optional[Sequence[pulumi.Input[Union['PaymentLinkCustomFieldArgs', 'PaymentLinkCustomFieldArgsDict', 'outputs.PaymentLinkCustomField']]]]] = None,
+            custom_text: pulumi.Input[Optional[Union['PaymentLinkCustomTextArgs', 'PaymentLinkCustomTextArgsDict', 'outputs.PaymentLinkCustomText']]] = None,
             customer_creation: pulumi.Input[Optional[_builtins.str]] = None,
             inactive_message: pulumi.Input[Optional[_builtins.str]] = None,
-            invoice_creation: pulumi.Input[Optional[Union['PaymentLinkInvoiceCreationArgs', 'PaymentLinkInvoiceCreationArgsDict']]] = None,
-            line_items: pulumi.Input[Optional[Sequence[pulumi.Input[Union['PaymentLinkLineItemArgs', 'PaymentLinkLineItemArgsDict']]]]] = None,
+            invoice_creation: pulumi.Input[Optional[Union['PaymentLinkInvoiceCreationArgs', 'PaymentLinkInvoiceCreationArgsDict', 'outputs.PaymentLinkInvoiceCreation']]] = None,
+            line_items: pulumi.Input[Optional[Sequence[pulumi.Input[Union['PaymentLinkLineItemArgs', 'PaymentLinkLineItemArgsDict', 'outputs.PaymentLinkLineItem']]]]] = None,
             livemode: pulumi.Input[Optional[_builtins.bool]] = None,
-            managed_payments: pulumi.Input[Optional[Union['PaymentLinkManagedPaymentsArgs', 'PaymentLinkManagedPaymentsArgsDict']]] = None,
+            managed_payments: pulumi.Input[Optional[Union['PaymentLinkManagedPaymentsArgs', 'PaymentLinkManagedPaymentsArgsDict', 'outputs.PaymentLinkManagedPayments']]] = None,
             metadata: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-            name_collection: pulumi.Input[Optional[Union['PaymentLinkNameCollectionArgs', 'PaymentLinkNameCollectionArgsDict']]] = None,
+            name_collection: pulumi.Input[Optional[Union['PaymentLinkNameCollectionArgs', 'PaymentLinkNameCollectionArgsDict', 'outputs.PaymentLinkNameCollection']]] = None,
             object: pulumi.Input[Optional[_builtins.str]] = None,
             on_behalf_of: pulumi.Input[Optional[_builtins.str]] = None,
-            optional_items: pulumi.Input[Optional[Sequence[pulumi.Input[Union['PaymentLinkOptionalItemArgs', 'PaymentLinkOptionalItemArgsDict']]]]] = None,
-            payment_intent_data: pulumi.Input[Optional[Union['PaymentLinkPaymentIntentDataArgs', 'PaymentLinkPaymentIntentDataArgsDict']]] = None,
+            optional_items: pulumi.Input[Optional[Sequence[pulumi.Input[Union['PaymentLinkOptionalItemArgs', 'PaymentLinkOptionalItemArgsDict', 'outputs.PaymentLinkOptionalItem']]]]] = None,
+            payment_intent_data: pulumi.Input[Optional[Union['PaymentLinkPaymentIntentDataArgs', 'PaymentLinkPaymentIntentDataArgsDict', 'outputs.PaymentLinkPaymentIntentData']]] = None,
             payment_method_collection: pulumi.Input[Optional[_builtins.str]] = None,
-            payment_method_options: pulumi.Input[Optional[Union['PaymentLinkPaymentMethodOptionsArgs', 'PaymentLinkPaymentMethodOptionsArgsDict']]] = None,
+            payment_method_options: pulumi.Input[Optional[Union['PaymentLinkPaymentMethodOptionsArgs', 'PaymentLinkPaymentMethodOptionsArgsDict', 'outputs.PaymentLinkPaymentMethodOptions']]] = None,
             payment_method_types: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
-            phone_number_collection: pulumi.Input[Optional[Union['PaymentLinkPhoneNumberCollectionArgs', 'PaymentLinkPhoneNumberCollectionArgsDict']]] = None,
-            restrictions: pulumi.Input[Optional[Union['PaymentLinkRestrictionsArgs', 'PaymentLinkRestrictionsArgsDict']]] = None,
-            shipping_address_collection: pulumi.Input[Optional[Union['PaymentLinkShippingAddressCollectionArgs', 'PaymentLinkShippingAddressCollectionArgsDict']]] = None,
-            shipping_options: pulumi.Input[Optional[Sequence[pulumi.Input[Union['PaymentLinkShippingOptionArgs', 'PaymentLinkShippingOptionArgsDict']]]]] = None,
+            phone_number_collection: pulumi.Input[Optional[Union['PaymentLinkPhoneNumberCollectionArgs', 'PaymentLinkPhoneNumberCollectionArgsDict', 'outputs.PaymentLinkPhoneNumberCollection']]] = None,
+            restrictions: pulumi.Input[Optional[Union['PaymentLinkRestrictionsArgs', 'PaymentLinkRestrictionsArgsDict', 'outputs.PaymentLinkRestrictions']]] = None,
+            shipping_address_collection: pulumi.Input[Optional[Union['PaymentLinkShippingAddressCollectionArgs', 'PaymentLinkShippingAddressCollectionArgsDict', 'outputs.PaymentLinkShippingAddressCollection']]] = None,
+            shipping_options: pulumi.Input[Optional[Sequence[pulumi.Input[Union['PaymentLinkShippingOptionArgs', 'PaymentLinkShippingOptionArgsDict', 'outputs.PaymentLinkShippingOption']]]]] = None,
             submit_type: pulumi.Input[Optional[_builtins.str]] = None,
-            subscription_data: pulumi.Input[Optional[Union['PaymentLinkSubscriptionDataArgs', 'PaymentLinkSubscriptionDataArgsDict']]] = None,
-            tax_id_collection: pulumi.Input[Optional[Union['PaymentLinkTaxIdCollectionArgs', 'PaymentLinkTaxIdCollectionArgsDict']]] = None,
-            transfer_data: pulumi.Input[Optional[Union['PaymentLinkTransferDataArgs', 'PaymentLinkTransferDataArgsDict']]] = None,
+            subscription_data: pulumi.Input[Optional[Union['PaymentLinkSubscriptionDataArgs', 'PaymentLinkSubscriptionDataArgsDict', 'outputs.PaymentLinkSubscriptionData']]] = None,
+            tax_id_collection: pulumi.Input[Optional[Union['PaymentLinkTaxIdCollectionArgs', 'PaymentLinkTaxIdCollectionArgsDict', 'outputs.PaymentLinkTaxIdCollection']]] = None,
+            transfer_data: pulumi.Input[Optional[Union['PaymentLinkTransferDataArgs', 'PaymentLinkTransferDataArgsDict', 'outputs.PaymentLinkTransferData']]] = None,
             url: pulumi.Input[Optional[_builtins.str]] = None) -> 'PaymentLink':
         """
         Get an existing PaymentLink resource's state with the given name, id, and optional extra
@@ -1309,29 +1309,29 @@ class PaymentLink(pulumi.CustomResource):
         :param pulumi.Input[_builtins.float] application_fee_amount: The amount of the application fee (if any) that will be requested to be applied to the payment and transferred to the application owner's Stripe account.
         :param pulumi.Input[_builtins.float] application_fee_percent: This represents the percentage of the subscription invoice total that will be transferred to the application owner's Stripe account.
         :param pulumi.Input[_builtins.str] billing_address_collection: Configuration for collecting the customer's billing address. Defaults to <span pulumi-lang-nodejs="`auto`" pulumi-lang-dotnet="`Auto`" pulumi-lang-go="`auto`" pulumi-lang-python="`auto`" pulumi-lang-yaml="`auto`" pulumi-lang-java="`auto`" pulumi-lang-hcl="`auto`">`auto`</span>.
-        :param pulumi.Input[Union['PaymentLinkConsentCollectionArgs', 'PaymentLinkConsentCollectionArgsDict']] consent_collection: When set, provides configuration to gather active consent from customers.
+        :param pulumi.Input[Union['PaymentLinkConsentCollectionArgs', 'PaymentLinkConsentCollectionArgsDict', 'outputs.PaymentLinkConsentCollection']] consent_collection: When set, provides configuration to gather active consent from customers.
         :param pulumi.Input[_builtins.str] currency: Three-letter [ISO currency code](https://www.iso.org/iso-4217-currency-codes.html), in lowercase. Must be a [supported currency](https://stripe.com/docs/currencies).
-        :param pulumi.Input[Sequence[pulumi.Input[Union['PaymentLinkCustomFieldArgs', 'PaymentLinkCustomFieldArgsDict']]]] custom_fields: Collect additional information from your customer using custom fields. Up to 3 fields are supported. You can't set this parameter if <span pulumi-lang-nodejs="`uiMode`" pulumi-lang-dotnet="`UiMode`" pulumi-lang-go="`uiMode`" pulumi-lang-python="`ui_mode`" pulumi-lang-yaml="`uiMode`" pulumi-lang-java="`uiMode`" pulumi-lang-hcl="`ui_mode`">`uiMode`</span> is <span pulumi-lang-nodejs="`custom`" pulumi-lang-dotnet="`Custom`" pulumi-lang-go="`custom`" pulumi-lang-python="`custom`" pulumi-lang-yaml="`custom`" pulumi-lang-java="`custom`" pulumi-lang-hcl="`custom`">`custom`</span>.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['PaymentLinkCustomFieldArgs', 'PaymentLinkCustomFieldArgsDict', 'outputs.PaymentLinkCustomField']]]] custom_fields: Collect additional information from your customer using custom fields. Up to 3 fields are supported. You can't set this parameter if <span pulumi-lang-nodejs="`uiMode`" pulumi-lang-dotnet="`UiMode`" pulumi-lang-go="`uiMode`" pulumi-lang-python="`ui_mode`" pulumi-lang-yaml="`uiMode`" pulumi-lang-java="`uiMode`" pulumi-lang-hcl="`ui_mode`">`uiMode`</span> is <span pulumi-lang-nodejs="`elements`" pulumi-lang-dotnet="`Elements`" pulumi-lang-go="`elements`" pulumi-lang-python="`elements`" pulumi-lang-yaml="`elements`" pulumi-lang-java="`elements`" pulumi-lang-hcl="`elements`">`elements`</span>.
         :param pulumi.Input[_builtins.str] customer_creation: Configuration for Customer creation during checkout.
         :param pulumi.Input[_builtins.str] inactive_message: The custom message to be displayed to a customer when a payment link is no longer active.
-        :param pulumi.Input[Union['PaymentLinkInvoiceCreationArgs', 'PaymentLinkInvoiceCreationArgsDict']] invoice_creation: Configuration for creating invoice for payment mode payment links.
-        :param pulumi.Input[Sequence[pulumi.Input[Union['PaymentLinkLineItemArgs', 'PaymentLinkLineItemArgsDict']]]] line_items: The line items representing what is being sold.
+        :param pulumi.Input[Union['PaymentLinkInvoiceCreationArgs', 'PaymentLinkInvoiceCreationArgsDict', 'outputs.PaymentLinkInvoiceCreation']] invoice_creation: Configuration for creating invoice for payment mode payment links.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['PaymentLinkLineItemArgs', 'PaymentLinkLineItemArgsDict', 'outputs.PaymentLinkLineItem']]]] line_items: The line items representing what is being sold.
         :param pulumi.Input[_builtins.bool] livemode: If the object exists in live mode, the value is <span pulumi-lang-nodejs="`true`" pulumi-lang-dotnet="`True`" pulumi-lang-go="`true`" pulumi-lang-python="`true`" pulumi-lang-yaml="`true`" pulumi-lang-java="`true`" pulumi-lang-hcl="`true`">`true`</span>. If the object exists in test mode, the value is <span pulumi-lang-nodejs="`false`" pulumi-lang-dotnet="`False`" pulumi-lang-go="`false`" pulumi-lang-python="`false`" pulumi-lang-yaml="`false`" pulumi-lang-java="`false`" pulumi-lang-hcl="`false`">`false`</span>.
-        :param pulumi.Input[Union['PaymentLinkManagedPaymentsArgs', 'PaymentLinkManagedPaymentsArgsDict']] managed_payments: Settings for Managed Payments for this Payment Link and resulting [CheckoutSessions](https://www.terraform.io/api/checkout/sessions/object), [PaymentIntents](https://www.terraform.io/api/payment_intents/object), [Invoices](https://www.terraform.io/api/invoices/object), and [Subscriptions](https://www.terraform.io/api/subscriptions/object).
+        :param pulumi.Input[Union['PaymentLinkManagedPaymentsArgs', 'PaymentLinkManagedPaymentsArgsDict', 'outputs.PaymentLinkManagedPayments']] managed_payments: Settings for Managed Payments for this Payment Link and resulting [CheckoutSessions](https://www.terraform.io/api/checkout/sessions/object), [PaymentIntents](https://www.terraform.io/api/payment_intents/object), [Invoices](https://www.terraform.io/api/invoices/object), and [Subscriptions](https://www.terraform.io/api/subscriptions/object).
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] metadata: Set of [key-value pairs](https://docs.stripe.com/api/metadata) that you can attach to an object. This can be useful for storing additional information about the object in a structured format.
         :param pulumi.Input[_builtins.str] object: String representing the object's type. Objects of the same type share the same value.
         :param pulumi.Input[_builtins.str] on_behalf_of: The account on behalf of which to charge. See the [Connect documentation](https://support.stripe.com/questions/sending-invoices-on-behalf-of-connected-accounts) for details.
-        :param pulumi.Input[Sequence[pulumi.Input[Union['PaymentLinkOptionalItemArgs', 'PaymentLinkOptionalItemArgsDict']]]] optional_items: The optional items presented to the customer at checkout.
-        :param pulumi.Input[Union['PaymentLinkPaymentIntentDataArgs', 'PaymentLinkPaymentIntentDataArgsDict']] payment_intent_data: Indicates the parameters to be passed to PaymentIntent creation during checkout.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['PaymentLinkOptionalItemArgs', 'PaymentLinkOptionalItemArgsDict', 'outputs.PaymentLinkOptionalItem']]]] optional_items: The optional items presented to the customer at checkout.
+        :param pulumi.Input[Union['PaymentLinkPaymentIntentDataArgs', 'PaymentLinkPaymentIntentDataArgsDict', 'outputs.PaymentLinkPaymentIntentData']] payment_intent_data: Indicates the parameters to be passed to PaymentIntent creation during checkout.
         :param pulumi.Input[_builtins.str] payment_method_collection: Configuration for collecting a payment method during checkout. Defaults to <span pulumi-lang-nodejs="`always`" pulumi-lang-dotnet="`Always`" pulumi-lang-go="`always`" pulumi-lang-python="`always`" pulumi-lang-yaml="`always`" pulumi-lang-java="`always`" pulumi-lang-hcl="`always`">`always`</span>.
-        :param pulumi.Input[Union['PaymentLinkPaymentMethodOptionsArgs', 'PaymentLinkPaymentMethodOptionsArgsDict']] payment_method_options: Payment-method-specific configuration.
+        :param pulumi.Input[Union['PaymentLinkPaymentMethodOptionsArgs', 'PaymentLinkPaymentMethodOptionsArgsDict', 'outputs.PaymentLinkPaymentMethodOptions']] payment_method_options: Payment-method-specific configuration.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] payment_method_types: The list of payment method types that customers can use. When <span pulumi-lang-nodejs="`null`" pulumi-lang-dotnet="`Null`" pulumi-lang-go="`null`" pulumi-lang-python="`null`" pulumi-lang-yaml="`null`" pulumi-lang-java="`null`" pulumi-lang-hcl="`null`">`null`</span>, Stripe will dynamically show relevant payment methods you've enabled in your [payment method settings](https://dashboard.stripe.com/settings/payment_methods).
-        :param pulumi.Input[Union['PaymentLinkRestrictionsArgs', 'PaymentLinkRestrictionsArgsDict']] restrictions: Settings that restrict the usage of a payment link.
-        :param pulumi.Input[Union['PaymentLinkShippingAddressCollectionArgs', 'PaymentLinkShippingAddressCollectionArgsDict']] shipping_address_collection: Configuration for collecting the customer's shipping address.
-        :param pulumi.Input[Sequence[pulumi.Input[Union['PaymentLinkShippingOptionArgs', 'PaymentLinkShippingOptionArgsDict']]]] shipping_options: The shipping rate options applied to the session.
+        :param pulumi.Input[Union['PaymentLinkRestrictionsArgs', 'PaymentLinkRestrictionsArgsDict', 'outputs.PaymentLinkRestrictions']] restrictions: Settings that restrict the usage of a payment link.
+        :param pulumi.Input[Union['PaymentLinkShippingAddressCollectionArgs', 'PaymentLinkShippingAddressCollectionArgsDict', 'outputs.PaymentLinkShippingAddressCollection']] shipping_address_collection: Configuration for collecting the customer's shipping address.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['PaymentLinkShippingOptionArgs', 'PaymentLinkShippingOptionArgsDict', 'outputs.PaymentLinkShippingOption']]]] shipping_options: The shipping rate options applied to the session.
         :param pulumi.Input[_builtins.str] submit_type: Indicates the type of transaction being performed which customizes relevant text on the page, such as the submit button.
-        :param pulumi.Input[Union['PaymentLinkSubscriptionDataArgs', 'PaymentLinkSubscriptionDataArgsDict']] subscription_data: When creating a subscription, the specified configuration data will be used. There must be at least one line item with a recurring price to use <span pulumi-lang-nodejs="`subscriptionData`" pulumi-lang-dotnet="`SubscriptionData`" pulumi-lang-go="`subscriptionData`" pulumi-lang-python="`subscription_data`" pulumi-lang-yaml="`subscriptionData`" pulumi-lang-java="`subscriptionData`" pulumi-lang-hcl="`subscription_data`">`subscriptionData`</span>.
-        :param pulumi.Input[Union['PaymentLinkTransferDataArgs', 'PaymentLinkTransferDataArgsDict']] transfer_data: The account (if any) the payments will be attributed to for tax reporting, and where funds from each payment will be transferred to.
+        :param pulumi.Input[Union['PaymentLinkSubscriptionDataArgs', 'PaymentLinkSubscriptionDataArgsDict', 'outputs.PaymentLinkSubscriptionData']] subscription_data: When creating a subscription, the specified configuration data will be used. There must be at least one line item with a recurring price to use <span pulumi-lang-nodejs="`subscriptionData`" pulumi-lang-dotnet="`SubscriptionData`" pulumi-lang-go="`subscriptionData`" pulumi-lang-python="`subscription_data`" pulumi-lang-yaml="`subscriptionData`" pulumi-lang-java="`subscriptionData`" pulumi-lang-hcl="`subscription_data`">`subscriptionData`</span>.
+        :param pulumi.Input[Union['PaymentLinkTransferDataArgs', 'PaymentLinkTransferDataArgsDict', 'outputs.PaymentLinkTransferData']] transfer_data: The account (if any) the payments will be attributed to for tax reporting, and where funds from each payment will be transferred to.
         :param pulumi.Input[_builtins.str] url: The public URL that can be shared with customers.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
@@ -1375,6 +1375,84 @@ class PaymentLink(pulumi.CustomResource):
         __props__.__dict__["transfer_data"] = transfer_data
         __props__.__dict__["url"] = url
         return PaymentLink(resource_name, opts=opts, __props__=__props__)
+
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            active: pulumi.Input[Optional[_builtins.bool]] = None,
+            after_completion: pulumi.Input[Optional[Union['PaymentLinkAfterCompletionArgs', 'PaymentLinkAfterCompletionArgsDict', 'outputs.PaymentLinkAfterCompletion']]] = None,
+            allow_promotion_codes: pulumi.Input[Optional[_builtins.bool]] = None,
+            application: pulumi.Input[Optional[_builtins.str]] = None,
+            application_fee_amount: pulumi.Input[Optional[_builtins.float]] = None,
+            application_fee_percent: pulumi.Input[Optional[_builtins.float]] = None,
+            automatic_tax: pulumi.Input[Optional[Union['PaymentLinkAutomaticTaxArgs', 'PaymentLinkAutomaticTaxArgsDict', 'outputs.PaymentLinkAutomaticTax']]] = None,
+            billing_address_collection: pulumi.Input[Optional[_builtins.str]] = None,
+            consent_collection: pulumi.Input[Optional[Union['PaymentLinkConsentCollectionArgs', 'PaymentLinkConsentCollectionArgsDict', 'outputs.PaymentLinkConsentCollection']]] = None,
+            currency: pulumi.Input[Optional[_builtins.str]] = None,
+            custom_fields: pulumi.Input[Optional[Sequence[pulumi.Input[Union['PaymentLinkCustomFieldArgs', 'PaymentLinkCustomFieldArgsDict', 'outputs.PaymentLinkCustomField']]]]] = None,
+            custom_text: pulumi.Input[Optional[Union['PaymentLinkCustomTextArgs', 'PaymentLinkCustomTextArgsDict', 'outputs.PaymentLinkCustomText']]] = None,
+            customer_creation: pulumi.Input[Optional[_builtins.str]] = None,
+            inactive_message: pulumi.Input[Optional[_builtins.str]] = None,
+            invoice_creation: pulumi.Input[Optional[Union['PaymentLinkInvoiceCreationArgs', 'PaymentLinkInvoiceCreationArgsDict', 'outputs.PaymentLinkInvoiceCreation']]] = None,
+            line_items: pulumi.Input[Optional[Sequence[pulumi.Input[Union['PaymentLinkLineItemArgs', 'PaymentLinkLineItemArgsDict', 'outputs.PaymentLinkLineItem']]]]] = None,
+            livemode: pulumi.Input[Optional[_builtins.bool]] = None,
+            managed_payments: pulumi.Input[Optional[Union['PaymentLinkManagedPaymentsArgs', 'PaymentLinkManagedPaymentsArgsDict', 'outputs.PaymentLinkManagedPayments']]] = None,
+            metadata: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+            name_collection: pulumi.Input[Optional[Union['PaymentLinkNameCollectionArgs', 'PaymentLinkNameCollectionArgsDict', 'outputs.PaymentLinkNameCollection']]] = None,
+            object: pulumi.Input[Optional[_builtins.str]] = None,
+            on_behalf_of: pulumi.Input[Optional[_builtins.str]] = None,
+            optional_items: pulumi.Input[Optional[Sequence[pulumi.Input[Union['PaymentLinkOptionalItemArgs', 'PaymentLinkOptionalItemArgsDict', 'outputs.PaymentLinkOptionalItem']]]]] = None,
+            payment_intent_data: pulumi.Input[Optional[Union['PaymentLinkPaymentIntentDataArgs', 'PaymentLinkPaymentIntentDataArgsDict', 'outputs.PaymentLinkPaymentIntentData']]] = None,
+            payment_method_collection: pulumi.Input[Optional[_builtins.str]] = None,
+            payment_method_options: pulumi.Input[Optional[Union['PaymentLinkPaymentMethodOptionsArgs', 'PaymentLinkPaymentMethodOptionsArgsDict', 'outputs.PaymentLinkPaymentMethodOptions']]] = None,
+            payment_method_types: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            phone_number_collection: pulumi.Input[Optional[Union['PaymentLinkPhoneNumberCollectionArgs', 'PaymentLinkPhoneNumberCollectionArgsDict', 'outputs.PaymentLinkPhoneNumberCollection']]] = None,
+            restrictions: pulumi.Input[Optional[Union['PaymentLinkRestrictionsArgs', 'PaymentLinkRestrictionsArgsDict', 'outputs.PaymentLinkRestrictions']]] = None,
+            shipping_address_collection: pulumi.Input[Optional[Union['PaymentLinkShippingAddressCollectionArgs', 'PaymentLinkShippingAddressCollectionArgsDict', 'outputs.PaymentLinkShippingAddressCollection']]] = None,
+            shipping_options: pulumi.Input[Optional[Sequence[pulumi.Input[Union['PaymentLinkShippingOptionArgs', 'PaymentLinkShippingOptionArgsDict', 'outputs.PaymentLinkShippingOption']]]]] = None,
+            submit_type: pulumi.Input[Optional[_builtins.str]] = None,
+            subscription_data: pulumi.Input[Optional[Union['PaymentLinkSubscriptionDataArgs', 'PaymentLinkSubscriptionDataArgsDict', 'outputs.PaymentLinkSubscriptionData']]] = None,
+            tax_id_collection: pulumi.Input[Optional[Union['PaymentLinkTaxIdCollectionArgs', 'PaymentLinkTaxIdCollectionArgsDict', 'outputs.PaymentLinkTaxIdCollection']]] = None,
+            transfer_data: pulumi.Input[Optional[Union['PaymentLinkTransferDataArgs', 'PaymentLinkTransferDataArgsDict', 'outputs.PaymentLinkTransferData']]] = None,
+            url: pulumi.Input[Optional[_builtins.str]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["active"] = active
+        __props__["afterCompletion"] = after_completion
+        __props__["allowPromotionCodes"] = allow_promotion_codes
+        __props__["application"] = application
+        __props__["applicationFeeAmount"] = application_fee_amount
+        __props__["applicationFeePercent"] = application_fee_percent
+        __props__["automaticTax"] = automatic_tax
+        __props__["billingAddressCollection"] = billing_address_collection
+        __props__["consentCollection"] = consent_collection
+        __props__["currency"] = currency
+        __props__["customFields"] = custom_fields
+        __props__["customText"] = custom_text
+        __props__["customerCreation"] = customer_creation
+        __props__["inactiveMessage"] = inactive_message
+        __props__["invoiceCreation"] = invoice_creation
+        __props__["lineItems"] = line_items
+        __props__["livemode"] = livemode
+        __props__["managedPayments"] = managed_payments
+        __props__["metadata"] = metadata
+        __props__["nameCollection"] = name_collection
+        __props__["object"] = object
+        __props__["onBehalfOf"] = on_behalf_of
+        __props__["optionalItems"] = optional_items
+        __props__["paymentIntentData"] = payment_intent_data
+        __props__["paymentMethodCollection"] = payment_method_collection
+        __props__["paymentMethodOptions"] = payment_method_options
+        __props__["paymentMethodTypes"] = payment_method_types
+        __props__["phoneNumberCollection"] = phone_number_collection
+        __props__["restrictions"] = restrictions
+        __props__["shippingAddressCollection"] = shipping_address_collection
+        __props__["shippingOptions"] = shipping_options
+        __props__["submitType"] = submit_type
+        __props__["subscriptionData"] = subscription_data
+        __props__["taxIdCollection"] = tax_id_collection
+        __props__["transferData"] = transfer_data
+        __props__["url"] = url
+        return pulumi.runtime.exists_resource(None, 'stripe:index/paymentLink:PaymentLink', id, __props__, opts or pulumi.ResourceOptions(), package_ref=_utilities.get_package())
 
     @_builtins.property
     @pulumi.getter
@@ -1454,7 +1532,7 @@ class PaymentLink(pulumi.CustomResource):
     @pulumi.getter(name="customFields")
     def custom_fields(self) -> pulumi.Output[Sequence['outputs.PaymentLinkCustomField']]:
         """
-        Collect additional information from your customer using custom fields. Up to 3 fields are supported. You can't set this parameter if <span pulumi-lang-nodejs="`uiMode`" pulumi-lang-dotnet="`UiMode`" pulumi-lang-go="`uiMode`" pulumi-lang-python="`ui_mode`" pulumi-lang-yaml="`uiMode`" pulumi-lang-java="`uiMode`" pulumi-lang-hcl="`ui_mode`">`uiMode`</span> is <span pulumi-lang-nodejs="`custom`" pulumi-lang-dotnet="`Custom`" pulumi-lang-go="`custom`" pulumi-lang-python="`custom`" pulumi-lang-yaml="`custom`" pulumi-lang-java="`custom`" pulumi-lang-hcl="`custom`">`custom`</span>.
+        Collect additional information from your customer using custom fields. Up to 3 fields are supported. You can't set this parameter if <span pulumi-lang-nodejs="`uiMode`" pulumi-lang-dotnet="`UiMode`" pulumi-lang-go="`uiMode`" pulumi-lang-python="`ui_mode`" pulumi-lang-yaml="`uiMode`" pulumi-lang-java="`uiMode`" pulumi-lang-hcl="`ui_mode`">`uiMode`</span> is <span pulumi-lang-nodejs="`elements`" pulumi-lang-dotnet="`Elements`" pulumi-lang-go="`elements`" pulumi-lang-python="`elements`" pulumi-lang-yaml="`elements`" pulumi-lang-java="`elements`" pulumi-lang-hcl="`elements`">`elements`</span>.
         """
         return pulumi.get(self, "custom_fields")
 

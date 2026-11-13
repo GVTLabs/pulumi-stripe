@@ -14,13 +14,21 @@ namespace Pulumi.Stripe.Outputs
     public sealed class ChargePaymentMethodDetailsBizum
     {
         /// <summary>
+        /// A unique identifier for the buyer as determined by the local payment processor.
+        /// </summary>
+        public readonly string? BuyerId;
+        /// <summary>
         /// The Bizum transaction ID associated with this payment.
         /// </summary>
         public readonly string? TransactionId;
 
         [OutputConstructor]
-        private ChargePaymentMethodDetailsBizum(string? transactionId)
+        private ChargePaymentMethodDetailsBizum(
+            string? buyerId,
+
+            string? transactionId)
         {
+            BuyerId = buyerId;
             TransactionId = transactionId;
         }
     }

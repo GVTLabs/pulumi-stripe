@@ -83,6 +83,21 @@ public final class SetupIntentPaymentMethodOptionsCardArgs extends com.pulumi.re
     }
 
     /**
+     * Set to indicate the future transaction type usage for the card being set up.
+     * 
+     */
+    @Import(name="setupCredentialUsage")
+    private @Nullable Output<String> setupCredentialUsage;
+
+    /**
+     * @return Set to indicate the future transaction type usage for the card being set up.
+     * 
+     */
+    public Optional<Output<String>> setupCredentialUsage() {
+        return Optional.ofNullable(this.setupCredentialUsage);
+    }
+
+    /**
      * If 3D Secure authentication was performed with a third-party provider,
      * the authentication details to use for this setup.
      * 
@@ -106,6 +121,7 @@ public final class SetupIntentPaymentMethodOptionsCardArgs extends com.pulumi.re
         this.moto = $.moto;
         this.network = $.network;
         this.requestThreeDSecure = $.requestThreeDSecure;
+        this.setupCredentialUsage = $.setupCredentialUsage;
         this.threeDSecure = $.threeDSecure;
     }
 
@@ -213,6 +229,27 @@ public final class SetupIntentPaymentMethodOptionsCardArgs extends com.pulumi.re
          */
         public Builder requestThreeDSecure(String requestThreeDSecure) {
             return requestThreeDSecure(Output.of(requestThreeDSecure));
+        }
+
+        /**
+         * @param setupCredentialUsage Set to indicate the future transaction type usage for the card being set up.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder setupCredentialUsage(@Nullable Output<String> setupCredentialUsage) {
+            $.setupCredentialUsage = setupCredentialUsage;
+            return this;
+        }
+
+        /**
+         * @param setupCredentialUsage Set to indicate the future transaction type usage for the card being set up.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder setupCredentialUsage(String setupCredentialUsage) {
+            return setupCredentialUsage(Output.of(setupCredentialUsage));
         }
 
         /**

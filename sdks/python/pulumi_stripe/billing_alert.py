@@ -186,7 +186,7 @@ class BillingAlert(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  alert_type: pulumi.Input[Optional[_builtins.str]] = None,
                  title: pulumi.Input[Optional[_builtins.str]] = None,
-                 usage_threshold: pulumi.Input[Optional[Union['BillingAlertUsageThresholdArgs', 'BillingAlertUsageThresholdArgsDict']]] = None,
+                 usage_threshold: pulumi.Input[Optional[Union['BillingAlertUsageThresholdArgs', 'BillingAlertUsageThresholdArgsDict', 'outputs.BillingAlertUsageThreshold']]] = None,
                  __props__=None):
         """
         Create a BillingAlert resource with the given unique name, props, and options.
@@ -195,7 +195,7 @@ class BillingAlert(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] alert_type: Defines the type of the alert.
         :param pulumi.Input[_builtins.str] title: Title of the alert.
-        :param pulumi.Input[Union['BillingAlertUsageThresholdArgs', 'BillingAlertUsageThresholdArgsDict']] usage_threshold: Encapsulates configuration of the alert to monitor usage on a specific [Billing Meter](https://docs.stripe.com/api/billing/meter).
+        :param pulumi.Input[Union['BillingAlertUsageThresholdArgs', 'BillingAlertUsageThresholdArgsDict', 'outputs.BillingAlertUsageThreshold']] usage_threshold: Encapsulates configuration of the alert to monitor usage on a specific [Billing Meter](https://docs.stripe.com/api/billing/meter).
         """
         ...
     @overload
@@ -223,7 +223,7 @@ class BillingAlert(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  alert_type: pulumi.Input[Optional[_builtins.str]] = None,
                  title: pulumi.Input[Optional[_builtins.str]] = None,
-                 usage_threshold: pulumi.Input[Optional[Union['BillingAlertUsageThresholdArgs', 'BillingAlertUsageThresholdArgsDict']]] = None,
+                 usage_threshold: pulumi.Input[Optional[Union['BillingAlertUsageThresholdArgs', 'BillingAlertUsageThresholdArgsDict', 'outputs.BillingAlertUsageThreshold']]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -259,7 +259,7 @@ class BillingAlert(pulumi.CustomResource):
             object: pulumi.Input[Optional[_builtins.str]] = None,
             status: pulumi.Input[Optional[_builtins.str]] = None,
             title: pulumi.Input[Optional[_builtins.str]] = None,
-            usage_threshold: pulumi.Input[Optional[Union['BillingAlertUsageThresholdArgs', 'BillingAlertUsageThresholdArgsDict']]] = None) -> 'BillingAlert':
+            usage_threshold: pulumi.Input[Optional[Union['BillingAlertUsageThresholdArgs', 'BillingAlertUsageThresholdArgsDict', 'outputs.BillingAlertUsageThreshold']]] = None) -> 'BillingAlert':
         """
         Get an existing BillingAlert resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -272,7 +272,7 @@ class BillingAlert(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] object: String representing the object's type. Objects of the same type share the same value.
         :param pulumi.Input[_builtins.str] status: Status of the alert. This can be active, inactive or archived.
         :param pulumi.Input[_builtins.str] title: Title of the alert.
-        :param pulumi.Input[Union['BillingAlertUsageThresholdArgs', 'BillingAlertUsageThresholdArgsDict']] usage_threshold: Encapsulates configuration of the alert to monitor usage on a specific [Billing Meter](https://docs.stripe.com/api/billing/meter).
+        :param pulumi.Input[Union['BillingAlertUsageThresholdArgs', 'BillingAlertUsageThresholdArgsDict', 'outputs.BillingAlertUsageThreshold']] usage_threshold: Encapsulates configuration of the alert to monitor usage on a specific [Billing Meter](https://docs.stripe.com/api/billing/meter).
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -285,6 +285,24 @@ class BillingAlert(pulumi.CustomResource):
         __props__.__dict__["title"] = title
         __props__.__dict__["usage_threshold"] = usage_threshold
         return BillingAlert(resource_name, opts=opts, __props__=__props__)
+
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            alert_type: pulumi.Input[Optional[_builtins.str]] = None,
+            livemode: pulumi.Input[Optional[_builtins.bool]] = None,
+            object: pulumi.Input[Optional[_builtins.str]] = None,
+            status: pulumi.Input[Optional[_builtins.str]] = None,
+            title: pulumi.Input[Optional[_builtins.str]] = None,
+            usage_threshold: pulumi.Input[Optional[Union['BillingAlertUsageThresholdArgs', 'BillingAlertUsageThresholdArgsDict', 'outputs.BillingAlertUsageThreshold']]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["alertType"] = alert_type
+        __props__["livemode"] = livemode
+        __props__["object"] = object
+        __props__["status"] = status
+        __props__["title"] = title
+        __props__["usageThreshold"] = usage_threshold
+        return pulumi.runtime.exists_resource(None, 'stripe:index/billingAlert:BillingAlert', id, __props__, opts or pulumi.ResourceOptions(), package_ref=_utilities.get_package())
 
     @_builtins.property
     @pulumi.getter(name="alertType")

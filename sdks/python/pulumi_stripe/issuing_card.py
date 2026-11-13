@@ -689,14 +689,14 @@ class IssuingCard(pulumi.CustomResource):
                  exp_month: pulumi.Input[Optional[_builtins.float]] = None,
                  exp_year: pulumi.Input[Optional[_builtins.float]] = None,
                  financial_account: pulumi.Input[Optional[_builtins.str]] = None,
-                 lifecycle_controls: pulumi.Input[Optional[Union['IssuingCardLifecycleControlsArgs', 'IssuingCardLifecycleControlsArgsDict']]] = None,
+                 lifecycle_controls: pulumi.Input[Optional[Union['IssuingCardLifecycleControlsArgs', 'IssuingCardLifecycleControlsArgsDict', 'outputs.IssuingCardLifecycleControls']]] = None,
                  metadata: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
                  personalization_design: pulumi.Input[Optional[_builtins.str]] = None,
-                 pin: pulumi.Input[Optional[Union['IssuingCardPinArgs', 'IssuingCardPinArgsDict']]] = None,
+                 pin: pulumi.Input[Optional[Union['IssuingCardPinArgs', 'IssuingCardPinArgsDict', 'outputs.IssuingCardPin']]] = None,
                  replacement_for: pulumi.Input[Optional[_builtins.str]] = None,
                  replacement_reason: pulumi.Input[Optional[_builtins.str]] = None,
-                 shipping: pulumi.Input[Optional[Union['IssuingCardShippingArgs', 'IssuingCardShippingArgsDict']]] = None,
-                 spending_controls: pulumi.Input[Optional[Union['IssuingCardSpendingControlsArgs', 'IssuingCardSpendingControlsArgsDict']]] = None,
+                 shipping: pulumi.Input[Optional[Union['IssuingCardShippingArgs', 'IssuingCardShippingArgsDict', 'outputs.IssuingCardShipping']]] = None,
+                 spending_controls: pulumi.Input[Optional[Union['IssuingCardSpendingControlsArgs', 'IssuingCardSpendingControlsArgsDict', 'outputs.IssuingCardSpendingControls']]] = None,
                  status: pulumi.Input[Optional[_builtins.str]] = None,
                  type: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
@@ -712,14 +712,14 @@ class IssuingCard(pulumi.CustomResource):
         :param pulumi.Input[_builtins.float] exp_month: The expiration month of the card.
         :param pulumi.Input[_builtins.float] exp_year: The expiration year of the card.
         :param pulumi.Input[_builtins.str] financial_account: The financial account this card is attached to.
-        :param pulumi.Input[Union['IssuingCardLifecycleControlsArgs', 'IssuingCardLifecycleControlsArgsDict']] lifecycle_controls: Rules that control the lifecycle of this card, such as automatic cancellation. Refer to our [documentation](https://www.terraform.io/issuing/controls/lifecycle-controls) for more details.
+        :param pulumi.Input[Union['IssuingCardLifecycleControlsArgs', 'IssuingCardLifecycleControlsArgsDict', 'outputs.IssuingCardLifecycleControls']] lifecycle_controls: Rules that control the lifecycle of this card, such as automatic cancellation. Refer to our [documentation](https://www.terraform.io/issuing/controls/lifecycle-controls) for more details.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] metadata: Set of [key-value pairs](https://docs.stripe.com/api/metadata) that you can attach to an object. This can be useful for storing additional information about the object in a structured format.
         :param pulumi.Input[_builtins.str] personalization_design: The personalization design object belonging to this card.
-        :param pulumi.Input[Union['IssuingCardPinArgs', 'IssuingCardPinArgsDict']] pin: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        :param pulumi.Input[Union['IssuingCardPinArgs', 'IssuingCardPinArgsDict', 'outputs.IssuingCardPin']] pin: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
                The desired PIN for this card.
         :param pulumi.Input[_builtins.str] replacement_for: The card this card replaces, if any.
         :param pulumi.Input[_builtins.str] replacement_reason: The reason why the previous card needed to be replaced.
-        :param pulumi.Input[Union['IssuingCardShippingArgs', 'IssuingCardShippingArgsDict']] shipping: Where and how the card will be shipped.
+        :param pulumi.Input[Union['IssuingCardShippingArgs', 'IssuingCardShippingArgsDict', 'outputs.IssuingCardShipping']] shipping: Where and how the card will be shipped.
         :param pulumi.Input[_builtins.str] status: Whether authorizations can be approved on this card. May be blocked from activating cards depending on past-due Cardholder requirements. Defaults to <span pulumi-lang-nodejs="`inactive`" pulumi-lang-dotnet="`Inactive`" pulumi-lang-go="`inactive`" pulumi-lang-python="`inactive`" pulumi-lang-yaml="`inactive`" pulumi-lang-java="`inactive`" pulumi-lang-hcl="`inactive`">`inactive`</span>.
         :param pulumi.Input[_builtins.str] type: The type of the card.
         """
@@ -752,14 +752,14 @@ class IssuingCard(pulumi.CustomResource):
                  exp_month: pulumi.Input[Optional[_builtins.float]] = None,
                  exp_year: pulumi.Input[Optional[_builtins.float]] = None,
                  financial_account: pulumi.Input[Optional[_builtins.str]] = None,
-                 lifecycle_controls: pulumi.Input[Optional[Union['IssuingCardLifecycleControlsArgs', 'IssuingCardLifecycleControlsArgsDict']]] = None,
+                 lifecycle_controls: pulumi.Input[Optional[Union['IssuingCardLifecycleControlsArgs', 'IssuingCardLifecycleControlsArgsDict', 'outputs.IssuingCardLifecycleControls']]] = None,
                  metadata: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
                  personalization_design: pulumi.Input[Optional[_builtins.str]] = None,
-                 pin: pulumi.Input[Optional[Union['IssuingCardPinArgs', 'IssuingCardPinArgsDict']]] = None,
+                 pin: pulumi.Input[Optional[Union['IssuingCardPinArgs', 'IssuingCardPinArgsDict', 'outputs.IssuingCardPin']]] = None,
                  replacement_for: pulumi.Input[Optional[_builtins.str]] = None,
                  replacement_reason: pulumi.Input[Optional[_builtins.str]] = None,
-                 shipping: pulumi.Input[Optional[Union['IssuingCardShippingArgs', 'IssuingCardShippingArgsDict']]] = None,
-                 spending_controls: pulumi.Input[Optional[Union['IssuingCardSpendingControlsArgs', 'IssuingCardSpendingControlsArgsDict']]] = None,
+                 shipping: pulumi.Input[Optional[Union['IssuingCardShippingArgs', 'IssuingCardShippingArgsDict', 'outputs.IssuingCardShipping']]] = None,
+                 spending_controls: pulumi.Input[Optional[Union['IssuingCardSpendingControlsArgs', 'IssuingCardSpendingControlsArgsDict', 'outputs.IssuingCardSpendingControls']]] = None,
                  status: pulumi.Input[Optional[_builtins.str]] = None,
                  type: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
@@ -822,22 +822,22 @@ class IssuingCard(pulumi.CustomResource):
             exp_year: pulumi.Input[Optional[_builtins.float]] = None,
             financial_account: pulumi.Input[Optional[_builtins.str]] = None,
             last4: pulumi.Input[Optional[_builtins.str]] = None,
-            latest_fraud_warning: pulumi.Input[Optional[Union['IssuingCardLatestFraudWarningArgs', 'IssuingCardLatestFraudWarningArgsDict']]] = None,
-            lifecycle_controls: pulumi.Input[Optional[Union['IssuingCardLifecycleControlsArgs', 'IssuingCardLifecycleControlsArgsDict']]] = None,
+            latest_fraud_warning: pulumi.Input[Optional[Union['IssuingCardLatestFraudWarningArgs', 'IssuingCardLatestFraudWarningArgsDict', 'outputs.IssuingCardLatestFraudWarning']]] = None,
+            lifecycle_controls: pulumi.Input[Optional[Union['IssuingCardLifecycleControlsArgs', 'IssuingCardLifecycleControlsArgsDict', 'outputs.IssuingCardLifecycleControls']]] = None,
             livemode: pulumi.Input[Optional[_builtins.bool]] = None,
             metadata: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
             number: pulumi.Input[Optional[_builtins.str]] = None,
             object: pulumi.Input[Optional[_builtins.str]] = None,
             personalization_design: pulumi.Input[Optional[_builtins.str]] = None,
-            pin: pulumi.Input[Optional[Union['IssuingCardPinArgs', 'IssuingCardPinArgsDict']]] = None,
+            pin: pulumi.Input[Optional[Union['IssuingCardPinArgs', 'IssuingCardPinArgsDict', 'outputs.IssuingCardPin']]] = None,
             replaced_by: pulumi.Input[Optional[_builtins.str]] = None,
             replacement_for: pulumi.Input[Optional[_builtins.str]] = None,
             replacement_reason: pulumi.Input[Optional[_builtins.str]] = None,
-            shipping: pulumi.Input[Optional[Union['IssuingCardShippingArgs', 'IssuingCardShippingArgsDict']]] = None,
-            spending_controls: pulumi.Input[Optional[Union['IssuingCardSpendingControlsArgs', 'IssuingCardSpendingControlsArgsDict']]] = None,
+            shipping: pulumi.Input[Optional[Union['IssuingCardShippingArgs', 'IssuingCardShippingArgsDict', 'outputs.IssuingCardShipping']]] = None,
+            spending_controls: pulumi.Input[Optional[Union['IssuingCardSpendingControlsArgs', 'IssuingCardSpendingControlsArgsDict', 'outputs.IssuingCardSpendingControls']]] = None,
             status: pulumi.Input[Optional[_builtins.str]] = None,
             type: pulumi.Input[Optional[_builtins.str]] = None,
-            wallets: pulumi.Input[Optional[Union['IssuingCardWalletsArgs', 'IssuingCardWalletsArgsDict']]] = None) -> 'IssuingCard':
+            wallets: pulumi.Input[Optional[Union['IssuingCardWalletsArgs', 'IssuingCardWalletsArgsDict', 'outputs.IssuingCardWallets']]] = None) -> 'IssuingCard':
         """
         Get an existing IssuingCard resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -856,22 +856,22 @@ class IssuingCard(pulumi.CustomResource):
         :param pulumi.Input[_builtins.float] exp_year: The expiration year of the card.
         :param pulumi.Input[_builtins.str] financial_account: The financial account this card is attached to.
         :param pulumi.Input[_builtins.str] last4: The last 4 digits of the card number.
-        :param pulumi.Input[Union['IssuingCardLatestFraudWarningArgs', 'IssuingCardLatestFraudWarningArgsDict']] latest_fraud_warning: Stripe’s assessment of whether this card’s details have been compromised. If this property isn't null, cancel and reissue the card to prevent fraudulent activity risk.
-        :param pulumi.Input[Union['IssuingCardLifecycleControlsArgs', 'IssuingCardLifecycleControlsArgsDict']] lifecycle_controls: Rules that control the lifecycle of this card, such as automatic cancellation. Refer to our [documentation](https://www.terraform.io/issuing/controls/lifecycle-controls) for more details.
+        :param pulumi.Input[Union['IssuingCardLatestFraudWarningArgs', 'IssuingCardLatestFraudWarningArgsDict', 'outputs.IssuingCardLatestFraudWarning']] latest_fraud_warning: Stripe’s assessment of whether this card’s details have been compromised. If this property isn't null, cancel and reissue the card to prevent fraudulent activity risk.
+        :param pulumi.Input[Union['IssuingCardLifecycleControlsArgs', 'IssuingCardLifecycleControlsArgsDict', 'outputs.IssuingCardLifecycleControls']] lifecycle_controls: Rules that control the lifecycle of this card, such as automatic cancellation. Refer to our [documentation](https://www.terraform.io/issuing/controls/lifecycle-controls) for more details.
         :param pulumi.Input[_builtins.bool] livemode: If the object exists in live mode, the value is <span pulumi-lang-nodejs="`true`" pulumi-lang-dotnet="`True`" pulumi-lang-go="`true`" pulumi-lang-python="`true`" pulumi-lang-yaml="`true`" pulumi-lang-java="`true`" pulumi-lang-hcl="`true`">`true`</span>. If the object exists in test mode, the value is <span pulumi-lang-nodejs="`false`" pulumi-lang-dotnet="`False`" pulumi-lang-go="`false`" pulumi-lang-python="`false`" pulumi-lang-yaml="`false`" pulumi-lang-java="`false`" pulumi-lang-hcl="`false`">`false`</span>.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] metadata: Set of [key-value pairs](https://docs.stripe.com/api/metadata) that you can attach to an object. This can be useful for storing additional information about the object in a structured format.
         :param pulumi.Input[_builtins.str] number: The full unredacted card number. For security reasons, this is only available for virtual cards, and will be omitted unless you explicitly request it with [the <span pulumi-lang-nodejs="`expand`" pulumi-lang-dotnet="`Expand`" pulumi-lang-go="`expand`" pulumi-lang-python="`expand`" pulumi-lang-yaml="`expand`" pulumi-lang-java="`expand`" pulumi-lang-hcl="`expand`">`expand`</span> parameter](https://docs.stripe.com/api/expanding_objects). Additionally, it's only available via the ["Retrieve a card" endpoint](https://docs.stripe.com/api/issuing/cards/retrieve), not via "List all cards" or any other endpoint.
         :param pulumi.Input[_builtins.str] object: String representing the object's type. Objects of the same type share the same value.
         :param pulumi.Input[_builtins.str] personalization_design: The personalization design object belonging to this card.
-        :param pulumi.Input[Union['IssuingCardPinArgs', 'IssuingCardPinArgsDict']] pin: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        :param pulumi.Input[Union['IssuingCardPinArgs', 'IssuingCardPinArgsDict', 'outputs.IssuingCardPin']] pin: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
                The desired PIN for this card.
         :param pulumi.Input[_builtins.str] replaced_by: The latest card that replaces this card, if any.
         :param pulumi.Input[_builtins.str] replacement_for: The card this card replaces, if any.
         :param pulumi.Input[_builtins.str] replacement_reason: The reason why the previous card needed to be replaced.
-        :param pulumi.Input[Union['IssuingCardShippingArgs', 'IssuingCardShippingArgsDict']] shipping: Where and how the card will be shipped.
+        :param pulumi.Input[Union['IssuingCardShippingArgs', 'IssuingCardShippingArgsDict', 'outputs.IssuingCardShipping']] shipping: Where and how the card will be shipped.
         :param pulumi.Input[_builtins.str] status: Whether authorizations can be approved on this card. May be blocked from activating cards depending on past-due Cardholder requirements. Defaults to <span pulumi-lang-nodejs="`inactive`" pulumi-lang-dotnet="`Inactive`" pulumi-lang-go="`inactive`" pulumi-lang-python="`inactive`" pulumi-lang-yaml="`inactive`" pulumi-lang-java="`inactive`" pulumi-lang-hcl="`inactive`">`inactive`</span>.
         :param pulumi.Input[_builtins.str] type: The type of the card.
-        :param pulumi.Input[Union['IssuingCardWalletsArgs', 'IssuingCardWalletsArgsDict']] wallets: Information relating to digital wallets (like Apple Pay and Google Pay).
+        :param pulumi.Input[Union['IssuingCardWalletsArgs', 'IssuingCardWalletsArgsDict', 'outputs.IssuingCardWallets']] wallets: Information relating to digital wallets (like Apple Pay and Google Pay).
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -903,6 +903,62 @@ class IssuingCard(pulumi.CustomResource):
         __props__.__dict__["type"] = type
         __props__.__dict__["wallets"] = wallets
         return IssuingCard(resource_name, opts=opts, __props__=__props__)
+
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            brand: pulumi.Input[Optional[_builtins.str]] = None,
+            cardholder: pulumi.Input[Optional[_builtins.str]] = None,
+            created: pulumi.Input[Optional[_builtins.float]] = None,
+            currency: pulumi.Input[Optional[_builtins.str]] = None,
+            cvc: pulumi.Input[Optional[_builtins.str]] = None,
+            exp_month: pulumi.Input[Optional[_builtins.float]] = None,
+            exp_year: pulumi.Input[Optional[_builtins.float]] = None,
+            financial_account: pulumi.Input[Optional[_builtins.str]] = None,
+            last4: pulumi.Input[Optional[_builtins.str]] = None,
+            latest_fraud_warning: pulumi.Input[Optional[Union['IssuingCardLatestFraudWarningArgs', 'IssuingCardLatestFraudWarningArgsDict', 'outputs.IssuingCardLatestFraudWarning']]] = None,
+            lifecycle_controls: pulumi.Input[Optional[Union['IssuingCardLifecycleControlsArgs', 'IssuingCardLifecycleControlsArgsDict', 'outputs.IssuingCardLifecycleControls']]] = None,
+            livemode: pulumi.Input[Optional[_builtins.bool]] = None,
+            metadata: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+            number: pulumi.Input[Optional[_builtins.str]] = None,
+            object: pulumi.Input[Optional[_builtins.str]] = None,
+            personalization_design: pulumi.Input[Optional[_builtins.str]] = None,
+            pin: pulumi.Input[Optional[Union['IssuingCardPinArgs', 'IssuingCardPinArgsDict', 'outputs.IssuingCardPin']]] = None,
+            replaced_by: pulumi.Input[Optional[_builtins.str]] = None,
+            replacement_for: pulumi.Input[Optional[_builtins.str]] = None,
+            replacement_reason: pulumi.Input[Optional[_builtins.str]] = None,
+            shipping: pulumi.Input[Optional[Union['IssuingCardShippingArgs', 'IssuingCardShippingArgsDict', 'outputs.IssuingCardShipping']]] = None,
+            spending_controls: pulumi.Input[Optional[Union['IssuingCardSpendingControlsArgs', 'IssuingCardSpendingControlsArgsDict', 'outputs.IssuingCardSpendingControls']]] = None,
+            status: pulumi.Input[Optional[_builtins.str]] = None,
+            type: pulumi.Input[Optional[_builtins.str]] = None,
+            wallets: pulumi.Input[Optional[Union['IssuingCardWalletsArgs', 'IssuingCardWalletsArgsDict', 'outputs.IssuingCardWallets']]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["brand"] = brand
+        __props__["cardholder"] = cardholder
+        __props__["created"] = created
+        __props__["currency"] = currency
+        __props__["cvc"] = cvc
+        __props__["expMonth"] = exp_month
+        __props__["expYear"] = exp_year
+        __props__["financialAccount"] = financial_account
+        __props__["last4"] = last4
+        __props__["latestFraudWarning"] = latest_fraud_warning
+        __props__["lifecycleControls"] = lifecycle_controls
+        __props__["livemode"] = livemode
+        __props__["metadata"] = metadata
+        __props__["number"] = number
+        __props__["object"] = object
+        __props__["personalizationDesign"] = personalization_design
+        __props__["pin"] = pin
+        __props__["replacedBy"] = replaced_by
+        __props__["replacementFor"] = replacement_for
+        __props__["replacementReason"] = replacement_reason
+        __props__["shipping"] = shipping
+        __props__["spendingControls"] = spending_controls
+        __props__["status"] = status
+        __props__["type"] = type
+        __props__["wallets"] = wallets
+        return pulumi.runtime.exists_resource(None, 'stripe:index/issuingCard:IssuingCard', id, __props__, opts or pulumi.ResourceOptions(), package_ref=_utilities.get_package())
 
     @_builtins.property
     @pulumi.getter

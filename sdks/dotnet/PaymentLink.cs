@@ -67,7 +67,7 @@ namespace Pulumi.Stripe
         public Output<string> Currency { get; private set; } = null!;
 
         /// <summary>
-        /// Collect additional information from your customer using custom fields. Up to 3 fields are supported. You can't set this parameter if &lt;span pulumi-lang-nodejs="`uiMode`" pulumi-lang-dotnet="`UiMode`" pulumi-lang-go="`uiMode`" pulumi-lang-python="`ui_mode`" pulumi-lang-yaml="`uiMode`" pulumi-lang-java="`uiMode`" pulumi-lang-hcl="`ui_mode`"&gt;`uiMode`&lt;/span&gt; is &lt;span pulumi-lang-nodejs="`custom`" pulumi-lang-dotnet="`Custom`" pulumi-lang-go="`custom`" pulumi-lang-python="`custom`" pulumi-lang-yaml="`custom`" pulumi-lang-java="`custom`" pulumi-lang-hcl="`custom`"&gt;`custom`&lt;/span&gt;.
+        /// Collect additional information from your customer using custom fields. Up to 3 fields are supported. You can't set this parameter if &lt;span pulumi-lang-nodejs="`uiMode`" pulumi-lang-dotnet="`UiMode`" pulumi-lang-go="`uiMode`" pulumi-lang-python="`ui_mode`" pulumi-lang-yaml="`uiMode`" pulumi-lang-java="`uiMode`" pulumi-lang-hcl="`ui_mode`"&gt;`uiMode`&lt;/span&gt; is &lt;span pulumi-lang-nodejs="`elements`" pulumi-lang-dotnet="`Elements`" pulumi-lang-go="`elements`" pulumi-lang-python="`elements`" pulumi-lang-yaml="`elements`" pulumi-lang-java="`elements`" pulumi-lang-hcl="`elements`"&gt;`elements`&lt;/span&gt;.
         /// </summary>
         [Output("customFields")]
         public Output<ImmutableArray<Outputs.PaymentLinkCustomField>> CustomFields { get; private set; } = null!;
@@ -308,7 +308,7 @@ namespace Pulumi.Stripe
         private InputList<Inputs.PaymentLinkCustomFieldArgs>? _customFields;
 
         /// <summary>
-        /// Collect additional information from your customer using custom fields. Up to 3 fields are supported. You can't set this parameter if &lt;span pulumi-lang-nodejs="`uiMode`" pulumi-lang-dotnet="`UiMode`" pulumi-lang-go="`uiMode`" pulumi-lang-python="`ui_mode`" pulumi-lang-yaml="`uiMode`" pulumi-lang-java="`uiMode`" pulumi-lang-hcl="`ui_mode`"&gt;`uiMode`&lt;/span&gt; is &lt;span pulumi-lang-nodejs="`custom`" pulumi-lang-dotnet="`Custom`" pulumi-lang-go="`custom`" pulumi-lang-python="`custom`" pulumi-lang-yaml="`custom`" pulumi-lang-java="`custom`" pulumi-lang-hcl="`custom`"&gt;`custom`&lt;/span&gt;.
+        /// Collect additional information from your customer using custom fields. Up to 3 fields are supported. You can't set this parameter if &lt;span pulumi-lang-nodejs="`uiMode`" pulumi-lang-dotnet="`UiMode`" pulumi-lang-go="`uiMode`" pulumi-lang-python="`ui_mode`" pulumi-lang-yaml="`uiMode`" pulumi-lang-java="`uiMode`" pulumi-lang-hcl="`ui_mode`"&gt;`uiMode`&lt;/span&gt; is &lt;span pulumi-lang-nodejs="`elements`" pulumi-lang-dotnet="`Elements`" pulumi-lang-go="`elements`" pulumi-lang-python="`elements`" pulumi-lang-yaml="`elements`" pulumi-lang-java="`elements`" pulumi-lang-hcl="`elements`"&gt;`elements`&lt;/span&gt;.
         /// </summary>
         public InputList<Inputs.PaymentLinkCustomFieldArgs> CustomFields
         {
@@ -532,7 +532,7 @@ namespace Pulumi.Stripe
         private InputList<Inputs.PaymentLinkCustomFieldGetArgs>? _customFields;
 
         /// <summary>
-        /// Collect additional information from your customer using custom fields. Up to 3 fields are supported. You can't set this parameter if &lt;span pulumi-lang-nodejs="`uiMode`" pulumi-lang-dotnet="`UiMode`" pulumi-lang-go="`uiMode`" pulumi-lang-python="`ui_mode`" pulumi-lang-yaml="`uiMode`" pulumi-lang-java="`uiMode`" pulumi-lang-hcl="`ui_mode`"&gt;`uiMode`&lt;/span&gt; is &lt;span pulumi-lang-nodejs="`custom`" pulumi-lang-dotnet="`Custom`" pulumi-lang-go="`custom`" pulumi-lang-python="`custom`" pulumi-lang-yaml="`custom`" pulumi-lang-java="`custom`" pulumi-lang-hcl="`custom`"&gt;`custom`&lt;/span&gt;.
+        /// Collect additional information from your customer using custom fields. Up to 3 fields are supported. You can't set this parameter if &lt;span pulumi-lang-nodejs="`uiMode`" pulumi-lang-dotnet="`UiMode`" pulumi-lang-go="`uiMode`" pulumi-lang-python="`ui_mode`" pulumi-lang-yaml="`uiMode`" pulumi-lang-java="`uiMode`" pulumi-lang-hcl="`ui_mode`"&gt;`uiMode`&lt;/span&gt; is &lt;span pulumi-lang-nodejs="`elements`" pulumi-lang-dotnet="`Elements`" pulumi-lang-go="`elements`" pulumi-lang-python="`elements`" pulumi-lang-yaml="`elements`" pulumi-lang-java="`elements`" pulumi-lang-hcl="`elements`"&gt;`elements`&lt;/span&gt;.
         /// </summary>
         public InputList<Inputs.PaymentLinkCustomFieldGetArgs> CustomFields
         {

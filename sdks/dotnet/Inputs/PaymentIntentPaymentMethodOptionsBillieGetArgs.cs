@@ -18,6 +18,15 @@ namespace Pulumi.Stripe.Inputs
         [Input("captureMethod")]
         public Input<string>? CaptureMethod { get; set; }
 
+        [Input("companyDetails")]
+        public Input<Inputs.PaymentIntentPaymentMethodOptionsBillieCompanyDetailsGetArgs>? CompanyDetails { get; set; }
+
+        /// <summary>
+        /// An identifier or reference that this payment corresponds to.
+        /// </summary>
+        [Input("reference")]
+        public Input<string>? Reference { get; set; }
+
         public PaymentIntentPaymentMethodOptionsBillieGetArgs()
         {
         }

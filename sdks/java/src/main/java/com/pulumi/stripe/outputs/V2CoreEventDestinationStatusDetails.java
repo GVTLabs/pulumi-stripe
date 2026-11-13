@@ -12,14 +12,14 @@ import javax.annotation.Nullable;
 @CustomType
 public final class V2CoreEventDestinationStatusDetails {
     /**
-     * @return Details about why the event destination has been disabled.
+     * @return Present when the destination was disabled; identifies the cause, time, and provider-side object involved when available.
      * 
      */
     private @Nullable V2CoreEventDestinationStatusDetailsDisabled disabled;
 
     private V2CoreEventDestinationStatusDetails() {}
     /**
-     * @return Details about why the event destination has been disabled.
+     * @return Present when the destination was disabled; identifies the cause, time, and provider-side object involved when available.
      * 
      */
     public Optional<V2CoreEventDestinationStatusDetailsDisabled> disabled() {

@@ -186,14 +186,14 @@ public final class TerminalReaderState extends com.pulumi.resources.ResourceArgs
     }
 
     /**
-     * The networking status of the reader. We do not recommend using this field in flows that may block taking payments.
+     * The networking status of the reader. This value is &lt;span pulumi-lang-nodejs=&#34;`null`&#34; pulumi-lang-dotnet=&#34;`Null`&#34; pulumi-lang-go=&#34;`null`&#34; pulumi-lang-python=&#34;`null`&#34; pulumi-lang-yaml=&#34;`null`&#34; pulumi-lang-java=&#34;`null`&#34; pulumi-lang-hcl=&#34;`null`&#34;&gt;`null`&lt;/span&gt; for mobile readers. We do not recommend using this field in flows that may block taking payments.
      * 
      */
     @Import(name="status")
     private @Nullable Output<String> status;
 
     /**
-     * @return The networking status of the reader. We do not recommend using this field in flows that may block taking payments.
+     * @return The networking status of the reader. This value is &lt;span pulumi-lang-nodejs=&#34;`null`&#34; pulumi-lang-dotnet=&#34;`Null`&#34; pulumi-lang-go=&#34;`null`&#34; pulumi-lang-python=&#34;`null`&#34; pulumi-lang-yaml=&#34;`null`&#34; pulumi-lang-java=&#34;`null`&#34; pulumi-lang-hcl=&#34;`null`&#34;&gt;`null`&lt;/span&gt; for mobile readers. We do not recommend using this field in flows that may block taking payments.
      * 
      */
     public Optional<Output<String>> status() {
@@ -469,7 +469,7 @@ public final class TerminalReaderState extends com.pulumi.resources.ResourceArgs
         }
 
         /**
-         * @param status The networking status of the reader. We do not recommend using this field in flows that may block taking payments.
+         * @param status The networking status of the reader. This value is &lt;span pulumi-lang-nodejs=&#34;`null`&#34; pulumi-lang-dotnet=&#34;`Null`&#34; pulumi-lang-go=&#34;`null`&#34; pulumi-lang-python=&#34;`null`&#34; pulumi-lang-yaml=&#34;`null`&#34; pulumi-lang-java=&#34;`null`&#34; pulumi-lang-hcl=&#34;`null`&#34;&gt;`null`&lt;/span&gt; for mobile readers. We do not recommend using this field in flows that may block taking payments.
          * 
          * @return builder
          * 
@@ -480,7 +480,7 @@ public final class TerminalReaderState extends com.pulumi.resources.ResourceArgs
         }
 
         /**
-         * @param status The networking status of the reader. We do not recommend using this field in flows that may block taking payments.
+         * @param status The networking status of the reader. This value is &lt;span pulumi-lang-nodejs=&#34;`null`&#34; pulumi-lang-dotnet=&#34;`Null`&#34; pulumi-lang-go=&#34;`null`&#34; pulumi-lang-python=&#34;`null`&#34; pulumi-lang-yaml=&#34;`null`&#34; pulumi-lang-java=&#34;`null`&#34; pulumi-lang-hcl=&#34;`null`&#34;&gt;`null`&lt;/span&gt; for mobile readers. We do not recommend using this field in flows that may block taking payments.
          * 
          * @return builder
          * 

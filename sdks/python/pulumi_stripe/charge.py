@@ -47,7 +47,7 @@ class ChargeArgs:
         :param pulumi.Input[_builtins.float] application_fee: The application fee (if any) for the charge. [See the Connect documentation](https://docs.stripe.com/connect/direct-charges#collect-fees) for details.
         :param pulumi.Input[_builtins.float] application_fee_amount: The amount of the application fee (if any) requested for the charge. [See the Connect documentation](https://docs.stripe.com/connect/direct-charges#collect-fees) for details.
         :param pulumi.Input[_builtins.bool] capture: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
-               Whether to immediately capture the charge. Defaults to <span pulumi-lang-nodejs="`true`" pulumi-lang-dotnet="`True`" pulumi-lang-go="`true`" pulumi-lang-python="`true`" pulumi-lang-yaml="`true`" pulumi-lang-java="`true`" pulumi-lang-hcl="`true`">`true`</span>. When <span pulumi-lang-nodejs="`false`" pulumi-lang-dotnet="`False`" pulumi-lang-go="`false`" pulumi-lang-python="`false`" pulumi-lang-yaml="`false`" pulumi-lang-java="`false`" pulumi-lang-hcl="`false`">`false`</span>, the charge issues an authorization (or pre-authorization), and will need to be [captured](https://api.stripe.com#capture_charge) later. Uncaptured charges expire after a set number of days (7 by default). For more information, see the [authorizing charges and settling later](https://docs.stripe.com/charges/placing-a-hold) documentation.
+               Whether to immediately capture the charge. Defaults to <span pulumi-lang-nodejs="`true`" pulumi-lang-dotnet="`True`" pulumi-lang-go="`true`" pulumi-lang-python="`true`" pulumi-lang-yaml="`true`" pulumi-lang-java="`true`" pulumi-lang-hcl="`true`">`true`</span>. When <span pulumi-lang-nodejs="`false`" pulumi-lang-dotnet="`False`" pulumi-lang-go="`false`" pulumi-lang-python="`false`" pulumi-lang-yaml="`false`" pulumi-lang-java="`false`" pulumi-lang-hcl="`false`">`false`</span>, the charge issues an authorization (or pre-authorization), and will need to be [captured](https://docs.stripe.com/api#capture_charge) later. Uncaptured charges expire after a set number of days (7 by default). For more information, see the [authorizing charges and settling later](https://docs.stripe.com/charges/placing-a-hold) documentation.
         :param pulumi.Input[_builtins.str] currency: Three-letter [ISO currency code](https://www.iso.org/iso-4217-currency-codes.html), in lowercase. Must be a [supported currency](https://stripe.com/docs/currencies).
         :param pulumi.Input[_builtins.str] customer: ID of the customer this charge is for if one exists.
         :param pulumi.Input[_builtins.str] description: An arbitrary string attached to the object. Often useful for displaying to users.
@@ -146,7 +146,7 @@ class ChargeArgs:
     def capture(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
-        Whether to immediately capture the charge. Defaults to <span pulumi-lang-nodejs="`true`" pulumi-lang-dotnet="`True`" pulumi-lang-go="`true`" pulumi-lang-python="`true`" pulumi-lang-yaml="`true`" pulumi-lang-java="`true`" pulumi-lang-hcl="`true`">`true`</span>. When <span pulumi-lang-nodejs="`false`" pulumi-lang-dotnet="`False`" pulumi-lang-go="`false`" pulumi-lang-python="`false`" pulumi-lang-yaml="`false`" pulumi-lang-java="`false`" pulumi-lang-hcl="`false`">`false`</span>, the charge issues an authorization (or pre-authorization), and will need to be [captured](https://api.stripe.com#capture_charge) later. Uncaptured charges expire after a set number of days (7 by default). For more information, see the [authorizing charges and settling later](https://docs.stripe.com/charges/placing-a-hold) documentation.
+        Whether to immediately capture the charge. Defaults to <span pulumi-lang-nodejs="`true`" pulumi-lang-dotnet="`True`" pulumi-lang-go="`true`" pulumi-lang-python="`true`" pulumi-lang-yaml="`true`" pulumi-lang-java="`true`" pulumi-lang-hcl="`true`">`true`</span>. When <span pulumi-lang-nodejs="`false`" pulumi-lang-dotnet="`False`" pulumi-lang-go="`false`" pulumi-lang-python="`false`" pulumi-lang-yaml="`false`" pulumi-lang-java="`false`" pulumi-lang-hcl="`false`">`false`</span>, the charge issues an authorization (or pre-authorization), and will need to be [captured](https://docs.stripe.com/api#capture_charge) later. Uncaptured charges expire after a set number of days (7 by default). For more information, see the [authorizing charges and settling later](https://docs.stripe.com/charges/placing-a-hold) documentation.
         """
         return pulumi.get(self, "capture")
 
@@ -400,7 +400,7 @@ class _ChargeState:
         :param pulumi.Input[_builtins.str] balance_transaction: ID of the balance transaction that describes the impact of this charge on your account balance (not including refunds or disputes).
         :param pulumi.Input[_builtins.str] calculated_statement_descriptor: The full statement descriptor that is passed to card networks, and that is displayed on your customers' credit card and bank statements. Allows you to see what the statement descriptor looks like after the static and dynamic portions are combined. This value only exists for card payments.
         :param pulumi.Input[_builtins.bool] capture: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
-               Whether to immediately capture the charge. Defaults to <span pulumi-lang-nodejs="`true`" pulumi-lang-dotnet="`True`" pulumi-lang-go="`true`" pulumi-lang-python="`true`" pulumi-lang-yaml="`true`" pulumi-lang-java="`true`" pulumi-lang-hcl="`true`">`true`</span>. When <span pulumi-lang-nodejs="`false`" pulumi-lang-dotnet="`False`" pulumi-lang-go="`false`" pulumi-lang-python="`false`" pulumi-lang-yaml="`false`" pulumi-lang-java="`false`" pulumi-lang-hcl="`false`">`false`</span>, the charge issues an authorization (or pre-authorization), and will need to be [captured](https://api.stripe.com#capture_charge) later. Uncaptured charges expire after a set number of days (7 by default). For more information, see the [authorizing charges and settling later](https://docs.stripe.com/charges/placing-a-hold) documentation.
+               Whether to immediately capture the charge. Defaults to <span pulumi-lang-nodejs="`true`" pulumi-lang-dotnet="`True`" pulumi-lang-go="`true`" pulumi-lang-python="`true`" pulumi-lang-yaml="`true`" pulumi-lang-java="`true`" pulumi-lang-hcl="`true`">`true`</span>. When <span pulumi-lang-nodejs="`false`" pulumi-lang-dotnet="`False`" pulumi-lang-go="`false`" pulumi-lang-python="`false`" pulumi-lang-yaml="`false`" pulumi-lang-java="`false`" pulumi-lang-hcl="`false`">`false`</span>, the charge issues an authorization (or pre-authorization), and will need to be [captured](https://docs.stripe.com/api#capture_charge) later. Uncaptured charges expire after a set number of days (7 by default). For more information, see the [authorizing charges and settling later](https://docs.stripe.com/charges/placing-a-hold) documentation.
         :param pulumi.Input[_builtins.bool] captured: If the charge was created without capturing, this Boolean represents whether it is still uncaptured or has since been captured.
         :param pulumi.Input[_builtins.float] created: Time at which the object was created. Measured in seconds since the Unix epoch.
         :param pulumi.Input[_builtins.str] currency: Three-letter [ISO currency code](https://www.iso.org/iso-4217-currency-codes.html), in lowercase. Must be a [supported currency](https://stripe.com/docs/currencies).
@@ -655,7 +655,7 @@ class _ChargeState:
     def capture(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
-        Whether to immediately capture the charge. Defaults to <span pulumi-lang-nodejs="`true`" pulumi-lang-dotnet="`True`" pulumi-lang-go="`true`" pulumi-lang-python="`true`" pulumi-lang-yaml="`true`" pulumi-lang-java="`true`" pulumi-lang-hcl="`true`">`true`</span>. When <span pulumi-lang-nodejs="`false`" pulumi-lang-dotnet="`False`" pulumi-lang-go="`false`" pulumi-lang-python="`false`" pulumi-lang-yaml="`false`" pulumi-lang-java="`false`" pulumi-lang-hcl="`false`">`false`</span>, the charge issues an authorization (or pre-authorization), and will need to be [captured](https://api.stripe.com#capture_charge) later. Uncaptured charges expire after a set number of days (7 by default). For more information, see the [authorizing charges and settling later](https://docs.stripe.com/charges/placing-a-hold) documentation.
+        Whether to immediately capture the charge. Defaults to <span pulumi-lang-nodejs="`true`" pulumi-lang-dotnet="`True`" pulumi-lang-go="`true`" pulumi-lang-python="`true`" pulumi-lang-yaml="`true`" pulumi-lang-java="`true`" pulumi-lang-hcl="`true`">`true`</span>. When <span pulumi-lang-nodejs="`false`" pulumi-lang-dotnet="`False`" pulumi-lang-go="`false`" pulumi-lang-python="`false`" pulumi-lang-yaml="`false`" pulumi-lang-java="`false`" pulumi-lang-hcl="`false`">`false`</span>, the charge issues an authorization (or pre-authorization), and will need to be [captured](https://docs.stripe.com/api#capture_charge) later. Uncaptured charges expire after a set number of days (7 by default). For more information, see the [authorizing charges and settling later](https://docs.stripe.com/charges/placing-a-hold) documentation.
         """
         return pulumi.get(self, "capture")
 
@@ -1105,17 +1105,17 @@ class Charge(pulumi.CustomResource):
                  currency: pulumi.Input[Optional[_builtins.str]] = None,
                  customer: pulumi.Input[Optional[_builtins.str]] = None,
                  description: pulumi.Input[Optional[_builtins.str]] = None,
-                 destination: pulumi.Input[Optional[Union['ChargeDestinationArgs', 'ChargeDestinationArgsDict']]] = None,
-                 fraud_details: pulumi.Input[Optional[Union['ChargeFraudDetailsArgs', 'ChargeFraudDetailsArgsDict']]] = None,
+                 destination: pulumi.Input[Optional[Union['ChargeDestinationArgs', 'ChargeDestinationArgsDict', 'outputs.ChargeDestination']]] = None,
+                 fraud_details: pulumi.Input[Optional[Union['ChargeFraudDetailsArgs', 'ChargeFraudDetailsArgsDict', 'outputs.ChargeFraudDetails']]] = None,
                  metadata: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
                  on_behalf_of: pulumi.Input[Optional[_builtins.str]] = None,
-                 radar_options: pulumi.Input[Optional[Union['ChargeRadarOptionsArgs', 'ChargeRadarOptionsArgsDict']]] = None,
+                 radar_options: pulumi.Input[Optional[Union['ChargeRadarOptionsArgs', 'ChargeRadarOptionsArgsDict', 'outputs.ChargeRadarOptions']]] = None,
                  receipt_email: pulumi.Input[Optional[_builtins.str]] = None,
-                 shipping: pulumi.Input[Optional[Union['ChargeShippingArgs', 'ChargeShippingArgsDict']]] = None,
+                 shipping: pulumi.Input[Optional[Union['ChargeShippingArgs', 'ChargeShippingArgsDict', 'outputs.ChargeShipping']]] = None,
                  source: pulumi.Input[Optional[_builtins.str]] = None,
                  statement_descriptor: pulumi.Input[Optional[_builtins.str]] = None,
                  statement_descriptor_suffix: pulumi.Input[Optional[_builtins.str]] = None,
-                 transfer_data: pulumi.Input[Optional[Union['ChargeTransferDataArgs', 'ChargeTransferDataArgsDict']]] = None,
+                 transfer_data: pulumi.Input[Optional[Union['ChargeTransferDataArgs', 'ChargeTransferDataArgsDict', 'outputs.ChargeTransferData']]] = None,
                  transfer_group: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         """
@@ -1127,23 +1127,23 @@ class Charge(pulumi.CustomResource):
         :param pulumi.Input[_builtins.float] application_fee: The application fee (if any) for the charge. [See the Connect documentation](https://docs.stripe.com/connect/direct-charges#collect-fees) for details.
         :param pulumi.Input[_builtins.float] application_fee_amount: The amount of the application fee (if any) requested for the charge. [See the Connect documentation](https://docs.stripe.com/connect/direct-charges#collect-fees) for details.
         :param pulumi.Input[_builtins.bool] capture: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
-               Whether to immediately capture the charge. Defaults to <span pulumi-lang-nodejs="`true`" pulumi-lang-dotnet="`True`" pulumi-lang-go="`true`" pulumi-lang-python="`true`" pulumi-lang-yaml="`true`" pulumi-lang-java="`true`" pulumi-lang-hcl="`true`">`true`</span>. When <span pulumi-lang-nodejs="`false`" pulumi-lang-dotnet="`False`" pulumi-lang-go="`false`" pulumi-lang-python="`false`" pulumi-lang-yaml="`false`" pulumi-lang-java="`false`" pulumi-lang-hcl="`false`">`false`</span>, the charge issues an authorization (or pre-authorization), and will need to be [captured](https://api.stripe.com#capture_charge) later. Uncaptured charges expire after a set number of days (7 by default). For more information, see the [authorizing charges and settling later](https://docs.stripe.com/charges/placing-a-hold) documentation.
+               Whether to immediately capture the charge. Defaults to <span pulumi-lang-nodejs="`true`" pulumi-lang-dotnet="`True`" pulumi-lang-go="`true`" pulumi-lang-python="`true`" pulumi-lang-yaml="`true`" pulumi-lang-java="`true`" pulumi-lang-hcl="`true`">`true`</span>. When <span pulumi-lang-nodejs="`false`" pulumi-lang-dotnet="`False`" pulumi-lang-go="`false`" pulumi-lang-python="`false`" pulumi-lang-yaml="`false`" pulumi-lang-java="`false`" pulumi-lang-hcl="`false`">`false`</span>, the charge issues an authorization (or pre-authorization), and will need to be [captured](https://docs.stripe.com/api#capture_charge) later. Uncaptured charges expire after a set number of days (7 by default). For more information, see the [authorizing charges and settling later](https://docs.stripe.com/charges/placing-a-hold) documentation.
         :param pulumi.Input[_builtins.str] currency: Three-letter [ISO currency code](https://www.iso.org/iso-4217-currency-codes.html), in lowercase. Must be a [supported currency](https://stripe.com/docs/currencies).
         :param pulumi.Input[_builtins.str] customer: ID of the customer this charge is for if one exists.
         :param pulumi.Input[_builtins.str] description: An arbitrary string attached to the object. Often useful for displaying to users.
-        :param pulumi.Input[Union['ChargeDestinationArgs', 'ChargeDestinationArgsDict']] destination: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
-        :param pulumi.Input[Union['ChargeFraudDetailsArgs', 'ChargeFraudDetailsArgsDict']] fraud_details: Information on fraud assessments for the charge.
+        :param pulumi.Input[Union['ChargeDestinationArgs', 'ChargeDestinationArgsDict', 'outputs.ChargeDestination']] destination: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        :param pulumi.Input[Union['ChargeFraudDetailsArgs', 'ChargeFraudDetailsArgsDict', 'outputs.ChargeFraudDetails']] fraud_details: Information on fraud assessments for the charge.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] metadata: Set of [key-value pairs](https://docs.stripe.com/api/metadata) that you can attach to an object. This can be useful for storing additional information about the object in a structured format.
         :param pulumi.Input[_builtins.str] on_behalf_of: The account (if any) the charge was made on behalf of without triggering an automatic transfer. See the [Connect documentation](https://docs.stripe.com/connect/separate-charges-and-transfers) for details.
-        :param pulumi.Input[Union['ChargeRadarOptionsArgs', 'ChargeRadarOptionsArgsDict']] radar_options: Options to configure Radar. See [Radar Session](https://docs.stripe.com/radar/radar-session) for more information.
+        :param pulumi.Input[Union['ChargeRadarOptionsArgs', 'ChargeRadarOptionsArgsDict', 'outputs.ChargeRadarOptions']] radar_options: Options to configure Radar. See [Radar Session](https://docs.stripe.com/radar/radar-session) for more information.
         :param pulumi.Input[_builtins.str] receipt_email: This is the email address that the receipt for this charge was sent to.
-        :param pulumi.Input[Union['ChargeShippingArgs', 'ChargeShippingArgsDict']] shipping: Shipping information for the charge.
+        :param pulumi.Input[Union['ChargeShippingArgs', 'ChargeShippingArgsDict', 'outputs.ChargeShipping']] shipping: Shipping information for the charge.
         :param pulumi.Input[_builtins.str] source: This is a legacy field that will be removed in the future. It contains the Source, Card, or BankAccount object used for the charge. For details about the payment method used for this charge, refer to <span pulumi-lang-nodejs="`paymentMethod`" pulumi-lang-dotnet="`PaymentMethod`" pulumi-lang-go="`paymentMethod`" pulumi-lang-python="`payment_method`" pulumi-lang-yaml="`paymentMethod`" pulumi-lang-java="`paymentMethod`" pulumi-lang-hcl="`payment_method`">`paymentMethod`</span> or <span pulumi-lang-nodejs="`paymentMethodDetails`" pulumi-lang-dotnet="`PaymentMethodDetails`" pulumi-lang-go="`paymentMethodDetails`" pulumi-lang-python="`payment_method_details`" pulumi-lang-yaml="`paymentMethodDetails`" pulumi-lang-java="`paymentMethodDetails`" pulumi-lang-hcl="`payment_method_details`">`paymentMethodDetails`</span> instead.
         :param pulumi.Input[_builtins.str] statement_descriptor: For a non-card charge, text that appears on the customer's statement as the statement descriptor. This value overrides the account's default statement descriptor. For information about requirements, including the 22-character limit, see [the Statement Descriptor docs](https://docs.stripe.com/get-started/account/statement-descriptors).
                
                For a card charge, this value is ignored unless you don't specify a <span pulumi-lang-nodejs="`statementDescriptorSuffix`" pulumi-lang-dotnet="`StatementDescriptorSuffix`" pulumi-lang-go="`statementDescriptorSuffix`" pulumi-lang-python="`statement_descriptor_suffix`" pulumi-lang-yaml="`statementDescriptorSuffix`" pulumi-lang-java="`statementDescriptorSuffix`" pulumi-lang-hcl="`statement_descriptor_suffix`">`statementDescriptorSuffix`</span>, in which case this value is used as the suffix.
         :param pulumi.Input[_builtins.str] statement_descriptor_suffix: Provides information about a card charge. Concatenated to the account's [statement descriptor prefix](https://docs.stripe.com/get-started/account/statement-descriptors#static) to form the complete statement descriptor that appears on the customer's statement. If the account has no prefix value, the suffix is concatenated to the account's statement descriptor.
-        :param pulumi.Input[Union['ChargeTransferDataArgs', 'ChargeTransferDataArgsDict']] transfer_data: An optional dictionary including the account to automatically transfer to as part of a destination charge. [See the Connect documentation](https://docs.stripe.com/connect/destination-charges) for details.
+        :param pulumi.Input[Union['ChargeTransferDataArgs', 'ChargeTransferDataArgsDict', 'outputs.ChargeTransferData']] transfer_data: An optional dictionary including the account to automatically transfer to as part of a destination charge. [See the Connect documentation](https://docs.stripe.com/connect/destination-charges) for details.
         :param pulumi.Input[_builtins.str] transfer_group: A string that identifies this transaction as part of a group. See the [Connect documentation](https://docs.stripe.com/connect/separate-charges-and-transfers#transfer-options) for details.
         """
         ...
@@ -1177,17 +1177,17 @@ class Charge(pulumi.CustomResource):
                  currency: pulumi.Input[Optional[_builtins.str]] = None,
                  customer: pulumi.Input[Optional[_builtins.str]] = None,
                  description: pulumi.Input[Optional[_builtins.str]] = None,
-                 destination: pulumi.Input[Optional[Union['ChargeDestinationArgs', 'ChargeDestinationArgsDict']]] = None,
-                 fraud_details: pulumi.Input[Optional[Union['ChargeFraudDetailsArgs', 'ChargeFraudDetailsArgsDict']]] = None,
+                 destination: pulumi.Input[Optional[Union['ChargeDestinationArgs', 'ChargeDestinationArgsDict', 'outputs.ChargeDestination']]] = None,
+                 fraud_details: pulumi.Input[Optional[Union['ChargeFraudDetailsArgs', 'ChargeFraudDetailsArgsDict', 'outputs.ChargeFraudDetails']]] = None,
                  metadata: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
                  on_behalf_of: pulumi.Input[Optional[_builtins.str]] = None,
-                 radar_options: pulumi.Input[Optional[Union['ChargeRadarOptionsArgs', 'ChargeRadarOptionsArgsDict']]] = None,
+                 radar_options: pulumi.Input[Optional[Union['ChargeRadarOptionsArgs', 'ChargeRadarOptionsArgsDict', 'outputs.ChargeRadarOptions']]] = None,
                  receipt_email: pulumi.Input[Optional[_builtins.str]] = None,
-                 shipping: pulumi.Input[Optional[Union['ChargeShippingArgs', 'ChargeShippingArgsDict']]] = None,
+                 shipping: pulumi.Input[Optional[Union['ChargeShippingArgs', 'ChargeShippingArgsDict', 'outputs.ChargeShipping']]] = None,
                  source: pulumi.Input[Optional[_builtins.str]] = None,
                  statement_descriptor: pulumi.Input[Optional[_builtins.str]] = None,
                  statement_descriptor_suffix: pulumi.Input[Optional[_builtins.str]] = None,
-                 transfer_data: pulumi.Input[Optional[Union['ChargeTransferDataArgs', 'ChargeTransferDataArgsDict']]] = None,
+                 transfer_data: pulumi.Input[Optional[Union['ChargeTransferDataArgs', 'ChargeTransferDataArgsDict', 'outputs.ChargeTransferData']]] = None,
                  transfer_group: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
@@ -1266,7 +1266,7 @@ class Charge(pulumi.CustomResource):
             application_fee_amount: pulumi.Input[Optional[_builtins.float]] = None,
             authorization_code: pulumi.Input[Optional[_builtins.str]] = None,
             balance_transaction: pulumi.Input[Optional[_builtins.str]] = None,
-            billing_details: pulumi.Input[Optional[Union['ChargeBillingDetailsArgs', 'ChargeBillingDetailsArgsDict']]] = None,
+            billing_details: pulumi.Input[Optional[Union['ChargeBillingDetailsArgs', 'ChargeBillingDetailsArgsDict', 'outputs.ChargeBillingDetails']]] = None,
             calculated_statement_descriptor: pulumi.Input[Optional[_builtins.str]] = None,
             capture: pulumi.Input[Optional[_builtins.bool]] = None,
             captured: pulumi.Input[Optional[_builtins.bool]] = None,
@@ -1274,36 +1274,36 @@ class Charge(pulumi.CustomResource):
             currency: pulumi.Input[Optional[_builtins.str]] = None,
             customer: pulumi.Input[Optional[_builtins.str]] = None,
             description: pulumi.Input[Optional[_builtins.str]] = None,
-            destination: pulumi.Input[Optional[Union['ChargeDestinationArgs', 'ChargeDestinationArgsDict']]] = None,
+            destination: pulumi.Input[Optional[Union['ChargeDestinationArgs', 'ChargeDestinationArgsDict', 'outputs.ChargeDestination']]] = None,
             disputed: pulumi.Input[Optional[_builtins.bool]] = None,
             failure_balance_transaction: pulumi.Input[Optional[_builtins.str]] = None,
             failure_code: pulumi.Input[Optional[_builtins.str]] = None,
             failure_message: pulumi.Input[Optional[_builtins.str]] = None,
-            fraud_details: pulumi.Input[Optional[Union['ChargeFraudDetailsArgs', 'ChargeFraudDetailsArgsDict']]] = None,
-            level3: pulumi.Input[Optional[Union['ChargeLevel3Args', 'ChargeLevel3ArgsDict']]] = None,
+            fraud_details: pulumi.Input[Optional[Union['ChargeFraudDetailsArgs', 'ChargeFraudDetailsArgsDict', 'outputs.ChargeFraudDetails']]] = None,
+            level3: pulumi.Input[Optional[Union['ChargeLevel3Args', 'ChargeLevel3ArgsDict', 'outputs.ChargeLevel3']]] = None,
             livemode: pulumi.Input[Optional[_builtins.bool]] = None,
             metadata: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
             object: pulumi.Input[Optional[_builtins.str]] = None,
             on_behalf_of: pulumi.Input[Optional[_builtins.str]] = None,
-            outcome: pulumi.Input[Optional[Union['ChargeOutcomeArgs', 'ChargeOutcomeArgsDict']]] = None,
+            outcome: pulumi.Input[Optional[Union['ChargeOutcomeArgs', 'ChargeOutcomeArgsDict', 'outputs.ChargeOutcome']]] = None,
             paid: pulumi.Input[Optional[_builtins.bool]] = None,
             payment_intent: pulumi.Input[Optional[_builtins.str]] = None,
             payment_method: pulumi.Input[Optional[_builtins.str]] = None,
-            payment_method_details: pulumi.Input[Optional[Union['ChargePaymentMethodDetailsArgs', 'ChargePaymentMethodDetailsArgsDict']]] = None,
-            presentment_details: pulumi.Input[Optional[Union['ChargePresentmentDetailsArgs', 'ChargePresentmentDetailsArgsDict']]] = None,
-            radar_options: pulumi.Input[Optional[Union['ChargeRadarOptionsArgs', 'ChargeRadarOptionsArgsDict']]] = None,
+            payment_method_details: pulumi.Input[Optional[Union['ChargePaymentMethodDetailsArgs', 'ChargePaymentMethodDetailsArgsDict', 'outputs.ChargePaymentMethodDetails']]] = None,
+            presentment_details: pulumi.Input[Optional[Union['ChargePresentmentDetailsArgs', 'ChargePresentmentDetailsArgsDict', 'outputs.ChargePresentmentDetails']]] = None,
+            radar_options: pulumi.Input[Optional[Union['ChargeRadarOptionsArgs', 'ChargeRadarOptionsArgsDict', 'outputs.ChargeRadarOptions']]] = None,
             receipt_email: pulumi.Input[Optional[_builtins.str]] = None,
             receipt_number: pulumi.Input[Optional[_builtins.str]] = None,
             refunded: pulumi.Input[Optional[_builtins.bool]] = None,
             review: pulumi.Input[Optional[_builtins.str]] = None,
-            shipping: pulumi.Input[Optional[Union['ChargeShippingArgs', 'ChargeShippingArgsDict']]] = None,
+            shipping: pulumi.Input[Optional[Union['ChargeShippingArgs', 'ChargeShippingArgsDict', 'outputs.ChargeShipping']]] = None,
             source: pulumi.Input[Optional[_builtins.str]] = None,
             source_transfer: pulumi.Input[Optional[_builtins.str]] = None,
             statement_descriptor: pulumi.Input[Optional[_builtins.str]] = None,
             statement_descriptor_suffix: pulumi.Input[Optional[_builtins.str]] = None,
             status: pulumi.Input[Optional[_builtins.str]] = None,
             transfer: pulumi.Input[Optional[_builtins.str]] = None,
-            transfer_data: pulumi.Input[Optional[Union['ChargeTransferDataArgs', 'ChargeTransferDataArgsDict']]] = None,
+            transfer_data: pulumi.Input[Optional[Union['ChargeTransferDataArgs', 'ChargeTransferDataArgsDict', 'outputs.ChargeTransferData']]] = None,
             transfer_group: pulumi.Input[Optional[_builtins.str]] = None) -> 'Charge':
         """
         Get an existing Charge resource's state with the given name, id, and optional extra
@@ -1322,33 +1322,33 @@ class Charge(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] balance_transaction: ID of the balance transaction that describes the impact of this charge on your account balance (not including refunds or disputes).
         :param pulumi.Input[_builtins.str] calculated_statement_descriptor: The full statement descriptor that is passed to card networks, and that is displayed on your customers' credit card and bank statements. Allows you to see what the statement descriptor looks like after the static and dynamic portions are combined. This value only exists for card payments.
         :param pulumi.Input[_builtins.bool] capture: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
-               Whether to immediately capture the charge. Defaults to <span pulumi-lang-nodejs="`true`" pulumi-lang-dotnet="`True`" pulumi-lang-go="`true`" pulumi-lang-python="`true`" pulumi-lang-yaml="`true`" pulumi-lang-java="`true`" pulumi-lang-hcl="`true`">`true`</span>. When <span pulumi-lang-nodejs="`false`" pulumi-lang-dotnet="`False`" pulumi-lang-go="`false`" pulumi-lang-python="`false`" pulumi-lang-yaml="`false`" pulumi-lang-java="`false`" pulumi-lang-hcl="`false`">`false`</span>, the charge issues an authorization (or pre-authorization), and will need to be [captured](https://api.stripe.com#capture_charge) later. Uncaptured charges expire after a set number of days (7 by default). For more information, see the [authorizing charges and settling later](https://docs.stripe.com/charges/placing-a-hold) documentation.
+               Whether to immediately capture the charge. Defaults to <span pulumi-lang-nodejs="`true`" pulumi-lang-dotnet="`True`" pulumi-lang-go="`true`" pulumi-lang-python="`true`" pulumi-lang-yaml="`true`" pulumi-lang-java="`true`" pulumi-lang-hcl="`true`">`true`</span>. When <span pulumi-lang-nodejs="`false`" pulumi-lang-dotnet="`False`" pulumi-lang-go="`false`" pulumi-lang-python="`false`" pulumi-lang-yaml="`false`" pulumi-lang-java="`false`" pulumi-lang-hcl="`false`">`false`</span>, the charge issues an authorization (or pre-authorization), and will need to be [captured](https://docs.stripe.com/api#capture_charge) later. Uncaptured charges expire after a set number of days (7 by default). For more information, see the [authorizing charges and settling later](https://docs.stripe.com/charges/placing-a-hold) documentation.
         :param pulumi.Input[_builtins.bool] captured: If the charge was created without capturing, this Boolean represents whether it is still uncaptured or has since been captured.
         :param pulumi.Input[_builtins.float] created: Time at which the object was created. Measured in seconds since the Unix epoch.
         :param pulumi.Input[_builtins.str] currency: Three-letter [ISO currency code](https://www.iso.org/iso-4217-currency-codes.html), in lowercase. Must be a [supported currency](https://stripe.com/docs/currencies).
         :param pulumi.Input[_builtins.str] customer: ID of the customer this charge is for if one exists.
         :param pulumi.Input[_builtins.str] description: An arbitrary string attached to the object. Often useful for displaying to users.
-        :param pulumi.Input[Union['ChargeDestinationArgs', 'ChargeDestinationArgsDict']] destination: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        :param pulumi.Input[Union['ChargeDestinationArgs', 'ChargeDestinationArgsDict', 'outputs.ChargeDestination']] destination: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
         :param pulumi.Input[_builtins.bool] disputed: Whether the charge has been disputed.
         :param pulumi.Input[_builtins.str] failure_balance_transaction: ID of the balance transaction that describes the reversal of the balance on your account due to payment failure.
         :param pulumi.Input[_builtins.str] failure_code: Error code explaining reason for charge failure if available (see [the errors section](https://docs.stripe.com/error-codes) for a list of codes).
         :param pulumi.Input[_builtins.str] failure_message: Message to user further explaining reason for charge failure if available.
-        :param pulumi.Input[Union['ChargeFraudDetailsArgs', 'ChargeFraudDetailsArgsDict']] fraud_details: Information on fraud assessments for the charge.
+        :param pulumi.Input[Union['ChargeFraudDetailsArgs', 'ChargeFraudDetailsArgsDict', 'outputs.ChargeFraudDetails']] fraud_details: Information on fraud assessments for the charge.
         :param pulumi.Input[_builtins.bool] livemode: If the object exists in live mode, the value is <span pulumi-lang-nodejs="`true`" pulumi-lang-dotnet="`True`" pulumi-lang-go="`true`" pulumi-lang-python="`true`" pulumi-lang-yaml="`true`" pulumi-lang-java="`true`" pulumi-lang-hcl="`true`">`true`</span>. If the object exists in test mode, the value is <span pulumi-lang-nodejs="`false`" pulumi-lang-dotnet="`False`" pulumi-lang-go="`false`" pulumi-lang-python="`false`" pulumi-lang-yaml="`false`" pulumi-lang-java="`false`" pulumi-lang-hcl="`false`">`false`</span>.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] metadata: Set of [key-value pairs](https://docs.stripe.com/api/metadata) that you can attach to an object. This can be useful for storing additional information about the object in a structured format.
         :param pulumi.Input[_builtins.str] object: String representing the object's type. Objects of the same type share the same value.
         :param pulumi.Input[_builtins.str] on_behalf_of: The account (if any) the charge was made on behalf of without triggering an automatic transfer. See the [Connect documentation](https://docs.stripe.com/connect/separate-charges-and-transfers) for details.
-        :param pulumi.Input[Union['ChargeOutcomeArgs', 'ChargeOutcomeArgsDict']] outcome: Details about whether the payment was accepted, and why. See [understanding declines](https://docs.stripe.com/declines) for details.
+        :param pulumi.Input[Union['ChargeOutcomeArgs', 'ChargeOutcomeArgsDict', 'outputs.ChargeOutcome']] outcome: Details about whether the payment was accepted, and why. See [understanding declines](https://docs.stripe.com/declines) for details.
         :param pulumi.Input[_builtins.bool] paid: <span pulumi-lang-nodejs="`true`" pulumi-lang-dotnet="`True`" pulumi-lang-go="`true`" pulumi-lang-python="`true`" pulumi-lang-yaml="`true`" pulumi-lang-java="`true`" pulumi-lang-hcl="`true`">`true`</span> if the charge succeeded, or was successfully authorized for later capture.
         :param pulumi.Input[_builtins.str] payment_intent: ID of the PaymentIntent associated with this charge, if one exists.
         :param pulumi.Input[_builtins.str] payment_method: ID of the payment method used in this charge.
-        :param pulumi.Input[Union['ChargePaymentMethodDetailsArgs', 'ChargePaymentMethodDetailsArgsDict']] payment_method_details: Details about the payment method at the time of the transaction.
-        :param pulumi.Input[Union['ChargeRadarOptionsArgs', 'ChargeRadarOptionsArgsDict']] radar_options: Options to configure Radar. See [Radar Session](https://docs.stripe.com/radar/radar-session) for more information.
+        :param pulumi.Input[Union['ChargePaymentMethodDetailsArgs', 'ChargePaymentMethodDetailsArgsDict', 'outputs.ChargePaymentMethodDetails']] payment_method_details: Details about the payment method at the time of the transaction.
+        :param pulumi.Input[Union['ChargeRadarOptionsArgs', 'ChargeRadarOptionsArgsDict', 'outputs.ChargeRadarOptions']] radar_options: Options to configure Radar. See [Radar Session](https://docs.stripe.com/radar/radar-session) for more information.
         :param pulumi.Input[_builtins.str] receipt_email: This is the email address that the receipt for this charge was sent to.
         :param pulumi.Input[_builtins.str] receipt_number: This is the transaction number that appears on email receipts sent for this charge. This attribute will be <span pulumi-lang-nodejs="`null`" pulumi-lang-dotnet="`Null`" pulumi-lang-go="`null`" pulumi-lang-python="`null`" pulumi-lang-yaml="`null`" pulumi-lang-java="`null`" pulumi-lang-hcl="`null`">`null`</span> until a receipt has been sent.
         :param pulumi.Input[_builtins.bool] refunded: Whether the charge has been fully refunded. If the charge is only partially refunded, this attribute will still be false.
         :param pulumi.Input[_builtins.str] review: ID of the review associated with this charge if one exists.
-        :param pulumi.Input[Union['ChargeShippingArgs', 'ChargeShippingArgsDict']] shipping: Shipping information for the charge.
+        :param pulumi.Input[Union['ChargeShippingArgs', 'ChargeShippingArgsDict', 'outputs.ChargeShipping']] shipping: Shipping information for the charge.
         :param pulumi.Input[_builtins.str] source: This is a legacy field that will be removed in the future. It contains the Source, Card, or BankAccount object used for the charge. For details about the payment method used for this charge, refer to <span pulumi-lang-nodejs="`paymentMethod`" pulumi-lang-dotnet="`PaymentMethod`" pulumi-lang-go="`paymentMethod`" pulumi-lang-python="`payment_method`" pulumi-lang-yaml="`paymentMethod`" pulumi-lang-java="`paymentMethod`" pulumi-lang-hcl="`payment_method`">`paymentMethod`</span> or <span pulumi-lang-nodejs="`paymentMethodDetails`" pulumi-lang-dotnet="`PaymentMethodDetails`" pulumi-lang-go="`paymentMethodDetails`" pulumi-lang-python="`payment_method_details`" pulumi-lang-yaml="`paymentMethodDetails`" pulumi-lang-java="`paymentMethodDetails`" pulumi-lang-hcl="`payment_method_details`">`paymentMethodDetails`</span> instead.
         :param pulumi.Input[_builtins.str] source_transfer: The transfer ID which created this charge. Only present if the charge came from another Stripe account. [See the Connect documentation](https://docs.stripe.com/connect/destination-charges) for details.
         :param pulumi.Input[_builtins.str] statement_descriptor: For a non-card charge, text that appears on the customer's statement as the statement descriptor. This value overrides the account's default statement descriptor. For information about requirements, including the 22-character limit, see [the Statement Descriptor docs](https://docs.stripe.com/get-started/account/statement-descriptors).
@@ -1357,7 +1357,7 @@ class Charge(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] statement_descriptor_suffix: Provides information about a card charge. Concatenated to the account's [statement descriptor prefix](https://docs.stripe.com/get-started/account/statement-descriptors#static) to form the complete statement descriptor that appears on the customer's statement. If the account has no prefix value, the suffix is concatenated to the account's statement descriptor.
         :param pulumi.Input[_builtins.str] status: The status of the payment is either <span pulumi-lang-nodejs="`succeeded`" pulumi-lang-dotnet="`Succeeded`" pulumi-lang-go="`succeeded`" pulumi-lang-python="`succeeded`" pulumi-lang-yaml="`succeeded`" pulumi-lang-java="`succeeded`" pulumi-lang-hcl="`succeeded`">`succeeded`</span>, <span pulumi-lang-nodejs="`pending`" pulumi-lang-dotnet="`Pending`" pulumi-lang-go="`pending`" pulumi-lang-python="`pending`" pulumi-lang-yaml="`pending`" pulumi-lang-java="`pending`" pulumi-lang-hcl="`pending`">`pending`</span>, or <span pulumi-lang-nodejs="`failed`" pulumi-lang-dotnet="`Failed`" pulumi-lang-go="`failed`" pulumi-lang-python="`failed`" pulumi-lang-yaml="`failed`" pulumi-lang-java="`failed`" pulumi-lang-hcl="`failed`">`failed`</span>.
         :param pulumi.Input[_builtins.str] transfer: ID of the transfer to the <span pulumi-lang-nodejs="`destination`" pulumi-lang-dotnet="`Destination`" pulumi-lang-go="`destination`" pulumi-lang-python="`destination`" pulumi-lang-yaml="`destination`" pulumi-lang-java="`destination`" pulumi-lang-hcl="`destination`">`destination`</span> account (only applicable if the charge was created using the <span pulumi-lang-nodejs="`destination`" pulumi-lang-dotnet="`Destination`" pulumi-lang-go="`destination`" pulumi-lang-python="`destination`" pulumi-lang-yaml="`destination`" pulumi-lang-java="`destination`" pulumi-lang-hcl="`destination`">`destination`</span> parameter).
-        :param pulumi.Input[Union['ChargeTransferDataArgs', 'ChargeTransferDataArgsDict']] transfer_data: An optional dictionary including the account to automatically transfer to as part of a destination charge. [See the Connect documentation](https://docs.stripe.com/connect/destination-charges) for details.
+        :param pulumi.Input[Union['ChargeTransferDataArgs', 'ChargeTransferDataArgsDict', 'outputs.ChargeTransferData']] transfer_data: An optional dictionary including the account to automatically transfer to as part of a destination charge. [See the Connect documentation](https://docs.stripe.com/connect/destination-charges) for details.
         :param pulumi.Input[_builtins.str] transfer_group: A string that identifies this transaction as part of a group. See the [Connect documentation](https://docs.stripe.com/connect/separate-charges-and-transfers#transfer-options) for details.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
@@ -1412,6 +1412,106 @@ class Charge(pulumi.CustomResource):
         __props__.__dict__["transfer_data"] = transfer_data
         __props__.__dict__["transfer_group"] = transfer_group
         return Charge(resource_name, opts=opts, __props__=__props__)
+
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            amount: pulumi.Input[Optional[_builtins.float]] = None,
+            amount_captured: pulumi.Input[Optional[_builtins.float]] = None,
+            amount_refunded: pulumi.Input[Optional[_builtins.float]] = None,
+            application: pulumi.Input[Optional[_builtins.str]] = None,
+            application_fee: pulumi.Input[Optional[_builtins.float]] = None,
+            application_fee_amount: pulumi.Input[Optional[_builtins.float]] = None,
+            authorization_code: pulumi.Input[Optional[_builtins.str]] = None,
+            balance_transaction: pulumi.Input[Optional[_builtins.str]] = None,
+            billing_details: pulumi.Input[Optional[Union['ChargeBillingDetailsArgs', 'ChargeBillingDetailsArgsDict', 'outputs.ChargeBillingDetails']]] = None,
+            calculated_statement_descriptor: pulumi.Input[Optional[_builtins.str]] = None,
+            capture: pulumi.Input[Optional[_builtins.bool]] = None,
+            captured: pulumi.Input[Optional[_builtins.bool]] = None,
+            created: pulumi.Input[Optional[_builtins.float]] = None,
+            currency: pulumi.Input[Optional[_builtins.str]] = None,
+            customer: pulumi.Input[Optional[_builtins.str]] = None,
+            description: pulumi.Input[Optional[_builtins.str]] = None,
+            destination: pulumi.Input[Optional[Union['ChargeDestinationArgs', 'ChargeDestinationArgsDict', 'outputs.ChargeDestination']]] = None,
+            disputed: pulumi.Input[Optional[_builtins.bool]] = None,
+            failure_balance_transaction: pulumi.Input[Optional[_builtins.str]] = None,
+            failure_code: pulumi.Input[Optional[_builtins.str]] = None,
+            failure_message: pulumi.Input[Optional[_builtins.str]] = None,
+            fraud_details: pulumi.Input[Optional[Union['ChargeFraudDetailsArgs', 'ChargeFraudDetailsArgsDict', 'outputs.ChargeFraudDetails']]] = None,
+            level3: pulumi.Input[Optional[Union['ChargeLevel3Args', 'ChargeLevel3ArgsDict', 'outputs.ChargeLevel3']]] = None,
+            livemode: pulumi.Input[Optional[_builtins.bool]] = None,
+            metadata: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+            object: pulumi.Input[Optional[_builtins.str]] = None,
+            on_behalf_of: pulumi.Input[Optional[_builtins.str]] = None,
+            outcome: pulumi.Input[Optional[Union['ChargeOutcomeArgs', 'ChargeOutcomeArgsDict', 'outputs.ChargeOutcome']]] = None,
+            paid: pulumi.Input[Optional[_builtins.bool]] = None,
+            payment_intent: pulumi.Input[Optional[_builtins.str]] = None,
+            payment_method: pulumi.Input[Optional[_builtins.str]] = None,
+            payment_method_details: pulumi.Input[Optional[Union['ChargePaymentMethodDetailsArgs', 'ChargePaymentMethodDetailsArgsDict', 'outputs.ChargePaymentMethodDetails']]] = None,
+            presentment_details: pulumi.Input[Optional[Union['ChargePresentmentDetailsArgs', 'ChargePresentmentDetailsArgsDict', 'outputs.ChargePresentmentDetails']]] = None,
+            radar_options: pulumi.Input[Optional[Union['ChargeRadarOptionsArgs', 'ChargeRadarOptionsArgsDict', 'outputs.ChargeRadarOptions']]] = None,
+            receipt_email: pulumi.Input[Optional[_builtins.str]] = None,
+            receipt_number: pulumi.Input[Optional[_builtins.str]] = None,
+            refunded: pulumi.Input[Optional[_builtins.bool]] = None,
+            review: pulumi.Input[Optional[_builtins.str]] = None,
+            shipping: pulumi.Input[Optional[Union['ChargeShippingArgs', 'ChargeShippingArgsDict', 'outputs.ChargeShipping']]] = None,
+            source: pulumi.Input[Optional[_builtins.str]] = None,
+            source_transfer: pulumi.Input[Optional[_builtins.str]] = None,
+            statement_descriptor: pulumi.Input[Optional[_builtins.str]] = None,
+            statement_descriptor_suffix: pulumi.Input[Optional[_builtins.str]] = None,
+            status: pulumi.Input[Optional[_builtins.str]] = None,
+            transfer: pulumi.Input[Optional[_builtins.str]] = None,
+            transfer_data: pulumi.Input[Optional[Union['ChargeTransferDataArgs', 'ChargeTransferDataArgsDict', 'outputs.ChargeTransferData']]] = None,
+            transfer_group: pulumi.Input[Optional[_builtins.str]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["amount"] = amount
+        __props__["amountCaptured"] = amount_captured
+        __props__["amountRefunded"] = amount_refunded
+        __props__["application"] = application
+        __props__["applicationFee"] = application_fee
+        __props__["applicationFeeAmount"] = application_fee_amount
+        __props__["authorizationCode"] = authorization_code
+        __props__["balanceTransaction"] = balance_transaction
+        __props__["billingDetails"] = billing_details
+        __props__["calculatedStatementDescriptor"] = calculated_statement_descriptor
+        __props__["capture"] = capture
+        __props__["captured"] = captured
+        __props__["created"] = created
+        __props__["currency"] = currency
+        __props__["customer"] = customer
+        __props__["description"] = description
+        __props__["destination"] = destination
+        __props__["disputed"] = disputed
+        __props__["failureBalanceTransaction"] = failure_balance_transaction
+        __props__["failureCode"] = failure_code
+        __props__["failureMessage"] = failure_message
+        __props__["fraudDetails"] = fraud_details
+        __props__["level3"] = level3
+        __props__["livemode"] = livemode
+        __props__["metadata"] = metadata
+        __props__["object"] = object
+        __props__["onBehalfOf"] = on_behalf_of
+        __props__["outcome"] = outcome
+        __props__["paid"] = paid
+        __props__["paymentIntent"] = payment_intent
+        __props__["paymentMethod"] = payment_method
+        __props__["paymentMethodDetails"] = payment_method_details
+        __props__["presentmentDetails"] = presentment_details
+        __props__["radarOptions"] = radar_options
+        __props__["receiptEmail"] = receipt_email
+        __props__["receiptNumber"] = receipt_number
+        __props__["refunded"] = refunded
+        __props__["review"] = review
+        __props__["shipping"] = shipping
+        __props__["source"] = source
+        __props__["sourceTransfer"] = source_transfer
+        __props__["statementDescriptor"] = statement_descriptor
+        __props__["statementDescriptorSuffix"] = statement_descriptor_suffix
+        __props__["status"] = status
+        __props__["transfer"] = transfer
+        __props__["transferData"] = transfer_data
+        __props__["transferGroup"] = transfer_group
+        return pulumi.runtime.exists_resource(None, 'stripe:index/charge:Charge', id, __props__, opts or pulumi.ResourceOptions(), package_ref=_utilities.get_package())
 
     @_builtins.property
     @pulumi.getter
@@ -1495,7 +1595,7 @@ class Charge(pulumi.CustomResource):
     def capture(self) -> pulumi.Output[Optional[_builtins.bool]]:
         """
         **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
-        Whether to immediately capture the charge. Defaults to <span pulumi-lang-nodejs="`true`" pulumi-lang-dotnet="`True`" pulumi-lang-go="`true`" pulumi-lang-python="`true`" pulumi-lang-yaml="`true`" pulumi-lang-java="`true`" pulumi-lang-hcl="`true`">`true`</span>. When <span pulumi-lang-nodejs="`false`" pulumi-lang-dotnet="`False`" pulumi-lang-go="`false`" pulumi-lang-python="`false`" pulumi-lang-yaml="`false`" pulumi-lang-java="`false`" pulumi-lang-hcl="`false`">`false`</span>, the charge issues an authorization (or pre-authorization), and will need to be [captured](https://api.stripe.com#capture_charge) later. Uncaptured charges expire after a set number of days (7 by default). For more information, see the [authorizing charges and settling later](https://docs.stripe.com/charges/placing-a-hold) documentation.
+        Whether to immediately capture the charge. Defaults to <span pulumi-lang-nodejs="`true`" pulumi-lang-dotnet="`True`" pulumi-lang-go="`true`" pulumi-lang-python="`true`" pulumi-lang-yaml="`true`" pulumi-lang-java="`true`" pulumi-lang-hcl="`true`">`true`</span>. When <span pulumi-lang-nodejs="`false`" pulumi-lang-dotnet="`False`" pulumi-lang-go="`false`" pulumi-lang-python="`false`" pulumi-lang-yaml="`false`" pulumi-lang-java="`false`" pulumi-lang-hcl="`false`">`false`</span>, the charge issues an authorization (or pre-authorization), and will need to be [captured](https://docs.stripe.com/api#capture_charge) later. Uncaptured charges expire after a set number of days (7 by default). For more information, see the [authorizing charges and settling later](https://docs.stripe.com/charges/placing-a-hold) documentation.
         """
         return pulumi.get(self, "capture")
 

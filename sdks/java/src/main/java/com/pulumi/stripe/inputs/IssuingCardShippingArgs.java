@@ -44,6 +44,21 @@ public final class IssuingCardShippingArgs extends com.pulumi.resources.Resource
     }
 
     /**
+     * The name of the business at the shipping address, used on the shipping label to ensure delivery when the card is shipped to a cardholder&#39;s workplace.
+     * 
+     */
+    @Import(name="businessName")
+    private @Nullable Output<String> businessName;
+
+    /**
+     * @return The name of the business at the shipping address, used on the shipping label to ensure delivery when the card is shipped to a cardholder&#39;s workplace.
+     * 
+     */
+    public Optional<Output<String>> businessName() {
+        return Optional.ofNullable(this.businessName);
+    }
+
+    /**
      * The delivery company that shipped a card.
      * 
      */
@@ -71,6 +86,21 @@ public final class IssuingCardShippingArgs extends com.pulumi.resources.Resource
      */
     public Optional<Output<IssuingCardShippingCustomsArgs>> customs() {
         return Optional.ofNullable(this.customs);
+    }
+
+    /**
+     * The time the card was reported as delivered. Null for undelivered or untracked shipments, or if Stripe has not recorded a delivery time.
+     * 
+     */
+    @Import(name="deliveredAt")
+    private @Nullable Output<Double> deliveredAt;
+
+    /**
+     * @return The time the card was reported as delivered. Null for undelivered or untracked shipments, or if Stripe has not recorded a delivery time.
+     * 
+     */
+    public Optional<Output<Double>> deliveredAt() {
+        return Optional.ofNullable(this.deliveredAt);
     }
 
     /**
@@ -149,6 +179,21 @@ public final class IssuingCardShippingArgs extends com.pulumi.resources.Resource
     }
 
     /**
+     * The time the card was reported as shipped. Null if Stripe has not recorded a shipment time.
+     * 
+     */
+    @Import(name="shippedAt")
+    private @Nullable Output<Double> shippedAt;
+
+    /**
+     * @return The time the card was reported as shipped. Null if Stripe has not recorded a shipment time.
+     * 
+     */
+    public Optional<Output<Double>> shippedAt() {
+        return Optional.ofNullable(this.shippedAt);
+    }
+
+    /**
      * The delivery status of the card.
      * 
      */
@@ -213,13 +258,16 @@ public final class IssuingCardShippingArgs extends com.pulumi.resources.Resource
     private IssuingCardShippingArgs(IssuingCardShippingArgs $) {
         this.address = $.address;
         this.addressValidation = $.addressValidation;
+        this.businessName = $.businessName;
         this.carrier = $.carrier;
         this.customs = $.customs;
+        this.deliveredAt = $.deliveredAt;
         this.eta = $.eta;
         this.name = $.name;
         this.phoneNumber = $.phoneNumber;
         this.requireSignature = $.requireSignature;
         this.service = $.service;
+        this.shippedAt = $.shippedAt;
         this.status = $.status;
         this.trackingNumber = $.trackingNumber;
         this.trackingUrl = $.trackingUrl;
@@ -275,6 +323,27 @@ public final class IssuingCardShippingArgs extends com.pulumi.resources.Resource
         }
 
         /**
+         * @param businessName The name of the business at the shipping address, used on the shipping label to ensure delivery when the card is shipped to a cardholder&#39;s workplace.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder businessName(@Nullable Output<String> businessName) {
+            $.businessName = businessName;
+            return this;
+        }
+
+        /**
+         * @param businessName The name of the business at the shipping address, used on the shipping label to ensure delivery when the card is shipped to a cardholder&#39;s workplace.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder businessName(String businessName) {
+            return businessName(Output.of(businessName));
+        }
+
+        /**
          * @param carrier The delivery company that shipped a card.
          * 
          * @return builder
@@ -314,6 +383,27 @@ public final class IssuingCardShippingArgs extends com.pulumi.resources.Resource
          */
         public Builder customs(IssuingCardShippingCustomsArgs customs) {
             return customs(Output.of(customs));
+        }
+
+        /**
+         * @param deliveredAt The time the card was reported as delivered. Null for undelivered or untracked shipments, or if Stripe has not recorded a delivery time.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder deliveredAt(@Nullable Output<Double> deliveredAt) {
+            $.deliveredAt = deliveredAt;
+            return this;
+        }
+
+        /**
+         * @param deliveredAt The time the card was reported as delivered. Null for undelivered or untracked shipments, or if Stripe has not recorded a delivery time.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder deliveredAt(Double deliveredAt) {
+            return deliveredAt(Output.of(deliveredAt));
         }
 
         /**
@@ -419,6 +509,27 @@ public final class IssuingCardShippingArgs extends com.pulumi.resources.Resource
          */
         public Builder service(String service) {
             return service(Output.of(service));
+        }
+
+        /**
+         * @param shippedAt The time the card was reported as shipped. Null if Stripe has not recorded a shipment time.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder shippedAt(@Nullable Output<Double> shippedAt) {
+            $.shippedAt = shippedAt;
+            return this;
+        }
+
+        /**
+         * @param shippedAt The time the card was reported as shipped. Null if Stripe has not recorded a shipment time.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder shippedAt(Double shippedAt) {
+            return shippedAt(Output.of(shippedAt));
         }
 
         /**

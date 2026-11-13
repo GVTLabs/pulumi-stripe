@@ -30,10 +30,12 @@ namespace Pulumi.Stripe.Outputs
         public readonly Outputs.TaxRegistrationCountryOptionsBh? Bh;
         public readonly Outputs.TaxRegistrationCountryOptionsBj? Bj;
         public readonly Outputs.TaxRegistrationCountryOptionsBs? Bs;
+        public readonly Outputs.TaxRegistrationCountryOptionsBw? Bw;
         public readonly Outputs.TaxRegistrationCountryOptionsBy? By;
         public readonly Outputs.TaxRegistrationCountryOptionsCa? Ca;
         public readonly Outputs.TaxRegistrationCountryOptionsCd? Cd;
         public readonly Outputs.TaxRegistrationCountryOptionsCh? Ch;
+        public readonly Outputs.TaxRegistrationCountryOptionsCi? Ci;
         public readonly Outputs.TaxRegistrationCountryOptionsCl? Cl;
         public readonly Outputs.TaxRegistrationCountryOptionsCm? Cm;
         public readonly Outputs.TaxRegistrationCountryOptionsCo? Co;
@@ -52,6 +54,7 @@ namespace Pulumi.Stripe.Outputs
         public readonly Outputs.TaxRegistrationCountryOptionsFr? Fr;
         public readonly Outputs.TaxRegistrationCountryOptionsGb? Gb;
         public readonly Outputs.TaxRegistrationCountryOptionsGe? Ge;
+        public readonly Outputs.TaxRegistrationCountryOptionsGh? Gh;
         public readonly Outputs.TaxRegistrationCountryOptionsGn? Gn;
         public readonly Outputs.TaxRegistrationCountryOptionsGr? Gr;
         public readonly Outputs.TaxRegistrationCountryOptionsHr? Hr;
@@ -78,6 +81,7 @@ namespace Pulumi.Stripe.Outputs
         public readonly Outputs.TaxRegistrationCountryOptionsMk? Mk;
         public readonly Outputs.TaxRegistrationCountryOptionsMr? Mr;
         public readonly Outputs.TaxRegistrationCountryOptionsMt? Mt;
+        public readonly Outputs.TaxRegistrationCountryOptionsMu? Mu;
         public readonly Outputs.TaxRegistrationCountryOptionsMx? Mx;
         public readonly Outputs.TaxRegistrationCountryOptionsMy? My;
         public readonly Outputs.TaxRegistrationCountryOptionsNg? Ng;
@@ -151,6 +155,8 @@ namespace Pulumi.Stripe.Outputs
 
             Outputs.TaxRegistrationCountryOptionsBs? bs,
 
+            Outputs.TaxRegistrationCountryOptionsBw? bw,
+
             Outputs.TaxRegistrationCountryOptionsBy? by,
 
             Outputs.TaxRegistrationCountryOptionsCa? ca,
@@ -158,6 +164,8 @@ namespace Pulumi.Stripe.Outputs
             Outputs.TaxRegistrationCountryOptionsCd? cd,
 
             Outputs.TaxRegistrationCountryOptionsCh? ch,
+
+            Outputs.TaxRegistrationCountryOptionsCi? ci,
 
             Outputs.TaxRegistrationCountryOptionsCl? cl,
 
@@ -194,6 +202,8 @@ namespace Pulumi.Stripe.Outputs
             Outputs.TaxRegistrationCountryOptionsGb? gb,
 
             Outputs.TaxRegistrationCountryOptionsGe? ge,
+
+            Outputs.TaxRegistrationCountryOptionsGh? gh,
 
             Outputs.TaxRegistrationCountryOptionsGn? gn,
 
@@ -246,6 +256,8 @@ namespace Pulumi.Stripe.Outputs
             Outputs.TaxRegistrationCountryOptionsMr? mr,
 
             Outputs.TaxRegistrationCountryOptionsMt? mt,
+
+            Outputs.TaxRegistrationCountryOptionsMu? mu,
 
             Outputs.TaxRegistrationCountryOptionsMx? mx,
 
@@ -336,10 +348,12 @@ namespace Pulumi.Stripe.Outputs
             Bh = bh;
             Bj = bj;
             Bs = bs;
+            Bw = bw;
             By = by;
             Ca = ca;
             Cd = cd;
             Ch = ch;
+            Ci = ci;
             Cl = cl;
             Cm = cm;
             Co = co;
@@ -358,6 +372,7 @@ namespace Pulumi.Stripe.Outputs
             Fr = fr;
             Gb = gb;
             Ge = ge;
+            Gh = gh;
             Gn = gn;
             Gr = gr;
             Hr = hr;
@@ -384,6 +399,7 @@ namespace Pulumi.Stripe.Outputs
             Mk = mk;
             Mr = mr;
             Mt = mt;
+            Mu = mu;
             Mx = mx;
             My = my;
             Ng = ng;

@@ -13,7 +13,7 @@ namespace Pulumi.Stripe
     public partial class Customer : global::Pulumi.CustomResource
     {
         /// <summary>
-        /// The customer's address.
+        /// The customer's billing address.
         /// </summary>
         [Output("addresses")]
         public Output<ImmutableArray<Outputs.CustomerAddress>> Addresses { get; private set; } = null!;
@@ -250,7 +250,7 @@ namespace Pulumi.Stripe
         private InputList<Inputs.CustomerAddressArgs>? _addresses;
 
         /// <summary>
-        /// The customer's address.
+        /// The customer's billing address.
         /// </summary>
         public InputList<Inputs.CustomerAddressArgs> Addresses
         {
@@ -455,7 +455,7 @@ namespace Pulumi.Stripe
         private InputList<Inputs.CustomerAddressGetArgs>? _addresses;
 
         /// <summary>
-        /// The customer's address.
+        /// The customer's billing address.
         /// </summary>
         public InputList<Inputs.CustomerAddressGetArgs> Addresses
         {

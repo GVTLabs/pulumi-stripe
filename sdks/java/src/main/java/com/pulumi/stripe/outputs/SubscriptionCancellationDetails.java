@@ -22,6 +22,11 @@ public final class SubscriptionCancellationDetails {
      */
     private @Nullable String feedback;
     /**
+     * @return Customized feedback options that provide deeper insight into why the subscription was canceled, if the subscription was canceled explicitly by the user.
+     * 
+     */
+    private @Nullable String feedbackOption;
+    /**
      * @return Why this subscription was canceled.
      * 
      */
@@ -43,6 +48,13 @@ public final class SubscriptionCancellationDetails {
         return Optional.ofNullable(this.feedback);
     }
     /**
+     * @return Customized feedback options that provide deeper insight into why the subscription was canceled, if the subscription was canceled explicitly by the user.
+     * 
+     */
+    public Optional<String> feedbackOption() {
+        return Optional.ofNullable(this.feedbackOption);
+    }
+    /**
      * @return Why this subscription was canceled.
      * 
      */
@@ -61,12 +73,14 @@ public final class SubscriptionCancellationDetails {
     public static final class Builder {
         private @Nullable String comment;
         private @Nullable String feedback;
+        private @Nullable String feedbackOption;
         private @Nullable String reason;
         public Builder() {}
         public Builder(SubscriptionCancellationDetails defaults) {
     	      Objects.requireNonNull(defaults);
     	      this.comment = defaults.comment;
     	      this.feedback = defaults.feedback;
+    	      this.feedbackOption = defaults.feedbackOption;
     	      this.reason = defaults.reason;
         }
 
@@ -83,6 +97,12 @@ public final class SubscriptionCancellationDetails {
             return this;
         }
         @CustomType.Setter
+        public Builder feedbackOption(@Nullable String feedbackOption) {
+
+            this.feedbackOption = feedbackOption;
+            return this;
+        }
+        @CustomType.Setter
         public Builder reason(@Nullable String reason) {
 
             this.reason = reason;
@@ -92,6 +112,7 @@ public final class SubscriptionCancellationDetails {
             final var _resultValue = new SubscriptionCancellationDetails();
             _resultValue.comment = comment;
             _resultValue.feedback = feedback;
+            _resultValue.feedbackOption = feedbackOption;
             _resultValue.reason = reason;
             return _resultValue;
         }

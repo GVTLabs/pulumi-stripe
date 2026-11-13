@@ -173,6 +173,21 @@ public final class PlanArgs extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
+     * Unique identifier for the object.
+     * 
+     */
+    @Import(name="planId")
+    private @Nullable Output<String> planId;
+
+    /**
+     * @return Unique identifier for the object.
+     * 
+     */
+    public Optional<Output<String>> planId() {
+        return Optional.ofNullable(this.planId);
+    }
+
+    /**
      * The product whose pricing this plan determines.
      * 
      */
@@ -275,6 +290,7 @@ public final class PlanArgs extends com.pulumi.resources.ResourceArgs {
         this.metadata = $.metadata;
         this.meter = $.meter;
         this.nickname = $.nickname;
+        this.planId = $.planId;
         this.product = $.product;
         this.tiers = $.tiers;
         this.tiersMode = $.tiersMode;
@@ -509,6 +525,27 @@ public final class PlanArgs extends com.pulumi.resources.ResourceArgs {
          */
         public Builder nickname(String nickname) {
             return nickname(Output.of(nickname));
+        }
+
+        /**
+         * @param planId Unique identifier for the object.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder planId(@Nullable Output<String> planId) {
+            $.planId = planId;
+            return this;
+        }
+
+        /**
+         * @param planId Unique identifier for the object.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder planId(String planId) {
+            return planId(Output.of(planId));
         }
 
         /**

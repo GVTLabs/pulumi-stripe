@@ -18,6 +18,17 @@ export class ProductFeature extends pulumi.CustomResource {
         return new ProductFeature(name, <any>state, { ...opts, id: id });
     }
 
+    /**
+     * Check whether an existing ProductFeature resource with the given ID exists.
+     *
+     * @param id The _unique_ provider ID of the resource to check.
+     * @param state Any extra arguments used during the lookup.
+     * @param opts Optional settings to control the behavior of the CustomResource.
+     */
+    public static exists(id: pulumi.Input<string>, state?: ProductFeatureState, opts?: pulumi.CustomResourceOptions): pulumi.Output<boolean> {
+        return pulumi.runtime.existsResource("stripe:index/productFeature:ProductFeature", id, <any>state || {}, { ...opts }, utilities.getPackage());
+    }
+
     /** @internal */
     public static readonly __pulumiType = 'stripe:index/productFeature:ProductFeature';
 
@@ -45,6 +56,9 @@ export class ProductFeature extends pulumi.CustomResource {
      * String representing the object's type. Objects of the same type share the same value.
      */
     declare public /*out*/ readonly object: pulumi.Output<string>;
+    /**
+     * Unique identifier for the object.
+     */
     declare public readonly product: pulumi.Output<string>;
 
     /**
@@ -99,6 +113,9 @@ export interface ProductFeatureState {
      * String representing the object's type. Objects of the same type share the same value.
      */
     object?: pulumi.Input<string | undefined>;
+    /**
+     * Unique identifier for the object.
+     */
     product?: pulumi.Input<string | undefined>;
 }
 
@@ -111,5 +128,8 @@ export interface ProductFeatureArgs {
      * Features can be assigned to products, and when those products are purchased, Stripe will create an entitlement to the feature for the purchasing customer.
      */
     entitlementFeature: pulumi.Input<string>;
+    /**
+     * Unique identifier for the object.
+     */
     product: pulumi.Input<string>;
 }

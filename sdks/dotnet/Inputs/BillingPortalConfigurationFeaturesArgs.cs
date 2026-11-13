@@ -24,6 +24,9 @@ namespace Pulumi.Stripe.Inputs
         [Input("subscriptionCancel")]
         public Input<Inputs.BillingPortalConfigurationFeaturesSubscriptionCancelArgs>? SubscriptionCancel { get; set; }
 
+        [Input("subscriptionPause")]
+        public Input<Inputs.BillingPortalConfigurationFeaturesSubscriptionPauseArgs>? SubscriptionPause { get; set; }
+
         [Input("subscriptionUpdate")]
         public Input<Inputs.BillingPortalConfigurationFeaturesSubscriptionUpdateArgs>? SubscriptionUpdate { get; set; }
 

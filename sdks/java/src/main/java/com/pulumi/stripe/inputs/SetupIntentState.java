@@ -29,6 +29,21 @@ public final class SetupIntentState extends com.pulumi.resources.ResourceArgs {
     public static final SetupIntentState Empty = new SetupIntentState();
 
     /**
+     * The list of payment method types to allow for this SetupIntent. Stripe will only use methods in this list when determining the payment methods to offer.
+     * 
+     */
+    @Import(name="allowedPaymentMethodTypes")
+    private @Nullable Output<List<String>> allowedPaymentMethodTypes;
+
+    /**
+     * @return The list of payment method types to allow for this SetupIntent. Stripe will only use methods in this list when determining the payment methods to offer.
+     * 
+     */
+    public Optional<Output<List<String>>> allowedPaymentMethodTypes() {
+        return Optional.ofNullable(this.allowedPaymentMethodTypes);
+    }
+
+    /**
      * ID of the Connect application that created the SetupIntent.
      * 
      */
@@ -598,6 +613,7 @@ public final class SetupIntentState extends com.pulumi.resources.ResourceArgs {
     private SetupIntentState() {}
 
     private SetupIntentState(SetupIntentState $) {
+        this.allowedPaymentMethodTypes = $.allowedPaymentMethodTypes;
         this.application = $.application;
         this.attachToSelf = $.attachToSelf;
         this.automaticPaymentMethods = $.automaticPaymentMethods;
@@ -651,6 +667,37 @@ public final class SetupIntentState extends com.pulumi.resources.ResourceArgs {
 
         public Builder(SetupIntentState defaults) {
             $ = new SetupIntentState(Objects.requireNonNull(defaults));
+        }
+
+        /**
+         * @param allowedPaymentMethodTypes The list of payment method types to allow for this SetupIntent. Stripe will only use methods in this list when determining the payment methods to offer.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder allowedPaymentMethodTypes(@Nullable Output<List<String>> allowedPaymentMethodTypes) {
+            $.allowedPaymentMethodTypes = allowedPaymentMethodTypes;
+            return this;
+        }
+
+        /**
+         * @param allowedPaymentMethodTypes The list of payment method types to allow for this SetupIntent. Stripe will only use methods in this list when determining the payment methods to offer.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder allowedPaymentMethodTypes(List<String> allowedPaymentMethodTypes) {
+            return allowedPaymentMethodTypes(Output.of(allowedPaymentMethodTypes));
+        }
+
+        /**
+         * @param allowedPaymentMethodTypes The list of payment method types to allow for this SetupIntent. Stripe will only use methods in this list when determining the payment methods to offer.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder allowedPaymentMethodTypes(String... allowedPaymentMethodTypes) {
+            return allowedPaymentMethodTypes(List.of(allowedPaymentMethodTypes));
         }
 
         /**

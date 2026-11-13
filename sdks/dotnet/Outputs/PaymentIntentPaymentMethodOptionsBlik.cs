@@ -17,6 +17,7 @@ namespace Pulumi.Stripe.Outputs
         /// The 6-digit BLIK code that a customer has generated using their banking application. Can only be set on confirmation.
         /// </summary>
         public readonly string? Code;
+        public readonly Outputs.PaymentIntentPaymentMethodOptionsBlikMandateOptions? MandateOptions;
         /// <summary>
         /// Indicates that you intend to make future payments with this PaymentIntent's payment method.
         /// 
@@ -32,9 +33,12 @@ namespace Pulumi.Stripe.Outputs
         private PaymentIntentPaymentMethodOptionsBlik(
             string? code,
 
+            Outputs.PaymentIntentPaymentMethodOptionsBlikMandateOptions? mandateOptions,
+
             string? setupFutureUsage)
         {
             Code = code;
+            MandateOptions = mandateOptions;
             SetupFutureUsage = setupFutureUsage;
         }
     }

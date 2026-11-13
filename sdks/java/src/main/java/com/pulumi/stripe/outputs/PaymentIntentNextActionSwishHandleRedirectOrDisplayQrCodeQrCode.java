@@ -4,6 +4,7 @@
 package com.pulumi.stripe.outputs;
 
 import com.pulumi.core.annotations.CustomType;
+import java.lang.Double;
 import java.lang.String;
 import java.util.Objects;
 import java.util.Optional;
@@ -16,6 +17,11 @@ public final class PaymentIntentNextActionSwishHandleRedirectOrDisplayQrCodeQrCo
      * 
      */
     private @Nullable String data;
+    /**
+     * @return The timestamp at which the QR code expires.
+     * 
+     */
+    private @Nullable Double expiresAt;
     /**
      * @return The&lt;span pulumi-lang-nodejs=&#34; imageUrlPng &#34; pulumi-lang-dotnet=&#34; ImageUrlPng &#34; pulumi-lang-go=&#34; imageUrlPng &#34; pulumi-lang-python=&#34; image_url_png &#34; pulumi-lang-yaml=&#34; imageUrlPng &#34; pulumi-lang-java=&#34; imageUrlPng &#34; pulumi-lang-hcl=&#34; image_url_png &#34;&gt; imageUrlPng &lt;/span&gt;string used to render QR code
      * 
@@ -34,6 +40,13 @@ public final class PaymentIntentNextActionSwishHandleRedirectOrDisplayQrCodeQrCo
      */
     public Optional<String> data() {
         return Optional.ofNullable(this.data);
+    }
+    /**
+     * @return The timestamp at which the QR code expires.
+     * 
+     */
+    public Optional<Double> expiresAt() {
+        return Optional.ofNullable(this.expiresAt);
     }
     /**
      * @return The&lt;span pulumi-lang-nodejs=&#34; imageUrlPng &#34; pulumi-lang-dotnet=&#34; ImageUrlPng &#34; pulumi-lang-go=&#34; imageUrlPng &#34; pulumi-lang-python=&#34; image_url_png &#34; pulumi-lang-yaml=&#34; imageUrlPng &#34; pulumi-lang-java=&#34; imageUrlPng &#34; pulumi-lang-hcl=&#34; image_url_png &#34;&gt; imageUrlPng &lt;/span&gt;string used to render QR code
@@ -60,12 +73,14 @@ public final class PaymentIntentNextActionSwishHandleRedirectOrDisplayQrCodeQrCo
     @CustomType.Builder
     public static final class Builder {
         private @Nullable String data;
+        private @Nullable Double expiresAt;
         private @Nullable String imageUrlPng;
         private @Nullable String imageUrlSvg;
         public Builder() {}
         public Builder(PaymentIntentNextActionSwishHandleRedirectOrDisplayQrCodeQrCode defaults) {
     	      Objects.requireNonNull(defaults);
     	      this.data = defaults.data;
+    	      this.expiresAt = defaults.expiresAt;
     	      this.imageUrlPng = defaults.imageUrlPng;
     	      this.imageUrlSvg = defaults.imageUrlSvg;
         }
@@ -74,6 +89,12 @@ public final class PaymentIntentNextActionSwishHandleRedirectOrDisplayQrCodeQrCo
         public Builder data(@Nullable String data) {
 
             this.data = data;
+            return this;
+        }
+        @CustomType.Setter
+        public Builder expiresAt(@Nullable Double expiresAt) {
+
+            this.expiresAt = expiresAt;
             return this;
         }
         @CustomType.Setter
@@ -91,6 +112,7 @@ public final class PaymentIntentNextActionSwishHandleRedirectOrDisplayQrCodeQrCo
         public PaymentIntentNextActionSwishHandleRedirectOrDisplayQrCodeQrCode build() {
             final var _resultValue = new PaymentIntentNextActionSwishHandleRedirectOrDisplayQrCodeQrCode();
             _resultValue.data = data;
+            _resultValue.expiresAt = expiresAt;
             _resultValue.imageUrlPng = imageUrlPng;
             _resultValue.imageUrlSvg = imageUrlSvg;
             return _resultValue;

@@ -160,6 +160,18 @@ func (BillingCreditGrantState) ElementType() reflect.Type {
 	return reflect.TypeOf((*billingCreditGrantState)(nil)).Elem()
 }
 
+// BillingCreditGrantExists checks whether an existing BillingCreditGrant resource with the given ID exists.
+func BillingCreditGrantExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *BillingCreditGrantState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	ref, err := internal.PkgGetPackageRef(ctx)
+	if err != nil {
+		return pulumi.Bool(false).ToBoolOutput().ApplyT(func(bool) (bool, error) {
+			return false, err
+		}).(pulumi.BoolOutput)
+	}
+	return ctx.ExistsResource("stripe:index/billingCreditGrant:BillingCreditGrant", id, state, ref, opts...)
+}
+
 type billingCreditGrantArgs struct {
 	Amount              BillingCreditGrantAmount              `pulumi:"amount"`
 	ApplicabilityConfig BillingCreditGrantApplicabilityConfig `pulumi:"applicabilityConfig"`

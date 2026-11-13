@@ -33,7 +33,7 @@ namespace Pulumi.Stripe
 
         /// <summary>
         /// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
-        /// Optional parameters that automatically create a [file link](https://api.stripe.com#file_links) for the newly created file.
+        /// Optional parameters that automatically create a [file link](https://docs.stripe.com/api#file_links) for the newly created file.
         /// </summary>
         [Output("fileLinkData")]
         public Output<Outputs.FileFileLinkData?> FileLinkData { get; private set; } = null!;
@@ -153,7 +153,7 @@ namespace Pulumi.Stripe
 
         /// <summary>
         /// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
-        /// Optional parameters that automatically create a [file link](https://api.stripe.com#file_links) for the newly created file.
+        /// Optional parameters that automatically create a [file link](https://docs.stripe.com/api#file_links) for the newly created file.
         /// </summary>
         public Input<Inputs.FileFileLinkDataArgs>? FileLinkData
         {
@@ -213,7 +213,7 @@ namespace Pulumi.Stripe
 
         /// <summary>
         /// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
-        /// Optional parameters that automatically create a [file link](https://api.stripe.com#file_links) for the newly created file.
+        /// Optional parameters that automatically create a [file link](https://docs.stripe.com/api#file_links) for the newly created file.
         /// </summary>
         public Input<Inputs.FileFileLinkDataGetArgs>? FileLinkData
         {

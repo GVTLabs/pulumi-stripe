@@ -7,6 +7,7 @@ import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
 import com.pulumi.stripe.inputs.SetupIntentPaymentMethodOptionsAcssDebitArgs;
 import com.pulumi.stripe.inputs.SetupIntentPaymentMethodOptionsBacsDebitArgs;
+import com.pulumi.stripe.inputs.SetupIntentPaymentMethodOptionsBlikArgs;
 import com.pulumi.stripe.inputs.SetupIntentPaymentMethodOptionsCardArgs;
 import com.pulumi.stripe.inputs.SetupIntentPaymentMethodOptionsKlarnaArgs;
 import com.pulumi.stripe.inputs.SetupIntentPaymentMethodOptionsLinkArgs;
@@ -37,6 +38,13 @@ public final class SetupIntentPaymentMethodOptionsArgs extends com.pulumi.resour
 
     public Optional<Output<SetupIntentPaymentMethodOptionsBacsDebitArgs>> bacsDebit() {
         return Optional.ofNullable(this.bacsDebit);
+    }
+
+    @Import(name="blik")
+    private @Nullable Output<SetupIntentPaymentMethodOptionsBlikArgs> blik;
+
+    public Optional<Output<SetupIntentPaymentMethodOptionsBlikArgs>> blik() {
+        return Optional.ofNullable(this.blik);
     }
 
     @Import(name="card")
@@ -107,6 +115,7 @@ public final class SetupIntentPaymentMethodOptionsArgs extends com.pulumi.resour
     private SetupIntentPaymentMethodOptionsArgs(SetupIntentPaymentMethodOptionsArgs $) {
         this.acssDebit = $.acssDebit;
         this.bacsDebit = $.bacsDebit;
+        this.blik = $.blik;
         this.card = $.card;
         this.klarna = $.klarna;
         this.link = $.link;
@@ -152,6 +161,15 @@ public final class SetupIntentPaymentMethodOptionsArgs extends com.pulumi.resour
 
         public Builder bacsDebit(SetupIntentPaymentMethodOptionsBacsDebitArgs bacsDebit) {
             return bacsDebit(Output.of(bacsDebit));
+        }
+
+        public Builder blik(@Nullable Output<SetupIntentPaymentMethodOptionsBlikArgs> blik) {
+            $.blik = blik;
+            return this;
+        }
+
+        public Builder blik(SetupIntentPaymentMethodOptionsBlikArgs blik) {
+            return blik(Output.of(blik));
         }
 
         public Builder card(@Nullable Output<SetupIntentPaymentMethodOptionsCardArgs> card) {

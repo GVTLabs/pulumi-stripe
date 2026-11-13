@@ -17,7 +17,7 @@ namespace Pulumi.Stripe.Inputs
 
         /// <summary>
         /// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
-        /// One or more document ids returned by a [file upload](https://api.stripe.com#create_file) with a &lt;span pulumi-lang-nodejs="`purpose`" pulumi-lang-dotnet="`Purpose`" pulumi-lang-go="`purpose`" pulumi-lang-python="`purpose`" pulumi-lang-yaml="`purpose`" pulumi-lang-java="`purpose`" pulumi-lang-hcl="`purpose`"&gt;`purpose`&lt;/span&gt; value of &lt;span pulumi-lang-nodejs="`accountRequirement`" pulumi-lang-dotnet="`AccountRequirement`" pulumi-lang-go="`accountRequirement`" pulumi-lang-python="`account_requirement`" pulumi-lang-yaml="`accountRequirement`" pulumi-lang-java="`accountRequirement`" pulumi-lang-hcl="`account_requirement`"&gt;`accountRequirement`&lt;/span&gt;.
+        /// One or more document ids returned by a [file upload](https://docs.stripe.com/api#create_file) with a &lt;span pulumi-lang-nodejs="`purpose`" pulumi-lang-dotnet="`Purpose`" pulumi-lang-go="`purpose`" pulumi-lang-python="`purpose`" pulumi-lang-yaml="`purpose`" pulumi-lang-java="`purpose`" pulumi-lang-hcl="`purpose`"&gt;`purpose`&lt;/span&gt; value of &lt;span pulumi-lang-nodejs="`accountRequirement`" pulumi-lang-dotnet="`AccountRequirement`" pulumi-lang-go="`accountRequirement`" pulumi-lang-python="`account_requirement`" pulumi-lang-yaml="`accountRequirement`" pulumi-lang-java="`accountRequirement`" pulumi-lang-hcl="`account_requirement`"&gt;`accountRequirement`&lt;/span&gt;.
         /// </summary>
         public InputList<string> Files
         {

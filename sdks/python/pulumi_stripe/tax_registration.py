@@ -225,7 +225,7 @@ class TaxRegistration(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  active_from: pulumi.Input[Optional[_builtins.float]] = None,
                  country: pulumi.Input[Optional[_builtins.str]] = None,
-                 country_options: pulumi.Input[Optional[Union['TaxRegistrationCountryOptionsArgs', 'TaxRegistrationCountryOptionsArgsDict']]] = None,
+                 country_options: pulumi.Input[Optional[Union['TaxRegistrationCountryOptionsArgs', 'TaxRegistrationCountryOptionsArgsDict', 'outputs.TaxRegistrationCountryOptions']]] = None,
                  expires_at: pulumi.Input[Optional[_builtins.float]] = None,
                  __props__=None):
         """
@@ -263,7 +263,7 @@ class TaxRegistration(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  active_from: pulumi.Input[Optional[_builtins.float]] = None,
                  country: pulumi.Input[Optional[_builtins.str]] = None,
-                 country_options: pulumi.Input[Optional[Union['TaxRegistrationCountryOptionsArgs', 'TaxRegistrationCountryOptionsArgsDict']]] = None,
+                 country_options: pulumi.Input[Optional[Union['TaxRegistrationCountryOptionsArgs', 'TaxRegistrationCountryOptionsArgsDict', 'outputs.TaxRegistrationCountryOptions']]] = None,
                  expires_at: pulumi.Input[Optional[_builtins.float]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
@@ -301,7 +301,7 @@ class TaxRegistration(pulumi.CustomResource):
             opts: Optional[pulumi.ResourceOptions] = None,
             active_from: pulumi.Input[Optional[_builtins.float]] = None,
             country: pulumi.Input[Optional[_builtins.str]] = None,
-            country_options: pulumi.Input[Optional[Union['TaxRegistrationCountryOptionsArgs', 'TaxRegistrationCountryOptionsArgsDict']]] = None,
+            country_options: pulumi.Input[Optional[Union['TaxRegistrationCountryOptionsArgs', 'TaxRegistrationCountryOptionsArgsDict', 'outputs.TaxRegistrationCountryOptions']]] = None,
             created: pulumi.Input[Optional[_builtins.float]] = None,
             expires_at: pulumi.Input[Optional[_builtins.float]] = None,
             livemode: pulumi.Input[Optional[_builtins.bool]] = None,
@@ -335,6 +335,28 @@ class TaxRegistration(pulumi.CustomResource):
         __props__.__dict__["object"] = object
         __props__.__dict__["status"] = status
         return TaxRegistration(resource_name, opts=opts, __props__=__props__)
+
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            active_from: pulumi.Input[Optional[_builtins.float]] = None,
+            country: pulumi.Input[Optional[_builtins.str]] = None,
+            country_options: pulumi.Input[Optional[Union['TaxRegistrationCountryOptionsArgs', 'TaxRegistrationCountryOptionsArgsDict', 'outputs.TaxRegistrationCountryOptions']]] = None,
+            created: pulumi.Input[Optional[_builtins.float]] = None,
+            expires_at: pulumi.Input[Optional[_builtins.float]] = None,
+            livemode: pulumi.Input[Optional[_builtins.bool]] = None,
+            object: pulumi.Input[Optional[_builtins.str]] = None,
+            status: pulumi.Input[Optional[_builtins.str]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["activeFrom"] = active_from
+        __props__["country"] = country
+        __props__["countryOptions"] = country_options
+        __props__["created"] = created
+        __props__["expiresAt"] = expires_at
+        __props__["livemode"] = livemode
+        __props__["object"] = object
+        __props__["status"] = status
+        return pulumi.runtime.exists_resource(None, 'stripe:index/taxRegistration:TaxRegistration', id, __props__, opts or pulumi.ResourceOptions(), package_ref=_utilities.get_package())
 
     @_builtins.property
     @pulumi.getter(name="activeFrom")

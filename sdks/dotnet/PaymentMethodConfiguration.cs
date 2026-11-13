@@ -187,6 +187,9 @@ namespace Pulumi.Stripe
         [Output("paypal")]
         public Output<Outputs.PaymentMethodConfigurationPaypal> Paypal { get; private set; } = null!;
 
+        [Output("paypay")]
+        public Output<Outputs.PaymentMethodConfigurationPaypay> Paypay { get; private set; } = null!;
+
         [Output("payto")]
         public Output<Outputs.PaymentMethodConfigurationPayto> Payto { get; private set; } = null!;
 
@@ -210,6 +213,9 @@ namespace Pulumi.Stripe
 
         [Output("sepaDebit")]
         public Output<Outputs.PaymentMethodConfigurationSepaDebit> SepaDebit { get; private set; } = null!;
+
+        [Output("sequra")]
+        public Output<Outputs.PaymentMethodConfigurationSequra> Sequra { get; private set; } = null!;
 
         [Output("sofort")]
         public Output<Outputs.PaymentMethodConfigurationSofort> Sofort { get; private set; } = null!;
@@ -446,6 +452,9 @@ namespace Pulumi.Stripe
         [Input("paypal")]
         public Input<Inputs.PaymentMethodConfigurationPaypalArgs>? Paypal { get; set; }
 
+        [Input("paypay")]
+        public Input<Inputs.PaymentMethodConfigurationPaypayArgs>? Paypay { get; set; }
+
         [Input("payto")]
         public Input<Inputs.PaymentMethodConfigurationPaytoArgs>? Payto { get; set; }
 
@@ -469,6 +478,9 @@ namespace Pulumi.Stripe
 
         [Input("sepaDebit")]
         public Input<Inputs.PaymentMethodConfigurationSepaDebitArgs>? SepaDebit { get; set; }
+
+        [Input("sequra")]
+        public Input<Inputs.PaymentMethodConfigurationSequraArgs>? Sequra { get; set; }
 
         [Input("sofort")]
         public Input<Inputs.PaymentMethodConfigurationSofortArgs>? Sofort { get; set; }
@@ -687,6 +699,9 @@ namespace Pulumi.Stripe
         [Input("paypal")]
         public Input<Inputs.PaymentMethodConfigurationPaypalGetArgs>? Paypal { get; set; }
 
+        [Input("paypay")]
+        public Input<Inputs.PaymentMethodConfigurationPaypayGetArgs>? Paypay { get; set; }
+
         [Input("payto")]
         public Input<Inputs.PaymentMethodConfigurationPaytoGetArgs>? Payto { get; set; }
 
@@ -710,6 +725,9 @@ namespace Pulumi.Stripe
 
         [Input("sepaDebit")]
         public Input<Inputs.PaymentMethodConfigurationSepaDebitGetArgs>? SepaDebit { get; set; }
+
+        [Input("sequra")]
+        public Input<Inputs.PaymentMethodConfigurationSequraGetArgs>? Sequra { get; set; }
 
         [Input("sofort")]
         public Input<Inputs.PaymentMethodConfigurationSofortGetArgs>? Sofort { get; set; }

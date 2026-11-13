@@ -16,6 +16,8 @@ from . import _utilities
 from . import outputs
 
 __all__ = [
+    'AppsInstallContentSecurityPolicyGranted',
+    'AppsInstallContentSecurityPolicyPending',
     'BillingAlertUsageThreshold',
     'BillingAlertUsageThresholdFilter',
     'BillingCreditGrantAmount',
@@ -23,6 +25,7 @@ __all__ = [
     'BillingCreditGrantApplicabilityConfig',
     'BillingCreditGrantApplicabilityConfigScope',
     'BillingCreditGrantApplicabilityConfigScopePrice',
+    'BillingFeedbackOptionStatusTransitions',
     'BillingMeterCustomerMapping',
     'BillingMeterDefaultAggregation',
     'BillingMeterStatusTransitions',
@@ -34,6 +37,9 @@ __all__ = [
     'BillingPortalConfigurationFeaturesPaymentMethodUpdate',
     'BillingPortalConfigurationFeaturesSubscriptionCancel',
     'BillingPortalConfigurationFeaturesSubscriptionCancelCancellationReason',
+    'BillingPortalConfigurationFeaturesSubscriptionPause',
+    'BillingPortalConfigurationFeaturesSubscriptionPauseDuration',
+    'BillingPortalConfigurationFeaturesSubscriptionPauseDurationIntervalOption',
     'BillingPortalConfigurationFeaturesSubscriptionUpdate',
     'BillingPortalConfigurationFeaturesSubscriptionUpdateProduct',
     'BillingPortalConfigurationFeaturesSubscriptionUpdateProductAdjustableQuantity',
@@ -81,6 +87,7 @@ __all__ = [
     'ChargePaymentMethodDetailsCardPresentWallet',
     'ChargePaymentMethodDetailsCardThreeDSecure',
     'ChargePaymentMethodDetailsCardWallet',
+    'ChargePaymentMethodDetailsCardWalletLink',
     'ChargePaymentMethodDetailsCardWalletMasterpass',
     'ChargePaymentMethodDetailsCardWalletMasterpassBillingAddress',
     'ChargePaymentMethodDetailsCardWalletMasterpassShippingAddress',
@@ -126,6 +133,7 @@ __all__ = [
     'ChargePaymentMethodDetailsScalapay',
     'ChargePaymentMethodDetailsSepaCreditTransfer',
     'ChargePaymentMethodDetailsSepaDebit',
+    'ChargePaymentMethodDetailsSequra',
     'ChargePaymentMethodDetailsSofort',
     'ChargePaymentMethodDetailsSunbit',
     'ChargePaymentMethodDetailsSwish',
@@ -175,6 +183,7 @@ __all__ = [
     'InvoiceFromInvoice',
     'InvoiceIssuer',
     'InvoiceItemDiscount',
+    'InvoiceItemInvoicingRule',
     'InvoiceItemParent',
     'InvoiceItemParentSubscriptionDetails',
     'InvoiceItemPeriod',
@@ -194,6 +203,9 @@ __all__ = [
     'InvoicePaymentSettingsPaymentMethodOptionsAcssDebit',
     'InvoicePaymentSettingsPaymentMethodOptionsAcssDebitMandateOptions',
     'InvoicePaymentSettingsPaymentMethodOptionsBancontact',
+    'InvoicePaymentSettingsPaymentMethodOptionsBillie',
+    'InvoicePaymentSettingsPaymentMethodOptionsBillieCompanyDetails',
+    'InvoicePaymentSettingsPaymentMethodOptionsBillieCompanyDetailsRegisteredAddress',
     'InvoicePaymentSettingsPaymentMethodOptionsCard',
     'InvoicePaymentSettingsPaymentMethodOptionsCardInstallments',
     'InvoicePaymentSettingsPaymentMethodOptionsCardInstallmentsPlan',
@@ -220,6 +232,8 @@ __all__ = [
     'InvoiceShippingCostTax',
     'InvoiceShippingDetails',
     'InvoiceShippingDetailsAddress',
+    'InvoiceStatusDetails',
+    'InvoiceStatusDetailsUncollectible',
     'InvoiceStatusTransitions',
     'InvoiceThresholdReason',
     'InvoiceThresholdReasonItemReason',
@@ -360,7 +374,10 @@ __all__ = [
     'PaymentIntentPaymentMethodOptionsBacsDebitMandateOptions',
     'PaymentIntentPaymentMethodOptionsBancontact',
     'PaymentIntentPaymentMethodOptionsBillie',
+    'PaymentIntentPaymentMethodOptionsBillieCompanyDetails',
+    'PaymentIntentPaymentMethodOptionsBillieCompanyDetailsRegisteredAddress',
     'PaymentIntentPaymentMethodOptionsBlik',
+    'PaymentIntentPaymentMethodOptionsBlikMandateOptions',
     'PaymentIntentPaymentMethodOptionsBoleto',
     'PaymentIntentPaymentMethodOptionsCard',
     'PaymentIntentPaymentMethodOptionsCardInstallments',
@@ -410,7 +427,9 @@ __all__ = [
     'PaymentIntentPaymentMethodOptionsScalapay',
     'PaymentIntentPaymentMethodOptionsSepaDebit',
     'PaymentIntentPaymentMethodOptionsSepaDebitMandateOptions',
+    'PaymentIntentPaymentMethodOptionsSequra',
     'PaymentIntentPaymentMethodOptionsSofort',
+    'PaymentIntentPaymentMethodOptionsSunbit',
     'PaymentIntentPaymentMethodOptionsSwish',
     'PaymentIntentPaymentMethodOptionsTwint',
     'PaymentIntentPaymentMethodOptionsUpi',
@@ -458,6 +477,7 @@ __all__ = [
     'PaymentLinkLineItemAdjustableQuantity',
     'PaymentLinkLineItemPriceData',
     'PaymentLinkLineItemPriceDataProductData',
+    'PaymentLinkLineItemPriceDataProductDataTaxDetails',
     'PaymentLinkLineItemPriceDataRecurring',
     'PaymentLinkManagedPayments',
     'PaymentLinkNameCollection',
@@ -476,6 +496,7 @@ __all__ = [
     'PaymentLinkShippingOption',
     'PaymentLinkSubscriptionData',
     'PaymentLinkSubscriptionDataInvoiceSettings',
+    'PaymentLinkSubscriptionDataInvoiceSettingsCustomField',
     'PaymentLinkSubscriptionDataInvoiceSettingsIssuer',
     'PaymentLinkSubscriptionDataTrialSettings',
     'PaymentLinkSubscriptionDataTrialSettingsEndBehavior',
@@ -486,6 +507,8 @@ __all__ = [
     'PaymentMethodBacsDebit',
     'PaymentMethodBillingDetails',
     'PaymentMethodBillingDetailsAddress',
+    'PaymentMethodBizum',
+    'PaymentMethodBlik',
     'PaymentMethodBoleto',
     'PaymentMethodCard',
     'PaymentMethodCardChecks',
@@ -595,6 +618,8 @@ __all__ = [
     'PaymentMethodConfigurationPaynowDisplayPreference',
     'PaymentMethodConfigurationPaypal',
     'PaymentMethodConfigurationPaypalDisplayPreference',
+    'PaymentMethodConfigurationPaypay',
+    'PaymentMethodConfigurationPaypayDisplayPreference',
     'PaymentMethodConfigurationPayto',
     'PaymentMethodConfigurationPaytoDisplayPreference',
     'PaymentMethodConfigurationPix',
@@ -611,6 +636,8 @@ __all__ = [
     'PaymentMethodConfigurationScalapayDisplayPreference',
     'PaymentMethodConfigurationSepaDebit',
     'PaymentMethodConfigurationSepaDebitDisplayPreference',
+    'PaymentMethodConfigurationSequra',
+    'PaymentMethodConfigurationSequraDisplayPreference',
     'PaymentMethodConfigurationSofort',
     'PaymentMethodConfigurationSofortDisplayPreference',
     'PaymentMethodConfigurationSunbit',
@@ -653,6 +680,7 @@ __all__ = [
     'PaymentMethodP24',
     'PaymentMethodPaypal',
     'PaymentMethodPayto',
+    'PaymentMethodPix',
     'PaymentMethodRadarOptions',
     'PaymentMethodSepaDebit',
     'PaymentMethodSepaDebitGeneratedFrom',
@@ -694,9 +722,14 @@ __all__ = [
     'PriceCurrencyOptionTier',
     'PriceCustomUnitAmount',
     'PriceProductData',
+    'PriceProductDataTaxDetails',
     'PriceRecurring',
     'PriceTier',
     'PriceTransformQuantity',
+    'ProductCatalogTrialOfferDuration',
+    'ProductCatalogTrialOfferDurationRelative',
+    'ProductCatalogTrialOfferEndBehavior',
+    'ProductCatalogTrialOfferEndBehaviorTransition',
     'ProductDefaultPriceData',
     'ProductDefaultPriceDataCurrencyOption',
     'ProductDefaultPriceDataCurrencyOptionCustomUnitAmount',
@@ -705,6 +738,7 @@ __all__ = [
     'ProductDefaultPriceDataRecurring',
     'ProductMarketingFeature',
     'ProductPackageDimension',
+    'ProductTaxDetails',
     'PromotionCodePromotion',
     'PromotionCodeRestriction',
     'PromotionCodeRestrictionCurrencyOption',
@@ -713,6 +747,7 @@ __all__ = [
     'QuoteDiscount',
     'QuoteFromQuote',
     'QuoteInvoiceSettings',
+    'QuoteInvoiceSettingsCustomField',
     'QuoteInvoiceSettingsIssuer',
     'QuoteLineItem',
     'QuoteLineItemDiscount',
@@ -769,6 +804,8 @@ __all__ = [
     'SetupIntentPaymentMethodOptionsAcssDebitMandateOptions',
     'SetupIntentPaymentMethodOptionsBacsDebit',
     'SetupIntentPaymentMethodOptionsBacsDebitMandateOptions',
+    'SetupIntentPaymentMethodOptionsBlik',
+    'SetupIntentPaymentMethodOptionsBlikMandateOptions',
     'SetupIntentPaymentMethodOptionsCard',
     'SetupIntentPaymentMethodOptionsCardMandateOptions',
     'SetupIntentPaymentMethodOptionsCardThreeDSecure',
@@ -851,9 +888,11 @@ __all__ = [
     'SubscriptionCancellationDetails',
     'SubscriptionDiscount',
     'SubscriptionInvoiceSettings',
+    'SubscriptionInvoiceSettingsCustomField',
     'SubscriptionInvoiceSettingsIssuer',
     'SubscriptionItem',
     'SubscriptionItemBillingThresholds',
+    'SubscriptionItemCurrentTrial',
     'SubscriptionItemDiscount',
     'SubscriptionItemPriceData',
     'SubscriptionItemPriceDataRecurring',
@@ -864,6 +903,11 @@ __all__ = [
     'SubscriptionPaymentSettingsPaymentMethodOptionsAcssDebit',
     'SubscriptionPaymentSettingsPaymentMethodOptionsAcssDebitMandateOptions',
     'SubscriptionPaymentSettingsPaymentMethodOptionsBancontact',
+    'SubscriptionPaymentSettingsPaymentMethodOptionsBillie',
+    'SubscriptionPaymentSettingsPaymentMethodOptionsBillieCompanyDetails',
+    'SubscriptionPaymentSettingsPaymentMethodOptionsBillieCompanyDetailsRegisteredAddress',
+    'SubscriptionPaymentSettingsPaymentMethodOptionsBlik',
+    'SubscriptionPaymentSettingsPaymentMethodOptionsBlikMandateOptions',
     'SubscriptionPaymentSettingsPaymentMethodOptionsCard',
     'SubscriptionPaymentSettingsPaymentMethodOptionsCardMandateOptions',
     'SubscriptionPaymentSettingsPaymentMethodOptionsCustomerBalance',
@@ -889,8 +933,21 @@ __all__ = [
     'SubscriptionScheduleDefaultSettingsAutomaticTaxLiability',
     'SubscriptionScheduleDefaultSettingsBillingThresholds',
     'SubscriptionScheduleDefaultSettingsInvoiceSettings',
+    'SubscriptionScheduleDefaultSettingsInvoiceSettingsCustomField',
     'SubscriptionScheduleDefaultSettingsInvoiceSettingsIssuer',
     'SubscriptionScheduleDefaultSettingsTransferData',
+    'SubscriptionSchedulePauseSchedule',
+    'SubscriptionSchedulePauseSchedulePause',
+    'SubscriptionSchedulePauseSchedulePauseSettings',
+    'SubscriptionSchedulePauseSchedulePauseSettingsBillFor',
+    'SubscriptionSchedulePauseSchedulePauseSettingsBillForOutstandingUsageThrough',
+    'SubscriptionSchedulePauseSchedulePauseSettingsBillForUnusedTimeFrom',
+    'SubscriptionSchedulePauseSchedulePauseStatus',
+    'SubscriptionSchedulePauseSchedulePauseStatusError',
+    'SubscriptionSchedulePauseScheduleResume',
+    'SubscriptionSchedulePauseScheduleResumeSettings',
+    'SubscriptionSchedulePauseScheduleResumeStatus',
+    'SubscriptionSchedulePauseScheduleResumeStatusError',
     'SubscriptionSchedulePhase',
     'SubscriptionSchedulePhaseAddInvoiceItem',
     'SubscriptionSchedulePhaseAddInvoiceItemDiscount',
@@ -904,6 +961,7 @@ __all__ = [
     'SubscriptionSchedulePhaseDiscount',
     'SubscriptionSchedulePhaseDuration',
     'SubscriptionSchedulePhaseInvoiceSettings',
+    'SubscriptionSchedulePhaseInvoiceSettingsCustomField',
     'SubscriptionSchedulePhaseInvoiceSettingsIssuer',
     'SubscriptionSchedulePhaseItem',
     'SubscriptionSchedulePhaseItemBillingThresholds',
@@ -911,11 +969,15 @@ __all__ = [
     'SubscriptionSchedulePhaseItemPriceData',
     'SubscriptionSchedulePhaseItemPriceDataRecurring',
     'SubscriptionSchedulePhaseTransferData',
+    'SubscriptionStatusDetails',
+    'SubscriptionStatusDetailsPaused',
+    'SubscriptionStatusDetailsPausedSubscription',
     'SubscriptionTransferData',
     'SubscriptionTrialSettings',
     'SubscriptionTrialSettingsEndBehavior',
     'TaxIdOwner',
     'TaxIdVerification',
+    'TaxLocationAddress',
     'TaxRateFlatAmount',
     'TaxRegistrationCountryOptions',
     'TaxRegistrationCountryOptionsAe',
@@ -949,6 +1011,7 @@ __all__ = [
     'TaxRegistrationCountryOptionsBj',
     'TaxRegistrationCountryOptionsBs',
     'TaxRegistrationCountryOptionsBsStandard',
+    'TaxRegistrationCountryOptionsBw',
     'TaxRegistrationCountryOptionsBy',
     'TaxRegistrationCountryOptionsCa',
     'TaxRegistrationCountryOptionsCaProvinceStandard',
@@ -956,6 +1019,7 @@ __all__ = [
     'TaxRegistrationCountryOptionsCdStandard',
     'TaxRegistrationCountryOptionsCh',
     'TaxRegistrationCountryOptionsChStandard',
+    'TaxRegistrationCountryOptionsCi',
     'TaxRegistrationCountryOptionsCl',
     'TaxRegistrationCountryOptionsCm',
     'TaxRegistrationCountryOptionsCo',
@@ -984,6 +1048,7 @@ __all__ = [
     'TaxRegistrationCountryOptionsGb',
     'TaxRegistrationCountryOptionsGbStandard',
     'TaxRegistrationCountryOptionsGe',
+    'TaxRegistrationCountryOptionsGh',
     'TaxRegistrationCountryOptionsGn',
     'TaxRegistrationCountryOptionsGnStandard',
     'TaxRegistrationCountryOptionsGr',
@@ -1025,6 +1090,7 @@ __all__ = [
     'TaxRegistrationCountryOptionsMrStandard',
     'TaxRegistrationCountryOptionsMt',
     'TaxRegistrationCountryOptionsMtStandard',
+    'TaxRegistrationCountryOptionsMu',
     'TaxRegistrationCountryOptionsMx',
     'TaxRegistrationCountryOptionsMy',
     'TaxRegistrationCountryOptionsNg',
@@ -1068,10 +1134,21 @@ __all__ = [
     'TaxRegistrationCountryOptionsUa',
     'TaxRegistrationCountryOptionsUg',
     'TaxRegistrationCountryOptionsUs',
+    'TaxRegistrationCountryOptionsUsAdmissionsTax',
+    'TaxRegistrationCountryOptionsUsAttendanceTax',
+    'TaxRegistrationCountryOptionsUsEntertainmentTax',
+    'TaxRegistrationCountryOptionsUsGrossReceiptsTax',
+    'TaxRegistrationCountryOptionsUsHospitalityTax',
     'TaxRegistrationCountryOptionsUsLocalAmusementTax',
     'TaxRegistrationCountryOptionsUsLocalLeaseTax',
+    'TaxRegistrationCountryOptionsUsLuxuryTax',
+    'TaxRegistrationCountryOptionsUsMassTransitParkingTax',
+    'TaxRegistrationCountryOptionsUsParkingTax',
+    'TaxRegistrationCountryOptionsUsResortTax',
     'TaxRegistrationCountryOptionsUsStateSalesTax',
     'TaxRegistrationCountryOptionsUsStateSalesTaxElection',
+    'TaxRegistrationCountryOptionsUsTourismTax',
+    'TaxRegistrationCountryOptionsUsUtilityUsersTax',
     'TaxRegistrationCountryOptionsUy',
     'TaxRegistrationCountryOptionsUyStandard',
     'TaxRegistrationCountryOptionsUz',
@@ -1085,9 +1162,11 @@ __all__ = [
     'TerminalConfigurationBbposWiseposE',
     'TerminalConfigurationCellular',
     'TerminalConfigurationOffline',
+    'TerminalConfigurationReaderSecurity',
     'TerminalConfigurationRebootWindow',
     'TerminalConfigurationStripeS700',
     'TerminalConfigurationStripeS710',
+    'TerminalConfigurationStripeT600',
     'TerminalConfigurationTipping',
     'TerminalConfigurationTippingAed',
     'TerminalConfigurationTippingAud',
@@ -1151,6 +1230,27 @@ __all__ = [
     'TerminalReaderActionSetReaderDisplay',
     'TerminalReaderActionSetReaderDisplayCart',
     'TerminalReaderActionSetReaderDisplayCartLineItem',
+    'ThreeDSecureAuthenticationAcquirerDetails',
+    'ThreeDSecureAuthenticationChannel',
+    'ThreeDSecureAuthenticationChannelBrowser',
+    'ThreeDSecureAuthenticationChannelThreeRI',
+    'ThreeDSecureAuthenticationFlowPreference',
+    'ThreeDSecureAuthenticationFlowPreferenceChallenge',
+    'ThreeDSecureAuthenticationFlowPreferenceDataShare',
+    'ThreeDSecureAuthenticationFlowPreferenceFrictionless',
+    'ThreeDSecureAuthenticationFutureUsage',
+    'ThreeDSecureAuthenticationFutureUsageInstallment',
+    'ThreeDSecureAuthenticationFutureUsageInstallmentExpiry',
+    'ThreeDSecureAuthenticationFutureUsageRecurring',
+    'ThreeDSecureAuthenticationFutureUsageRecurringExpiry',
+    'ThreeDSecureAuthenticationOutcomeDetails',
+    'ThreeDSecureAuthenticationOutcomeDetailsNetworkDetails',
+    'ThreeDSecureAuthenticationOutcomeDetailsNetworkDetailsCartesBancaires',
+    'ThreeDSecureAuthenticationPaymentMethodData',
+    'ThreeDSecureAuthenticationPaymentMethodDataBillingDetails',
+    'ThreeDSecureAuthenticationPaymentMethodDataBillingDetailsAddress',
+    'ThreeDSecureAuthenticationPaymentMethodDataCard',
+    'ThreeDSecureAuthenticationShippingAddress',
     'TreasuryFinancialAccountBalance',
     'TreasuryFinancialAccountFeatures',
     'TreasuryFinancialAccountFeaturesCardIssuing',
@@ -1185,7 +1285,172 @@ __all__ = [
     'V2CoreEventDestinationStatusDetails',
     'V2CoreEventDestinationStatusDetailsDisabled',
     'V2CoreEventDestinationWebhookEndpoint',
+    'V2CoreVaultUsBankAccountVerification',
+    'V2CoreVaultUsBankAccountVerificationMicrodepositVerificationDetails',
+    'V2MoneyManagementFinancialAddressBankAccount',
+    'V2MoneyManagementFinancialAddressBankAccountAba',
+    'V2MoneyManagementFinancialAddressBankAccountAbaAddress',
+    'V2MoneyManagementFinancialAddressBankAccountIban',
+    'V2MoneyManagementFinancialAddressBankAccountSortCode',
+    'V2MoneyManagementInboundTransferAmount',
+    'V2MoneyManagementInboundTransferFrom',
+    'V2MoneyManagementInboundTransferFromDebited',
+    'V2MoneyManagementInboundTransferFromPaymentMethod',
+    'V2MoneyManagementInboundTransferTo',
+    'V2MoneyManagementInboundTransferToCredited',
+    'V2MoneyManagementInboundTransferTransferHistory',
+    'V2MoneyManagementInboundTransferTransferHistoryBankDebitFailed',
+    'V2MoneyManagementInboundTransferTransferHistoryBankDebitReturned',
+    'V2MoneyManagementOutboundPaymentAmount',
+    'V2MoneyManagementOutboundPaymentFrom',
+    'V2MoneyManagementOutboundPaymentFromDebited',
+    'V2MoneyManagementOutboundPaymentRecipientNotification',
+    'V2MoneyManagementOutboundPaymentStatusDetails',
+    'V2MoneyManagementOutboundPaymentStatusDetailsFailed',
+    'V2MoneyManagementOutboundPaymentStatusDetailsProcessing',
+    'V2MoneyManagementOutboundPaymentStatusDetailsReturned',
+    'V2MoneyManagementOutboundPaymentStatusTransitions',
+    'V2MoneyManagementOutboundPaymentTo',
+    'V2MoneyManagementOutboundPaymentToCredited',
+    'V2MoneyManagementOutboundPaymentToPayoutMethodOptions',
+    'V2MoneyManagementOutboundPaymentToPayoutMethodOptionsBankAccount',
+    'V2MoneyManagementOutboundPaymentToPayoutMethodOptionsBankAccountPreferredNetworkOptions',
+    'V2MoneyManagementOutboundPaymentToPayoutMethodOptionsBankAccountPreferredNetworkOptionsAch',
+    'V2MoneyManagementOutboundPaymentTrackingDetails',
+    'V2MoneyManagementOutboundPaymentTrackingDetailsBankAccount',
+    'V2MoneyManagementOutboundPaymentTrackingDetailsCard',
+    'V2MoneyManagementOutboundSetupIntentPayoutMethodData',
+    'V2MoneyManagementOutboundSetupIntentPayoutMethodDataBankAccount',
+    'V2MoneyManagementPayoutIntentAmount',
+    'V2MoneyManagementPayoutIntentEstimatedFee',
+    'V2MoneyManagementPayoutIntentEstimatedFeeAmount',
+    'V2MoneyManagementPayoutIntentEstimatedFeeNetworkFeeDetails',
+    'V2MoneyManagementPayoutIntentEstimatedFeeNetworkFeeDetailsNetworkOptions',
+    'V2MoneyManagementPayoutIntentEstimatedFeeNetworkFeeDetailsNetworkOptionsAch',
+    'V2MoneyManagementPayoutIntentEstimatedFeeTaxAmount',
+    'V2MoneyManagementPayoutIntentFrom',
+    'V2MoneyManagementPayoutIntentFromDebited',
+    'V2MoneyManagementPayoutIntentFxQuote',
+    'V2MoneyManagementPayoutIntentFxQuoteRates',
+    'V2MoneyManagementPayoutIntentLatestPayout',
+    'V2MoneyManagementPayoutIntentNextAction',
+    'V2MoneyManagementPayoutIntentNextActionConfirm',
+    'V2MoneyManagementPayoutIntentNextActionHandleFailure',
+    'V2MoneyManagementPayoutIntentRecipientNotification',
+    'V2MoneyManagementPayoutIntentRecipientVerification',
+    'V2MoneyManagementPayoutIntentRecipientVerificationMatchResultDetails',
+    'V2MoneyManagementPayoutIntentScheduleOptions',
+    'V2MoneyManagementPayoutIntentStatusTransitions',
+    'V2MoneyManagementPayoutIntentTo',
+    'V2MoneyManagementPayoutIntentToCredited',
+    'V2MoneyManagementPayoutIntentToPayoutMethodOptions',
+    'V2MoneyManagementPayoutIntentToPayoutMethodOptionsBankAccount',
+    'V2MoneyManagementPayoutIntentToPayoutMethodOptionsBankAccountPreferredNetworkOptions',
+    'V2MoneyManagementPayoutIntentToPayoutMethodOptionsBankAccountPreferredNetworkOptionsAch',
+    'V2MoneyManagementRecipientVerificationConsumedBy',
+    'V2MoneyManagementRecipientVerificationMatchResultDetails',
+    'V2MoneyManagementRecipientVerificationStatusTransitions',
 ]
+
+@pulumi.output_type
+class AppsInstallContentSecurityPolicyGranted(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "connectSrcs":
+            suggest = "connect_srcs"
+        elif key == "imageSrcs":
+            suggest = "image_srcs"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in AppsInstallContentSecurityPolicyGranted. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        AppsInstallContentSecurityPolicyGranted.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        AppsInstallContentSecurityPolicyGranted.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 connect_srcs: Optional[Sequence[_builtins.str]] = None,
+                 image_srcs: Optional[Sequence[_builtins.str]] = None):
+        """
+        :param Sequence[_builtins.str] connect_srcs: The URLs that the app can make network requests to.
+        :param Sequence[_builtins.str] image_srcs: The URLs that the app can load images from.
+        """
+        if connect_srcs is not None:
+            pulumi.set(__self__, "connect_srcs", connect_srcs)
+        if image_srcs is not None:
+            pulumi.set(__self__, "image_srcs", image_srcs)
+
+    @_builtins.property
+    @pulumi.getter(name="connectSrcs")
+    def connect_srcs(self) -> Optional[Sequence[_builtins.str]]:
+        """
+        The URLs that the app can make network requests to.
+        """
+        return pulumi.get(self, "connect_srcs")
+
+    @_builtins.property
+    @pulumi.getter(name="imageSrcs")
+    def image_srcs(self) -> Optional[Sequence[_builtins.str]]:
+        """
+        The URLs that the app can load images from.
+        """
+        return pulumi.get(self, "image_srcs")
+
+
+@pulumi.output_type
+class AppsInstallContentSecurityPolicyPending(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "connectSrcs":
+            suggest = "connect_srcs"
+        elif key == "imageSrcs":
+            suggest = "image_srcs"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in AppsInstallContentSecurityPolicyPending. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        AppsInstallContentSecurityPolicyPending.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        AppsInstallContentSecurityPolicyPending.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 connect_srcs: Optional[Sequence[_builtins.str]] = None,
+                 image_srcs: Optional[Sequence[_builtins.str]] = None):
+        """
+        :param Sequence[_builtins.str] connect_srcs: The URLs that the app can make network requests to.
+        :param Sequence[_builtins.str] image_srcs: The URLs that the app can load images from.
+        """
+        if connect_srcs is not None:
+            pulumi.set(__self__, "connect_srcs", connect_srcs)
+        if image_srcs is not None:
+            pulumi.set(__self__, "image_srcs", image_srcs)
+
+    @_builtins.property
+    @pulumi.getter(name="connectSrcs")
+    def connect_srcs(self) -> Optional[Sequence[_builtins.str]]:
+        """
+        The URLs that the app can make network requests to.
+        """
+        return pulumi.get(self, "connect_srcs")
+
+    @_builtins.property
+    @pulumi.getter(name="imageSrcs")
+    def image_srcs(self) -> Optional[Sequence[_builtins.str]]:
+        """
+        The URLs that the app can load images from.
+        """
+        return pulumi.get(self, "image_srcs")
+
 
 @pulumi.output_type
 class BillingAlertUsageThreshold(dict):
@@ -1404,6 +1669,42 @@ class BillingCreditGrantApplicabilityConfigScopePrice(dict):
 
 
 @pulumi.output_type
+class BillingFeedbackOptionStatusTransitions(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "deactivatedAt":
+            suggest = "deactivated_at"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in BillingFeedbackOptionStatusTransitions. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        BillingFeedbackOptionStatusTransitions.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        BillingFeedbackOptionStatusTransitions.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 deactivated_at: Optional[_builtins.float] = None):
+        """
+        :param _builtins.float deactivated_at: The time the feedback option was deactivated, if any. Measured in seconds since Unix epoch.
+        """
+        if deactivated_at is not None:
+            pulumi.set(__self__, "deactivated_at", deactivated_at)
+
+    @_builtins.property
+    @pulumi.getter(name="deactivatedAt")
+    def deactivated_at(self) -> Optional[_builtins.float]:
+        """
+        The time the feedback option was deactivated, if any. Measured in seconds since Unix epoch.
+        """
+        return pulumi.get(self, "deactivated_at")
+
+
+@pulumi.output_type
 class BillingMeterCustomerMapping(dict):
     @staticmethod
     def __key_warning(key: str):
@@ -1614,6 +1915,8 @@ class BillingPortalConfigurationFeatures(dict):
             suggest = "payment_method_update"
         elif key == "subscriptionCancel":
             suggest = "subscription_cancel"
+        elif key == "subscriptionPause":
+            suggest = "subscription_pause"
         elif key == "subscriptionUpdate":
             suggest = "subscription_update"
 
@@ -1633,6 +1936,7 @@ class BillingPortalConfigurationFeatures(dict):
                  invoice_history: Optional['outputs.BillingPortalConfigurationFeaturesInvoiceHistory'] = None,
                  payment_method_update: Optional['outputs.BillingPortalConfigurationFeaturesPaymentMethodUpdate'] = None,
                  subscription_cancel: Optional['outputs.BillingPortalConfigurationFeaturesSubscriptionCancel'] = None,
+                 subscription_pause: Optional['outputs.BillingPortalConfigurationFeaturesSubscriptionPause'] = None,
                  subscription_update: Optional['outputs.BillingPortalConfigurationFeaturesSubscriptionUpdate'] = None):
         if customer_update is not None:
             pulumi.set(__self__, "customer_update", customer_update)
@@ -1642,6 +1946,8 @@ class BillingPortalConfigurationFeatures(dict):
             pulumi.set(__self__, "payment_method_update", payment_method_update)
         if subscription_cancel is not None:
             pulumi.set(__self__, "subscription_cancel", subscription_cancel)
+        if subscription_pause is not None:
+            pulumi.set(__self__, "subscription_pause", subscription_pause)
         if subscription_update is not None:
             pulumi.set(__self__, "subscription_update", subscription_update)
 
@@ -1664,6 +1970,11 @@ class BillingPortalConfigurationFeatures(dict):
     @pulumi.getter(name="subscriptionCancel")
     def subscription_cancel(self) -> Optional['outputs.BillingPortalConfigurationFeaturesSubscriptionCancel']:
         return pulumi.get(self, "subscription_cancel")
+
+    @_builtins.property
+    @pulumi.getter(name="subscriptionPause")
+    def subscription_pause(self) -> Optional['outputs.BillingPortalConfigurationFeaturesSubscriptionPause']:
+        return pulumi.get(self, "subscription_pause")
 
     @_builtins.property
     @pulumi.getter(name="subscriptionUpdate")
@@ -1854,15 +2165,36 @@ class BillingPortalConfigurationFeaturesSubscriptionCancel(dict):
 
 @pulumi.output_type
 class BillingPortalConfigurationFeaturesSubscriptionCancelCancellationReason(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "feedbackOptions":
+            suggest = "feedback_options"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in BillingPortalConfigurationFeaturesSubscriptionCancelCancellationReason. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        BillingPortalConfigurationFeaturesSubscriptionCancelCancellationReason.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        BillingPortalConfigurationFeaturesSubscriptionCancelCancellationReason.__key_warning(key)
+        return super().get(key, default)
+
     def __init__(__self__, *,
                  enabled: _builtins.bool,
-                 options: Sequence[_builtins.str]):
+                 options: Sequence[_builtins.str],
+                 feedback_options: Optional[Sequence[_builtins.str]] = None):
         """
         :param _builtins.bool enabled: Whether the feature is enabled.
         :param Sequence[_builtins.str] options: Which cancellation reasons will be given as options to the customer.
+        :param Sequence[_builtins.str] feedback_options: The IDs of custom feedback options configured for this cancellation reason.
         """
         pulumi.set(__self__, "enabled", enabled)
         pulumi.set(__self__, "options", options)
+        if feedback_options is not None:
+            pulumi.set(__self__, "feedback_options", feedback_options)
 
     @_builtins.property
     @pulumi.getter
@@ -1879,6 +2211,135 @@ class BillingPortalConfigurationFeaturesSubscriptionCancelCancellationReason(dic
         Which cancellation reasons will be given as options to the customer.
         """
         return pulumi.get(self, "options")
+
+    @_builtins.property
+    @pulumi.getter(name="feedbackOptions")
+    def feedback_options(self) -> Optional[Sequence[_builtins.str]]:
+        """
+        The IDs of custom feedback options configured for this cancellation reason.
+        """
+        return pulumi.get(self, "feedback_options")
+
+
+@pulumi.output_type
+class BillingPortalConfigurationFeaturesSubscriptionPause(dict):
+    def __init__(__self__, *,
+                 duration: Optional['outputs.BillingPortalConfigurationFeaturesSubscriptionPauseDuration'] = None,
+                 enabled: Optional[_builtins.bool] = None):
+        """
+        :param _builtins.bool enabled: Whether the feature is enabled. Customers can only pause subscriptions in the [redesigned customer portal](https://www.terraform.io/customer-management).
+        """
+        if duration is not None:
+            pulumi.set(__self__, "duration", duration)
+        if enabled is not None:
+            pulumi.set(__self__, "enabled", enabled)
+
+    @_builtins.property
+    @pulumi.getter
+    def duration(self) -> Optional['outputs.BillingPortalConfigurationFeaturesSubscriptionPauseDuration']:
+        return pulumi.get(self, "duration")
+
+    @_builtins.property
+    @pulumi.getter
+    def enabled(self) -> Optional[_builtins.bool]:
+        """
+        Whether the feature is enabled. Customers can only pause subscriptions in the [redesigned customer portal](https://www.terraform.io/customer-management).
+        """
+        return pulumi.get(self, "enabled")
+
+
+@pulumi.output_type
+class BillingPortalConfigurationFeaturesSubscriptionPauseDuration(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "intervalOptions":
+            suggest = "interval_options"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in BillingPortalConfigurationFeaturesSubscriptionPauseDuration. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        BillingPortalConfigurationFeaturesSubscriptionPauseDuration.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        BillingPortalConfigurationFeaturesSubscriptionPauseDuration.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 type: _builtins.str,
+                 interval_options: Optional[Sequence['outputs.BillingPortalConfigurationFeaturesSubscriptionPauseDurationIntervalOption']] = None):
+        """
+        :param _builtins.str type: Whether subscriptions can be paused indefinitely or for a preset duration.
+        :param Sequence['BillingPortalConfigurationFeaturesSubscriptionPauseDurationIntervalOptionArgs'] interval_options: The preset pause durations customers can choose from.
+        """
+        pulumi.set(__self__, "type", type)
+        if interval_options is not None:
+            pulumi.set(__self__, "interval_options", interval_options)
+
+    @_builtins.property
+    @pulumi.getter
+    def type(self) -> _builtins.str:
+        """
+        Whether subscriptions can be paused indefinitely or for a preset duration.
+        """
+        return pulumi.get(self, "type")
+
+    @_builtins.property
+    @pulumi.getter(name="intervalOptions")
+    def interval_options(self) -> Optional[Sequence['outputs.BillingPortalConfigurationFeaturesSubscriptionPauseDurationIntervalOption']]:
+        """
+        The preset pause durations customers can choose from.
+        """
+        return pulumi.get(self, "interval_options")
+
+
+@pulumi.output_type
+class BillingPortalConfigurationFeaturesSubscriptionPauseDurationIntervalOption(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "intervalCount":
+            suggest = "interval_count"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in BillingPortalConfigurationFeaturesSubscriptionPauseDurationIntervalOption. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        BillingPortalConfigurationFeaturesSubscriptionPauseDurationIntervalOption.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        BillingPortalConfigurationFeaturesSubscriptionPauseDurationIntervalOption.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 interval: _builtins.str,
+                 interval_count: Optional[_builtins.float] = None):
+        """
+        :param _builtins.str interval: Specifies the pause duration unit. Either <span pulumi-lang-nodejs="`day`" pulumi-lang-dotnet="`Day`" pulumi-lang-go="`day`" pulumi-lang-python="`day`" pulumi-lang-yaml="`day`" pulumi-lang-java="`day`" pulumi-lang-hcl="`day`">`day`</span>, <span pulumi-lang-nodejs="`week`" pulumi-lang-dotnet="`Week`" pulumi-lang-go="`week`" pulumi-lang-python="`week`" pulumi-lang-yaml="`week`" pulumi-lang-java="`week`" pulumi-lang-hcl="`week`">`week`</span>, <span pulumi-lang-nodejs="`month`" pulumi-lang-dotnet="`Month`" pulumi-lang-go="`month`" pulumi-lang-python="`month`" pulumi-lang-yaml="`month`" pulumi-lang-java="`month`" pulumi-lang-hcl="`month`">`month`</span>, or <span pulumi-lang-nodejs="`year`" pulumi-lang-dotnet="`Year`" pulumi-lang-go="`year`" pulumi-lang-python="`year`" pulumi-lang-yaml="`year`" pulumi-lang-java="`year`" pulumi-lang-hcl="`year`">`year`</span>.
+        :param _builtins.float interval_count: The number of intervals in the pause duration. The maximum duration is three years.
+        """
+        pulumi.set(__self__, "interval", interval)
+        if interval_count is not None:
+            pulumi.set(__self__, "interval_count", interval_count)
+
+    @_builtins.property
+    @pulumi.getter
+    def interval(self) -> _builtins.str:
+        """
+        Specifies the pause duration unit. Either <span pulumi-lang-nodejs="`day`" pulumi-lang-dotnet="`Day`" pulumi-lang-go="`day`" pulumi-lang-python="`day`" pulumi-lang-yaml="`day`" pulumi-lang-java="`day`" pulumi-lang-hcl="`day`">`day`</span>, <span pulumi-lang-nodejs="`week`" pulumi-lang-dotnet="`Week`" pulumi-lang-go="`week`" pulumi-lang-python="`week`" pulumi-lang-yaml="`week`" pulumi-lang-java="`week`" pulumi-lang-hcl="`week`">`week`</span>, <span pulumi-lang-nodejs="`month`" pulumi-lang-dotnet="`Month`" pulumi-lang-go="`month`" pulumi-lang-python="`month`" pulumi-lang-yaml="`month`" pulumi-lang-java="`month`" pulumi-lang-hcl="`month`">`month`</span>, or <span pulumi-lang-nodejs="`year`" pulumi-lang-dotnet="`Year`" pulumi-lang-go="`year`" pulumi-lang-python="`year`" pulumi-lang-yaml="`year`" pulumi-lang-java="`year`" pulumi-lang-hcl="`year`">`year`</span>.
+        """
+        return pulumi.get(self, "interval")
+
+    @_builtins.property
+    @pulumi.getter(name="intervalCount")
+    def interval_count(self) -> Optional[_builtins.float]:
+        """
+        The number of intervals in the pause duration. The maximum duration is three years.
+        """
+        return pulumi.get(self, "interval_count")
 
 
 @pulumi.output_type
@@ -2841,6 +3302,7 @@ class ChargePaymentMethodDetails(dict):
                  scalapay: Optional['outputs.ChargePaymentMethodDetailsScalapay'] = None,
                  sepa_credit_transfer: Optional['outputs.ChargePaymentMethodDetailsSepaCreditTransfer'] = None,
                  sepa_debit: Optional['outputs.ChargePaymentMethodDetailsSepaDebit'] = None,
+                 sequra: Optional['outputs.ChargePaymentMethodDetailsSequra'] = None,
                  sofort: Optional['outputs.ChargePaymentMethodDetailsSofort'] = None,
                  sunbit: Optional['outputs.ChargePaymentMethodDetailsSunbit'] = None,
                  swish: Optional['outputs.ChargePaymentMethodDetailsSwish'] = None,
@@ -2950,6 +3412,8 @@ class ChargePaymentMethodDetails(dict):
             pulumi.set(__self__, "sepa_credit_transfer", sepa_credit_transfer)
         if sepa_debit is not None:
             pulumi.set(__self__, "sepa_debit", sepa_debit)
+        if sequra is not None:
+            pulumi.set(__self__, "sequra", sequra)
         if sofort is not None:
             pulumi.set(__self__, "sofort", sofort)
         if sunbit is not None:
@@ -3206,6 +3670,11 @@ class ChargePaymentMethodDetails(dict):
     @pulumi.getter(name="sepaDebit")
     def sepa_debit(self) -> Optional['outputs.ChargePaymentMethodDetailsSepaDebit']:
         return pulumi.get(self, "sepa_debit")
+
+    @_builtins.property
+    @pulumi.getter
+    def sequra(self) -> Optional['outputs.ChargePaymentMethodDetailsSequra']:
+        return pulumi.get(self, "sequra")
 
     @_builtins.property
     @pulumi.getter
@@ -3878,7 +4347,7 @@ class ChargePaymentMethodDetailsAmazonPayFundingCard(dict):
                  funding: Optional[_builtins.str] = None,
                  last4: Optional[_builtins.str] = None):
         """
-        :param _builtins.str brand: Card brand. Can be <span pulumi-lang-nodejs="`amex`" pulumi-lang-dotnet="`Amex`" pulumi-lang-go="`amex`" pulumi-lang-python="`amex`" pulumi-lang-yaml="`amex`" pulumi-lang-java="`amex`" pulumi-lang-hcl="`amex`">`amex`</span>, <span pulumi-lang-nodejs="`cartesBancaires`" pulumi-lang-dotnet="`CartesBancaires`" pulumi-lang-go="`cartesBancaires`" pulumi-lang-python="`cartes_bancaires`" pulumi-lang-yaml="`cartesBancaires`" pulumi-lang-java="`cartesBancaires`" pulumi-lang-hcl="`cartes_bancaires`">`cartesBancaires`</span>, <span pulumi-lang-nodejs="`diners`" pulumi-lang-dotnet="`Diners`" pulumi-lang-go="`diners`" pulumi-lang-python="`diners`" pulumi-lang-yaml="`diners`" pulumi-lang-java="`diners`" pulumi-lang-hcl="`diners`">`diners`</span>, <span pulumi-lang-nodejs="`discover`" pulumi-lang-dotnet="`Discover`" pulumi-lang-go="`discover`" pulumi-lang-python="`discover`" pulumi-lang-yaml="`discover`" pulumi-lang-java="`discover`" pulumi-lang-hcl="`discover`">`discover`</span>, <span pulumi-lang-nodejs="`eftposAu`" pulumi-lang-dotnet="`EftposAu`" pulumi-lang-go="`eftposAu`" pulumi-lang-python="`eftpos_au`" pulumi-lang-yaml="`eftposAu`" pulumi-lang-java="`eftposAu`" pulumi-lang-hcl="`eftpos_au`">`eftposAu`</span>, <span pulumi-lang-nodejs="`jcb`" pulumi-lang-dotnet="`Jcb`" pulumi-lang-go="`jcb`" pulumi-lang-python="`jcb`" pulumi-lang-yaml="`jcb`" pulumi-lang-java="`jcb`" pulumi-lang-hcl="`jcb`">`jcb`</span>, <span pulumi-lang-nodejs="`link`" pulumi-lang-dotnet="`Link`" pulumi-lang-go="`link`" pulumi-lang-python="`link`" pulumi-lang-yaml="`link`" pulumi-lang-java="`link`" pulumi-lang-hcl="`link`">`link`</span>, <span pulumi-lang-nodejs="`mastercard`" pulumi-lang-dotnet="`Mastercard`" pulumi-lang-go="`mastercard`" pulumi-lang-python="`mastercard`" pulumi-lang-yaml="`mastercard`" pulumi-lang-java="`mastercard`" pulumi-lang-hcl="`mastercard`">`mastercard`</span>, <span pulumi-lang-nodejs="`unionpay`" pulumi-lang-dotnet="`Unionpay`" pulumi-lang-go="`unionpay`" pulumi-lang-python="`unionpay`" pulumi-lang-yaml="`unionpay`" pulumi-lang-java="`unionpay`" pulumi-lang-hcl="`unionpay`">`unionpay`</span>, <span pulumi-lang-nodejs="`visa`" pulumi-lang-dotnet="`Visa`" pulumi-lang-go="`visa`" pulumi-lang-python="`visa`" pulumi-lang-yaml="`visa`" pulumi-lang-java="`visa`" pulumi-lang-hcl="`visa`">`visa`</span> or <span pulumi-lang-nodejs="`unknown`" pulumi-lang-dotnet="`Unknown`" pulumi-lang-go="`unknown`" pulumi-lang-python="`unknown`" pulumi-lang-yaml="`unknown`" pulumi-lang-java="`unknown`" pulumi-lang-hcl="`unknown`">`unknown`</span>.
+        :param _builtins.str brand: Card brand. Can be `American Express`, `Cartes Bancaires`, `Diners Club`, `Discover`, `Eftpos Australia`, `Girocard`, `JCB`, `MasterCard`, `UnionPay`, `Visa`, or `Unknown`.
         :param _builtins.str country: Two-letter ISO code representing the country of the card. You could use this attribute to get a sense of the international breakdown of cards you've collected.
         :param _builtins.float exp_month: Two-digit number representing the card's expiration month.
         :param _builtins.float exp_year: Four-digit number representing the card's expiration year.
@@ -3902,7 +4371,7 @@ class ChargePaymentMethodDetailsAmazonPayFundingCard(dict):
     @pulumi.getter
     def brand(self) -> Optional[_builtins.str]:
         """
-        Card brand. Can be <span pulumi-lang-nodejs="`amex`" pulumi-lang-dotnet="`Amex`" pulumi-lang-go="`amex`" pulumi-lang-python="`amex`" pulumi-lang-yaml="`amex`" pulumi-lang-java="`amex`" pulumi-lang-hcl="`amex`">`amex`</span>, <span pulumi-lang-nodejs="`cartesBancaires`" pulumi-lang-dotnet="`CartesBancaires`" pulumi-lang-go="`cartesBancaires`" pulumi-lang-python="`cartes_bancaires`" pulumi-lang-yaml="`cartesBancaires`" pulumi-lang-java="`cartesBancaires`" pulumi-lang-hcl="`cartes_bancaires`">`cartesBancaires`</span>, <span pulumi-lang-nodejs="`diners`" pulumi-lang-dotnet="`Diners`" pulumi-lang-go="`diners`" pulumi-lang-python="`diners`" pulumi-lang-yaml="`diners`" pulumi-lang-java="`diners`" pulumi-lang-hcl="`diners`">`diners`</span>, <span pulumi-lang-nodejs="`discover`" pulumi-lang-dotnet="`Discover`" pulumi-lang-go="`discover`" pulumi-lang-python="`discover`" pulumi-lang-yaml="`discover`" pulumi-lang-java="`discover`" pulumi-lang-hcl="`discover`">`discover`</span>, <span pulumi-lang-nodejs="`eftposAu`" pulumi-lang-dotnet="`EftposAu`" pulumi-lang-go="`eftposAu`" pulumi-lang-python="`eftpos_au`" pulumi-lang-yaml="`eftposAu`" pulumi-lang-java="`eftposAu`" pulumi-lang-hcl="`eftpos_au`">`eftposAu`</span>, <span pulumi-lang-nodejs="`jcb`" pulumi-lang-dotnet="`Jcb`" pulumi-lang-go="`jcb`" pulumi-lang-python="`jcb`" pulumi-lang-yaml="`jcb`" pulumi-lang-java="`jcb`" pulumi-lang-hcl="`jcb`">`jcb`</span>, <span pulumi-lang-nodejs="`link`" pulumi-lang-dotnet="`Link`" pulumi-lang-go="`link`" pulumi-lang-python="`link`" pulumi-lang-yaml="`link`" pulumi-lang-java="`link`" pulumi-lang-hcl="`link`">`link`</span>, <span pulumi-lang-nodejs="`mastercard`" pulumi-lang-dotnet="`Mastercard`" pulumi-lang-go="`mastercard`" pulumi-lang-python="`mastercard`" pulumi-lang-yaml="`mastercard`" pulumi-lang-java="`mastercard`" pulumi-lang-hcl="`mastercard`">`mastercard`</span>, <span pulumi-lang-nodejs="`unionpay`" pulumi-lang-dotnet="`Unionpay`" pulumi-lang-go="`unionpay`" pulumi-lang-python="`unionpay`" pulumi-lang-yaml="`unionpay`" pulumi-lang-java="`unionpay`" pulumi-lang-hcl="`unionpay`">`unionpay`</span>, <span pulumi-lang-nodejs="`visa`" pulumi-lang-dotnet="`Visa`" pulumi-lang-go="`visa`" pulumi-lang-python="`visa`" pulumi-lang-yaml="`visa`" pulumi-lang-java="`visa`" pulumi-lang-hcl="`visa`">`visa`</span> or <span pulumi-lang-nodejs="`unknown`" pulumi-lang-dotnet="`Unknown`" pulumi-lang-go="`unknown`" pulumi-lang-python="`unknown`" pulumi-lang-yaml="`unknown`" pulumi-lang-java="`unknown`" pulumi-lang-hcl="`unknown`">`unknown`</span>.
+        Card brand. Can be `American Express`, `Cartes Bancaires`, `Diners Club`, `Discover`, `Eftpos Australia`, `Girocard`, `JCB`, `MasterCard`, `UnionPay`, `Visa`, or `Unknown`.
         """
         return pulumi.get(self, "brand")
 
@@ -4296,7 +4765,9 @@ class ChargePaymentMethodDetailsBizum(dict):
     @staticmethod
     def __key_warning(key: str):
         suggest = None
-        if key == "transactionId":
+        if key == "buyerId":
+            suggest = "buyer_id"
+        elif key == "transactionId":
             suggest = "transaction_id"
 
         if suggest:
@@ -4311,12 +4782,24 @@ class ChargePaymentMethodDetailsBizum(dict):
         return super().get(key, default)
 
     def __init__(__self__, *,
+                 buyer_id: Optional[_builtins.str] = None,
                  transaction_id: Optional[_builtins.str] = None):
         """
+        :param _builtins.str buyer_id: A unique identifier for the buyer as determined by the local payment processor.
         :param _builtins.str transaction_id: The Bizum transaction ID associated with this payment.
         """
+        if buyer_id is not None:
+            pulumi.set(__self__, "buyer_id", buyer_id)
         if transaction_id is not None:
             pulumi.set(__self__, "transaction_id", transaction_id)
+
+    @_builtins.property
+    @pulumi.getter(name="buyerId")
+    def buyer_id(self) -> Optional[_builtins.str]:
+        """
+        A unique identifier for the buyer as determined by the local payment processor.
+        """
+        return pulumi.get(self, "buyer_id")
 
     @_builtins.property
     @pulumi.getter(name="transactionId")
@@ -4410,6 +4893,8 @@ class ChargePaymentMethodDetailsCard(dict):
             suggest = "authorization_code"
         elif key == "captureBefore":
             suggest = "capture_before"
+        elif key == "electronicCommerceIndicator":
+            suggest = "electronic_commerce_indicator"
         elif key == "expMonth":
             suggest = "exp_month"
         elif key == "expYear":
@@ -4424,8 +4909,14 @@ class ChargePaymentMethodDetailsCard(dict):
             suggest = "network_transaction_id"
         elif key == "regulatedStatus":
             suggest = "regulated_status"
+        elif key == "setupCredentialUsage":
+            suggest = "setup_credential_usage"
+        elif key == "storedCredentialUsage":
+            suggest = "stored_credential_usage"
         elif key == "threeDSecure":
             suggest = "three_d_secure"
+        elif key == "transactionLinkId":
+            suggest = "transaction_link_id"
 
         if suggest:
             pulumi.log.warn(f"Key '{key}' not found in ChargePaymentMethodDetailsCard. Access the value via the '{suggest}' property getter instead.")
@@ -4446,6 +4937,7 @@ class ChargePaymentMethodDetailsCard(dict):
                  checks: Optional['outputs.ChargePaymentMethodDetailsCardChecks'] = None,
                  country: Optional[_builtins.str] = None,
                  description: Optional[_builtins.str] = None,
+                 electronic_commerce_indicator: Optional[_builtins.str] = None,
                  exp_month: Optional[_builtins.float] = None,
                  exp_year: Optional[_builtins.float] = None,
                  extended_authorization: Optional['outputs.ChargePaymentMethodDetailsCardExtendedAuthorization'] = None,
@@ -4464,7 +4956,10 @@ class ChargePaymentMethodDetailsCard(dict):
                  network_transaction_id: Optional[_builtins.str] = None,
                  overcapture: Optional['outputs.ChargePaymentMethodDetailsCardOvercapture'] = None,
                  regulated_status: Optional[_builtins.str] = None,
+                 setup_credential_usage: Optional[_builtins.str] = None,
+                 stored_credential_usage: Optional[_builtins.str] = None,
                  three_d_secure: Optional['outputs.ChargePaymentMethodDetailsCardThreeDSecure'] = None,
+                 transaction_link_id: Optional[_builtins.str] = None,
                  wallet: Optional['outputs.ChargePaymentMethodDetailsCardWallet'] = None):
         """
         :param _builtins.float amount_authorized: The authorized amount.
@@ -4474,6 +4969,7 @@ class ChargePaymentMethodDetailsCard(dict):
         :param 'ChargePaymentMethodDetailsCardChecksArgs' checks: Check results by Card networks on Card address and CVC at time of payment.
         :param _builtins.str country: Two-letter ISO code representing the country of the card. You could use this attribute to get a sense of the international breakdown of cards you've collected.
         :param _builtins.str description: A high-level description of the type of cards issued in this range. (For internal use only and not typically available in standard API requests.)
+        :param _builtins.str electronic_commerce_indicator: The Electronic Commerce Indicator (ECI) returned by the card network in the authorization response. Indicates the level of authentication used. Only populated for Visa and Mastercard transactions. This is the network's final ECI and can differ from the request value. An authenticated ECI alone doesn't determine liability shift.
         :param _builtins.float exp_month: Two-digit number representing the card's expiration month.
         :param _builtins.float exp_year: Four-digit number representing the card's expiration year.
         :param _builtins.str fingerprint: Uniquely identifies this particular card number. You can use this attribute to check whether two customers who’ve signed up with you are using the same card number, for example. For payment methods that tokenize card information (Apple Pay, Google Pay), the tokenized number might be provided instead of the underlying card number.
@@ -4492,7 +4988,10 @@ class ChargePaymentMethodDetailsCard(dict):
         :param 'ChargePaymentMethodDetailsCardNetworkTokenArgs' network_token: If this card has network token credentials, this contains the details of the network token credentials.
         :param _builtins.str network_transaction_id: This is used by the financial networks to identify a transaction. Visa calls this the Transaction ID, Mastercard calls this the Trace ID, and American Express calls this the Acquirer Reference Data. This value will be present if it is returned by the financial network in the authorization response, and null otherwise.
         :param _builtins.str regulated_status: Status of a card based on the card issuer.
+        :param _builtins.str setup_credential_usage: The payment_method_options.card.setup_credential_usage value that was passed when<span pulumi-lang-nodejs=" setupFutureUsage " pulumi-lang-dotnet=" SetupFutureUsage " pulumi-lang-go=" setupFutureUsage " pulumi-lang-python=" setup_future_usage " pulumi-lang-yaml=" setupFutureUsage " pulumi-lang-java=" setupFutureUsage " pulumi-lang-hcl=" setup_future_usage "> setupFutureUsage </span>was present at confirmation, one of <span pulumi-lang-nodejs="`recurring`" pulumi-lang-dotnet="`Recurring`" pulumi-lang-go="`recurring`" pulumi-lang-python="`recurring`" pulumi-lang-yaml="`recurring`" pulumi-lang-java="`recurring`" pulumi-lang-hcl="`recurring`">`recurring`</span>, <span pulumi-lang-nodejs="`unscheduled`" pulumi-lang-dotnet="`Unscheduled`" pulumi-lang-go="`unscheduled`" pulumi-lang-python="`unscheduled`" pulumi-lang-yaml="`unscheduled`" pulumi-lang-java="`unscheduled`" pulumi-lang-hcl="`unscheduled`">`unscheduled`</span>, or <span pulumi-lang-nodejs="`installment`" pulumi-lang-dotnet="`Installment`" pulumi-lang-go="`installment`" pulumi-lang-python="`installment`" pulumi-lang-yaml="`installment`" pulumi-lang-java="`installment`" pulumi-lang-hcl="`installment`">`installment`</span>
+        :param _builtins.str stored_credential_usage: The payment_method_options.card.stored_credential_usage value that was passed for an off session, merchant-initiated transaction.
         :param 'ChargePaymentMethodDetailsCardThreeDSecureArgs' three_d_secure: Populated if this transaction used 3D Secure authentication.
+        :param _builtins.str transaction_link_id: Transaction Link ID (TLID) is a unique identifier for a transaction. This is used by some card networks, such as Mastercard, for transaction linking, in addition to Network Transaction IDs. This value will be present if it is returned by the financial network in the authorization response, and null otherwise.
         :param 'ChargePaymentMethodDetailsCardWalletArgs' wallet: If this Card is part of a card wallet, this contains the details of the card wallet.
         """
         if amount_authorized is not None:
@@ -4509,6 +5008,8 @@ class ChargePaymentMethodDetailsCard(dict):
             pulumi.set(__self__, "country", country)
         if description is not None:
             pulumi.set(__self__, "description", description)
+        if electronic_commerce_indicator is not None:
+            pulumi.set(__self__, "electronic_commerce_indicator", electronic_commerce_indicator)
         if exp_month is not None:
             pulumi.set(__self__, "exp_month", exp_month)
         if exp_year is not None:
@@ -4545,8 +5046,14 @@ class ChargePaymentMethodDetailsCard(dict):
             pulumi.set(__self__, "overcapture", overcapture)
         if regulated_status is not None:
             pulumi.set(__self__, "regulated_status", regulated_status)
+        if setup_credential_usage is not None:
+            pulumi.set(__self__, "setup_credential_usage", setup_credential_usage)
+        if stored_credential_usage is not None:
+            pulumi.set(__self__, "stored_credential_usage", stored_credential_usage)
         if three_d_secure is not None:
             pulumi.set(__self__, "three_d_secure", three_d_secure)
+        if transaction_link_id is not None:
+            pulumi.set(__self__, "transaction_link_id", transaction_link_id)
         if wallet is not None:
             pulumi.set(__self__, "wallet", wallet)
 
@@ -4605,6 +5112,14 @@ class ChargePaymentMethodDetailsCard(dict):
         A high-level description of the type of cards issued in this range. (For internal use only and not typically available in standard API requests.)
         """
         return pulumi.get(self, "description")
+
+    @_builtins.property
+    @pulumi.getter(name="electronicCommerceIndicator")
+    def electronic_commerce_indicator(self) -> Optional[_builtins.str]:
+        """
+        The Electronic Commerce Indicator (ECI) returned by the card network in the authorization response. Indicates the level of authentication used. Only populated for Visa and Mastercard transactions. This is the network's final ECI and can differ from the request value. An authenticated ECI alone doesn't determine liability shift.
+        """
+        return pulumi.get(self, "electronic_commerce_indicator")
 
     @_builtins.property
     @pulumi.getter(name="expMonth")
@@ -4743,12 +5258,36 @@ class ChargePaymentMethodDetailsCard(dict):
         return pulumi.get(self, "regulated_status")
 
     @_builtins.property
+    @pulumi.getter(name="setupCredentialUsage")
+    def setup_credential_usage(self) -> Optional[_builtins.str]:
+        """
+        The payment_method_options.card.setup_credential_usage value that was passed when<span pulumi-lang-nodejs=" setupFutureUsage " pulumi-lang-dotnet=" SetupFutureUsage " pulumi-lang-go=" setupFutureUsage " pulumi-lang-python=" setup_future_usage " pulumi-lang-yaml=" setupFutureUsage " pulumi-lang-java=" setupFutureUsage " pulumi-lang-hcl=" setup_future_usage "> setupFutureUsage </span>was present at confirmation, one of <span pulumi-lang-nodejs="`recurring`" pulumi-lang-dotnet="`Recurring`" pulumi-lang-go="`recurring`" pulumi-lang-python="`recurring`" pulumi-lang-yaml="`recurring`" pulumi-lang-java="`recurring`" pulumi-lang-hcl="`recurring`">`recurring`</span>, <span pulumi-lang-nodejs="`unscheduled`" pulumi-lang-dotnet="`Unscheduled`" pulumi-lang-go="`unscheduled`" pulumi-lang-python="`unscheduled`" pulumi-lang-yaml="`unscheduled`" pulumi-lang-java="`unscheduled`" pulumi-lang-hcl="`unscheduled`">`unscheduled`</span>, or <span pulumi-lang-nodejs="`installment`" pulumi-lang-dotnet="`Installment`" pulumi-lang-go="`installment`" pulumi-lang-python="`installment`" pulumi-lang-yaml="`installment`" pulumi-lang-java="`installment`" pulumi-lang-hcl="`installment`">`installment`</span>
+        """
+        return pulumi.get(self, "setup_credential_usage")
+
+    @_builtins.property
+    @pulumi.getter(name="storedCredentialUsage")
+    def stored_credential_usage(self) -> Optional[_builtins.str]:
+        """
+        The payment_method_options.card.stored_credential_usage value that was passed for an off session, merchant-initiated transaction.
+        """
+        return pulumi.get(self, "stored_credential_usage")
+
+    @_builtins.property
     @pulumi.getter(name="threeDSecure")
     def three_d_secure(self) -> Optional['outputs.ChargePaymentMethodDetailsCardThreeDSecure']:
         """
         Populated if this transaction used 3D Secure authentication.
         """
         return pulumi.get(self, "three_d_secure")
+
+    @_builtins.property
+    @pulumi.getter(name="transactionLinkId")
+    def transaction_link_id(self) -> Optional[_builtins.str]:
+        """
+        Transaction Link ID (TLID) is a unique identifier for a transaction. This is used by some card networks, such as Mastercard, for transaction linking, in addition to Network Transaction IDs. This value will be present if it is returned by the financial network in the authorization response, and null otherwise.
+        """
+        return pulumi.get(self, "transaction_link_id")
 
     @_builtins.property
     @pulumi.getter
@@ -5761,6 +6300,7 @@ class ChargePaymentMethodDetailsCardWallet(dict):
 
     def __init__(__self__, *,
                  dynamic_last4: Optional[_builtins.str] = None,
+                 link: Optional['outputs.ChargePaymentMethodDetailsCardWalletLink'] = None,
                  masterpass: Optional['outputs.ChargePaymentMethodDetailsCardWalletMasterpass'] = None,
                  type: Optional[_builtins.str] = None,
                  visa_checkout: Optional['outputs.ChargePaymentMethodDetailsCardWalletVisaCheckout'] = None):
@@ -5770,6 +6310,8 @@ class ChargePaymentMethodDetailsCardWallet(dict):
         """
         if dynamic_last4 is not None:
             pulumi.set(__self__, "dynamic_last4", dynamic_last4)
+        if link is not None:
+            pulumi.set(__self__, "link", link)
         if masterpass is not None:
             pulumi.set(__self__, "masterpass", masterpass)
         if type is not None:
@@ -5784,6 +6326,11 @@ class ChargePaymentMethodDetailsCardWallet(dict):
         (For tokenized numbers only.) The last four digits of the device account number.
         """
         return pulumi.get(self, "dynamic_last4")
+
+    @_builtins.property
+    @pulumi.getter
+    def link(self) -> Optional['outputs.ChargePaymentMethodDetailsCardWalletLink']:
+        return pulumi.get(self, "link")
 
     @_builtins.property
     @pulumi.getter
@@ -5802,6 +6349,42 @@ class ChargePaymentMethodDetailsCardWallet(dict):
     @pulumi.getter(name="visaCheckout")
     def visa_checkout(self) -> Optional['outputs.ChargePaymentMethodDetailsCardWalletVisaCheckout']:
         return pulumi.get(self, "visa_checkout")
+
+
+@pulumi.output_type
+class ChargePaymentMethodDetailsCardWalletLink(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "fundingSourceGroup":
+            suggest = "funding_source_group"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in ChargePaymentMethodDetailsCardWalletLink. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        ChargePaymentMethodDetailsCardWalletLink.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        ChargePaymentMethodDetailsCardWalletLink.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 funding_source_group: Optional[_builtins.str] = None):
+        """
+        :param _builtins.str funding_source_group: The [funding source group code](https://docs.stripe.com/payments/link/link-payment-methods) applied to this Link payment at confirmation time.
+        """
+        if funding_source_group is not None:
+            pulumi.set(__self__, "funding_source_group", funding_source_group)
+
+    @_builtins.property
+    @pulumi.getter(name="fundingSourceGroup")
+    def funding_source_group(self) -> Optional[_builtins.str]:
+        """
+        The [funding source group code](https://docs.stripe.com/payments/link/link-payment-methods) applied to this Link payment at confirmation time.
+        """
+        return pulumi.get(self, "funding_source_group")
 
 
 @pulumi.output_type
@@ -6553,7 +7136,7 @@ class ChargePaymentMethodDetailsFpx(dict):
                  transaction_id: Optional[_builtins.str] = None):
         """
         :param _builtins.str account_holder_type: Account holder type, if provided. Can be one of <span pulumi-lang-nodejs="`individual`" pulumi-lang-dotnet="`Individual`" pulumi-lang-go="`individual`" pulumi-lang-python="`individual`" pulumi-lang-yaml="`individual`" pulumi-lang-java="`individual`" pulumi-lang-hcl="`individual`">`individual`</span> or <span pulumi-lang-nodejs="`company`" pulumi-lang-dotnet="`Company`" pulumi-lang-go="`company`" pulumi-lang-python="`company`" pulumi-lang-yaml="`company`" pulumi-lang-java="`company`" pulumi-lang-hcl="`company`">`company`</span>.
-        :param _builtins.str bank: The customer's bank. Can be one of <span pulumi-lang-nodejs="`affinBank`" pulumi-lang-dotnet="`AffinBank`" pulumi-lang-go="`affinBank`" pulumi-lang-python="`affin_bank`" pulumi-lang-yaml="`affinBank`" pulumi-lang-java="`affinBank`" pulumi-lang-hcl="`affin_bank`">`affinBank`</span>, <span pulumi-lang-nodejs="`agrobank`" pulumi-lang-dotnet="`Agrobank`" pulumi-lang-go="`agrobank`" pulumi-lang-python="`agrobank`" pulumi-lang-yaml="`agrobank`" pulumi-lang-java="`agrobank`" pulumi-lang-hcl="`agrobank`">`agrobank`</span>, <span pulumi-lang-nodejs="`allianceBank`" pulumi-lang-dotnet="`AllianceBank`" pulumi-lang-go="`allianceBank`" pulumi-lang-python="`alliance_bank`" pulumi-lang-yaml="`allianceBank`" pulumi-lang-java="`allianceBank`" pulumi-lang-hcl="`alliance_bank`">`allianceBank`</span>, <span pulumi-lang-nodejs="`ambank`" pulumi-lang-dotnet="`Ambank`" pulumi-lang-go="`ambank`" pulumi-lang-python="`ambank`" pulumi-lang-yaml="`ambank`" pulumi-lang-java="`ambank`" pulumi-lang-hcl="`ambank`">`ambank`</span>, <span pulumi-lang-nodejs="`bankIslam`" pulumi-lang-dotnet="`BankIslam`" pulumi-lang-go="`bankIslam`" pulumi-lang-python="`bank_islam`" pulumi-lang-yaml="`bankIslam`" pulumi-lang-java="`bankIslam`" pulumi-lang-hcl="`bank_islam`">`bankIslam`</span>, <span pulumi-lang-nodejs="`bankMuamalat`" pulumi-lang-dotnet="`BankMuamalat`" pulumi-lang-go="`bankMuamalat`" pulumi-lang-python="`bank_muamalat`" pulumi-lang-yaml="`bankMuamalat`" pulumi-lang-java="`bankMuamalat`" pulumi-lang-hcl="`bank_muamalat`">`bankMuamalat`</span>, <span pulumi-lang-nodejs="`bankRakyat`" pulumi-lang-dotnet="`BankRakyat`" pulumi-lang-go="`bankRakyat`" pulumi-lang-python="`bank_rakyat`" pulumi-lang-yaml="`bankRakyat`" pulumi-lang-java="`bankRakyat`" pulumi-lang-hcl="`bank_rakyat`">`bankRakyat`</span>, <span pulumi-lang-nodejs="`bsn`" pulumi-lang-dotnet="`Bsn`" pulumi-lang-go="`bsn`" pulumi-lang-python="`bsn`" pulumi-lang-yaml="`bsn`" pulumi-lang-java="`bsn`" pulumi-lang-hcl="`bsn`">`bsn`</span>, <span pulumi-lang-nodejs="`cimb`" pulumi-lang-dotnet="`Cimb`" pulumi-lang-go="`cimb`" pulumi-lang-python="`cimb`" pulumi-lang-yaml="`cimb`" pulumi-lang-java="`cimb`" pulumi-lang-hcl="`cimb`">`cimb`</span>, <span pulumi-lang-nodejs="`hongLeongBank`" pulumi-lang-dotnet="`HongLeongBank`" pulumi-lang-go="`hongLeongBank`" pulumi-lang-python="`hong_leong_bank`" pulumi-lang-yaml="`hongLeongBank`" pulumi-lang-java="`hongLeongBank`" pulumi-lang-hcl="`hong_leong_bank`">`hongLeongBank`</span>, <span pulumi-lang-nodejs="`hsbc`" pulumi-lang-dotnet="`Hsbc`" pulumi-lang-go="`hsbc`" pulumi-lang-python="`hsbc`" pulumi-lang-yaml="`hsbc`" pulumi-lang-java="`hsbc`" pulumi-lang-hcl="`hsbc`">`hsbc`</span>, <span pulumi-lang-nodejs="`kfh`" pulumi-lang-dotnet="`Kfh`" pulumi-lang-go="`kfh`" pulumi-lang-python="`kfh`" pulumi-lang-yaml="`kfh`" pulumi-lang-java="`kfh`" pulumi-lang-hcl="`kfh`">`kfh`</span>, <span pulumi-lang-nodejs="`maybank2u`" pulumi-lang-dotnet="`Maybank2u`" pulumi-lang-go="`maybank2u`" pulumi-lang-python="`maybank2u`" pulumi-lang-yaml="`maybank2u`" pulumi-lang-java="`maybank2u`" pulumi-lang-hcl="`maybank2u`">`maybank2u`</span>, <span pulumi-lang-nodejs="`ocbc`" pulumi-lang-dotnet="`Ocbc`" pulumi-lang-go="`ocbc`" pulumi-lang-python="`ocbc`" pulumi-lang-yaml="`ocbc`" pulumi-lang-java="`ocbc`" pulumi-lang-hcl="`ocbc`">`ocbc`</span>, <span pulumi-lang-nodejs="`publicBank`" pulumi-lang-dotnet="`PublicBank`" pulumi-lang-go="`publicBank`" pulumi-lang-python="`public_bank`" pulumi-lang-yaml="`publicBank`" pulumi-lang-java="`publicBank`" pulumi-lang-hcl="`public_bank`">`publicBank`</span>, <span pulumi-lang-nodejs="`rhb`" pulumi-lang-dotnet="`Rhb`" pulumi-lang-go="`rhb`" pulumi-lang-python="`rhb`" pulumi-lang-yaml="`rhb`" pulumi-lang-java="`rhb`" pulumi-lang-hcl="`rhb`">`rhb`</span>, <span pulumi-lang-nodejs="`standardChartered`" pulumi-lang-dotnet="`StandardChartered`" pulumi-lang-go="`standardChartered`" pulumi-lang-python="`standard_chartered`" pulumi-lang-yaml="`standardChartered`" pulumi-lang-java="`standardChartered`" pulumi-lang-hcl="`standard_chartered`">`standardChartered`</span>, <span pulumi-lang-nodejs="`uob`" pulumi-lang-dotnet="`Uob`" pulumi-lang-go="`uob`" pulumi-lang-python="`uob`" pulumi-lang-yaml="`uob`" pulumi-lang-java="`uob`" pulumi-lang-hcl="`uob`">`uob`</span>, <span pulumi-lang-nodejs="`deutscheBank`" pulumi-lang-dotnet="`DeutscheBank`" pulumi-lang-go="`deutscheBank`" pulumi-lang-python="`deutsche_bank`" pulumi-lang-yaml="`deutscheBank`" pulumi-lang-java="`deutscheBank`" pulumi-lang-hcl="`deutsche_bank`">`deutscheBank`</span>, <span pulumi-lang-nodejs="`maybank2e`" pulumi-lang-dotnet="`Maybank2e`" pulumi-lang-go="`maybank2e`" pulumi-lang-python="`maybank2e`" pulumi-lang-yaml="`maybank2e`" pulumi-lang-java="`maybank2e`" pulumi-lang-hcl="`maybank2e`">`maybank2e`</span>, <span pulumi-lang-nodejs="`pbEnterprise`" pulumi-lang-dotnet="`PbEnterprise`" pulumi-lang-go="`pbEnterprise`" pulumi-lang-python="`pb_enterprise`" pulumi-lang-yaml="`pbEnterprise`" pulumi-lang-java="`pbEnterprise`" pulumi-lang-hcl="`pb_enterprise`">`pbEnterprise`</span>, or <span pulumi-lang-nodejs="`bankOfChina`" pulumi-lang-dotnet="`BankOfChina`" pulumi-lang-go="`bankOfChina`" pulumi-lang-python="`bank_of_china`" pulumi-lang-yaml="`bankOfChina`" pulumi-lang-java="`bankOfChina`" pulumi-lang-hcl="`bank_of_china`">`bankOfChina`</span>.
+        :param _builtins.str bank: The customer's bank. Can be one of <span pulumi-lang-nodejs="`affinBank`" pulumi-lang-dotnet="`AffinBank`" pulumi-lang-go="`affinBank`" pulumi-lang-python="`affin_bank`" pulumi-lang-yaml="`affinBank`" pulumi-lang-java="`affinBank`" pulumi-lang-hcl="`affin_bank`">`affinBank`</span>, <span pulumi-lang-nodejs="`agrobank`" pulumi-lang-dotnet="`Agrobank`" pulumi-lang-go="`agrobank`" pulumi-lang-python="`agrobank`" pulumi-lang-yaml="`agrobank`" pulumi-lang-java="`agrobank`" pulumi-lang-hcl="`agrobank`">`agrobank`</span>, <span pulumi-lang-nodejs="`allianceBank`" pulumi-lang-dotnet="`AllianceBank`" pulumi-lang-go="`allianceBank`" pulumi-lang-python="`alliance_bank`" pulumi-lang-yaml="`allianceBank`" pulumi-lang-java="`allianceBank`" pulumi-lang-hcl="`alliance_bank`">`allianceBank`</span>, <span pulumi-lang-nodejs="`ambank`" pulumi-lang-dotnet="`Ambank`" pulumi-lang-go="`ambank`" pulumi-lang-python="`ambank`" pulumi-lang-yaml="`ambank`" pulumi-lang-java="`ambank`" pulumi-lang-hcl="`ambank`">`ambank`</span>, <span pulumi-lang-nodejs="`bankIslam`" pulumi-lang-dotnet="`BankIslam`" pulumi-lang-go="`bankIslam`" pulumi-lang-python="`bank_islam`" pulumi-lang-yaml="`bankIslam`" pulumi-lang-java="`bankIslam`" pulumi-lang-hcl="`bank_islam`">`bankIslam`</span>, <span pulumi-lang-nodejs="`bankMuamalat`" pulumi-lang-dotnet="`BankMuamalat`" pulumi-lang-go="`bankMuamalat`" pulumi-lang-python="`bank_muamalat`" pulumi-lang-yaml="`bankMuamalat`" pulumi-lang-java="`bankMuamalat`" pulumi-lang-hcl="`bank_muamalat`">`bankMuamalat`</span>, <span pulumi-lang-nodejs="`bnpParibas`" pulumi-lang-dotnet="`BnpParibas`" pulumi-lang-go="`bnpParibas`" pulumi-lang-python="`bnp_paribas`" pulumi-lang-yaml="`bnpParibas`" pulumi-lang-java="`bnpParibas`" pulumi-lang-hcl="`bnp_paribas`">`bnpParibas`</span>, <span pulumi-lang-nodejs="`bankRakyat`" pulumi-lang-dotnet="`BankRakyat`" pulumi-lang-go="`bankRakyat`" pulumi-lang-python="`bank_rakyat`" pulumi-lang-yaml="`bankRakyat`" pulumi-lang-java="`bankRakyat`" pulumi-lang-hcl="`bank_rakyat`">`bankRakyat`</span>, <span pulumi-lang-nodejs="`bsn`" pulumi-lang-dotnet="`Bsn`" pulumi-lang-go="`bsn`" pulumi-lang-python="`bsn`" pulumi-lang-yaml="`bsn`" pulumi-lang-java="`bsn`" pulumi-lang-hcl="`bsn`">`bsn`</span>, <span pulumi-lang-nodejs="`cimb`" pulumi-lang-dotnet="`Cimb`" pulumi-lang-go="`cimb`" pulumi-lang-python="`cimb`" pulumi-lang-yaml="`cimb`" pulumi-lang-java="`cimb`" pulumi-lang-hcl="`cimb`">`cimb`</span>, <span pulumi-lang-nodejs="`citibank`" pulumi-lang-dotnet="`Citibank`" pulumi-lang-go="`citibank`" pulumi-lang-python="`citibank`" pulumi-lang-yaml="`citibank`" pulumi-lang-java="`citibank`" pulumi-lang-hcl="`citibank`">`citibank`</span>, <span pulumi-lang-nodejs="`hongLeongBank`" pulumi-lang-dotnet="`HongLeongBank`" pulumi-lang-go="`hongLeongBank`" pulumi-lang-python="`hong_leong_bank`" pulumi-lang-yaml="`hongLeongBank`" pulumi-lang-java="`hongLeongBank`" pulumi-lang-hcl="`hong_leong_bank`">`hongLeongBank`</span>, <span pulumi-lang-nodejs="`hsbc`" pulumi-lang-dotnet="`Hsbc`" pulumi-lang-go="`hsbc`" pulumi-lang-python="`hsbc`" pulumi-lang-yaml="`hsbc`" pulumi-lang-java="`hsbc`" pulumi-lang-hcl="`hsbc`">`hsbc`</span>, <span pulumi-lang-nodejs="`kfh`" pulumi-lang-dotnet="`Kfh`" pulumi-lang-go="`kfh`" pulumi-lang-python="`kfh`" pulumi-lang-yaml="`kfh`" pulumi-lang-java="`kfh`" pulumi-lang-hcl="`kfh`">`kfh`</span>, <span pulumi-lang-nodejs="`maybank2u`" pulumi-lang-dotnet="`Maybank2u`" pulumi-lang-go="`maybank2u`" pulumi-lang-python="`maybank2u`" pulumi-lang-yaml="`maybank2u`" pulumi-lang-java="`maybank2u`" pulumi-lang-hcl="`maybank2u`">`maybank2u`</span>, <span pulumi-lang-nodejs="`ocbc`" pulumi-lang-dotnet="`Ocbc`" pulumi-lang-go="`ocbc`" pulumi-lang-python="`ocbc`" pulumi-lang-yaml="`ocbc`" pulumi-lang-java="`ocbc`" pulumi-lang-hcl="`ocbc`">`ocbc`</span>, <span pulumi-lang-nodejs="`publicBank`" pulumi-lang-dotnet="`PublicBank`" pulumi-lang-go="`publicBank`" pulumi-lang-python="`public_bank`" pulumi-lang-yaml="`publicBank`" pulumi-lang-java="`publicBank`" pulumi-lang-hcl="`public_bank`">`publicBank`</span>, <span pulumi-lang-nodejs="`rhb`" pulumi-lang-dotnet="`Rhb`" pulumi-lang-go="`rhb`" pulumi-lang-python="`rhb`" pulumi-lang-yaml="`rhb`" pulumi-lang-java="`rhb`" pulumi-lang-hcl="`rhb`">`rhb`</span>, <span pulumi-lang-nodejs="`standardChartered`" pulumi-lang-dotnet="`StandardChartered`" pulumi-lang-go="`standardChartered`" pulumi-lang-python="`standard_chartered`" pulumi-lang-yaml="`standardChartered`" pulumi-lang-java="`standardChartered`" pulumi-lang-hcl="`standard_chartered`">`standardChartered`</span>, <span pulumi-lang-nodejs="`uob`" pulumi-lang-dotnet="`Uob`" pulumi-lang-go="`uob`" pulumi-lang-python="`uob`" pulumi-lang-yaml="`uob`" pulumi-lang-java="`uob`" pulumi-lang-hcl="`uob`">`uob`</span>, <span pulumi-lang-nodejs="`deutscheBank`" pulumi-lang-dotnet="`DeutscheBank`" pulumi-lang-go="`deutscheBank`" pulumi-lang-python="`deutsche_bank`" pulumi-lang-yaml="`deutscheBank`" pulumi-lang-java="`deutscheBank`" pulumi-lang-hcl="`deutsche_bank`">`deutscheBank`</span>, <span pulumi-lang-nodejs="`maybank2e`" pulumi-lang-dotnet="`Maybank2e`" pulumi-lang-go="`maybank2e`" pulumi-lang-python="`maybank2e`" pulumi-lang-yaml="`maybank2e`" pulumi-lang-java="`maybank2e`" pulumi-lang-hcl="`maybank2e`">`maybank2e`</span>, <span pulumi-lang-nodejs="`mbsbBank`" pulumi-lang-dotnet="`MbsbBank`" pulumi-lang-go="`mbsbBank`" pulumi-lang-python="`mbsb_bank`" pulumi-lang-yaml="`mbsbBank`" pulumi-lang-java="`mbsbBank`" pulumi-lang-hcl="`mbsb_bank`">`mbsbBank`</span>, <span pulumi-lang-nodejs="`pbEnterprise`" pulumi-lang-dotnet="`PbEnterprise`" pulumi-lang-go="`pbEnterprise`" pulumi-lang-python="`pb_enterprise`" pulumi-lang-yaml="`pbEnterprise`" pulumi-lang-java="`pbEnterprise`" pulumi-lang-hcl="`pb_enterprise`">`pbEnterprise`</span>, or <span pulumi-lang-nodejs="`bankOfChina`" pulumi-lang-dotnet="`BankOfChina`" pulumi-lang-go="`bankOfChina`" pulumi-lang-python="`bank_of_china`" pulumi-lang-yaml="`bankOfChina`" pulumi-lang-java="`bankOfChina`" pulumi-lang-hcl="`bank_of_china`">`bankOfChina`</span>.
         :param _builtins.str transaction_id: Unique transaction id generated by FPX for every request from the merchant
         """
         if account_holder_type is not None:
@@ -6575,7 +7158,7 @@ class ChargePaymentMethodDetailsFpx(dict):
     @pulumi.getter
     def bank(self) -> Optional[_builtins.str]:
         """
-        The customer's bank. Can be one of <span pulumi-lang-nodejs="`affinBank`" pulumi-lang-dotnet="`AffinBank`" pulumi-lang-go="`affinBank`" pulumi-lang-python="`affin_bank`" pulumi-lang-yaml="`affinBank`" pulumi-lang-java="`affinBank`" pulumi-lang-hcl="`affin_bank`">`affinBank`</span>, <span pulumi-lang-nodejs="`agrobank`" pulumi-lang-dotnet="`Agrobank`" pulumi-lang-go="`agrobank`" pulumi-lang-python="`agrobank`" pulumi-lang-yaml="`agrobank`" pulumi-lang-java="`agrobank`" pulumi-lang-hcl="`agrobank`">`agrobank`</span>, <span pulumi-lang-nodejs="`allianceBank`" pulumi-lang-dotnet="`AllianceBank`" pulumi-lang-go="`allianceBank`" pulumi-lang-python="`alliance_bank`" pulumi-lang-yaml="`allianceBank`" pulumi-lang-java="`allianceBank`" pulumi-lang-hcl="`alliance_bank`">`allianceBank`</span>, <span pulumi-lang-nodejs="`ambank`" pulumi-lang-dotnet="`Ambank`" pulumi-lang-go="`ambank`" pulumi-lang-python="`ambank`" pulumi-lang-yaml="`ambank`" pulumi-lang-java="`ambank`" pulumi-lang-hcl="`ambank`">`ambank`</span>, <span pulumi-lang-nodejs="`bankIslam`" pulumi-lang-dotnet="`BankIslam`" pulumi-lang-go="`bankIslam`" pulumi-lang-python="`bank_islam`" pulumi-lang-yaml="`bankIslam`" pulumi-lang-java="`bankIslam`" pulumi-lang-hcl="`bank_islam`">`bankIslam`</span>, <span pulumi-lang-nodejs="`bankMuamalat`" pulumi-lang-dotnet="`BankMuamalat`" pulumi-lang-go="`bankMuamalat`" pulumi-lang-python="`bank_muamalat`" pulumi-lang-yaml="`bankMuamalat`" pulumi-lang-java="`bankMuamalat`" pulumi-lang-hcl="`bank_muamalat`">`bankMuamalat`</span>, <span pulumi-lang-nodejs="`bankRakyat`" pulumi-lang-dotnet="`BankRakyat`" pulumi-lang-go="`bankRakyat`" pulumi-lang-python="`bank_rakyat`" pulumi-lang-yaml="`bankRakyat`" pulumi-lang-java="`bankRakyat`" pulumi-lang-hcl="`bank_rakyat`">`bankRakyat`</span>, <span pulumi-lang-nodejs="`bsn`" pulumi-lang-dotnet="`Bsn`" pulumi-lang-go="`bsn`" pulumi-lang-python="`bsn`" pulumi-lang-yaml="`bsn`" pulumi-lang-java="`bsn`" pulumi-lang-hcl="`bsn`">`bsn`</span>, <span pulumi-lang-nodejs="`cimb`" pulumi-lang-dotnet="`Cimb`" pulumi-lang-go="`cimb`" pulumi-lang-python="`cimb`" pulumi-lang-yaml="`cimb`" pulumi-lang-java="`cimb`" pulumi-lang-hcl="`cimb`">`cimb`</span>, <span pulumi-lang-nodejs="`hongLeongBank`" pulumi-lang-dotnet="`HongLeongBank`" pulumi-lang-go="`hongLeongBank`" pulumi-lang-python="`hong_leong_bank`" pulumi-lang-yaml="`hongLeongBank`" pulumi-lang-java="`hongLeongBank`" pulumi-lang-hcl="`hong_leong_bank`">`hongLeongBank`</span>, <span pulumi-lang-nodejs="`hsbc`" pulumi-lang-dotnet="`Hsbc`" pulumi-lang-go="`hsbc`" pulumi-lang-python="`hsbc`" pulumi-lang-yaml="`hsbc`" pulumi-lang-java="`hsbc`" pulumi-lang-hcl="`hsbc`">`hsbc`</span>, <span pulumi-lang-nodejs="`kfh`" pulumi-lang-dotnet="`Kfh`" pulumi-lang-go="`kfh`" pulumi-lang-python="`kfh`" pulumi-lang-yaml="`kfh`" pulumi-lang-java="`kfh`" pulumi-lang-hcl="`kfh`">`kfh`</span>, <span pulumi-lang-nodejs="`maybank2u`" pulumi-lang-dotnet="`Maybank2u`" pulumi-lang-go="`maybank2u`" pulumi-lang-python="`maybank2u`" pulumi-lang-yaml="`maybank2u`" pulumi-lang-java="`maybank2u`" pulumi-lang-hcl="`maybank2u`">`maybank2u`</span>, <span pulumi-lang-nodejs="`ocbc`" pulumi-lang-dotnet="`Ocbc`" pulumi-lang-go="`ocbc`" pulumi-lang-python="`ocbc`" pulumi-lang-yaml="`ocbc`" pulumi-lang-java="`ocbc`" pulumi-lang-hcl="`ocbc`">`ocbc`</span>, <span pulumi-lang-nodejs="`publicBank`" pulumi-lang-dotnet="`PublicBank`" pulumi-lang-go="`publicBank`" pulumi-lang-python="`public_bank`" pulumi-lang-yaml="`publicBank`" pulumi-lang-java="`publicBank`" pulumi-lang-hcl="`public_bank`">`publicBank`</span>, <span pulumi-lang-nodejs="`rhb`" pulumi-lang-dotnet="`Rhb`" pulumi-lang-go="`rhb`" pulumi-lang-python="`rhb`" pulumi-lang-yaml="`rhb`" pulumi-lang-java="`rhb`" pulumi-lang-hcl="`rhb`">`rhb`</span>, <span pulumi-lang-nodejs="`standardChartered`" pulumi-lang-dotnet="`StandardChartered`" pulumi-lang-go="`standardChartered`" pulumi-lang-python="`standard_chartered`" pulumi-lang-yaml="`standardChartered`" pulumi-lang-java="`standardChartered`" pulumi-lang-hcl="`standard_chartered`">`standardChartered`</span>, <span pulumi-lang-nodejs="`uob`" pulumi-lang-dotnet="`Uob`" pulumi-lang-go="`uob`" pulumi-lang-python="`uob`" pulumi-lang-yaml="`uob`" pulumi-lang-java="`uob`" pulumi-lang-hcl="`uob`">`uob`</span>, <span pulumi-lang-nodejs="`deutscheBank`" pulumi-lang-dotnet="`DeutscheBank`" pulumi-lang-go="`deutscheBank`" pulumi-lang-python="`deutsche_bank`" pulumi-lang-yaml="`deutscheBank`" pulumi-lang-java="`deutscheBank`" pulumi-lang-hcl="`deutsche_bank`">`deutscheBank`</span>, <span pulumi-lang-nodejs="`maybank2e`" pulumi-lang-dotnet="`Maybank2e`" pulumi-lang-go="`maybank2e`" pulumi-lang-python="`maybank2e`" pulumi-lang-yaml="`maybank2e`" pulumi-lang-java="`maybank2e`" pulumi-lang-hcl="`maybank2e`">`maybank2e`</span>, <span pulumi-lang-nodejs="`pbEnterprise`" pulumi-lang-dotnet="`PbEnterprise`" pulumi-lang-go="`pbEnterprise`" pulumi-lang-python="`pb_enterprise`" pulumi-lang-yaml="`pbEnterprise`" pulumi-lang-java="`pbEnterprise`" pulumi-lang-hcl="`pb_enterprise`">`pbEnterprise`</span>, or <span pulumi-lang-nodejs="`bankOfChina`" pulumi-lang-dotnet="`BankOfChina`" pulumi-lang-go="`bankOfChina`" pulumi-lang-python="`bank_of_china`" pulumi-lang-yaml="`bankOfChina`" pulumi-lang-java="`bankOfChina`" pulumi-lang-hcl="`bank_of_china`">`bankOfChina`</span>.
+        The customer's bank. Can be one of <span pulumi-lang-nodejs="`affinBank`" pulumi-lang-dotnet="`AffinBank`" pulumi-lang-go="`affinBank`" pulumi-lang-python="`affin_bank`" pulumi-lang-yaml="`affinBank`" pulumi-lang-java="`affinBank`" pulumi-lang-hcl="`affin_bank`">`affinBank`</span>, <span pulumi-lang-nodejs="`agrobank`" pulumi-lang-dotnet="`Agrobank`" pulumi-lang-go="`agrobank`" pulumi-lang-python="`agrobank`" pulumi-lang-yaml="`agrobank`" pulumi-lang-java="`agrobank`" pulumi-lang-hcl="`agrobank`">`agrobank`</span>, <span pulumi-lang-nodejs="`allianceBank`" pulumi-lang-dotnet="`AllianceBank`" pulumi-lang-go="`allianceBank`" pulumi-lang-python="`alliance_bank`" pulumi-lang-yaml="`allianceBank`" pulumi-lang-java="`allianceBank`" pulumi-lang-hcl="`alliance_bank`">`allianceBank`</span>, <span pulumi-lang-nodejs="`ambank`" pulumi-lang-dotnet="`Ambank`" pulumi-lang-go="`ambank`" pulumi-lang-python="`ambank`" pulumi-lang-yaml="`ambank`" pulumi-lang-java="`ambank`" pulumi-lang-hcl="`ambank`">`ambank`</span>, <span pulumi-lang-nodejs="`bankIslam`" pulumi-lang-dotnet="`BankIslam`" pulumi-lang-go="`bankIslam`" pulumi-lang-python="`bank_islam`" pulumi-lang-yaml="`bankIslam`" pulumi-lang-java="`bankIslam`" pulumi-lang-hcl="`bank_islam`">`bankIslam`</span>, <span pulumi-lang-nodejs="`bankMuamalat`" pulumi-lang-dotnet="`BankMuamalat`" pulumi-lang-go="`bankMuamalat`" pulumi-lang-python="`bank_muamalat`" pulumi-lang-yaml="`bankMuamalat`" pulumi-lang-java="`bankMuamalat`" pulumi-lang-hcl="`bank_muamalat`">`bankMuamalat`</span>, <span pulumi-lang-nodejs="`bnpParibas`" pulumi-lang-dotnet="`BnpParibas`" pulumi-lang-go="`bnpParibas`" pulumi-lang-python="`bnp_paribas`" pulumi-lang-yaml="`bnpParibas`" pulumi-lang-java="`bnpParibas`" pulumi-lang-hcl="`bnp_paribas`">`bnpParibas`</span>, <span pulumi-lang-nodejs="`bankRakyat`" pulumi-lang-dotnet="`BankRakyat`" pulumi-lang-go="`bankRakyat`" pulumi-lang-python="`bank_rakyat`" pulumi-lang-yaml="`bankRakyat`" pulumi-lang-java="`bankRakyat`" pulumi-lang-hcl="`bank_rakyat`">`bankRakyat`</span>, <span pulumi-lang-nodejs="`bsn`" pulumi-lang-dotnet="`Bsn`" pulumi-lang-go="`bsn`" pulumi-lang-python="`bsn`" pulumi-lang-yaml="`bsn`" pulumi-lang-java="`bsn`" pulumi-lang-hcl="`bsn`">`bsn`</span>, <span pulumi-lang-nodejs="`cimb`" pulumi-lang-dotnet="`Cimb`" pulumi-lang-go="`cimb`" pulumi-lang-python="`cimb`" pulumi-lang-yaml="`cimb`" pulumi-lang-java="`cimb`" pulumi-lang-hcl="`cimb`">`cimb`</span>, <span pulumi-lang-nodejs="`citibank`" pulumi-lang-dotnet="`Citibank`" pulumi-lang-go="`citibank`" pulumi-lang-python="`citibank`" pulumi-lang-yaml="`citibank`" pulumi-lang-java="`citibank`" pulumi-lang-hcl="`citibank`">`citibank`</span>, <span pulumi-lang-nodejs="`hongLeongBank`" pulumi-lang-dotnet="`HongLeongBank`" pulumi-lang-go="`hongLeongBank`" pulumi-lang-python="`hong_leong_bank`" pulumi-lang-yaml="`hongLeongBank`" pulumi-lang-java="`hongLeongBank`" pulumi-lang-hcl="`hong_leong_bank`">`hongLeongBank`</span>, <span pulumi-lang-nodejs="`hsbc`" pulumi-lang-dotnet="`Hsbc`" pulumi-lang-go="`hsbc`" pulumi-lang-python="`hsbc`" pulumi-lang-yaml="`hsbc`" pulumi-lang-java="`hsbc`" pulumi-lang-hcl="`hsbc`">`hsbc`</span>, <span pulumi-lang-nodejs="`kfh`" pulumi-lang-dotnet="`Kfh`" pulumi-lang-go="`kfh`" pulumi-lang-python="`kfh`" pulumi-lang-yaml="`kfh`" pulumi-lang-java="`kfh`" pulumi-lang-hcl="`kfh`">`kfh`</span>, <span pulumi-lang-nodejs="`maybank2u`" pulumi-lang-dotnet="`Maybank2u`" pulumi-lang-go="`maybank2u`" pulumi-lang-python="`maybank2u`" pulumi-lang-yaml="`maybank2u`" pulumi-lang-java="`maybank2u`" pulumi-lang-hcl="`maybank2u`">`maybank2u`</span>, <span pulumi-lang-nodejs="`ocbc`" pulumi-lang-dotnet="`Ocbc`" pulumi-lang-go="`ocbc`" pulumi-lang-python="`ocbc`" pulumi-lang-yaml="`ocbc`" pulumi-lang-java="`ocbc`" pulumi-lang-hcl="`ocbc`">`ocbc`</span>, <span pulumi-lang-nodejs="`publicBank`" pulumi-lang-dotnet="`PublicBank`" pulumi-lang-go="`publicBank`" pulumi-lang-python="`public_bank`" pulumi-lang-yaml="`publicBank`" pulumi-lang-java="`publicBank`" pulumi-lang-hcl="`public_bank`">`publicBank`</span>, <span pulumi-lang-nodejs="`rhb`" pulumi-lang-dotnet="`Rhb`" pulumi-lang-go="`rhb`" pulumi-lang-python="`rhb`" pulumi-lang-yaml="`rhb`" pulumi-lang-java="`rhb`" pulumi-lang-hcl="`rhb`">`rhb`</span>, <span pulumi-lang-nodejs="`standardChartered`" pulumi-lang-dotnet="`StandardChartered`" pulumi-lang-go="`standardChartered`" pulumi-lang-python="`standard_chartered`" pulumi-lang-yaml="`standardChartered`" pulumi-lang-java="`standardChartered`" pulumi-lang-hcl="`standard_chartered`">`standardChartered`</span>, <span pulumi-lang-nodejs="`uob`" pulumi-lang-dotnet="`Uob`" pulumi-lang-go="`uob`" pulumi-lang-python="`uob`" pulumi-lang-yaml="`uob`" pulumi-lang-java="`uob`" pulumi-lang-hcl="`uob`">`uob`</span>, <span pulumi-lang-nodejs="`deutscheBank`" pulumi-lang-dotnet="`DeutscheBank`" pulumi-lang-go="`deutscheBank`" pulumi-lang-python="`deutsche_bank`" pulumi-lang-yaml="`deutscheBank`" pulumi-lang-java="`deutscheBank`" pulumi-lang-hcl="`deutsche_bank`">`deutscheBank`</span>, <span pulumi-lang-nodejs="`maybank2e`" pulumi-lang-dotnet="`Maybank2e`" pulumi-lang-go="`maybank2e`" pulumi-lang-python="`maybank2e`" pulumi-lang-yaml="`maybank2e`" pulumi-lang-java="`maybank2e`" pulumi-lang-hcl="`maybank2e`">`maybank2e`</span>, <span pulumi-lang-nodejs="`mbsbBank`" pulumi-lang-dotnet="`MbsbBank`" pulumi-lang-go="`mbsbBank`" pulumi-lang-python="`mbsb_bank`" pulumi-lang-yaml="`mbsbBank`" pulumi-lang-java="`mbsbBank`" pulumi-lang-hcl="`mbsb_bank`">`mbsbBank`</span>, <span pulumi-lang-nodejs="`pbEnterprise`" pulumi-lang-dotnet="`PbEnterprise`" pulumi-lang-go="`pbEnterprise`" pulumi-lang-python="`pb_enterprise`" pulumi-lang-yaml="`pbEnterprise`" pulumi-lang-java="`pbEnterprise`" pulumi-lang-hcl="`pb_enterprise`">`pbEnterprise`</span>, or <span pulumi-lang-nodejs="`bankOfChina`" pulumi-lang-dotnet="`BankOfChina`" pulumi-lang-go="`bankOfChina`" pulumi-lang-python="`bank_of_china`" pulumi-lang-yaml="`bankOfChina`" pulumi-lang-java="`bankOfChina`" pulumi-lang-hcl="`bank_of_china`">`bankOfChina`</span>.
         """
         return pulumi.get(self, "bank")
 
@@ -7546,14 +8129,35 @@ class ChargePaymentMethodDetailsKrCard(dict):
 
 @pulumi.output_type
 class ChargePaymentMethodDetailsLink(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "fundingSourceGroup":
+            suggest = "funding_source_group"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in ChargePaymentMethodDetailsLink. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        ChargePaymentMethodDetailsLink.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        ChargePaymentMethodDetailsLink.__key_warning(key)
+        return super().get(key, default)
+
     def __init__(__self__, *,
-                 country: Optional[_builtins.str] = None):
+                 country: Optional[_builtins.str] = None,
+                 funding_source_group: Optional[_builtins.str] = None):
         """
         :param _builtins.str country: Two-letter ISO code representing the funding source country beneath the Link payment.
                You could use this attribute to get a sense of international fees.
+        :param _builtins.str funding_source_group: The [funding source group code](https://docs.stripe.com/payments/link/link-payment-methods) applied to this Link payment at confirmation time.
         """
         if country is not None:
             pulumi.set(__self__, "country", country)
+        if funding_source_group is not None:
+            pulumi.set(__self__, "funding_source_group", funding_source_group)
 
     @_builtins.property
     @pulumi.getter
@@ -7563,6 +8167,14 @@ class ChargePaymentMethodDetailsLink(dict):
         You could use this attribute to get a sense of international fees.
         """
         return pulumi.get(self, "country")
+
+    @_builtins.property
+    @pulumi.getter(name="fundingSourceGroup")
+    def funding_source_group(self) -> Optional[_builtins.str]:
+        """
+        The [funding source group code](https://docs.stripe.com/payments/link/link-payment-methods) applied to this Link payment at confirmation time.
+        """
+        return pulumi.get(self, "funding_source_group")
 
 
 @pulumi.output_type
@@ -8294,13 +8906,17 @@ class ChargePaymentMethodDetailsPix(dict):
 
     def __init__(__self__, *,
                  bank_transaction_id: Optional[_builtins.str] = None,
+                 fingerprint: Optional[_builtins.str] = None,
                  mandate: Optional[_builtins.str] = None):
         """
         :param _builtins.str bank_transaction_id: Unique transaction id generated by BCB
-        :param _builtins.str mandate: ID of the multi use Mandate generated by the PaymentIntent
+        :param _builtins.str fingerprint: Uniquely identifies this particular Pix account. You can use this attribute to check whether two Pix accounts are the same.
+        :param _builtins.str mandate: ID of the multi use Mandate generated by the PaymentIntent or SetupIntent.
         """
         if bank_transaction_id is not None:
             pulumi.set(__self__, "bank_transaction_id", bank_transaction_id)
+        if fingerprint is not None:
+            pulumi.set(__self__, "fingerprint", fingerprint)
         if mandate is not None:
             pulumi.set(__self__, "mandate", mandate)
 
@@ -8314,9 +8930,17 @@ class ChargePaymentMethodDetailsPix(dict):
 
     @_builtins.property
     @pulumi.getter
+    def fingerprint(self) -> Optional[_builtins.str]:
+        """
+        Uniquely identifies this particular Pix account. You can use this attribute to check whether two Pix accounts are the same.
+        """
+        return pulumi.get(self, "fingerprint")
+
+    @_builtins.property
+    @pulumi.getter
     def mandate(self) -> Optional[_builtins.str]:
         """
-        ID of the multi use Mandate generated by the PaymentIntent
+        ID of the multi use Mandate generated by the PaymentIntent or SetupIntent.
         """
         return pulumi.get(self, "mandate")
 
@@ -8440,7 +9064,7 @@ class ChargePaymentMethodDetailsRevolutPayFundingCard(dict):
                  funding: Optional[_builtins.str] = None,
                  last4: Optional[_builtins.str] = None):
         """
-        :param _builtins.str brand: Card brand. Can be <span pulumi-lang-nodejs="`amex`" pulumi-lang-dotnet="`Amex`" pulumi-lang-go="`amex`" pulumi-lang-python="`amex`" pulumi-lang-yaml="`amex`" pulumi-lang-java="`amex`" pulumi-lang-hcl="`amex`">`amex`</span>, <span pulumi-lang-nodejs="`cartesBancaires`" pulumi-lang-dotnet="`CartesBancaires`" pulumi-lang-go="`cartesBancaires`" pulumi-lang-python="`cartes_bancaires`" pulumi-lang-yaml="`cartesBancaires`" pulumi-lang-java="`cartesBancaires`" pulumi-lang-hcl="`cartes_bancaires`">`cartesBancaires`</span>, <span pulumi-lang-nodejs="`diners`" pulumi-lang-dotnet="`Diners`" pulumi-lang-go="`diners`" pulumi-lang-python="`diners`" pulumi-lang-yaml="`diners`" pulumi-lang-java="`diners`" pulumi-lang-hcl="`diners`">`diners`</span>, <span pulumi-lang-nodejs="`discover`" pulumi-lang-dotnet="`Discover`" pulumi-lang-go="`discover`" pulumi-lang-python="`discover`" pulumi-lang-yaml="`discover`" pulumi-lang-java="`discover`" pulumi-lang-hcl="`discover`">`discover`</span>, <span pulumi-lang-nodejs="`eftposAu`" pulumi-lang-dotnet="`EftposAu`" pulumi-lang-go="`eftposAu`" pulumi-lang-python="`eftpos_au`" pulumi-lang-yaml="`eftposAu`" pulumi-lang-java="`eftposAu`" pulumi-lang-hcl="`eftpos_au`">`eftposAu`</span>, <span pulumi-lang-nodejs="`jcb`" pulumi-lang-dotnet="`Jcb`" pulumi-lang-go="`jcb`" pulumi-lang-python="`jcb`" pulumi-lang-yaml="`jcb`" pulumi-lang-java="`jcb`" pulumi-lang-hcl="`jcb`">`jcb`</span>, <span pulumi-lang-nodejs="`link`" pulumi-lang-dotnet="`Link`" pulumi-lang-go="`link`" pulumi-lang-python="`link`" pulumi-lang-yaml="`link`" pulumi-lang-java="`link`" pulumi-lang-hcl="`link`">`link`</span>, <span pulumi-lang-nodejs="`mastercard`" pulumi-lang-dotnet="`Mastercard`" pulumi-lang-go="`mastercard`" pulumi-lang-python="`mastercard`" pulumi-lang-yaml="`mastercard`" pulumi-lang-java="`mastercard`" pulumi-lang-hcl="`mastercard`">`mastercard`</span>, <span pulumi-lang-nodejs="`unionpay`" pulumi-lang-dotnet="`Unionpay`" pulumi-lang-go="`unionpay`" pulumi-lang-python="`unionpay`" pulumi-lang-yaml="`unionpay`" pulumi-lang-java="`unionpay`" pulumi-lang-hcl="`unionpay`">`unionpay`</span>, <span pulumi-lang-nodejs="`visa`" pulumi-lang-dotnet="`Visa`" pulumi-lang-go="`visa`" pulumi-lang-python="`visa`" pulumi-lang-yaml="`visa`" pulumi-lang-java="`visa`" pulumi-lang-hcl="`visa`">`visa`</span> or <span pulumi-lang-nodejs="`unknown`" pulumi-lang-dotnet="`Unknown`" pulumi-lang-go="`unknown`" pulumi-lang-python="`unknown`" pulumi-lang-yaml="`unknown`" pulumi-lang-java="`unknown`" pulumi-lang-hcl="`unknown`">`unknown`</span>.
+        :param _builtins.str brand: Card brand. Can be `American Express`, `Cartes Bancaires`, `Diners Club`, `Discover`, `Eftpos Australia`, `Girocard`, `JCB`, `MasterCard`, `UnionPay`, `Visa`, or `Unknown`.
         :param _builtins.str country: Two-letter ISO code representing the country of the card. You could use this attribute to get a sense of the international breakdown of cards you've collected.
         :param _builtins.float exp_month: Two-digit number representing the card's expiration month.
         :param _builtins.float exp_year: Four-digit number representing the card's expiration year.
@@ -8464,7 +9088,7 @@ class ChargePaymentMethodDetailsRevolutPayFundingCard(dict):
     @pulumi.getter
     def brand(self) -> Optional[_builtins.str]:
         """
-        Card brand. Can be <span pulumi-lang-nodejs="`amex`" pulumi-lang-dotnet="`Amex`" pulumi-lang-go="`amex`" pulumi-lang-python="`amex`" pulumi-lang-yaml="`amex`" pulumi-lang-java="`amex`" pulumi-lang-hcl="`amex`">`amex`</span>, <span pulumi-lang-nodejs="`cartesBancaires`" pulumi-lang-dotnet="`CartesBancaires`" pulumi-lang-go="`cartesBancaires`" pulumi-lang-python="`cartes_bancaires`" pulumi-lang-yaml="`cartesBancaires`" pulumi-lang-java="`cartesBancaires`" pulumi-lang-hcl="`cartes_bancaires`">`cartesBancaires`</span>, <span pulumi-lang-nodejs="`diners`" pulumi-lang-dotnet="`Diners`" pulumi-lang-go="`diners`" pulumi-lang-python="`diners`" pulumi-lang-yaml="`diners`" pulumi-lang-java="`diners`" pulumi-lang-hcl="`diners`">`diners`</span>, <span pulumi-lang-nodejs="`discover`" pulumi-lang-dotnet="`Discover`" pulumi-lang-go="`discover`" pulumi-lang-python="`discover`" pulumi-lang-yaml="`discover`" pulumi-lang-java="`discover`" pulumi-lang-hcl="`discover`">`discover`</span>, <span pulumi-lang-nodejs="`eftposAu`" pulumi-lang-dotnet="`EftposAu`" pulumi-lang-go="`eftposAu`" pulumi-lang-python="`eftpos_au`" pulumi-lang-yaml="`eftposAu`" pulumi-lang-java="`eftposAu`" pulumi-lang-hcl="`eftpos_au`">`eftposAu`</span>, <span pulumi-lang-nodejs="`jcb`" pulumi-lang-dotnet="`Jcb`" pulumi-lang-go="`jcb`" pulumi-lang-python="`jcb`" pulumi-lang-yaml="`jcb`" pulumi-lang-java="`jcb`" pulumi-lang-hcl="`jcb`">`jcb`</span>, <span pulumi-lang-nodejs="`link`" pulumi-lang-dotnet="`Link`" pulumi-lang-go="`link`" pulumi-lang-python="`link`" pulumi-lang-yaml="`link`" pulumi-lang-java="`link`" pulumi-lang-hcl="`link`">`link`</span>, <span pulumi-lang-nodejs="`mastercard`" pulumi-lang-dotnet="`Mastercard`" pulumi-lang-go="`mastercard`" pulumi-lang-python="`mastercard`" pulumi-lang-yaml="`mastercard`" pulumi-lang-java="`mastercard`" pulumi-lang-hcl="`mastercard`">`mastercard`</span>, <span pulumi-lang-nodejs="`unionpay`" pulumi-lang-dotnet="`Unionpay`" pulumi-lang-go="`unionpay`" pulumi-lang-python="`unionpay`" pulumi-lang-yaml="`unionpay`" pulumi-lang-java="`unionpay`" pulumi-lang-hcl="`unionpay`">`unionpay`</span>, <span pulumi-lang-nodejs="`visa`" pulumi-lang-dotnet="`Visa`" pulumi-lang-go="`visa`" pulumi-lang-python="`visa`" pulumi-lang-yaml="`visa`" pulumi-lang-java="`visa`" pulumi-lang-hcl="`visa`">`visa`</span> or <span pulumi-lang-nodejs="`unknown`" pulumi-lang-dotnet="`Unknown`" pulumi-lang-go="`unknown`" pulumi-lang-python="`unknown`" pulumi-lang-yaml="`unknown`" pulumi-lang-java="`unknown`" pulumi-lang-hcl="`unknown`">`unknown`</span>.
+        Card brand. Can be `American Express`, `Cartes Bancaires`, `Diners Club`, `Discover`, `Eftpos Australia`, `Girocard`, `JCB`, `MasterCard`, `UnionPay`, `Visa`, or `Unknown`.
         """
         return pulumi.get(self, "brand")
 
@@ -8804,6 +9428,42 @@ class ChargePaymentMethodDetailsSepaDebit(dict):
 
 
 @pulumi.output_type
+class ChargePaymentMethodDetailsSequra(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "transactionId":
+            suggest = "transaction_id"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in ChargePaymentMethodDetailsSequra. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        ChargePaymentMethodDetailsSequra.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        ChargePaymentMethodDetailsSequra.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 transaction_id: Optional[_builtins.str] = None):
+        """
+        :param _builtins.str transaction_id: The SeQura transaction ID associated with this payment.
+        """
+        if transaction_id is not None:
+            pulumi.set(__self__, "transaction_id", transaction_id)
+
+    @_builtins.property
+    @pulumi.getter(name="transactionId")
+    def transaction_id(self) -> Optional[_builtins.str]:
+        """
+        The SeQura transaction ID associated with this payment.
+        """
+        return pulumi.get(self, "transaction_id")
+
+
+@pulumi.output_type
 class ChargePaymentMethodDetailsSofort(dict):
     @staticmethod
     def __key_warning(key: str):
@@ -9054,7 +9714,7 @@ class ChargePaymentMethodDetailsTwint(dict):
     def __init__(__self__, *,
                  mandate: Optional[_builtins.str] = None):
         """
-        :param _builtins.str mandate: ID of the multi use Mandate generated by the PaymentIntent
+        :param _builtins.str mandate: ID of the multi use Mandate generated by the PaymentIntent or SetupIntent.
         """
         if mandate is not None:
             pulumi.set(__self__, "mandate", mandate)
@@ -9063,7 +9723,7 @@ class ChargePaymentMethodDetailsTwint(dict):
     @pulumi.getter
     def mandate(self) -> Optional[_builtins.str]:
         """
-        ID of the multi use Mandate generated by the PaymentIntent
+        ID of the multi use Mandate generated by the PaymentIntent or SetupIntent.
         """
         return pulumi.get(self, "mandate")
 
@@ -11032,7 +11692,7 @@ class CustomerTaxIdData(dict):
                  type: _builtins.str,
                  value: _builtins.str):
         """
-        :param _builtins.str type: Type of the tax ID, one of <span pulumi-lang-nodejs="`adNrt`" pulumi-lang-dotnet="`AdNrt`" pulumi-lang-go="`adNrt`" pulumi-lang-python="`ad_nrt`" pulumi-lang-yaml="`adNrt`" pulumi-lang-java="`adNrt`" pulumi-lang-hcl="`ad_nrt`">`adNrt`</span>, <span pulumi-lang-nodejs="`aeTrn`" pulumi-lang-dotnet="`AeTrn`" pulumi-lang-go="`aeTrn`" pulumi-lang-python="`ae_trn`" pulumi-lang-yaml="`aeTrn`" pulumi-lang-java="`aeTrn`" pulumi-lang-hcl="`ae_trn`">`aeTrn`</span>, <span pulumi-lang-nodejs="`alTin`" pulumi-lang-dotnet="`AlTin`" pulumi-lang-go="`alTin`" pulumi-lang-python="`al_tin`" pulumi-lang-yaml="`alTin`" pulumi-lang-java="`alTin`" pulumi-lang-hcl="`al_tin`">`alTin`</span>, <span pulumi-lang-nodejs="`amTin`" pulumi-lang-dotnet="`AmTin`" pulumi-lang-go="`amTin`" pulumi-lang-python="`am_tin`" pulumi-lang-yaml="`amTin`" pulumi-lang-java="`amTin`" pulumi-lang-hcl="`am_tin`">`amTin`</span>, <span pulumi-lang-nodejs="`aoTin`" pulumi-lang-dotnet="`AoTin`" pulumi-lang-go="`aoTin`" pulumi-lang-python="`ao_tin`" pulumi-lang-yaml="`aoTin`" pulumi-lang-java="`aoTin`" pulumi-lang-hcl="`ao_tin`">`aoTin`</span>, <span pulumi-lang-nodejs="`arCuit`" pulumi-lang-dotnet="`ArCuit`" pulumi-lang-go="`arCuit`" pulumi-lang-python="`ar_cuit`" pulumi-lang-yaml="`arCuit`" pulumi-lang-java="`arCuit`" pulumi-lang-hcl="`ar_cuit`">`arCuit`</span>, <span pulumi-lang-nodejs="`auAbn`" pulumi-lang-dotnet="`AuAbn`" pulumi-lang-go="`auAbn`" pulumi-lang-python="`au_abn`" pulumi-lang-yaml="`auAbn`" pulumi-lang-java="`auAbn`" pulumi-lang-hcl="`au_abn`">`auAbn`</span>, <span pulumi-lang-nodejs="`auArn`" pulumi-lang-dotnet="`AuArn`" pulumi-lang-go="`auArn`" pulumi-lang-python="`au_arn`" pulumi-lang-yaml="`auArn`" pulumi-lang-java="`auArn`" pulumi-lang-hcl="`au_arn`">`auArn`</span>, <span pulumi-lang-nodejs="`awTin`" pulumi-lang-dotnet="`AwTin`" pulumi-lang-go="`awTin`" pulumi-lang-python="`aw_tin`" pulumi-lang-yaml="`awTin`" pulumi-lang-java="`awTin`" pulumi-lang-hcl="`aw_tin`">`awTin`</span>, <span pulumi-lang-nodejs="`azTin`" pulumi-lang-dotnet="`AzTin`" pulumi-lang-go="`azTin`" pulumi-lang-python="`az_tin`" pulumi-lang-yaml="`azTin`" pulumi-lang-java="`azTin`" pulumi-lang-hcl="`az_tin`">`azTin`</span>, <span pulumi-lang-nodejs="`baTin`" pulumi-lang-dotnet="`BaTin`" pulumi-lang-go="`baTin`" pulumi-lang-python="`ba_tin`" pulumi-lang-yaml="`baTin`" pulumi-lang-java="`baTin`" pulumi-lang-hcl="`ba_tin`">`baTin`</span>, <span pulumi-lang-nodejs="`bbTin`" pulumi-lang-dotnet="`BbTin`" pulumi-lang-go="`bbTin`" pulumi-lang-python="`bb_tin`" pulumi-lang-yaml="`bbTin`" pulumi-lang-java="`bbTin`" pulumi-lang-hcl="`bb_tin`">`bbTin`</span>, <span pulumi-lang-nodejs="`bdBin`" pulumi-lang-dotnet="`BdBin`" pulumi-lang-go="`bdBin`" pulumi-lang-python="`bd_bin`" pulumi-lang-yaml="`bdBin`" pulumi-lang-java="`bdBin`" pulumi-lang-hcl="`bd_bin`">`bdBin`</span>, <span pulumi-lang-nodejs="`bfIfu`" pulumi-lang-dotnet="`BfIfu`" pulumi-lang-go="`bfIfu`" pulumi-lang-python="`bf_ifu`" pulumi-lang-yaml="`bfIfu`" pulumi-lang-java="`bfIfu`" pulumi-lang-hcl="`bf_ifu`">`bfIfu`</span>, <span pulumi-lang-nodejs="`bgUic`" pulumi-lang-dotnet="`BgUic`" pulumi-lang-go="`bgUic`" pulumi-lang-python="`bg_uic`" pulumi-lang-yaml="`bgUic`" pulumi-lang-java="`bgUic`" pulumi-lang-hcl="`bg_uic`">`bgUic`</span>, <span pulumi-lang-nodejs="`bhVat`" pulumi-lang-dotnet="`BhVat`" pulumi-lang-go="`bhVat`" pulumi-lang-python="`bh_vat`" pulumi-lang-yaml="`bhVat`" pulumi-lang-java="`bhVat`" pulumi-lang-hcl="`bh_vat`">`bhVat`</span>, <span pulumi-lang-nodejs="`bjIfu`" pulumi-lang-dotnet="`BjIfu`" pulumi-lang-go="`bjIfu`" pulumi-lang-python="`bj_ifu`" pulumi-lang-yaml="`bjIfu`" pulumi-lang-java="`bjIfu`" pulumi-lang-hcl="`bj_ifu`">`bjIfu`</span>, <span pulumi-lang-nodejs="`boTin`" pulumi-lang-dotnet="`BoTin`" pulumi-lang-go="`boTin`" pulumi-lang-python="`bo_tin`" pulumi-lang-yaml="`boTin`" pulumi-lang-java="`boTin`" pulumi-lang-hcl="`bo_tin`">`boTin`</span>, <span pulumi-lang-nodejs="`brCnpj`" pulumi-lang-dotnet="`BrCnpj`" pulumi-lang-go="`brCnpj`" pulumi-lang-python="`br_cnpj`" pulumi-lang-yaml="`brCnpj`" pulumi-lang-java="`brCnpj`" pulumi-lang-hcl="`br_cnpj`">`brCnpj`</span>, <span pulumi-lang-nodejs="`brCpf`" pulumi-lang-dotnet="`BrCpf`" pulumi-lang-go="`brCpf`" pulumi-lang-python="`br_cpf`" pulumi-lang-yaml="`brCpf`" pulumi-lang-java="`brCpf`" pulumi-lang-hcl="`br_cpf`">`brCpf`</span>, <span pulumi-lang-nodejs="`bsTin`" pulumi-lang-dotnet="`BsTin`" pulumi-lang-go="`bsTin`" pulumi-lang-python="`bs_tin`" pulumi-lang-yaml="`bsTin`" pulumi-lang-java="`bsTin`" pulumi-lang-hcl="`bs_tin`">`bsTin`</span>, <span pulumi-lang-nodejs="`byTin`" pulumi-lang-dotnet="`ByTin`" pulumi-lang-go="`byTin`" pulumi-lang-python="`by_tin`" pulumi-lang-yaml="`byTin`" pulumi-lang-java="`byTin`" pulumi-lang-hcl="`by_tin`">`byTin`</span>, <span pulumi-lang-nodejs="`caBn`" pulumi-lang-dotnet="`CaBn`" pulumi-lang-go="`caBn`" pulumi-lang-python="`ca_bn`" pulumi-lang-yaml="`caBn`" pulumi-lang-java="`caBn`" pulumi-lang-hcl="`ca_bn`">`caBn`</span>, <span pulumi-lang-nodejs="`caGstHst`" pulumi-lang-dotnet="`CaGstHst`" pulumi-lang-go="`caGstHst`" pulumi-lang-python="`ca_gst_hst`" pulumi-lang-yaml="`caGstHst`" pulumi-lang-java="`caGstHst`" pulumi-lang-hcl="`ca_gst_hst`">`caGstHst`</span>, <span pulumi-lang-nodejs="`caPstBc`" pulumi-lang-dotnet="`CaPstBc`" pulumi-lang-go="`caPstBc`" pulumi-lang-python="`ca_pst_bc`" pulumi-lang-yaml="`caPstBc`" pulumi-lang-java="`caPstBc`" pulumi-lang-hcl="`ca_pst_bc`">`caPstBc`</span>, <span pulumi-lang-nodejs="`caPstMb`" pulumi-lang-dotnet="`CaPstMb`" pulumi-lang-go="`caPstMb`" pulumi-lang-python="`ca_pst_mb`" pulumi-lang-yaml="`caPstMb`" pulumi-lang-java="`caPstMb`" pulumi-lang-hcl="`ca_pst_mb`">`caPstMb`</span>, <span pulumi-lang-nodejs="`caPstSk`" pulumi-lang-dotnet="`CaPstSk`" pulumi-lang-go="`caPstSk`" pulumi-lang-python="`ca_pst_sk`" pulumi-lang-yaml="`caPstSk`" pulumi-lang-java="`caPstSk`" pulumi-lang-hcl="`ca_pst_sk`">`caPstSk`</span>, <span pulumi-lang-nodejs="`caQst`" pulumi-lang-dotnet="`CaQst`" pulumi-lang-go="`caQst`" pulumi-lang-python="`ca_qst`" pulumi-lang-yaml="`caQst`" pulumi-lang-java="`caQst`" pulumi-lang-hcl="`ca_qst`">`caQst`</span>, <span pulumi-lang-nodejs="`cdNif`" pulumi-lang-dotnet="`CdNif`" pulumi-lang-go="`cdNif`" pulumi-lang-python="`cd_nif`" pulumi-lang-yaml="`cdNif`" pulumi-lang-java="`cdNif`" pulumi-lang-hcl="`cd_nif`">`cdNif`</span>, <span pulumi-lang-nodejs="`chUid`" pulumi-lang-dotnet="`ChUid`" pulumi-lang-go="`chUid`" pulumi-lang-python="`ch_uid`" pulumi-lang-yaml="`chUid`" pulumi-lang-java="`chUid`" pulumi-lang-hcl="`ch_uid`">`chUid`</span>, <span pulumi-lang-nodejs="`chVat`" pulumi-lang-dotnet="`ChVat`" pulumi-lang-go="`chVat`" pulumi-lang-python="`ch_vat`" pulumi-lang-yaml="`chVat`" pulumi-lang-java="`chVat`" pulumi-lang-hcl="`ch_vat`">`chVat`</span>, <span pulumi-lang-nodejs="`clTin`" pulumi-lang-dotnet="`ClTin`" pulumi-lang-go="`clTin`" pulumi-lang-python="`cl_tin`" pulumi-lang-yaml="`clTin`" pulumi-lang-java="`clTin`" pulumi-lang-hcl="`cl_tin`">`clTin`</span>, <span pulumi-lang-nodejs="`cmNiu`" pulumi-lang-dotnet="`CmNiu`" pulumi-lang-go="`cmNiu`" pulumi-lang-python="`cm_niu`" pulumi-lang-yaml="`cmNiu`" pulumi-lang-java="`cmNiu`" pulumi-lang-hcl="`cm_niu`">`cmNiu`</span>, <span pulumi-lang-nodejs="`cnTin`" pulumi-lang-dotnet="`CnTin`" pulumi-lang-go="`cnTin`" pulumi-lang-python="`cn_tin`" pulumi-lang-yaml="`cnTin`" pulumi-lang-java="`cnTin`" pulumi-lang-hcl="`cn_tin`">`cnTin`</span>, <span pulumi-lang-nodejs="`coNit`" pulumi-lang-dotnet="`CoNit`" pulumi-lang-go="`coNit`" pulumi-lang-python="`co_nit`" pulumi-lang-yaml="`coNit`" pulumi-lang-java="`coNit`" pulumi-lang-hcl="`co_nit`">`coNit`</span>, <span pulumi-lang-nodejs="`crTin`" pulumi-lang-dotnet="`CrTin`" pulumi-lang-go="`crTin`" pulumi-lang-python="`cr_tin`" pulumi-lang-yaml="`crTin`" pulumi-lang-java="`crTin`" pulumi-lang-hcl="`cr_tin`">`crTin`</span>, <span pulumi-lang-nodejs="`cvNif`" pulumi-lang-dotnet="`CvNif`" pulumi-lang-go="`cvNif`" pulumi-lang-python="`cv_nif`" pulumi-lang-yaml="`cvNif`" pulumi-lang-java="`cvNif`" pulumi-lang-hcl="`cv_nif`">`cvNif`</span>, <span pulumi-lang-nodejs="`deStn`" pulumi-lang-dotnet="`DeStn`" pulumi-lang-go="`deStn`" pulumi-lang-python="`de_stn`" pulumi-lang-yaml="`deStn`" pulumi-lang-java="`deStn`" pulumi-lang-hcl="`de_stn`">`deStn`</span>, <span pulumi-lang-nodejs="`doRcn`" pulumi-lang-dotnet="`DoRcn`" pulumi-lang-go="`doRcn`" pulumi-lang-python="`do_rcn`" pulumi-lang-yaml="`doRcn`" pulumi-lang-java="`doRcn`" pulumi-lang-hcl="`do_rcn`">`doRcn`</span>, <span pulumi-lang-nodejs="`ecRuc`" pulumi-lang-dotnet="`EcRuc`" pulumi-lang-go="`ecRuc`" pulumi-lang-python="`ec_ruc`" pulumi-lang-yaml="`ecRuc`" pulumi-lang-java="`ecRuc`" pulumi-lang-hcl="`ec_ruc`">`ecRuc`</span>, <span pulumi-lang-nodejs="`egTin`" pulumi-lang-dotnet="`EgTin`" pulumi-lang-go="`egTin`" pulumi-lang-python="`eg_tin`" pulumi-lang-yaml="`egTin`" pulumi-lang-java="`egTin`" pulumi-lang-hcl="`eg_tin`">`egTin`</span>, <span pulumi-lang-nodejs="`esCif`" pulumi-lang-dotnet="`EsCif`" pulumi-lang-go="`esCif`" pulumi-lang-python="`es_cif`" pulumi-lang-yaml="`esCif`" pulumi-lang-java="`esCif`" pulumi-lang-hcl="`es_cif`">`esCif`</span>, <span pulumi-lang-nodejs="`etTin`" pulumi-lang-dotnet="`EtTin`" pulumi-lang-go="`etTin`" pulumi-lang-python="`et_tin`" pulumi-lang-yaml="`etTin`" pulumi-lang-java="`etTin`" pulumi-lang-hcl="`et_tin`">`etTin`</span>, <span pulumi-lang-nodejs="`euOssVat`" pulumi-lang-dotnet="`EuOssVat`" pulumi-lang-go="`euOssVat`" pulumi-lang-python="`eu_oss_vat`" pulumi-lang-yaml="`euOssVat`" pulumi-lang-java="`euOssVat`" pulumi-lang-hcl="`eu_oss_vat`">`euOssVat`</span>, <span pulumi-lang-nodejs="`euVat`" pulumi-lang-dotnet="`EuVat`" pulumi-lang-go="`euVat`" pulumi-lang-python="`eu_vat`" pulumi-lang-yaml="`euVat`" pulumi-lang-java="`euVat`" pulumi-lang-hcl="`eu_vat`">`euVat`</span>, <span pulumi-lang-nodejs="`foVat`" pulumi-lang-dotnet="`FoVat`" pulumi-lang-go="`foVat`" pulumi-lang-python="`fo_vat`" pulumi-lang-yaml="`foVat`" pulumi-lang-java="`foVat`" pulumi-lang-hcl="`fo_vat`">`foVat`</span>, <span pulumi-lang-nodejs="`gbVat`" pulumi-lang-dotnet="`GbVat`" pulumi-lang-go="`gbVat`" pulumi-lang-python="`gb_vat`" pulumi-lang-yaml="`gbVat`" pulumi-lang-java="`gbVat`" pulumi-lang-hcl="`gb_vat`">`gbVat`</span>, <span pulumi-lang-nodejs="`geVat`" pulumi-lang-dotnet="`GeVat`" pulumi-lang-go="`geVat`" pulumi-lang-python="`ge_vat`" pulumi-lang-yaml="`geVat`" pulumi-lang-java="`geVat`" pulumi-lang-hcl="`ge_vat`">`geVat`</span>, <span pulumi-lang-nodejs="`giTin`" pulumi-lang-dotnet="`GiTin`" pulumi-lang-go="`giTin`" pulumi-lang-python="`gi_tin`" pulumi-lang-yaml="`giTin`" pulumi-lang-java="`giTin`" pulumi-lang-hcl="`gi_tin`">`giTin`</span>, <span pulumi-lang-nodejs="`gnNif`" pulumi-lang-dotnet="`GnNif`" pulumi-lang-go="`gnNif`" pulumi-lang-python="`gn_nif`" pulumi-lang-yaml="`gnNif`" pulumi-lang-java="`gnNif`" pulumi-lang-hcl="`gn_nif`">`gnNif`</span>, <span pulumi-lang-nodejs="`hkBr`" pulumi-lang-dotnet="`HkBr`" pulumi-lang-go="`hkBr`" pulumi-lang-python="`hk_br`" pulumi-lang-yaml="`hkBr`" pulumi-lang-java="`hkBr`" pulumi-lang-hcl="`hk_br`">`hkBr`</span>, <span pulumi-lang-nodejs="`hrOib`" pulumi-lang-dotnet="`HrOib`" pulumi-lang-go="`hrOib`" pulumi-lang-python="`hr_oib`" pulumi-lang-yaml="`hrOib`" pulumi-lang-java="`hrOib`" pulumi-lang-hcl="`hr_oib`">`hrOib`</span>, <span pulumi-lang-nodejs="`huTin`" pulumi-lang-dotnet="`HuTin`" pulumi-lang-go="`huTin`" pulumi-lang-python="`hu_tin`" pulumi-lang-yaml="`huTin`" pulumi-lang-java="`huTin`" pulumi-lang-hcl="`hu_tin`">`huTin`</span>, <span pulumi-lang-nodejs="`idNpwp`" pulumi-lang-dotnet="`IdNpwp`" pulumi-lang-go="`idNpwp`" pulumi-lang-python="`id_npwp`" pulumi-lang-yaml="`idNpwp`" pulumi-lang-java="`idNpwp`" pulumi-lang-hcl="`id_npwp`">`idNpwp`</span>, <span pulumi-lang-nodejs="`ilVat`" pulumi-lang-dotnet="`IlVat`" pulumi-lang-go="`ilVat`" pulumi-lang-python="`il_vat`" pulumi-lang-yaml="`ilVat`" pulumi-lang-java="`ilVat`" pulumi-lang-hcl="`il_vat`">`ilVat`</span>, <span pulumi-lang-nodejs="`inGst`" pulumi-lang-dotnet="`InGst`" pulumi-lang-go="`inGst`" pulumi-lang-python="`in_gst`" pulumi-lang-yaml="`inGst`" pulumi-lang-java="`inGst`" pulumi-lang-hcl="`in_gst`">`inGst`</span>, <span pulumi-lang-nodejs="`isVat`" pulumi-lang-dotnet="`IsVat`" pulumi-lang-go="`isVat`" pulumi-lang-python="`is_vat`" pulumi-lang-yaml="`isVat`" pulumi-lang-java="`isVat`" pulumi-lang-hcl="`is_vat`">`isVat`</span>, <span pulumi-lang-nodejs="`itCf`" pulumi-lang-dotnet="`ItCf`" pulumi-lang-go="`itCf`" pulumi-lang-python="`it_cf`" pulumi-lang-yaml="`itCf`" pulumi-lang-java="`itCf`" pulumi-lang-hcl="`it_cf`">`itCf`</span>, <span pulumi-lang-nodejs="`jpCn`" pulumi-lang-dotnet="`JpCn`" pulumi-lang-go="`jpCn`" pulumi-lang-python="`jp_cn`" pulumi-lang-yaml="`jpCn`" pulumi-lang-java="`jpCn`" pulumi-lang-hcl="`jp_cn`">`jpCn`</span>, <span pulumi-lang-nodejs="`jpRn`" pulumi-lang-dotnet="`JpRn`" pulumi-lang-go="`jpRn`" pulumi-lang-python="`jp_rn`" pulumi-lang-yaml="`jpRn`" pulumi-lang-java="`jpRn`" pulumi-lang-hcl="`jp_rn`">`jpRn`</span>, <span pulumi-lang-nodejs="`jpTrn`" pulumi-lang-dotnet="`JpTrn`" pulumi-lang-go="`jpTrn`" pulumi-lang-python="`jp_trn`" pulumi-lang-yaml="`jpTrn`" pulumi-lang-java="`jpTrn`" pulumi-lang-hcl="`jp_trn`">`jpTrn`</span>, <span pulumi-lang-nodejs="`kePin`" pulumi-lang-dotnet="`KePin`" pulumi-lang-go="`kePin`" pulumi-lang-python="`ke_pin`" pulumi-lang-yaml="`kePin`" pulumi-lang-java="`kePin`" pulumi-lang-hcl="`ke_pin`">`kePin`</span>, <span pulumi-lang-nodejs="`kgTin`" pulumi-lang-dotnet="`KgTin`" pulumi-lang-go="`kgTin`" pulumi-lang-python="`kg_tin`" pulumi-lang-yaml="`kgTin`" pulumi-lang-java="`kgTin`" pulumi-lang-hcl="`kg_tin`">`kgTin`</span>, <span pulumi-lang-nodejs="`khTin`" pulumi-lang-dotnet="`KhTin`" pulumi-lang-go="`khTin`" pulumi-lang-python="`kh_tin`" pulumi-lang-yaml="`khTin`" pulumi-lang-java="`khTin`" pulumi-lang-hcl="`kh_tin`">`khTin`</span>, <span pulumi-lang-nodejs="`krBrn`" pulumi-lang-dotnet="`KrBrn`" pulumi-lang-go="`krBrn`" pulumi-lang-python="`kr_brn`" pulumi-lang-yaml="`krBrn`" pulumi-lang-java="`krBrn`" pulumi-lang-hcl="`kr_brn`">`krBrn`</span>, <span pulumi-lang-nodejs="`kzBin`" pulumi-lang-dotnet="`KzBin`" pulumi-lang-go="`kzBin`" pulumi-lang-python="`kz_bin`" pulumi-lang-yaml="`kzBin`" pulumi-lang-java="`kzBin`" pulumi-lang-hcl="`kz_bin`">`kzBin`</span>, <span pulumi-lang-nodejs="`laTin`" pulumi-lang-dotnet="`LaTin`" pulumi-lang-go="`laTin`" pulumi-lang-python="`la_tin`" pulumi-lang-yaml="`laTin`" pulumi-lang-java="`laTin`" pulumi-lang-hcl="`la_tin`">`laTin`</span>, <span pulumi-lang-nodejs="`liUid`" pulumi-lang-dotnet="`LiUid`" pulumi-lang-go="`liUid`" pulumi-lang-python="`li_uid`" pulumi-lang-yaml="`liUid`" pulumi-lang-java="`liUid`" pulumi-lang-hcl="`li_uid`">`liUid`</span>, <span pulumi-lang-nodejs="`liVat`" pulumi-lang-dotnet="`LiVat`" pulumi-lang-go="`liVat`" pulumi-lang-python="`li_vat`" pulumi-lang-yaml="`liVat`" pulumi-lang-java="`liVat`" pulumi-lang-hcl="`li_vat`">`liVat`</span>, <span pulumi-lang-nodejs="`lkVat`" pulumi-lang-dotnet="`LkVat`" pulumi-lang-go="`lkVat`" pulumi-lang-python="`lk_vat`" pulumi-lang-yaml="`lkVat`" pulumi-lang-java="`lkVat`" pulumi-lang-hcl="`lk_vat`">`lkVat`</span>, <span pulumi-lang-nodejs="`maVat`" pulumi-lang-dotnet="`MaVat`" pulumi-lang-go="`maVat`" pulumi-lang-python="`ma_vat`" pulumi-lang-yaml="`maVat`" pulumi-lang-java="`maVat`" pulumi-lang-hcl="`ma_vat`">`maVat`</span>, <span pulumi-lang-nodejs="`mdVat`" pulumi-lang-dotnet="`MdVat`" pulumi-lang-go="`mdVat`" pulumi-lang-python="`md_vat`" pulumi-lang-yaml="`mdVat`" pulumi-lang-java="`mdVat`" pulumi-lang-hcl="`md_vat`">`mdVat`</span>, <span pulumi-lang-nodejs="`mePib`" pulumi-lang-dotnet="`MePib`" pulumi-lang-go="`mePib`" pulumi-lang-python="`me_pib`" pulumi-lang-yaml="`mePib`" pulumi-lang-java="`mePib`" pulumi-lang-hcl="`me_pib`">`mePib`</span>, <span pulumi-lang-nodejs="`mkVat`" pulumi-lang-dotnet="`MkVat`" pulumi-lang-go="`mkVat`" pulumi-lang-python="`mk_vat`" pulumi-lang-yaml="`mkVat`" pulumi-lang-java="`mkVat`" pulumi-lang-hcl="`mk_vat`">`mkVat`</span>, <span pulumi-lang-nodejs="`mrNif`" pulumi-lang-dotnet="`MrNif`" pulumi-lang-go="`mrNif`" pulumi-lang-python="`mr_nif`" pulumi-lang-yaml="`mrNif`" pulumi-lang-java="`mrNif`" pulumi-lang-hcl="`mr_nif`">`mrNif`</span>, <span pulumi-lang-nodejs="`mxRfc`" pulumi-lang-dotnet="`MxRfc`" pulumi-lang-go="`mxRfc`" pulumi-lang-python="`mx_rfc`" pulumi-lang-yaml="`mxRfc`" pulumi-lang-java="`mxRfc`" pulumi-lang-hcl="`mx_rfc`">`mxRfc`</span>, <span pulumi-lang-nodejs="`myFrp`" pulumi-lang-dotnet="`MyFrp`" pulumi-lang-go="`myFrp`" pulumi-lang-python="`my_frp`" pulumi-lang-yaml="`myFrp`" pulumi-lang-java="`myFrp`" pulumi-lang-hcl="`my_frp`">`myFrp`</span>, <span pulumi-lang-nodejs="`myItn`" pulumi-lang-dotnet="`MyItn`" pulumi-lang-go="`myItn`" pulumi-lang-python="`my_itn`" pulumi-lang-yaml="`myItn`" pulumi-lang-java="`myItn`" pulumi-lang-hcl="`my_itn`">`myItn`</span>, <span pulumi-lang-nodejs="`mySst`" pulumi-lang-dotnet="`MySst`" pulumi-lang-go="`mySst`" pulumi-lang-python="`my_sst`" pulumi-lang-yaml="`mySst`" pulumi-lang-java="`mySst`" pulumi-lang-hcl="`my_sst`">`mySst`</span>, <span pulumi-lang-nodejs="`ngTin`" pulumi-lang-dotnet="`NgTin`" pulumi-lang-go="`ngTin`" pulumi-lang-python="`ng_tin`" pulumi-lang-yaml="`ngTin`" pulumi-lang-java="`ngTin`" pulumi-lang-hcl="`ng_tin`">`ngTin`</span>, <span pulumi-lang-nodejs="`noVat`" pulumi-lang-dotnet="`NoVat`" pulumi-lang-go="`noVat`" pulumi-lang-python="`no_vat`" pulumi-lang-yaml="`noVat`" pulumi-lang-java="`noVat`" pulumi-lang-hcl="`no_vat`">`noVat`</span>, <span pulumi-lang-nodejs="`noVoec`" pulumi-lang-dotnet="`NoVoec`" pulumi-lang-go="`noVoec`" pulumi-lang-python="`no_voec`" pulumi-lang-yaml="`noVoec`" pulumi-lang-java="`noVoec`" pulumi-lang-hcl="`no_voec`">`noVoec`</span>, <span pulumi-lang-nodejs="`npPan`" pulumi-lang-dotnet="`NpPan`" pulumi-lang-go="`npPan`" pulumi-lang-python="`np_pan`" pulumi-lang-yaml="`npPan`" pulumi-lang-java="`npPan`" pulumi-lang-hcl="`np_pan`">`npPan`</span>, <span pulumi-lang-nodejs="`nzGst`" pulumi-lang-dotnet="`NzGst`" pulumi-lang-go="`nzGst`" pulumi-lang-python="`nz_gst`" pulumi-lang-yaml="`nzGst`" pulumi-lang-java="`nzGst`" pulumi-lang-hcl="`nz_gst`">`nzGst`</span>, <span pulumi-lang-nodejs="`omVat`" pulumi-lang-dotnet="`OmVat`" pulumi-lang-go="`omVat`" pulumi-lang-python="`om_vat`" pulumi-lang-yaml="`omVat`" pulumi-lang-java="`omVat`" pulumi-lang-hcl="`om_vat`">`omVat`</span>, <span pulumi-lang-nodejs="`peRuc`" pulumi-lang-dotnet="`PeRuc`" pulumi-lang-go="`peRuc`" pulumi-lang-python="`pe_ruc`" pulumi-lang-yaml="`peRuc`" pulumi-lang-java="`peRuc`" pulumi-lang-hcl="`pe_ruc`">`peRuc`</span>, <span pulumi-lang-nodejs="`phTin`" pulumi-lang-dotnet="`PhTin`" pulumi-lang-go="`phTin`" pulumi-lang-python="`ph_tin`" pulumi-lang-yaml="`phTin`" pulumi-lang-java="`phTin`" pulumi-lang-hcl="`ph_tin`">`phTin`</span>, <span pulumi-lang-nodejs="`plNip`" pulumi-lang-dotnet="`PlNip`" pulumi-lang-go="`plNip`" pulumi-lang-python="`pl_nip`" pulumi-lang-yaml="`plNip`" pulumi-lang-java="`plNip`" pulumi-lang-hcl="`pl_nip`">`plNip`</span>, <span pulumi-lang-nodejs="`pyRuc`" pulumi-lang-dotnet="`PyRuc`" pulumi-lang-go="`pyRuc`" pulumi-lang-python="`py_ruc`" pulumi-lang-yaml="`pyRuc`" pulumi-lang-java="`pyRuc`" pulumi-lang-hcl="`py_ruc`">`pyRuc`</span>, <span pulumi-lang-nodejs="`roTin`" pulumi-lang-dotnet="`RoTin`" pulumi-lang-go="`roTin`" pulumi-lang-python="`ro_tin`" pulumi-lang-yaml="`roTin`" pulumi-lang-java="`roTin`" pulumi-lang-hcl="`ro_tin`">`roTin`</span>, <span pulumi-lang-nodejs="`rsPib`" pulumi-lang-dotnet="`RsPib`" pulumi-lang-go="`rsPib`" pulumi-lang-python="`rs_pib`" pulumi-lang-yaml="`rsPib`" pulumi-lang-java="`rsPib`" pulumi-lang-hcl="`rs_pib`">`rsPib`</span>, <span pulumi-lang-nodejs="`ruInn`" pulumi-lang-dotnet="`RuInn`" pulumi-lang-go="`ruInn`" pulumi-lang-python="`ru_inn`" pulumi-lang-yaml="`ruInn`" pulumi-lang-java="`ruInn`" pulumi-lang-hcl="`ru_inn`">`ruInn`</span>, <span pulumi-lang-nodejs="`ruKpp`" pulumi-lang-dotnet="`RuKpp`" pulumi-lang-go="`ruKpp`" pulumi-lang-python="`ru_kpp`" pulumi-lang-yaml="`ruKpp`" pulumi-lang-java="`ruKpp`" pulumi-lang-hcl="`ru_kpp`">`ruKpp`</span>, <span pulumi-lang-nodejs="`saVat`" pulumi-lang-dotnet="`SaVat`" pulumi-lang-go="`saVat`" pulumi-lang-python="`sa_vat`" pulumi-lang-yaml="`saVat`" pulumi-lang-java="`saVat`" pulumi-lang-hcl="`sa_vat`">`saVat`</span>, <span pulumi-lang-nodejs="`sgGst`" pulumi-lang-dotnet="`SgGst`" pulumi-lang-go="`sgGst`" pulumi-lang-python="`sg_gst`" pulumi-lang-yaml="`sgGst`" pulumi-lang-java="`sgGst`" pulumi-lang-hcl="`sg_gst`">`sgGst`</span>, <span pulumi-lang-nodejs="`sgUen`" pulumi-lang-dotnet="`SgUen`" pulumi-lang-go="`sgUen`" pulumi-lang-python="`sg_uen`" pulumi-lang-yaml="`sgUen`" pulumi-lang-java="`sgUen`" pulumi-lang-hcl="`sg_uen`">`sgUen`</span>, <span pulumi-lang-nodejs="`siTin`" pulumi-lang-dotnet="`SiTin`" pulumi-lang-go="`siTin`" pulumi-lang-python="`si_tin`" pulumi-lang-yaml="`siTin`" pulumi-lang-java="`siTin`" pulumi-lang-hcl="`si_tin`">`siTin`</span>, <span pulumi-lang-nodejs="`snNinea`" pulumi-lang-dotnet="`SnNinea`" pulumi-lang-go="`snNinea`" pulumi-lang-python="`sn_ninea`" pulumi-lang-yaml="`snNinea`" pulumi-lang-java="`snNinea`" pulumi-lang-hcl="`sn_ninea`">`snNinea`</span>, <span pulumi-lang-nodejs="`srFin`" pulumi-lang-dotnet="`SrFin`" pulumi-lang-go="`srFin`" pulumi-lang-python="`sr_fin`" pulumi-lang-yaml="`srFin`" pulumi-lang-java="`srFin`" pulumi-lang-hcl="`sr_fin`">`srFin`</span>, <span pulumi-lang-nodejs="`svNit`" pulumi-lang-dotnet="`SvNit`" pulumi-lang-go="`svNit`" pulumi-lang-python="`sv_nit`" pulumi-lang-yaml="`svNit`" pulumi-lang-java="`svNit`" pulumi-lang-hcl="`sv_nit`">`svNit`</span>, <span pulumi-lang-nodejs="`thVat`" pulumi-lang-dotnet="`ThVat`" pulumi-lang-go="`thVat`" pulumi-lang-python="`th_vat`" pulumi-lang-yaml="`thVat`" pulumi-lang-java="`thVat`" pulumi-lang-hcl="`th_vat`">`thVat`</span>, <span pulumi-lang-nodejs="`tjTin`" pulumi-lang-dotnet="`TjTin`" pulumi-lang-go="`tjTin`" pulumi-lang-python="`tj_tin`" pulumi-lang-yaml="`tjTin`" pulumi-lang-java="`tjTin`" pulumi-lang-hcl="`tj_tin`">`tjTin`</span>, <span pulumi-lang-nodejs="`trTin`" pulumi-lang-dotnet="`TrTin`" pulumi-lang-go="`trTin`" pulumi-lang-python="`tr_tin`" pulumi-lang-yaml="`trTin`" pulumi-lang-java="`trTin`" pulumi-lang-hcl="`tr_tin`">`trTin`</span>, <span pulumi-lang-nodejs="`twVat`" pulumi-lang-dotnet="`TwVat`" pulumi-lang-go="`twVat`" pulumi-lang-python="`tw_vat`" pulumi-lang-yaml="`twVat`" pulumi-lang-java="`twVat`" pulumi-lang-hcl="`tw_vat`">`twVat`</span>, <span pulumi-lang-nodejs="`tzVat`" pulumi-lang-dotnet="`TzVat`" pulumi-lang-go="`tzVat`" pulumi-lang-python="`tz_vat`" pulumi-lang-yaml="`tzVat`" pulumi-lang-java="`tzVat`" pulumi-lang-hcl="`tz_vat`">`tzVat`</span>, <span pulumi-lang-nodejs="`uaVat`" pulumi-lang-dotnet="`UaVat`" pulumi-lang-go="`uaVat`" pulumi-lang-python="`ua_vat`" pulumi-lang-yaml="`uaVat`" pulumi-lang-java="`uaVat`" pulumi-lang-hcl="`ua_vat`">`uaVat`</span>, <span pulumi-lang-nodejs="`ugTin`" pulumi-lang-dotnet="`UgTin`" pulumi-lang-go="`ugTin`" pulumi-lang-python="`ug_tin`" pulumi-lang-yaml="`ugTin`" pulumi-lang-java="`ugTin`" pulumi-lang-hcl="`ug_tin`">`ugTin`</span>, <span pulumi-lang-nodejs="`usEin`" pulumi-lang-dotnet="`UsEin`" pulumi-lang-go="`usEin`" pulumi-lang-python="`us_ein`" pulumi-lang-yaml="`usEin`" pulumi-lang-java="`usEin`" pulumi-lang-hcl="`us_ein`">`usEin`</span>, <span pulumi-lang-nodejs="`uyRuc`" pulumi-lang-dotnet="`UyRuc`" pulumi-lang-go="`uyRuc`" pulumi-lang-python="`uy_ruc`" pulumi-lang-yaml="`uyRuc`" pulumi-lang-java="`uyRuc`" pulumi-lang-hcl="`uy_ruc`">`uyRuc`</span>, <span pulumi-lang-nodejs="`uzTin`" pulumi-lang-dotnet="`UzTin`" pulumi-lang-go="`uzTin`" pulumi-lang-python="`uz_tin`" pulumi-lang-yaml="`uzTin`" pulumi-lang-java="`uzTin`" pulumi-lang-hcl="`uz_tin`">`uzTin`</span>, <span pulumi-lang-nodejs="`uzVat`" pulumi-lang-dotnet="`UzVat`" pulumi-lang-go="`uzVat`" pulumi-lang-python="`uz_vat`" pulumi-lang-yaml="`uzVat`" pulumi-lang-java="`uzVat`" pulumi-lang-hcl="`uz_vat`">`uzVat`</span>, <span pulumi-lang-nodejs="`veRif`" pulumi-lang-dotnet="`VeRif`" pulumi-lang-go="`veRif`" pulumi-lang-python="`ve_rif`" pulumi-lang-yaml="`veRif`" pulumi-lang-java="`veRif`" pulumi-lang-hcl="`ve_rif`">`veRif`</span>, <span pulumi-lang-nodejs="`vnTin`" pulumi-lang-dotnet="`VnTin`" pulumi-lang-go="`vnTin`" pulumi-lang-python="`vn_tin`" pulumi-lang-yaml="`vnTin`" pulumi-lang-java="`vnTin`" pulumi-lang-hcl="`vn_tin`">`vnTin`</span>, <span pulumi-lang-nodejs="`zaVat`" pulumi-lang-dotnet="`ZaVat`" pulumi-lang-go="`zaVat`" pulumi-lang-python="`za_vat`" pulumi-lang-yaml="`zaVat`" pulumi-lang-java="`zaVat`" pulumi-lang-hcl="`za_vat`">`zaVat`</span>, <span pulumi-lang-nodejs="`zmTin`" pulumi-lang-dotnet="`ZmTin`" pulumi-lang-go="`zmTin`" pulumi-lang-python="`zm_tin`" pulumi-lang-yaml="`zmTin`" pulumi-lang-java="`zmTin`" pulumi-lang-hcl="`zm_tin`">`zmTin`</span>, or <span pulumi-lang-nodejs="`zwTin`" pulumi-lang-dotnet="`ZwTin`" pulumi-lang-go="`zwTin`" pulumi-lang-python="`zw_tin`" pulumi-lang-yaml="`zwTin`" pulumi-lang-java="`zwTin`" pulumi-lang-hcl="`zw_tin`">`zwTin`</span>
+        :param _builtins.str type: Type of the tax ID, one of <span pulumi-lang-nodejs="`adNrt`" pulumi-lang-dotnet="`AdNrt`" pulumi-lang-go="`adNrt`" pulumi-lang-python="`ad_nrt`" pulumi-lang-yaml="`adNrt`" pulumi-lang-java="`adNrt`" pulumi-lang-hcl="`ad_nrt`">`adNrt`</span>, <span pulumi-lang-nodejs="`aeTrn`" pulumi-lang-dotnet="`AeTrn`" pulumi-lang-go="`aeTrn`" pulumi-lang-python="`ae_trn`" pulumi-lang-yaml="`aeTrn`" pulumi-lang-java="`aeTrn`" pulumi-lang-hcl="`ae_trn`">`aeTrn`</span>, <span pulumi-lang-nodejs="`alTin`" pulumi-lang-dotnet="`AlTin`" pulumi-lang-go="`alTin`" pulumi-lang-python="`al_tin`" pulumi-lang-yaml="`alTin`" pulumi-lang-java="`alTin`" pulumi-lang-hcl="`al_tin`">`alTin`</span>, <span pulumi-lang-nodejs="`amTin`" pulumi-lang-dotnet="`AmTin`" pulumi-lang-go="`amTin`" pulumi-lang-python="`am_tin`" pulumi-lang-yaml="`amTin`" pulumi-lang-java="`amTin`" pulumi-lang-hcl="`am_tin`">`amTin`</span>, <span pulumi-lang-nodejs="`aoTin`" pulumi-lang-dotnet="`AoTin`" pulumi-lang-go="`aoTin`" pulumi-lang-python="`ao_tin`" pulumi-lang-yaml="`aoTin`" pulumi-lang-java="`aoTin`" pulumi-lang-hcl="`ao_tin`">`aoTin`</span>, <span pulumi-lang-nodejs="`arCuit`" pulumi-lang-dotnet="`ArCuit`" pulumi-lang-go="`arCuit`" pulumi-lang-python="`ar_cuit`" pulumi-lang-yaml="`arCuit`" pulumi-lang-java="`arCuit`" pulumi-lang-hcl="`ar_cuit`">`arCuit`</span>, <span pulumi-lang-nodejs="`auAbn`" pulumi-lang-dotnet="`AuAbn`" pulumi-lang-go="`auAbn`" pulumi-lang-python="`au_abn`" pulumi-lang-yaml="`auAbn`" pulumi-lang-java="`auAbn`" pulumi-lang-hcl="`au_abn`">`auAbn`</span>, <span pulumi-lang-nodejs="`auAcn`" pulumi-lang-dotnet="`AuAcn`" pulumi-lang-go="`auAcn`" pulumi-lang-python="`au_acn`" pulumi-lang-yaml="`auAcn`" pulumi-lang-java="`auAcn`" pulumi-lang-hcl="`au_acn`">`auAcn`</span>, <span pulumi-lang-nodejs="`auArn`" pulumi-lang-dotnet="`AuArn`" pulumi-lang-go="`auArn`" pulumi-lang-python="`au_arn`" pulumi-lang-yaml="`auArn`" pulumi-lang-java="`auArn`" pulumi-lang-hcl="`au_arn`">`auArn`</span>, <span pulumi-lang-nodejs="`auWpn`" pulumi-lang-dotnet="`AuWpn`" pulumi-lang-go="`auWpn`" pulumi-lang-python="`au_wpn`" pulumi-lang-yaml="`auWpn`" pulumi-lang-java="`auWpn`" pulumi-lang-hcl="`au_wpn`">`auWpn`</span>, <span pulumi-lang-nodejs="`awTin`" pulumi-lang-dotnet="`AwTin`" pulumi-lang-go="`awTin`" pulumi-lang-python="`aw_tin`" pulumi-lang-yaml="`awTin`" pulumi-lang-java="`awTin`" pulumi-lang-hcl="`aw_tin`">`awTin`</span>, <span pulumi-lang-nodejs="`azTin`" pulumi-lang-dotnet="`AzTin`" pulumi-lang-go="`azTin`" pulumi-lang-python="`az_tin`" pulumi-lang-yaml="`azTin`" pulumi-lang-java="`azTin`" pulumi-lang-hcl="`az_tin`">`azTin`</span>, <span pulumi-lang-nodejs="`baTin`" pulumi-lang-dotnet="`BaTin`" pulumi-lang-go="`baTin`" pulumi-lang-python="`ba_tin`" pulumi-lang-yaml="`baTin`" pulumi-lang-java="`baTin`" pulumi-lang-hcl="`ba_tin`">`baTin`</span>, <span pulumi-lang-nodejs="`bbTin`" pulumi-lang-dotnet="`BbTin`" pulumi-lang-go="`bbTin`" pulumi-lang-python="`bb_tin`" pulumi-lang-yaml="`bbTin`" pulumi-lang-java="`bbTin`" pulumi-lang-hcl="`bb_tin`">`bbTin`</span>, <span pulumi-lang-nodejs="`bdBin`" pulumi-lang-dotnet="`BdBin`" pulumi-lang-go="`bdBin`" pulumi-lang-python="`bd_bin`" pulumi-lang-yaml="`bdBin`" pulumi-lang-java="`bdBin`" pulumi-lang-hcl="`bd_bin`">`bdBin`</span>, <span pulumi-lang-nodejs="`bfIfu`" pulumi-lang-dotnet="`BfIfu`" pulumi-lang-go="`bfIfu`" pulumi-lang-python="`bf_ifu`" pulumi-lang-yaml="`bfIfu`" pulumi-lang-java="`bfIfu`" pulumi-lang-hcl="`bf_ifu`">`bfIfu`</span>, <span pulumi-lang-nodejs="`bgUic`" pulumi-lang-dotnet="`BgUic`" pulumi-lang-go="`bgUic`" pulumi-lang-python="`bg_uic`" pulumi-lang-yaml="`bgUic`" pulumi-lang-java="`bgUic`" pulumi-lang-hcl="`bg_uic`">`bgUic`</span>, <span pulumi-lang-nodejs="`bhVat`" pulumi-lang-dotnet="`BhVat`" pulumi-lang-go="`bhVat`" pulumi-lang-python="`bh_vat`" pulumi-lang-yaml="`bhVat`" pulumi-lang-java="`bhVat`" pulumi-lang-hcl="`bh_vat`">`bhVat`</span>, <span pulumi-lang-nodejs="`bjIfu`" pulumi-lang-dotnet="`BjIfu`" pulumi-lang-go="`bjIfu`" pulumi-lang-python="`bj_ifu`" pulumi-lang-yaml="`bjIfu`" pulumi-lang-java="`bjIfu`" pulumi-lang-hcl="`bj_ifu`">`bjIfu`</span>, <span pulumi-lang-nodejs="`boTin`" pulumi-lang-dotnet="`BoTin`" pulumi-lang-go="`boTin`" pulumi-lang-python="`bo_tin`" pulumi-lang-yaml="`boTin`" pulumi-lang-java="`boTin`" pulumi-lang-hcl="`bo_tin`">`boTin`</span>, <span pulumi-lang-nodejs="`brCnpj`" pulumi-lang-dotnet="`BrCnpj`" pulumi-lang-go="`brCnpj`" pulumi-lang-python="`br_cnpj`" pulumi-lang-yaml="`brCnpj`" pulumi-lang-java="`brCnpj`" pulumi-lang-hcl="`br_cnpj`">`brCnpj`</span>, <span pulumi-lang-nodejs="`brCpf`" pulumi-lang-dotnet="`BrCpf`" pulumi-lang-go="`brCpf`" pulumi-lang-python="`br_cpf`" pulumi-lang-yaml="`brCpf`" pulumi-lang-java="`brCpf`" pulumi-lang-hcl="`br_cpf`">`brCpf`</span>, <span pulumi-lang-nodejs="`bsTin`" pulumi-lang-dotnet="`BsTin`" pulumi-lang-go="`bsTin`" pulumi-lang-python="`bs_tin`" pulumi-lang-yaml="`bsTin`" pulumi-lang-java="`bsTin`" pulumi-lang-hcl="`bs_tin`">`bsTin`</span>, <span pulumi-lang-nodejs="`bwVat`" pulumi-lang-dotnet="`BwVat`" pulumi-lang-go="`bwVat`" pulumi-lang-python="`bw_vat`" pulumi-lang-yaml="`bwVat`" pulumi-lang-java="`bwVat`" pulumi-lang-hcl="`bw_vat`">`bwVat`</span>, <span pulumi-lang-nodejs="`byTin`" pulumi-lang-dotnet="`ByTin`" pulumi-lang-go="`byTin`" pulumi-lang-python="`by_tin`" pulumi-lang-yaml="`byTin`" pulumi-lang-java="`byTin`" pulumi-lang-hcl="`by_tin`">`byTin`</span>, <span pulumi-lang-nodejs="`caBn`" pulumi-lang-dotnet="`CaBn`" pulumi-lang-go="`caBn`" pulumi-lang-python="`ca_bn`" pulumi-lang-yaml="`caBn`" pulumi-lang-java="`caBn`" pulumi-lang-hcl="`ca_bn`">`caBn`</span>, <span pulumi-lang-nodejs="`caGstHst`" pulumi-lang-dotnet="`CaGstHst`" pulumi-lang-go="`caGstHst`" pulumi-lang-python="`ca_gst_hst`" pulumi-lang-yaml="`caGstHst`" pulumi-lang-java="`caGstHst`" pulumi-lang-hcl="`ca_gst_hst`">`caGstHst`</span>, <span pulumi-lang-nodejs="`caPstBc`" pulumi-lang-dotnet="`CaPstBc`" pulumi-lang-go="`caPstBc`" pulumi-lang-python="`ca_pst_bc`" pulumi-lang-yaml="`caPstBc`" pulumi-lang-java="`caPstBc`" pulumi-lang-hcl="`ca_pst_bc`">`caPstBc`</span>, <span pulumi-lang-nodejs="`caPstMb`" pulumi-lang-dotnet="`CaPstMb`" pulumi-lang-go="`caPstMb`" pulumi-lang-python="`ca_pst_mb`" pulumi-lang-yaml="`caPstMb`" pulumi-lang-java="`caPstMb`" pulumi-lang-hcl="`ca_pst_mb`">`caPstMb`</span>, <span pulumi-lang-nodejs="`caPstSk`" pulumi-lang-dotnet="`CaPstSk`" pulumi-lang-go="`caPstSk`" pulumi-lang-python="`ca_pst_sk`" pulumi-lang-yaml="`caPstSk`" pulumi-lang-java="`caPstSk`" pulumi-lang-hcl="`ca_pst_sk`">`caPstSk`</span>, <span pulumi-lang-nodejs="`caQst`" pulumi-lang-dotnet="`CaQst`" pulumi-lang-go="`caQst`" pulumi-lang-python="`ca_qst`" pulumi-lang-yaml="`caQst`" pulumi-lang-java="`caQst`" pulumi-lang-hcl="`ca_qst`">`caQst`</span>, <span pulumi-lang-nodejs="`cdNif`" pulumi-lang-dotnet="`CdNif`" pulumi-lang-go="`cdNif`" pulumi-lang-python="`cd_nif`" pulumi-lang-yaml="`cdNif`" pulumi-lang-java="`cdNif`" pulumi-lang-hcl="`cd_nif`">`cdNif`</span>, <span pulumi-lang-nodejs="`chUid`" pulumi-lang-dotnet="`ChUid`" pulumi-lang-go="`chUid`" pulumi-lang-python="`ch_uid`" pulumi-lang-yaml="`chUid`" pulumi-lang-java="`chUid`" pulumi-lang-hcl="`ch_uid`">`chUid`</span>, <span pulumi-lang-nodejs="`chVat`" pulumi-lang-dotnet="`ChVat`" pulumi-lang-go="`chVat`" pulumi-lang-python="`ch_vat`" pulumi-lang-yaml="`chVat`" pulumi-lang-java="`chVat`" pulumi-lang-hcl="`ch_vat`">`chVat`</span>, <span pulumi-lang-nodejs="`ciVat`" pulumi-lang-dotnet="`CiVat`" pulumi-lang-go="`ciVat`" pulumi-lang-python="`ci_vat`" pulumi-lang-yaml="`ciVat`" pulumi-lang-java="`ciVat`" pulumi-lang-hcl="`ci_vat`">`ciVat`</span>, <span pulumi-lang-nodejs="`clTin`" pulumi-lang-dotnet="`ClTin`" pulumi-lang-go="`clTin`" pulumi-lang-python="`cl_tin`" pulumi-lang-yaml="`clTin`" pulumi-lang-java="`clTin`" pulumi-lang-hcl="`cl_tin`">`clTin`</span>, <span pulumi-lang-nodejs="`cmNiu`" pulumi-lang-dotnet="`CmNiu`" pulumi-lang-go="`cmNiu`" pulumi-lang-python="`cm_niu`" pulumi-lang-yaml="`cmNiu`" pulumi-lang-java="`cmNiu`" pulumi-lang-hcl="`cm_niu`">`cmNiu`</span>, <span pulumi-lang-nodejs="`cnTin`" pulumi-lang-dotnet="`CnTin`" pulumi-lang-go="`cnTin`" pulumi-lang-python="`cn_tin`" pulumi-lang-yaml="`cnTin`" pulumi-lang-java="`cnTin`" pulumi-lang-hcl="`cn_tin`">`cnTin`</span>, <span pulumi-lang-nodejs="`coNit`" pulumi-lang-dotnet="`CoNit`" pulumi-lang-go="`coNit`" pulumi-lang-python="`co_nit`" pulumi-lang-yaml="`coNit`" pulumi-lang-java="`coNit`" pulumi-lang-hcl="`co_nit`">`coNit`</span>, <span pulumi-lang-nodejs="`crTin`" pulumi-lang-dotnet="`CrTin`" pulumi-lang-go="`crTin`" pulumi-lang-python="`cr_tin`" pulumi-lang-yaml="`crTin`" pulumi-lang-java="`crTin`" pulumi-lang-hcl="`cr_tin`">`crTin`</span>, <span pulumi-lang-nodejs="`cvNif`" pulumi-lang-dotnet="`CvNif`" pulumi-lang-go="`cvNif`" pulumi-lang-python="`cv_nif`" pulumi-lang-yaml="`cvNif`" pulumi-lang-java="`cvNif`" pulumi-lang-hcl="`cv_nif`">`cvNif`</span>, <span pulumi-lang-nodejs="`czDic`" pulumi-lang-dotnet="`CzDic`" pulumi-lang-go="`czDic`" pulumi-lang-python="`cz_dic`" pulumi-lang-yaml="`czDic`" pulumi-lang-java="`czDic`" pulumi-lang-hcl="`cz_dic`">`czDic`</span>, <span pulumi-lang-nodejs="`deStn`" pulumi-lang-dotnet="`DeStn`" pulumi-lang-go="`deStn`" pulumi-lang-python="`de_stn`" pulumi-lang-yaml="`deStn`" pulumi-lang-java="`deStn`" pulumi-lang-hcl="`de_stn`">`deStn`</span>, <span pulumi-lang-nodejs="`doRcn`" pulumi-lang-dotnet="`DoRcn`" pulumi-lang-go="`doRcn`" pulumi-lang-python="`do_rcn`" pulumi-lang-yaml="`doRcn`" pulumi-lang-java="`doRcn`" pulumi-lang-hcl="`do_rcn`">`doRcn`</span>, <span pulumi-lang-nodejs="`ecRuc`" pulumi-lang-dotnet="`EcRuc`" pulumi-lang-go="`ecRuc`" pulumi-lang-python="`ec_ruc`" pulumi-lang-yaml="`ecRuc`" pulumi-lang-java="`ecRuc`" pulumi-lang-hcl="`ec_ruc`">`ecRuc`</span>, <span pulumi-lang-nodejs="`egTin`" pulumi-lang-dotnet="`EgTin`" pulumi-lang-go="`egTin`" pulumi-lang-python="`eg_tin`" pulumi-lang-yaml="`egTin`" pulumi-lang-java="`egTin`" pulumi-lang-hcl="`eg_tin`">`egTin`</span>, <span pulumi-lang-nodejs="`esCif`" pulumi-lang-dotnet="`EsCif`" pulumi-lang-go="`esCif`" pulumi-lang-python="`es_cif`" pulumi-lang-yaml="`esCif`" pulumi-lang-java="`esCif`" pulumi-lang-hcl="`es_cif`">`esCif`</span>, <span pulumi-lang-nodejs="`etTin`" pulumi-lang-dotnet="`EtTin`" pulumi-lang-go="`etTin`" pulumi-lang-python="`et_tin`" pulumi-lang-yaml="`etTin`" pulumi-lang-java="`etTin`" pulumi-lang-hcl="`et_tin`">`etTin`</span>, <span pulumi-lang-nodejs="`euOssVat`" pulumi-lang-dotnet="`EuOssVat`" pulumi-lang-go="`euOssVat`" pulumi-lang-python="`eu_oss_vat`" pulumi-lang-yaml="`euOssVat`" pulumi-lang-java="`euOssVat`" pulumi-lang-hcl="`eu_oss_vat`">`euOssVat`</span>, <span pulumi-lang-nodejs="`euVat`" pulumi-lang-dotnet="`EuVat`" pulumi-lang-go="`euVat`" pulumi-lang-python="`eu_vat`" pulumi-lang-yaml="`euVat`" pulumi-lang-java="`euVat`" pulumi-lang-hcl="`eu_vat`">`euVat`</span>, <span pulumi-lang-nodejs="`foVat`" pulumi-lang-dotnet="`FoVat`" pulumi-lang-go="`foVat`" pulumi-lang-python="`fo_vat`" pulumi-lang-yaml="`foVat`" pulumi-lang-java="`foVat`" pulumi-lang-hcl="`fo_vat`">`foVat`</span>, <span pulumi-lang-nodejs="`frSiren`" pulumi-lang-dotnet="`FrSiren`" pulumi-lang-go="`frSiren`" pulumi-lang-python="`fr_siren`" pulumi-lang-yaml="`frSiren`" pulumi-lang-java="`frSiren`" pulumi-lang-hcl="`fr_siren`">`frSiren`</span>, <span pulumi-lang-nodejs="`frSiret`" pulumi-lang-dotnet="`FrSiret`" pulumi-lang-go="`frSiret`" pulumi-lang-python="`fr_siret`" pulumi-lang-yaml="`frSiret`" pulumi-lang-java="`frSiret`" pulumi-lang-hcl="`fr_siret`">`frSiret`</span>, <span pulumi-lang-nodejs="`frSpi`" pulumi-lang-dotnet="`FrSpi`" pulumi-lang-go="`frSpi`" pulumi-lang-python="`fr_spi`" pulumi-lang-yaml="`frSpi`" pulumi-lang-java="`frSpi`" pulumi-lang-hcl="`fr_spi`">`frSpi`</span>, <span pulumi-lang-nodejs="`gbVat`" pulumi-lang-dotnet="`GbVat`" pulumi-lang-go="`gbVat`" pulumi-lang-python="`gb_vat`" pulumi-lang-yaml="`gbVat`" pulumi-lang-java="`gbVat`" pulumi-lang-hcl="`gb_vat`">`gbVat`</span>, <span pulumi-lang-nodejs="`geVat`" pulumi-lang-dotnet="`GeVat`" pulumi-lang-go="`geVat`" pulumi-lang-python="`ge_vat`" pulumi-lang-yaml="`geVat`" pulumi-lang-java="`geVat`" pulumi-lang-hcl="`ge_vat`">`geVat`</span>, <span pulumi-lang-nodejs="`ghTin`" pulumi-lang-dotnet="`GhTin`" pulumi-lang-go="`ghTin`" pulumi-lang-python="`gh_tin`" pulumi-lang-yaml="`ghTin`" pulumi-lang-java="`ghTin`" pulumi-lang-hcl="`gh_tin`">`ghTin`</span>, <span pulumi-lang-nodejs="`giTin`" pulumi-lang-dotnet="`GiTin`" pulumi-lang-go="`giTin`" pulumi-lang-python="`gi_tin`" pulumi-lang-yaml="`giTin`" pulumi-lang-java="`giTin`" pulumi-lang-hcl="`gi_tin`">`giTin`</span>, <span pulumi-lang-nodejs="`gnNif`" pulumi-lang-dotnet="`GnNif`" pulumi-lang-go="`gnNif`" pulumi-lang-python="`gn_nif`" pulumi-lang-yaml="`gnNif`" pulumi-lang-java="`gnNif`" pulumi-lang-hcl="`gn_nif`">`gnNif`</span>, <span pulumi-lang-nodejs="`hkBr`" pulumi-lang-dotnet="`HkBr`" pulumi-lang-go="`hkBr`" pulumi-lang-python="`hk_br`" pulumi-lang-yaml="`hkBr`" pulumi-lang-java="`hkBr`" pulumi-lang-hcl="`hk_br`">`hkBr`</span>, <span pulumi-lang-nodejs="`hrOib`" pulumi-lang-dotnet="`HrOib`" pulumi-lang-go="`hrOib`" pulumi-lang-python="`hr_oib`" pulumi-lang-yaml="`hrOib`" pulumi-lang-java="`hrOib`" pulumi-lang-hcl="`hr_oib`">`hrOib`</span>, <span pulumi-lang-nodejs="`huTin`" pulumi-lang-dotnet="`HuTin`" pulumi-lang-go="`huTin`" pulumi-lang-python="`hu_tin`" pulumi-lang-yaml="`huTin`" pulumi-lang-java="`huTin`" pulumi-lang-hcl="`hu_tin`">`huTin`</span>, <span pulumi-lang-nodejs="`icNif`" pulumi-lang-dotnet="`IcNif`" pulumi-lang-go="`icNif`" pulumi-lang-python="`ic_nif`" pulumi-lang-yaml="`icNif`" pulumi-lang-java="`icNif`" pulumi-lang-hcl="`ic_nif`">`icNif`</span>, <span pulumi-lang-nodejs="`idNpwp`" pulumi-lang-dotnet="`IdNpwp`" pulumi-lang-go="`idNpwp`" pulumi-lang-python="`id_npwp`" pulumi-lang-yaml="`idNpwp`" pulumi-lang-java="`idNpwp`" pulumi-lang-hcl="`id_npwp`">`idNpwp`</span>, <span pulumi-lang-nodejs="`ilVat`" pulumi-lang-dotnet="`IlVat`" pulumi-lang-go="`ilVat`" pulumi-lang-python="`il_vat`" pulumi-lang-yaml="`ilVat`" pulumi-lang-java="`ilVat`" pulumi-lang-hcl="`il_vat`">`ilVat`</span>, <span pulumi-lang-nodejs="`inGst`" pulumi-lang-dotnet="`InGst`" pulumi-lang-go="`inGst`" pulumi-lang-python="`in_gst`" pulumi-lang-yaml="`inGst`" pulumi-lang-java="`inGst`" pulumi-lang-hcl="`in_gst`">`inGst`</span>, <span pulumi-lang-nodejs="`isKt`" pulumi-lang-dotnet="`IsKt`" pulumi-lang-go="`isKt`" pulumi-lang-python="`is_kt`" pulumi-lang-yaml="`isKt`" pulumi-lang-java="`isKt`" pulumi-lang-hcl="`is_kt`">`isKt`</span>, <span pulumi-lang-nodejs="`isVat`" pulumi-lang-dotnet="`IsVat`" pulumi-lang-go="`isVat`" pulumi-lang-python="`is_vat`" pulumi-lang-yaml="`isVat`" pulumi-lang-java="`isVat`" pulumi-lang-hcl="`is_vat`">`isVat`</span>, <span pulumi-lang-nodejs="`itCf`" pulumi-lang-dotnet="`ItCf`" pulumi-lang-go="`itCf`" pulumi-lang-python="`it_cf`" pulumi-lang-yaml="`itCf`" pulumi-lang-java="`itCf`" pulumi-lang-hcl="`it_cf`">`itCf`</span>, <span pulumi-lang-nodejs="`jpCn`" pulumi-lang-dotnet="`JpCn`" pulumi-lang-go="`jpCn`" pulumi-lang-python="`jp_cn`" pulumi-lang-yaml="`jpCn`" pulumi-lang-java="`jpCn`" pulumi-lang-hcl="`jp_cn`">`jpCn`</span>, <span pulumi-lang-nodejs="`jpRn`" pulumi-lang-dotnet="`JpRn`" pulumi-lang-go="`jpRn`" pulumi-lang-python="`jp_rn`" pulumi-lang-yaml="`jpRn`" pulumi-lang-java="`jpRn`" pulumi-lang-hcl="`jp_rn`">`jpRn`</span>, <span pulumi-lang-nodejs="`jpTrn`" pulumi-lang-dotnet="`JpTrn`" pulumi-lang-go="`jpTrn`" pulumi-lang-python="`jp_trn`" pulumi-lang-yaml="`jpTrn`" pulumi-lang-java="`jpTrn`" pulumi-lang-hcl="`jp_trn`">`jpTrn`</span>, <span pulumi-lang-nodejs="`kePin`" pulumi-lang-dotnet="`KePin`" pulumi-lang-go="`kePin`" pulumi-lang-python="`ke_pin`" pulumi-lang-yaml="`kePin`" pulumi-lang-java="`kePin`" pulumi-lang-hcl="`ke_pin`">`kePin`</span>, <span pulumi-lang-nodejs="`kgTin`" pulumi-lang-dotnet="`KgTin`" pulumi-lang-go="`kgTin`" pulumi-lang-python="`kg_tin`" pulumi-lang-yaml="`kgTin`" pulumi-lang-java="`kgTin`" pulumi-lang-hcl="`kg_tin`">`kgTin`</span>, <span pulumi-lang-nodejs="`khTin`" pulumi-lang-dotnet="`KhTin`" pulumi-lang-go="`khTin`" pulumi-lang-python="`kh_tin`" pulumi-lang-yaml="`khTin`" pulumi-lang-java="`khTin`" pulumi-lang-hcl="`kh_tin`">`khTin`</span>, <span pulumi-lang-nodejs="`krBrn`" pulumi-lang-dotnet="`KrBrn`" pulumi-lang-go="`krBrn`" pulumi-lang-python="`kr_brn`" pulumi-lang-yaml="`krBrn`" pulumi-lang-java="`krBrn`" pulumi-lang-hcl="`kr_brn`">`krBrn`</span>, <span pulumi-lang-nodejs="`kzBin`" pulumi-lang-dotnet="`KzBin`" pulumi-lang-go="`kzBin`" pulumi-lang-python="`kz_bin`" pulumi-lang-yaml="`kzBin`" pulumi-lang-java="`kzBin`" pulumi-lang-hcl="`kz_bin`">`kzBin`</span>, <span pulumi-lang-nodejs="`laTin`" pulumi-lang-dotnet="`LaTin`" pulumi-lang-go="`laTin`" pulumi-lang-python="`la_tin`" pulumi-lang-yaml="`laTin`" pulumi-lang-java="`laTin`" pulumi-lang-hcl="`la_tin`">`laTin`</span>, <span pulumi-lang-nodejs="`liUid`" pulumi-lang-dotnet="`LiUid`" pulumi-lang-go="`liUid`" pulumi-lang-python="`li_uid`" pulumi-lang-yaml="`liUid`" pulumi-lang-java="`liUid`" pulumi-lang-hcl="`li_uid`">`liUid`</span>, <span pulumi-lang-nodejs="`liVat`" pulumi-lang-dotnet="`LiVat`" pulumi-lang-go="`liVat`" pulumi-lang-python="`li_vat`" pulumi-lang-yaml="`liVat`" pulumi-lang-java="`liVat`" pulumi-lang-hcl="`li_vat`">`liVat`</span>, <span pulumi-lang-nodejs="`lkVat`" pulumi-lang-dotnet="`LkVat`" pulumi-lang-go="`lkVat`" pulumi-lang-python="`lk_vat`" pulumi-lang-yaml="`lkVat`" pulumi-lang-java="`lkVat`" pulumi-lang-hcl="`lk_vat`">`lkVat`</span>, <span pulumi-lang-nodejs="`maVat`" pulumi-lang-dotnet="`MaVat`" pulumi-lang-go="`maVat`" pulumi-lang-python="`ma_vat`" pulumi-lang-yaml="`maVat`" pulumi-lang-java="`maVat`" pulumi-lang-hcl="`ma_vat`">`maVat`</span>, <span pulumi-lang-nodejs="`mdCf`" pulumi-lang-dotnet="`MdCf`" pulumi-lang-go="`mdCf`" pulumi-lang-python="`md_cf`" pulumi-lang-yaml="`mdCf`" pulumi-lang-java="`mdCf`" pulumi-lang-hcl="`md_cf`">`mdCf`</span>, <span pulumi-lang-nodejs="`mdVat`" pulumi-lang-dotnet="`MdVat`" pulumi-lang-go="`mdVat`" pulumi-lang-python="`md_vat`" pulumi-lang-yaml="`mdVat`" pulumi-lang-java="`mdVat`" pulumi-lang-hcl="`md_vat`">`mdVat`</span>, <span pulumi-lang-nodejs="`mePib`" pulumi-lang-dotnet="`MePib`" pulumi-lang-go="`mePib`" pulumi-lang-python="`me_pib`" pulumi-lang-yaml="`mePib`" pulumi-lang-java="`mePib`" pulumi-lang-hcl="`me_pib`">`mePib`</span>, <span pulumi-lang-nodejs="`mkVat`" pulumi-lang-dotnet="`MkVat`" pulumi-lang-go="`mkVat`" pulumi-lang-python="`mk_vat`" pulumi-lang-yaml="`mkVat`" pulumi-lang-java="`mkVat`" pulumi-lang-hcl="`mk_vat`">`mkVat`</span>, <span pulumi-lang-nodejs="`mrNif`" pulumi-lang-dotnet="`MrNif`" pulumi-lang-go="`mrNif`" pulumi-lang-python="`mr_nif`" pulumi-lang-yaml="`mrNif`" pulumi-lang-java="`mrNif`" pulumi-lang-hcl="`mr_nif`">`mrNif`</span>, <span pulumi-lang-nodejs="`muVat`" pulumi-lang-dotnet="`MuVat`" pulumi-lang-go="`muVat`" pulumi-lang-python="`mu_vat`" pulumi-lang-yaml="`muVat`" pulumi-lang-java="`muVat`" pulumi-lang-hcl="`mu_vat`">`muVat`</span>, <span pulumi-lang-nodejs="`mxRfc`" pulumi-lang-dotnet="`MxRfc`" pulumi-lang-go="`mxRfc`" pulumi-lang-python="`mx_rfc`" pulumi-lang-yaml="`mxRfc`" pulumi-lang-java="`mxRfc`" pulumi-lang-hcl="`mx_rfc`">`mxRfc`</span>, <span pulumi-lang-nodejs="`myFrp`" pulumi-lang-dotnet="`MyFrp`" pulumi-lang-go="`myFrp`" pulumi-lang-python="`my_frp`" pulumi-lang-yaml="`myFrp`" pulumi-lang-java="`myFrp`" pulumi-lang-hcl="`my_frp`">`myFrp`</span>, <span pulumi-lang-nodejs="`myItn`" pulumi-lang-dotnet="`MyItn`" pulumi-lang-go="`myItn`" pulumi-lang-python="`my_itn`" pulumi-lang-yaml="`myItn`" pulumi-lang-java="`myItn`" pulumi-lang-hcl="`my_itn`">`myItn`</span>, <span pulumi-lang-nodejs="`mySst`" pulumi-lang-dotnet="`MySst`" pulumi-lang-go="`mySst`" pulumi-lang-python="`my_sst`" pulumi-lang-yaml="`mySst`" pulumi-lang-java="`mySst`" pulumi-lang-hcl="`my_sst`">`mySst`</span>, <span pulumi-lang-nodejs="`mzNuit`" pulumi-lang-dotnet="`MzNuit`" pulumi-lang-go="`mzNuit`" pulumi-lang-python="`mz_nuit`" pulumi-lang-yaml="`mzNuit`" pulumi-lang-java="`mzNuit`" pulumi-lang-hcl="`mz_nuit`">`mzNuit`</span>, <span pulumi-lang-nodejs="`ngTin`" pulumi-lang-dotnet="`NgTin`" pulumi-lang-go="`ngTin`" pulumi-lang-python="`ng_tin`" pulumi-lang-yaml="`ngTin`" pulumi-lang-java="`ngTin`" pulumi-lang-hcl="`ng_tin`">`ngTin`</span>, <span pulumi-lang-nodejs="`noVat`" pulumi-lang-dotnet="`NoVat`" pulumi-lang-go="`noVat`" pulumi-lang-python="`no_vat`" pulumi-lang-yaml="`noVat`" pulumi-lang-java="`noVat`" pulumi-lang-hcl="`no_vat`">`noVat`</span>, <span pulumi-lang-nodejs="`noVoec`" pulumi-lang-dotnet="`NoVoec`" pulumi-lang-go="`noVoec`" pulumi-lang-python="`no_voec`" pulumi-lang-yaml="`noVoec`" pulumi-lang-java="`noVoec`" pulumi-lang-hcl="`no_voec`">`noVoec`</span>, <span pulumi-lang-nodejs="`npPan`" pulumi-lang-dotnet="`NpPan`" pulumi-lang-go="`npPan`" pulumi-lang-python="`np_pan`" pulumi-lang-yaml="`npPan`" pulumi-lang-java="`npPan`" pulumi-lang-hcl="`np_pan`">`npPan`</span>, <span pulumi-lang-nodejs="`nzBn`" pulumi-lang-dotnet="`NzBn`" pulumi-lang-go="`nzBn`" pulumi-lang-python="`nz_bn`" pulumi-lang-yaml="`nzBn`" pulumi-lang-java="`nzBn`" pulumi-lang-hcl="`nz_bn`">`nzBn`</span>, <span pulumi-lang-nodejs="`nzGst`" pulumi-lang-dotnet="`NzGst`" pulumi-lang-go="`nzGst`" pulumi-lang-python="`nz_gst`" pulumi-lang-yaml="`nzGst`" pulumi-lang-java="`nzGst`" pulumi-lang-hcl="`nz_gst`">`nzGst`</span>, <span pulumi-lang-nodejs="`omVat`" pulumi-lang-dotnet="`OmVat`" pulumi-lang-go="`omVat`" pulumi-lang-python="`om_vat`" pulumi-lang-yaml="`omVat`" pulumi-lang-java="`omVat`" pulumi-lang-hcl="`om_vat`">`omVat`</span>, <span pulumi-lang-nodejs="`peRuc`" pulumi-lang-dotnet="`PeRuc`" pulumi-lang-go="`peRuc`" pulumi-lang-python="`pe_ruc`" pulumi-lang-yaml="`peRuc`" pulumi-lang-java="`peRuc`" pulumi-lang-hcl="`pe_ruc`">`peRuc`</span>, <span pulumi-lang-nodejs="`phTin`" pulumi-lang-dotnet="`PhTin`" pulumi-lang-go="`phTin`" pulumi-lang-python="`ph_tin`" pulumi-lang-yaml="`phTin`" pulumi-lang-java="`phTin`" pulumi-lang-hcl="`ph_tin`">`phTin`</span>, <span pulumi-lang-nodejs="`plNip`" pulumi-lang-dotnet="`PlNip`" pulumi-lang-go="`plNip`" pulumi-lang-python="`pl_nip`" pulumi-lang-yaml="`plNip`" pulumi-lang-java="`plNip`" pulumi-lang-hcl="`pl_nip`">`plNip`</span>, <span pulumi-lang-nodejs="`ptNif`" pulumi-lang-dotnet="`PtNif`" pulumi-lang-go="`ptNif`" pulumi-lang-python="`pt_nif`" pulumi-lang-yaml="`ptNif`" pulumi-lang-java="`ptNif`" pulumi-lang-hcl="`pt_nif`">`ptNif`</span>, <span pulumi-lang-nodejs="`pyRuc`" pulumi-lang-dotnet="`PyRuc`" pulumi-lang-go="`pyRuc`" pulumi-lang-python="`py_ruc`" pulumi-lang-yaml="`pyRuc`" pulumi-lang-java="`pyRuc`" pulumi-lang-hcl="`py_ruc`">`pyRuc`</span>, <span pulumi-lang-nodejs="`roTin`" pulumi-lang-dotnet="`RoTin`" pulumi-lang-go="`roTin`" pulumi-lang-python="`ro_tin`" pulumi-lang-yaml="`roTin`" pulumi-lang-java="`roTin`" pulumi-lang-hcl="`ro_tin`">`roTin`</span>, <span pulumi-lang-nodejs="`rsPib`" pulumi-lang-dotnet="`RsPib`" pulumi-lang-go="`rsPib`" pulumi-lang-python="`rs_pib`" pulumi-lang-yaml="`rsPib`" pulumi-lang-java="`rsPib`" pulumi-lang-hcl="`rs_pib`">`rsPib`</span>, <span pulumi-lang-nodejs="`ruInn`" pulumi-lang-dotnet="`RuInn`" pulumi-lang-go="`ruInn`" pulumi-lang-python="`ru_inn`" pulumi-lang-yaml="`ruInn`" pulumi-lang-java="`ruInn`" pulumi-lang-hcl="`ru_inn`">`ruInn`</span>, <span pulumi-lang-nodejs="`ruKpp`" pulumi-lang-dotnet="`RuKpp`" pulumi-lang-go="`ruKpp`" pulumi-lang-python="`ru_kpp`" pulumi-lang-yaml="`ruKpp`" pulumi-lang-java="`ruKpp`" pulumi-lang-hcl="`ru_kpp`">`ruKpp`</span>, <span pulumi-lang-nodejs="`saVat`" pulumi-lang-dotnet="`SaVat`" pulumi-lang-go="`saVat`" pulumi-lang-python="`sa_vat`" pulumi-lang-yaml="`saVat`" pulumi-lang-java="`saVat`" pulumi-lang-hcl="`sa_vat`">`saVat`</span>, <span pulumi-lang-nodejs="`sgGst`" pulumi-lang-dotnet="`SgGst`" pulumi-lang-go="`sgGst`" pulumi-lang-python="`sg_gst`" pulumi-lang-yaml="`sgGst`" pulumi-lang-java="`sgGst`" pulumi-lang-hcl="`sg_gst`">`sgGst`</span>, <span pulumi-lang-nodejs="`sgUen`" pulumi-lang-dotnet="`SgUen`" pulumi-lang-go="`sgUen`" pulumi-lang-python="`sg_uen`" pulumi-lang-yaml="`sgUen`" pulumi-lang-java="`sgUen`" pulumi-lang-hcl="`sg_uen`">`sgUen`</span>, <span pulumi-lang-nodejs="`siTin`" pulumi-lang-dotnet="`SiTin`" pulumi-lang-go="`siTin`" pulumi-lang-python="`si_tin`" pulumi-lang-yaml="`siTin`" pulumi-lang-java="`siTin`" pulumi-lang-hcl="`si_tin`">`siTin`</span>, <span pulumi-lang-nodejs="`smCoe`" pulumi-lang-dotnet="`SmCoe`" pulumi-lang-go="`smCoe`" pulumi-lang-python="`sm_coe`" pulumi-lang-yaml="`smCoe`" pulumi-lang-java="`smCoe`" pulumi-lang-hcl="`sm_coe`">`smCoe`</span>, <span pulumi-lang-nodejs="`snNinea`" pulumi-lang-dotnet="`SnNinea`" pulumi-lang-go="`snNinea`" pulumi-lang-python="`sn_ninea`" pulumi-lang-yaml="`snNinea`" pulumi-lang-java="`snNinea`" pulumi-lang-hcl="`sn_ninea`">`snNinea`</span>, <span pulumi-lang-nodejs="`srFin`" pulumi-lang-dotnet="`SrFin`" pulumi-lang-go="`srFin`" pulumi-lang-python="`sr_fin`" pulumi-lang-yaml="`srFin`" pulumi-lang-java="`srFin`" pulumi-lang-hcl="`sr_fin`">`srFin`</span>, <span pulumi-lang-nodejs="`svNit`" pulumi-lang-dotnet="`SvNit`" pulumi-lang-go="`svNit`" pulumi-lang-python="`sv_nit`" pulumi-lang-yaml="`svNit`" pulumi-lang-java="`svNit`" pulumi-lang-hcl="`sv_nit`">`svNit`</span>, <span pulumi-lang-nodejs="`thVat`" pulumi-lang-dotnet="`ThVat`" pulumi-lang-go="`thVat`" pulumi-lang-python="`th_vat`" pulumi-lang-yaml="`thVat`" pulumi-lang-java="`thVat`" pulumi-lang-hcl="`th_vat`">`thVat`</span>, <span pulumi-lang-nodejs="`tjTin`" pulumi-lang-dotnet="`TjTin`" pulumi-lang-go="`tjTin`" pulumi-lang-python="`tj_tin`" pulumi-lang-yaml="`tjTin`" pulumi-lang-java="`tjTin`" pulumi-lang-hcl="`tj_tin`">`tjTin`</span>, <span pulumi-lang-nodejs="`trTin`" pulumi-lang-dotnet="`TrTin`" pulumi-lang-go="`trTin`" pulumi-lang-python="`tr_tin`" pulumi-lang-yaml="`trTin`" pulumi-lang-java="`trTin`" pulumi-lang-hcl="`tr_tin`">`trTin`</span>, <span pulumi-lang-nodejs="`ttBir`" pulumi-lang-dotnet="`TtBir`" pulumi-lang-go="`ttBir`" pulumi-lang-python="`tt_bir`" pulumi-lang-yaml="`ttBir`" pulumi-lang-java="`ttBir`" pulumi-lang-hcl="`tt_bir`">`ttBir`</span>, <span pulumi-lang-nodejs="`ttVat`" pulumi-lang-dotnet="`TtVat`" pulumi-lang-go="`ttVat`" pulumi-lang-python="`tt_vat`" pulumi-lang-yaml="`ttVat`" pulumi-lang-java="`ttVat`" pulumi-lang-hcl="`tt_vat`">`ttVat`</span>, <span pulumi-lang-nodejs="`twVat`" pulumi-lang-dotnet="`TwVat`" pulumi-lang-go="`twVat`" pulumi-lang-python="`tw_vat`" pulumi-lang-yaml="`twVat`" pulumi-lang-java="`twVat`" pulumi-lang-hcl="`tw_vat`">`twVat`</span>, <span pulumi-lang-nodejs="`tzVat`" pulumi-lang-dotnet="`TzVat`" pulumi-lang-go="`tzVat`" pulumi-lang-python="`tz_vat`" pulumi-lang-yaml="`tzVat`" pulumi-lang-java="`tzVat`" pulumi-lang-hcl="`tz_vat`">`tzVat`</span>, <span pulumi-lang-nodejs="`uaVat`" pulumi-lang-dotnet="`UaVat`" pulumi-lang-go="`uaVat`" pulumi-lang-python="`ua_vat`" pulumi-lang-yaml="`uaVat`" pulumi-lang-java="`uaVat`" pulumi-lang-hcl="`ua_vat`">`uaVat`</span>, <span pulumi-lang-nodejs="`ugTin`" pulumi-lang-dotnet="`UgTin`" pulumi-lang-go="`ugTin`" pulumi-lang-python="`ug_tin`" pulumi-lang-yaml="`ugTin`" pulumi-lang-java="`ugTin`" pulumi-lang-hcl="`ug_tin`">`ugTin`</span>, <span pulumi-lang-nodejs="`usEin`" pulumi-lang-dotnet="`UsEin`" pulumi-lang-go="`usEin`" pulumi-lang-python="`us_ein`" pulumi-lang-yaml="`usEin`" pulumi-lang-java="`usEin`" pulumi-lang-hcl="`us_ein`">`usEin`</span>, <span pulumi-lang-nodejs="`uyRuc`" pulumi-lang-dotnet="`UyRuc`" pulumi-lang-go="`uyRuc`" pulumi-lang-python="`uy_ruc`" pulumi-lang-yaml="`uyRuc`" pulumi-lang-java="`uyRuc`" pulumi-lang-hcl="`uy_ruc`">`uyRuc`</span>, <span pulumi-lang-nodejs="`uzTin`" pulumi-lang-dotnet="`UzTin`" pulumi-lang-go="`uzTin`" pulumi-lang-python="`uz_tin`" pulumi-lang-yaml="`uzTin`" pulumi-lang-java="`uzTin`" pulumi-lang-hcl="`uz_tin`">`uzTin`</span>, <span pulumi-lang-nodejs="`uzVat`" pulumi-lang-dotnet="`UzVat`" pulumi-lang-go="`uzVat`" pulumi-lang-python="`uz_vat`" pulumi-lang-yaml="`uzVat`" pulumi-lang-java="`uzVat`" pulumi-lang-hcl="`uz_vat`">`uzVat`</span>, <span pulumi-lang-nodejs="`veRif`" pulumi-lang-dotnet="`VeRif`" pulumi-lang-go="`veRif`" pulumi-lang-python="`ve_rif`" pulumi-lang-yaml="`veRif`" pulumi-lang-java="`veRif`" pulumi-lang-hcl="`ve_rif`">`veRif`</span>, <span pulumi-lang-nodejs="`vnTin`" pulumi-lang-dotnet="`VnTin`" pulumi-lang-go="`vnTin`" pulumi-lang-python="`vn_tin`" pulumi-lang-yaml="`vnTin`" pulumi-lang-java="`vnTin`" pulumi-lang-hcl="`vn_tin`">`vnTin`</span>, <span pulumi-lang-nodejs="`zaVat`" pulumi-lang-dotnet="`ZaVat`" pulumi-lang-go="`zaVat`" pulumi-lang-python="`za_vat`" pulumi-lang-yaml="`zaVat`" pulumi-lang-java="`zaVat`" pulumi-lang-hcl="`za_vat`">`zaVat`</span>, <span pulumi-lang-nodejs="`zmTin`" pulumi-lang-dotnet="`ZmTin`" pulumi-lang-go="`zmTin`" pulumi-lang-python="`zm_tin`" pulumi-lang-yaml="`zmTin`" pulumi-lang-java="`zmTin`" pulumi-lang-hcl="`zm_tin`">`zmTin`</span>, or <span pulumi-lang-nodejs="`zwTin`" pulumi-lang-dotnet="`ZwTin`" pulumi-lang-go="`zwTin`" pulumi-lang-python="`zw_tin`" pulumi-lang-yaml="`zwTin`" pulumi-lang-java="`zwTin`" pulumi-lang-hcl="`zw_tin`">`zwTin`</span>
         :param _builtins.str value: Value of the tax ID.
         """
         pulumi.set(__self__, "type", type)
@@ -11042,7 +11702,7 @@ class CustomerTaxIdData(dict):
     @pulumi.getter
     def type(self) -> _builtins.str:
         """
-        Type of the tax ID, one of <span pulumi-lang-nodejs="`adNrt`" pulumi-lang-dotnet="`AdNrt`" pulumi-lang-go="`adNrt`" pulumi-lang-python="`ad_nrt`" pulumi-lang-yaml="`adNrt`" pulumi-lang-java="`adNrt`" pulumi-lang-hcl="`ad_nrt`">`adNrt`</span>, <span pulumi-lang-nodejs="`aeTrn`" pulumi-lang-dotnet="`AeTrn`" pulumi-lang-go="`aeTrn`" pulumi-lang-python="`ae_trn`" pulumi-lang-yaml="`aeTrn`" pulumi-lang-java="`aeTrn`" pulumi-lang-hcl="`ae_trn`">`aeTrn`</span>, <span pulumi-lang-nodejs="`alTin`" pulumi-lang-dotnet="`AlTin`" pulumi-lang-go="`alTin`" pulumi-lang-python="`al_tin`" pulumi-lang-yaml="`alTin`" pulumi-lang-java="`alTin`" pulumi-lang-hcl="`al_tin`">`alTin`</span>, <span pulumi-lang-nodejs="`amTin`" pulumi-lang-dotnet="`AmTin`" pulumi-lang-go="`amTin`" pulumi-lang-python="`am_tin`" pulumi-lang-yaml="`amTin`" pulumi-lang-java="`amTin`" pulumi-lang-hcl="`am_tin`">`amTin`</span>, <span pulumi-lang-nodejs="`aoTin`" pulumi-lang-dotnet="`AoTin`" pulumi-lang-go="`aoTin`" pulumi-lang-python="`ao_tin`" pulumi-lang-yaml="`aoTin`" pulumi-lang-java="`aoTin`" pulumi-lang-hcl="`ao_tin`">`aoTin`</span>, <span pulumi-lang-nodejs="`arCuit`" pulumi-lang-dotnet="`ArCuit`" pulumi-lang-go="`arCuit`" pulumi-lang-python="`ar_cuit`" pulumi-lang-yaml="`arCuit`" pulumi-lang-java="`arCuit`" pulumi-lang-hcl="`ar_cuit`">`arCuit`</span>, <span pulumi-lang-nodejs="`auAbn`" pulumi-lang-dotnet="`AuAbn`" pulumi-lang-go="`auAbn`" pulumi-lang-python="`au_abn`" pulumi-lang-yaml="`auAbn`" pulumi-lang-java="`auAbn`" pulumi-lang-hcl="`au_abn`">`auAbn`</span>, <span pulumi-lang-nodejs="`auArn`" pulumi-lang-dotnet="`AuArn`" pulumi-lang-go="`auArn`" pulumi-lang-python="`au_arn`" pulumi-lang-yaml="`auArn`" pulumi-lang-java="`auArn`" pulumi-lang-hcl="`au_arn`">`auArn`</span>, <span pulumi-lang-nodejs="`awTin`" pulumi-lang-dotnet="`AwTin`" pulumi-lang-go="`awTin`" pulumi-lang-python="`aw_tin`" pulumi-lang-yaml="`awTin`" pulumi-lang-java="`awTin`" pulumi-lang-hcl="`aw_tin`">`awTin`</span>, <span pulumi-lang-nodejs="`azTin`" pulumi-lang-dotnet="`AzTin`" pulumi-lang-go="`azTin`" pulumi-lang-python="`az_tin`" pulumi-lang-yaml="`azTin`" pulumi-lang-java="`azTin`" pulumi-lang-hcl="`az_tin`">`azTin`</span>, <span pulumi-lang-nodejs="`baTin`" pulumi-lang-dotnet="`BaTin`" pulumi-lang-go="`baTin`" pulumi-lang-python="`ba_tin`" pulumi-lang-yaml="`baTin`" pulumi-lang-java="`baTin`" pulumi-lang-hcl="`ba_tin`">`baTin`</span>, <span pulumi-lang-nodejs="`bbTin`" pulumi-lang-dotnet="`BbTin`" pulumi-lang-go="`bbTin`" pulumi-lang-python="`bb_tin`" pulumi-lang-yaml="`bbTin`" pulumi-lang-java="`bbTin`" pulumi-lang-hcl="`bb_tin`">`bbTin`</span>, <span pulumi-lang-nodejs="`bdBin`" pulumi-lang-dotnet="`BdBin`" pulumi-lang-go="`bdBin`" pulumi-lang-python="`bd_bin`" pulumi-lang-yaml="`bdBin`" pulumi-lang-java="`bdBin`" pulumi-lang-hcl="`bd_bin`">`bdBin`</span>, <span pulumi-lang-nodejs="`bfIfu`" pulumi-lang-dotnet="`BfIfu`" pulumi-lang-go="`bfIfu`" pulumi-lang-python="`bf_ifu`" pulumi-lang-yaml="`bfIfu`" pulumi-lang-java="`bfIfu`" pulumi-lang-hcl="`bf_ifu`">`bfIfu`</span>, <span pulumi-lang-nodejs="`bgUic`" pulumi-lang-dotnet="`BgUic`" pulumi-lang-go="`bgUic`" pulumi-lang-python="`bg_uic`" pulumi-lang-yaml="`bgUic`" pulumi-lang-java="`bgUic`" pulumi-lang-hcl="`bg_uic`">`bgUic`</span>, <span pulumi-lang-nodejs="`bhVat`" pulumi-lang-dotnet="`BhVat`" pulumi-lang-go="`bhVat`" pulumi-lang-python="`bh_vat`" pulumi-lang-yaml="`bhVat`" pulumi-lang-java="`bhVat`" pulumi-lang-hcl="`bh_vat`">`bhVat`</span>, <span pulumi-lang-nodejs="`bjIfu`" pulumi-lang-dotnet="`BjIfu`" pulumi-lang-go="`bjIfu`" pulumi-lang-python="`bj_ifu`" pulumi-lang-yaml="`bjIfu`" pulumi-lang-java="`bjIfu`" pulumi-lang-hcl="`bj_ifu`">`bjIfu`</span>, <span pulumi-lang-nodejs="`boTin`" pulumi-lang-dotnet="`BoTin`" pulumi-lang-go="`boTin`" pulumi-lang-python="`bo_tin`" pulumi-lang-yaml="`boTin`" pulumi-lang-java="`boTin`" pulumi-lang-hcl="`bo_tin`">`boTin`</span>, <span pulumi-lang-nodejs="`brCnpj`" pulumi-lang-dotnet="`BrCnpj`" pulumi-lang-go="`brCnpj`" pulumi-lang-python="`br_cnpj`" pulumi-lang-yaml="`brCnpj`" pulumi-lang-java="`brCnpj`" pulumi-lang-hcl="`br_cnpj`">`brCnpj`</span>, <span pulumi-lang-nodejs="`brCpf`" pulumi-lang-dotnet="`BrCpf`" pulumi-lang-go="`brCpf`" pulumi-lang-python="`br_cpf`" pulumi-lang-yaml="`brCpf`" pulumi-lang-java="`brCpf`" pulumi-lang-hcl="`br_cpf`">`brCpf`</span>, <span pulumi-lang-nodejs="`bsTin`" pulumi-lang-dotnet="`BsTin`" pulumi-lang-go="`bsTin`" pulumi-lang-python="`bs_tin`" pulumi-lang-yaml="`bsTin`" pulumi-lang-java="`bsTin`" pulumi-lang-hcl="`bs_tin`">`bsTin`</span>, <span pulumi-lang-nodejs="`byTin`" pulumi-lang-dotnet="`ByTin`" pulumi-lang-go="`byTin`" pulumi-lang-python="`by_tin`" pulumi-lang-yaml="`byTin`" pulumi-lang-java="`byTin`" pulumi-lang-hcl="`by_tin`">`byTin`</span>, <span pulumi-lang-nodejs="`caBn`" pulumi-lang-dotnet="`CaBn`" pulumi-lang-go="`caBn`" pulumi-lang-python="`ca_bn`" pulumi-lang-yaml="`caBn`" pulumi-lang-java="`caBn`" pulumi-lang-hcl="`ca_bn`">`caBn`</span>, <span pulumi-lang-nodejs="`caGstHst`" pulumi-lang-dotnet="`CaGstHst`" pulumi-lang-go="`caGstHst`" pulumi-lang-python="`ca_gst_hst`" pulumi-lang-yaml="`caGstHst`" pulumi-lang-java="`caGstHst`" pulumi-lang-hcl="`ca_gst_hst`">`caGstHst`</span>, <span pulumi-lang-nodejs="`caPstBc`" pulumi-lang-dotnet="`CaPstBc`" pulumi-lang-go="`caPstBc`" pulumi-lang-python="`ca_pst_bc`" pulumi-lang-yaml="`caPstBc`" pulumi-lang-java="`caPstBc`" pulumi-lang-hcl="`ca_pst_bc`">`caPstBc`</span>, <span pulumi-lang-nodejs="`caPstMb`" pulumi-lang-dotnet="`CaPstMb`" pulumi-lang-go="`caPstMb`" pulumi-lang-python="`ca_pst_mb`" pulumi-lang-yaml="`caPstMb`" pulumi-lang-java="`caPstMb`" pulumi-lang-hcl="`ca_pst_mb`">`caPstMb`</span>, <span pulumi-lang-nodejs="`caPstSk`" pulumi-lang-dotnet="`CaPstSk`" pulumi-lang-go="`caPstSk`" pulumi-lang-python="`ca_pst_sk`" pulumi-lang-yaml="`caPstSk`" pulumi-lang-java="`caPstSk`" pulumi-lang-hcl="`ca_pst_sk`">`caPstSk`</span>, <span pulumi-lang-nodejs="`caQst`" pulumi-lang-dotnet="`CaQst`" pulumi-lang-go="`caQst`" pulumi-lang-python="`ca_qst`" pulumi-lang-yaml="`caQst`" pulumi-lang-java="`caQst`" pulumi-lang-hcl="`ca_qst`">`caQst`</span>, <span pulumi-lang-nodejs="`cdNif`" pulumi-lang-dotnet="`CdNif`" pulumi-lang-go="`cdNif`" pulumi-lang-python="`cd_nif`" pulumi-lang-yaml="`cdNif`" pulumi-lang-java="`cdNif`" pulumi-lang-hcl="`cd_nif`">`cdNif`</span>, <span pulumi-lang-nodejs="`chUid`" pulumi-lang-dotnet="`ChUid`" pulumi-lang-go="`chUid`" pulumi-lang-python="`ch_uid`" pulumi-lang-yaml="`chUid`" pulumi-lang-java="`chUid`" pulumi-lang-hcl="`ch_uid`">`chUid`</span>, <span pulumi-lang-nodejs="`chVat`" pulumi-lang-dotnet="`ChVat`" pulumi-lang-go="`chVat`" pulumi-lang-python="`ch_vat`" pulumi-lang-yaml="`chVat`" pulumi-lang-java="`chVat`" pulumi-lang-hcl="`ch_vat`">`chVat`</span>, <span pulumi-lang-nodejs="`clTin`" pulumi-lang-dotnet="`ClTin`" pulumi-lang-go="`clTin`" pulumi-lang-python="`cl_tin`" pulumi-lang-yaml="`clTin`" pulumi-lang-java="`clTin`" pulumi-lang-hcl="`cl_tin`">`clTin`</span>, <span pulumi-lang-nodejs="`cmNiu`" pulumi-lang-dotnet="`CmNiu`" pulumi-lang-go="`cmNiu`" pulumi-lang-python="`cm_niu`" pulumi-lang-yaml="`cmNiu`" pulumi-lang-java="`cmNiu`" pulumi-lang-hcl="`cm_niu`">`cmNiu`</span>, <span pulumi-lang-nodejs="`cnTin`" pulumi-lang-dotnet="`CnTin`" pulumi-lang-go="`cnTin`" pulumi-lang-python="`cn_tin`" pulumi-lang-yaml="`cnTin`" pulumi-lang-java="`cnTin`" pulumi-lang-hcl="`cn_tin`">`cnTin`</span>, <span pulumi-lang-nodejs="`coNit`" pulumi-lang-dotnet="`CoNit`" pulumi-lang-go="`coNit`" pulumi-lang-python="`co_nit`" pulumi-lang-yaml="`coNit`" pulumi-lang-java="`coNit`" pulumi-lang-hcl="`co_nit`">`coNit`</span>, <span pulumi-lang-nodejs="`crTin`" pulumi-lang-dotnet="`CrTin`" pulumi-lang-go="`crTin`" pulumi-lang-python="`cr_tin`" pulumi-lang-yaml="`crTin`" pulumi-lang-java="`crTin`" pulumi-lang-hcl="`cr_tin`">`crTin`</span>, <span pulumi-lang-nodejs="`cvNif`" pulumi-lang-dotnet="`CvNif`" pulumi-lang-go="`cvNif`" pulumi-lang-python="`cv_nif`" pulumi-lang-yaml="`cvNif`" pulumi-lang-java="`cvNif`" pulumi-lang-hcl="`cv_nif`">`cvNif`</span>, <span pulumi-lang-nodejs="`deStn`" pulumi-lang-dotnet="`DeStn`" pulumi-lang-go="`deStn`" pulumi-lang-python="`de_stn`" pulumi-lang-yaml="`deStn`" pulumi-lang-java="`deStn`" pulumi-lang-hcl="`de_stn`">`deStn`</span>, <span pulumi-lang-nodejs="`doRcn`" pulumi-lang-dotnet="`DoRcn`" pulumi-lang-go="`doRcn`" pulumi-lang-python="`do_rcn`" pulumi-lang-yaml="`doRcn`" pulumi-lang-java="`doRcn`" pulumi-lang-hcl="`do_rcn`">`doRcn`</span>, <span pulumi-lang-nodejs="`ecRuc`" pulumi-lang-dotnet="`EcRuc`" pulumi-lang-go="`ecRuc`" pulumi-lang-python="`ec_ruc`" pulumi-lang-yaml="`ecRuc`" pulumi-lang-java="`ecRuc`" pulumi-lang-hcl="`ec_ruc`">`ecRuc`</span>, <span pulumi-lang-nodejs="`egTin`" pulumi-lang-dotnet="`EgTin`" pulumi-lang-go="`egTin`" pulumi-lang-python="`eg_tin`" pulumi-lang-yaml="`egTin`" pulumi-lang-java="`egTin`" pulumi-lang-hcl="`eg_tin`">`egTin`</span>, <span pulumi-lang-nodejs="`esCif`" pulumi-lang-dotnet="`EsCif`" pulumi-lang-go="`esCif`" pulumi-lang-python="`es_cif`" pulumi-lang-yaml="`esCif`" pulumi-lang-java="`esCif`" pulumi-lang-hcl="`es_cif`">`esCif`</span>, <span pulumi-lang-nodejs="`etTin`" pulumi-lang-dotnet="`EtTin`" pulumi-lang-go="`etTin`" pulumi-lang-python="`et_tin`" pulumi-lang-yaml="`etTin`" pulumi-lang-java="`etTin`" pulumi-lang-hcl="`et_tin`">`etTin`</span>, <span pulumi-lang-nodejs="`euOssVat`" pulumi-lang-dotnet="`EuOssVat`" pulumi-lang-go="`euOssVat`" pulumi-lang-python="`eu_oss_vat`" pulumi-lang-yaml="`euOssVat`" pulumi-lang-java="`euOssVat`" pulumi-lang-hcl="`eu_oss_vat`">`euOssVat`</span>, <span pulumi-lang-nodejs="`euVat`" pulumi-lang-dotnet="`EuVat`" pulumi-lang-go="`euVat`" pulumi-lang-python="`eu_vat`" pulumi-lang-yaml="`euVat`" pulumi-lang-java="`euVat`" pulumi-lang-hcl="`eu_vat`">`euVat`</span>, <span pulumi-lang-nodejs="`foVat`" pulumi-lang-dotnet="`FoVat`" pulumi-lang-go="`foVat`" pulumi-lang-python="`fo_vat`" pulumi-lang-yaml="`foVat`" pulumi-lang-java="`foVat`" pulumi-lang-hcl="`fo_vat`">`foVat`</span>, <span pulumi-lang-nodejs="`gbVat`" pulumi-lang-dotnet="`GbVat`" pulumi-lang-go="`gbVat`" pulumi-lang-python="`gb_vat`" pulumi-lang-yaml="`gbVat`" pulumi-lang-java="`gbVat`" pulumi-lang-hcl="`gb_vat`">`gbVat`</span>, <span pulumi-lang-nodejs="`geVat`" pulumi-lang-dotnet="`GeVat`" pulumi-lang-go="`geVat`" pulumi-lang-python="`ge_vat`" pulumi-lang-yaml="`geVat`" pulumi-lang-java="`geVat`" pulumi-lang-hcl="`ge_vat`">`geVat`</span>, <span pulumi-lang-nodejs="`giTin`" pulumi-lang-dotnet="`GiTin`" pulumi-lang-go="`giTin`" pulumi-lang-python="`gi_tin`" pulumi-lang-yaml="`giTin`" pulumi-lang-java="`giTin`" pulumi-lang-hcl="`gi_tin`">`giTin`</span>, <span pulumi-lang-nodejs="`gnNif`" pulumi-lang-dotnet="`GnNif`" pulumi-lang-go="`gnNif`" pulumi-lang-python="`gn_nif`" pulumi-lang-yaml="`gnNif`" pulumi-lang-java="`gnNif`" pulumi-lang-hcl="`gn_nif`">`gnNif`</span>, <span pulumi-lang-nodejs="`hkBr`" pulumi-lang-dotnet="`HkBr`" pulumi-lang-go="`hkBr`" pulumi-lang-python="`hk_br`" pulumi-lang-yaml="`hkBr`" pulumi-lang-java="`hkBr`" pulumi-lang-hcl="`hk_br`">`hkBr`</span>, <span pulumi-lang-nodejs="`hrOib`" pulumi-lang-dotnet="`HrOib`" pulumi-lang-go="`hrOib`" pulumi-lang-python="`hr_oib`" pulumi-lang-yaml="`hrOib`" pulumi-lang-java="`hrOib`" pulumi-lang-hcl="`hr_oib`">`hrOib`</span>, <span pulumi-lang-nodejs="`huTin`" pulumi-lang-dotnet="`HuTin`" pulumi-lang-go="`huTin`" pulumi-lang-python="`hu_tin`" pulumi-lang-yaml="`huTin`" pulumi-lang-java="`huTin`" pulumi-lang-hcl="`hu_tin`">`huTin`</span>, <span pulumi-lang-nodejs="`idNpwp`" pulumi-lang-dotnet="`IdNpwp`" pulumi-lang-go="`idNpwp`" pulumi-lang-python="`id_npwp`" pulumi-lang-yaml="`idNpwp`" pulumi-lang-java="`idNpwp`" pulumi-lang-hcl="`id_npwp`">`idNpwp`</span>, <span pulumi-lang-nodejs="`ilVat`" pulumi-lang-dotnet="`IlVat`" pulumi-lang-go="`ilVat`" pulumi-lang-python="`il_vat`" pulumi-lang-yaml="`ilVat`" pulumi-lang-java="`ilVat`" pulumi-lang-hcl="`il_vat`">`ilVat`</span>, <span pulumi-lang-nodejs="`inGst`" pulumi-lang-dotnet="`InGst`" pulumi-lang-go="`inGst`" pulumi-lang-python="`in_gst`" pulumi-lang-yaml="`inGst`" pulumi-lang-java="`inGst`" pulumi-lang-hcl="`in_gst`">`inGst`</span>, <span pulumi-lang-nodejs="`isVat`" pulumi-lang-dotnet="`IsVat`" pulumi-lang-go="`isVat`" pulumi-lang-python="`is_vat`" pulumi-lang-yaml="`isVat`" pulumi-lang-java="`isVat`" pulumi-lang-hcl="`is_vat`">`isVat`</span>, <span pulumi-lang-nodejs="`itCf`" pulumi-lang-dotnet="`ItCf`" pulumi-lang-go="`itCf`" pulumi-lang-python="`it_cf`" pulumi-lang-yaml="`itCf`" pulumi-lang-java="`itCf`" pulumi-lang-hcl="`it_cf`">`itCf`</span>, <span pulumi-lang-nodejs="`jpCn`" pulumi-lang-dotnet="`JpCn`" pulumi-lang-go="`jpCn`" pulumi-lang-python="`jp_cn`" pulumi-lang-yaml="`jpCn`" pulumi-lang-java="`jpCn`" pulumi-lang-hcl="`jp_cn`">`jpCn`</span>, <span pulumi-lang-nodejs="`jpRn`" pulumi-lang-dotnet="`JpRn`" pulumi-lang-go="`jpRn`" pulumi-lang-python="`jp_rn`" pulumi-lang-yaml="`jpRn`" pulumi-lang-java="`jpRn`" pulumi-lang-hcl="`jp_rn`">`jpRn`</span>, <span pulumi-lang-nodejs="`jpTrn`" pulumi-lang-dotnet="`JpTrn`" pulumi-lang-go="`jpTrn`" pulumi-lang-python="`jp_trn`" pulumi-lang-yaml="`jpTrn`" pulumi-lang-java="`jpTrn`" pulumi-lang-hcl="`jp_trn`">`jpTrn`</span>, <span pulumi-lang-nodejs="`kePin`" pulumi-lang-dotnet="`KePin`" pulumi-lang-go="`kePin`" pulumi-lang-python="`ke_pin`" pulumi-lang-yaml="`kePin`" pulumi-lang-java="`kePin`" pulumi-lang-hcl="`ke_pin`">`kePin`</span>, <span pulumi-lang-nodejs="`kgTin`" pulumi-lang-dotnet="`KgTin`" pulumi-lang-go="`kgTin`" pulumi-lang-python="`kg_tin`" pulumi-lang-yaml="`kgTin`" pulumi-lang-java="`kgTin`" pulumi-lang-hcl="`kg_tin`">`kgTin`</span>, <span pulumi-lang-nodejs="`khTin`" pulumi-lang-dotnet="`KhTin`" pulumi-lang-go="`khTin`" pulumi-lang-python="`kh_tin`" pulumi-lang-yaml="`khTin`" pulumi-lang-java="`khTin`" pulumi-lang-hcl="`kh_tin`">`khTin`</span>, <span pulumi-lang-nodejs="`krBrn`" pulumi-lang-dotnet="`KrBrn`" pulumi-lang-go="`krBrn`" pulumi-lang-python="`kr_brn`" pulumi-lang-yaml="`krBrn`" pulumi-lang-java="`krBrn`" pulumi-lang-hcl="`kr_brn`">`krBrn`</span>, <span pulumi-lang-nodejs="`kzBin`" pulumi-lang-dotnet="`KzBin`" pulumi-lang-go="`kzBin`" pulumi-lang-python="`kz_bin`" pulumi-lang-yaml="`kzBin`" pulumi-lang-java="`kzBin`" pulumi-lang-hcl="`kz_bin`">`kzBin`</span>, <span pulumi-lang-nodejs="`laTin`" pulumi-lang-dotnet="`LaTin`" pulumi-lang-go="`laTin`" pulumi-lang-python="`la_tin`" pulumi-lang-yaml="`laTin`" pulumi-lang-java="`laTin`" pulumi-lang-hcl="`la_tin`">`laTin`</span>, <span pulumi-lang-nodejs="`liUid`" pulumi-lang-dotnet="`LiUid`" pulumi-lang-go="`liUid`" pulumi-lang-python="`li_uid`" pulumi-lang-yaml="`liUid`" pulumi-lang-java="`liUid`" pulumi-lang-hcl="`li_uid`">`liUid`</span>, <span pulumi-lang-nodejs="`liVat`" pulumi-lang-dotnet="`LiVat`" pulumi-lang-go="`liVat`" pulumi-lang-python="`li_vat`" pulumi-lang-yaml="`liVat`" pulumi-lang-java="`liVat`" pulumi-lang-hcl="`li_vat`">`liVat`</span>, <span pulumi-lang-nodejs="`lkVat`" pulumi-lang-dotnet="`LkVat`" pulumi-lang-go="`lkVat`" pulumi-lang-python="`lk_vat`" pulumi-lang-yaml="`lkVat`" pulumi-lang-java="`lkVat`" pulumi-lang-hcl="`lk_vat`">`lkVat`</span>, <span pulumi-lang-nodejs="`maVat`" pulumi-lang-dotnet="`MaVat`" pulumi-lang-go="`maVat`" pulumi-lang-python="`ma_vat`" pulumi-lang-yaml="`maVat`" pulumi-lang-java="`maVat`" pulumi-lang-hcl="`ma_vat`">`maVat`</span>, <span pulumi-lang-nodejs="`mdVat`" pulumi-lang-dotnet="`MdVat`" pulumi-lang-go="`mdVat`" pulumi-lang-python="`md_vat`" pulumi-lang-yaml="`mdVat`" pulumi-lang-java="`mdVat`" pulumi-lang-hcl="`md_vat`">`mdVat`</span>, <span pulumi-lang-nodejs="`mePib`" pulumi-lang-dotnet="`MePib`" pulumi-lang-go="`mePib`" pulumi-lang-python="`me_pib`" pulumi-lang-yaml="`mePib`" pulumi-lang-java="`mePib`" pulumi-lang-hcl="`me_pib`">`mePib`</span>, <span pulumi-lang-nodejs="`mkVat`" pulumi-lang-dotnet="`MkVat`" pulumi-lang-go="`mkVat`" pulumi-lang-python="`mk_vat`" pulumi-lang-yaml="`mkVat`" pulumi-lang-java="`mkVat`" pulumi-lang-hcl="`mk_vat`">`mkVat`</span>, <span pulumi-lang-nodejs="`mrNif`" pulumi-lang-dotnet="`MrNif`" pulumi-lang-go="`mrNif`" pulumi-lang-python="`mr_nif`" pulumi-lang-yaml="`mrNif`" pulumi-lang-java="`mrNif`" pulumi-lang-hcl="`mr_nif`">`mrNif`</span>, <span pulumi-lang-nodejs="`mxRfc`" pulumi-lang-dotnet="`MxRfc`" pulumi-lang-go="`mxRfc`" pulumi-lang-python="`mx_rfc`" pulumi-lang-yaml="`mxRfc`" pulumi-lang-java="`mxRfc`" pulumi-lang-hcl="`mx_rfc`">`mxRfc`</span>, <span pulumi-lang-nodejs="`myFrp`" pulumi-lang-dotnet="`MyFrp`" pulumi-lang-go="`myFrp`" pulumi-lang-python="`my_frp`" pulumi-lang-yaml="`myFrp`" pulumi-lang-java="`myFrp`" pulumi-lang-hcl="`my_frp`">`myFrp`</span>, <span pulumi-lang-nodejs="`myItn`" pulumi-lang-dotnet="`MyItn`" pulumi-lang-go="`myItn`" pulumi-lang-python="`my_itn`" pulumi-lang-yaml="`myItn`" pulumi-lang-java="`myItn`" pulumi-lang-hcl="`my_itn`">`myItn`</span>, <span pulumi-lang-nodejs="`mySst`" pulumi-lang-dotnet="`MySst`" pulumi-lang-go="`mySst`" pulumi-lang-python="`my_sst`" pulumi-lang-yaml="`mySst`" pulumi-lang-java="`mySst`" pulumi-lang-hcl="`my_sst`">`mySst`</span>, <span pulumi-lang-nodejs="`ngTin`" pulumi-lang-dotnet="`NgTin`" pulumi-lang-go="`ngTin`" pulumi-lang-python="`ng_tin`" pulumi-lang-yaml="`ngTin`" pulumi-lang-java="`ngTin`" pulumi-lang-hcl="`ng_tin`">`ngTin`</span>, <span pulumi-lang-nodejs="`noVat`" pulumi-lang-dotnet="`NoVat`" pulumi-lang-go="`noVat`" pulumi-lang-python="`no_vat`" pulumi-lang-yaml="`noVat`" pulumi-lang-java="`noVat`" pulumi-lang-hcl="`no_vat`">`noVat`</span>, <span pulumi-lang-nodejs="`noVoec`" pulumi-lang-dotnet="`NoVoec`" pulumi-lang-go="`noVoec`" pulumi-lang-python="`no_voec`" pulumi-lang-yaml="`noVoec`" pulumi-lang-java="`noVoec`" pulumi-lang-hcl="`no_voec`">`noVoec`</span>, <span pulumi-lang-nodejs="`npPan`" pulumi-lang-dotnet="`NpPan`" pulumi-lang-go="`npPan`" pulumi-lang-python="`np_pan`" pulumi-lang-yaml="`npPan`" pulumi-lang-java="`npPan`" pulumi-lang-hcl="`np_pan`">`npPan`</span>, <span pulumi-lang-nodejs="`nzGst`" pulumi-lang-dotnet="`NzGst`" pulumi-lang-go="`nzGst`" pulumi-lang-python="`nz_gst`" pulumi-lang-yaml="`nzGst`" pulumi-lang-java="`nzGst`" pulumi-lang-hcl="`nz_gst`">`nzGst`</span>, <span pulumi-lang-nodejs="`omVat`" pulumi-lang-dotnet="`OmVat`" pulumi-lang-go="`omVat`" pulumi-lang-python="`om_vat`" pulumi-lang-yaml="`omVat`" pulumi-lang-java="`omVat`" pulumi-lang-hcl="`om_vat`">`omVat`</span>, <span pulumi-lang-nodejs="`peRuc`" pulumi-lang-dotnet="`PeRuc`" pulumi-lang-go="`peRuc`" pulumi-lang-python="`pe_ruc`" pulumi-lang-yaml="`peRuc`" pulumi-lang-java="`peRuc`" pulumi-lang-hcl="`pe_ruc`">`peRuc`</span>, <span pulumi-lang-nodejs="`phTin`" pulumi-lang-dotnet="`PhTin`" pulumi-lang-go="`phTin`" pulumi-lang-python="`ph_tin`" pulumi-lang-yaml="`phTin`" pulumi-lang-java="`phTin`" pulumi-lang-hcl="`ph_tin`">`phTin`</span>, <span pulumi-lang-nodejs="`plNip`" pulumi-lang-dotnet="`PlNip`" pulumi-lang-go="`plNip`" pulumi-lang-python="`pl_nip`" pulumi-lang-yaml="`plNip`" pulumi-lang-java="`plNip`" pulumi-lang-hcl="`pl_nip`">`plNip`</span>, <span pulumi-lang-nodejs="`pyRuc`" pulumi-lang-dotnet="`PyRuc`" pulumi-lang-go="`pyRuc`" pulumi-lang-python="`py_ruc`" pulumi-lang-yaml="`pyRuc`" pulumi-lang-java="`pyRuc`" pulumi-lang-hcl="`py_ruc`">`pyRuc`</span>, <span pulumi-lang-nodejs="`roTin`" pulumi-lang-dotnet="`RoTin`" pulumi-lang-go="`roTin`" pulumi-lang-python="`ro_tin`" pulumi-lang-yaml="`roTin`" pulumi-lang-java="`roTin`" pulumi-lang-hcl="`ro_tin`">`roTin`</span>, <span pulumi-lang-nodejs="`rsPib`" pulumi-lang-dotnet="`RsPib`" pulumi-lang-go="`rsPib`" pulumi-lang-python="`rs_pib`" pulumi-lang-yaml="`rsPib`" pulumi-lang-java="`rsPib`" pulumi-lang-hcl="`rs_pib`">`rsPib`</span>, <span pulumi-lang-nodejs="`ruInn`" pulumi-lang-dotnet="`RuInn`" pulumi-lang-go="`ruInn`" pulumi-lang-python="`ru_inn`" pulumi-lang-yaml="`ruInn`" pulumi-lang-java="`ruInn`" pulumi-lang-hcl="`ru_inn`">`ruInn`</span>, <span pulumi-lang-nodejs="`ruKpp`" pulumi-lang-dotnet="`RuKpp`" pulumi-lang-go="`ruKpp`" pulumi-lang-python="`ru_kpp`" pulumi-lang-yaml="`ruKpp`" pulumi-lang-java="`ruKpp`" pulumi-lang-hcl="`ru_kpp`">`ruKpp`</span>, <span pulumi-lang-nodejs="`saVat`" pulumi-lang-dotnet="`SaVat`" pulumi-lang-go="`saVat`" pulumi-lang-python="`sa_vat`" pulumi-lang-yaml="`saVat`" pulumi-lang-java="`saVat`" pulumi-lang-hcl="`sa_vat`">`saVat`</span>, <span pulumi-lang-nodejs="`sgGst`" pulumi-lang-dotnet="`SgGst`" pulumi-lang-go="`sgGst`" pulumi-lang-python="`sg_gst`" pulumi-lang-yaml="`sgGst`" pulumi-lang-java="`sgGst`" pulumi-lang-hcl="`sg_gst`">`sgGst`</span>, <span pulumi-lang-nodejs="`sgUen`" pulumi-lang-dotnet="`SgUen`" pulumi-lang-go="`sgUen`" pulumi-lang-python="`sg_uen`" pulumi-lang-yaml="`sgUen`" pulumi-lang-java="`sgUen`" pulumi-lang-hcl="`sg_uen`">`sgUen`</span>, <span pulumi-lang-nodejs="`siTin`" pulumi-lang-dotnet="`SiTin`" pulumi-lang-go="`siTin`" pulumi-lang-python="`si_tin`" pulumi-lang-yaml="`siTin`" pulumi-lang-java="`siTin`" pulumi-lang-hcl="`si_tin`">`siTin`</span>, <span pulumi-lang-nodejs="`snNinea`" pulumi-lang-dotnet="`SnNinea`" pulumi-lang-go="`snNinea`" pulumi-lang-python="`sn_ninea`" pulumi-lang-yaml="`snNinea`" pulumi-lang-java="`snNinea`" pulumi-lang-hcl="`sn_ninea`">`snNinea`</span>, <span pulumi-lang-nodejs="`srFin`" pulumi-lang-dotnet="`SrFin`" pulumi-lang-go="`srFin`" pulumi-lang-python="`sr_fin`" pulumi-lang-yaml="`srFin`" pulumi-lang-java="`srFin`" pulumi-lang-hcl="`sr_fin`">`srFin`</span>, <span pulumi-lang-nodejs="`svNit`" pulumi-lang-dotnet="`SvNit`" pulumi-lang-go="`svNit`" pulumi-lang-python="`sv_nit`" pulumi-lang-yaml="`svNit`" pulumi-lang-java="`svNit`" pulumi-lang-hcl="`sv_nit`">`svNit`</span>, <span pulumi-lang-nodejs="`thVat`" pulumi-lang-dotnet="`ThVat`" pulumi-lang-go="`thVat`" pulumi-lang-python="`th_vat`" pulumi-lang-yaml="`thVat`" pulumi-lang-java="`thVat`" pulumi-lang-hcl="`th_vat`">`thVat`</span>, <span pulumi-lang-nodejs="`tjTin`" pulumi-lang-dotnet="`TjTin`" pulumi-lang-go="`tjTin`" pulumi-lang-python="`tj_tin`" pulumi-lang-yaml="`tjTin`" pulumi-lang-java="`tjTin`" pulumi-lang-hcl="`tj_tin`">`tjTin`</span>, <span pulumi-lang-nodejs="`trTin`" pulumi-lang-dotnet="`TrTin`" pulumi-lang-go="`trTin`" pulumi-lang-python="`tr_tin`" pulumi-lang-yaml="`trTin`" pulumi-lang-java="`trTin`" pulumi-lang-hcl="`tr_tin`">`trTin`</span>, <span pulumi-lang-nodejs="`twVat`" pulumi-lang-dotnet="`TwVat`" pulumi-lang-go="`twVat`" pulumi-lang-python="`tw_vat`" pulumi-lang-yaml="`twVat`" pulumi-lang-java="`twVat`" pulumi-lang-hcl="`tw_vat`">`twVat`</span>, <span pulumi-lang-nodejs="`tzVat`" pulumi-lang-dotnet="`TzVat`" pulumi-lang-go="`tzVat`" pulumi-lang-python="`tz_vat`" pulumi-lang-yaml="`tzVat`" pulumi-lang-java="`tzVat`" pulumi-lang-hcl="`tz_vat`">`tzVat`</span>, <span pulumi-lang-nodejs="`uaVat`" pulumi-lang-dotnet="`UaVat`" pulumi-lang-go="`uaVat`" pulumi-lang-python="`ua_vat`" pulumi-lang-yaml="`uaVat`" pulumi-lang-java="`uaVat`" pulumi-lang-hcl="`ua_vat`">`uaVat`</span>, <span pulumi-lang-nodejs="`ugTin`" pulumi-lang-dotnet="`UgTin`" pulumi-lang-go="`ugTin`" pulumi-lang-python="`ug_tin`" pulumi-lang-yaml="`ugTin`" pulumi-lang-java="`ugTin`" pulumi-lang-hcl="`ug_tin`">`ugTin`</span>, <span pulumi-lang-nodejs="`usEin`" pulumi-lang-dotnet="`UsEin`" pulumi-lang-go="`usEin`" pulumi-lang-python="`us_ein`" pulumi-lang-yaml="`usEin`" pulumi-lang-java="`usEin`" pulumi-lang-hcl="`us_ein`">`usEin`</span>, <span pulumi-lang-nodejs="`uyRuc`" pulumi-lang-dotnet="`UyRuc`" pulumi-lang-go="`uyRuc`" pulumi-lang-python="`uy_ruc`" pulumi-lang-yaml="`uyRuc`" pulumi-lang-java="`uyRuc`" pulumi-lang-hcl="`uy_ruc`">`uyRuc`</span>, <span pulumi-lang-nodejs="`uzTin`" pulumi-lang-dotnet="`UzTin`" pulumi-lang-go="`uzTin`" pulumi-lang-python="`uz_tin`" pulumi-lang-yaml="`uzTin`" pulumi-lang-java="`uzTin`" pulumi-lang-hcl="`uz_tin`">`uzTin`</span>, <span pulumi-lang-nodejs="`uzVat`" pulumi-lang-dotnet="`UzVat`" pulumi-lang-go="`uzVat`" pulumi-lang-python="`uz_vat`" pulumi-lang-yaml="`uzVat`" pulumi-lang-java="`uzVat`" pulumi-lang-hcl="`uz_vat`">`uzVat`</span>, <span pulumi-lang-nodejs="`veRif`" pulumi-lang-dotnet="`VeRif`" pulumi-lang-go="`veRif`" pulumi-lang-python="`ve_rif`" pulumi-lang-yaml="`veRif`" pulumi-lang-java="`veRif`" pulumi-lang-hcl="`ve_rif`">`veRif`</span>, <span pulumi-lang-nodejs="`vnTin`" pulumi-lang-dotnet="`VnTin`" pulumi-lang-go="`vnTin`" pulumi-lang-python="`vn_tin`" pulumi-lang-yaml="`vnTin`" pulumi-lang-java="`vnTin`" pulumi-lang-hcl="`vn_tin`">`vnTin`</span>, <span pulumi-lang-nodejs="`zaVat`" pulumi-lang-dotnet="`ZaVat`" pulumi-lang-go="`zaVat`" pulumi-lang-python="`za_vat`" pulumi-lang-yaml="`zaVat`" pulumi-lang-java="`zaVat`" pulumi-lang-hcl="`za_vat`">`zaVat`</span>, <span pulumi-lang-nodejs="`zmTin`" pulumi-lang-dotnet="`ZmTin`" pulumi-lang-go="`zmTin`" pulumi-lang-python="`zm_tin`" pulumi-lang-yaml="`zmTin`" pulumi-lang-java="`zmTin`" pulumi-lang-hcl="`zm_tin`">`zmTin`</span>, or <span pulumi-lang-nodejs="`zwTin`" pulumi-lang-dotnet="`ZwTin`" pulumi-lang-go="`zwTin`" pulumi-lang-python="`zw_tin`" pulumi-lang-yaml="`zwTin`" pulumi-lang-java="`zwTin`" pulumi-lang-hcl="`zw_tin`">`zwTin`</span>
+        Type of the tax ID, one of <span pulumi-lang-nodejs="`adNrt`" pulumi-lang-dotnet="`AdNrt`" pulumi-lang-go="`adNrt`" pulumi-lang-python="`ad_nrt`" pulumi-lang-yaml="`adNrt`" pulumi-lang-java="`adNrt`" pulumi-lang-hcl="`ad_nrt`">`adNrt`</span>, <span pulumi-lang-nodejs="`aeTrn`" pulumi-lang-dotnet="`AeTrn`" pulumi-lang-go="`aeTrn`" pulumi-lang-python="`ae_trn`" pulumi-lang-yaml="`aeTrn`" pulumi-lang-java="`aeTrn`" pulumi-lang-hcl="`ae_trn`">`aeTrn`</span>, <span pulumi-lang-nodejs="`alTin`" pulumi-lang-dotnet="`AlTin`" pulumi-lang-go="`alTin`" pulumi-lang-python="`al_tin`" pulumi-lang-yaml="`alTin`" pulumi-lang-java="`alTin`" pulumi-lang-hcl="`al_tin`">`alTin`</span>, <span pulumi-lang-nodejs="`amTin`" pulumi-lang-dotnet="`AmTin`" pulumi-lang-go="`amTin`" pulumi-lang-python="`am_tin`" pulumi-lang-yaml="`amTin`" pulumi-lang-java="`amTin`" pulumi-lang-hcl="`am_tin`">`amTin`</span>, <span pulumi-lang-nodejs="`aoTin`" pulumi-lang-dotnet="`AoTin`" pulumi-lang-go="`aoTin`" pulumi-lang-python="`ao_tin`" pulumi-lang-yaml="`aoTin`" pulumi-lang-java="`aoTin`" pulumi-lang-hcl="`ao_tin`">`aoTin`</span>, <span pulumi-lang-nodejs="`arCuit`" pulumi-lang-dotnet="`ArCuit`" pulumi-lang-go="`arCuit`" pulumi-lang-python="`ar_cuit`" pulumi-lang-yaml="`arCuit`" pulumi-lang-java="`arCuit`" pulumi-lang-hcl="`ar_cuit`">`arCuit`</span>, <span pulumi-lang-nodejs="`auAbn`" pulumi-lang-dotnet="`AuAbn`" pulumi-lang-go="`auAbn`" pulumi-lang-python="`au_abn`" pulumi-lang-yaml="`auAbn`" pulumi-lang-java="`auAbn`" pulumi-lang-hcl="`au_abn`">`auAbn`</span>, <span pulumi-lang-nodejs="`auAcn`" pulumi-lang-dotnet="`AuAcn`" pulumi-lang-go="`auAcn`" pulumi-lang-python="`au_acn`" pulumi-lang-yaml="`auAcn`" pulumi-lang-java="`auAcn`" pulumi-lang-hcl="`au_acn`">`auAcn`</span>, <span pulumi-lang-nodejs="`auArn`" pulumi-lang-dotnet="`AuArn`" pulumi-lang-go="`auArn`" pulumi-lang-python="`au_arn`" pulumi-lang-yaml="`auArn`" pulumi-lang-java="`auArn`" pulumi-lang-hcl="`au_arn`">`auArn`</span>, <span pulumi-lang-nodejs="`auWpn`" pulumi-lang-dotnet="`AuWpn`" pulumi-lang-go="`auWpn`" pulumi-lang-python="`au_wpn`" pulumi-lang-yaml="`auWpn`" pulumi-lang-java="`auWpn`" pulumi-lang-hcl="`au_wpn`">`auWpn`</span>, <span pulumi-lang-nodejs="`awTin`" pulumi-lang-dotnet="`AwTin`" pulumi-lang-go="`awTin`" pulumi-lang-python="`aw_tin`" pulumi-lang-yaml="`awTin`" pulumi-lang-java="`awTin`" pulumi-lang-hcl="`aw_tin`">`awTin`</span>, <span pulumi-lang-nodejs="`azTin`" pulumi-lang-dotnet="`AzTin`" pulumi-lang-go="`azTin`" pulumi-lang-python="`az_tin`" pulumi-lang-yaml="`azTin`" pulumi-lang-java="`azTin`" pulumi-lang-hcl="`az_tin`">`azTin`</span>, <span pulumi-lang-nodejs="`baTin`" pulumi-lang-dotnet="`BaTin`" pulumi-lang-go="`baTin`" pulumi-lang-python="`ba_tin`" pulumi-lang-yaml="`baTin`" pulumi-lang-java="`baTin`" pulumi-lang-hcl="`ba_tin`">`baTin`</span>, <span pulumi-lang-nodejs="`bbTin`" pulumi-lang-dotnet="`BbTin`" pulumi-lang-go="`bbTin`" pulumi-lang-python="`bb_tin`" pulumi-lang-yaml="`bbTin`" pulumi-lang-java="`bbTin`" pulumi-lang-hcl="`bb_tin`">`bbTin`</span>, <span pulumi-lang-nodejs="`bdBin`" pulumi-lang-dotnet="`BdBin`" pulumi-lang-go="`bdBin`" pulumi-lang-python="`bd_bin`" pulumi-lang-yaml="`bdBin`" pulumi-lang-java="`bdBin`" pulumi-lang-hcl="`bd_bin`">`bdBin`</span>, <span pulumi-lang-nodejs="`bfIfu`" pulumi-lang-dotnet="`BfIfu`" pulumi-lang-go="`bfIfu`" pulumi-lang-python="`bf_ifu`" pulumi-lang-yaml="`bfIfu`" pulumi-lang-java="`bfIfu`" pulumi-lang-hcl="`bf_ifu`">`bfIfu`</span>, <span pulumi-lang-nodejs="`bgUic`" pulumi-lang-dotnet="`BgUic`" pulumi-lang-go="`bgUic`" pulumi-lang-python="`bg_uic`" pulumi-lang-yaml="`bgUic`" pulumi-lang-java="`bgUic`" pulumi-lang-hcl="`bg_uic`">`bgUic`</span>, <span pulumi-lang-nodejs="`bhVat`" pulumi-lang-dotnet="`BhVat`" pulumi-lang-go="`bhVat`" pulumi-lang-python="`bh_vat`" pulumi-lang-yaml="`bhVat`" pulumi-lang-java="`bhVat`" pulumi-lang-hcl="`bh_vat`">`bhVat`</span>, <span pulumi-lang-nodejs="`bjIfu`" pulumi-lang-dotnet="`BjIfu`" pulumi-lang-go="`bjIfu`" pulumi-lang-python="`bj_ifu`" pulumi-lang-yaml="`bjIfu`" pulumi-lang-java="`bjIfu`" pulumi-lang-hcl="`bj_ifu`">`bjIfu`</span>, <span pulumi-lang-nodejs="`boTin`" pulumi-lang-dotnet="`BoTin`" pulumi-lang-go="`boTin`" pulumi-lang-python="`bo_tin`" pulumi-lang-yaml="`boTin`" pulumi-lang-java="`boTin`" pulumi-lang-hcl="`bo_tin`">`boTin`</span>, <span pulumi-lang-nodejs="`brCnpj`" pulumi-lang-dotnet="`BrCnpj`" pulumi-lang-go="`brCnpj`" pulumi-lang-python="`br_cnpj`" pulumi-lang-yaml="`brCnpj`" pulumi-lang-java="`brCnpj`" pulumi-lang-hcl="`br_cnpj`">`brCnpj`</span>, <span pulumi-lang-nodejs="`brCpf`" pulumi-lang-dotnet="`BrCpf`" pulumi-lang-go="`brCpf`" pulumi-lang-python="`br_cpf`" pulumi-lang-yaml="`brCpf`" pulumi-lang-java="`brCpf`" pulumi-lang-hcl="`br_cpf`">`brCpf`</span>, <span pulumi-lang-nodejs="`bsTin`" pulumi-lang-dotnet="`BsTin`" pulumi-lang-go="`bsTin`" pulumi-lang-python="`bs_tin`" pulumi-lang-yaml="`bsTin`" pulumi-lang-java="`bsTin`" pulumi-lang-hcl="`bs_tin`">`bsTin`</span>, <span pulumi-lang-nodejs="`bwVat`" pulumi-lang-dotnet="`BwVat`" pulumi-lang-go="`bwVat`" pulumi-lang-python="`bw_vat`" pulumi-lang-yaml="`bwVat`" pulumi-lang-java="`bwVat`" pulumi-lang-hcl="`bw_vat`">`bwVat`</span>, <span pulumi-lang-nodejs="`byTin`" pulumi-lang-dotnet="`ByTin`" pulumi-lang-go="`byTin`" pulumi-lang-python="`by_tin`" pulumi-lang-yaml="`byTin`" pulumi-lang-java="`byTin`" pulumi-lang-hcl="`by_tin`">`byTin`</span>, <span pulumi-lang-nodejs="`caBn`" pulumi-lang-dotnet="`CaBn`" pulumi-lang-go="`caBn`" pulumi-lang-python="`ca_bn`" pulumi-lang-yaml="`caBn`" pulumi-lang-java="`caBn`" pulumi-lang-hcl="`ca_bn`">`caBn`</span>, <span pulumi-lang-nodejs="`caGstHst`" pulumi-lang-dotnet="`CaGstHst`" pulumi-lang-go="`caGstHst`" pulumi-lang-python="`ca_gst_hst`" pulumi-lang-yaml="`caGstHst`" pulumi-lang-java="`caGstHst`" pulumi-lang-hcl="`ca_gst_hst`">`caGstHst`</span>, <span pulumi-lang-nodejs="`caPstBc`" pulumi-lang-dotnet="`CaPstBc`" pulumi-lang-go="`caPstBc`" pulumi-lang-python="`ca_pst_bc`" pulumi-lang-yaml="`caPstBc`" pulumi-lang-java="`caPstBc`" pulumi-lang-hcl="`ca_pst_bc`">`caPstBc`</span>, <span pulumi-lang-nodejs="`caPstMb`" pulumi-lang-dotnet="`CaPstMb`" pulumi-lang-go="`caPstMb`" pulumi-lang-python="`ca_pst_mb`" pulumi-lang-yaml="`caPstMb`" pulumi-lang-java="`caPstMb`" pulumi-lang-hcl="`ca_pst_mb`">`caPstMb`</span>, <span pulumi-lang-nodejs="`caPstSk`" pulumi-lang-dotnet="`CaPstSk`" pulumi-lang-go="`caPstSk`" pulumi-lang-python="`ca_pst_sk`" pulumi-lang-yaml="`caPstSk`" pulumi-lang-java="`caPstSk`" pulumi-lang-hcl="`ca_pst_sk`">`caPstSk`</span>, <span pulumi-lang-nodejs="`caQst`" pulumi-lang-dotnet="`CaQst`" pulumi-lang-go="`caQst`" pulumi-lang-python="`ca_qst`" pulumi-lang-yaml="`caQst`" pulumi-lang-java="`caQst`" pulumi-lang-hcl="`ca_qst`">`caQst`</span>, <span pulumi-lang-nodejs="`cdNif`" pulumi-lang-dotnet="`CdNif`" pulumi-lang-go="`cdNif`" pulumi-lang-python="`cd_nif`" pulumi-lang-yaml="`cdNif`" pulumi-lang-java="`cdNif`" pulumi-lang-hcl="`cd_nif`">`cdNif`</span>, <span pulumi-lang-nodejs="`chUid`" pulumi-lang-dotnet="`ChUid`" pulumi-lang-go="`chUid`" pulumi-lang-python="`ch_uid`" pulumi-lang-yaml="`chUid`" pulumi-lang-java="`chUid`" pulumi-lang-hcl="`ch_uid`">`chUid`</span>, <span pulumi-lang-nodejs="`chVat`" pulumi-lang-dotnet="`ChVat`" pulumi-lang-go="`chVat`" pulumi-lang-python="`ch_vat`" pulumi-lang-yaml="`chVat`" pulumi-lang-java="`chVat`" pulumi-lang-hcl="`ch_vat`">`chVat`</span>, <span pulumi-lang-nodejs="`ciVat`" pulumi-lang-dotnet="`CiVat`" pulumi-lang-go="`ciVat`" pulumi-lang-python="`ci_vat`" pulumi-lang-yaml="`ciVat`" pulumi-lang-java="`ciVat`" pulumi-lang-hcl="`ci_vat`">`ciVat`</span>, <span pulumi-lang-nodejs="`clTin`" pulumi-lang-dotnet="`ClTin`" pulumi-lang-go="`clTin`" pulumi-lang-python="`cl_tin`" pulumi-lang-yaml="`clTin`" pulumi-lang-java="`clTin`" pulumi-lang-hcl="`cl_tin`">`clTin`</span>, <span pulumi-lang-nodejs="`cmNiu`" pulumi-lang-dotnet="`CmNiu`" pulumi-lang-go="`cmNiu`" pulumi-lang-python="`cm_niu`" pulumi-lang-yaml="`cmNiu`" pulumi-lang-java="`cmNiu`" pulumi-lang-hcl="`cm_niu`">`cmNiu`</span>, <span pulumi-lang-nodejs="`cnTin`" pulumi-lang-dotnet="`CnTin`" pulumi-lang-go="`cnTin`" pulumi-lang-python="`cn_tin`" pulumi-lang-yaml="`cnTin`" pulumi-lang-java="`cnTin`" pulumi-lang-hcl="`cn_tin`">`cnTin`</span>, <span pulumi-lang-nodejs="`coNit`" pulumi-lang-dotnet="`CoNit`" pulumi-lang-go="`coNit`" pulumi-lang-python="`co_nit`" pulumi-lang-yaml="`coNit`" pulumi-lang-java="`coNit`" pulumi-lang-hcl="`co_nit`">`coNit`</span>, <span pulumi-lang-nodejs="`crTin`" pulumi-lang-dotnet="`CrTin`" pulumi-lang-go="`crTin`" pulumi-lang-python="`cr_tin`" pulumi-lang-yaml="`crTin`" pulumi-lang-java="`crTin`" pulumi-lang-hcl="`cr_tin`">`crTin`</span>, <span pulumi-lang-nodejs="`cvNif`" pulumi-lang-dotnet="`CvNif`" pulumi-lang-go="`cvNif`" pulumi-lang-python="`cv_nif`" pulumi-lang-yaml="`cvNif`" pulumi-lang-java="`cvNif`" pulumi-lang-hcl="`cv_nif`">`cvNif`</span>, <span pulumi-lang-nodejs="`czDic`" pulumi-lang-dotnet="`CzDic`" pulumi-lang-go="`czDic`" pulumi-lang-python="`cz_dic`" pulumi-lang-yaml="`czDic`" pulumi-lang-java="`czDic`" pulumi-lang-hcl="`cz_dic`">`czDic`</span>, <span pulumi-lang-nodejs="`deStn`" pulumi-lang-dotnet="`DeStn`" pulumi-lang-go="`deStn`" pulumi-lang-python="`de_stn`" pulumi-lang-yaml="`deStn`" pulumi-lang-java="`deStn`" pulumi-lang-hcl="`de_stn`">`deStn`</span>, <span pulumi-lang-nodejs="`doRcn`" pulumi-lang-dotnet="`DoRcn`" pulumi-lang-go="`doRcn`" pulumi-lang-python="`do_rcn`" pulumi-lang-yaml="`doRcn`" pulumi-lang-java="`doRcn`" pulumi-lang-hcl="`do_rcn`">`doRcn`</span>, <span pulumi-lang-nodejs="`ecRuc`" pulumi-lang-dotnet="`EcRuc`" pulumi-lang-go="`ecRuc`" pulumi-lang-python="`ec_ruc`" pulumi-lang-yaml="`ecRuc`" pulumi-lang-java="`ecRuc`" pulumi-lang-hcl="`ec_ruc`">`ecRuc`</span>, <span pulumi-lang-nodejs="`egTin`" pulumi-lang-dotnet="`EgTin`" pulumi-lang-go="`egTin`" pulumi-lang-python="`eg_tin`" pulumi-lang-yaml="`egTin`" pulumi-lang-java="`egTin`" pulumi-lang-hcl="`eg_tin`">`egTin`</span>, <span pulumi-lang-nodejs="`esCif`" pulumi-lang-dotnet="`EsCif`" pulumi-lang-go="`esCif`" pulumi-lang-python="`es_cif`" pulumi-lang-yaml="`esCif`" pulumi-lang-java="`esCif`" pulumi-lang-hcl="`es_cif`">`esCif`</span>, <span pulumi-lang-nodejs="`etTin`" pulumi-lang-dotnet="`EtTin`" pulumi-lang-go="`etTin`" pulumi-lang-python="`et_tin`" pulumi-lang-yaml="`etTin`" pulumi-lang-java="`etTin`" pulumi-lang-hcl="`et_tin`">`etTin`</span>, <span pulumi-lang-nodejs="`euOssVat`" pulumi-lang-dotnet="`EuOssVat`" pulumi-lang-go="`euOssVat`" pulumi-lang-python="`eu_oss_vat`" pulumi-lang-yaml="`euOssVat`" pulumi-lang-java="`euOssVat`" pulumi-lang-hcl="`eu_oss_vat`">`euOssVat`</span>, <span pulumi-lang-nodejs="`euVat`" pulumi-lang-dotnet="`EuVat`" pulumi-lang-go="`euVat`" pulumi-lang-python="`eu_vat`" pulumi-lang-yaml="`euVat`" pulumi-lang-java="`euVat`" pulumi-lang-hcl="`eu_vat`">`euVat`</span>, <span pulumi-lang-nodejs="`foVat`" pulumi-lang-dotnet="`FoVat`" pulumi-lang-go="`foVat`" pulumi-lang-python="`fo_vat`" pulumi-lang-yaml="`foVat`" pulumi-lang-java="`foVat`" pulumi-lang-hcl="`fo_vat`">`foVat`</span>, <span pulumi-lang-nodejs="`frSiren`" pulumi-lang-dotnet="`FrSiren`" pulumi-lang-go="`frSiren`" pulumi-lang-python="`fr_siren`" pulumi-lang-yaml="`frSiren`" pulumi-lang-java="`frSiren`" pulumi-lang-hcl="`fr_siren`">`frSiren`</span>, <span pulumi-lang-nodejs="`frSiret`" pulumi-lang-dotnet="`FrSiret`" pulumi-lang-go="`frSiret`" pulumi-lang-python="`fr_siret`" pulumi-lang-yaml="`frSiret`" pulumi-lang-java="`frSiret`" pulumi-lang-hcl="`fr_siret`">`frSiret`</span>, <span pulumi-lang-nodejs="`frSpi`" pulumi-lang-dotnet="`FrSpi`" pulumi-lang-go="`frSpi`" pulumi-lang-python="`fr_spi`" pulumi-lang-yaml="`frSpi`" pulumi-lang-java="`frSpi`" pulumi-lang-hcl="`fr_spi`">`frSpi`</span>, <span pulumi-lang-nodejs="`gbVat`" pulumi-lang-dotnet="`GbVat`" pulumi-lang-go="`gbVat`" pulumi-lang-python="`gb_vat`" pulumi-lang-yaml="`gbVat`" pulumi-lang-java="`gbVat`" pulumi-lang-hcl="`gb_vat`">`gbVat`</span>, <span pulumi-lang-nodejs="`geVat`" pulumi-lang-dotnet="`GeVat`" pulumi-lang-go="`geVat`" pulumi-lang-python="`ge_vat`" pulumi-lang-yaml="`geVat`" pulumi-lang-java="`geVat`" pulumi-lang-hcl="`ge_vat`">`geVat`</span>, <span pulumi-lang-nodejs="`ghTin`" pulumi-lang-dotnet="`GhTin`" pulumi-lang-go="`ghTin`" pulumi-lang-python="`gh_tin`" pulumi-lang-yaml="`ghTin`" pulumi-lang-java="`ghTin`" pulumi-lang-hcl="`gh_tin`">`ghTin`</span>, <span pulumi-lang-nodejs="`giTin`" pulumi-lang-dotnet="`GiTin`" pulumi-lang-go="`giTin`" pulumi-lang-python="`gi_tin`" pulumi-lang-yaml="`giTin`" pulumi-lang-java="`giTin`" pulumi-lang-hcl="`gi_tin`">`giTin`</span>, <span pulumi-lang-nodejs="`gnNif`" pulumi-lang-dotnet="`GnNif`" pulumi-lang-go="`gnNif`" pulumi-lang-python="`gn_nif`" pulumi-lang-yaml="`gnNif`" pulumi-lang-java="`gnNif`" pulumi-lang-hcl="`gn_nif`">`gnNif`</span>, <span pulumi-lang-nodejs="`hkBr`" pulumi-lang-dotnet="`HkBr`" pulumi-lang-go="`hkBr`" pulumi-lang-python="`hk_br`" pulumi-lang-yaml="`hkBr`" pulumi-lang-java="`hkBr`" pulumi-lang-hcl="`hk_br`">`hkBr`</span>, <span pulumi-lang-nodejs="`hrOib`" pulumi-lang-dotnet="`HrOib`" pulumi-lang-go="`hrOib`" pulumi-lang-python="`hr_oib`" pulumi-lang-yaml="`hrOib`" pulumi-lang-java="`hrOib`" pulumi-lang-hcl="`hr_oib`">`hrOib`</span>, <span pulumi-lang-nodejs="`huTin`" pulumi-lang-dotnet="`HuTin`" pulumi-lang-go="`huTin`" pulumi-lang-python="`hu_tin`" pulumi-lang-yaml="`huTin`" pulumi-lang-java="`huTin`" pulumi-lang-hcl="`hu_tin`">`huTin`</span>, <span pulumi-lang-nodejs="`icNif`" pulumi-lang-dotnet="`IcNif`" pulumi-lang-go="`icNif`" pulumi-lang-python="`ic_nif`" pulumi-lang-yaml="`icNif`" pulumi-lang-java="`icNif`" pulumi-lang-hcl="`ic_nif`">`icNif`</span>, <span pulumi-lang-nodejs="`idNpwp`" pulumi-lang-dotnet="`IdNpwp`" pulumi-lang-go="`idNpwp`" pulumi-lang-python="`id_npwp`" pulumi-lang-yaml="`idNpwp`" pulumi-lang-java="`idNpwp`" pulumi-lang-hcl="`id_npwp`">`idNpwp`</span>, <span pulumi-lang-nodejs="`ilVat`" pulumi-lang-dotnet="`IlVat`" pulumi-lang-go="`ilVat`" pulumi-lang-python="`il_vat`" pulumi-lang-yaml="`ilVat`" pulumi-lang-java="`ilVat`" pulumi-lang-hcl="`il_vat`">`ilVat`</span>, <span pulumi-lang-nodejs="`inGst`" pulumi-lang-dotnet="`InGst`" pulumi-lang-go="`inGst`" pulumi-lang-python="`in_gst`" pulumi-lang-yaml="`inGst`" pulumi-lang-java="`inGst`" pulumi-lang-hcl="`in_gst`">`inGst`</span>, <span pulumi-lang-nodejs="`isKt`" pulumi-lang-dotnet="`IsKt`" pulumi-lang-go="`isKt`" pulumi-lang-python="`is_kt`" pulumi-lang-yaml="`isKt`" pulumi-lang-java="`isKt`" pulumi-lang-hcl="`is_kt`">`isKt`</span>, <span pulumi-lang-nodejs="`isVat`" pulumi-lang-dotnet="`IsVat`" pulumi-lang-go="`isVat`" pulumi-lang-python="`is_vat`" pulumi-lang-yaml="`isVat`" pulumi-lang-java="`isVat`" pulumi-lang-hcl="`is_vat`">`isVat`</span>, <span pulumi-lang-nodejs="`itCf`" pulumi-lang-dotnet="`ItCf`" pulumi-lang-go="`itCf`" pulumi-lang-python="`it_cf`" pulumi-lang-yaml="`itCf`" pulumi-lang-java="`itCf`" pulumi-lang-hcl="`it_cf`">`itCf`</span>, <span pulumi-lang-nodejs="`jpCn`" pulumi-lang-dotnet="`JpCn`" pulumi-lang-go="`jpCn`" pulumi-lang-python="`jp_cn`" pulumi-lang-yaml="`jpCn`" pulumi-lang-java="`jpCn`" pulumi-lang-hcl="`jp_cn`">`jpCn`</span>, <span pulumi-lang-nodejs="`jpRn`" pulumi-lang-dotnet="`JpRn`" pulumi-lang-go="`jpRn`" pulumi-lang-python="`jp_rn`" pulumi-lang-yaml="`jpRn`" pulumi-lang-java="`jpRn`" pulumi-lang-hcl="`jp_rn`">`jpRn`</span>, <span pulumi-lang-nodejs="`jpTrn`" pulumi-lang-dotnet="`JpTrn`" pulumi-lang-go="`jpTrn`" pulumi-lang-python="`jp_trn`" pulumi-lang-yaml="`jpTrn`" pulumi-lang-java="`jpTrn`" pulumi-lang-hcl="`jp_trn`">`jpTrn`</span>, <span pulumi-lang-nodejs="`kePin`" pulumi-lang-dotnet="`KePin`" pulumi-lang-go="`kePin`" pulumi-lang-python="`ke_pin`" pulumi-lang-yaml="`kePin`" pulumi-lang-java="`kePin`" pulumi-lang-hcl="`ke_pin`">`kePin`</span>, <span pulumi-lang-nodejs="`kgTin`" pulumi-lang-dotnet="`KgTin`" pulumi-lang-go="`kgTin`" pulumi-lang-python="`kg_tin`" pulumi-lang-yaml="`kgTin`" pulumi-lang-java="`kgTin`" pulumi-lang-hcl="`kg_tin`">`kgTin`</span>, <span pulumi-lang-nodejs="`khTin`" pulumi-lang-dotnet="`KhTin`" pulumi-lang-go="`khTin`" pulumi-lang-python="`kh_tin`" pulumi-lang-yaml="`khTin`" pulumi-lang-java="`khTin`" pulumi-lang-hcl="`kh_tin`">`khTin`</span>, <span pulumi-lang-nodejs="`krBrn`" pulumi-lang-dotnet="`KrBrn`" pulumi-lang-go="`krBrn`" pulumi-lang-python="`kr_brn`" pulumi-lang-yaml="`krBrn`" pulumi-lang-java="`krBrn`" pulumi-lang-hcl="`kr_brn`">`krBrn`</span>, <span pulumi-lang-nodejs="`kzBin`" pulumi-lang-dotnet="`KzBin`" pulumi-lang-go="`kzBin`" pulumi-lang-python="`kz_bin`" pulumi-lang-yaml="`kzBin`" pulumi-lang-java="`kzBin`" pulumi-lang-hcl="`kz_bin`">`kzBin`</span>, <span pulumi-lang-nodejs="`laTin`" pulumi-lang-dotnet="`LaTin`" pulumi-lang-go="`laTin`" pulumi-lang-python="`la_tin`" pulumi-lang-yaml="`laTin`" pulumi-lang-java="`laTin`" pulumi-lang-hcl="`la_tin`">`laTin`</span>, <span pulumi-lang-nodejs="`liUid`" pulumi-lang-dotnet="`LiUid`" pulumi-lang-go="`liUid`" pulumi-lang-python="`li_uid`" pulumi-lang-yaml="`liUid`" pulumi-lang-java="`liUid`" pulumi-lang-hcl="`li_uid`">`liUid`</span>, <span pulumi-lang-nodejs="`liVat`" pulumi-lang-dotnet="`LiVat`" pulumi-lang-go="`liVat`" pulumi-lang-python="`li_vat`" pulumi-lang-yaml="`liVat`" pulumi-lang-java="`liVat`" pulumi-lang-hcl="`li_vat`">`liVat`</span>, <span pulumi-lang-nodejs="`lkVat`" pulumi-lang-dotnet="`LkVat`" pulumi-lang-go="`lkVat`" pulumi-lang-python="`lk_vat`" pulumi-lang-yaml="`lkVat`" pulumi-lang-java="`lkVat`" pulumi-lang-hcl="`lk_vat`">`lkVat`</span>, <span pulumi-lang-nodejs="`maVat`" pulumi-lang-dotnet="`MaVat`" pulumi-lang-go="`maVat`" pulumi-lang-python="`ma_vat`" pulumi-lang-yaml="`maVat`" pulumi-lang-java="`maVat`" pulumi-lang-hcl="`ma_vat`">`maVat`</span>, <span pulumi-lang-nodejs="`mdCf`" pulumi-lang-dotnet="`MdCf`" pulumi-lang-go="`mdCf`" pulumi-lang-python="`md_cf`" pulumi-lang-yaml="`mdCf`" pulumi-lang-java="`mdCf`" pulumi-lang-hcl="`md_cf`">`mdCf`</span>, <span pulumi-lang-nodejs="`mdVat`" pulumi-lang-dotnet="`MdVat`" pulumi-lang-go="`mdVat`" pulumi-lang-python="`md_vat`" pulumi-lang-yaml="`mdVat`" pulumi-lang-java="`mdVat`" pulumi-lang-hcl="`md_vat`">`mdVat`</span>, <span pulumi-lang-nodejs="`mePib`" pulumi-lang-dotnet="`MePib`" pulumi-lang-go="`mePib`" pulumi-lang-python="`me_pib`" pulumi-lang-yaml="`mePib`" pulumi-lang-java="`mePib`" pulumi-lang-hcl="`me_pib`">`mePib`</span>, <span pulumi-lang-nodejs="`mkVat`" pulumi-lang-dotnet="`MkVat`" pulumi-lang-go="`mkVat`" pulumi-lang-python="`mk_vat`" pulumi-lang-yaml="`mkVat`" pulumi-lang-java="`mkVat`" pulumi-lang-hcl="`mk_vat`">`mkVat`</span>, <span pulumi-lang-nodejs="`mrNif`" pulumi-lang-dotnet="`MrNif`" pulumi-lang-go="`mrNif`" pulumi-lang-python="`mr_nif`" pulumi-lang-yaml="`mrNif`" pulumi-lang-java="`mrNif`" pulumi-lang-hcl="`mr_nif`">`mrNif`</span>, <span pulumi-lang-nodejs="`muVat`" pulumi-lang-dotnet="`MuVat`" pulumi-lang-go="`muVat`" pulumi-lang-python="`mu_vat`" pulumi-lang-yaml="`muVat`" pulumi-lang-java="`muVat`" pulumi-lang-hcl="`mu_vat`">`muVat`</span>, <span pulumi-lang-nodejs="`mxRfc`" pulumi-lang-dotnet="`MxRfc`" pulumi-lang-go="`mxRfc`" pulumi-lang-python="`mx_rfc`" pulumi-lang-yaml="`mxRfc`" pulumi-lang-java="`mxRfc`" pulumi-lang-hcl="`mx_rfc`">`mxRfc`</span>, <span pulumi-lang-nodejs="`myFrp`" pulumi-lang-dotnet="`MyFrp`" pulumi-lang-go="`myFrp`" pulumi-lang-python="`my_frp`" pulumi-lang-yaml="`myFrp`" pulumi-lang-java="`myFrp`" pulumi-lang-hcl="`my_frp`">`myFrp`</span>, <span pulumi-lang-nodejs="`myItn`" pulumi-lang-dotnet="`MyItn`" pulumi-lang-go="`myItn`" pulumi-lang-python="`my_itn`" pulumi-lang-yaml="`myItn`" pulumi-lang-java="`myItn`" pulumi-lang-hcl="`my_itn`">`myItn`</span>, <span pulumi-lang-nodejs="`mySst`" pulumi-lang-dotnet="`MySst`" pulumi-lang-go="`mySst`" pulumi-lang-python="`my_sst`" pulumi-lang-yaml="`mySst`" pulumi-lang-java="`mySst`" pulumi-lang-hcl="`my_sst`">`mySst`</span>, <span pulumi-lang-nodejs="`mzNuit`" pulumi-lang-dotnet="`MzNuit`" pulumi-lang-go="`mzNuit`" pulumi-lang-python="`mz_nuit`" pulumi-lang-yaml="`mzNuit`" pulumi-lang-java="`mzNuit`" pulumi-lang-hcl="`mz_nuit`">`mzNuit`</span>, <span pulumi-lang-nodejs="`ngTin`" pulumi-lang-dotnet="`NgTin`" pulumi-lang-go="`ngTin`" pulumi-lang-python="`ng_tin`" pulumi-lang-yaml="`ngTin`" pulumi-lang-java="`ngTin`" pulumi-lang-hcl="`ng_tin`">`ngTin`</span>, <span pulumi-lang-nodejs="`noVat`" pulumi-lang-dotnet="`NoVat`" pulumi-lang-go="`noVat`" pulumi-lang-python="`no_vat`" pulumi-lang-yaml="`noVat`" pulumi-lang-java="`noVat`" pulumi-lang-hcl="`no_vat`">`noVat`</span>, <span pulumi-lang-nodejs="`noVoec`" pulumi-lang-dotnet="`NoVoec`" pulumi-lang-go="`noVoec`" pulumi-lang-python="`no_voec`" pulumi-lang-yaml="`noVoec`" pulumi-lang-java="`noVoec`" pulumi-lang-hcl="`no_voec`">`noVoec`</span>, <span pulumi-lang-nodejs="`npPan`" pulumi-lang-dotnet="`NpPan`" pulumi-lang-go="`npPan`" pulumi-lang-python="`np_pan`" pulumi-lang-yaml="`npPan`" pulumi-lang-java="`npPan`" pulumi-lang-hcl="`np_pan`">`npPan`</span>, <span pulumi-lang-nodejs="`nzBn`" pulumi-lang-dotnet="`NzBn`" pulumi-lang-go="`nzBn`" pulumi-lang-python="`nz_bn`" pulumi-lang-yaml="`nzBn`" pulumi-lang-java="`nzBn`" pulumi-lang-hcl="`nz_bn`">`nzBn`</span>, <span pulumi-lang-nodejs="`nzGst`" pulumi-lang-dotnet="`NzGst`" pulumi-lang-go="`nzGst`" pulumi-lang-python="`nz_gst`" pulumi-lang-yaml="`nzGst`" pulumi-lang-java="`nzGst`" pulumi-lang-hcl="`nz_gst`">`nzGst`</span>, <span pulumi-lang-nodejs="`omVat`" pulumi-lang-dotnet="`OmVat`" pulumi-lang-go="`omVat`" pulumi-lang-python="`om_vat`" pulumi-lang-yaml="`omVat`" pulumi-lang-java="`omVat`" pulumi-lang-hcl="`om_vat`">`omVat`</span>, <span pulumi-lang-nodejs="`peRuc`" pulumi-lang-dotnet="`PeRuc`" pulumi-lang-go="`peRuc`" pulumi-lang-python="`pe_ruc`" pulumi-lang-yaml="`peRuc`" pulumi-lang-java="`peRuc`" pulumi-lang-hcl="`pe_ruc`">`peRuc`</span>, <span pulumi-lang-nodejs="`phTin`" pulumi-lang-dotnet="`PhTin`" pulumi-lang-go="`phTin`" pulumi-lang-python="`ph_tin`" pulumi-lang-yaml="`phTin`" pulumi-lang-java="`phTin`" pulumi-lang-hcl="`ph_tin`">`phTin`</span>, <span pulumi-lang-nodejs="`plNip`" pulumi-lang-dotnet="`PlNip`" pulumi-lang-go="`plNip`" pulumi-lang-python="`pl_nip`" pulumi-lang-yaml="`plNip`" pulumi-lang-java="`plNip`" pulumi-lang-hcl="`pl_nip`">`plNip`</span>, <span pulumi-lang-nodejs="`ptNif`" pulumi-lang-dotnet="`PtNif`" pulumi-lang-go="`ptNif`" pulumi-lang-python="`pt_nif`" pulumi-lang-yaml="`ptNif`" pulumi-lang-java="`ptNif`" pulumi-lang-hcl="`pt_nif`">`ptNif`</span>, <span pulumi-lang-nodejs="`pyRuc`" pulumi-lang-dotnet="`PyRuc`" pulumi-lang-go="`pyRuc`" pulumi-lang-python="`py_ruc`" pulumi-lang-yaml="`pyRuc`" pulumi-lang-java="`pyRuc`" pulumi-lang-hcl="`py_ruc`">`pyRuc`</span>, <span pulumi-lang-nodejs="`roTin`" pulumi-lang-dotnet="`RoTin`" pulumi-lang-go="`roTin`" pulumi-lang-python="`ro_tin`" pulumi-lang-yaml="`roTin`" pulumi-lang-java="`roTin`" pulumi-lang-hcl="`ro_tin`">`roTin`</span>, <span pulumi-lang-nodejs="`rsPib`" pulumi-lang-dotnet="`RsPib`" pulumi-lang-go="`rsPib`" pulumi-lang-python="`rs_pib`" pulumi-lang-yaml="`rsPib`" pulumi-lang-java="`rsPib`" pulumi-lang-hcl="`rs_pib`">`rsPib`</span>, <span pulumi-lang-nodejs="`ruInn`" pulumi-lang-dotnet="`RuInn`" pulumi-lang-go="`ruInn`" pulumi-lang-python="`ru_inn`" pulumi-lang-yaml="`ruInn`" pulumi-lang-java="`ruInn`" pulumi-lang-hcl="`ru_inn`">`ruInn`</span>, <span pulumi-lang-nodejs="`ruKpp`" pulumi-lang-dotnet="`RuKpp`" pulumi-lang-go="`ruKpp`" pulumi-lang-python="`ru_kpp`" pulumi-lang-yaml="`ruKpp`" pulumi-lang-java="`ruKpp`" pulumi-lang-hcl="`ru_kpp`">`ruKpp`</span>, <span pulumi-lang-nodejs="`saVat`" pulumi-lang-dotnet="`SaVat`" pulumi-lang-go="`saVat`" pulumi-lang-python="`sa_vat`" pulumi-lang-yaml="`saVat`" pulumi-lang-java="`saVat`" pulumi-lang-hcl="`sa_vat`">`saVat`</span>, <span pulumi-lang-nodejs="`sgGst`" pulumi-lang-dotnet="`SgGst`" pulumi-lang-go="`sgGst`" pulumi-lang-python="`sg_gst`" pulumi-lang-yaml="`sgGst`" pulumi-lang-java="`sgGst`" pulumi-lang-hcl="`sg_gst`">`sgGst`</span>, <span pulumi-lang-nodejs="`sgUen`" pulumi-lang-dotnet="`SgUen`" pulumi-lang-go="`sgUen`" pulumi-lang-python="`sg_uen`" pulumi-lang-yaml="`sgUen`" pulumi-lang-java="`sgUen`" pulumi-lang-hcl="`sg_uen`">`sgUen`</span>, <span pulumi-lang-nodejs="`siTin`" pulumi-lang-dotnet="`SiTin`" pulumi-lang-go="`siTin`" pulumi-lang-python="`si_tin`" pulumi-lang-yaml="`siTin`" pulumi-lang-java="`siTin`" pulumi-lang-hcl="`si_tin`">`siTin`</span>, <span pulumi-lang-nodejs="`smCoe`" pulumi-lang-dotnet="`SmCoe`" pulumi-lang-go="`smCoe`" pulumi-lang-python="`sm_coe`" pulumi-lang-yaml="`smCoe`" pulumi-lang-java="`smCoe`" pulumi-lang-hcl="`sm_coe`">`smCoe`</span>, <span pulumi-lang-nodejs="`snNinea`" pulumi-lang-dotnet="`SnNinea`" pulumi-lang-go="`snNinea`" pulumi-lang-python="`sn_ninea`" pulumi-lang-yaml="`snNinea`" pulumi-lang-java="`snNinea`" pulumi-lang-hcl="`sn_ninea`">`snNinea`</span>, <span pulumi-lang-nodejs="`srFin`" pulumi-lang-dotnet="`SrFin`" pulumi-lang-go="`srFin`" pulumi-lang-python="`sr_fin`" pulumi-lang-yaml="`srFin`" pulumi-lang-java="`srFin`" pulumi-lang-hcl="`sr_fin`">`srFin`</span>, <span pulumi-lang-nodejs="`svNit`" pulumi-lang-dotnet="`SvNit`" pulumi-lang-go="`svNit`" pulumi-lang-python="`sv_nit`" pulumi-lang-yaml="`svNit`" pulumi-lang-java="`svNit`" pulumi-lang-hcl="`sv_nit`">`svNit`</span>, <span pulumi-lang-nodejs="`thVat`" pulumi-lang-dotnet="`ThVat`" pulumi-lang-go="`thVat`" pulumi-lang-python="`th_vat`" pulumi-lang-yaml="`thVat`" pulumi-lang-java="`thVat`" pulumi-lang-hcl="`th_vat`">`thVat`</span>, <span pulumi-lang-nodejs="`tjTin`" pulumi-lang-dotnet="`TjTin`" pulumi-lang-go="`tjTin`" pulumi-lang-python="`tj_tin`" pulumi-lang-yaml="`tjTin`" pulumi-lang-java="`tjTin`" pulumi-lang-hcl="`tj_tin`">`tjTin`</span>, <span pulumi-lang-nodejs="`trTin`" pulumi-lang-dotnet="`TrTin`" pulumi-lang-go="`trTin`" pulumi-lang-python="`tr_tin`" pulumi-lang-yaml="`trTin`" pulumi-lang-java="`trTin`" pulumi-lang-hcl="`tr_tin`">`trTin`</span>, <span pulumi-lang-nodejs="`ttBir`" pulumi-lang-dotnet="`TtBir`" pulumi-lang-go="`ttBir`" pulumi-lang-python="`tt_bir`" pulumi-lang-yaml="`ttBir`" pulumi-lang-java="`ttBir`" pulumi-lang-hcl="`tt_bir`">`ttBir`</span>, <span pulumi-lang-nodejs="`ttVat`" pulumi-lang-dotnet="`TtVat`" pulumi-lang-go="`ttVat`" pulumi-lang-python="`tt_vat`" pulumi-lang-yaml="`ttVat`" pulumi-lang-java="`ttVat`" pulumi-lang-hcl="`tt_vat`">`ttVat`</span>, <span pulumi-lang-nodejs="`twVat`" pulumi-lang-dotnet="`TwVat`" pulumi-lang-go="`twVat`" pulumi-lang-python="`tw_vat`" pulumi-lang-yaml="`twVat`" pulumi-lang-java="`twVat`" pulumi-lang-hcl="`tw_vat`">`twVat`</span>, <span pulumi-lang-nodejs="`tzVat`" pulumi-lang-dotnet="`TzVat`" pulumi-lang-go="`tzVat`" pulumi-lang-python="`tz_vat`" pulumi-lang-yaml="`tzVat`" pulumi-lang-java="`tzVat`" pulumi-lang-hcl="`tz_vat`">`tzVat`</span>, <span pulumi-lang-nodejs="`uaVat`" pulumi-lang-dotnet="`UaVat`" pulumi-lang-go="`uaVat`" pulumi-lang-python="`ua_vat`" pulumi-lang-yaml="`uaVat`" pulumi-lang-java="`uaVat`" pulumi-lang-hcl="`ua_vat`">`uaVat`</span>, <span pulumi-lang-nodejs="`ugTin`" pulumi-lang-dotnet="`UgTin`" pulumi-lang-go="`ugTin`" pulumi-lang-python="`ug_tin`" pulumi-lang-yaml="`ugTin`" pulumi-lang-java="`ugTin`" pulumi-lang-hcl="`ug_tin`">`ugTin`</span>, <span pulumi-lang-nodejs="`usEin`" pulumi-lang-dotnet="`UsEin`" pulumi-lang-go="`usEin`" pulumi-lang-python="`us_ein`" pulumi-lang-yaml="`usEin`" pulumi-lang-java="`usEin`" pulumi-lang-hcl="`us_ein`">`usEin`</span>, <span pulumi-lang-nodejs="`uyRuc`" pulumi-lang-dotnet="`UyRuc`" pulumi-lang-go="`uyRuc`" pulumi-lang-python="`uy_ruc`" pulumi-lang-yaml="`uyRuc`" pulumi-lang-java="`uyRuc`" pulumi-lang-hcl="`uy_ruc`">`uyRuc`</span>, <span pulumi-lang-nodejs="`uzTin`" pulumi-lang-dotnet="`UzTin`" pulumi-lang-go="`uzTin`" pulumi-lang-python="`uz_tin`" pulumi-lang-yaml="`uzTin`" pulumi-lang-java="`uzTin`" pulumi-lang-hcl="`uz_tin`">`uzTin`</span>, <span pulumi-lang-nodejs="`uzVat`" pulumi-lang-dotnet="`UzVat`" pulumi-lang-go="`uzVat`" pulumi-lang-python="`uz_vat`" pulumi-lang-yaml="`uzVat`" pulumi-lang-java="`uzVat`" pulumi-lang-hcl="`uz_vat`">`uzVat`</span>, <span pulumi-lang-nodejs="`veRif`" pulumi-lang-dotnet="`VeRif`" pulumi-lang-go="`veRif`" pulumi-lang-python="`ve_rif`" pulumi-lang-yaml="`veRif`" pulumi-lang-java="`veRif`" pulumi-lang-hcl="`ve_rif`">`veRif`</span>, <span pulumi-lang-nodejs="`vnTin`" pulumi-lang-dotnet="`VnTin`" pulumi-lang-go="`vnTin`" pulumi-lang-python="`vn_tin`" pulumi-lang-yaml="`vnTin`" pulumi-lang-java="`vnTin`" pulumi-lang-hcl="`vn_tin`">`vnTin`</span>, <span pulumi-lang-nodejs="`zaVat`" pulumi-lang-dotnet="`ZaVat`" pulumi-lang-go="`zaVat`" pulumi-lang-python="`za_vat`" pulumi-lang-yaml="`zaVat`" pulumi-lang-java="`zaVat`" pulumi-lang-hcl="`za_vat`">`zaVat`</span>, <span pulumi-lang-nodejs="`zmTin`" pulumi-lang-dotnet="`ZmTin`" pulumi-lang-go="`zmTin`" pulumi-lang-python="`zm_tin`" pulumi-lang-yaml="`zmTin`" pulumi-lang-java="`zmTin`" pulumi-lang-hcl="`zm_tin`">`zmTin`</span>, or <span pulumi-lang-nodejs="`zwTin`" pulumi-lang-dotnet="`ZwTin`" pulumi-lang-go="`zwTin`" pulumi-lang-python="`zw_tin`" pulumi-lang-yaml="`zwTin`" pulumi-lang-java="`zwTin`" pulumi-lang-hcl="`zw_tin`">`zwTin`</span>
         """
         return pulumi.get(self, "type")
 
@@ -11631,7 +12291,7 @@ class InvoiceCustomerTaxId(dict):
                  type: Optional[_builtins.str] = None,
                  value: Optional[_builtins.str] = None):
         """
-        :param _builtins.str type: The type of the tax ID, one of <span pulumi-lang-nodejs="`adNrt`" pulumi-lang-dotnet="`AdNrt`" pulumi-lang-go="`adNrt`" pulumi-lang-python="`ad_nrt`" pulumi-lang-yaml="`adNrt`" pulumi-lang-java="`adNrt`" pulumi-lang-hcl="`ad_nrt`">`adNrt`</span>, <span pulumi-lang-nodejs="`arCuit`" pulumi-lang-dotnet="`ArCuit`" pulumi-lang-go="`arCuit`" pulumi-lang-python="`ar_cuit`" pulumi-lang-yaml="`arCuit`" pulumi-lang-java="`arCuit`" pulumi-lang-hcl="`ar_cuit`">`arCuit`</span>, <span pulumi-lang-nodejs="`euVat`" pulumi-lang-dotnet="`EuVat`" pulumi-lang-go="`euVat`" pulumi-lang-python="`eu_vat`" pulumi-lang-yaml="`euVat`" pulumi-lang-java="`euVat`" pulumi-lang-hcl="`eu_vat`">`euVat`</span>, <span pulumi-lang-nodejs="`boTin`" pulumi-lang-dotnet="`BoTin`" pulumi-lang-go="`boTin`" pulumi-lang-python="`bo_tin`" pulumi-lang-yaml="`boTin`" pulumi-lang-java="`boTin`" pulumi-lang-hcl="`bo_tin`">`boTin`</span>, <span pulumi-lang-nodejs="`brCnpj`" pulumi-lang-dotnet="`BrCnpj`" pulumi-lang-go="`brCnpj`" pulumi-lang-python="`br_cnpj`" pulumi-lang-yaml="`brCnpj`" pulumi-lang-java="`brCnpj`" pulumi-lang-hcl="`br_cnpj`">`brCnpj`</span>, <span pulumi-lang-nodejs="`brCpf`" pulumi-lang-dotnet="`BrCpf`" pulumi-lang-go="`brCpf`" pulumi-lang-python="`br_cpf`" pulumi-lang-yaml="`brCpf`" pulumi-lang-java="`brCpf`" pulumi-lang-hcl="`br_cpf`">`brCpf`</span>, <span pulumi-lang-nodejs="`cnTin`" pulumi-lang-dotnet="`CnTin`" pulumi-lang-go="`cnTin`" pulumi-lang-python="`cn_tin`" pulumi-lang-yaml="`cnTin`" pulumi-lang-java="`cnTin`" pulumi-lang-hcl="`cn_tin`">`cnTin`</span>, <span pulumi-lang-nodejs="`coNit`" pulumi-lang-dotnet="`CoNit`" pulumi-lang-go="`coNit`" pulumi-lang-python="`co_nit`" pulumi-lang-yaml="`coNit`" pulumi-lang-java="`coNit`" pulumi-lang-hcl="`co_nit`">`coNit`</span>, <span pulumi-lang-nodejs="`crTin`" pulumi-lang-dotnet="`CrTin`" pulumi-lang-go="`crTin`" pulumi-lang-python="`cr_tin`" pulumi-lang-yaml="`crTin`" pulumi-lang-java="`crTin`" pulumi-lang-hcl="`cr_tin`">`crTin`</span>, <span pulumi-lang-nodejs="`doRcn`" pulumi-lang-dotnet="`DoRcn`" pulumi-lang-go="`doRcn`" pulumi-lang-python="`do_rcn`" pulumi-lang-yaml="`doRcn`" pulumi-lang-java="`doRcn`" pulumi-lang-hcl="`do_rcn`">`doRcn`</span>, <span pulumi-lang-nodejs="`ecRuc`" pulumi-lang-dotnet="`EcRuc`" pulumi-lang-go="`ecRuc`" pulumi-lang-python="`ec_ruc`" pulumi-lang-yaml="`ecRuc`" pulumi-lang-java="`ecRuc`" pulumi-lang-hcl="`ec_ruc`">`ecRuc`</span>, <span pulumi-lang-nodejs="`euOssVat`" pulumi-lang-dotnet="`EuOssVat`" pulumi-lang-go="`euOssVat`" pulumi-lang-python="`eu_oss_vat`" pulumi-lang-yaml="`euOssVat`" pulumi-lang-java="`euOssVat`" pulumi-lang-hcl="`eu_oss_vat`">`euOssVat`</span>, <span pulumi-lang-nodejs="`hrOib`" pulumi-lang-dotnet="`HrOib`" pulumi-lang-go="`hrOib`" pulumi-lang-python="`hr_oib`" pulumi-lang-yaml="`hrOib`" pulumi-lang-java="`hrOib`" pulumi-lang-hcl="`hr_oib`">`hrOib`</span>, <span pulumi-lang-nodejs="`peRuc`" pulumi-lang-dotnet="`PeRuc`" pulumi-lang-go="`peRuc`" pulumi-lang-python="`pe_ruc`" pulumi-lang-yaml="`peRuc`" pulumi-lang-java="`peRuc`" pulumi-lang-hcl="`pe_ruc`">`peRuc`</span>, <span pulumi-lang-nodejs="`roTin`" pulumi-lang-dotnet="`RoTin`" pulumi-lang-go="`roTin`" pulumi-lang-python="`ro_tin`" pulumi-lang-yaml="`roTin`" pulumi-lang-java="`roTin`" pulumi-lang-hcl="`ro_tin`">`roTin`</span>, <span pulumi-lang-nodejs="`rsPib`" pulumi-lang-dotnet="`RsPib`" pulumi-lang-go="`rsPib`" pulumi-lang-python="`rs_pib`" pulumi-lang-yaml="`rsPib`" pulumi-lang-java="`rsPib`" pulumi-lang-hcl="`rs_pib`">`rsPib`</span>, <span pulumi-lang-nodejs="`svNit`" pulumi-lang-dotnet="`SvNit`" pulumi-lang-go="`svNit`" pulumi-lang-python="`sv_nit`" pulumi-lang-yaml="`svNit`" pulumi-lang-java="`svNit`" pulumi-lang-hcl="`sv_nit`">`svNit`</span>, <span pulumi-lang-nodejs="`uyRuc`" pulumi-lang-dotnet="`UyRuc`" pulumi-lang-go="`uyRuc`" pulumi-lang-python="`uy_ruc`" pulumi-lang-yaml="`uyRuc`" pulumi-lang-java="`uyRuc`" pulumi-lang-hcl="`uy_ruc`">`uyRuc`</span>, <span pulumi-lang-nodejs="`veRif`" pulumi-lang-dotnet="`VeRif`" pulumi-lang-go="`veRif`" pulumi-lang-python="`ve_rif`" pulumi-lang-yaml="`veRif`" pulumi-lang-java="`veRif`" pulumi-lang-hcl="`ve_rif`">`veRif`</span>, <span pulumi-lang-nodejs="`vnTin`" pulumi-lang-dotnet="`VnTin`" pulumi-lang-go="`vnTin`" pulumi-lang-python="`vn_tin`" pulumi-lang-yaml="`vnTin`" pulumi-lang-java="`vnTin`" pulumi-lang-hcl="`vn_tin`">`vnTin`</span>, <span pulumi-lang-nodejs="`gbVat`" pulumi-lang-dotnet="`GbVat`" pulumi-lang-go="`gbVat`" pulumi-lang-python="`gb_vat`" pulumi-lang-yaml="`gbVat`" pulumi-lang-java="`gbVat`" pulumi-lang-hcl="`gb_vat`">`gbVat`</span>, <span pulumi-lang-nodejs="`nzGst`" pulumi-lang-dotnet="`NzGst`" pulumi-lang-go="`nzGst`" pulumi-lang-python="`nz_gst`" pulumi-lang-yaml="`nzGst`" pulumi-lang-java="`nzGst`" pulumi-lang-hcl="`nz_gst`">`nzGst`</span>, <span pulumi-lang-nodejs="`auAbn`" pulumi-lang-dotnet="`AuAbn`" pulumi-lang-go="`auAbn`" pulumi-lang-python="`au_abn`" pulumi-lang-yaml="`auAbn`" pulumi-lang-java="`auAbn`" pulumi-lang-hcl="`au_abn`">`auAbn`</span>, <span pulumi-lang-nodejs="`auArn`" pulumi-lang-dotnet="`AuArn`" pulumi-lang-go="`auArn`" pulumi-lang-python="`au_arn`" pulumi-lang-yaml="`auArn`" pulumi-lang-java="`auArn`" pulumi-lang-hcl="`au_arn`">`auArn`</span>, <span pulumi-lang-nodejs="`inGst`" pulumi-lang-dotnet="`InGst`" pulumi-lang-go="`inGst`" pulumi-lang-python="`in_gst`" pulumi-lang-yaml="`inGst`" pulumi-lang-java="`inGst`" pulumi-lang-hcl="`in_gst`">`inGst`</span>, <span pulumi-lang-nodejs="`noVat`" pulumi-lang-dotnet="`NoVat`" pulumi-lang-go="`noVat`" pulumi-lang-python="`no_vat`" pulumi-lang-yaml="`noVat`" pulumi-lang-java="`noVat`" pulumi-lang-hcl="`no_vat`">`noVat`</span>, <span pulumi-lang-nodejs="`noVoec`" pulumi-lang-dotnet="`NoVoec`" pulumi-lang-go="`noVoec`" pulumi-lang-python="`no_voec`" pulumi-lang-yaml="`noVoec`" pulumi-lang-java="`noVoec`" pulumi-lang-hcl="`no_voec`">`noVoec`</span>, <span pulumi-lang-nodejs="`zaVat`" pulumi-lang-dotnet="`ZaVat`" pulumi-lang-go="`zaVat`" pulumi-lang-python="`za_vat`" pulumi-lang-yaml="`zaVat`" pulumi-lang-java="`zaVat`" pulumi-lang-hcl="`za_vat`">`zaVat`</span>, <span pulumi-lang-nodejs="`chVat`" pulumi-lang-dotnet="`ChVat`" pulumi-lang-go="`chVat`" pulumi-lang-python="`ch_vat`" pulumi-lang-yaml="`chVat`" pulumi-lang-java="`chVat`" pulumi-lang-hcl="`ch_vat`">`chVat`</span>, <span pulumi-lang-nodejs="`mxRfc`" pulumi-lang-dotnet="`MxRfc`" pulumi-lang-go="`mxRfc`" pulumi-lang-python="`mx_rfc`" pulumi-lang-yaml="`mxRfc`" pulumi-lang-java="`mxRfc`" pulumi-lang-hcl="`mx_rfc`">`mxRfc`</span>, <span pulumi-lang-nodejs="`sgUen`" pulumi-lang-dotnet="`SgUen`" pulumi-lang-go="`sgUen`" pulumi-lang-python="`sg_uen`" pulumi-lang-yaml="`sgUen`" pulumi-lang-java="`sgUen`" pulumi-lang-hcl="`sg_uen`">`sgUen`</span>, <span pulumi-lang-nodejs="`ruInn`" pulumi-lang-dotnet="`RuInn`" pulumi-lang-go="`ruInn`" pulumi-lang-python="`ru_inn`" pulumi-lang-yaml="`ruInn`" pulumi-lang-java="`ruInn`" pulumi-lang-hcl="`ru_inn`">`ruInn`</span>, <span pulumi-lang-nodejs="`ruKpp`" pulumi-lang-dotnet="`RuKpp`" pulumi-lang-go="`ruKpp`" pulumi-lang-python="`ru_kpp`" pulumi-lang-yaml="`ruKpp`" pulumi-lang-java="`ruKpp`" pulumi-lang-hcl="`ru_kpp`">`ruKpp`</span>, <span pulumi-lang-nodejs="`caBn`" pulumi-lang-dotnet="`CaBn`" pulumi-lang-go="`caBn`" pulumi-lang-python="`ca_bn`" pulumi-lang-yaml="`caBn`" pulumi-lang-java="`caBn`" pulumi-lang-hcl="`ca_bn`">`caBn`</span>, <span pulumi-lang-nodejs="`hkBr`" pulumi-lang-dotnet="`HkBr`" pulumi-lang-go="`hkBr`" pulumi-lang-python="`hk_br`" pulumi-lang-yaml="`hkBr`" pulumi-lang-java="`hkBr`" pulumi-lang-hcl="`hk_br`">`hkBr`</span>, <span pulumi-lang-nodejs="`esCif`" pulumi-lang-dotnet="`EsCif`" pulumi-lang-go="`esCif`" pulumi-lang-python="`es_cif`" pulumi-lang-yaml="`esCif`" pulumi-lang-java="`esCif`" pulumi-lang-hcl="`es_cif`">`esCif`</span>, <span pulumi-lang-nodejs="`plNip`" pulumi-lang-dotnet="`PlNip`" pulumi-lang-go="`plNip`" pulumi-lang-python="`pl_nip`" pulumi-lang-yaml="`plNip`" pulumi-lang-java="`plNip`" pulumi-lang-hcl="`pl_nip`">`plNip`</span>, <span pulumi-lang-nodejs="`itCf`" pulumi-lang-dotnet="`ItCf`" pulumi-lang-go="`itCf`" pulumi-lang-python="`it_cf`" pulumi-lang-yaml="`itCf`" pulumi-lang-java="`itCf`" pulumi-lang-hcl="`it_cf`">`itCf`</span>, <span pulumi-lang-nodejs="`foVat`" pulumi-lang-dotnet="`FoVat`" pulumi-lang-go="`foVat`" pulumi-lang-python="`fo_vat`" pulumi-lang-yaml="`foVat`" pulumi-lang-java="`foVat`" pulumi-lang-hcl="`fo_vat`">`foVat`</span>, <span pulumi-lang-nodejs="`giTin`" pulumi-lang-dotnet="`GiTin`" pulumi-lang-go="`giTin`" pulumi-lang-python="`gi_tin`" pulumi-lang-yaml="`giTin`" pulumi-lang-java="`giTin`" pulumi-lang-hcl="`gi_tin`">`giTin`</span>, <span pulumi-lang-nodejs="`pyRuc`" pulumi-lang-dotnet="`PyRuc`" pulumi-lang-go="`pyRuc`" pulumi-lang-python="`py_ruc`" pulumi-lang-yaml="`pyRuc`" pulumi-lang-java="`pyRuc`" pulumi-lang-hcl="`py_ruc`">`pyRuc`</span>, <span pulumi-lang-nodejs="`twVat`" pulumi-lang-dotnet="`TwVat`" pulumi-lang-go="`twVat`" pulumi-lang-python="`tw_vat`" pulumi-lang-yaml="`twVat`" pulumi-lang-java="`twVat`" pulumi-lang-hcl="`tw_vat`">`twVat`</span>, <span pulumi-lang-nodejs="`thVat`" pulumi-lang-dotnet="`ThVat`" pulumi-lang-go="`thVat`" pulumi-lang-python="`th_vat`" pulumi-lang-yaml="`thVat`" pulumi-lang-java="`thVat`" pulumi-lang-hcl="`th_vat`">`thVat`</span>, <span pulumi-lang-nodejs="`jpCn`" pulumi-lang-dotnet="`JpCn`" pulumi-lang-go="`jpCn`" pulumi-lang-python="`jp_cn`" pulumi-lang-yaml="`jpCn`" pulumi-lang-java="`jpCn`" pulumi-lang-hcl="`jp_cn`">`jpCn`</span>, <span pulumi-lang-nodejs="`jpRn`" pulumi-lang-dotnet="`JpRn`" pulumi-lang-go="`jpRn`" pulumi-lang-python="`jp_rn`" pulumi-lang-yaml="`jpRn`" pulumi-lang-java="`jpRn`" pulumi-lang-hcl="`jp_rn`">`jpRn`</span>, <span pulumi-lang-nodejs="`jpTrn`" pulumi-lang-dotnet="`JpTrn`" pulumi-lang-go="`jpTrn`" pulumi-lang-python="`jp_trn`" pulumi-lang-yaml="`jpTrn`" pulumi-lang-java="`jpTrn`" pulumi-lang-hcl="`jp_trn`">`jpTrn`</span>, <span pulumi-lang-nodejs="`liUid`" pulumi-lang-dotnet="`LiUid`" pulumi-lang-go="`liUid`" pulumi-lang-python="`li_uid`" pulumi-lang-yaml="`liUid`" pulumi-lang-java="`liUid`" pulumi-lang-hcl="`li_uid`">`liUid`</span>, <span pulumi-lang-nodejs="`liVat`" pulumi-lang-dotnet="`LiVat`" pulumi-lang-go="`liVat`" pulumi-lang-python="`li_vat`" pulumi-lang-yaml="`liVat`" pulumi-lang-java="`liVat`" pulumi-lang-hcl="`li_vat`">`liVat`</span>, <span pulumi-lang-nodejs="`lkVat`" pulumi-lang-dotnet="`LkVat`" pulumi-lang-go="`lkVat`" pulumi-lang-python="`lk_vat`" pulumi-lang-yaml="`lkVat`" pulumi-lang-java="`lkVat`" pulumi-lang-hcl="`lk_vat`">`lkVat`</span>, <span pulumi-lang-nodejs="`myItn`" pulumi-lang-dotnet="`MyItn`" pulumi-lang-go="`myItn`" pulumi-lang-python="`my_itn`" pulumi-lang-yaml="`myItn`" pulumi-lang-java="`myItn`" pulumi-lang-hcl="`my_itn`">`myItn`</span>, <span pulumi-lang-nodejs="`usEin`" pulumi-lang-dotnet="`UsEin`" pulumi-lang-go="`usEin`" pulumi-lang-python="`us_ein`" pulumi-lang-yaml="`usEin`" pulumi-lang-java="`usEin`" pulumi-lang-hcl="`us_ein`">`usEin`</span>, <span pulumi-lang-nodejs="`krBrn`" pulumi-lang-dotnet="`KrBrn`" pulumi-lang-go="`krBrn`" pulumi-lang-python="`kr_brn`" pulumi-lang-yaml="`krBrn`" pulumi-lang-java="`krBrn`" pulumi-lang-hcl="`kr_brn`">`krBrn`</span>, <span pulumi-lang-nodejs="`caQst`" pulumi-lang-dotnet="`CaQst`" pulumi-lang-go="`caQst`" pulumi-lang-python="`ca_qst`" pulumi-lang-yaml="`caQst`" pulumi-lang-java="`caQst`" pulumi-lang-hcl="`ca_qst`">`caQst`</span>, <span pulumi-lang-nodejs="`caGstHst`" pulumi-lang-dotnet="`CaGstHst`" pulumi-lang-go="`caGstHst`" pulumi-lang-python="`ca_gst_hst`" pulumi-lang-yaml="`caGstHst`" pulumi-lang-java="`caGstHst`" pulumi-lang-hcl="`ca_gst_hst`">`caGstHst`</span>, <span pulumi-lang-nodejs="`caPstBc`" pulumi-lang-dotnet="`CaPstBc`" pulumi-lang-go="`caPstBc`" pulumi-lang-python="`ca_pst_bc`" pulumi-lang-yaml="`caPstBc`" pulumi-lang-java="`caPstBc`" pulumi-lang-hcl="`ca_pst_bc`">`caPstBc`</span>, <span pulumi-lang-nodejs="`caPstMb`" pulumi-lang-dotnet="`CaPstMb`" pulumi-lang-go="`caPstMb`" pulumi-lang-python="`ca_pst_mb`" pulumi-lang-yaml="`caPstMb`" pulumi-lang-java="`caPstMb`" pulumi-lang-hcl="`ca_pst_mb`">`caPstMb`</span>, <span pulumi-lang-nodejs="`caPstSk`" pulumi-lang-dotnet="`CaPstSk`" pulumi-lang-go="`caPstSk`" pulumi-lang-python="`ca_pst_sk`" pulumi-lang-yaml="`caPstSk`" pulumi-lang-java="`caPstSk`" pulumi-lang-hcl="`ca_pst_sk`">`caPstSk`</span>, <span pulumi-lang-nodejs="`mySst`" pulumi-lang-dotnet="`MySst`" pulumi-lang-go="`mySst`" pulumi-lang-python="`my_sst`" pulumi-lang-yaml="`mySst`" pulumi-lang-java="`mySst`" pulumi-lang-hcl="`my_sst`">`mySst`</span>, <span pulumi-lang-nodejs="`sgGst`" pulumi-lang-dotnet="`SgGst`" pulumi-lang-go="`sgGst`" pulumi-lang-python="`sg_gst`" pulumi-lang-yaml="`sgGst`" pulumi-lang-java="`sgGst`" pulumi-lang-hcl="`sg_gst`">`sgGst`</span>, <span pulumi-lang-nodejs="`aeTrn`" pulumi-lang-dotnet="`AeTrn`" pulumi-lang-go="`aeTrn`" pulumi-lang-python="`ae_trn`" pulumi-lang-yaml="`aeTrn`" pulumi-lang-java="`aeTrn`" pulumi-lang-hcl="`ae_trn`">`aeTrn`</span>, <span pulumi-lang-nodejs="`clTin`" pulumi-lang-dotnet="`ClTin`" pulumi-lang-go="`clTin`" pulumi-lang-python="`cl_tin`" pulumi-lang-yaml="`clTin`" pulumi-lang-java="`clTin`" pulumi-lang-hcl="`cl_tin`">`clTin`</span>, <span pulumi-lang-nodejs="`saVat`" pulumi-lang-dotnet="`SaVat`" pulumi-lang-go="`saVat`" pulumi-lang-python="`sa_vat`" pulumi-lang-yaml="`saVat`" pulumi-lang-java="`saVat`" pulumi-lang-hcl="`sa_vat`">`saVat`</span>, <span pulumi-lang-nodejs="`idNpwp`" pulumi-lang-dotnet="`IdNpwp`" pulumi-lang-go="`idNpwp`" pulumi-lang-python="`id_npwp`" pulumi-lang-yaml="`idNpwp`" pulumi-lang-java="`idNpwp`" pulumi-lang-hcl="`id_npwp`">`idNpwp`</span>, <span pulumi-lang-nodejs="`myFrp`" pulumi-lang-dotnet="`MyFrp`" pulumi-lang-go="`myFrp`" pulumi-lang-python="`my_frp`" pulumi-lang-yaml="`myFrp`" pulumi-lang-java="`myFrp`" pulumi-lang-hcl="`my_frp`">`myFrp`</span>, <span pulumi-lang-nodejs="`ilVat`" pulumi-lang-dotnet="`IlVat`" pulumi-lang-go="`ilVat`" pulumi-lang-python="`il_vat`" pulumi-lang-yaml="`ilVat`" pulumi-lang-java="`ilVat`" pulumi-lang-hcl="`il_vat`">`ilVat`</span>, <span pulumi-lang-nodejs="`geVat`" pulumi-lang-dotnet="`GeVat`" pulumi-lang-go="`geVat`" pulumi-lang-python="`ge_vat`" pulumi-lang-yaml="`geVat`" pulumi-lang-java="`geVat`" pulumi-lang-hcl="`ge_vat`">`geVat`</span>, <span pulumi-lang-nodejs="`uaVat`" pulumi-lang-dotnet="`UaVat`" pulumi-lang-go="`uaVat`" pulumi-lang-python="`ua_vat`" pulumi-lang-yaml="`uaVat`" pulumi-lang-java="`uaVat`" pulumi-lang-hcl="`ua_vat`">`uaVat`</span>, <span pulumi-lang-nodejs="`isVat`" pulumi-lang-dotnet="`IsVat`" pulumi-lang-go="`isVat`" pulumi-lang-python="`is_vat`" pulumi-lang-yaml="`isVat`" pulumi-lang-java="`isVat`" pulumi-lang-hcl="`is_vat`">`isVat`</span>, <span pulumi-lang-nodejs="`bgUic`" pulumi-lang-dotnet="`BgUic`" pulumi-lang-go="`bgUic`" pulumi-lang-python="`bg_uic`" pulumi-lang-yaml="`bgUic`" pulumi-lang-java="`bgUic`" pulumi-lang-hcl="`bg_uic`">`bgUic`</span>, <span pulumi-lang-nodejs="`huTin`" pulumi-lang-dotnet="`HuTin`" pulumi-lang-go="`huTin`" pulumi-lang-python="`hu_tin`" pulumi-lang-yaml="`huTin`" pulumi-lang-java="`huTin`" pulumi-lang-hcl="`hu_tin`">`huTin`</span>, <span pulumi-lang-nodejs="`siTin`" pulumi-lang-dotnet="`SiTin`" pulumi-lang-go="`siTin`" pulumi-lang-python="`si_tin`" pulumi-lang-yaml="`siTin`" pulumi-lang-java="`siTin`" pulumi-lang-hcl="`si_tin`">`siTin`</span>, <span pulumi-lang-nodejs="`kePin`" pulumi-lang-dotnet="`KePin`" pulumi-lang-go="`kePin`" pulumi-lang-python="`ke_pin`" pulumi-lang-yaml="`kePin`" pulumi-lang-java="`kePin`" pulumi-lang-hcl="`ke_pin`">`kePin`</span>, <span pulumi-lang-nodejs="`trTin`" pulumi-lang-dotnet="`TrTin`" pulumi-lang-go="`trTin`" pulumi-lang-python="`tr_tin`" pulumi-lang-yaml="`trTin`" pulumi-lang-java="`trTin`" pulumi-lang-hcl="`tr_tin`">`trTin`</span>, <span pulumi-lang-nodejs="`egTin`" pulumi-lang-dotnet="`EgTin`" pulumi-lang-go="`egTin`" pulumi-lang-python="`eg_tin`" pulumi-lang-yaml="`egTin`" pulumi-lang-java="`egTin`" pulumi-lang-hcl="`eg_tin`">`egTin`</span>, <span pulumi-lang-nodejs="`phTin`" pulumi-lang-dotnet="`PhTin`" pulumi-lang-go="`phTin`" pulumi-lang-python="`ph_tin`" pulumi-lang-yaml="`phTin`" pulumi-lang-java="`phTin`" pulumi-lang-hcl="`ph_tin`">`phTin`</span>, <span pulumi-lang-nodejs="`alTin`" pulumi-lang-dotnet="`AlTin`" pulumi-lang-go="`alTin`" pulumi-lang-python="`al_tin`" pulumi-lang-yaml="`alTin`" pulumi-lang-java="`alTin`" pulumi-lang-hcl="`al_tin`">`alTin`</span>, <span pulumi-lang-nodejs="`bhVat`" pulumi-lang-dotnet="`BhVat`" pulumi-lang-go="`bhVat`" pulumi-lang-python="`bh_vat`" pulumi-lang-yaml="`bhVat`" pulumi-lang-java="`bhVat`" pulumi-lang-hcl="`bh_vat`">`bhVat`</span>, <span pulumi-lang-nodejs="`kzBin`" pulumi-lang-dotnet="`KzBin`" pulumi-lang-go="`kzBin`" pulumi-lang-python="`kz_bin`" pulumi-lang-yaml="`kzBin`" pulumi-lang-java="`kzBin`" pulumi-lang-hcl="`kz_bin`">`kzBin`</span>, <span pulumi-lang-nodejs="`ngTin`" pulumi-lang-dotnet="`NgTin`" pulumi-lang-go="`ngTin`" pulumi-lang-python="`ng_tin`" pulumi-lang-yaml="`ngTin`" pulumi-lang-java="`ngTin`" pulumi-lang-hcl="`ng_tin`">`ngTin`</span>, <span pulumi-lang-nodejs="`omVat`" pulumi-lang-dotnet="`OmVat`" pulumi-lang-go="`omVat`" pulumi-lang-python="`om_vat`" pulumi-lang-yaml="`omVat`" pulumi-lang-java="`omVat`" pulumi-lang-hcl="`om_vat`">`omVat`</span>, <span pulumi-lang-nodejs="`deStn`" pulumi-lang-dotnet="`DeStn`" pulumi-lang-go="`deStn`" pulumi-lang-python="`de_stn`" pulumi-lang-yaml="`deStn`" pulumi-lang-java="`deStn`" pulumi-lang-hcl="`de_stn`">`deStn`</span>, <span pulumi-lang-nodejs="`chUid`" pulumi-lang-dotnet="`ChUid`" pulumi-lang-go="`chUid`" pulumi-lang-python="`ch_uid`" pulumi-lang-yaml="`chUid`" pulumi-lang-java="`chUid`" pulumi-lang-hcl="`ch_uid`">`chUid`</span>, <span pulumi-lang-nodejs="`tzVat`" pulumi-lang-dotnet="`TzVat`" pulumi-lang-go="`tzVat`" pulumi-lang-python="`tz_vat`" pulumi-lang-yaml="`tzVat`" pulumi-lang-java="`tzVat`" pulumi-lang-hcl="`tz_vat`">`tzVat`</span>, <span pulumi-lang-nodejs="`uzVat`" pulumi-lang-dotnet="`UzVat`" pulumi-lang-go="`uzVat`" pulumi-lang-python="`uz_vat`" pulumi-lang-yaml="`uzVat`" pulumi-lang-java="`uzVat`" pulumi-lang-hcl="`uz_vat`">`uzVat`</span>, <span pulumi-lang-nodejs="`uzTin`" pulumi-lang-dotnet="`UzTin`" pulumi-lang-go="`uzTin`" pulumi-lang-python="`uz_tin`" pulumi-lang-yaml="`uzTin`" pulumi-lang-java="`uzTin`" pulumi-lang-hcl="`uz_tin`">`uzTin`</span>, <span pulumi-lang-nodejs="`mdVat`" pulumi-lang-dotnet="`MdVat`" pulumi-lang-go="`mdVat`" pulumi-lang-python="`md_vat`" pulumi-lang-yaml="`mdVat`" pulumi-lang-java="`mdVat`" pulumi-lang-hcl="`md_vat`">`mdVat`</span>, <span pulumi-lang-nodejs="`maVat`" pulumi-lang-dotnet="`MaVat`" pulumi-lang-go="`maVat`" pulumi-lang-python="`ma_vat`" pulumi-lang-yaml="`maVat`" pulumi-lang-java="`maVat`" pulumi-lang-hcl="`ma_vat`">`maVat`</span>, <span pulumi-lang-nodejs="`byTin`" pulumi-lang-dotnet="`ByTin`" pulumi-lang-go="`byTin`" pulumi-lang-python="`by_tin`" pulumi-lang-yaml="`byTin`" pulumi-lang-java="`byTin`" pulumi-lang-hcl="`by_tin`">`byTin`</span>, <span pulumi-lang-nodejs="`aoTin`" pulumi-lang-dotnet="`AoTin`" pulumi-lang-go="`aoTin`" pulumi-lang-python="`ao_tin`" pulumi-lang-yaml="`aoTin`" pulumi-lang-java="`aoTin`" pulumi-lang-hcl="`ao_tin`">`aoTin`</span>, <span pulumi-lang-nodejs="`bsTin`" pulumi-lang-dotnet="`BsTin`" pulumi-lang-go="`bsTin`" pulumi-lang-python="`bs_tin`" pulumi-lang-yaml="`bsTin`" pulumi-lang-java="`bsTin`" pulumi-lang-hcl="`bs_tin`">`bsTin`</span>, <span pulumi-lang-nodejs="`bbTin`" pulumi-lang-dotnet="`BbTin`" pulumi-lang-go="`bbTin`" pulumi-lang-python="`bb_tin`" pulumi-lang-yaml="`bbTin`" pulumi-lang-java="`bbTin`" pulumi-lang-hcl="`bb_tin`">`bbTin`</span>, <span pulumi-lang-nodejs="`cdNif`" pulumi-lang-dotnet="`CdNif`" pulumi-lang-go="`cdNif`" pulumi-lang-python="`cd_nif`" pulumi-lang-yaml="`cdNif`" pulumi-lang-java="`cdNif`" pulumi-lang-hcl="`cd_nif`">`cdNif`</span>, <span pulumi-lang-nodejs="`mrNif`" pulumi-lang-dotnet="`MrNif`" pulumi-lang-go="`mrNif`" pulumi-lang-python="`mr_nif`" pulumi-lang-yaml="`mrNif`" pulumi-lang-java="`mrNif`" pulumi-lang-hcl="`mr_nif`">`mrNif`</span>, <span pulumi-lang-nodejs="`mePib`" pulumi-lang-dotnet="`MePib`" pulumi-lang-go="`mePib`" pulumi-lang-python="`me_pib`" pulumi-lang-yaml="`mePib`" pulumi-lang-java="`mePib`" pulumi-lang-hcl="`me_pib`">`mePib`</span>, <span pulumi-lang-nodejs="`zwTin`" pulumi-lang-dotnet="`ZwTin`" pulumi-lang-go="`zwTin`" pulumi-lang-python="`zw_tin`" pulumi-lang-yaml="`zwTin`" pulumi-lang-java="`zwTin`" pulumi-lang-hcl="`zw_tin`">`zwTin`</span>, <span pulumi-lang-nodejs="`baTin`" pulumi-lang-dotnet="`BaTin`" pulumi-lang-go="`baTin`" pulumi-lang-python="`ba_tin`" pulumi-lang-yaml="`baTin`" pulumi-lang-java="`baTin`" pulumi-lang-hcl="`ba_tin`">`baTin`</span>, <span pulumi-lang-nodejs="`gnNif`" pulumi-lang-dotnet="`GnNif`" pulumi-lang-go="`gnNif`" pulumi-lang-python="`gn_nif`" pulumi-lang-yaml="`gnNif`" pulumi-lang-java="`gnNif`" pulumi-lang-hcl="`gn_nif`">`gnNif`</span>, <span pulumi-lang-nodejs="`mkVat`" pulumi-lang-dotnet="`MkVat`" pulumi-lang-go="`mkVat`" pulumi-lang-python="`mk_vat`" pulumi-lang-yaml="`mkVat`" pulumi-lang-java="`mkVat`" pulumi-lang-hcl="`mk_vat`">`mkVat`</span>, <span pulumi-lang-nodejs="`srFin`" pulumi-lang-dotnet="`SrFin`" pulumi-lang-go="`srFin`" pulumi-lang-python="`sr_fin`" pulumi-lang-yaml="`srFin`" pulumi-lang-java="`srFin`" pulumi-lang-hcl="`sr_fin`">`srFin`</span>, <span pulumi-lang-nodejs="`snNinea`" pulumi-lang-dotnet="`SnNinea`" pulumi-lang-go="`snNinea`" pulumi-lang-python="`sn_ninea`" pulumi-lang-yaml="`snNinea`" pulumi-lang-java="`snNinea`" pulumi-lang-hcl="`sn_ninea`">`snNinea`</span>, <span pulumi-lang-nodejs="`amTin`" pulumi-lang-dotnet="`AmTin`" pulumi-lang-go="`amTin`" pulumi-lang-python="`am_tin`" pulumi-lang-yaml="`amTin`" pulumi-lang-java="`amTin`" pulumi-lang-hcl="`am_tin`">`amTin`</span>, <span pulumi-lang-nodejs="`npPan`" pulumi-lang-dotnet="`NpPan`" pulumi-lang-go="`npPan`" pulumi-lang-python="`np_pan`" pulumi-lang-yaml="`npPan`" pulumi-lang-java="`npPan`" pulumi-lang-hcl="`np_pan`">`npPan`</span>, <span pulumi-lang-nodejs="`tjTin`" pulumi-lang-dotnet="`TjTin`" pulumi-lang-go="`tjTin`" pulumi-lang-python="`tj_tin`" pulumi-lang-yaml="`tjTin`" pulumi-lang-java="`tjTin`" pulumi-lang-hcl="`tj_tin`">`tjTin`</span>, <span pulumi-lang-nodejs="`ugTin`" pulumi-lang-dotnet="`UgTin`" pulumi-lang-go="`ugTin`" pulumi-lang-python="`ug_tin`" pulumi-lang-yaml="`ugTin`" pulumi-lang-java="`ugTin`" pulumi-lang-hcl="`ug_tin`">`ugTin`</span>, <span pulumi-lang-nodejs="`zmTin`" pulumi-lang-dotnet="`ZmTin`" pulumi-lang-go="`zmTin`" pulumi-lang-python="`zm_tin`" pulumi-lang-yaml="`zmTin`" pulumi-lang-java="`zmTin`" pulumi-lang-hcl="`zm_tin`">`zmTin`</span>, <span pulumi-lang-nodejs="`khTin`" pulumi-lang-dotnet="`KhTin`" pulumi-lang-go="`khTin`" pulumi-lang-python="`kh_tin`" pulumi-lang-yaml="`khTin`" pulumi-lang-java="`khTin`" pulumi-lang-hcl="`kh_tin`">`khTin`</span>, <span pulumi-lang-nodejs="`awTin`" pulumi-lang-dotnet="`AwTin`" pulumi-lang-go="`awTin`" pulumi-lang-python="`aw_tin`" pulumi-lang-yaml="`awTin`" pulumi-lang-java="`awTin`" pulumi-lang-hcl="`aw_tin`">`awTin`</span>, <span pulumi-lang-nodejs="`azTin`" pulumi-lang-dotnet="`AzTin`" pulumi-lang-go="`azTin`" pulumi-lang-python="`az_tin`" pulumi-lang-yaml="`azTin`" pulumi-lang-java="`azTin`" pulumi-lang-hcl="`az_tin`">`azTin`</span>, <span pulumi-lang-nodejs="`bdBin`" pulumi-lang-dotnet="`BdBin`" pulumi-lang-go="`bdBin`" pulumi-lang-python="`bd_bin`" pulumi-lang-yaml="`bdBin`" pulumi-lang-java="`bdBin`" pulumi-lang-hcl="`bd_bin`">`bdBin`</span>, <span pulumi-lang-nodejs="`bjIfu`" pulumi-lang-dotnet="`BjIfu`" pulumi-lang-go="`bjIfu`" pulumi-lang-python="`bj_ifu`" pulumi-lang-yaml="`bjIfu`" pulumi-lang-java="`bjIfu`" pulumi-lang-hcl="`bj_ifu`">`bjIfu`</span>, <span pulumi-lang-nodejs="`etTin`" pulumi-lang-dotnet="`EtTin`" pulumi-lang-go="`etTin`" pulumi-lang-python="`et_tin`" pulumi-lang-yaml="`etTin`" pulumi-lang-java="`etTin`" pulumi-lang-hcl="`et_tin`">`etTin`</span>, <span pulumi-lang-nodejs="`kgTin`" pulumi-lang-dotnet="`KgTin`" pulumi-lang-go="`kgTin`" pulumi-lang-python="`kg_tin`" pulumi-lang-yaml="`kgTin`" pulumi-lang-java="`kgTin`" pulumi-lang-hcl="`kg_tin`">`kgTin`</span>, <span pulumi-lang-nodejs="`laTin`" pulumi-lang-dotnet="`LaTin`" pulumi-lang-go="`laTin`" pulumi-lang-python="`la_tin`" pulumi-lang-yaml="`laTin`" pulumi-lang-java="`laTin`" pulumi-lang-hcl="`la_tin`">`laTin`</span>, <span pulumi-lang-nodejs="`cmNiu`" pulumi-lang-dotnet="`CmNiu`" pulumi-lang-go="`cmNiu`" pulumi-lang-python="`cm_niu`" pulumi-lang-yaml="`cmNiu`" pulumi-lang-java="`cmNiu`" pulumi-lang-hcl="`cm_niu`">`cmNiu`</span>, <span pulumi-lang-nodejs="`cvNif`" pulumi-lang-dotnet="`CvNif`" pulumi-lang-go="`cvNif`" pulumi-lang-python="`cv_nif`" pulumi-lang-yaml="`cvNif`" pulumi-lang-java="`cvNif`" pulumi-lang-hcl="`cv_nif`">`cvNif`</span>, <span pulumi-lang-nodejs="`bfIfu`" pulumi-lang-dotnet="`BfIfu`" pulumi-lang-go="`bfIfu`" pulumi-lang-python="`bf_ifu`" pulumi-lang-yaml="`bfIfu`" pulumi-lang-java="`bfIfu`" pulumi-lang-hcl="`bf_ifu`">`bfIfu`</span>, or <span pulumi-lang-nodejs="`unknown`" pulumi-lang-dotnet="`Unknown`" pulumi-lang-go="`unknown`" pulumi-lang-python="`unknown`" pulumi-lang-yaml="`unknown`" pulumi-lang-java="`unknown`" pulumi-lang-hcl="`unknown`">`unknown`</span>
+        :param _builtins.str type: The type of the tax ID, one of <span pulumi-lang-nodejs="`adNrt`" pulumi-lang-dotnet="`AdNrt`" pulumi-lang-go="`adNrt`" pulumi-lang-python="`ad_nrt`" pulumi-lang-yaml="`adNrt`" pulumi-lang-java="`adNrt`" pulumi-lang-hcl="`ad_nrt`">`adNrt`</span>, <span pulumi-lang-nodejs="`arCuit`" pulumi-lang-dotnet="`ArCuit`" pulumi-lang-go="`arCuit`" pulumi-lang-python="`ar_cuit`" pulumi-lang-yaml="`arCuit`" pulumi-lang-java="`arCuit`" pulumi-lang-hcl="`ar_cuit`">`arCuit`</span>, <span pulumi-lang-nodejs="`euVat`" pulumi-lang-dotnet="`EuVat`" pulumi-lang-go="`euVat`" pulumi-lang-python="`eu_vat`" pulumi-lang-yaml="`euVat`" pulumi-lang-java="`euVat`" pulumi-lang-hcl="`eu_vat`">`euVat`</span>, <span pulumi-lang-nodejs="`boTin`" pulumi-lang-dotnet="`BoTin`" pulumi-lang-go="`boTin`" pulumi-lang-python="`bo_tin`" pulumi-lang-yaml="`boTin`" pulumi-lang-java="`boTin`" pulumi-lang-hcl="`bo_tin`">`boTin`</span>, <span pulumi-lang-nodejs="`brCnpj`" pulumi-lang-dotnet="`BrCnpj`" pulumi-lang-go="`brCnpj`" pulumi-lang-python="`br_cnpj`" pulumi-lang-yaml="`brCnpj`" pulumi-lang-java="`brCnpj`" pulumi-lang-hcl="`br_cnpj`">`brCnpj`</span>, <span pulumi-lang-nodejs="`brCpf`" pulumi-lang-dotnet="`BrCpf`" pulumi-lang-go="`brCpf`" pulumi-lang-python="`br_cpf`" pulumi-lang-yaml="`brCpf`" pulumi-lang-java="`brCpf`" pulumi-lang-hcl="`br_cpf`">`brCpf`</span>, <span pulumi-lang-nodejs="`cnTin`" pulumi-lang-dotnet="`CnTin`" pulumi-lang-go="`cnTin`" pulumi-lang-python="`cn_tin`" pulumi-lang-yaml="`cnTin`" pulumi-lang-java="`cnTin`" pulumi-lang-hcl="`cn_tin`">`cnTin`</span>, <span pulumi-lang-nodejs="`coNit`" pulumi-lang-dotnet="`CoNit`" pulumi-lang-go="`coNit`" pulumi-lang-python="`co_nit`" pulumi-lang-yaml="`coNit`" pulumi-lang-java="`coNit`" pulumi-lang-hcl="`co_nit`">`coNit`</span>, <span pulumi-lang-nodejs="`crTin`" pulumi-lang-dotnet="`CrTin`" pulumi-lang-go="`crTin`" pulumi-lang-python="`cr_tin`" pulumi-lang-yaml="`crTin`" pulumi-lang-java="`crTin`" pulumi-lang-hcl="`cr_tin`">`crTin`</span>, <span pulumi-lang-nodejs="`doRcn`" pulumi-lang-dotnet="`DoRcn`" pulumi-lang-go="`doRcn`" pulumi-lang-python="`do_rcn`" pulumi-lang-yaml="`doRcn`" pulumi-lang-java="`doRcn`" pulumi-lang-hcl="`do_rcn`">`doRcn`</span>, <span pulumi-lang-nodejs="`ecRuc`" pulumi-lang-dotnet="`EcRuc`" pulumi-lang-go="`ecRuc`" pulumi-lang-python="`ec_ruc`" pulumi-lang-yaml="`ecRuc`" pulumi-lang-java="`ecRuc`" pulumi-lang-hcl="`ec_ruc`">`ecRuc`</span>, <span pulumi-lang-nodejs="`euOssVat`" pulumi-lang-dotnet="`EuOssVat`" pulumi-lang-go="`euOssVat`" pulumi-lang-python="`eu_oss_vat`" pulumi-lang-yaml="`euOssVat`" pulumi-lang-java="`euOssVat`" pulumi-lang-hcl="`eu_oss_vat`">`euOssVat`</span>, <span pulumi-lang-nodejs="`hrOib`" pulumi-lang-dotnet="`HrOib`" pulumi-lang-go="`hrOib`" pulumi-lang-python="`hr_oib`" pulumi-lang-yaml="`hrOib`" pulumi-lang-java="`hrOib`" pulumi-lang-hcl="`hr_oib`">`hrOib`</span>, <span pulumi-lang-nodejs="`peRuc`" pulumi-lang-dotnet="`PeRuc`" pulumi-lang-go="`peRuc`" pulumi-lang-python="`pe_ruc`" pulumi-lang-yaml="`peRuc`" pulumi-lang-java="`peRuc`" pulumi-lang-hcl="`pe_ruc`">`peRuc`</span>, <span pulumi-lang-nodejs="`roTin`" pulumi-lang-dotnet="`RoTin`" pulumi-lang-go="`roTin`" pulumi-lang-python="`ro_tin`" pulumi-lang-yaml="`roTin`" pulumi-lang-java="`roTin`" pulumi-lang-hcl="`ro_tin`">`roTin`</span>, <span pulumi-lang-nodejs="`rsPib`" pulumi-lang-dotnet="`RsPib`" pulumi-lang-go="`rsPib`" pulumi-lang-python="`rs_pib`" pulumi-lang-yaml="`rsPib`" pulumi-lang-java="`rsPib`" pulumi-lang-hcl="`rs_pib`">`rsPib`</span>, <span pulumi-lang-nodejs="`svNit`" pulumi-lang-dotnet="`SvNit`" pulumi-lang-go="`svNit`" pulumi-lang-python="`sv_nit`" pulumi-lang-yaml="`svNit`" pulumi-lang-java="`svNit`" pulumi-lang-hcl="`sv_nit`">`svNit`</span>, <span pulumi-lang-nodejs="`uyRuc`" pulumi-lang-dotnet="`UyRuc`" pulumi-lang-go="`uyRuc`" pulumi-lang-python="`uy_ruc`" pulumi-lang-yaml="`uyRuc`" pulumi-lang-java="`uyRuc`" pulumi-lang-hcl="`uy_ruc`">`uyRuc`</span>, <span pulumi-lang-nodejs="`veRif`" pulumi-lang-dotnet="`VeRif`" pulumi-lang-go="`veRif`" pulumi-lang-python="`ve_rif`" pulumi-lang-yaml="`veRif`" pulumi-lang-java="`veRif`" pulumi-lang-hcl="`ve_rif`">`veRif`</span>, <span pulumi-lang-nodejs="`vnTin`" pulumi-lang-dotnet="`VnTin`" pulumi-lang-go="`vnTin`" pulumi-lang-python="`vn_tin`" pulumi-lang-yaml="`vnTin`" pulumi-lang-java="`vnTin`" pulumi-lang-hcl="`vn_tin`">`vnTin`</span>, <span pulumi-lang-nodejs="`gbVat`" pulumi-lang-dotnet="`GbVat`" pulumi-lang-go="`gbVat`" pulumi-lang-python="`gb_vat`" pulumi-lang-yaml="`gbVat`" pulumi-lang-java="`gbVat`" pulumi-lang-hcl="`gb_vat`">`gbVat`</span>, <span pulumi-lang-nodejs="`nzGst`" pulumi-lang-dotnet="`NzGst`" pulumi-lang-go="`nzGst`" pulumi-lang-python="`nz_gst`" pulumi-lang-yaml="`nzGst`" pulumi-lang-java="`nzGst`" pulumi-lang-hcl="`nz_gst`">`nzGst`</span>, <span pulumi-lang-nodejs="`auAbn`" pulumi-lang-dotnet="`AuAbn`" pulumi-lang-go="`auAbn`" pulumi-lang-python="`au_abn`" pulumi-lang-yaml="`auAbn`" pulumi-lang-java="`auAbn`" pulumi-lang-hcl="`au_abn`">`auAbn`</span>, <span pulumi-lang-nodejs="`auArn`" pulumi-lang-dotnet="`AuArn`" pulumi-lang-go="`auArn`" pulumi-lang-python="`au_arn`" pulumi-lang-yaml="`auArn`" pulumi-lang-java="`auArn`" pulumi-lang-hcl="`au_arn`">`auArn`</span>, <span pulumi-lang-nodejs="`inGst`" pulumi-lang-dotnet="`InGst`" pulumi-lang-go="`inGst`" pulumi-lang-python="`in_gst`" pulumi-lang-yaml="`inGst`" pulumi-lang-java="`inGst`" pulumi-lang-hcl="`in_gst`">`inGst`</span>, <span pulumi-lang-nodejs="`noVat`" pulumi-lang-dotnet="`NoVat`" pulumi-lang-go="`noVat`" pulumi-lang-python="`no_vat`" pulumi-lang-yaml="`noVat`" pulumi-lang-java="`noVat`" pulumi-lang-hcl="`no_vat`">`noVat`</span>, <span pulumi-lang-nodejs="`noVoec`" pulumi-lang-dotnet="`NoVoec`" pulumi-lang-go="`noVoec`" pulumi-lang-python="`no_voec`" pulumi-lang-yaml="`noVoec`" pulumi-lang-java="`noVoec`" pulumi-lang-hcl="`no_voec`">`noVoec`</span>, <span pulumi-lang-nodejs="`zaVat`" pulumi-lang-dotnet="`ZaVat`" pulumi-lang-go="`zaVat`" pulumi-lang-python="`za_vat`" pulumi-lang-yaml="`zaVat`" pulumi-lang-java="`zaVat`" pulumi-lang-hcl="`za_vat`">`zaVat`</span>, <span pulumi-lang-nodejs="`chVat`" pulumi-lang-dotnet="`ChVat`" pulumi-lang-go="`chVat`" pulumi-lang-python="`ch_vat`" pulumi-lang-yaml="`chVat`" pulumi-lang-java="`chVat`" pulumi-lang-hcl="`ch_vat`">`chVat`</span>, <span pulumi-lang-nodejs="`mxRfc`" pulumi-lang-dotnet="`MxRfc`" pulumi-lang-go="`mxRfc`" pulumi-lang-python="`mx_rfc`" pulumi-lang-yaml="`mxRfc`" pulumi-lang-java="`mxRfc`" pulumi-lang-hcl="`mx_rfc`">`mxRfc`</span>, <span pulumi-lang-nodejs="`sgUen`" pulumi-lang-dotnet="`SgUen`" pulumi-lang-go="`sgUen`" pulumi-lang-python="`sg_uen`" pulumi-lang-yaml="`sgUen`" pulumi-lang-java="`sgUen`" pulumi-lang-hcl="`sg_uen`">`sgUen`</span>, <span pulumi-lang-nodejs="`ruInn`" pulumi-lang-dotnet="`RuInn`" pulumi-lang-go="`ruInn`" pulumi-lang-python="`ru_inn`" pulumi-lang-yaml="`ruInn`" pulumi-lang-java="`ruInn`" pulumi-lang-hcl="`ru_inn`">`ruInn`</span>, <span pulumi-lang-nodejs="`ruKpp`" pulumi-lang-dotnet="`RuKpp`" pulumi-lang-go="`ruKpp`" pulumi-lang-python="`ru_kpp`" pulumi-lang-yaml="`ruKpp`" pulumi-lang-java="`ruKpp`" pulumi-lang-hcl="`ru_kpp`">`ruKpp`</span>, <span pulumi-lang-nodejs="`caBn`" pulumi-lang-dotnet="`CaBn`" pulumi-lang-go="`caBn`" pulumi-lang-python="`ca_bn`" pulumi-lang-yaml="`caBn`" pulumi-lang-java="`caBn`" pulumi-lang-hcl="`ca_bn`">`caBn`</span>, <span pulumi-lang-nodejs="`hkBr`" pulumi-lang-dotnet="`HkBr`" pulumi-lang-go="`hkBr`" pulumi-lang-python="`hk_br`" pulumi-lang-yaml="`hkBr`" pulumi-lang-java="`hkBr`" pulumi-lang-hcl="`hk_br`">`hkBr`</span>, <span pulumi-lang-nodejs="`esCif`" pulumi-lang-dotnet="`EsCif`" pulumi-lang-go="`esCif`" pulumi-lang-python="`es_cif`" pulumi-lang-yaml="`esCif`" pulumi-lang-java="`esCif`" pulumi-lang-hcl="`es_cif`">`esCif`</span>, <span pulumi-lang-nodejs="`plNip`" pulumi-lang-dotnet="`PlNip`" pulumi-lang-go="`plNip`" pulumi-lang-python="`pl_nip`" pulumi-lang-yaml="`plNip`" pulumi-lang-java="`plNip`" pulumi-lang-hcl="`pl_nip`">`plNip`</span>, <span pulumi-lang-nodejs="`itCf`" pulumi-lang-dotnet="`ItCf`" pulumi-lang-go="`itCf`" pulumi-lang-python="`it_cf`" pulumi-lang-yaml="`itCf`" pulumi-lang-java="`itCf`" pulumi-lang-hcl="`it_cf`">`itCf`</span>, <span pulumi-lang-nodejs="`foVat`" pulumi-lang-dotnet="`FoVat`" pulumi-lang-go="`foVat`" pulumi-lang-python="`fo_vat`" pulumi-lang-yaml="`foVat`" pulumi-lang-java="`foVat`" pulumi-lang-hcl="`fo_vat`">`foVat`</span>, <span pulumi-lang-nodejs="`giTin`" pulumi-lang-dotnet="`GiTin`" pulumi-lang-go="`giTin`" pulumi-lang-python="`gi_tin`" pulumi-lang-yaml="`giTin`" pulumi-lang-java="`giTin`" pulumi-lang-hcl="`gi_tin`">`giTin`</span>, <span pulumi-lang-nodejs="`pyRuc`" pulumi-lang-dotnet="`PyRuc`" pulumi-lang-go="`pyRuc`" pulumi-lang-python="`py_ruc`" pulumi-lang-yaml="`pyRuc`" pulumi-lang-java="`pyRuc`" pulumi-lang-hcl="`py_ruc`">`pyRuc`</span>, <span pulumi-lang-nodejs="`twVat`" pulumi-lang-dotnet="`TwVat`" pulumi-lang-go="`twVat`" pulumi-lang-python="`tw_vat`" pulumi-lang-yaml="`twVat`" pulumi-lang-java="`twVat`" pulumi-lang-hcl="`tw_vat`">`twVat`</span>, <span pulumi-lang-nodejs="`thVat`" pulumi-lang-dotnet="`ThVat`" pulumi-lang-go="`thVat`" pulumi-lang-python="`th_vat`" pulumi-lang-yaml="`thVat`" pulumi-lang-java="`thVat`" pulumi-lang-hcl="`th_vat`">`thVat`</span>, <span pulumi-lang-nodejs="`jpCn`" pulumi-lang-dotnet="`JpCn`" pulumi-lang-go="`jpCn`" pulumi-lang-python="`jp_cn`" pulumi-lang-yaml="`jpCn`" pulumi-lang-java="`jpCn`" pulumi-lang-hcl="`jp_cn`">`jpCn`</span>, <span pulumi-lang-nodejs="`jpRn`" pulumi-lang-dotnet="`JpRn`" pulumi-lang-go="`jpRn`" pulumi-lang-python="`jp_rn`" pulumi-lang-yaml="`jpRn`" pulumi-lang-java="`jpRn`" pulumi-lang-hcl="`jp_rn`">`jpRn`</span>, <span pulumi-lang-nodejs="`jpTrn`" pulumi-lang-dotnet="`JpTrn`" pulumi-lang-go="`jpTrn`" pulumi-lang-python="`jp_trn`" pulumi-lang-yaml="`jpTrn`" pulumi-lang-java="`jpTrn`" pulumi-lang-hcl="`jp_trn`">`jpTrn`</span>, <span pulumi-lang-nodejs="`liUid`" pulumi-lang-dotnet="`LiUid`" pulumi-lang-go="`liUid`" pulumi-lang-python="`li_uid`" pulumi-lang-yaml="`liUid`" pulumi-lang-java="`liUid`" pulumi-lang-hcl="`li_uid`">`liUid`</span>, <span pulumi-lang-nodejs="`liVat`" pulumi-lang-dotnet="`LiVat`" pulumi-lang-go="`liVat`" pulumi-lang-python="`li_vat`" pulumi-lang-yaml="`liVat`" pulumi-lang-java="`liVat`" pulumi-lang-hcl="`li_vat`">`liVat`</span>, <span pulumi-lang-nodejs="`lkVat`" pulumi-lang-dotnet="`LkVat`" pulumi-lang-go="`lkVat`" pulumi-lang-python="`lk_vat`" pulumi-lang-yaml="`lkVat`" pulumi-lang-java="`lkVat`" pulumi-lang-hcl="`lk_vat`">`lkVat`</span>, <span pulumi-lang-nodejs="`myItn`" pulumi-lang-dotnet="`MyItn`" pulumi-lang-go="`myItn`" pulumi-lang-python="`my_itn`" pulumi-lang-yaml="`myItn`" pulumi-lang-java="`myItn`" pulumi-lang-hcl="`my_itn`">`myItn`</span>, <span pulumi-lang-nodejs="`usEin`" pulumi-lang-dotnet="`UsEin`" pulumi-lang-go="`usEin`" pulumi-lang-python="`us_ein`" pulumi-lang-yaml="`usEin`" pulumi-lang-java="`usEin`" pulumi-lang-hcl="`us_ein`">`usEin`</span>, <span pulumi-lang-nodejs="`krBrn`" pulumi-lang-dotnet="`KrBrn`" pulumi-lang-go="`krBrn`" pulumi-lang-python="`kr_brn`" pulumi-lang-yaml="`krBrn`" pulumi-lang-java="`krBrn`" pulumi-lang-hcl="`kr_brn`">`krBrn`</span>, <span pulumi-lang-nodejs="`caQst`" pulumi-lang-dotnet="`CaQst`" pulumi-lang-go="`caQst`" pulumi-lang-python="`ca_qst`" pulumi-lang-yaml="`caQst`" pulumi-lang-java="`caQst`" pulumi-lang-hcl="`ca_qst`">`caQst`</span>, <span pulumi-lang-nodejs="`caGstHst`" pulumi-lang-dotnet="`CaGstHst`" pulumi-lang-go="`caGstHst`" pulumi-lang-python="`ca_gst_hst`" pulumi-lang-yaml="`caGstHst`" pulumi-lang-java="`caGstHst`" pulumi-lang-hcl="`ca_gst_hst`">`caGstHst`</span>, <span pulumi-lang-nodejs="`caPstBc`" pulumi-lang-dotnet="`CaPstBc`" pulumi-lang-go="`caPstBc`" pulumi-lang-python="`ca_pst_bc`" pulumi-lang-yaml="`caPstBc`" pulumi-lang-java="`caPstBc`" pulumi-lang-hcl="`ca_pst_bc`">`caPstBc`</span>, <span pulumi-lang-nodejs="`caPstMb`" pulumi-lang-dotnet="`CaPstMb`" pulumi-lang-go="`caPstMb`" pulumi-lang-python="`ca_pst_mb`" pulumi-lang-yaml="`caPstMb`" pulumi-lang-java="`caPstMb`" pulumi-lang-hcl="`ca_pst_mb`">`caPstMb`</span>, <span pulumi-lang-nodejs="`caPstSk`" pulumi-lang-dotnet="`CaPstSk`" pulumi-lang-go="`caPstSk`" pulumi-lang-python="`ca_pst_sk`" pulumi-lang-yaml="`caPstSk`" pulumi-lang-java="`caPstSk`" pulumi-lang-hcl="`ca_pst_sk`">`caPstSk`</span>, <span pulumi-lang-nodejs="`mySst`" pulumi-lang-dotnet="`MySst`" pulumi-lang-go="`mySst`" pulumi-lang-python="`my_sst`" pulumi-lang-yaml="`mySst`" pulumi-lang-java="`mySst`" pulumi-lang-hcl="`my_sst`">`mySst`</span>, <span pulumi-lang-nodejs="`sgGst`" pulumi-lang-dotnet="`SgGst`" pulumi-lang-go="`sgGst`" pulumi-lang-python="`sg_gst`" pulumi-lang-yaml="`sgGst`" pulumi-lang-java="`sgGst`" pulumi-lang-hcl="`sg_gst`">`sgGst`</span>, <span pulumi-lang-nodejs="`aeTrn`" pulumi-lang-dotnet="`AeTrn`" pulumi-lang-go="`aeTrn`" pulumi-lang-python="`ae_trn`" pulumi-lang-yaml="`aeTrn`" pulumi-lang-java="`aeTrn`" pulumi-lang-hcl="`ae_trn`">`aeTrn`</span>, <span pulumi-lang-nodejs="`clTin`" pulumi-lang-dotnet="`ClTin`" pulumi-lang-go="`clTin`" pulumi-lang-python="`cl_tin`" pulumi-lang-yaml="`clTin`" pulumi-lang-java="`clTin`" pulumi-lang-hcl="`cl_tin`">`clTin`</span>, <span pulumi-lang-nodejs="`saVat`" pulumi-lang-dotnet="`SaVat`" pulumi-lang-go="`saVat`" pulumi-lang-python="`sa_vat`" pulumi-lang-yaml="`saVat`" pulumi-lang-java="`saVat`" pulumi-lang-hcl="`sa_vat`">`saVat`</span>, <span pulumi-lang-nodejs="`idNpwp`" pulumi-lang-dotnet="`IdNpwp`" pulumi-lang-go="`idNpwp`" pulumi-lang-python="`id_npwp`" pulumi-lang-yaml="`idNpwp`" pulumi-lang-java="`idNpwp`" pulumi-lang-hcl="`id_npwp`">`idNpwp`</span>, <span pulumi-lang-nodejs="`myFrp`" pulumi-lang-dotnet="`MyFrp`" pulumi-lang-go="`myFrp`" pulumi-lang-python="`my_frp`" pulumi-lang-yaml="`myFrp`" pulumi-lang-java="`myFrp`" pulumi-lang-hcl="`my_frp`">`myFrp`</span>, <span pulumi-lang-nodejs="`ilVat`" pulumi-lang-dotnet="`IlVat`" pulumi-lang-go="`ilVat`" pulumi-lang-python="`il_vat`" pulumi-lang-yaml="`ilVat`" pulumi-lang-java="`ilVat`" pulumi-lang-hcl="`il_vat`">`ilVat`</span>, <span pulumi-lang-nodejs="`geVat`" pulumi-lang-dotnet="`GeVat`" pulumi-lang-go="`geVat`" pulumi-lang-python="`ge_vat`" pulumi-lang-yaml="`geVat`" pulumi-lang-java="`geVat`" pulumi-lang-hcl="`ge_vat`">`geVat`</span>, <span pulumi-lang-nodejs="`uaVat`" pulumi-lang-dotnet="`UaVat`" pulumi-lang-go="`uaVat`" pulumi-lang-python="`ua_vat`" pulumi-lang-yaml="`uaVat`" pulumi-lang-java="`uaVat`" pulumi-lang-hcl="`ua_vat`">`uaVat`</span>, <span pulumi-lang-nodejs="`isVat`" pulumi-lang-dotnet="`IsVat`" pulumi-lang-go="`isVat`" pulumi-lang-python="`is_vat`" pulumi-lang-yaml="`isVat`" pulumi-lang-java="`isVat`" pulumi-lang-hcl="`is_vat`">`isVat`</span>, <span pulumi-lang-nodejs="`bgUic`" pulumi-lang-dotnet="`BgUic`" pulumi-lang-go="`bgUic`" pulumi-lang-python="`bg_uic`" pulumi-lang-yaml="`bgUic`" pulumi-lang-java="`bgUic`" pulumi-lang-hcl="`bg_uic`">`bgUic`</span>, <span pulumi-lang-nodejs="`huTin`" pulumi-lang-dotnet="`HuTin`" pulumi-lang-go="`huTin`" pulumi-lang-python="`hu_tin`" pulumi-lang-yaml="`huTin`" pulumi-lang-java="`huTin`" pulumi-lang-hcl="`hu_tin`">`huTin`</span>, <span pulumi-lang-nodejs="`siTin`" pulumi-lang-dotnet="`SiTin`" pulumi-lang-go="`siTin`" pulumi-lang-python="`si_tin`" pulumi-lang-yaml="`siTin`" pulumi-lang-java="`siTin`" pulumi-lang-hcl="`si_tin`">`siTin`</span>, <span pulumi-lang-nodejs="`kePin`" pulumi-lang-dotnet="`KePin`" pulumi-lang-go="`kePin`" pulumi-lang-python="`ke_pin`" pulumi-lang-yaml="`kePin`" pulumi-lang-java="`kePin`" pulumi-lang-hcl="`ke_pin`">`kePin`</span>, <span pulumi-lang-nodejs="`trTin`" pulumi-lang-dotnet="`TrTin`" pulumi-lang-go="`trTin`" pulumi-lang-python="`tr_tin`" pulumi-lang-yaml="`trTin`" pulumi-lang-java="`trTin`" pulumi-lang-hcl="`tr_tin`">`trTin`</span>, <span pulumi-lang-nodejs="`egTin`" pulumi-lang-dotnet="`EgTin`" pulumi-lang-go="`egTin`" pulumi-lang-python="`eg_tin`" pulumi-lang-yaml="`egTin`" pulumi-lang-java="`egTin`" pulumi-lang-hcl="`eg_tin`">`egTin`</span>, <span pulumi-lang-nodejs="`phTin`" pulumi-lang-dotnet="`PhTin`" pulumi-lang-go="`phTin`" pulumi-lang-python="`ph_tin`" pulumi-lang-yaml="`phTin`" pulumi-lang-java="`phTin`" pulumi-lang-hcl="`ph_tin`">`phTin`</span>, <span pulumi-lang-nodejs="`alTin`" pulumi-lang-dotnet="`AlTin`" pulumi-lang-go="`alTin`" pulumi-lang-python="`al_tin`" pulumi-lang-yaml="`alTin`" pulumi-lang-java="`alTin`" pulumi-lang-hcl="`al_tin`">`alTin`</span>, <span pulumi-lang-nodejs="`bhVat`" pulumi-lang-dotnet="`BhVat`" pulumi-lang-go="`bhVat`" pulumi-lang-python="`bh_vat`" pulumi-lang-yaml="`bhVat`" pulumi-lang-java="`bhVat`" pulumi-lang-hcl="`bh_vat`">`bhVat`</span>, <span pulumi-lang-nodejs="`kzBin`" pulumi-lang-dotnet="`KzBin`" pulumi-lang-go="`kzBin`" pulumi-lang-python="`kz_bin`" pulumi-lang-yaml="`kzBin`" pulumi-lang-java="`kzBin`" pulumi-lang-hcl="`kz_bin`">`kzBin`</span>, <span pulumi-lang-nodejs="`ngTin`" pulumi-lang-dotnet="`NgTin`" pulumi-lang-go="`ngTin`" pulumi-lang-python="`ng_tin`" pulumi-lang-yaml="`ngTin`" pulumi-lang-java="`ngTin`" pulumi-lang-hcl="`ng_tin`">`ngTin`</span>, <span pulumi-lang-nodejs="`omVat`" pulumi-lang-dotnet="`OmVat`" pulumi-lang-go="`omVat`" pulumi-lang-python="`om_vat`" pulumi-lang-yaml="`omVat`" pulumi-lang-java="`omVat`" pulumi-lang-hcl="`om_vat`">`omVat`</span>, <span pulumi-lang-nodejs="`deStn`" pulumi-lang-dotnet="`DeStn`" pulumi-lang-go="`deStn`" pulumi-lang-python="`de_stn`" pulumi-lang-yaml="`deStn`" pulumi-lang-java="`deStn`" pulumi-lang-hcl="`de_stn`">`deStn`</span>, <span pulumi-lang-nodejs="`chUid`" pulumi-lang-dotnet="`ChUid`" pulumi-lang-go="`chUid`" pulumi-lang-python="`ch_uid`" pulumi-lang-yaml="`chUid`" pulumi-lang-java="`chUid`" pulumi-lang-hcl="`ch_uid`">`chUid`</span>, <span pulumi-lang-nodejs="`tzVat`" pulumi-lang-dotnet="`TzVat`" pulumi-lang-go="`tzVat`" pulumi-lang-python="`tz_vat`" pulumi-lang-yaml="`tzVat`" pulumi-lang-java="`tzVat`" pulumi-lang-hcl="`tz_vat`">`tzVat`</span>, <span pulumi-lang-nodejs="`uzVat`" pulumi-lang-dotnet="`UzVat`" pulumi-lang-go="`uzVat`" pulumi-lang-python="`uz_vat`" pulumi-lang-yaml="`uzVat`" pulumi-lang-java="`uzVat`" pulumi-lang-hcl="`uz_vat`">`uzVat`</span>, <span pulumi-lang-nodejs="`uzTin`" pulumi-lang-dotnet="`UzTin`" pulumi-lang-go="`uzTin`" pulumi-lang-python="`uz_tin`" pulumi-lang-yaml="`uzTin`" pulumi-lang-java="`uzTin`" pulumi-lang-hcl="`uz_tin`">`uzTin`</span>, <span pulumi-lang-nodejs="`mdVat`" pulumi-lang-dotnet="`MdVat`" pulumi-lang-go="`mdVat`" pulumi-lang-python="`md_vat`" pulumi-lang-yaml="`mdVat`" pulumi-lang-java="`mdVat`" pulumi-lang-hcl="`md_vat`">`mdVat`</span>, <span pulumi-lang-nodejs="`maVat`" pulumi-lang-dotnet="`MaVat`" pulumi-lang-go="`maVat`" pulumi-lang-python="`ma_vat`" pulumi-lang-yaml="`maVat`" pulumi-lang-java="`maVat`" pulumi-lang-hcl="`ma_vat`">`maVat`</span>, <span pulumi-lang-nodejs="`byTin`" pulumi-lang-dotnet="`ByTin`" pulumi-lang-go="`byTin`" pulumi-lang-python="`by_tin`" pulumi-lang-yaml="`byTin`" pulumi-lang-java="`byTin`" pulumi-lang-hcl="`by_tin`">`byTin`</span>, <span pulumi-lang-nodejs="`aoTin`" pulumi-lang-dotnet="`AoTin`" pulumi-lang-go="`aoTin`" pulumi-lang-python="`ao_tin`" pulumi-lang-yaml="`aoTin`" pulumi-lang-java="`aoTin`" pulumi-lang-hcl="`ao_tin`">`aoTin`</span>, <span pulumi-lang-nodejs="`bsTin`" pulumi-lang-dotnet="`BsTin`" pulumi-lang-go="`bsTin`" pulumi-lang-python="`bs_tin`" pulumi-lang-yaml="`bsTin`" pulumi-lang-java="`bsTin`" pulumi-lang-hcl="`bs_tin`">`bsTin`</span>, <span pulumi-lang-nodejs="`bbTin`" pulumi-lang-dotnet="`BbTin`" pulumi-lang-go="`bbTin`" pulumi-lang-python="`bb_tin`" pulumi-lang-yaml="`bbTin`" pulumi-lang-java="`bbTin`" pulumi-lang-hcl="`bb_tin`">`bbTin`</span>, <span pulumi-lang-nodejs="`cdNif`" pulumi-lang-dotnet="`CdNif`" pulumi-lang-go="`cdNif`" pulumi-lang-python="`cd_nif`" pulumi-lang-yaml="`cdNif`" pulumi-lang-java="`cdNif`" pulumi-lang-hcl="`cd_nif`">`cdNif`</span>, <span pulumi-lang-nodejs="`mrNif`" pulumi-lang-dotnet="`MrNif`" pulumi-lang-go="`mrNif`" pulumi-lang-python="`mr_nif`" pulumi-lang-yaml="`mrNif`" pulumi-lang-java="`mrNif`" pulumi-lang-hcl="`mr_nif`">`mrNif`</span>, <span pulumi-lang-nodejs="`mePib`" pulumi-lang-dotnet="`MePib`" pulumi-lang-go="`mePib`" pulumi-lang-python="`me_pib`" pulumi-lang-yaml="`mePib`" pulumi-lang-java="`mePib`" pulumi-lang-hcl="`me_pib`">`mePib`</span>, <span pulumi-lang-nodejs="`zwTin`" pulumi-lang-dotnet="`ZwTin`" pulumi-lang-go="`zwTin`" pulumi-lang-python="`zw_tin`" pulumi-lang-yaml="`zwTin`" pulumi-lang-java="`zwTin`" pulumi-lang-hcl="`zw_tin`">`zwTin`</span>, <span pulumi-lang-nodejs="`baTin`" pulumi-lang-dotnet="`BaTin`" pulumi-lang-go="`baTin`" pulumi-lang-python="`ba_tin`" pulumi-lang-yaml="`baTin`" pulumi-lang-java="`baTin`" pulumi-lang-hcl="`ba_tin`">`baTin`</span>, <span pulumi-lang-nodejs="`gnNif`" pulumi-lang-dotnet="`GnNif`" pulumi-lang-go="`gnNif`" pulumi-lang-python="`gn_nif`" pulumi-lang-yaml="`gnNif`" pulumi-lang-java="`gnNif`" pulumi-lang-hcl="`gn_nif`">`gnNif`</span>, <span pulumi-lang-nodejs="`mkVat`" pulumi-lang-dotnet="`MkVat`" pulumi-lang-go="`mkVat`" pulumi-lang-python="`mk_vat`" pulumi-lang-yaml="`mkVat`" pulumi-lang-java="`mkVat`" pulumi-lang-hcl="`mk_vat`">`mkVat`</span>, <span pulumi-lang-nodejs="`srFin`" pulumi-lang-dotnet="`SrFin`" pulumi-lang-go="`srFin`" pulumi-lang-python="`sr_fin`" pulumi-lang-yaml="`srFin`" pulumi-lang-java="`srFin`" pulumi-lang-hcl="`sr_fin`">`srFin`</span>, <span pulumi-lang-nodejs="`snNinea`" pulumi-lang-dotnet="`SnNinea`" pulumi-lang-go="`snNinea`" pulumi-lang-python="`sn_ninea`" pulumi-lang-yaml="`snNinea`" pulumi-lang-java="`snNinea`" pulumi-lang-hcl="`sn_ninea`">`snNinea`</span>, <span pulumi-lang-nodejs="`amTin`" pulumi-lang-dotnet="`AmTin`" pulumi-lang-go="`amTin`" pulumi-lang-python="`am_tin`" pulumi-lang-yaml="`amTin`" pulumi-lang-java="`amTin`" pulumi-lang-hcl="`am_tin`">`amTin`</span>, <span pulumi-lang-nodejs="`npPan`" pulumi-lang-dotnet="`NpPan`" pulumi-lang-go="`npPan`" pulumi-lang-python="`np_pan`" pulumi-lang-yaml="`npPan`" pulumi-lang-java="`npPan`" pulumi-lang-hcl="`np_pan`">`npPan`</span>, <span pulumi-lang-nodejs="`tjTin`" pulumi-lang-dotnet="`TjTin`" pulumi-lang-go="`tjTin`" pulumi-lang-python="`tj_tin`" pulumi-lang-yaml="`tjTin`" pulumi-lang-java="`tjTin`" pulumi-lang-hcl="`tj_tin`">`tjTin`</span>, <span pulumi-lang-nodejs="`ugTin`" pulumi-lang-dotnet="`UgTin`" pulumi-lang-go="`ugTin`" pulumi-lang-python="`ug_tin`" pulumi-lang-yaml="`ugTin`" pulumi-lang-java="`ugTin`" pulumi-lang-hcl="`ug_tin`">`ugTin`</span>, <span pulumi-lang-nodejs="`zmTin`" pulumi-lang-dotnet="`ZmTin`" pulumi-lang-go="`zmTin`" pulumi-lang-python="`zm_tin`" pulumi-lang-yaml="`zmTin`" pulumi-lang-java="`zmTin`" pulumi-lang-hcl="`zm_tin`">`zmTin`</span>, <span pulumi-lang-nodejs="`khTin`" pulumi-lang-dotnet="`KhTin`" pulumi-lang-go="`khTin`" pulumi-lang-python="`kh_tin`" pulumi-lang-yaml="`khTin`" pulumi-lang-java="`khTin`" pulumi-lang-hcl="`kh_tin`">`khTin`</span>, <span pulumi-lang-nodejs="`awTin`" pulumi-lang-dotnet="`AwTin`" pulumi-lang-go="`awTin`" pulumi-lang-python="`aw_tin`" pulumi-lang-yaml="`awTin`" pulumi-lang-java="`awTin`" pulumi-lang-hcl="`aw_tin`">`awTin`</span>, <span pulumi-lang-nodejs="`azTin`" pulumi-lang-dotnet="`AzTin`" pulumi-lang-go="`azTin`" pulumi-lang-python="`az_tin`" pulumi-lang-yaml="`azTin`" pulumi-lang-java="`azTin`" pulumi-lang-hcl="`az_tin`">`azTin`</span>, <span pulumi-lang-nodejs="`bdBin`" pulumi-lang-dotnet="`BdBin`" pulumi-lang-go="`bdBin`" pulumi-lang-python="`bd_bin`" pulumi-lang-yaml="`bdBin`" pulumi-lang-java="`bdBin`" pulumi-lang-hcl="`bd_bin`">`bdBin`</span>, <span pulumi-lang-nodejs="`auAcn`" pulumi-lang-dotnet="`AuAcn`" pulumi-lang-go="`auAcn`" pulumi-lang-python="`au_acn`" pulumi-lang-yaml="`auAcn`" pulumi-lang-java="`auAcn`" pulumi-lang-hcl="`au_acn`">`auAcn`</span>, <span pulumi-lang-nodejs="`nzBn`" pulumi-lang-dotnet="`NzBn`" pulumi-lang-go="`nzBn`" pulumi-lang-python="`nz_bn`" pulumi-lang-yaml="`nzBn`" pulumi-lang-java="`nzBn`" pulumi-lang-hcl="`nz_bn`">`nzBn`</span>, <span pulumi-lang-nodejs="`ptNif`" pulumi-lang-dotnet="`PtNif`" pulumi-lang-go="`ptNif`" pulumi-lang-python="`pt_nif`" pulumi-lang-yaml="`ptNif`" pulumi-lang-java="`ptNif`" pulumi-lang-hcl="`pt_nif`">`ptNif`</span>, <span pulumi-lang-nodejs="`czDic`" pulumi-lang-dotnet="`CzDic`" pulumi-lang-go="`czDic`" pulumi-lang-python="`cz_dic`" pulumi-lang-yaml="`czDic`" pulumi-lang-java="`czDic`" pulumi-lang-hcl="`cz_dic`">`czDic`</span>, <span pulumi-lang-nodejs="`frSiret`" pulumi-lang-dotnet="`FrSiret`" pulumi-lang-go="`frSiret`" pulumi-lang-python="`fr_siret`" pulumi-lang-yaml="`frSiret`" pulumi-lang-java="`frSiret`" pulumi-lang-hcl="`fr_siret`">`frSiret`</span>, <span pulumi-lang-nodejs="`frSiren`" pulumi-lang-dotnet="`FrSiren`" pulumi-lang-go="`frSiren`" pulumi-lang-python="`fr_siren`" pulumi-lang-yaml="`frSiren`" pulumi-lang-java="`frSiren`" pulumi-lang-hcl="`fr_siren`">`frSiren`</span>, <span pulumi-lang-nodejs="`frSpi`" pulumi-lang-dotnet="`FrSpi`" pulumi-lang-go="`frSpi`" pulumi-lang-python="`fr_spi`" pulumi-lang-yaml="`frSpi`" pulumi-lang-java="`frSpi`" pulumi-lang-hcl="`fr_spi`">`frSpi`</span>, <span pulumi-lang-nodejs="`smCoe`" pulumi-lang-dotnet="`SmCoe`" pulumi-lang-go="`smCoe`" pulumi-lang-python="`sm_coe`" pulumi-lang-yaml="`smCoe`" pulumi-lang-java="`smCoe`" pulumi-lang-hcl="`sm_coe`">`smCoe`</span>, <span pulumi-lang-nodejs="`ttVat`" pulumi-lang-dotnet="`TtVat`" pulumi-lang-go="`ttVat`" pulumi-lang-python="`tt_vat`" pulumi-lang-yaml="`ttVat`" pulumi-lang-java="`ttVat`" pulumi-lang-hcl="`tt_vat`">`ttVat`</span>, <span pulumi-lang-nodejs="`ttBir`" pulumi-lang-dotnet="`TtBir`" pulumi-lang-go="`ttBir`" pulumi-lang-python="`tt_bir`" pulumi-lang-yaml="`ttBir`" pulumi-lang-java="`ttBir`" pulumi-lang-hcl="`tt_bir`">`ttBir`</span>, <span pulumi-lang-nodejs="`muVat`" pulumi-lang-dotnet="`MuVat`" pulumi-lang-go="`muVat`" pulumi-lang-python="`mu_vat`" pulumi-lang-yaml="`muVat`" pulumi-lang-java="`muVat`" pulumi-lang-hcl="`mu_vat`">`muVat`</span>, <span pulumi-lang-nodejs="`mzNuit`" pulumi-lang-dotnet="`MzNuit`" pulumi-lang-go="`mzNuit`" pulumi-lang-python="`mz_nuit`" pulumi-lang-yaml="`mzNuit`" pulumi-lang-java="`mzNuit`" pulumi-lang-hcl="`mz_nuit`">`mzNuit`</span>, <span pulumi-lang-nodejs="`auWpn`" pulumi-lang-dotnet="`AuWpn`" pulumi-lang-go="`auWpn`" pulumi-lang-python="`au_wpn`" pulumi-lang-yaml="`auWpn`" pulumi-lang-java="`auWpn`" pulumi-lang-hcl="`au_wpn`">`auWpn`</span>, <span pulumi-lang-nodejs="`mdCf`" pulumi-lang-dotnet="`MdCf`" pulumi-lang-go="`mdCf`" pulumi-lang-python="`md_cf`" pulumi-lang-yaml="`mdCf`" pulumi-lang-java="`mdCf`" pulumi-lang-hcl="`md_cf`">`mdCf`</span>, <span pulumi-lang-nodejs="`isKt`" pulumi-lang-dotnet="`IsKt`" pulumi-lang-go="`isKt`" pulumi-lang-python="`is_kt`" pulumi-lang-yaml="`isKt`" pulumi-lang-java="`isKt`" pulumi-lang-hcl="`is_kt`">`isKt`</span>, <span pulumi-lang-nodejs="`bjIfu`" pulumi-lang-dotnet="`BjIfu`" pulumi-lang-go="`bjIfu`" pulumi-lang-python="`bj_ifu`" pulumi-lang-yaml="`bjIfu`" pulumi-lang-java="`bjIfu`" pulumi-lang-hcl="`bj_ifu`">`bjIfu`</span>, <span pulumi-lang-nodejs="`etTin`" pulumi-lang-dotnet="`EtTin`" pulumi-lang-go="`etTin`" pulumi-lang-python="`et_tin`" pulumi-lang-yaml="`etTin`" pulumi-lang-java="`etTin`" pulumi-lang-hcl="`et_tin`">`etTin`</span>, <span pulumi-lang-nodejs="`kgTin`" pulumi-lang-dotnet="`KgTin`" pulumi-lang-go="`kgTin`" pulumi-lang-python="`kg_tin`" pulumi-lang-yaml="`kgTin`" pulumi-lang-java="`kgTin`" pulumi-lang-hcl="`kg_tin`">`kgTin`</span>, <span pulumi-lang-nodejs="`laTin`" pulumi-lang-dotnet="`LaTin`" pulumi-lang-go="`laTin`" pulumi-lang-python="`la_tin`" pulumi-lang-yaml="`laTin`" pulumi-lang-java="`laTin`" pulumi-lang-hcl="`la_tin`">`laTin`</span>, <span pulumi-lang-nodejs="`cmNiu`" pulumi-lang-dotnet="`CmNiu`" pulumi-lang-go="`cmNiu`" pulumi-lang-python="`cm_niu`" pulumi-lang-yaml="`cmNiu`" pulumi-lang-java="`cmNiu`" pulumi-lang-hcl="`cm_niu`">`cmNiu`</span>, <span pulumi-lang-nodejs="`cvNif`" pulumi-lang-dotnet="`CvNif`" pulumi-lang-go="`cvNif`" pulumi-lang-python="`cv_nif`" pulumi-lang-yaml="`cvNif`" pulumi-lang-java="`cvNif`" pulumi-lang-hcl="`cv_nif`">`cvNif`</span>, <span pulumi-lang-nodejs="`bfIfu`" pulumi-lang-dotnet="`BfIfu`" pulumi-lang-go="`bfIfu`" pulumi-lang-python="`bf_ifu`" pulumi-lang-yaml="`bfIfu`" pulumi-lang-java="`bfIfu`" pulumi-lang-hcl="`bf_ifu`">`bfIfu`</span>, <span pulumi-lang-nodejs="`icNif`" pulumi-lang-dotnet="`IcNif`" pulumi-lang-go="`icNif`" pulumi-lang-python="`ic_nif`" pulumi-lang-yaml="`icNif`" pulumi-lang-java="`icNif`" pulumi-lang-hcl="`ic_nif`">`icNif`</span>, <span pulumi-lang-nodejs="`ghTin`" pulumi-lang-dotnet="`GhTin`" pulumi-lang-go="`ghTin`" pulumi-lang-python="`gh_tin`" pulumi-lang-yaml="`ghTin`" pulumi-lang-java="`ghTin`" pulumi-lang-hcl="`gh_tin`">`ghTin`</span>, <span pulumi-lang-nodejs="`bwVat`" pulumi-lang-dotnet="`BwVat`" pulumi-lang-go="`bwVat`" pulumi-lang-python="`bw_vat`" pulumi-lang-yaml="`bwVat`" pulumi-lang-java="`bwVat`" pulumi-lang-hcl="`bw_vat`">`bwVat`</span>, <span pulumi-lang-nodejs="`ciVat`" pulumi-lang-dotnet="`CiVat`" pulumi-lang-go="`ciVat`" pulumi-lang-python="`ci_vat`" pulumi-lang-yaml="`ciVat`" pulumi-lang-java="`ciVat`" pulumi-lang-hcl="`ci_vat`">`ciVat`</span>, or <span pulumi-lang-nodejs="`unknown`" pulumi-lang-dotnet="`Unknown`" pulumi-lang-go="`unknown`" pulumi-lang-python="`unknown`" pulumi-lang-yaml="`unknown`" pulumi-lang-java="`unknown`" pulumi-lang-hcl="`unknown`">`unknown`</span>
         :param _builtins.str value: The value of the tax ID.
         """
         if type is not None:
@@ -11643,7 +12303,7 @@ class InvoiceCustomerTaxId(dict):
     @pulumi.getter
     def type(self) -> Optional[_builtins.str]:
         """
-        The type of the tax ID, one of <span pulumi-lang-nodejs="`adNrt`" pulumi-lang-dotnet="`AdNrt`" pulumi-lang-go="`adNrt`" pulumi-lang-python="`ad_nrt`" pulumi-lang-yaml="`adNrt`" pulumi-lang-java="`adNrt`" pulumi-lang-hcl="`ad_nrt`">`adNrt`</span>, <span pulumi-lang-nodejs="`arCuit`" pulumi-lang-dotnet="`ArCuit`" pulumi-lang-go="`arCuit`" pulumi-lang-python="`ar_cuit`" pulumi-lang-yaml="`arCuit`" pulumi-lang-java="`arCuit`" pulumi-lang-hcl="`ar_cuit`">`arCuit`</span>, <span pulumi-lang-nodejs="`euVat`" pulumi-lang-dotnet="`EuVat`" pulumi-lang-go="`euVat`" pulumi-lang-python="`eu_vat`" pulumi-lang-yaml="`euVat`" pulumi-lang-java="`euVat`" pulumi-lang-hcl="`eu_vat`">`euVat`</span>, <span pulumi-lang-nodejs="`boTin`" pulumi-lang-dotnet="`BoTin`" pulumi-lang-go="`boTin`" pulumi-lang-python="`bo_tin`" pulumi-lang-yaml="`boTin`" pulumi-lang-java="`boTin`" pulumi-lang-hcl="`bo_tin`">`boTin`</span>, <span pulumi-lang-nodejs="`brCnpj`" pulumi-lang-dotnet="`BrCnpj`" pulumi-lang-go="`brCnpj`" pulumi-lang-python="`br_cnpj`" pulumi-lang-yaml="`brCnpj`" pulumi-lang-java="`brCnpj`" pulumi-lang-hcl="`br_cnpj`">`brCnpj`</span>, <span pulumi-lang-nodejs="`brCpf`" pulumi-lang-dotnet="`BrCpf`" pulumi-lang-go="`brCpf`" pulumi-lang-python="`br_cpf`" pulumi-lang-yaml="`brCpf`" pulumi-lang-java="`brCpf`" pulumi-lang-hcl="`br_cpf`">`brCpf`</span>, <span pulumi-lang-nodejs="`cnTin`" pulumi-lang-dotnet="`CnTin`" pulumi-lang-go="`cnTin`" pulumi-lang-python="`cn_tin`" pulumi-lang-yaml="`cnTin`" pulumi-lang-java="`cnTin`" pulumi-lang-hcl="`cn_tin`">`cnTin`</span>, <span pulumi-lang-nodejs="`coNit`" pulumi-lang-dotnet="`CoNit`" pulumi-lang-go="`coNit`" pulumi-lang-python="`co_nit`" pulumi-lang-yaml="`coNit`" pulumi-lang-java="`coNit`" pulumi-lang-hcl="`co_nit`">`coNit`</span>, <span pulumi-lang-nodejs="`crTin`" pulumi-lang-dotnet="`CrTin`" pulumi-lang-go="`crTin`" pulumi-lang-python="`cr_tin`" pulumi-lang-yaml="`crTin`" pulumi-lang-java="`crTin`" pulumi-lang-hcl="`cr_tin`">`crTin`</span>, <span pulumi-lang-nodejs="`doRcn`" pulumi-lang-dotnet="`DoRcn`" pulumi-lang-go="`doRcn`" pulumi-lang-python="`do_rcn`" pulumi-lang-yaml="`doRcn`" pulumi-lang-java="`doRcn`" pulumi-lang-hcl="`do_rcn`">`doRcn`</span>, <span pulumi-lang-nodejs="`ecRuc`" pulumi-lang-dotnet="`EcRuc`" pulumi-lang-go="`ecRuc`" pulumi-lang-python="`ec_ruc`" pulumi-lang-yaml="`ecRuc`" pulumi-lang-java="`ecRuc`" pulumi-lang-hcl="`ec_ruc`">`ecRuc`</span>, <span pulumi-lang-nodejs="`euOssVat`" pulumi-lang-dotnet="`EuOssVat`" pulumi-lang-go="`euOssVat`" pulumi-lang-python="`eu_oss_vat`" pulumi-lang-yaml="`euOssVat`" pulumi-lang-java="`euOssVat`" pulumi-lang-hcl="`eu_oss_vat`">`euOssVat`</span>, <span pulumi-lang-nodejs="`hrOib`" pulumi-lang-dotnet="`HrOib`" pulumi-lang-go="`hrOib`" pulumi-lang-python="`hr_oib`" pulumi-lang-yaml="`hrOib`" pulumi-lang-java="`hrOib`" pulumi-lang-hcl="`hr_oib`">`hrOib`</span>, <span pulumi-lang-nodejs="`peRuc`" pulumi-lang-dotnet="`PeRuc`" pulumi-lang-go="`peRuc`" pulumi-lang-python="`pe_ruc`" pulumi-lang-yaml="`peRuc`" pulumi-lang-java="`peRuc`" pulumi-lang-hcl="`pe_ruc`">`peRuc`</span>, <span pulumi-lang-nodejs="`roTin`" pulumi-lang-dotnet="`RoTin`" pulumi-lang-go="`roTin`" pulumi-lang-python="`ro_tin`" pulumi-lang-yaml="`roTin`" pulumi-lang-java="`roTin`" pulumi-lang-hcl="`ro_tin`">`roTin`</span>, <span pulumi-lang-nodejs="`rsPib`" pulumi-lang-dotnet="`RsPib`" pulumi-lang-go="`rsPib`" pulumi-lang-python="`rs_pib`" pulumi-lang-yaml="`rsPib`" pulumi-lang-java="`rsPib`" pulumi-lang-hcl="`rs_pib`">`rsPib`</span>, <span pulumi-lang-nodejs="`svNit`" pulumi-lang-dotnet="`SvNit`" pulumi-lang-go="`svNit`" pulumi-lang-python="`sv_nit`" pulumi-lang-yaml="`svNit`" pulumi-lang-java="`svNit`" pulumi-lang-hcl="`sv_nit`">`svNit`</span>, <span pulumi-lang-nodejs="`uyRuc`" pulumi-lang-dotnet="`UyRuc`" pulumi-lang-go="`uyRuc`" pulumi-lang-python="`uy_ruc`" pulumi-lang-yaml="`uyRuc`" pulumi-lang-java="`uyRuc`" pulumi-lang-hcl="`uy_ruc`">`uyRuc`</span>, <span pulumi-lang-nodejs="`veRif`" pulumi-lang-dotnet="`VeRif`" pulumi-lang-go="`veRif`" pulumi-lang-python="`ve_rif`" pulumi-lang-yaml="`veRif`" pulumi-lang-java="`veRif`" pulumi-lang-hcl="`ve_rif`">`veRif`</span>, <span pulumi-lang-nodejs="`vnTin`" pulumi-lang-dotnet="`VnTin`" pulumi-lang-go="`vnTin`" pulumi-lang-python="`vn_tin`" pulumi-lang-yaml="`vnTin`" pulumi-lang-java="`vnTin`" pulumi-lang-hcl="`vn_tin`">`vnTin`</span>, <span pulumi-lang-nodejs="`gbVat`" pulumi-lang-dotnet="`GbVat`" pulumi-lang-go="`gbVat`" pulumi-lang-python="`gb_vat`" pulumi-lang-yaml="`gbVat`" pulumi-lang-java="`gbVat`" pulumi-lang-hcl="`gb_vat`">`gbVat`</span>, <span pulumi-lang-nodejs="`nzGst`" pulumi-lang-dotnet="`NzGst`" pulumi-lang-go="`nzGst`" pulumi-lang-python="`nz_gst`" pulumi-lang-yaml="`nzGst`" pulumi-lang-java="`nzGst`" pulumi-lang-hcl="`nz_gst`">`nzGst`</span>, <span pulumi-lang-nodejs="`auAbn`" pulumi-lang-dotnet="`AuAbn`" pulumi-lang-go="`auAbn`" pulumi-lang-python="`au_abn`" pulumi-lang-yaml="`auAbn`" pulumi-lang-java="`auAbn`" pulumi-lang-hcl="`au_abn`">`auAbn`</span>, <span pulumi-lang-nodejs="`auArn`" pulumi-lang-dotnet="`AuArn`" pulumi-lang-go="`auArn`" pulumi-lang-python="`au_arn`" pulumi-lang-yaml="`auArn`" pulumi-lang-java="`auArn`" pulumi-lang-hcl="`au_arn`">`auArn`</span>, <span pulumi-lang-nodejs="`inGst`" pulumi-lang-dotnet="`InGst`" pulumi-lang-go="`inGst`" pulumi-lang-python="`in_gst`" pulumi-lang-yaml="`inGst`" pulumi-lang-java="`inGst`" pulumi-lang-hcl="`in_gst`">`inGst`</span>, <span pulumi-lang-nodejs="`noVat`" pulumi-lang-dotnet="`NoVat`" pulumi-lang-go="`noVat`" pulumi-lang-python="`no_vat`" pulumi-lang-yaml="`noVat`" pulumi-lang-java="`noVat`" pulumi-lang-hcl="`no_vat`">`noVat`</span>, <span pulumi-lang-nodejs="`noVoec`" pulumi-lang-dotnet="`NoVoec`" pulumi-lang-go="`noVoec`" pulumi-lang-python="`no_voec`" pulumi-lang-yaml="`noVoec`" pulumi-lang-java="`noVoec`" pulumi-lang-hcl="`no_voec`">`noVoec`</span>, <span pulumi-lang-nodejs="`zaVat`" pulumi-lang-dotnet="`ZaVat`" pulumi-lang-go="`zaVat`" pulumi-lang-python="`za_vat`" pulumi-lang-yaml="`zaVat`" pulumi-lang-java="`zaVat`" pulumi-lang-hcl="`za_vat`">`zaVat`</span>, <span pulumi-lang-nodejs="`chVat`" pulumi-lang-dotnet="`ChVat`" pulumi-lang-go="`chVat`" pulumi-lang-python="`ch_vat`" pulumi-lang-yaml="`chVat`" pulumi-lang-java="`chVat`" pulumi-lang-hcl="`ch_vat`">`chVat`</span>, <span pulumi-lang-nodejs="`mxRfc`" pulumi-lang-dotnet="`MxRfc`" pulumi-lang-go="`mxRfc`" pulumi-lang-python="`mx_rfc`" pulumi-lang-yaml="`mxRfc`" pulumi-lang-java="`mxRfc`" pulumi-lang-hcl="`mx_rfc`">`mxRfc`</span>, <span pulumi-lang-nodejs="`sgUen`" pulumi-lang-dotnet="`SgUen`" pulumi-lang-go="`sgUen`" pulumi-lang-python="`sg_uen`" pulumi-lang-yaml="`sgUen`" pulumi-lang-java="`sgUen`" pulumi-lang-hcl="`sg_uen`">`sgUen`</span>, <span pulumi-lang-nodejs="`ruInn`" pulumi-lang-dotnet="`RuInn`" pulumi-lang-go="`ruInn`" pulumi-lang-python="`ru_inn`" pulumi-lang-yaml="`ruInn`" pulumi-lang-java="`ruInn`" pulumi-lang-hcl="`ru_inn`">`ruInn`</span>, <span pulumi-lang-nodejs="`ruKpp`" pulumi-lang-dotnet="`RuKpp`" pulumi-lang-go="`ruKpp`" pulumi-lang-python="`ru_kpp`" pulumi-lang-yaml="`ruKpp`" pulumi-lang-java="`ruKpp`" pulumi-lang-hcl="`ru_kpp`">`ruKpp`</span>, <span pulumi-lang-nodejs="`caBn`" pulumi-lang-dotnet="`CaBn`" pulumi-lang-go="`caBn`" pulumi-lang-python="`ca_bn`" pulumi-lang-yaml="`caBn`" pulumi-lang-java="`caBn`" pulumi-lang-hcl="`ca_bn`">`caBn`</span>, <span pulumi-lang-nodejs="`hkBr`" pulumi-lang-dotnet="`HkBr`" pulumi-lang-go="`hkBr`" pulumi-lang-python="`hk_br`" pulumi-lang-yaml="`hkBr`" pulumi-lang-java="`hkBr`" pulumi-lang-hcl="`hk_br`">`hkBr`</span>, <span pulumi-lang-nodejs="`esCif`" pulumi-lang-dotnet="`EsCif`" pulumi-lang-go="`esCif`" pulumi-lang-python="`es_cif`" pulumi-lang-yaml="`esCif`" pulumi-lang-java="`esCif`" pulumi-lang-hcl="`es_cif`">`esCif`</span>, <span pulumi-lang-nodejs="`plNip`" pulumi-lang-dotnet="`PlNip`" pulumi-lang-go="`plNip`" pulumi-lang-python="`pl_nip`" pulumi-lang-yaml="`plNip`" pulumi-lang-java="`plNip`" pulumi-lang-hcl="`pl_nip`">`plNip`</span>, <span pulumi-lang-nodejs="`itCf`" pulumi-lang-dotnet="`ItCf`" pulumi-lang-go="`itCf`" pulumi-lang-python="`it_cf`" pulumi-lang-yaml="`itCf`" pulumi-lang-java="`itCf`" pulumi-lang-hcl="`it_cf`">`itCf`</span>, <span pulumi-lang-nodejs="`foVat`" pulumi-lang-dotnet="`FoVat`" pulumi-lang-go="`foVat`" pulumi-lang-python="`fo_vat`" pulumi-lang-yaml="`foVat`" pulumi-lang-java="`foVat`" pulumi-lang-hcl="`fo_vat`">`foVat`</span>, <span pulumi-lang-nodejs="`giTin`" pulumi-lang-dotnet="`GiTin`" pulumi-lang-go="`giTin`" pulumi-lang-python="`gi_tin`" pulumi-lang-yaml="`giTin`" pulumi-lang-java="`giTin`" pulumi-lang-hcl="`gi_tin`">`giTin`</span>, <span pulumi-lang-nodejs="`pyRuc`" pulumi-lang-dotnet="`PyRuc`" pulumi-lang-go="`pyRuc`" pulumi-lang-python="`py_ruc`" pulumi-lang-yaml="`pyRuc`" pulumi-lang-java="`pyRuc`" pulumi-lang-hcl="`py_ruc`">`pyRuc`</span>, <span pulumi-lang-nodejs="`twVat`" pulumi-lang-dotnet="`TwVat`" pulumi-lang-go="`twVat`" pulumi-lang-python="`tw_vat`" pulumi-lang-yaml="`twVat`" pulumi-lang-java="`twVat`" pulumi-lang-hcl="`tw_vat`">`twVat`</span>, <span pulumi-lang-nodejs="`thVat`" pulumi-lang-dotnet="`ThVat`" pulumi-lang-go="`thVat`" pulumi-lang-python="`th_vat`" pulumi-lang-yaml="`thVat`" pulumi-lang-java="`thVat`" pulumi-lang-hcl="`th_vat`">`thVat`</span>, <span pulumi-lang-nodejs="`jpCn`" pulumi-lang-dotnet="`JpCn`" pulumi-lang-go="`jpCn`" pulumi-lang-python="`jp_cn`" pulumi-lang-yaml="`jpCn`" pulumi-lang-java="`jpCn`" pulumi-lang-hcl="`jp_cn`">`jpCn`</span>, <span pulumi-lang-nodejs="`jpRn`" pulumi-lang-dotnet="`JpRn`" pulumi-lang-go="`jpRn`" pulumi-lang-python="`jp_rn`" pulumi-lang-yaml="`jpRn`" pulumi-lang-java="`jpRn`" pulumi-lang-hcl="`jp_rn`">`jpRn`</span>, <span pulumi-lang-nodejs="`jpTrn`" pulumi-lang-dotnet="`JpTrn`" pulumi-lang-go="`jpTrn`" pulumi-lang-python="`jp_trn`" pulumi-lang-yaml="`jpTrn`" pulumi-lang-java="`jpTrn`" pulumi-lang-hcl="`jp_trn`">`jpTrn`</span>, <span pulumi-lang-nodejs="`liUid`" pulumi-lang-dotnet="`LiUid`" pulumi-lang-go="`liUid`" pulumi-lang-python="`li_uid`" pulumi-lang-yaml="`liUid`" pulumi-lang-java="`liUid`" pulumi-lang-hcl="`li_uid`">`liUid`</span>, <span pulumi-lang-nodejs="`liVat`" pulumi-lang-dotnet="`LiVat`" pulumi-lang-go="`liVat`" pulumi-lang-python="`li_vat`" pulumi-lang-yaml="`liVat`" pulumi-lang-java="`liVat`" pulumi-lang-hcl="`li_vat`">`liVat`</span>, <span pulumi-lang-nodejs="`lkVat`" pulumi-lang-dotnet="`LkVat`" pulumi-lang-go="`lkVat`" pulumi-lang-python="`lk_vat`" pulumi-lang-yaml="`lkVat`" pulumi-lang-java="`lkVat`" pulumi-lang-hcl="`lk_vat`">`lkVat`</span>, <span pulumi-lang-nodejs="`myItn`" pulumi-lang-dotnet="`MyItn`" pulumi-lang-go="`myItn`" pulumi-lang-python="`my_itn`" pulumi-lang-yaml="`myItn`" pulumi-lang-java="`myItn`" pulumi-lang-hcl="`my_itn`">`myItn`</span>, <span pulumi-lang-nodejs="`usEin`" pulumi-lang-dotnet="`UsEin`" pulumi-lang-go="`usEin`" pulumi-lang-python="`us_ein`" pulumi-lang-yaml="`usEin`" pulumi-lang-java="`usEin`" pulumi-lang-hcl="`us_ein`">`usEin`</span>, <span pulumi-lang-nodejs="`krBrn`" pulumi-lang-dotnet="`KrBrn`" pulumi-lang-go="`krBrn`" pulumi-lang-python="`kr_brn`" pulumi-lang-yaml="`krBrn`" pulumi-lang-java="`krBrn`" pulumi-lang-hcl="`kr_brn`">`krBrn`</span>, <span pulumi-lang-nodejs="`caQst`" pulumi-lang-dotnet="`CaQst`" pulumi-lang-go="`caQst`" pulumi-lang-python="`ca_qst`" pulumi-lang-yaml="`caQst`" pulumi-lang-java="`caQst`" pulumi-lang-hcl="`ca_qst`">`caQst`</span>, <span pulumi-lang-nodejs="`caGstHst`" pulumi-lang-dotnet="`CaGstHst`" pulumi-lang-go="`caGstHst`" pulumi-lang-python="`ca_gst_hst`" pulumi-lang-yaml="`caGstHst`" pulumi-lang-java="`caGstHst`" pulumi-lang-hcl="`ca_gst_hst`">`caGstHst`</span>, <span pulumi-lang-nodejs="`caPstBc`" pulumi-lang-dotnet="`CaPstBc`" pulumi-lang-go="`caPstBc`" pulumi-lang-python="`ca_pst_bc`" pulumi-lang-yaml="`caPstBc`" pulumi-lang-java="`caPstBc`" pulumi-lang-hcl="`ca_pst_bc`">`caPstBc`</span>, <span pulumi-lang-nodejs="`caPstMb`" pulumi-lang-dotnet="`CaPstMb`" pulumi-lang-go="`caPstMb`" pulumi-lang-python="`ca_pst_mb`" pulumi-lang-yaml="`caPstMb`" pulumi-lang-java="`caPstMb`" pulumi-lang-hcl="`ca_pst_mb`">`caPstMb`</span>, <span pulumi-lang-nodejs="`caPstSk`" pulumi-lang-dotnet="`CaPstSk`" pulumi-lang-go="`caPstSk`" pulumi-lang-python="`ca_pst_sk`" pulumi-lang-yaml="`caPstSk`" pulumi-lang-java="`caPstSk`" pulumi-lang-hcl="`ca_pst_sk`">`caPstSk`</span>, <span pulumi-lang-nodejs="`mySst`" pulumi-lang-dotnet="`MySst`" pulumi-lang-go="`mySst`" pulumi-lang-python="`my_sst`" pulumi-lang-yaml="`mySst`" pulumi-lang-java="`mySst`" pulumi-lang-hcl="`my_sst`">`mySst`</span>, <span pulumi-lang-nodejs="`sgGst`" pulumi-lang-dotnet="`SgGst`" pulumi-lang-go="`sgGst`" pulumi-lang-python="`sg_gst`" pulumi-lang-yaml="`sgGst`" pulumi-lang-java="`sgGst`" pulumi-lang-hcl="`sg_gst`">`sgGst`</span>, <span pulumi-lang-nodejs="`aeTrn`" pulumi-lang-dotnet="`AeTrn`" pulumi-lang-go="`aeTrn`" pulumi-lang-python="`ae_trn`" pulumi-lang-yaml="`aeTrn`" pulumi-lang-java="`aeTrn`" pulumi-lang-hcl="`ae_trn`">`aeTrn`</span>, <span pulumi-lang-nodejs="`clTin`" pulumi-lang-dotnet="`ClTin`" pulumi-lang-go="`clTin`" pulumi-lang-python="`cl_tin`" pulumi-lang-yaml="`clTin`" pulumi-lang-java="`clTin`" pulumi-lang-hcl="`cl_tin`">`clTin`</span>, <span pulumi-lang-nodejs="`saVat`" pulumi-lang-dotnet="`SaVat`" pulumi-lang-go="`saVat`" pulumi-lang-python="`sa_vat`" pulumi-lang-yaml="`saVat`" pulumi-lang-java="`saVat`" pulumi-lang-hcl="`sa_vat`">`saVat`</span>, <span pulumi-lang-nodejs="`idNpwp`" pulumi-lang-dotnet="`IdNpwp`" pulumi-lang-go="`idNpwp`" pulumi-lang-python="`id_npwp`" pulumi-lang-yaml="`idNpwp`" pulumi-lang-java="`idNpwp`" pulumi-lang-hcl="`id_npwp`">`idNpwp`</span>, <span pulumi-lang-nodejs="`myFrp`" pulumi-lang-dotnet="`MyFrp`" pulumi-lang-go="`myFrp`" pulumi-lang-python="`my_frp`" pulumi-lang-yaml="`myFrp`" pulumi-lang-java="`myFrp`" pulumi-lang-hcl="`my_frp`">`myFrp`</span>, <span pulumi-lang-nodejs="`ilVat`" pulumi-lang-dotnet="`IlVat`" pulumi-lang-go="`ilVat`" pulumi-lang-python="`il_vat`" pulumi-lang-yaml="`ilVat`" pulumi-lang-java="`ilVat`" pulumi-lang-hcl="`il_vat`">`ilVat`</span>, <span pulumi-lang-nodejs="`geVat`" pulumi-lang-dotnet="`GeVat`" pulumi-lang-go="`geVat`" pulumi-lang-python="`ge_vat`" pulumi-lang-yaml="`geVat`" pulumi-lang-java="`geVat`" pulumi-lang-hcl="`ge_vat`">`geVat`</span>, <span pulumi-lang-nodejs="`uaVat`" pulumi-lang-dotnet="`UaVat`" pulumi-lang-go="`uaVat`" pulumi-lang-python="`ua_vat`" pulumi-lang-yaml="`uaVat`" pulumi-lang-java="`uaVat`" pulumi-lang-hcl="`ua_vat`">`uaVat`</span>, <span pulumi-lang-nodejs="`isVat`" pulumi-lang-dotnet="`IsVat`" pulumi-lang-go="`isVat`" pulumi-lang-python="`is_vat`" pulumi-lang-yaml="`isVat`" pulumi-lang-java="`isVat`" pulumi-lang-hcl="`is_vat`">`isVat`</span>, <span pulumi-lang-nodejs="`bgUic`" pulumi-lang-dotnet="`BgUic`" pulumi-lang-go="`bgUic`" pulumi-lang-python="`bg_uic`" pulumi-lang-yaml="`bgUic`" pulumi-lang-java="`bgUic`" pulumi-lang-hcl="`bg_uic`">`bgUic`</span>, <span pulumi-lang-nodejs="`huTin`" pulumi-lang-dotnet="`HuTin`" pulumi-lang-go="`huTin`" pulumi-lang-python="`hu_tin`" pulumi-lang-yaml="`huTin`" pulumi-lang-java="`huTin`" pulumi-lang-hcl="`hu_tin`">`huTin`</span>, <span pulumi-lang-nodejs="`siTin`" pulumi-lang-dotnet="`SiTin`" pulumi-lang-go="`siTin`" pulumi-lang-python="`si_tin`" pulumi-lang-yaml="`siTin`" pulumi-lang-java="`siTin`" pulumi-lang-hcl="`si_tin`">`siTin`</span>, <span pulumi-lang-nodejs="`kePin`" pulumi-lang-dotnet="`KePin`" pulumi-lang-go="`kePin`" pulumi-lang-python="`ke_pin`" pulumi-lang-yaml="`kePin`" pulumi-lang-java="`kePin`" pulumi-lang-hcl="`ke_pin`">`kePin`</span>, <span pulumi-lang-nodejs="`trTin`" pulumi-lang-dotnet="`TrTin`" pulumi-lang-go="`trTin`" pulumi-lang-python="`tr_tin`" pulumi-lang-yaml="`trTin`" pulumi-lang-java="`trTin`" pulumi-lang-hcl="`tr_tin`">`trTin`</span>, <span pulumi-lang-nodejs="`egTin`" pulumi-lang-dotnet="`EgTin`" pulumi-lang-go="`egTin`" pulumi-lang-python="`eg_tin`" pulumi-lang-yaml="`egTin`" pulumi-lang-java="`egTin`" pulumi-lang-hcl="`eg_tin`">`egTin`</span>, <span pulumi-lang-nodejs="`phTin`" pulumi-lang-dotnet="`PhTin`" pulumi-lang-go="`phTin`" pulumi-lang-python="`ph_tin`" pulumi-lang-yaml="`phTin`" pulumi-lang-java="`phTin`" pulumi-lang-hcl="`ph_tin`">`phTin`</span>, <span pulumi-lang-nodejs="`alTin`" pulumi-lang-dotnet="`AlTin`" pulumi-lang-go="`alTin`" pulumi-lang-python="`al_tin`" pulumi-lang-yaml="`alTin`" pulumi-lang-java="`alTin`" pulumi-lang-hcl="`al_tin`">`alTin`</span>, <span pulumi-lang-nodejs="`bhVat`" pulumi-lang-dotnet="`BhVat`" pulumi-lang-go="`bhVat`" pulumi-lang-python="`bh_vat`" pulumi-lang-yaml="`bhVat`" pulumi-lang-java="`bhVat`" pulumi-lang-hcl="`bh_vat`">`bhVat`</span>, <span pulumi-lang-nodejs="`kzBin`" pulumi-lang-dotnet="`KzBin`" pulumi-lang-go="`kzBin`" pulumi-lang-python="`kz_bin`" pulumi-lang-yaml="`kzBin`" pulumi-lang-java="`kzBin`" pulumi-lang-hcl="`kz_bin`">`kzBin`</span>, <span pulumi-lang-nodejs="`ngTin`" pulumi-lang-dotnet="`NgTin`" pulumi-lang-go="`ngTin`" pulumi-lang-python="`ng_tin`" pulumi-lang-yaml="`ngTin`" pulumi-lang-java="`ngTin`" pulumi-lang-hcl="`ng_tin`">`ngTin`</span>, <span pulumi-lang-nodejs="`omVat`" pulumi-lang-dotnet="`OmVat`" pulumi-lang-go="`omVat`" pulumi-lang-python="`om_vat`" pulumi-lang-yaml="`omVat`" pulumi-lang-java="`omVat`" pulumi-lang-hcl="`om_vat`">`omVat`</span>, <span pulumi-lang-nodejs="`deStn`" pulumi-lang-dotnet="`DeStn`" pulumi-lang-go="`deStn`" pulumi-lang-python="`de_stn`" pulumi-lang-yaml="`deStn`" pulumi-lang-java="`deStn`" pulumi-lang-hcl="`de_stn`">`deStn`</span>, <span pulumi-lang-nodejs="`chUid`" pulumi-lang-dotnet="`ChUid`" pulumi-lang-go="`chUid`" pulumi-lang-python="`ch_uid`" pulumi-lang-yaml="`chUid`" pulumi-lang-java="`chUid`" pulumi-lang-hcl="`ch_uid`">`chUid`</span>, <span pulumi-lang-nodejs="`tzVat`" pulumi-lang-dotnet="`TzVat`" pulumi-lang-go="`tzVat`" pulumi-lang-python="`tz_vat`" pulumi-lang-yaml="`tzVat`" pulumi-lang-java="`tzVat`" pulumi-lang-hcl="`tz_vat`">`tzVat`</span>, <span pulumi-lang-nodejs="`uzVat`" pulumi-lang-dotnet="`UzVat`" pulumi-lang-go="`uzVat`" pulumi-lang-python="`uz_vat`" pulumi-lang-yaml="`uzVat`" pulumi-lang-java="`uzVat`" pulumi-lang-hcl="`uz_vat`">`uzVat`</span>, <span pulumi-lang-nodejs="`uzTin`" pulumi-lang-dotnet="`UzTin`" pulumi-lang-go="`uzTin`" pulumi-lang-python="`uz_tin`" pulumi-lang-yaml="`uzTin`" pulumi-lang-java="`uzTin`" pulumi-lang-hcl="`uz_tin`">`uzTin`</span>, <span pulumi-lang-nodejs="`mdVat`" pulumi-lang-dotnet="`MdVat`" pulumi-lang-go="`mdVat`" pulumi-lang-python="`md_vat`" pulumi-lang-yaml="`mdVat`" pulumi-lang-java="`mdVat`" pulumi-lang-hcl="`md_vat`">`mdVat`</span>, <span pulumi-lang-nodejs="`maVat`" pulumi-lang-dotnet="`MaVat`" pulumi-lang-go="`maVat`" pulumi-lang-python="`ma_vat`" pulumi-lang-yaml="`maVat`" pulumi-lang-java="`maVat`" pulumi-lang-hcl="`ma_vat`">`maVat`</span>, <span pulumi-lang-nodejs="`byTin`" pulumi-lang-dotnet="`ByTin`" pulumi-lang-go="`byTin`" pulumi-lang-python="`by_tin`" pulumi-lang-yaml="`byTin`" pulumi-lang-java="`byTin`" pulumi-lang-hcl="`by_tin`">`byTin`</span>, <span pulumi-lang-nodejs="`aoTin`" pulumi-lang-dotnet="`AoTin`" pulumi-lang-go="`aoTin`" pulumi-lang-python="`ao_tin`" pulumi-lang-yaml="`aoTin`" pulumi-lang-java="`aoTin`" pulumi-lang-hcl="`ao_tin`">`aoTin`</span>, <span pulumi-lang-nodejs="`bsTin`" pulumi-lang-dotnet="`BsTin`" pulumi-lang-go="`bsTin`" pulumi-lang-python="`bs_tin`" pulumi-lang-yaml="`bsTin`" pulumi-lang-java="`bsTin`" pulumi-lang-hcl="`bs_tin`">`bsTin`</span>, <span pulumi-lang-nodejs="`bbTin`" pulumi-lang-dotnet="`BbTin`" pulumi-lang-go="`bbTin`" pulumi-lang-python="`bb_tin`" pulumi-lang-yaml="`bbTin`" pulumi-lang-java="`bbTin`" pulumi-lang-hcl="`bb_tin`">`bbTin`</span>, <span pulumi-lang-nodejs="`cdNif`" pulumi-lang-dotnet="`CdNif`" pulumi-lang-go="`cdNif`" pulumi-lang-python="`cd_nif`" pulumi-lang-yaml="`cdNif`" pulumi-lang-java="`cdNif`" pulumi-lang-hcl="`cd_nif`">`cdNif`</span>, <span pulumi-lang-nodejs="`mrNif`" pulumi-lang-dotnet="`MrNif`" pulumi-lang-go="`mrNif`" pulumi-lang-python="`mr_nif`" pulumi-lang-yaml="`mrNif`" pulumi-lang-java="`mrNif`" pulumi-lang-hcl="`mr_nif`">`mrNif`</span>, <span pulumi-lang-nodejs="`mePib`" pulumi-lang-dotnet="`MePib`" pulumi-lang-go="`mePib`" pulumi-lang-python="`me_pib`" pulumi-lang-yaml="`mePib`" pulumi-lang-java="`mePib`" pulumi-lang-hcl="`me_pib`">`mePib`</span>, <span pulumi-lang-nodejs="`zwTin`" pulumi-lang-dotnet="`ZwTin`" pulumi-lang-go="`zwTin`" pulumi-lang-python="`zw_tin`" pulumi-lang-yaml="`zwTin`" pulumi-lang-java="`zwTin`" pulumi-lang-hcl="`zw_tin`">`zwTin`</span>, <span pulumi-lang-nodejs="`baTin`" pulumi-lang-dotnet="`BaTin`" pulumi-lang-go="`baTin`" pulumi-lang-python="`ba_tin`" pulumi-lang-yaml="`baTin`" pulumi-lang-java="`baTin`" pulumi-lang-hcl="`ba_tin`">`baTin`</span>, <span pulumi-lang-nodejs="`gnNif`" pulumi-lang-dotnet="`GnNif`" pulumi-lang-go="`gnNif`" pulumi-lang-python="`gn_nif`" pulumi-lang-yaml="`gnNif`" pulumi-lang-java="`gnNif`" pulumi-lang-hcl="`gn_nif`">`gnNif`</span>, <span pulumi-lang-nodejs="`mkVat`" pulumi-lang-dotnet="`MkVat`" pulumi-lang-go="`mkVat`" pulumi-lang-python="`mk_vat`" pulumi-lang-yaml="`mkVat`" pulumi-lang-java="`mkVat`" pulumi-lang-hcl="`mk_vat`">`mkVat`</span>, <span pulumi-lang-nodejs="`srFin`" pulumi-lang-dotnet="`SrFin`" pulumi-lang-go="`srFin`" pulumi-lang-python="`sr_fin`" pulumi-lang-yaml="`srFin`" pulumi-lang-java="`srFin`" pulumi-lang-hcl="`sr_fin`">`srFin`</span>, <span pulumi-lang-nodejs="`snNinea`" pulumi-lang-dotnet="`SnNinea`" pulumi-lang-go="`snNinea`" pulumi-lang-python="`sn_ninea`" pulumi-lang-yaml="`snNinea`" pulumi-lang-java="`snNinea`" pulumi-lang-hcl="`sn_ninea`">`snNinea`</span>, <span pulumi-lang-nodejs="`amTin`" pulumi-lang-dotnet="`AmTin`" pulumi-lang-go="`amTin`" pulumi-lang-python="`am_tin`" pulumi-lang-yaml="`amTin`" pulumi-lang-java="`amTin`" pulumi-lang-hcl="`am_tin`">`amTin`</span>, <span pulumi-lang-nodejs="`npPan`" pulumi-lang-dotnet="`NpPan`" pulumi-lang-go="`npPan`" pulumi-lang-python="`np_pan`" pulumi-lang-yaml="`npPan`" pulumi-lang-java="`npPan`" pulumi-lang-hcl="`np_pan`">`npPan`</span>, <span pulumi-lang-nodejs="`tjTin`" pulumi-lang-dotnet="`TjTin`" pulumi-lang-go="`tjTin`" pulumi-lang-python="`tj_tin`" pulumi-lang-yaml="`tjTin`" pulumi-lang-java="`tjTin`" pulumi-lang-hcl="`tj_tin`">`tjTin`</span>, <span pulumi-lang-nodejs="`ugTin`" pulumi-lang-dotnet="`UgTin`" pulumi-lang-go="`ugTin`" pulumi-lang-python="`ug_tin`" pulumi-lang-yaml="`ugTin`" pulumi-lang-java="`ugTin`" pulumi-lang-hcl="`ug_tin`">`ugTin`</span>, <span pulumi-lang-nodejs="`zmTin`" pulumi-lang-dotnet="`ZmTin`" pulumi-lang-go="`zmTin`" pulumi-lang-python="`zm_tin`" pulumi-lang-yaml="`zmTin`" pulumi-lang-java="`zmTin`" pulumi-lang-hcl="`zm_tin`">`zmTin`</span>, <span pulumi-lang-nodejs="`khTin`" pulumi-lang-dotnet="`KhTin`" pulumi-lang-go="`khTin`" pulumi-lang-python="`kh_tin`" pulumi-lang-yaml="`khTin`" pulumi-lang-java="`khTin`" pulumi-lang-hcl="`kh_tin`">`khTin`</span>, <span pulumi-lang-nodejs="`awTin`" pulumi-lang-dotnet="`AwTin`" pulumi-lang-go="`awTin`" pulumi-lang-python="`aw_tin`" pulumi-lang-yaml="`awTin`" pulumi-lang-java="`awTin`" pulumi-lang-hcl="`aw_tin`">`awTin`</span>, <span pulumi-lang-nodejs="`azTin`" pulumi-lang-dotnet="`AzTin`" pulumi-lang-go="`azTin`" pulumi-lang-python="`az_tin`" pulumi-lang-yaml="`azTin`" pulumi-lang-java="`azTin`" pulumi-lang-hcl="`az_tin`">`azTin`</span>, <span pulumi-lang-nodejs="`bdBin`" pulumi-lang-dotnet="`BdBin`" pulumi-lang-go="`bdBin`" pulumi-lang-python="`bd_bin`" pulumi-lang-yaml="`bdBin`" pulumi-lang-java="`bdBin`" pulumi-lang-hcl="`bd_bin`">`bdBin`</span>, <span pulumi-lang-nodejs="`bjIfu`" pulumi-lang-dotnet="`BjIfu`" pulumi-lang-go="`bjIfu`" pulumi-lang-python="`bj_ifu`" pulumi-lang-yaml="`bjIfu`" pulumi-lang-java="`bjIfu`" pulumi-lang-hcl="`bj_ifu`">`bjIfu`</span>, <span pulumi-lang-nodejs="`etTin`" pulumi-lang-dotnet="`EtTin`" pulumi-lang-go="`etTin`" pulumi-lang-python="`et_tin`" pulumi-lang-yaml="`etTin`" pulumi-lang-java="`etTin`" pulumi-lang-hcl="`et_tin`">`etTin`</span>, <span pulumi-lang-nodejs="`kgTin`" pulumi-lang-dotnet="`KgTin`" pulumi-lang-go="`kgTin`" pulumi-lang-python="`kg_tin`" pulumi-lang-yaml="`kgTin`" pulumi-lang-java="`kgTin`" pulumi-lang-hcl="`kg_tin`">`kgTin`</span>, <span pulumi-lang-nodejs="`laTin`" pulumi-lang-dotnet="`LaTin`" pulumi-lang-go="`laTin`" pulumi-lang-python="`la_tin`" pulumi-lang-yaml="`laTin`" pulumi-lang-java="`laTin`" pulumi-lang-hcl="`la_tin`">`laTin`</span>, <span pulumi-lang-nodejs="`cmNiu`" pulumi-lang-dotnet="`CmNiu`" pulumi-lang-go="`cmNiu`" pulumi-lang-python="`cm_niu`" pulumi-lang-yaml="`cmNiu`" pulumi-lang-java="`cmNiu`" pulumi-lang-hcl="`cm_niu`">`cmNiu`</span>, <span pulumi-lang-nodejs="`cvNif`" pulumi-lang-dotnet="`CvNif`" pulumi-lang-go="`cvNif`" pulumi-lang-python="`cv_nif`" pulumi-lang-yaml="`cvNif`" pulumi-lang-java="`cvNif`" pulumi-lang-hcl="`cv_nif`">`cvNif`</span>, <span pulumi-lang-nodejs="`bfIfu`" pulumi-lang-dotnet="`BfIfu`" pulumi-lang-go="`bfIfu`" pulumi-lang-python="`bf_ifu`" pulumi-lang-yaml="`bfIfu`" pulumi-lang-java="`bfIfu`" pulumi-lang-hcl="`bf_ifu`">`bfIfu`</span>, or <span pulumi-lang-nodejs="`unknown`" pulumi-lang-dotnet="`Unknown`" pulumi-lang-go="`unknown`" pulumi-lang-python="`unknown`" pulumi-lang-yaml="`unknown`" pulumi-lang-java="`unknown`" pulumi-lang-hcl="`unknown`">`unknown`</span>
+        The type of the tax ID, one of <span pulumi-lang-nodejs="`adNrt`" pulumi-lang-dotnet="`AdNrt`" pulumi-lang-go="`adNrt`" pulumi-lang-python="`ad_nrt`" pulumi-lang-yaml="`adNrt`" pulumi-lang-java="`adNrt`" pulumi-lang-hcl="`ad_nrt`">`adNrt`</span>, <span pulumi-lang-nodejs="`arCuit`" pulumi-lang-dotnet="`ArCuit`" pulumi-lang-go="`arCuit`" pulumi-lang-python="`ar_cuit`" pulumi-lang-yaml="`arCuit`" pulumi-lang-java="`arCuit`" pulumi-lang-hcl="`ar_cuit`">`arCuit`</span>, <span pulumi-lang-nodejs="`euVat`" pulumi-lang-dotnet="`EuVat`" pulumi-lang-go="`euVat`" pulumi-lang-python="`eu_vat`" pulumi-lang-yaml="`euVat`" pulumi-lang-java="`euVat`" pulumi-lang-hcl="`eu_vat`">`euVat`</span>, <span pulumi-lang-nodejs="`boTin`" pulumi-lang-dotnet="`BoTin`" pulumi-lang-go="`boTin`" pulumi-lang-python="`bo_tin`" pulumi-lang-yaml="`boTin`" pulumi-lang-java="`boTin`" pulumi-lang-hcl="`bo_tin`">`boTin`</span>, <span pulumi-lang-nodejs="`brCnpj`" pulumi-lang-dotnet="`BrCnpj`" pulumi-lang-go="`brCnpj`" pulumi-lang-python="`br_cnpj`" pulumi-lang-yaml="`brCnpj`" pulumi-lang-java="`brCnpj`" pulumi-lang-hcl="`br_cnpj`">`brCnpj`</span>, <span pulumi-lang-nodejs="`brCpf`" pulumi-lang-dotnet="`BrCpf`" pulumi-lang-go="`brCpf`" pulumi-lang-python="`br_cpf`" pulumi-lang-yaml="`brCpf`" pulumi-lang-java="`brCpf`" pulumi-lang-hcl="`br_cpf`">`brCpf`</span>, <span pulumi-lang-nodejs="`cnTin`" pulumi-lang-dotnet="`CnTin`" pulumi-lang-go="`cnTin`" pulumi-lang-python="`cn_tin`" pulumi-lang-yaml="`cnTin`" pulumi-lang-java="`cnTin`" pulumi-lang-hcl="`cn_tin`">`cnTin`</span>, <span pulumi-lang-nodejs="`coNit`" pulumi-lang-dotnet="`CoNit`" pulumi-lang-go="`coNit`" pulumi-lang-python="`co_nit`" pulumi-lang-yaml="`coNit`" pulumi-lang-java="`coNit`" pulumi-lang-hcl="`co_nit`">`coNit`</span>, <span pulumi-lang-nodejs="`crTin`" pulumi-lang-dotnet="`CrTin`" pulumi-lang-go="`crTin`" pulumi-lang-python="`cr_tin`" pulumi-lang-yaml="`crTin`" pulumi-lang-java="`crTin`" pulumi-lang-hcl="`cr_tin`">`crTin`</span>, <span pulumi-lang-nodejs="`doRcn`" pulumi-lang-dotnet="`DoRcn`" pulumi-lang-go="`doRcn`" pulumi-lang-python="`do_rcn`" pulumi-lang-yaml="`doRcn`" pulumi-lang-java="`doRcn`" pulumi-lang-hcl="`do_rcn`">`doRcn`</span>, <span pulumi-lang-nodejs="`ecRuc`" pulumi-lang-dotnet="`EcRuc`" pulumi-lang-go="`ecRuc`" pulumi-lang-python="`ec_ruc`" pulumi-lang-yaml="`ecRuc`" pulumi-lang-java="`ecRuc`" pulumi-lang-hcl="`ec_ruc`">`ecRuc`</span>, <span pulumi-lang-nodejs="`euOssVat`" pulumi-lang-dotnet="`EuOssVat`" pulumi-lang-go="`euOssVat`" pulumi-lang-python="`eu_oss_vat`" pulumi-lang-yaml="`euOssVat`" pulumi-lang-java="`euOssVat`" pulumi-lang-hcl="`eu_oss_vat`">`euOssVat`</span>, <span pulumi-lang-nodejs="`hrOib`" pulumi-lang-dotnet="`HrOib`" pulumi-lang-go="`hrOib`" pulumi-lang-python="`hr_oib`" pulumi-lang-yaml="`hrOib`" pulumi-lang-java="`hrOib`" pulumi-lang-hcl="`hr_oib`">`hrOib`</span>, <span pulumi-lang-nodejs="`peRuc`" pulumi-lang-dotnet="`PeRuc`" pulumi-lang-go="`peRuc`" pulumi-lang-python="`pe_ruc`" pulumi-lang-yaml="`peRuc`" pulumi-lang-java="`peRuc`" pulumi-lang-hcl="`pe_ruc`">`peRuc`</span>, <span pulumi-lang-nodejs="`roTin`" pulumi-lang-dotnet="`RoTin`" pulumi-lang-go="`roTin`" pulumi-lang-python="`ro_tin`" pulumi-lang-yaml="`roTin`" pulumi-lang-java="`roTin`" pulumi-lang-hcl="`ro_tin`">`roTin`</span>, <span pulumi-lang-nodejs="`rsPib`" pulumi-lang-dotnet="`RsPib`" pulumi-lang-go="`rsPib`" pulumi-lang-python="`rs_pib`" pulumi-lang-yaml="`rsPib`" pulumi-lang-java="`rsPib`" pulumi-lang-hcl="`rs_pib`">`rsPib`</span>, <span pulumi-lang-nodejs="`svNit`" pulumi-lang-dotnet="`SvNit`" pulumi-lang-go="`svNit`" pulumi-lang-python="`sv_nit`" pulumi-lang-yaml="`svNit`" pulumi-lang-java="`svNit`" pulumi-lang-hcl="`sv_nit`">`svNit`</span>, <span pulumi-lang-nodejs="`uyRuc`" pulumi-lang-dotnet="`UyRuc`" pulumi-lang-go="`uyRuc`" pulumi-lang-python="`uy_ruc`" pulumi-lang-yaml="`uyRuc`" pulumi-lang-java="`uyRuc`" pulumi-lang-hcl="`uy_ruc`">`uyRuc`</span>, <span pulumi-lang-nodejs="`veRif`" pulumi-lang-dotnet="`VeRif`" pulumi-lang-go="`veRif`" pulumi-lang-python="`ve_rif`" pulumi-lang-yaml="`veRif`" pulumi-lang-java="`veRif`" pulumi-lang-hcl="`ve_rif`">`veRif`</span>, <span pulumi-lang-nodejs="`vnTin`" pulumi-lang-dotnet="`VnTin`" pulumi-lang-go="`vnTin`" pulumi-lang-python="`vn_tin`" pulumi-lang-yaml="`vnTin`" pulumi-lang-java="`vnTin`" pulumi-lang-hcl="`vn_tin`">`vnTin`</span>, <span pulumi-lang-nodejs="`gbVat`" pulumi-lang-dotnet="`GbVat`" pulumi-lang-go="`gbVat`" pulumi-lang-python="`gb_vat`" pulumi-lang-yaml="`gbVat`" pulumi-lang-java="`gbVat`" pulumi-lang-hcl="`gb_vat`">`gbVat`</span>, <span pulumi-lang-nodejs="`nzGst`" pulumi-lang-dotnet="`NzGst`" pulumi-lang-go="`nzGst`" pulumi-lang-python="`nz_gst`" pulumi-lang-yaml="`nzGst`" pulumi-lang-java="`nzGst`" pulumi-lang-hcl="`nz_gst`">`nzGst`</span>, <span pulumi-lang-nodejs="`auAbn`" pulumi-lang-dotnet="`AuAbn`" pulumi-lang-go="`auAbn`" pulumi-lang-python="`au_abn`" pulumi-lang-yaml="`auAbn`" pulumi-lang-java="`auAbn`" pulumi-lang-hcl="`au_abn`">`auAbn`</span>, <span pulumi-lang-nodejs="`auArn`" pulumi-lang-dotnet="`AuArn`" pulumi-lang-go="`auArn`" pulumi-lang-python="`au_arn`" pulumi-lang-yaml="`auArn`" pulumi-lang-java="`auArn`" pulumi-lang-hcl="`au_arn`">`auArn`</span>, <span pulumi-lang-nodejs="`inGst`" pulumi-lang-dotnet="`InGst`" pulumi-lang-go="`inGst`" pulumi-lang-python="`in_gst`" pulumi-lang-yaml="`inGst`" pulumi-lang-java="`inGst`" pulumi-lang-hcl="`in_gst`">`inGst`</span>, <span pulumi-lang-nodejs="`noVat`" pulumi-lang-dotnet="`NoVat`" pulumi-lang-go="`noVat`" pulumi-lang-python="`no_vat`" pulumi-lang-yaml="`noVat`" pulumi-lang-java="`noVat`" pulumi-lang-hcl="`no_vat`">`noVat`</span>, <span pulumi-lang-nodejs="`noVoec`" pulumi-lang-dotnet="`NoVoec`" pulumi-lang-go="`noVoec`" pulumi-lang-python="`no_voec`" pulumi-lang-yaml="`noVoec`" pulumi-lang-java="`noVoec`" pulumi-lang-hcl="`no_voec`">`noVoec`</span>, <span pulumi-lang-nodejs="`zaVat`" pulumi-lang-dotnet="`ZaVat`" pulumi-lang-go="`zaVat`" pulumi-lang-python="`za_vat`" pulumi-lang-yaml="`zaVat`" pulumi-lang-java="`zaVat`" pulumi-lang-hcl="`za_vat`">`zaVat`</span>, <span pulumi-lang-nodejs="`chVat`" pulumi-lang-dotnet="`ChVat`" pulumi-lang-go="`chVat`" pulumi-lang-python="`ch_vat`" pulumi-lang-yaml="`chVat`" pulumi-lang-java="`chVat`" pulumi-lang-hcl="`ch_vat`">`chVat`</span>, <span pulumi-lang-nodejs="`mxRfc`" pulumi-lang-dotnet="`MxRfc`" pulumi-lang-go="`mxRfc`" pulumi-lang-python="`mx_rfc`" pulumi-lang-yaml="`mxRfc`" pulumi-lang-java="`mxRfc`" pulumi-lang-hcl="`mx_rfc`">`mxRfc`</span>, <span pulumi-lang-nodejs="`sgUen`" pulumi-lang-dotnet="`SgUen`" pulumi-lang-go="`sgUen`" pulumi-lang-python="`sg_uen`" pulumi-lang-yaml="`sgUen`" pulumi-lang-java="`sgUen`" pulumi-lang-hcl="`sg_uen`">`sgUen`</span>, <span pulumi-lang-nodejs="`ruInn`" pulumi-lang-dotnet="`RuInn`" pulumi-lang-go="`ruInn`" pulumi-lang-python="`ru_inn`" pulumi-lang-yaml="`ruInn`" pulumi-lang-java="`ruInn`" pulumi-lang-hcl="`ru_inn`">`ruInn`</span>, <span pulumi-lang-nodejs="`ruKpp`" pulumi-lang-dotnet="`RuKpp`" pulumi-lang-go="`ruKpp`" pulumi-lang-python="`ru_kpp`" pulumi-lang-yaml="`ruKpp`" pulumi-lang-java="`ruKpp`" pulumi-lang-hcl="`ru_kpp`">`ruKpp`</span>, <span pulumi-lang-nodejs="`caBn`" pulumi-lang-dotnet="`CaBn`" pulumi-lang-go="`caBn`" pulumi-lang-python="`ca_bn`" pulumi-lang-yaml="`caBn`" pulumi-lang-java="`caBn`" pulumi-lang-hcl="`ca_bn`">`caBn`</span>, <span pulumi-lang-nodejs="`hkBr`" pulumi-lang-dotnet="`HkBr`" pulumi-lang-go="`hkBr`" pulumi-lang-python="`hk_br`" pulumi-lang-yaml="`hkBr`" pulumi-lang-java="`hkBr`" pulumi-lang-hcl="`hk_br`">`hkBr`</span>, <span pulumi-lang-nodejs="`esCif`" pulumi-lang-dotnet="`EsCif`" pulumi-lang-go="`esCif`" pulumi-lang-python="`es_cif`" pulumi-lang-yaml="`esCif`" pulumi-lang-java="`esCif`" pulumi-lang-hcl="`es_cif`">`esCif`</span>, <span pulumi-lang-nodejs="`plNip`" pulumi-lang-dotnet="`PlNip`" pulumi-lang-go="`plNip`" pulumi-lang-python="`pl_nip`" pulumi-lang-yaml="`plNip`" pulumi-lang-java="`plNip`" pulumi-lang-hcl="`pl_nip`">`plNip`</span>, <span pulumi-lang-nodejs="`itCf`" pulumi-lang-dotnet="`ItCf`" pulumi-lang-go="`itCf`" pulumi-lang-python="`it_cf`" pulumi-lang-yaml="`itCf`" pulumi-lang-java="`itCf`" pulumi-lang-hcl="`it_cf`">`itCf`</span>, <span pulumi-lang-nodejs="`foVat`" pulumi-lang-dotnet="`FoVat`" pulumi-lang-go="`foVat`" pulumi-lang-python="`fo_vat`" pulumi-lang-yaml="`foVat`" pulumi-lang-java="`foVat`" pulumi-lang-hcl="`fo_vat`">`foVat`</span>, <span pulumi-lang-nodejs="`giTin`" pulumi-lang-dotnet="`GiTin`" pulumi-lang-go="`giTin`" pulumi-lang-python="`gi_tin`" pulumi-lang-yaml="`giTin`" pulumi-lang-java="`giTin`" pulumi-lang-hcl="`gi_tin`">`giTin`</span>, <span pulumi-lang-nodejs="`pyRuc`" pulumi-lang-dotnet="`PyRuc`" pulumi-lang-go="`pyRuc`" pulumi-lang-python="`py_ruc`" pulumi-lang-yaml="`pyRuc`" pulumi-lang-java="`pyRuc`" pulumi-lang-hcl="`py_ruc`">`pyRuc`</span>, <span pulumi-lang-nodejs="`twVat`" pulumi-lang-dotnet="`TwVat`" pulumi-lang-go="`twVat`" pulumi-lang-python="`tw_vat`" pulumi-lang-yaml="`twVat`" pulumi-lang-java="`twVat`" pulumi-lang-hcl="`tw_vat`">`twVat`</span>, <span pulumi-lang-nodejs="`thVat`" pulumi-lang-dotnet="`ThVat`" pulumi-lang-go="`thVat`" pulumi-lang-python="`th_vat`" pulumi-lang-yaml="`thVat`" pulumi-lang-java="`thVat`" pulumi-lang-hcl="`th_vat`">`thVat`</span>, <span pulumi-lang-nodejs="`jpCn`" pulumi-lang-dotnet="`JpCn`" pulumi-lang-go="`jpCn`" pulumi-lang-python="`jp_cn`" pulumi-lang-yaml="`jpCn`" pulumi-lang-java="`jpCn`" pulumi-lang-hcl="`jp_cn`">`jpCn`</span>, <span pulumi-lang-nodejs="`jpRn`" pulumi-lang-dotnet="`JpRn`" pulumi-lang-go="`jpRn`" pulumi-lang-python="`jp_rn`" pulumi-lang-yaml="`jpRn`" pulumi-lang-java="`jpRn`" pulumi-lang-hcl="`jp_rn`">`jpRn`</span>, <span pulumi-lang-nodejs="`jpTrn`" pulumi-lang-dotnet="`JpTrn`" pulumi-lang-go="`jpTrn`" pulumi-lang-python="`jp_trn`" pulumi-lang-yaml="`jpTrn`" pulumi-lang-java="`jpTrn`" pulumi-lang-hcl="`jp_trn`">`jpTrn`</span>, <span pulumi-lang-nodejs="`liUid`" pulumi-lang-dotnet="`LiUid`" pulumi-lang-go="`liUid`" pulumi-lang-python="`li_uid`" pulumi-lang-yaml="`liUid`" pulumi-lang-java="`liUid`" pulumi-lang-hcl="`li_uid`">`liUid`</span>, <span pulumi-lang-nodejs="`liVat`" pulumi-lang-dotnet="`LiVat`" pulumi-lang-go="`liVat`" pulumi-lang-python="`li_vat`" pulumi-lang-yaml="`liVat`" pulumi-lang-java="`liVat`" pulumi-lang-hcl="`li_vat`">`liVat`</span>, <span pulumi-lang-nodejs="`lkVat`" pulumi-lang-dotnet="`LkVat`" pulumi-lang-go="`lkVat`" pulumi-lang-python="`lk_vat`" pulumi-lang-yaml="`lkVat`" pulumi-lang-java="`lkVat`" pulumi-lang-hcl="`lk_vat`">`lkVat`</span>, <span pulumi-lang-nodejs="`myItn`" pulumi-lang-dotnet="`MyItn`" pulumi-lang-go="`myItn`" pulumi-lang-python="`my_itn`" pulumi-lang-yaml="`myItn`" pulumi-lang-java="`myItn`" pulumi-lang-hcl="`my_itn`">`myItn`</span>, <span pulumi-lang-nodejs="`usEin`" pulumi-lang-dotnet="`UsEin`" pulumi-lang-go="`usEin`" pulumi-lang-python="`us_ein`" pulumi-lang-yaml="`usEin`" pulumi-lang-java="`usEin`" pulumi-lang-hcl="`us_ein`">`usEin`</span>, <span pulumi-lang-nodejs="`krBrn`" pulumi-lang-dotnet="`KrBrn`" pulumi-lang-go="`krBrn`" pulumi-lang-python="`kr_brn`" pulumi-lang-yaml="`krBrn`" pulumi-lang-java="`krBrn`" pulumi-lang-hcl="`kr_brn`">`krBrn`</span>, <span pulumi-lang-nodejs="`caQst`" pulumi-lang-dotnet="`CaQst`" pulumi-lang-go="`caQst`" pulumi-lang-python="`ca_qst`" pulumi-lang-yaml="`caQst`" pulumi-lang-java="`caQst`" pulumi-lang-hcl="`ca_qst`">`caQst`</span>, <span pulumi-lang-nodejs="`caGstHst`" pulumi-lang-dotnet="`CaGstHst`" pulumi-lang-go="`caGstHst`" pulumi-lang-python="`ca_gst_hst`" pulumi-lang-yaml="`caGstHst`" pulumi-lang-java="`caGstHst`" pulumi-lang-hcl="`ca_gst_hst`">`caGstHst`</span>, <span pulumi-lang-nodejs="`caPstBc`" pulumi-lang-dotnet="`CaPstBc`" pulumi-lang-go="`caPstBc`" pulumi-lang-python="`ca_pst_bc`" pulumi-lang-yaml="`caPstBc`" pulumi-lang-java="`caPstBc`" pulumi-lang-hcl="`ca_pst_bc`">`caPstBc`</span>, <span pulumi-lang-nodejs="`caPstMb`" pulumi-lang-dotnet="`CaPstMb`" pulumi-lang-go="`caPstMb`" pulumi-lang-python="`ca_pst_mb`" pulumi-lang-yaml="`caPstMb`" pulumi-lang-java="`caPstMb`" pulumi-lang-hcl="`ca_pst_mb`">`caPstMb`</span>, <span pulumi-lang-nodejs="`caPstSk`" pulumi-lang-dotnet="`CaPstSk`" pulumi-lang-go="`caPstSk`" pulumi-lang-python="`ca_pst_sk`" pulumi-lang-yaml="`caPstSk`" pulumi-lang-java="`caPstSk`" pulumi-lang-hcl="`ca_pst_sk`">`caPstSk`</span>, <span pulumi-lang-nodejs="`mySst`" pulumi-lang-dotnet="`MySst`" pulumi-lang-go="`mySst`" pulumi-lang-python="`my_sst`" pulumi-lang-yaml="`mySst`" pulumi-lang-java="`mySst`" pulumi-lang-hcl="`my_sst`">`mySst`</span>, <span pulumi-lang-nodejs="`sgGst`" pulumi-lang-dotnet="`SgGst`" pulumi-lang-go="`sgGst`" pulumi-lang-python="`sg_gst`" pulumi-lang-yaml="`sgGst`" pulumi-lang-java="`sgGst`" pulumi-lang-hcl="`sg_gst`">`sgGst`</span>, <span pulumi-lang-nodejs="`aeTrn`" pulumi-lang-dotnet="`AeTrn`" pulumi-lang-go="`aeTrn`" pulumi-lang-python="`ae_trn`" pulumi-lang-yaml="`aeTrn`" pulumi-lang-java="`aeTrn`" pulumi-lang-hcl="`ae_trn`">`aeTrn`</span>, <span pulumi-lang-nodejs="`clTin`" pulumi-lang-dotnet="`ClTin`" pulumi-lang-go="`clTin`" pulumi-lang-python="`cl_tin`" pulumi-lang-yaml="`clTin`" pulumi-lang-java="`clTin`" pulumi-lang-hcl="`cl_tin`">`clTin`</span>, <span pulumi-lang-nodejs="`saVat`" pulumi-lang-dotnet="`SaVat`" pulumi-lang-go="`saVat`" pulumi-lang-python="`sa_vat`" pulumi-lang-yaml="`saVat`" pulumi-lang-java="`saVat`" pulumi-lang-hcl="`sa_vat`">`saVat`</span>, <span pulumi-lang-nodejs="`idNpwp`" pulumi-lang-dotnet="`IdNpwp`" pulumi-lang-go="`idNpwp`" pulumi-lang-python="`id_npwp`" pulumi-lang-yaml="`idNpwp`" pulumi-lang-java="`idNpwp`" pulumi-lang-hcl="`id_npwp`">`idNpwp`</span>, <span pulumi-lang-nodejs="`myFrp`" pulumi-lang-dotnet="`MyFrp`" pulumi-lang-go="`myFrp`" pulumi-lang-python="`my_frp`" pulumi-lang-yaml="`myFrp`" pulumi-lang-java="`myFrp`" pulumi-lang-hcl="`my_frp`">`myFrp`</span>, <span pulumi-lang-nodejs="`ilVat`" pulumi-lang-dotnet="`IlVat`" pulumi-lang-go="`ilVat`" pulumi-lang-python="`il_vat`" pulumi-lang-yaml="`ilVat`" pulumi-lang-java="`ilVat`" pulumi-lang-hcl="`il_vat`">`ilVat`</span>, <span pulumi-lang-nodejs="`geVat`" pulumi-lang-dotnet="`GeVat`" pulumi-lang-go="`geVat`" pulumi-lang-python="`ge_vat`" pulumi-lang-yaml="`geVat`" pulumi-lang-java="`geVat`" pulumi-lang-hcl="`ge_vat`">`geVat`</span>, <span pulumi-lang-nodejs="`uaVat`" pulumi-lang-dotnet="`UaVat`" pulumi-lang-go="`uaVat`" pulumi-lang-python="`ua_vat`" pulumi-lang-yaml="`uaVat`" pulumi-lang-java="`uaVat`" pulumi-lang-hcl="`ua_vat`">`uaVat`</span>, <span pulumi-lang-nodejs="`isVat`" pulumi-lang-dotnet="`IsVat`" pulumi-lang-go="`isVat`" pulumi-lang-python="`is_vat`" pulumi-lang-yaml="`isVat`" pulumi-lang-java="`isVat`" pulumi-lang-hcl="`is_vat`">`isVat`</span>, <span pulumi-lang-nodejs="`bgUic`" pulumi-lang-dotnet="`BgUic`" pulumi-lang-go="`bgUic`" pulumi-lang-python="`bg_uic`" pulumi-lang-yaml="`bgUic`" pulumi-lang-java="`bgUic`" pulumi-lang-hcl="`bg_uic`">`bgUic`</span>, <span pulumi-lang-nodejs="`huTin`" pulumi-lang-dotnet="`HuTin`" pulumi-lang-go="`huTin`" pulumi-lang-python="`hu_tin`" pulumi-lang-yaml="`huTin`" pulumi-lang-java="`huTin`" pulumi-lang-hcl="`hu_tin`">`huTin`</span>, <span pulumi-lang-nodejs="`siTin`" pulumi-lang-dotnet="`SiTin`" pulumi-lang-go="`siTin`" pulumi-lang-python="`si_tin`" pulumi-lang-yaml="`siTin`" pulumi-lang-java="`siTin`" pulumi-lang-hcl="`si_tin`">`siTin`</span>, <span pulumi-lang-nodejs="`kePin`" pulumi-lang-dotnet="`KePin`" pulumi-lang-go="`kePin`" pulumi-lang-python="`ke_pin`" pulumi-lang-yaml="`kePin`" pulumi-lang-java="`kePin`" pulumi-lang-hcl="`ke_pin`">`kePin`</span>, <span pulumi-lang-nodejs="`trTin`" pulumi-lang-dotnet="`TrTin`" pulumi-lang-go="`trTin`" pulumi-lang-python="`tr_tin`" pulumi-lang-yaml="`trTin`" pulumi-lang-java="`trTin`" pulumi-lang-hcl="`tr_tin`">`trTin`</span>, <span pulumi-lang-nodejs="`egTin`" pulumi-lang-dotnet="`EgTin`" pulumi-lang-go="`egTin`" pulumi-lang-python="`eg_tin`" pulumi-lang-yaml="`egTin`" pulumi-lang-java="`egTin`" pulumi-lang-hcl="`eg_tin`">`egTin`</span>, <span pulumi-lang-nodejs="`phTin`" pulumi-lang-dotnet="`PhTin`" pulumi-lang-go="`phTin`" pulumi-lang-python="`ph_tin`" pulumi-lang-yaml="`phTin`" pulumi-lang-java="`phTin`" pulumi-lang-hcl="`ph_tin`">`phTin`</span>, <span pulumi-lang-nodejs="`alTin`" pulumi-lang-dotnet="`AlTin`" pulumi-lang-go="`alTin`" pulumi-lang-python="`al_tin`" pulumi-lang-yaml="`alTin`" pulumi-lang-java="`alTin`" pulumi-lang-hcl="`al_tin`">`alTin`</span>, <span pulumi-lang-nodejs="`bhVat`" pulumi-lang-dotnet="`BhVat`" pulumi-lang-go="`bhVat`" pulumi-lang-python="`bh_vat`" pulumi-lang-yaml="`bhVat`" pulumi-lang-java="`bhVat`" pulumi-lang-hcl="`bh_vat`">`bhVat`</span>, <span pulumi-lang-nodejs="`kzBin`" pulumi-lang-dotnet="`KzBin`" pulumi-lang-go="`kzBin`" pulumi-lang-python="`kz_bin`" pulumi-lang-yaml="`kzBin`" pulumi-lang-java="`kzBin`" pulumi-lang-hcl="`kz_bin`">`kzBin`</span>, <span pulumi-lang-nodejs="`ngTin`" pulumi-lang-dotnet="`NgTin`" pulumi-lang-go="`ngTin`" pulumi-lang-python="`ng_tin`" pulumi-lang-yaml="`ngTin`" pulumi-lang-java="`ngTin`" pulumi-lang-hcl="`ng_tin`">`ngTin`</span>, <span pulumi-lang-nodejs="`omVat`" pulumi-lang-dotnet="`OmVat`" pulumi-lang-go="`omVat`" pulumi-lang-python="`om_vat`" pulumi-lang-yaml="`omVat`" pulumi-lang-java="`omVat`" pulumi-lang-hcl="`om_vat`">`omVat`</span>, <span pulumi-lang-nodejs="`deStn`" pulumi-lang-dotnet="`DeStn`" pulumi-lang-go="`deStn`" pulumi-lang-python="`de_stn`" pulumi-lang-yaml="`deStn`" pulumi-lang-java="`deStn`" pulumi-lang-hcl="`de_stn`">`deStn`</span>, <span pulumi-lang-nodejs="`chUid`" pulumi-lang-dotnet="`ChUid`" pulumi-lang-go="`chUid`" pulumi-lang-python="`ch_uid`" pulumi-lang-yaml="`chUid`" pulumi-lang-java="`chUid`" pulumi-lang-hcl="`ch_uid`">`chUid`</span>, <span pulumi-lang-nodejs="`tzVat`" pulumi-lang-dotnet="`TzVat`" pulumi-lang-go="`tzVat`" pulumi-lang-python="`tz_vat`" pulumi-lang-yaml="`tzVat`" pulumi-lang-java="`tzVat`" pulumi-lang-hcl="`tz_vat`">`tzVat`</span>, <span pulumi-lang-nodejs="`uzVat`" pulumi-lang-dotnet="`UzVat`" pulumi-lang-go="`uzVat`" pulumi-lang-python="`uz_vat`" pulumi-lang-yaml="`uzVat`" pulumi-lang-java="`uzVat`" pulumi-lang-hcl="`uz_vat`">`uzVat`</span>, <span pulumi-lang-nodejs="`uzTin`" pulumi-lang-dotnet="`UzTin`" pulumi-lang-go="`uzTin`" pulumi-lang-python="`uz_tin`" pulumi-lang-yaml="`uzTin`" pulumi-lang-java="`uzTin`" pulumi-lang-hcl="`uz_tin`">`uzTin`</span>, <span pulumi-lang-nodejs="`mdVat`" pulumi-lang-dotnet="`MdVat`" pulumi-lang-go="`mdVat`" pulumi-lang-python="`md_vat`" pulumi-lang-yaml="`mdVat`" pulumi-lang-java="`mdVat`" pulumi-lang-hcl="`md_vat`">`mdVat`</span>, <span pulumi-lang-nodejs="`maVat`" pulumi-lang-dotnet="`MaVat`" pulumi-lang-go="`maVat`" pulumi-lang-python="`ma_vat`" pulumi-lang-yaml="`maVat`" pulumi-lang-java="`maVat`" pulumi-lang-hcl="`ma_vat`">`maVat`</span>, <span pulumi-lang-nodejs="`byTin`" pulumi-lang-dotnet="`ByTin`" pulumi-lang-go="`byTin`" pulumi-lang-python="`by_tin`" pulumi-lang-yaml="`byTin`" pulumi-lang-java="`byTin`" pulumi-lang-hcl="`by_tin`">`byTin`</span>, <span pulumi-lang-nodejs="`aoTin`" pulumi-lang-dotnet="`AoTin`" pulumi-lang-go="`aoTin`" pulumi-lang-python="`ao_tin`" pulumi-lang-yaml="`aoTin`" pulumi-lang-java="`aoTin`" pulumi-lang-hcl="`ao_tin`">`aoTin`</span>, <span pulumi-lang-nodejs="`bsTin`" pulumi-lang-dotnet="`BsTin`" pulumi-lang-go="`bsTin`" pulumi-lang-python="`bs_tin`" pulumi-lang-yaml="`bsTin`" pulumi-lang-java="`bsTin`" pulumi-lang-hcl="`bs_tin`">`bsTin`</span>, <span pulumi-lang-nodejs="`bbTin`" pulumi-lang-dotnet="`BbTin`" pulumi-lang-go="`bbTin`" pulumi-lang-python="`bb_tin`" pulumi-lang-yaml="`bbTin`" pulumi-lang-java="`bbTin`" pulumi-lang-hcl="`bb_tin`">`bbTin`</span>, <span pulumi-lang-nodejs="`cdNif`" pulumi-lang-dotnet="`CdNif`" pulumi-lang-go="`cdNif`" pulumi-lang-python="`cd_nif`" pulumi-lang-yaml="`cdNif`" pulumi-lang-java="`cdNif`" pulumi-lang-hcl="`cd_nif`">`cdNif`</span>, <span pulumi-lang-nodejs="`mrNif`" pulumi-lang-dotnet="`MrNif`" pulumi-lang-go="`mrNif`" pulumi-lang-python="`mr_nif`" pulumi-lang-yaml="`mrNif`" pulumi-lang-java="`mrNif`" pulumi-lang-hcl="`mr_nif`">`mrNif`</span>, <span pulumi-lang-nodejs="`mePib`" pulumi-lang-dotnet="`MePib`" pulumi-lang-go="`mePib`" pulumi-lang-python="`me_pib`" pulumi-lang-yaml="`mePib`" pulumi-lang-java="`mePib`" pulumi-lang-hcl="`me_pib`">`mePib`</span>, <span pulumi-lang-nodejs="`zwTin`" pulumi-lang-dotnet="`ZwTin`" pulumi-lang-go="`zwTin`" pulumi-lang-python="`zw_tin`" pulumi-lang-yaml="`zwTin`" pulumi-lang-java="`zwTin`" pulumi-lang-hcl="`zw_tin`">`zwTin`</span>, <span pulumi-lang-nodejs="`baTin`" pulumi-lang-dotnet="`BaTin`" pulumi-lang-go="`baTin`" pulumi-lang-python="`ba_tin`" pulumi-lang-yaml="`baTin`" pulumi-lang-java="`baTin`" pulumi-lang-hcl="`ba_tin`">`baTin`</span>, <span pulumi-lang-nodejs="`gnNif`" pulumi-lang-dotnet="`GnNif`" pulumi-lang-go="`gnNif`" pulumi-lang-python="`gn_nif`" pulumi-lang-yaml="`gnNif`" pulumi-lang-java="`gnNif`" pulumi-lang-hcl="`gn_nif`">`gnNif`</span>, <span pulumi-lang-nodejs="`mkVat`" pulumi-lang-dotnet="`MkVat`" pulumi-lang-go="`mkVat`" pulumi-lang-python="`mk_vat`" pulumi-lang-yaml="`mkVat`" pulumi-lang-java="`mkVat`" pulumi-lang-hcl="`mk_vat`">`mkVat`</span>, <span pulumi-lang-nodejs="`srFin`" pulumi-lang-dotnet="`SrFin`" pulumi-lang-go="`srFin`" pulumi-lang-python="`sr_fin`" pulumi-lang-yaml="`srFin`" pulumi-lang-java="`srFin`" pulumi-lang-hcl="`sr_fin`">`srFin`</span>, <span pulumi-lang-nodejs="`snNinea`" pulumi-lang-dotnet="`SnNinea`" pulumi-lang-go="`snNinea`" pulumi-lang-python="`sn_ninea`" pulumi-lang-yaml="`snNinea`" pulumi-lang-java="`snNinea`" pulumi-lang-hcl="`sn_ninea`">`snNinea`</span>, <span pulumi-lang-nodejs="`amTin`" pulumi-lang-dotnet="`AmTin`" pulumi-lang-go="`amTin`" pulumi-lang-python="`am_tin`" pulumi-lang-yaml="`amTin`" pulumi-lang-java="`amTin`" pulumi-lang-hcl="`am_tin`">`amTin`</span>, <span pulumi-lang-nodejs="`npPan`" pulumi-lang-dotnet="`NpPan`" pulumi-lang-go="`npPan`" pulumi-lang-python="`np_pan`" pulumi-lang-yaml="`npPan`" pulumi-lang-java="`npPan`" pulumi-lang-hcl="`np_pan`">`npPan`</span>, <span pulumi-lang-nodejs="`tjTin`" pulumi-lang-dotnet="`TjTin`" pulumi-lang-go="`tjTin`" pulumi-lang-python="`tj_tin`" pulumi-lang-yaml="`tjTin`" pulumi-lang-java="`tjTin`" pulumi-lang-hcl="`tj_tin`">`tjTin`</span>, <span pulumi-lang-nodejs="`ugTin`" pulumi-lang-dotnet="`UgTin`" pulumi-lang-go="`ugTin`" pulumi-lang-python="`ug_tin`" pulumi-lang-yaml="`ugTin`" pulumi-lang-java="`ugTin`" pulumi-lang-hcl="`ug_tin`">`ugTin`</span>, <span pulumi-lang-nodejs="`zmTin`" pulumi-lang-dotnet="`ZmTin`" pulumi-lang-go="`zmTin`" pulumi-lang-python="`zm_tin`" pulumi-lang-yaml="`zmTin`" pulumi-lang-java="`zmTin`" pulumi-lang-hcl="`zm_tin`">`zmTin`</span>, <span pulumi-lang-nodejs="`khTin`" pulumi-lang-dotnet="`KhTin`" pulumi-lang-go="`khTin`" pulumi-lang-python="`kh_tin`" pulumi-lang-yaml="`khTin`" pulumi-lang-java="`khTin`" pulumi-lang-hcl="`kh_tin`">`khTin`</span>, <span pulumi-lang-nodejs="`awTin`" pulumi-lang-dotnet="`AwTin`" pulumi-lang-go="`awTin`" pulumi-lang-python="`aw_tin`" pulumi-lang-yaml="`awTin`" pulumi-lang-java="`awTin`" pulumi-lang-hcl="`aw_tin`">`awTin`</span>, <span pulumi-lang-nodejs="`azTin`" pulumi-lang-dotnet="`AzTin`" pulumi-lang-go="`azTin`" pulumi-lang-python="`az_tin`" pulumi-lang-yaml="`azTin`" pulumi-lang-java="`azTin`" pulumi-lang-hcl="`az_tin`">`azTin`</span>, <span pulumi-lang-nodejs="`bdBin`" pulumi-lang-dotnet="`BdBin`" pulumi-lang-go="`bdBin`" pulumi-lang-python="`bd_bin`" pulumi-lang-yaml="`bdBin`" pulumi-lang-java="`bdBin`" pulumi-lang-hcl="`bd_bin`">`bdBin`</span>, <span pulumi-lang-nodejs="`auAcn`" pulumi-lang-dotnet="`AuAcn`" pulumi-lang-go="`auAcn`" pulumi-lang-python="`au_acn`" pulumi-lang-yaml="`auAcn`" pulumi-lang-java="`auAcn`" pulumi-lang-hcl="`au_acn`">`auAcn`</span>, <span pulumi-lang-nodejs="`nzBn`" pulumi-lang-dotnet="`NzBn`" pulumi-lang-go="`nzBn`" pulumi-lang-python="`nz_bn`" pulumi-lang-yaml="`nzBn`" pulumi-lang-java="`nzBn`" pulumi-lang-hcl="`nz_bn`">`nzBn`</span>, <span pulumi-lang-nodejs="`ptNif`" pulumi-lang-dotnet="`PtNif`" pulumi-lang-go="`ptNif`" pulumi-lang-python="`pt_nif`" pulumi-lang-yaml="`ptNif`" pulumi-lang-java="`ptNif`" pulumi-lang-hcl="`pt_nif`">`ptNif`</span>, <span pulumi-lang-nodejs="`czDic`" pulumi-lang-dotnet="`CzDic`" pulumi-lang-go="`czDic`" pulumi-lang-python="`cz_dic`" pulumi-lang-yaml="`czDic`" pulumi-lang-java="`czDic`" pulumi-lang-hcl="`cz_dic`">`czDic`</span>, <span pulumi-lang-nodejs="`frSiret`" pulumi-lang-dotnet="`FrSiret`" pulumi-lang-go="`frSiret`" pulumi-lang-python="`fr_siret`" pulumi-lang-yaml="`frSiret`" pulumi-lang-java="`frSiret`" pulumi-lang-hcl="`fr_siret`">`frSiret`</span>, <span pulumi-lang-nodejs="`frSiren`" pulumi-lang-dotnet="`FrSiren`" pulumi-lang-go="`frSiren`" pulumi-lang-python="`fr_siren`" pulumi-lang-yaml="`frSiren`" pulumi-lang-java="`frSiren`" pulumi-lang-hcl="`fr_siren`">`frSiren`</span>, <span pulumi-lang-nodejs="`frSpi`" pulumi-lang-dotnet="`FrSpi`" pulumi-lang-go="`frSpi`" pulumi-lang-python="`fr_spi`" pulumi-lang-yaml="`frSpi`" pulumi-lang-java="`frSpi`" pulumi-lang-hcl="`fr_spi`">`frSpi`</span>, <span pulumi-lang-nodejs="`smCoe`" pulumi-lang-dotnet="`SmCoe`" pulumi-lang-go="`smCoe`" pulumi-lang-python="`sm_coe`" pulumi-lang-yaml="`smCoe`" pulumi-lang-java="`smCoe`" pulumi-lang-hcl="`sm_coe`">`smCoe`</span>, <span pulumi-lang-nodejs="`ttVat`" pulumi-lang-dotnet="`TtVat`" pulumi-lang-go="`ttVat`" pulumi-lang-python="`tt_vat`" pulumi-lang-yaml="`ttVat`" pulumi-lang-java="`ttVat`" pulumi-lang-hcl="`tt_vat`">`ttVat`</span>, <span pulumi-lang-nodejs="`ttBir`" pulumi-lang-dotnet="`TtBir`" pulumi-lang-go="`ttBir`" pulumi-lang-python="`tt_bir`" pulumi-lang-yaml="`ttBir`" pulumi-lang-java="`ttBir`" pulumi-lang-hcl="`tt_bir`">`ttBir`</span>, <span pulumi-lang-nodejs="`muVat`" pulumi-lang-dotnet="`MuVat`" pulumi-lang-go="`muVat`" pulumi-lang-python="`mu_vat`" pulumi-lang-yaml="`muVat`" pulumi-lang-java="`muVat`" pulumi-lang-hcl="`mu_vat`">`muVat`</span>, <span pulumi-lang-nodejs="`mzNuit`" pulumi-lang-dotnet="`MzNuit`" pulumi-lang-go="`mzNuit`" pulumi-lang-python="`mz_nuit`" pulumi-lang-yaml="`mzNuit`" pulumi-lang-java="`mzNuit`" pulumi-lang-hcl="`mz_nuit`">`mzNuit`</span>, <span pulumi-lang-nodejs="`auWpn`" pulumi-lang-dotnet="`AuWpn`" pulumi-lang-go="`auWpn`" pulumi-lang-python="`au_wpn`" pulumi-lang-yaml="`auWpn`" pulumi-lang-java="`auWpn`" pulumi-lang-hcl="`au_wpn`">`auWpn`</span>, <span pulumi-lang-nodejs="`mdCf`" pulumi-lang-dotnet="`MdCf`" pulumi-lang-go="`mdCf`" pulumi-lang-python="`md_cf`" pulumi-lang-yaml="`mdCf`" pulumi-lang-java="`mdCf`" pulumi-lang-hcl="`md_cf`">`mdCf`</span>, <span pulumi-lang-nodejs="`isKt`" pulumi-lang-dotnet="`IsKt`" pulumi-lang-go="`isKt`" pulumi-lang-python="`is_kt`" pulumi-lang-yaml="`isKt`" pulumi-lang-java="`isKt`" pulumi-lang-hcl="`is_kt`">`isKt`</span>, <span pulumi-lang-nodejs="`bjIfu`" pulumi-lang-dotnet="`BjIfu`" pulumi-lang-go="`bjIfu`" pulumi-lang-python="`bj_ifu`" pulumi-lang-yaml="`bjIfu`" pulumi-lang-java="`bjIfu`" pulumi-lang-hcl="`bj_ifu`">`bjIfu`</span>, <span pulumi-lang-nodejs="`etTin`" pulumi-lang-dotnet="`EtTin`" pulumi-lang-go="`etTin`" pulumi-lang-python="`et_tin`" pulumi-lang-yaml="`etTin`" pulumi-lang-java="`etTin`" pulumi-lang-hcl="`et_tin`">`etTin`</span>, <span pulumi-lang-nodejs="`kgTin`" pulumi-lang-dotnet="`KgTin`" pulumi-lang-go="`kgTin`" pulumi-lang-python="`kg_tin`" pulumi-lang-yaml="`kgTin`" pulumi-lang-java="`kgTin`" pulumi-lang-hcl="`kg_tin`">`kgTin`</span>, <span pulumi-lang-nodejs="`laTin`" pulumi-lang-dotnet="`LaTin`" pulumi-lang-go="`laTin`" pulumi-lang-python="`la_tin`" pulumi-lang-yaml="`laTin`" pulumi-lang-java="`laTin`" pulumi-lang-hcl="`la_tin`">`laTin`</span>, <span pulumi-lang-nodejs="`cmNiu`" pulumi-lang-dotnet="`CmNiu`" pulumi-lang-go="`cmNiu`" pulumi-lang-python="`cm_niu`" pulumi-lang-yaml="`cmNiu`" pulumi-lang-java="`cmNiu`" pulumi-lang-hcl="`cm_niu`">`cmNiu`</span>, <span pulumi-lang-nodejs="`cvNif`" pulumi-lang-dotnet="`CvNif`" pulumi-lang-go="`cvNif`" pulumi-lang-python="`cv_nif`" pulumi-lang-yaml="`cvNif`" pulumi-lang-java="`cvNif`" pulumi-lang-hcl="`cv_nif`">`cvNif`</span>, <span pulumi-lang-nodejs="`bfIfu`" pulumi-lang-dotnet="`BfIfu`" pulumi-lang-go="`bfIfu`" pulumi-lang-python="`bf_ifu`" pulumi-lang-yaml="`bfIfu`" pulumi-lang-java="`bfIfu`" pulumi-lang-hcl="`bf_ifu`">`bfIfu`</span>, <span pulumi-lang-nodejs="`icNif`" pulumi-lang-dotnet="`IcNif`" pulumi-lang-go="`icNif`" pulumi-lang-python="`ic_nif`" pulumi-lang-yaml="`icNif`" pulumi-lang-java="`icNif`" pulumi-lang-hcl="`ic_nif`">`icNif`</span>, <span pulumi-lang-nodejs="`ghTin`" pulumi-lang-dotnet="`GhTin`" pulumi-lang-go="`ghTin`" pulumi-lang-python="`gh_tin`" pulumi-lang-yaml="`ghTin`" pulumi-lang-java="`ghTin`" pulumi-lang-hcl="`gh_tin`">`ghTin`</span>, <span pulumi-lang-nodejs="`bwVat`" pulumi-lang-dotnet="`BwVat`" pulumi-lang-go="`bwVat`" pulumi-lang-python="`bw_vat`" pulumi-lang-yaml="`bwVat`" pulumi-lang-java="`bwVat`" pulumi-lang-hcl="`bw_vat`">`bwVat`</span>, <span pulumi-lang-nodejs="`ciVat`" pulumi-lang-dotnet="`CiVat`" pulumi-lang-go="`ciVat`" pulumi-lang-python="`ci_vat`" pulumi-lang-yaml="`ciVat`" pulumi-lang-java="`ciVat`" pulumi-lang-hcl="`ci_vat`">`ciVat`</span>, or <span pulumi-lang-nodejs="`unknown`" pulumi-lang-dotnet="`Unknown`" pulumi-lang-go="`unknown`" pulumi-lang-python="`unknown`" pulumi-lang-yaml="`unknown`" pulumi-lang-java="`unknown`" pulumi-lang-hcl="`unknown`">`unknown`</span>
         """
         return pulumi.get(self, "type")
 
@@ -11833,6 +12493,25 @@ class InvoiceItemDiscount(dict):
         ID of the promotion code to create a new discount for.
         """
         return pulumi.get(self, "promotion_code")
+
+
+@pulumi.output_type
+class InvoiceItemInvoicingRule(dict):
+    def __init__(__self__, *,
+                 type: Optional[_builtins.str] = None):
+        """
+        :param _builtins.str type: The type of invoicing rule.
+        """
+        if type is not None:
+            pulumi.set(__self__, "type", type)
+
+    @_builtins.property
+    @pulumi.getter
+    def type(self) -> Optional[_builtins.str]:
+        """
+        The type of invoicing rule.
+        """
+        return pulumi.get(self, "type")
 
 
 @pulumi.output_type
@@ -12196,8 +12875,8 @@ class InvoiceItemProrationDetails(dict):
                  credited_items: Optional['outputs.InvoiceItemProrationDetailsCreditedItems'] = None,
                  discount_amounts: Optional[Sequence['outputs.InvoiceItemProrationDetailsDiscountAmount']] = None):
         """
-        :param 'InvoiceItemProrationDetailsCreditedItemsArgs' credited_items: For a credit proration, links to the debit invoice line items or invoice item that the credit applies to.
-        :param Sequence['InvoiceItemProrationDetailsDiscountAmountArgs'] discount_amounts: Discount amounts applied when the proration was created.
+        :param 'InvoiceItemProrationDetailsCreditedItemsArgs' credited_items: For a credit proration, links to the debit that the credit applies to. The reference is to an invoice item if the debit was pending when the credit was created, and to invoice line items if the debit was already invoiced.
+        :param Sequence['InvoiceItemProrationDetailsDiscountAmountArgs'] discount_amounts: Discount amounts applied when the proration was created. This field is only populated for prorations created from subscriptions with `billing_mode=flexible`.
         """
         if credited_items is not None:
             pulumi.set(__self__, "credited_items", credited_items)
@@ -12208,7 +12887,7 @@ class InvoiceItemProrationDetails(dict):
     @pulumi.getter(name="creditedItems")
     def credited_items(self) -> Optional['outputs.InvoiceItemProrationDetailsCreditedItems']:
         """
-        For a credit proration, links to the debit invoice line items or invoice item that the credit applies to.
+        For a credit proration, links to the debit that the credit applies to. The reference is to an invoice item if the debit was pending when the credit was created, and to invoice line items if the debit was already invoiced.
         """
         return pulumi.get(self, "credited_items")
 
@@ -12216,7 +12895,7 @@ class InvoiceItemProrationDetails(dict):
     @pulumi.getter(name="discountAmounts")
     def discount_amounts(self) -> Optional[Sequence['outputs.InvoiceItemProrationDetailsDiscountAmount']]:
         """
-        Discount amounts applied when the proration was created.
+        Discount amounts applied when the proration was created. This field is only populated for prorations created from subscriptions with `billing_mode=flexible`.
         """
         return pulumi.get(self, "discount_amounts")
 
@@ -12413,7 +13092,7 @@ class InvoiceLastFinalizationError(dict):
                  source: Optional[_builtins.str] = None,
                  type: Optional[_builtins.str] = None):
         """
-        :param _builtins.str advice_code: For card errors resulting from a card issuer decline, a short string indicating [how to proceed with an error](https://docs.stripe.com/declines#retrying-issuer-declines) if they provide one.
+        :param _builtins.str advice_code: For card errors resulting from a card issuer decline, a short string indicating [how to proceed with an error](https://docs.stripe.com/declines/card#retrying-issuer-declines) if they provide one.
         :param _builtins.str charge: For card errors, the ID of the failed charge.
         :param _builtins.str code: For some errors that could be handled programmatically, a short string indicating the [error code](https://docs.stripe.com/error-codes) reported.
         :param _builtins.str decline_code: For card errors resulting from a card issuer decline, a short string indicating the [card issuer's reason for the decline](https://docs.stripe.com/declines#issuer-declines) if they provide one.
@@ -12442,7 +13121,7 @@ class InvoiceLastFinalizationError(dict):
         :param _builtins.str request_log_url: A URL to the request log entry in your dashboard.
         :param _builtins.str setup_intent: A SetupIntent guides you through the process of setting up and saving a customer's payment credentials for future payments.
                For example, you can use a SetupIntent to set up and save your customer's card without immediately collecting a payment.
-               Later, you can use [PaymentIntents](https://api.stripe.com#payment_intents) to drive the payment flow.
+               Later, you can use [PaymentIntents](https://docs.stripe.com/api#payment_intents) to drive the payment flow.
                
                Create a SetupIntent when you're ready to collect your customer's payment credentials.
                Don't maintain long-lived, unconfirmed SetupIntents because they might not be valid.
@@ -12453,9 +13132,9 @@ class InvoiceLastFinalizationError(dict):
                For example, cardholders in [certain regions](https://stripe.com/guides/strong-customer-authentication) might need to be run through
                [Strong Customer Authentication](https://docs.stripe.com/strong-customer-authentication) during payment method collection
                to streamline later [off-session payments](https://docs.stripe.com/payments/setup-intents).
-               If you use the SetupIntent with a [Customer](https://api.stripe.com#setup_intent_object-customer),
+               If you use the SetupIntent with a [Customer](https://docs.stripe.com/api#setup_intent_object-customer),
                it automatically attaches the resulting payment method to that Customer after successful setup.
-               We recommend using SetupIntents or <span pulumi-lang-nodejs="[setupFutureUsage]" pulumi-lang-dotnet="[SetupFutureUsage]" pulumi-lang-go="[setupFutureUsage]" pulumi-lang-python="[setup_future_usage]" pulumi-lang-yaml="[setupFutureUsage]" pulumi-lang-java="[setupFutureUsage]" pulumi-lang-hcl="[setup_future_usage]">[setupFutureUsage]</span>(https://api.stripe.com#payment_intent_object-setup_future_usage) on
+               We recommend using SetupIntents or <span pulumi-lang-nodejs="[setupFutureUsage]" pulumi-lang-dotnet="[SetupFutureUsage]" pulumi-lang-go="[setupFutureUsage]" pulumi-lang-python="[setup_future_usage]" pulumi-lang-yaml="[setupFutureUsage]" pulumi-lang-java="[setupFutureUsage]" pulumi-lang-hcl="[setup_future_usage]">[setupFutureUsage]</span>(https://docs.stripe.com/api#payment_intent_object-setup_future_usage) on
                PaymentIntents to save payment methods to prevent saving invalid or unoptimized payment methods.
                
                By using SetupIntents, you can reduce friction for your customers, even as regulations change over time.
@@ -12500,7 +13179,7 @@ class InvoiceLastFinalizationError(dict):
     @pulumi.getter(name="adviceCode")
     def advice_code(self) -> Optional[_builtins.str]:
         """
-        For card errors resulting from a card issuer decline, a short string indicating [how to proceed with an error](https://docs.stripe.com/declines#retrying-issuer-declines) if they provide one.
+        For card errors resulting from a card issuer decline, a short string indicating [how to proceed with an error](https://docs.stripe.com/declines/card#retrying-issuer-declines) if they provide one.
         """
         return pulumi.get(self, "advice_code")
 
@@ -12620,7 +13299,7 @@ class InvoiceLastFinalizationError(dict):
         """
         A SetupIntent guides you through the process of setting up and saving a customer's payment credentials for future payments.
         For example, you can use a SetupIntent to set up and save your customer's card without immediately collecting a payment.
-        Later, you can use [PaymentIntents](https://api.stripe.com#payment_intents) to drive the payment flow.
+        Later, you can use [PaymentIntents](https://docs.stripe.com/api#payment_intents) to drive the payment flow.
 
         Create a SetupIntent when you're ready to collect your customer's payment credentials.
         Don't maintain long-lived, unconfirmed SetupIntents because they might not be valid.
@@ -12631,9 +13310,9 @@ class InvoiceLastFinalizationError(dict):
         For example, cardholders in [certain regions](https://stripe.com/guides/strong-customer-authentication) might need to be run through
         [Strong Customer Authentication](https://docs.stripe.com/strong-customer-authentication) during payment method collection
         to streamline later [off-session payments](https://docs.stripe.com/payments/setup-intents).
-        If you use the SetupIntent with a [Customer](https://api.stripe.com#setup_intent_object-customer),
+        If you use the SetupIntent with a [Customer](https://docs.stripe.com/api#setup_intent_object-customer),
         it automatically attaches the resulting payment method to that Customer after successful setup.
-        We recommend using SetupIntents or <span pulumi-lang-nodejs="[setupFutureUsage]" pulumi-lang-dotnet="[SetupFutureUsage]" pulumi-lang-go="[setupFutureUsage]" pulumi-lang-python="[setup_future_usage]" pulumi-lang-yaml="[setupFutureUsage]" pulumi-lang-java="[setupFutureUsage]" pulumi-lang-hcl="[setup_future_usage]">[setupFutureUsage]</span>(https://api.stripe.com#payment_intent_object-setup_future_usage) on
+        We recommend using SetupIntents or <span pulumi-lang-nodejs="[setupFutureUsage]" pulumi-lang-dotnet="[SetupFutureUsage]" pulumi-lang-go="[setupFutureUsage]" pulumi-lang-python="[setup_future_usage]" pulumi-lang-yaml="[setupFutureUsage]" pulumi-lang-java="[setupFutureUsage]" pulumi-lang-hcl="[setup_future_usage]">[setupFutureUsage]</span>(https://docs.stripe.com/api#payment_intent_object-setup_future_usage) on
         PaymentIntents to save payment methods to prevent saving invalid or unoptimized payment methods.
 
         By using SetupIntents, you can reduce friction for your customers, even as regulations change over time.
@@ -12889,6 +13568,7 @@ class InvoicePaymentSettingsPaymentMethodOptions(dict):
     def __init__(__self__, *,
                  acss_debit: Optional['outputs.InvoicePaymentSettingsPaymentMethodOptionsAcssDebit'] = None,
                  bancontact: Optional['outputs.InvoicePaymentSettingsPaymentMethodOptionsBancontact'] = None,
+                 billie: Optional['outputs.InvoicePaymentSettingsPaymentMethodOptionsBillie'] = None,
                  card: Optional['outputs.InvoicePaymentSettingsPaymentMethodOptionsCard'] = None,
                  customer_balance: Optional['outputs.InvoicePaymentSettingsPaymentMethodOptionsCustomerBalance'] = None,
                  payto: Optional['outputs.InvoicePaymentSettingsPaymentMethodOptionsPayto'] = None,
@@ -12898,6 +13578,7 @@ class InvoicePaymentSettingsPaymentMethodOptions(dict):
         """
         :param 'InvoicePaymentSettingsPaymentMethodOptionsAcssDebitArgs' acss_debit: If paying by <span pulumi-lang-nodejs="`acssDebit`" pulumi-lang-dotnet="`AcssDebit`" pulumi-lang-go="`acssDebit`" pulumi-lang-python="`acss_debit`" pulumi-lang-yaml="`acssDebit`" pulumi-lang-java="`acssDebit`" pulumi-lang-hcl="`acss_debit`">`acssDebit`</span>, this sub-hash contains details about the Canadian pre-authorized debit payment method options to pass to the invoice’s PaymentIntent.
         :param 'InvoicePaymentSettingsPaymentMethodOptionsBancontactArgs' bancontact: If paying by <span pulumi-lang-nodejs="`bancontact`" pulumi-lang-dotnet="`Bancontact`" pulumi-lang-go="`bancontact`" pulumi-lang-python="`bancontact`" pulumi-lang-yaml="`bancontact`" pulumi-lang-java="`bancontact`" pulumi-lang-hcl="`bancontact`">`bancontact`</span>, this sub-hash contains details about the Bancontact payment method options to pass to the invoice’s PaymentIntent.
+        :param 'InvoicePaymentSettingsPaymentMethodOptionsBillieArgs' billie: If paying by <span pulumi-lang-nodejs="`billie`" pulumi-lang-dotnet="`Billie`" pulumi-lang-go="`billie`" pulumi-lang-python="`billie`" pulumi-lang-yaml="`billie`" pulumi-lang-java="`billie`" pulumi-lang-hcl="`billie`">`billie`</span>, this sub-hash contains details about the Billie payment method options to pass to the invoice’s PaymentIntent.
         :param 'InvoicePaymentSettingsPaymentMethodOptionsCardArgs' card: If paying by <span pulumi-lang-nodejs="`card`" pulumi-lang-dotnet="`Card`" pulumi-lang-go="`card`" pulumi-lang-python="`card`" pulumi-lang-yaml="`card`" pulumi-lang-java="`card`" pulumi-lang-hcl="`card`">`card`</span>, this sub-hash contains details about the Card payment method options to pass to the invoice’s PaymentIntent.
         :param 'InvoicePaymentSettingsPaymentMethodOptionsCustomerBalanceArgs' customer_balance: If paying by <span pulumi-lang-nodejs="`customerBalance`" pulumi-lang-dotnet="`CustomerBalance`" pulumi-lang-go="`customerBalance`" pulumi-lang-python="`customer_balance`" pulumi-lang-yaml="`customerBalance`" pulumi-lang-java="`customerBalance`" pulumi-lang-hcl="`customer_balance`">`customerBalance`</span>, this sub-hash contains details about the Bank transfer payment method options to pass to the invoice’s PaymentIntent.
         :param 'InvoicePaymentSettingsPaymentMethodOptionsPaytoArgs' payto: If paying by <span pulumi-lang-nodejs="`payto`" pulumi-lang-dotnet="`Payto`" pulumi-lang-go="`payto`" pulumi-lang-python="`payto`" pulumi-lang-yaml="`payto`" pulumi-lang-java="`payto`" pulumi-lang-hcl="`payto`">`payto`</span>, this sub-hash contains details about the PayTo payment method options to pass to the invoice’s PaymentIntent.
@@ -12909,6 +13590,8 @@ class InvoicePaymentSettingsPaymentMethodOptions(dict):
             pulumi.set(__self__, "acss_debit", acss_debit)
         if bancontact is not None:
             pulumi.set(__self__, "bancontact", bancontact)
+        if billie is not None:
+            pulumi.set(__self__, "billie", billie)
         if card is not None:
             pulumi.set(__self__, "card", card)
         if customer_balance is not None:
@@ -12937,6 +13620,14 @@ class InvoicePaymentSettingsPaymentMethodOptions(dict):
         If paying by <span pulumi-lang-nodejs="`bancontact`" pulumi-lang-dotnet="`Bancontact`" pulumi-lang-go="`bancontact`" pulumi-lang-python="`bancontact`" pulumi-lang-yaml="`bancontact`" pulumi-lang-java="`bancontact`" pulumi-lang-hcl="`bancontact`">`bancontact`</span>, this sub-hash contains details about the Bancontact payment method options to pass to the invoice’s PaymentIntent.
         """
         return pulumi.get(self, "bancontact")
+
+    @_builtins.property
+    @pulumi.getter
+    def billie(self) -> Optional['outputs.InvoicePaymentSettingsPaymentMethodOptionsBillie']:
+        """
+        If paying by <span pulumi-lang-nodejs="`billie`" pulumi-lang-dotnet="`Billie`" pulumi-lang-go="`billie`" pulumi-lang-python="`billie`" pulumi-lang-yaml="`billie`" pulumi-lang-java="`billie`" pulumi-lang-hcl="`billie`">`billie`</span>, this sub-hash contains details about the Billie payment method options to pass to the invoice’s PaymentIntent.
+        """
+        return pulumi.get(self, "billie")
 
     @_builtins.property
     @pulumi.getter
@@ -13103,6 +13794,232 @@ class InvoicePaymentSettingsPaymentMethodOptionsBancontact(dict):
         Preferred language of the Bancontact authorization page that the customer is redirected to.
         """
         return pulumi.get(self, "preferred_language")
+
+
+@pulumi.output_type
+class InvoicePaymentSettingsPaymentMethodOptionsBillie(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "companyDetails":
+            suggest = "company_details"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in InvoicePaymentSettingsPaymentMethodOptionsBillie. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        InvoicePaymentSettingsPaymentMethodOptionsBillie.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        InvoicePaymentSettingsPaymentMethodOptionsBillie.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 company_details: Optional['outputs.InvoicePaymentSettingsPaymentMethodOptionsBillieCompanyDetails'] = None,
+                 reference: Optional[_builtins.str] = None):
+        """
+        :param _builtins.str reference: An identifier or reference that this payment corresponds to.
+        """
+        if company_details is not None:
+            pulumi.set(__self__, "company_details", company_details)
+        if reference is not None:
+            pulumi.set(__self__, "reference", reference)
+
+    @_builtins.property
+    @pulumi.getter(name="companyDetails")
+    def company_details(self) -> Optional['outputs.InvoicePaymentSettingsPaymentMethodOptionsBillieCompanyDetails']:
+        return pulumi.get(self, "company_details")
+
+    @_builtins.property
+    @pulumi.getter
+    def reference(self) -> Optional[_builtins.str]:
+        """
+        An identifier or reference that this payment corresponds to.
+        """
+        return pulumi.get(self, "reference")
+
+
+@pulumi.output_type
+class InvoicePaymentSettingsPaymentMethodOptionsBillieCompanyDetails(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "registeredAddress":
+            suggest = "registered_address"
+        elif key == "registeredName":
+            suggest = "registered_name"
+        elif key == "registrationNumber":
+            suggest = "registration_number"
+        elif key == "registrationType":
+            suggest = "registration_type"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in InvoicePaymentSettingsPaymentMethodOptionsBillieCompanyDetails. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        InvoicePaymentSettingsPaymentMethodOptionsBillieCompanyDetails.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        InvoicePaymentSettingsPaymentMethodOptionsBillieCompanyDetails.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 registered_address: Optional['outputs.InvoicePaymentSettingsPaymentMethodOptionsBillieCompanyDetailsRegisteredAddress'] = None,
+                 registered_name: Optional[_builtins.str] = None,
+                 registration_number: Optional[_builtins.str] = None,
+                 registration_type: Optional[_builtins.str] = None,
+                 vat: Optional[_builtins.str] = None):
+        """
+        :param _builtins.str registered_name: Company or entity name.
+        :param _builtins.str registration_number: The official registration number for the given registration type.
+        :param _builtins.str registration_type: Type of registration the company or entity holds in their registered country.
+        :param _builtins.str vat: VAT ID number.
+        """
+        if registered_address is not None:
+            pulumi.set(__self__, "registered_address", registered_address)
+        if registered_name is not None:
+            pulumi.set(__self__, "registered_name", registered_name)
+        if registration_number is not None:
+            pulumi.set(__self__, "registration_number", registration_number)
+        if registration_type is not None:
+            pulumi.set(__self__, "registration_type", registration_type)
+        if vat is not None:
+            pulumi.set(__self__, "vat", vat)
+
+    @_builtins.property
+    @pulumi.getter(name="registeredAddress")
+    def registered_address(self) -> Optional['outputs.InvoicePaymentSettingsPaymentMethodOptionsBillieCompanyDetailsRegisteredAddress']:
+        return pulumi.get(self, "registered_address")
+
+    @_builtins.property
+    @pulumi.getter(name="registeredName")
+    def registered_name(self) -> Optional[_builtins.str]:
+        """
+        Company or entity name.
+        """
+        return pulumi.get(self, "registered_name")
+
+    @_builtins.property
+    @pulumi.getter(name="registrationNumber")
+    def registration_number(self) -> Optional[_builtins.str]:
+        """
+        The official registration number for the given registration type.
+        """
+        return pulumi.get(self, "registration_number")
+
+    @_builtins.property
+    @pulumi.getter(name="registrationType")
+    def registration_type(self) -> Optional[_builtins.str]:
+        """
+        Type of registration the company or entity holds in their registered country.
+        """
+        return pulumi.get(self, "registration_type")
+
+    @_builtins.property
+    @pulumi.getter
+    def vat(self) -> Optional[_builtins.str]:
+        """
+        VAT ID number.
+        """
+        return pulumi.get(self, "vat")
+
+
+@pulumi.output_type
+class InvoicePaymentSettingsPaymentMethodOptionsBillieCompanyDetailsRegisteredAddress(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "postalCode":
+            suggest = "postal_code"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in InvoicePaymentSettingsPaymentMethodOptionsBillieCompanyDetailsRegisteredAddress. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        InvoicePaymentSettingsPaymentMethodOptionsBillieCompanyDetailsRegisteredAddress.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        InvoicePaymentSettingsPaymentMethodOptionsBillieCompanyDetailsRegisteredAddress.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 city: Optional[_builtins.str] = None,
+                 country: Optional[_builtins.str] = None,
+                 line1: Optional[_builtins.str] = None,
+                 line2: Optional[_builtins.str] = None,
+                 postal_code: Optional[_builtins.str] = None,
+                 state: Optional[_builtins.str] = None):
+        """
+        :param _builtins.str city: City, district, suburb, town, or village.
+        :param _builtins.str country: Two-letter country code.
+        :param _builtins.str line1: Address line 1 (for example, street, PO Box, or company name).
+        :param _builtins.str line2: Address line 2 (for example, apartment, suite, unit, or building).
+        :param _builtins.str postal_code: ZIP or postal code.
+        :param _builtins.str state: State, county, province, or region.
+        """
+        if city is not None:
+            pulumi.set(__self__, "city", city)
+        if country is not None:
+            pulumi.set(__self__, "country", country)
+        if line1 is not None:
+            pulumi.set(__self__, "line1", line1)
+        if line2 is not None:
+            pulumi.set(__self__, "line2", line2)
+        if postal_code is not None:
+            pulumi.set(__self__, "postal_code", postal_code)
+        if state is not None:
+            pulumi.set(__self__, "state", state)
+
+    @_builtins.property
+    @pulumi.getter
+    def city(self) -> Optional[_builtins.str]:
+        """
+        City, district, suburb, town, or village.
+        """
+        return pulumi.get(self, "city")
+
+    @_builtins.property
+    @pulumi.getter
+    def country(self) -> Optional[_builtins.str]:
+        """
+        Two-letter country code.
+        """
+        return pulumi.get(self, "country")
+
+    @_builtins.property
+    @pulumi.getter
+    def line1(self) -> Optional[_builtins.str]:
+        """
+        Address line 1 (for example, street, PO Box, or company name).
+        """
+        return pulumi.get(self, "line1")
+
+    @_builtins.property
+    @pulumi.getter
+    def line2(self) -> Optional[_builtins.str]:
+        """
+        Address line 2 (for example, apartment, suite, unit, or building).
+        """
+        return pulumi.get(self, "line2")
+
+    @_builtins.property
+    @pulumi.getter(name="postalCode")
+    def postal_code(self) -> Optional[_builtins.str]:
+        """
+        ZIP or postal code.
+        """
+        return pulumi.get(self, "postal_code")
+
+    @_builtins.property
+    @pulumi.getter
+    def state(self) -> Optional[_builtins.str]:
+        """
+        State, county, province, or region.
+        """
+        return pulumi.get(self, "state")
 
 
 @pulumi.output_type
@@ -13448,7 +14365,7 @@ class InvoicePaymentSettingsPaymentMethodOptionsPix(dict):
                  expires_after_seconds: Optional[_builtins.float] = None):
         """
         :param _builtins.str amount_includes_iof: Determines if the amount includes the IOF tax.
-        :param _builtins.float expires_after_seconds: The number of seconds (between 10 and 1209600) after which Pix payment will expire. Defaults to 86400 seconds.
+        :param _builtins.float expires_after_seconds: The number of seconds after PaymentIntent confirmation when the Pix expires (between 60 and 1209600, inclusive). If unspecified, defaults to 14400 seconds (4 hours).
         """
         if amount_includes_iof is not None:
             pulumi.set(__self__, "amount_includes_iof", amount_includes_iof)
@@ -13467,7 +14384,7 @@ class InvoicePaymentSettingsPaymentMethodOptionsPix(dict):
     @pulumi.getter(name="expiresAfterSeconds")
     def expires_after_seconds(self) -> Optional[_builtins.float]:
         """
-        The number of seconds (between 10 and 1209600) after which Pix payment will expire. Defaults to 86400 seconds.
+        The number of seconds after PaymentIntent confirmation when the Pix expires (between 60 and 1209600, inclusive). If unspecified, defaults to 14400 seconds (4 hours).
         """
         return pulumi.get(self, "expires_after_seconds")
 
@@ -14473,6 +15390,38 @@ class InvoiceShippingDetailsAddress(dict):
 
 
 @pulumi.output_type
+class InvoiceStatusDetails(dict):
+    def __init__(__self__, *,
+                 uncollectible: Optional['outputs.InvoiceStatusDetailsUncollectible'] = None):
+        if uncollectible is not None:
+            pulumi.set(__self__, "uncollectible", uncollectible)
+
+    @_builtins.property
+    @pulumi.getter
+    def uncollectible(self) -> Optional['outputs.InvoiceStatusDetailsUncollectible']:
+        return pulumi.get(self, "uncollectible")
+
+
+@pulumi.output_type
+class InvoiceStatusDetailsUncollectible(dict):
+    def __init__(__self__, *,
+                 reason: Optional[_builtins.str] = None):
+        """
+        :param _builtins.str reason: The reason why the invoice is uncollectible.
+        """
+        if reason is not None:
+            pulumi.set(__self__, "reason", reason)
+
+    @_builtins.property
+    @pulumi.getter
+    def reason(self) -> Optional[_builtins.str]:
+        """
+        The reason why the invoice is uncollectible.
+        """
+        return pulumi.get(self, "reason")
+
+
+@pulumi.output_type
 class InvoiceStatusTransitions(dict):
     @staticmethod
     def __key_warning(key: str):
@@ -15082,10 +16031,16 @@ class IssuingCardShipping(dict):
         suggest = None
         if key == "addressValidation":
             suggest = "address_validation"
+        elif key == "businessName":
+            suggest = "business_name"
+        elif key == "deliveredAt":
+            suggest = "delivered_at"
         elif key == "phoneNumber":
             suggest = "phone_number"
         elif key == "requireSignature":
             suggest = "require_signature"
+        elif key == "shippedAt":
+            suggest = "shipped_at"
         elif key == "trackingNumber":
             suggest = "tracking_number"
         elif key == "trackingUrl":
@@ -15106,12 +16061,15 @@ class IssuingCardShipping(dict):
                  address: 'outputs.IssuingCardShippingAddress',
                  name: _builtins.str,
                  address_validation: Optional['outputs.IssuingCardShippingAddressValidation'] = None,
+                 business_name: Optional[_builtins.str] = None,
                  carrier: Optional[_builtins.str] = None,
                  customs: Optional['outputs.IssuingCardShippingCustoms'] = None,
+                 delivered_at: Optional[_builtins.float] = None,
                  eta: Optional[_builtins.float] = None,
                  phone_number: Optional[_builtins.str] = None,
                  require_signature: Optional[_builtins.bool] = None,
                  service: Optional[_builtins.str] = None,
+                 shipped_at: Optional[_builtins.float] = None,
                  status: Optional[_builtins.str] = None,
                  tracking_number: Optional[_builtins.str] = None,
                  tracking_url: Optional[_builtins.str] = None,
@@ -15119,12 +16077,15 @@ class IssuingCardShipping(dict):
         """
         :param _builtins.str name: Recipient name.
         :param 'IssuingCardShippingAddressValidationArgs' address_validation: Address validation details for the shipment.
+        :param _builtins.str business_name: The name of the business at the shipping address, used on the shipping label to ensure delivery when the card is shipped to a cardholder's workplace.
         :param _builtins.str carrier: The delivery company that shipped a card.
         :param 'IssuingCardShippingCustomsArgs' customs: Additional information that may be required for clearing customs.
+        :param _builtins.float delivered_at: The time the card was reported as delivered. Null for undelivered or untracked shipments, or if Stripe has not recorded a delivery time.
         :param _builtins.float eta: A unix timestamp representing a best estimate of when the card will be delivered.
         :param _builtins.str phone_number: The phone number of the receiver of the shipment. Our courier partners will use this number to contact you in the event of card delivery issues. For individual shipments to the EU/UK, if this field is empty, we will provide them with the phone number provided when the cardholder was initially created.
         :param _builtins.bool require_signature: Whether a signature is required for card delivery. This feature is only supported for US users. Standard shipping service does not support signature on delivery. The default value for standard shipping service is false and for express and priority services is true.
         :param _builtins.str service: Shipment service, such as <span pulumi-lang-nodejs="`standard`" pulumi-lang-dotnet="`Standard`" pulumi-lang-go="`standard`" pulumi-lang-python="`standard`" pulumi-lang-yaml="`standard`" pulumi-lang-java="`standard`" pulumi-lang-hcl="`standard`">`standard`</span> or <span pulumi-lang-nodejs="`express`" pulumi-lang-dotnet="`Express`" pulumi-lang-go="`express`" pulumi-lang-python="`express`" pulumi-lang-yaml="`express`" pulumi-lang-java="`express`" pulumi-lang-hcl="`express`">`express`</span>.
+        :param _builtins.float shipped_at: The time the card was reported as shipped. Null if Stripe has not recorded a shipment time.
         :param _builtins.str status: The delivery status of the card.
         :param _builtins.str tracking_number: A tracking number for a card shipment.
         :param _builtins.str tracking_url: A link to the shipping carrier's site where you can view detailed information about a card shipment.
@@ -15134,10 +16095,14 @@ class IssuingCardShipping(dict):
         pulumi.set(__self__, "name", name)
         if address_validation is not None:
             pulumi.set(__self__, "address_validation", address_validation)
+        if business_name is not None:
+            pulumi.set(__self__, "business_name", business_name)
         if carrier is not None:
             pulumi.set(__self__, "carrier", carrier)
         if customs is not None:
             pulumi.set(__self__, "customs", customs)
+        if delivered_at is not None:
+            pulumi.set(__self__, "delivered_at", delivered_at)
         if eta is not None:
             pulumi.set(__self__, "eta", eta)
         if phone_number is not None:
@@ -15146,6 +16111,8 @@ class IssuingCardShipping(dict):
             pulumi.set(__self__, "require_signature", require_signature)
         if service is not None:
             pulumi.set(__self__, "service", service)
+        if shipped_at is not None:
+            pulumi.set(__self__, "shipped_at", shipped_at)
         if status is not None:
             pulumi.set(__self__, "status", status)
         if tracking_number is not None:
@@ -15177,6 +16144,14 @@ class IssuingCardShipping(dict):
         return pulumi.get(self, "address_validation")
 
     @_builtins.property
+    @pulumi.getter(name="businessName")
+    def business_name(self) -> Optional[_builtins.str]:
+        """
+        The name of the business at the shipping address, used on the shipping label to ensure delivery when the card is shipped to a cardholder's workplace.
+        """
+        return pulumi.get(self, "business_name")
+
+    @_builtins.property
     @pulumi.getter
     def carrier(self) -> Optional[_builtins.str]:
         """
@@ -15191,6 +16166,14 @@ class IssuingCardShipping(dict):
         Additional information that may be required for clearing customs.
         """
         return pulumi.get(self, "customs")
+
+    @_builtins.property
+    @pulumi.getter(name="deliveredAt")
+    def delivered_at(self) -> Optional[_builtins.float]:
+        """
+        The time the card was reported as delivered. Null for undelivered or untracked shipments, or if Stripe has not recorded a delivery time.
+        """
+        return pulumi.get(self, "delivered_at")
 
     @_builtins.property
     @pulumi.getter
@@ -15223,6 +16206,14 @@ class IssuingCardShipping(dict):
         Shipment service, such as <span pulumi-lang-nodejs="`standard`" pulumi-lang-dotnet="`Standard`" pulumi-lang-go="`standard`" pulumi-lang-python="`standard`" pulumi-lang-yaml="`standard`" pulumi-lang-java="`standard`" pulumi-lang-hcl="`standard`">`standard`</span> or <span pulumi-lang-nodejs="`express`" pulumi-lang-dotnet="`Express`" pulumi-lang-go="`express`" pulumi-lang-python="`express`" pulumi-lang-yaml="`express`" pulumi-lang-java="`express`" pulumi-lang-hcl="`express`">`express`</span>.
         """
         return pulumi.get(self, "service")
+
+    @_builtins.property
+    @pulumi.getter(name="shippedAt")
+    def shipped_at(self) -> Optional[_builtins.float]:
+        """
+        The time the card was reported as shipped. Null if Stripe has not recorded a shipment time.
+        """
+        return pulumi.get(self, "shipped_at")
 
     @_builtins.property
     @pulumi.getter
@@ -16131,7 +17122,7 @@ class IssuingCardholderIndividualCardIssuing(dict):
     def __init__(__self__, *,
                  user_terms_acceptance: Optional['outputs.IssuingCardholderIndividualCardIssuingUserTermsAcceptance'] = None):
         """
-        :param 'IssuingCardholderIndividualCardIssuingUserTermsAcceptanceArgs' user_terms_acceptance: Information about cardholder acceptance of Celtic [Authorized User Terms](https://stripe.com/docs/issuing/cards#accept-authorized-user-terms). Required for cards backed by a Celtic program.
+        :param 'IssuingCardholderIndividualCardIssuingUserTermsAcceptanceArgs' user_terms_acceptance: Information about cardholder acceptance of Celtic [Authorized User Terms](https://docs.stripe.com/issuing/compliance-us#issuing-terms). Required for cards backed by a Celtic program.
         """
         if user_terms_acceptance is not None:
             pulumi.set(__self__, "user_terms_acceptance", user_terms_acceptance)
@@ -16140,7 +17131,7 @@ class IssuingCardholderIndividualCardIssuing(dict):
     @pulumi.getter(name="userTermsAcceptance")
     def user_terms_acceptance(self) -> Optional['outputs.IssuingCardholderIndividualCardIssuingUserTermsAcceptance']:
         """
-        Information about cardholder acceptance of Celtic [Authorized User Terms](https://stripe.com/docs/issuing/cards#accept-authorized-user-terms). Required for cards backed by a Celtic program.
+        Information about cardholder acceptance of Celtic [Authorized User Terms](https://docs.stripe.com/issuing/compliance-us#issuing-terms). Required for cards backed by a Celtic program.
         """
         return pulumi.get(self, "user_terms_acceptance")
 
@@ -16270,8 +17261,8 @@ class IssuingCardholderIndividualVerificationDocument(dict):
                  back: Optional[_builtins.str] = None,
                  front: Optional[_builtins.str] = None):
         """
-        :param _builtins.str back: The back of a document returned by a [file upload](https://api.stripe.com#create_file) with a <span pulumi-lang-nodejs="`purpose`" pulumi-lang-dotnet="`Purpose`" pulumi-lang-go="`purpose`" pulumi-lang-python="`purpose`" pulumi-lang-yaml="`purpose`" pulumi-lang-java="`purpose`" pulumi-lang-hcl="`purpose`">`purpose`</span> value of <span pulumi-lang-nodejs="`identityDocument`" pulumi-lang-dotnet="`IdentityDocument`" pulumi-lang-go="`identityDocument`" pulumi-lang-python="`identity_document`" pulumi-lang-yaml="`identityDocument`" pulumi-lang-java="`identityDocument`" pulumi-lang-hcl="`identity_document`">`identityDocument`</span>.
-        :param _builtins.str front: The front of a document returned by a [file upload](https://api.stripe.com#create_file) with a <span pulumi-lang-nodejs="`purpose`" pulumi-lang-dotnet="`Purpose`" pulumi-lang-go="`purpose`" pulumi-lang-python="`purpose`" pulumi-lang-yaml="`purpose`" pulumi-lang-java="`purpose`" pulumi-lang-hcl="`purpose`">`purpose`</span> value of <span pulumi-lang-nodejs="`identityDocument`" pulumi-lang-dotnet="`IdentityDocument`" pulumi-lang-go="`identityDocument`" pulumi-lang-python="`identity_document`" pulumi-lang-yaml="`identityDocument`" pulumi-lang-java="`identityDocument`" pulumi-lang-hcl="`identity_document`">`identityDocument`</span>.
+        :param _builtins.str back: The back of a document returned by a [file upload](https://docs.stripe.com/api#create_file) with a <span pulumi-lang-nodejs="`purpose`" pulumi-lang-dotnet="`Purpose`" pulumi-lang-go="`purpose`" pulumi-lang-python="`purpose`" pulumi-lang-yaml="`purpose`" pulumi-lang-java="`purpose`" pulumi-lang-hcl="`purpose`">`purpose`</span> value of <span pulumi-lang-nodejs="`identityDocument`" pulumi-lang-dotnet="`IdentityDocument`" pulumi-lang-go="`identityDocument`" pulumi-lang-python="`identity_document`" pulumi-lang-yaml="`identityDocument`" pulumi-lang-java="`identityDocument`" pulumi-lang-hcl="`identity_document`">`identityDocument`</span>.
+        :param _builtins.str front: The front of a document returned by a [file upload](https://docs.stripe.com/api#create_file) with a <span pulumi-lang-nodejs="`purpose`" pulumi-lang-dotnet="`Purpose`" pulumi-lang-go="`purpose`" pulumi-lang-python="`purpose`" pulumi-lang-yaml="`purpose`" pulumi-lang-java="`purpose`" pulumi-lang-hcl="`purpose`">`purpose`</span> value of <span pulumi-lang-nodejs="`identityDocument`" pulumi-lang-dotnet="`IdentityDocument`" pulumi-lang-go="`identityDocument`" pulumi-lang-python="`identity_document`" pulumi-lang-yaml="`identityDocument`" pulumi-lang-java="`identityDocument`" pulumi-lang-hcl="`identity_document`">`identityDocument`</span>.
         """
         if back is not None:
             pulumi.set(__self__, "back", back)
@@ -16282,7 +17273,7 @@ class IssuingCardholderIndividualVerificationDocument(dict):
     @pulumi.getter
     def back(self) -> Optional[_builtins.str]:
         """
-        The back of a document returned by a [file upload](https://api.stripe.com#create_file) with a <span pulumi-lang-nodejs="`purpose`" pulumi-lang-dotnet="`Purpose`" pulumi-lang-go="`purpose`" pulumi-lang-python="`purpose`" pulumi-lang-yaml="`purpose`" pulumi-lang-java="`purpose`" pulumi-lang-hcl="`purpose`">`purpose`</span> value of <span pulumi-lang-nodejs="`identityDocument`" pulumi-lang-dotnet="`IdentityDocument`" pulumi-lang-go="`identityDocument`" pulumi-lang-python="`identity_document`" pulumi-lang-yaml="`identityDocument`" pulumi-lang-java="`identityDocument`" pulumi-lang-hcl="`identity_document`">`identityDocument`</span>.
+        The back of a document returned by a [file upload](https://docs.stripe.com/api#create_file) with a <span pulumi-lang-nodejs="`purpose`" pulumi-lang-dotnet="`Purpose`" pulumi-lang-go="`purpose`" pulumi-lang-python="`purpose`" pulumi-lang-yaml="`purpose`" pulumi-lang-java="`purpose`" pulumi-lang-hcl="`purpose`">`purpose`</span> value of <span pulumi-lang-nodejs="`identityDocument`" pulumi-lang-dotnet="`IdentityDocument`" pulumi-lang-go="`identityDocument`" pulumi-lang-python="`identity_document`" pulumi-lang-yaml="`identityDocument`" pulumi-lang-java="`identityDocument`" pulumi-lang-hcl="`identity_document`">`identityDocument`</span>.
         """
         return pulumi.get(self, "back")
 
@@ -16290,7 +17281,7 @@ class IssuingCardholderIndividualVerificationDocument(dict):
     @pulumi.getter
     def front(self) -> Optional[_builtins.str]:
         """
-        The front of a document returned by a [file upload](https://api.stripe.com#create_file) with a <span pulumi-lang-nodejs="`purpose`" pulumi-lang-dotnet="`Purpose`" pulumi-lang-go="`purpose`" pulumi-lang-python="`purpose`" pulumi-lang-yaml="`purpose`" pulumi-lang-java="`purpose`" pulumi-lang-hcl="`purpose`">`purpose`</span> value of <span pulumi-lang-nodejs="`identityDocument`" pulumi-lang-dotnet="`IdentityDocument`" pulumi-lang-go="`identityDocument`" pulumi-lang-python="`identity_document`" pulumi-lang-yaml="`identityDocument`" pulumi-lang-java="`identityDocument`" pulumi-lang-hcl="`identity_document`">`identityDocument`</span>.
+        The front of a document returned by a [file upload](https://docs.stripe.com/api#create_file) with a <span pulumi-lang-nodejs="`purpose`" pulumi-lang-dotnet="`Purpose`" pulumi-lang-go="`purpose`" pulumi-lang-python="`purpose`" pulumi-lang-yaml="`purpose`" pulumi-lang-java="`purpose`" pulumi-lang-hcl="`purpose`">`purpose`</span> value of <span pulumi-lang-nodejs="`identityDocument`" pulumi-lang-dotnet="`IdentityDocument`" pulumi-lang-go="`identityDocument`" pulumi-lang-python="`identity_document`" pulumi-lang-yaml="`identityDocument`" pulumi-lang-java="`identityDocument`" pulumi-lang-hcl="`identity_document`">`identityDocument`</span>.
         """
         return pulumi.get(self, "front")
 
@@ -17708,7 +18699,7 @@ class PaymentIntentLastPaymentError(dict):
                  source: Optional[_builtins.str] = None,
                  type: Optional[_builtins.str] = None):
         """
-        :param _builtins.str advice_code: For card errors resulting from a card issuer decline, a short string indicating [how to proceed with an error](https://docs.stripe.com/declines#retrying-issuer-declines) if they provide one.
+        :param _builtins.str advice_code: For card errors resulting from a card issuer decline, a short string indicating [how to proceed with an error](https://docs.stripe.com/declines/card#retrying-issuer-declines) if they provide one.
         :param _builtins.str charge: For card errors, the ID of the failed charge.
         :param _builtins.str code: For some errors that could be handled programmatically, a short string indicating the [error code](https://docs.stripe.com/error-codes) reported.
         :param _builtins.str decline_code: For card errors resulting from a card issuer decline, a short string indicating the [card issuer's reason for the decline](https://docs.stripe.com/declines#issuer-declines) if they provide one.
@@ -17737,7 +18728,7 @@ class PaymentIntentLastPaymentError(dict):
         :param _builtins.str request_log_url: A URL to the request log entry in your dashboard.
         :param _builtins.str setup_intent: A SetupIntent guides you through the process of setting up and saving a customer's payment credentials for future payments.
                For example, you can use a SetupIntent to set up and save your customer's card without immediately collecting a payment.
-               Later, you can use [PaymentIntents](https://api.stripe.com#payment_intents) to drive the payment flow.
+               Later, you can use [PaymentIntents](https://docs.stripe.com/api#payment_intents) to drive the payment flow.
                
                Create a SetupIntent when you're ready to collect your customer's payment credentials.
                Don't maintain long-lived, unconfirmed SetupIntents because they might not be valid.
@@ -17748,9 +18739,9 @@ class PaymentIntentLastPaymentError(dict):
                For example, cardholders in [certain regions](https://stripe.com/guides/strong-customer-authentication) might need to be run through
                [Strong Customer Authentication](https://docs.stripe.com/strong-customer-authentication) during payment method collection
                to streamline later [off-session payments](https://docs.stripe.com/payments/setup-intents).
-               If you use the SetupIntent with a [Customer](https://api.stripe.com#setup_intent_object-customer),
+               If you use the SetupIntent with a [Customer](https://docs.stripe.com/api#setup_intent_object-customer),
                it automatically attaches the resulting payment method to that Customer after successful setup.
-               We recommend using SetupIntents or <span pulumi-lang-nodejs="[setupFutureUsage]" pulumi-lang-dotnet="[SetupFutureUsage]" pulumi-lang-go="[setupFutureUsage]" pulumi-lang-python="[setup_future_usage]" pulumi-lang-yaml="[setupFutureUsage]" pulumi-lang-java="[setupFutureUsage]" pulumi-lang-hcl="[setup_future_usage]">[setupFutureUsage]</span>(https://api.stripe.com#payment_intent_object-setup_future_usage) on
+               We recommend using SetupIntents or <span pulumi-lang-nodejs="[setupFutureUsage]" pulumi-lang-dotnet="[SetupFutureUsage]" pulumi-lang-go="[setupFutureUsage]" pulumi-lang-python="[setup_future_usage]" pulumi-lang-yaml="[setupFutureUsage]" pulumi-lang-java="[setupFutureUsage]" pulumi-lang-hcl="[setup_future_usage]">[setupFutureUsage]</span>(https://docs.stripe.com/api#payment_intent_object-setup_future_usage) on
                PaymentIntents to save payment methods to prevent saving invalid or unoptimized payment methods.
                
                By using SetupIntents, you can reduce friction for your customers, even as regulations change over time.
@@ -17795,7 +18786,7 @@ class PaymentIntentLastPaymentError(dict):
     @pulumi.getter(name="adviceCode")
     def advice_code(self) -> Optional[_builtins.str]:
         """
-        For card errors resulting from a card issuer decline, a short string indicating [how to proceed with an error](https://docs.stripe.com/declines#retrying-issuer-declines) if they provide one.
+        For card errors resulting from a card issuer decline, a short string indicating [how to proceed with an error](https://docs.stripe.com/declines/card#retrying-issuer-declines) if they provide one.
         """
         return pulumi.get(self, "advice_code")
 
@@ -17915,7 +18906,7 @@ class PaymentIntentLastPaymentError(dict):
         """
         A SetupIntent guides you through the process of setting up and saving a customer's payment credentials for future payments.
         For example, you can use a SetupIntent to set up and save your customer's card without immediately collecting a payment.
-        Later, you can use [PaymentIntents](https://api.stripe.com#payment_intents) to drive the payment flow.
+        Later, you can use [PaymentIntents](https://docs.stripe.com/api#payment_intents) to drive the payment flow.
 
         Create a SetupIntent when you're ready to collect your customer's payment credentials.
         Don't maintain long-lived, unconfirmed SetupIntents because they might not be valid.
@@ -17926,9 +18917,9 @@ class PaymentIntentLastPaymentError(dict):
         For example, cardholders in [certain regions](https://stripe.com/guides/strong-customer-authentication) might need to be run through
         [Strong Customer Authentication](https://docs.stripe.com/strong-customer-authentication) during payment method collection
         to streamline later [off-session payments](https://docs.stripe.com/payments/setup-intents).
-        If you use the SetupIntent with a [Customer](https://api.stripe.com#setup_intent_object-customer),
+        If you use the SetupIntent with a [Customer](https://docs.stripe.com/api#setup_intent_object-customer),
         it automatically attaches the resulting payment method to that Customer after successful setup.
-        We recommend using SetupIntents or <span pulumi-lang-nodejs="[setupFutureUsage]" pulumi-lang-dotnet="[SetupFutureUsage]" pulumi-lang-go="[setupFutureUsage]" pulumi-lang-python="[setup_future_usage]" pulumi-lang-yaml="[setupFutureUsage]" pulumi-lang-java="[setupFutureUsage]" pulumi-lang-hcl="[setup_future_usage]">[setupFutureUsage]</span>(https://api.stripe.com#payment_intent_object-setup_future_usage) on
+        We recommend using SetupIntents or <span pulumi-lang-nodejs="[setupFutureUsage]" pulumi-lang-dotnet="[SetupFutureUsage]" pulumi-lang-go="[setupFutureUsage]" pulumi-lang-python="[setup_future_usage]" pulumi-lang-yaml="[setupFutureUsage]" pulumi-lang-java="[setupFutureUsage]" pulumi-lang-hcl="[setup_future_usage]">[setupFutureUsage]</span>(https://docs.stripe.com/api#payment_intent_object-setup_future_usage) on
         PaymentIntents to save payment methods to prevent saving invalid or unoptimized payment methods.
 
         By using SetupIntents, you can reduce friction for your customers, even as regulations change over time.
@@ -21576,7 +22567,9 @@ class PaymentIntentNextActionSwishHandleRedirectOrDisplayQrCodeQrCode(dict):
     @staticmethod
     def __key_warning(key: str):
         suggest = None
-        if key == "imageUrlPng":
+        if key == "expiresAt":
+            suggest = "expires_at"
+        elif key == "imageUrlPng":
             suggest = "image_url_png"
         elif key == "imageUrlSvg":
             suggest = "image_url_svg"
@@ -21594,15 +22587,19 @@ class PaymentIntentNextActionSwishHandleRedirectOrDisplayQrCodeQrCode(dict):
 
     def __init__(__self__, *,
                  data: Optional[_builtins.str] = None,
+                 expires_at: Optional[_builtins.float] = None,
                  image_url_png: Optional[_builtins.str] = None,
                  image_url_svg: Optional[_builtins.str] = None):
         """
         :param _builtins.str data: The raw data string used to generate QR code, it should be used together with QR code library.
+        :param _builtins.float expires_at: The timestamp at which the QR code expires.
         :param _builtins.str image_url_png: The<span pulumi-lang-nodejs=" imageUrlPng " pulumi-lang-dotnet=" ImageUrlPng " pulumi-lang-go=" imageUrlPng " pulumi-lang-python=" image_url_png " pulumi-lang-yaml=" imageUrlPng " pulumi-lang-java=" imageUrlPng " pulumi-lang-hcl=" image_url_png "> imageUrlPng </span>string used to render QR code
         :param _builtins.str image_url_svg: The<span pulumi-lang-nodejs=" imageUrlSvg " pulumi-lang-dotnet=" ImageUrlSvg " pulumi-lang-go=" imageUrlSvg " pulumi-lang-python=" image_url_svg " pulumi-lang-yaml=" imageUrlSvg " pulumi-lang-java=" imageUrlSvg " pulumi-lang-hcl=" image_url_svg "> imageUrlSvg </span>string used to render QR code
         """
         if data is not None:
             pulumi.set(__self__, "data", data)
+        if expires_at is not None:
+            pulumi.set(__self__, "expires_at", expires_at)
         if image_url_png is not None:
             pulumi.set(__self__, "image_url_png", image_url_png)
         if image_url_svg is not None:
@@ -21615,6 +22612,14 @@ class PaymentIntentNextActionSwishHandleRedirectOrDisplayQrCodeQrCode(dict):
         The raw data string used to generate QR code, it should be used together with QR code library.
         """
         return pulumi.get(self, "data")
+
+    @_builtins.property
+    @pulumi.getter(name="expiresAt")
+    def expires_at(self) -> Optional[_builtins.float]:
+        """
+        The timestamp at which the QR code expires.
+        """
+        return pulumi.get(self, "expires_at")
 
     @_builtins.property
     @pulumi.getter(name="imageUrlPng")
@@ -23642,7 +24647,9 @@ class PaymentIntentPaymentMethodOptions(dict):
                  satispay: Optional['outputs.PaymentIntentPaymentMethodOptionsSatispay'] = None,
                  scalapay: Optional['outputs.PaymentIntentPaymentMethodOptionsScalapay'] = None,
                  sepa_debit: Optional['outputs.PaymentIntentPaymentMethodOptionsSepaDebit'] = None,
+                 sequra: Optional['outputs.PaymentIntentPaymentMethodOptionsSequra'] = None,
                  sofort: Optional['outputs.PaymentIntentPaymentMethodOptionsSofort'] = None,
+                 sunbit: Optional['outputs.PaymentIntentPaymentMethodOptionsSunbit'] = None,
                  swish: Optional['outputs.PaymentIntentPaymentMethodOptionsSwish'] = None,
                  twint: Optional['outputs.PaymentIntentPaymentMethodOptionsTwint'] = None,
                  upi: Optional['outputs.PaymentIntentPaymentMethodOptionsUpi'] = None,
@@ -23737,8 +24744,12 @@ class PaymentIntentPaymentMethodOptions(dict):
             pulumi.set(__self__, "scalapay", scalapay)
         if sepa_debit is not None:
             pulumi.set(__self__, "sepa_debit", sepa_debit)
+        if sequra is not None:
+            pulumi.set(__self__, "sequra", sequra)
         if sofort is not None:
             pulumi.set(__self__, "sofort", sofort)
+        if sunbit is not None:
+            pulumi.set(__self__, "sunbit", sunbit)
         if swish is not None:
             pulumi.set(__self__, "swish", swish)
         if twint is not None:
@@ -23974,8 +24985,18 @@ class PaymentIntentPaymentMethodOptions(dict):
 
     @_builtins.property
     @pulumi.getter
+    def sequra(self) -> Optional['outputs.PaymentIntentPaymentMethodOptionsSequra']:
+        return pulumi.get(self, "sequra")
+
+    @_builtins.property
+    @pulumi.getter
     def sofort(self) -> Optional['outputs.PaymentIntentPaymentMethodOptionsSofort']:
         return pulumi.get(self, "sofort")
+
+    @_builtins.property
+    @pulumi.getter
+    def sunbit(self) -> Optional['outputs.PaymentIntentPaymentMethodOptionsSunbit']:
+        return pulumi.get(self, "sunbit")
 
     @_builtins.property
     @pulumi.getter
@@ -24709,6 +25730,8 @@ class PaymentIntentPaymentMethodOptionsBillie(dict):
         suggest = None
         if key == "captureMethod":
             suggest = "capture_method"
+        elif key == "companyDetails":
+            suggest = "company_details"
 
         if suggest:
             pulumi.log.warn(f"Key '{key}' not found in PaymentIntentPaymentMethodOptionsBillie. Access the value via the '{suggest}' property getter instead.")
@@ -24722,12 +25745,19 @@ class PaymentIntentPaymentMethodOptionsBillie(dict):
         return super().get(key, default)
 
     def __init__(__self__, *,
-                 capture_method: Optional[_builtins.str] = None):
+                 capture_method: Optional[_builtins.str] = None,
+                 company_details: Optional['outputs.PaymentIntentPaymentMethodOptionsBillieCompanyDetails'] = None,
+                 reference: Optional[_builtins.str] = None):
         """
         :param _builtins.str capture_method: Controls when the funds will be captured from the customer's account.
+        :param _builtins.str reference: An identifier or reference that this payment corresponds to.
         """
         if capture_method is not None:
             pulumi.set(__self__, "capture_method", capture_method)
+        if company_details is not None:
+            pulumi.set(__self__, "company_details", company_details)
+        if reference is not None:
+            pulumi.set(__self__, "reference", reference)
 
     @_builtins.property
     @pulumi.getter(name="captureMethod")
@@ -24737,13 +25767,210 @@ class PaymentIntentPaymentMethodOptionsBillie(dict):
         """
         return pulumi.get(self, "capture_method")
 
+    @_builtins.property
+    @pulumi.getter(name="companyDetails")
+    def company_details(self) -> Optional['outputs.PaymentIntentPaymentMethodOptionsBillieCompanyDetails']:
+        return pulumi.get(self, "company_details")
+
+    @_builtins.property
+    @pulumi.getter
+    def reference(self) -> Optional[_builtins.str]:
+        """
+        An identifier or reference that this payment corresponds to.
+        """
+        return pulumi.get(self, "reference")
+
+
+@pulumi.output_type
+class PaymentIntentPaymentMethodOptionsBillieCompanyDetails(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "registeredAddress":
+            suggest = "registered_address"
+        elif key == "registeredName":
+            suggest = "registered_name"
+        elif key == "registrationNumber":
+            suggest = "registration_number"
+        elif key == "registrationType":
+            suggest = "registration_type"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in PaymentIntentPaymentMethodOptionsBillieCompanyDetails. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        PaymentIntentPaymentMethodOptionsBillieCompanyDetails.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        PaymentIntentPaymentMethodOptionsBillieCompanyDetails.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 registered_address: Optional['outputs.PaymentIntentPaymentMethodOptionsBillieCompanyDetailsRegisteredAddress'] = None,
+                 registered_name: Optional[_builtins.str] = None,
+                 registration_number: Optional[_builtins.str] = None,
+                 registration_type: Optional[_builtins.str] = None,
+                 vat: Optional[_builtins.str] = None):
+        """
+        :param _builtins.str registered_name: Company or entity name.
+        :param _builtins.str registration_number: The official registration number for the given registration type.
+        :param _builtins.str registration_type: Type of registration the company or entity holds in their registered country.
+        :param _builtins.str vat: VAT id number
+        """
+        if registered_address is not None:
+            pulumi.set(__self__, "registered_address", registered_address)
+        if registered_name is not None:
+            pulumi.set(__self__, "registered_name", registered_name)
+        if registration_number is not None:
+            pulumi.set(__self__, "registration_number", registration_number)
+        if registration_type is not None:
+            pulumi.set(__self__, "registration_type", registration_type)
+        if vat is not None:
+            pulumi.set(__self__, "vat", vat)
+
+    @_builtins.property
+    @pulumi.getter(name="registeredAddress")
+    def registered_address(self) -> Optional['outputs.PaymentIntentPaymentMethodOptionsBillieCompanyDetailsRegisteredAddress']:
+        return pulumi.get(self, "registered_address")
+
+    @_builtins.property
+    @pulumi.getter(name="registeredName")
+    def registered_name(self) -> Optional[_builtins.str]:
+        """
+        Company or entity name.
+        """
+        return pulumi.get(self, "registered_name")
+
+    @_builtins.property
+    @pulumi.getter(name="registrationNumber")
+    def registration_number(self) -> Optional[_builtins.str]:
+        """
+        The official registration number for the given registration type.
+        """
+        return pulumi.get(self, "registration_number")
+
+    @_builtins.property
+    @pulumi.getter(name="registrationType")
+    def registration_type(self) -> Optional[_builtins.str]:
+        """
+        Type of registration the company or entity holds in their registered country.
+        """
+        return pulumi.get(self, "registration_type")
+
+    @_builtins.property
+    @pulumi.getter
+    def vat(self) -> Optional[_builtins.str]:
+        """
+        VAT id number
+        """
+        return pulumi.get(self, "vat")
+
+
+@pulumi.output_type
+class PaymentIntentPaymentMethodOptionsBillieCompanyDetailsRegisteredAddress(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "postalCode":
+            suggest = "postal_code"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in PaymentIntentPaymentMethodOptionsBillieCompanyDetailsRegisteredAddress. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        PaymentIntentPaymentMethodOptionsBillieCompanyDetailsRegisteredAddress.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        PaymentIntentPaymentMethodOptionsBillieCompanyDetailsRegisteredAddress.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 city: Optional[_builtins.str] = None,
+                 country: Optional[_builtins.str] = None,
+                 line1: Optional[_builtins.str] = None,
+                 line2: Optional[_builtins.str] = None,
+                 postal_code: Optional[_builtins.str] = None,
+                 state: Optional[_builtins.str] = None):
+        """
+        :param _builtins.str city: City, district, suburb, town, or village.
+        :param _builtins.str country: Two-letter country code.
+        :param _builtins.str line1: Address line 1 (e.g., street, PO Box, or company name).
+        :param _builtins.str line2: Address line 2 (e.g., apartment, suite, unit, or building).
+        :param _builtins.str postal_code: ZIP or postal code.
+        :param _builtins.str state: State, county, province, or region.
+        """
+        if city is not None:
+            pulumi.set(__self__, "city", city)
+        if country is not None:
+            pulumi.set(__self__, "country", country)
+        if line1 is not None:
+            pulumi.set(__self__, "line1", line1)
+        if line2 is not None:
+            pulumi.set(__self__, "line2", line2)
+        if postal_code is not None:
+            pulumi.set(__self__, "postal_code", postal_code)
+        if state is not None:
+            pulumi.set(__self__, "state", state)
+
+    @_builtins.property
+    @pulumi.getter
+    def city(self) -> Optional[_builtins.str]:
+        """
+        City, district, suburb, town, or village.
+        """
+        return pulumi.get(self, "city")
+
+    @_builtins.property
+    @pulumi.getter
+    def country(self) -> Optional[_builtins.str]:
+        """
+        Two-letter country code.
+        """
+        return pulumi.get(self, "country")
+
+    @_builtins.property
+    @pulumi.getter
+    def line1(self) -> Optional[_builtins.str]:
+        """
+        Address line 1 (e.g., street, PO Box, or company name).
+        """
+        return pulumi.get(self, "line1")
+
+    @_builtins.property
+    @pulumi.getter
+    def line2(self) -> Optional[_builtins.str]:
+        """
+        Address line 2 (e.g., apartment, suite, unit, or building).
+        """
+        return pulumi.get(self, "line2")
+
+    @_builtins.property
+    @pulumi.getter(name="postalCode")
+    def postal_code(self) -> Optional[_builtins.str]:
+        """
+        ZIP or postal code.
+        """
+        return pulumi.get(self, "postal_code")
+
+    @_builtins.property
+    @pulumi.getter
+    def state(self) -> Optional[_builtins.str]:
+        """
+        State, county, province, or region.
+        """
+        return pulumi.get(self, "state")
+
 
 @pulumi.output_type
 class PaymentIntentPaymentMethodOptionsBlik(dict):
     @staticmethod
     def __key_warning(key: str):
         suggest = None
-        if key == "setupFutureUsage":
+        if key == "mandateOptions":
+            suggest = "mandate_options"
+        elif key == "setupFutureUsage":
             suggest = "setup_future_usage"
 
         if suggest:
@@ -24759,6 +25986,7 @@ class PaymentIntentPaymentMethodOptionsBlik(dict):
 
     def __init__(__self__, *,
                  code: Optional[_builtins.str] = None,
+                 mandate_options: Optional['outputs.PaymentIntentPaymentMethodOptionsBlikMandateOptions'] = None,
                  setup_future_usage: Optional[_builtins.str] = None):
         """
         :param _builtins.str code: The 6-digit BLIK code that a customer has generated using their banking application. Can only be set on confirmation.
@@ -24772,6 +26000,8 @@ class PaymentIntentPaymentMethodOptionsBlik(dict):
         """
         if code is not None:
             pulumi.set(__self__, "code", code)
+        if mandate_options is not None:
+            pulumi.set(__self__, "mandate_options", mandate_options)
         if setup_future_usage is not None:
             pulumi.set(__self__, "setup_future_usage", setup_future_usage)
 
@@ -24782,6 +26012,11 @@ class PaymentIntentPaymentMethodOptionsBlik(dict):
         The 6-digit BLIK code that a customer has generated using their banking application. Can only be set on confirmation.
         """
         return pulumi.get(self, "code")
+
+    @_builtins.property
+    @pulumi.getter(name="mandateOptions")
+    def mandate_options(self) -> Optional['outputs.PaymentIntentPaymentMethodOptionsBlikMandateOptions']:
+        return pulumi.get(self, "mandate_options")
 
     @_builtins.property
     @pulumi.getter(name="setupFutureUsage")
@@ -24796,6 +26031,54 @@ class PaymentIntentPaymentMethodOptionsBlik(dict):
         When processing card payments, Stripe uses <span pulumi-lang-nodejs="`setupFutureUsage`" pulumi-lang-dotnet="`SetupFutureUsage`" pulumi-lang-go="`setupFutureUsage`" pulumi-lang-python="`setup_future_usage`" pulumi-lang-yaml="`setupFutureUsage`" pulumi-lang-java="`setupFutureUsage`" pulumi-lang-hcl="`setup_future_usage`">`setupFutureUsage`</span> to help you comply with regional legislation and network rules, such as [SCA](https://www.terraform.io/strong-customer-authentication).
         """
         return pulumi.get(self, "setup_future_usage")
+
+
+@pulumi.output_type
+class PaymentIntentPaymentMethodOptionsBlikMandateOptions(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "expiresAt":
+            suggest = "expires_at"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in PaymentIntentPaymentMethodOptionsBlikMandateOptions. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        PaymentIntentPaymentMethodOptionsBlikMandateOptions.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        PaymentIntentPaymentMethodOptionsBlikMandateOptions.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 expires_at: Optional[_builtins.float] = None,
+                 type: Optional[_builtins.str] = None):
+        """
+        :param _builtins.float expires_at: Date at which the mandate expires.
+        :param _builtins.str type: Type of the mandate.
+        """
+        if expires_at is not None:
+            pulumi.set(__self__, "expires_at", expires_at)
+        if type is not None:
+            pulumi.set(__self__, "type", type)
+
+    @_builtins.property
+    @pulumi.getter(name="expiresAt")
+    def expires_at(self) -> Optional[_builtins.float]:
+        """
+        Date at which the mandate expires.
+        """
+        return pulumi.get(self, "expires_at")
+
+    @_builtins.property
+    @pulumi.getter
+    def type(self) -> Optional[_builtins.str]:
+        """
+        Type of the mandate.
+        """
+        return pulumi.get(self, "type")
 
 
 @pulumi.output_type
@@ -24883,12 +26166,16 @@ class PaymentIntentPaymentMethodOptionsCard(dict):
             suggest = "request_three_d_secure"
         elif key == "requireCvcRecollection":
             suggest = "require_cvc_recollection"
+        elif key == "setupCredentialUsage":
+            suggest = "setup_credential_usage"
         elif key == "setupFutureUsage":
             suggest = "setup_future_usage"
         elif key == "statementDescriptorSuffixKana":
             suggest = "statement_descriptor_suffix_kana"
         elif key == "statementDescriptorSuffixKanji":
             suggest = "statement_descriptor_suffix_kanji"
+        elif key == "storedCredentialUsage":
+            suggest = "stored_credential_usage"
         elif key == "threeDSecure":
             suggest = "three_d_secure"
 
@@ -24916,9 +26203,11 @@ class PaymentIntentPaymentMethodOptionsCard(dict):
                  request_overcapture: Optional[_builtins.str] = None,
                  request_three_d_secure: Optional[_builtins.str] = None,
                  require_cvc_recollection: Optional[_builtins.bool] = None,
+                 setup_credential_usage: Optional[_builtins.str] = None,
                  setup_future_usage: Optional[_builtins.str] = None,
                  statement_descriptor_suffix_kana: Optional[_builtins.str] = None,
                  statement_descriptor_suffix_kanji: Optional[_builtins.str] = None,
+                 stored_credential_usage: Optional[_builtins.str] = None,
                  three_d_secure: Optional['outputs.PaymentIntentPaymentMethodOptionsCardThreeDSecure'] = None):
         """
         :param _builtins.str capture_method: Controls when the funds will be captured from the customer's account.
@@ -24937,6 +26226,7 @@ class PaymentIntentPaymentMethodOptionsCard(dict):
         :param _builtins.str request_overcapture: Request ability to [overcapture](https://docs.stripe.com/payments/overcapture) for this PaymentIntent.
         :param _builtins.str request_three_d_secure: We strongly recommend that you rely on our SCA Engine to automatically prompt your customers for authentication based on risk level and [other requirements](https://docs.stripe.com/strong-customer-authentication). However, if you wish to request 3D Secure based on logic from your own fraud engine, provide this option. If not provided, this value defaults to <span pulumi-lang-nodejs="`automatic`" pulumi-lang-dotnet="`Automatic`" pulumi-lang-go="`automatic`" pulumi-lang-python="`automatic`" pulumi-lang-yaml="`automatic`" pulumi-lang-java="`automatic`" pulumi-lang-hcl="`automatic`">`automatic`</span>. Read our guide on [manually requesting 3D Secure](https://docs.stripe.com/payments/3d-secure/authentication-flow#manual-three-ds) for more information on how this configuration interacts with Radar and our SCA Engine.
         :param _builtins.bool require_cvc_recollection: When enabled, using a card that is attached to a customer will require the CVC to be provided again (i.e. using the<span pulumi-lang-nodejs=" cvcToken " pulumi-lang-dotnet=" CvcToken " pulumi-lang-go=" cvcToken " pulumi-lang-python=" cvc_token " pulumi-lang-yaml=" cvcToken " pulumi-lang-java=" cvcToken " pulumi-lang-hcl=" cvc_token "> cvcToken </span>parameter).
+        :param _builtins.str setup_credential_usage: Set to indicate the future transaction type usage for the card being set up.
         :param _builtins.str setup_future_usage: Indicates that you intend to make future payments with this PaymentIntent's payment method.
                
                If you provide a Customer with the PaymentIntent, you can use this parameter to [attach the payment method](https://www.terraform.io/payments/save-during-payment) to the Customer after the PaymentIntent is confirmed and the customer completes any required actions. If you don't provide a Customer, you can still [attach](https://www.terraform.io/api/payment_methods/attach) the payment method to a Customer after the transaction completes.
@@ -24946,6 +26236,7 @@ class PaymentIntentPaymentMethodOptionsCard(dict):
                When processing card payments, Stripe uses <span pulumi-lang-nodejs="`setupFutureUsage`" pulumi-lang-dotnet="`SetupFutureUsage`" pulumi-lang-go="`setupFutureUsage`" pulumi-lang-python="`setup_future_usage`" pulumi-lang-yaml="`setupFutureUsage`" pulumi-lang-java="`setupFutureUsage`" pulumi-lang-hcl="`setup_future_usage`">`setupFutureUsage`</span> to help you comply with regional legislation and network rules, such as [SCA](https://www.terraform.io/strong-customer-authentication).
         :param _builtins.str statement_descriptor_suffix_kana: Provides information about a card payment that customers see on their statements. Concatenated with the Kana prefix (shortened Kana descriptor) or Kana statement descriptor that’s set on the account to form the complete statement descriptor. Maximum 22 characters. On card statements, the *concatenation* of both prefix and suffix (including separators) will appear truncated to 22 characters.
         :param _builtins.str statement_descriptor_suffix_kanji: Provides information about a card payment that customers see on their statements. Concatenated with the Kanji prefix (shortened Kanji descriptor) or Kanji statement descriptor that’s set on the account to form the complete statement descriptor. Maximum 17 characters. On card statements, the *concatenation* of both prefix and suffix (including separators) will appear truncated to 17 characters.
+        :param _builtins.str stored_credential_usage: Selected usage to indicate the transaction type of the off-session payment.
         :param 'PaymentIntentPaymentMethodOptionsCardThreeDSecureArgs' three_d_secure: If 3D Secure authentication was performed with a third-party provider,
                the authentication details to use for this payment.
         """
@@ -24973,12 +26264,16 @@ class PaymentIntentPaymentMethodOptionsCard(dict):
             pulumi.set(__self__, "request_three_d_secure", request_three_d_secure)
         if require_cvc_recollection is not None:
             pulumi.set(__self__, "require_cvc_recollection", require_cvc_recollection)
+        if setup_credential_usage is not None:
+            pulumi.set(__self__, "setup_credential_usage", setup_credential_usage)
         if setup_future_usage is not None:
             pulumi.set(__self__, "setup_future_usage", setup_future_usage)
         if statement_descriptor_suffix_kana is not None:
             pulumi.set(__self__, "statement_descriptor_suffix_kana", statement_descriptor_suffix_kana)
         if statement_descriptor_suffix_kanji is not None:
             pulumi.set(__self__, "statement_descriptor_suffix_kanji", statement_descriptor_suffix_kanji)
+        if stored_credential_usage is not None:
+            pulumi.set(__self__, "stored_credential_usage", stored_credential_usage)
         if three_d_secure is not None:
             pulumi.set(__self__, "three_d_secure", three_d_secure)
 
@@ -25083,6 +26378,14 @@ class PaymentIntentPaymentMethodOptionsCard(dict):
         return pulumi.get(self, "require_cvc_recollection")
 
     @_builtins.property
+    @pulumi.getter(name="setupCredentialUsage")
+    def setup_credential_usage(self) -> Optional[_builtins.str]:
+        """
+        Set to indicate the future transaction type usage for the card being set up.
+        """
+        return pulumi.get(self, "setup_credential_usage")
+
+    @_builtins.property
     @pulumi.getter(name="setupFutureUsage")
     def setup_future_usage(self) -> Optional[_builtins.str]:
         """
@@ -25111,6 +26414,14 @@ class PaymentIntentPaymentMethodOptionsCard(dict):
         Provides information about a card payment that customers see on their statements. Concatenated with the Kanji prefix (shortened Kanji descriptor) or Kanji statement descriptor that’s set on the account to form the complete statement descriptor. Maximum 17 characters. On card statements, the *concatenation* of both prefix and suffix (including separators) will appear truncated to 17 characters.
         """
         return pulumi.get(self, "statement_descriptor_suffix_kanji")
+
+    @_builtins.property
+    @pulumi.getter(name="storedCredentialUsage")
+    def stored_credential_usage(self) -> Optional[_builtins.str]:
+        """
+        Selected usage to indicate the transaction type of the off-session payment.
+        """
+        return pulumi.get(self, "stored_credential_usage")
 
     @_builtins.property
     @pulumi.getter(name="threeDSecure")
@@ -27217,6 +28528,8 @@ class PaymentIntentPaymentMethodOptionsPayco(dict):
         suggest = None
         if key == "captureMethod":
             suggest = "capture_method"
+        elif key == "setupFutureUsage":
+            suggest = "setup_future_usage"
 
         if suggest:
             pulumi.log.warn(f"Key '{key}' not found in PaymentIntentPaymentMethodOptionsPayco. Access the value via the '{suggest}' property getter instead.")
@@ -27230,12 +28543,22 @@ class PaymentIntentPaymentMethodOptionsPayco(dict):
         return super().get(key, default)
 
     def __init__(__self__, *,
-                 capture_method: Optional[_builtins.str] = None):
+                 capture_method: Optional[_builtins.str] = None,
+                 setup_future_usage: Optional[_builtins.str] = None):
         """
         :param _builtins.str capture_method: Controls when the funds will be captured from the customer's account.
+        :param _builtins.str setup_future_usage: Indicates that you intend to make future payments with this PaymentIntent's payment method.
+               
+               If you provide a Customer with the PaymentIntent, you can use this parameter to [attach the payment method](https://www.terraform.io/payments/save-during-payment) to the Customer after the PaymentIntent is confirmed and the customer completes any required actions. If you don't provide a Customer, you can still [attach](https://www.terraform.io/api/payment_methods/attach) the payment method to a Customer after the transaction completes.
+               
+               If the payment method is <span pulumi-lang-nodejs="`cardPresent`" pulumi-lang-dotnet="`CardPresent`" pulumi-lang-go="`cardPresent`" pulumi-lang-python="`card_present`" pulumi-lang-yaml="`cardPresent`" pulumi-lang-java="`cardPresent`" pulumi-lang-hcl="`card_present`">`cardPresent`</span> and isn't a digital wallet, Stripe creates and attaches a <span pulumi-lang-nodejs="[generatedCard]" pulumi-lang-dotnet="[GeneratedCard]" pulumi-lang-go="[generatedCard]" pulumi-lang-python="[generated_card]" pulumi-lang-yaml="[generatedCard]" pulumi-lang-java="[generatedCard]" pulumi-lang-hcl="[generated_card]">[generatedCard]</span>(https://www.terraform.io/api/charges/object#charge_object-payment_method_details-card_present-generated_card) payment method representing the card to the Customer instead.
+               
+               When processing card payments, Stripe uses <span pulumi-lang-nodejs="`setupFutureUsage`" pulumi-lang-dotnet="`SetupFutureUsage`" pulumi-lang-go="`setupFutureUsage`" pulumi-lang-python="`setup_future_usage`" pulumi-lang-yaml="`setupFutureUsage`" pulumi-lang-java="`setupFutureUsage`" pulumi-lang-hcl="`setup_future_usage`">`setupFutureUsage`</span> to help you comply with regional legislation and network rules, such as [SCA](https://www.terraform.io/strong-customer-authentication).
         """
         if capture_method is not None:
             pulumi.set(__self__, "capture_method", capture_method)
+        if setup_future_usage is not None:
+            pulumi.set(__self__, "setup_future_usage", setup_future_usage)
 
     @_builtins.property
     @pulumi.getter(name="captureMethod")
@@ -27244,6 +28567,20 @@ class PaymentIntentPaymentMethodOptionsPayco(dict):
         Controls when the funds will be captured from the customer's account.
         """
         return pulumi.get(self, "capture_method")
+
+    @_builtins.property
+    @pulumi.getter(name="setupFutureUsage")
+    def setup_future_usage(self) -> Optional[_builtins.str]:
+        """
+        Indicates that you intend to make future payments with this PaymentIntent's payment method.
+
+        If you provide a Customer with the PaymentIntent, you can use this parameter to [attach the payment method](https://www.terraform.io/payments/save-during-payment) to the Customer after the PaymentIntent is confirmed and the customer completes any required actions. If you don't provide a Customer, you can still [attach](https://www.terraform.io/api/payment_methods/attach) the payment method to a Customer after the transaction completes.
+
+        If the payment method is <span pulumi-lang-nodejs="`cardPresent`" pulumi-lang-dotnet="`CardPresent`" pulumi-lang-go="`cardPresent`" pulumi-lang-python="`card_present`" pulumi-lang-yaml="`cardPresent`" pulumi-lang-java="`cardPresent`" pulumi-lang-hcl="`card_present`">`cardPresent`</span> and isn't a digital wallet, Stripe creates and attaches a <span pulumi-lang-nodejs="[generatedCard]" pulumi-lang-dotnet="[GeneratedCard]" pulumi-lang-go="[generatedCard]" pulumi-lang-python="[generated_card]" pulumi-lang-yaml="[generatedCard]" pulumi-lang-java="[generatedCard]" pulumi-lang-hcl="[generated_card]">[generatedCard]</span>(https://www.terraform.io/api/charges/object#charge_object-payment_method_details-card_present-generated_card) payment method representing the card to the Customer instead.
+
+        When processing card payments, Stripe uses <span pulumi-lang-nodejs="`setupFutureUsage`" pulumi-lang-dotnet="`SetupFutureUsage`" pulumi-lang-go="`setupFutureUsage`" pulumi-lang-python="`setup_future_usage`" pulumi-lang-yaml="`setupFutureUsage`" pulumi-lang-java="`setupFutureUsage`" pulumi-lang-hcl="`setup_future_usage`">`setupFutureUsage`</span> to help you comply with regional legislation and network rules, such as [SCA](https://www.terraform.io/strong-customer-authentication).
+        """
+        return pulumi.get(self, "setup_future_usage")
 
 
 @pulumi.output_type
@@ -27591,8 +28928,8 @@ class PaymentIntentPaymentMethodOptionsPix(dict):
                  setup_future_usage: Optional[_builtins.str] = None):
         """
         :param _builtins.str amount_includes_iof: Determines if the amount includes the IOF tax.
-        :param _builtins.float expires_after_seconds: The number of seconds (between 10 and 1209600) after which Pix payment will expire.
-        :param _builtins.float expires_at: The timestamp at which the Pix expires.
+        :param _builtins.float expires_after_seconds: The number of seconds after PaymentIntent confirmation when the Pix expires (between 60 and 1209600, inclusive). If neither expiration option is supplied, defaults to 14400 seconds (4 hours). Mutually exclusive with <span pulumi-lang-nodejs="`expiresAt`" pulumi-lang-dotnet="`ExpiresAt`" pulumi-lang-go="`expiresAt`" pulumi-lang-python="`expires_at`" pulumi-lang-yaml="`expiresAt`" pulumi-lang-java="`expiresAt`" pulumi-lang-hcl="`expires_at`">`expiresAt`</span>.
+        :param _builtins.float expires_at: The absolute Unix timestamp at which the Pix expires. When supplied as an input, it must be between 60 and 1209600 seconds from the current time at validation, inclusive. If neither expiration option is supplied, the Pix expires 14400 seconds (4 hours) after PaymentIntent confirmation. Mutually exclusive with <span pulumi-lang-nodejs="`expiresAfterSeconds`" pulumi-lang-dotnet="`ExpiresAfterSeconds`" pulumi-lang-go="`expiresAfterSeconds`" pulumi-lang-python="`expires_after_seconds`" pulumi-lang-yaml="`expiresAfterSeconds`" pulumi-lang-java="`expiresAfterSeconds`" pulumi-lang-hcl="`expires_after_seconds`">`expiresAfterSeconds`</span>.
         :param _builtins.str setup_future_usage: Indicates that you intend to make future payments with this PaymentIntent's payment method.
                
                If you provide a Customer with the PaymentIntent, you can use this parameter to [attach the payment method](https://www.terraform.io/payments/save-during-payment) to the Customer after the PaymentIntent is confirmed and the customer completes any required actions. If you don't provide a Customer, you can still [attach](https://www.terraform.io/api/payment_methods/attach) the payment method to a Customer after the transaction completes.
@@ -27624,7 +28961,7 @@ class PaymentIntentPaymentMethodOptionsPix(dict):
     @pulumi.getter(name="expiresAfterSeconds")
     def expires_after_seconds(self) -> Optional[_builtins.float]:
         """
-        The number of seconds (between 10 and 1209600) after which Pix payment will expire.
+        The number of seconds after PaymentIntent confirmation when the Pix expires (between 60 and 1209600, inclusive). If neither expiration option is supplied, defaults to 14400 seconds (4 hours). Mutually exclusive with <span pulumi-lang-nodejs="`expiresAt`" pulumi-lang-dotnet="`ExpiresAt`" pulumi-lang-go="`expiresAt`" pulumi-lang-python="`expires_at`" pulumi-lang-yaml="`expiresAt`" pulumi-lang-java="`expiresAt`" pulumi-lang-hcl="`expires_at`">`expiresAt`</span>.
         """
         return pulumi.get(self, "expires_after_seconds")
 
@@ -27632,7 +28969,7 @@ class PaymentIntentPaymentMethodOptionsPix(dict):
     @pulumi.getter(name="expiresAt")
     def expires_at(self) -> Optional[_builtins.float]:
         """
-        The timestamp at which the Pix expires.
+        The absolute Unix timestamp at which the Pix expires. When supplied as an input, it must be between 60 and 1209600 seconds from the current time at validation, inclusive. If neither expiration option is supplied, the Pix expires 14400 seconds (4 hours) after PaymentIntent confirmation. Mutually exclusive with <span pulumi-lang-nodejs="`expiresAfterSeconds`" pulumi-lang-dotnet="`ExpiresAfterSeconds`" pulumi-lang-go="`expiresAfterSeconds`" pulumi-lang-python="`expires_after_seconds`" pulumi-lang-yaml="`expiresAfterSeconds`" pulumi-lang-java="`expiresAfterSeconds`" pulumi-lang-hcl="`expires_after_seconds`">`expiresAfterSeconds`</span>.
         """
         return pulumi.get(self, "expires_at")
 
@@ -27901,6 +29238,8 @@ class PaymentIntentPaymentMethodOptionsSamsungPay(dict):
         suggest = None
         if key == "captureMethod":
             suggest = "capture_method"
+        elif key == "setupFutureUsage":
+            suggest = "setup_future_usage"
 
         if suggest:
             pulumi.log.warn(f"Key '{key}' not found in PaymentIntentPaymentMethodOptionsSamsungPay. Access the value via the '{suggest}' property getter instead.")
@@ -27914,12 +29253,22 @@ class PaymentIntentPaymentMethodOptionsSamsungPay(dict):
         return super().get(key, default)
 
     def __init__(__self__, *,
-                 capture_method: Optional[_builtins.str] = None):
+                 capture_method: Optional[_builtins.str] = None,
+                 setup_future_usage: Optional[_builtins.str] = None):
         """
         :param _builtins.str capture_method: Controls when the funds will be captured from the customer's account.
+        :param _builtins.str setup_future_usage: Indicates that you intend to make future payments with this PaymentIntent's payment method.
+               
+               If you provide a Customer with the PaymentIntent, you can use this parameter to [attach the payment method](https://www.terraform.io/payments/save-during-payment) to the Customer after the PaymentIntent is confirmed and the customer completes any required actions. If you don't provide a Customer, you can still [attach](https://www.terraform.io/api/payment_methods/attach) the payment method to a Customer after the transaction completes.
+               
+               If the payment method is <span pulumi-lang-nodejs="`cardPresent`" pulumi-lang-dotnet="`CardPresent`" pulumi-lang-go="`cardPresent`" pulumi-lang-python="`card_present`" pulumi-lang-yaml="`cardPresent`" pulumi-lang-java="`cardPresent`" pulumi-lang-hcl="`card_present`">`cardPresent`</span> and isn't a digital wallet, Stripe creates and attaches a <span pulumi-lang-nodejs="[generatedCard]" pulumi-lang-dotnet="[GeneratedCard]" pulumi-lang-go="[generatedCard]" pulumi-lang-python="[generated_card]" pulumi-lang-yaml="[generatedCard]" pulumi-lang-java="[generatedCard]" pulumi-lang-hcl="[generated_card]">[generatedCard]</span>(https://www.terraform.io/api/charges/object#charge_object-payment_method_details-card_present-generated_card) payment method representing the card to the Customer instead.
+               
+               When processing card payments, Stripe uses <span pulumi-lang-nodejs="`setupFutureUsage`" pulumi-lang-dotnet="`SetupFutureUsage`" pulumi-lang-go="`setupFutureUsage`" pulumi-lang-python="`setup_future_usage`" pulumi-lang-yaml="`setupFutureUsage`" pulumi-lang-java="`setupFutureUsage`" pulumi-lang-hcl="`setup_future_usage`">`setupFutureUsage`</span> to help you comply with regional legislation and network rules, such as [SCA](https://www.terraform.io/strong-customer-authentication).
         """
         if capture_method is not None:
             pulumi.set(__self__, "capture_method", capture_method)
+        if setup_future_usage is not None:
+            pulumi.set(__self__, "setup_future_usage", setup_future_usage)
 
     @_builtins.property
     @pulumi.getter(name="captureMethod")
@@ -27929,6 +29278,20 @@ class PaymentIntentPaymentMethodOptionsSamsungPay(dict):
         """
         return pulumi.get(self, "capture_method")
 
+    @_builtins.property
+    @pulumi.getter(name="setupFutureUsage")
+    def setup_future_usage(self) -> Optional[_builtins.str]:
+        """
+        Indicates that you intend to make future payments with this PaymentIntent's payment method.
+
+        If you provide a Customer with the PaymentIntent, you can use this parameter to [attach the payment method](https://www.terraform.io/payments/save-during-payment) to the Customer after the PaymentIntent is confirmed and the customer completes any required actions. If you don't provide a Customer, you can still [attach](https://www.terraform.io/api/payment_methods/attach) the payment method to a Customer after the transaction completes.
+
+        If the payment method is <span pulumi-lang-nodejs="`cardPresent`" pulumi-lang-dotnet="`CardPresent`" pulumi-lang-go="`cardPresent`" pulumi-lang-python="`card_present`" pulumi-lang-yaml="`cardPresent`" pulumi-lang-java="`cardPresent`" pulumi-lang-hcl="`card_present`">`cardPresent`</span> and isn't a digital wallet, Stripe creates and attaches a <span pulumi-lang-nodejs="[generatedCard]" pulumi-lang-dotnet="[GeneratedCard]" pulumi-lang-go="[generatedCard]" pulumi-lang-python="[generated_card]" pulumi-lang-yaml="[generatedCard]" pulumi-lang-java="[generatedCard]" pulumi-lang-hcl="[generated_card]">[generatedCard]</span>(https://www.terraform.io/api/charges/object#charge_object-payment_method_details-card_present-generated_card) payment method representing the card to the Customer instead.
+
+        When processing card payments, Stripe uses <span pulumi-lang-nodejs="`setupFutureUsage`" pulumi-lang-dotnet="`SetupFutureUsage`" pulumi-lang-go="`setupFutureUsage`" pulumi-lang-python="`setup_future_usage`" pulumi-lang-yaml="`setupFutureUsage`" pulumi-lang-java="`setupFutureUsage`" pulumi-lang-hcl="`setup_future_usage`">`setupFutureUsage`</span> to help you comply with regional legislation and network rules, such as [SCA](https://www.terraform.io/strong-customer-authentication).
+        """
+        return pulumi.get(self, "setup_future_usage")
+
 
 @pulumi.output_type
 class PaymentIntentPaymentMethodOptionsSatispay(dict):
@@ -27937,6 +29300,8 @@ class PaymentIntentPaymentMethodOptionsSatispay(dict):
         suggest = None
         if key == "captureMethod":
             suggest = "capture_method"
+        elif key == "setupFutureUsage":
+            suggest = "setup_future_usage"
 
         if suggest:
             pulumi.log.warn(f"Key '{key}' not found in PaymentIntentPaymentMethodOptionsSatispay. Access the value via the '{suggest}' property getter instead.")
@@ -27950,12 +29315,22 @@ class PaymentIntentPaymentMethodOptionsSatispay(dict):
         return super().get(key, default)
 
     def __init__(__self__, *,
-                 capture_method: Optional[_builtins.str] = None):
+                 capture_method: Optional[_builtins.str] = None,
+                 setup_future_usage: Optional[_builtins.str] = None):
         """
         :param _builtins.str capture_method: Controls when the funds will be captured from the customer's account.
+        :param _builtins.str setup_future_usage: Indicates that you intend to make future payments with this PaymentIntent's payment method.
+               
+               If you provide a Customer with the PaymentIntent, you can use this parameter to [attach the payment method](https://www.terraform.io/payments/save-during-payment) to the Customer after the PaymentIntent is confirmed and the customer completes any required actions. If you don't provide a Customer, you can still [attach](https://www.terraform.io/api/payment_methods/attach) the payment method to a Customer after the transaction completes.
+               
+               If the payment method is <span pulumi-lang-nodejs="`cardPresent`" pulumi-lang-dotnet="`CardPresent`" pulumi-lang-go="`cardPresent`" pulumi-lang-python="`card_present`" pulumi-lang-yaml="`cardPresent`" pulumi-lang-java="`cardPresent`" pulumi-lang-hcl="`card_present`">`cardPresent`</span> and isn't a digital wallet, Stripe creates and attaches a <span pulumi-lang-nodejs="[generatedCard]" pulumi-lang-dotnet="[GeneratedCard]" pulumi-lang-go="[generatedCard]" pulumi-lang-python="[generated_card]" pulumi-lang-yaml="[generatedCard]" pulumi-lang-java="[generatedCard]" pulumi-lang-hcl="[generated_card]">[generatedCard]</span>(https://www.terraform.io/api/charges/object#charge_object-payment_method_details-card_present-generated_card) payment method representing the card to the Customer instead.
+               
+               When processing card payments, Stripe uses <span pulumi-lang-nodejs="`setupFutureUsage`" pulumi-lang-dotnet="`SetupFutureUsage`" pulumi-lang-go="`setupFutureUsage`" pulumi-lang-python="`setup_future_usage`" pulumi-lang-yaml="`setupFutureUsage`" pulumi-lang-java="`setupFutureUsage`" pulumi-lang-hcl="`setup_future_usage`">`setupFutureUsage`</span> to help you comply with regional legislation and network rules, such as [SCA](https://www.terraform.io/strong-customer-authentication).
         """
         if capture_method is not None:
             pulumi.set(__self__, "capture_method", capture_method)
+        if setup_future_usage is not None:
+            pulumi.set(__self__, "setup_future_usage", setup_future_usage)
 
     @_builtins.property
     @pulumi.getter(name="captureMethod")
@@ -27964,6 +29339,20 @@ class PaymentIntentPaymentMethodOptionsSatispay(dict):
         Controls when the funds will be captured from the customer's account.
         """
         return pulumi.get(self, "capture_method")
+
+    @_builtins.property
+    @pulumi.getter(name="setupFutureUsage")
+    def setup_future_usage(self) -> Optional[_builtins.str]:
+        """
+        Indicates that you intend to make future payments with this PaymentIntent's payment method.
+
+        If you provide a Customer with the PaymentIntent, you can use this parameter to [attach the payment method](https://www.terraform.io/payments/save-during-payment) to the Customer after the PaymentIntent is confirmed and the customer completes any required actions. If you don't provide a Customer, you can still [attach](https://www.terraform.io/api/payment_methods/attach) the payment method to a Customer after the transaction completes.
+
+        If the payment method is <span pulumi-lang-nodejs="`cardPresent`" pulumi-lang-dotnet="`CardPresent`" pulumi-lang-go="`cardPresent`" pulumi-lang-python="`card_present`" pulumi-lang-yaml="`cardPresent`" pulumi-lang-java="`cardPresent`" pulumi-lang-hcl="`card_present`">`cardPresent`</span> and isn't a digital wallet, Stripe creates and attaches a <span pulumi-lang-nodejs="[generatedCard]" pulumi-lang-dotnet="[GeneratedCard]" pulumi-lang-go="[generatedCard]" pulumi-lang-python="[generated_card]" pulumi-lang-yaml="[generatedCard]" pulumi-lang-java="[generatedCard]" pulumi-lang-hcl="[generated_card]">[generatedCard]</span>(https://www.terraform.io/api/charges/object#charge_object-payment_method_details-card_present-generated_card) payment method representing the card to the Customer instead.
+
+        When processing card payments, Stripe uses <span pulumi-lang-nodejs="`setupFutureUsage`" pulumi-lang-dotnet="`SetupFutureUsage`" pulumi-lang-go="`setupFutureUsage`" pulumi-lang-python="`setup_future_usage`" pulumi-lang-yaml="`setupFutureUsage`" pulumi-lang-java="`setupFutureUsage`" pulumi-lang-hcl="`setup_future_usage`">`setupFutureUsage`</span> to help you comply with regional legislation and network rules, such as [SCA](https://www.terraform.io/strong-customer-authentication).
+        """
+        return pulumi.get(self, "setup_future_usage")
 
 
 @pulumi.output_type
@@ -28111,6 +29500,68 @@ class PaymentIntentPaymentMethodOptionsSepaDebitMandateOptions(dict):
 
 
 @pulumi.output_type
+class PaymentIntentPaymentMethodOptionsSequra(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "captureMethod":
+            suggest = "capture_method"
+        elif key == "setupFutureUsage":
+            suggest = "setup_future_usage"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in PaymentIntentPaymentMethodOptionsSequra. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        PaymentIntentPaymentMethodOptionsSequra.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        PaymentIntentPaymentMethodOptionsSequra.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 capture_method: Optional[_builtins.str] = None,
+                 setup_future_usage: Optional[_builtins.str] = None):
+        """
+        :param _builtins.str capture_method: Controls when the funds will be captured from the customer's account.
+        :param _builtins.str setup_future_usage: Indicates that you intend to make future payments with this PaymentIntent's payment method.
+               
+               If you provide a Customer with the PaymentIntent, you can use this parameter to [attach the payment method](https://www.terraform.io/payments/save-during-payment) to the Customer after the PaymentIntent is confirmed and the customer completes any required actions. If you don't provide a Customer, you can still [attach](https://www.terraform.io/api/payment_methods/attach) the payment method to a Customer after the transaction completes.
+               
+               If the payment method is <span pulumi-lang-nodejs="`cardPresent`" pulumi-lang-dotnet="`CardPresent`" pulumi-lang-go="`cardPresent`" pulumi-lang-python="`card_present`" pulumi-lang-yaml="`cardPresent`" pulumi-lang-java="`cardPresent`" pulumi-lang-hcl="`card_present`">`cardPresent`</span> and isn't a digital wallet, Stripe creates and attaches a <span pulumi-lang-nodejs="[generatedCard]" pulumi-lang-dotnet="[GeneratedCard]" pulumi-lang-go="[generatedCard]" pulumi-lang-python="[generated_card]" pulumi-lang-yaml="[generatedCard]" pulumi-lang-java="[generatedCard]" pulumi-lang-hcl="[generated_card]">[generatedCard]</span>(https://www.terraform.io/api/charges/object#charge_object-payment_method_details-card_present-generated_card) payment method representing the card to the Customer instead.
+               
+               When processing card payments, Stripe uses <span pulumi-lang-nodejs="`setupFutureUsage`" pulumi-lang-dotnet="`SetupFutureUsage`" pulumi-lang-go="`setupFutureUsage`" pulumi-lang-python="`setup_future_usage`" pulumi-lang-yaml="`setupFutureUsage`" pulumi-lang-java="`setupFutureUsage`" pulumi-lang-hcl="`setup_future_usage`">`setupFutureUsage`</span> to help you comply with regional legislation and network rules, such as [SCA](https://www.terraform.io/strong-customer-authentication).
+        """
+        if capture_method is not None:
+            pulumi.set(__self__, "capture_method", capture_method)
+        if setup_future_usage is not None:
+            pulumi.set(__self__, "setup_future_usage", setup_future_usage)
+
+    @_builtins.property
+    @pulumi.getter(name="captureMethod")
+    def capture_method(self) -> Optional[_builtins.str]:
+        """
+        Controls when the funds will be captured from the customer's account.
+        """
+        return pulumi.get(self, "capture_method")
+
+    @_builtins.property
+    @pulumi.getter(name="setupFutureUsage")
+    def setup_future_usage(self) -> Optional[_builtins.str]:
+        """
+        Indicates that you intend to make future payments with this PaymentIntent's payment method.
+
+        If you provide a Customer with the PaymentIntent, you can use this parameter to [attach the payment method](https://www.terraform.io/payments/save-during-payment) to the Customer after the PaymentIntent is confirmed and the customer completes any required actions. If you don't provide a Customer, you can still [attach](https://www.terraform.io/api/payment_methods/attach) the payment method to a Customer after the transaction completes.
+
+        If the payment method is <span pulumi-lang-nodejs="`cardPresent`" pulumi-lang-dotnet="`CardPresent`" pulumi-lang-go="`cardPresent`" pulumi-lang-python="`card_present`" pulumi-lang-yaml="`cardPresent`" pulumi-lang-java="`cardPresent`" pulumi-lang-hcl="`card_present`">`cardPresent`</span> and isn't a digital wallet, Stripe creates and attaches a <span pulumi-lang-nodejs="[generatedCard]" pulumi-lang-dotnet="[GeneratedCard]" pulumi-lang-go="[generatedCard]" pulumi-lang-python="[generated_card]" pulumi-lang-yaml="[generatedCard]" pulumi-lang-java="[generatedCard]" pulumi-lang-hcl="[generated_card]">[generatedCard]</span>(https://www.terraform.io/api/charges/object#charge_object-payment_method_details-card_present-generated_card) payment method representing the card to the Customer instead.
+
+        When processing card payments, Stripe uses <span pulumi-lang-nodejs="`setupFutureUsage`" pulumi-lang-dotnet="`SetupFutureUsage`" pulumi-lang-go="`setupFutureUsage`" pulumi-lang-python="`setup_future_usage`" pulumi-lang-yaml="`setupFutureUsage`" pulumi-lang-java="`setupFutureUsage`" pulumi-lang-hcl="`setup_future_usage`">`setupFutureUsage`</span> to help you comply with regional legislation and network rules, such as [SCA](https://www.terraform.io/strong-customer-authentication).
+        """
+        return pulumi.get(self, "setup_future_usage")
+
+
+@pulumi.output_type
 class PaymentIntentPaymentMethodOptionsSofort(dict):
     @staticmethod
     def __key_warning(key: str):
@@ -28156,6 +29607,68 @@ class PaymentIntentPaymentMethodOptionsSofort(dict):
         Preferred language of the SOFORT authorization page that the customer is redirected to.
         """
         return pulumi.get(self, "preferred_language")
+
+    @_builtins.property
+    @pulumi.getter(name="setupFutureUsage")
+    def setup_future_usage(self) -> Optional[_builtins.str]:
+        """
+        Indicates that you intend to make future payments with this PaymentIntent's payment method.
+
+        If you provide a Customer with the PaymentIntent, you can use this parameter to [attach the payment method](https://www.terraform.io/payments/save-during-payment) to the Customer after the PaymentIntent is confirmed and the customer completes any required actions. If you don't provide a Customer, you can still [attach](https://www.terraform.io/api/payment_methods/attach) the payment method to a Customer after the transaction completes.
+
+        If the payment method is <span pulumi-lang-nodejs="`cardPresent`" pulumi-lang-dotnet="`CardPresent`" pulumi-lang-go="`cardPresent`" pulumi-lang-python="`card_present`" pulumi-lang-yaml="`cardPresent`" pulumi-lang-java="`cardPresent`" pulumi-lang-hcl="`card_present`">`cardPresent`</span> and isn't a digital wallet, Stripe creates and attaches a <span pulumi-lang-nodejs="[generatedCard]" pulumi-lang-dotnet="[GeneratedCard]" pulumi-lang-go="[generatedCard]" pulumi-lang-python="[generated_card]" pulumi-lang-yaml="[generatedCard]" pulumi-lang-java="[generatedCard]" pulumi-lang-hcl="[generated_card]">[generatedCard]</span>(https://www.terraform.io/api/charges/object#charge_object-payment_method_details-card_present-generated_card) payment method representing the card to the Customer instead.
+
+        When processing card payments, Stripe uses <span pulumi-lang-nodejs="`setupFutureUsage`" pulumi-lang-dotnet="`SetupFutureUsage`" pulumi-lang-go="`setupFutureUsage`" pulumi-lang-python="`setup_future_usage`" pulumi-lang-yaml="`setupFutureUsage`" pulumi-lang-java="`setupFutureUsage`" pulumi-lang-hcl="`setup_future_usage`">`setupFutureUsage`</span> to help you comply with regional legislation and network rules, such as [SCA](https://www.terraform.io/strong-customer-authentication).
+        """
+        return pulumi.get(self, "setup_future_usage")
+
+
+@pulumi.output_type
+class PaymentIntentPaymentMethodOptionsSunbit(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "captureMethod":
+            suggest = "capture_method"
+        elif key == "setupFutureUsage":
+            suggest = "setup_future_usage"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in PaymentIntentPaymentMethodOptionsSunbit. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        PaymentIntentPaymentMethodOptionsSunbit.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        PaymentIntentPaymentMethodOptionsSunbit.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 capture_method: Optional[_builtins.str] = None,
+                 setup_future_usage: Optional[_builtins.str] = None):
+        """
+        :param _builtins.str capture_method: Controls when the funds will be captured from the customer's account.
+        :param _builtins.str setup_future_usage: Indicates that you intend to make future payments with this PaymentIntent's payment method.
+               
+               If you provide a Customer with the PaymentIntent, you can use this parameter to [attach the payment method](https://www.terraform.io/payments/save-during-payment) to the Customer after the PaymentIntent is confirmed and the customer completes any required actions. If you don't provide a Customer, you can still [attach](https://www.terraform.io/api/payment_methods/attach) the payment method to a Customer after the transaction completes.
+               
+               If the payment method is <span pulumi-lang-nodejs="`cardPresent`" pulumi-lang-dotnet="`CardPresent`" pulumi-lang-go="`cardPresent`" pulumi-lang-python="`card_present`" pulumi-lang-yaml="`cardPresent`" pulumi-lang-java="`cardPresent`" pulumi-lang-hcl="`card_present`">`cardPresent`</span> and isn't a digital wallet, Stripe creates and attaches a <span pulumi-lang-nodejs="[generatedCard]" pulumi-lang-dotnet="[GeneratedCard]" pulumi-lang-go="[generatedCard]" pulumi-lang-python="[generated_card]" pulumi-lang-yaml="[generatedCard]" pulumi-lang-java="[generatedCard]" pulumi-lang-hcl="[generated_card]">[generatedCard]</span>(https://www.terraform.io/api/charges/object#charge_object-payment_method_details-card_present-generated_card) payment method representing the card to the Customer instead.
+               
+               When processing card payments, Stripe uses <span pulumi-lang-nodejs="`setupFutureUsage`" pulumi-lang-dotnet="`SetupFutureUsage`" pulumi-lang-go="`setupFutureUsage`" pulumi-lang-python="`setup_future_usage`" pulumi-lang-yaml="`setupFutureUsage`" pulumi-lang-java="`setupFutureUsage`" pulumi-lang-hcl="`setup_future_usage`">`setupFutureUsage`</span> to help you comply with regional legislation and network rules, such as [SCA](https://www.terraform.io/strong-customer-authentication).
+        """
+        if capture_method is not None:
+            pulumi.set(__self__, "capture_method", capture_method)
+        if setup_future_usage is not None:
+            pulumi.set(__self__, "setup_future_usage", setup_future_usage)
+
+    @_builtins.property
+    @pulumi.getter(name="captureMethod")
+    def capture_method(self) -> Optional[_builtins.str]:
+        """
+        Controls when the funds will be captured from the customer's account.
+        """
+        return pulumi.get(self, "capture_method")
 
     @_builtins.property
     @pulumi.getter(name="setupFutureUsage")
@@ -28723,7 +30236,7 @@ class PaymentIntentPaymentMethodOptionsWechatPay(dict):
                  client: Optional[_builtins.str] = None,
                  setup_future_usage: Optional[_builtins.str] = None):
         """
-        :param _builtins.str app_id: The app ID registered with WeChat Pay. Only required when client is ios or android.
+        :param _builtins.str app_id: The app ID registered with WeChat Pay. Only required when client is ios, android, or mini_program.
         :param _builtins.str client: The client type that the end customer will pay from
         :param _builtins.str setup_future_usage: Indicates that you intend to make future payments with this PaymentIntent's payment method.
                
@@ -28744,7 +30257,7 @@ class PaymentIntentPaymentMethodOptionsWechatPay(dict):
     @pulumi.getter(name="appId")
     def app_id(self) -> Optional[_builtins.str]:
         """
-        The app ID registered with WeChat Pay. Only required when client is ios or android.
+        The app ID registered with WeChat Pay. Only required when client is ios, android, or mini_program.
         """
         return pulumi.get(self, "app_id")
 
@@ -28979,13 +30492,27 @@ class PaymentIntentProcessingCardCustomerNotification(dict):
 @pulumi.output_type
 class PaymentIntentRadarOptions(dict):
     def __init__(__self__, *,
+                 referrer: Optional[_builtins.str] = None,
                  session: Optional[_builtins.str] = None):
         """
+        :param _builtins.str referrer: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+               The referrer URL of the current checkout session. You can use this to supply session-level referrer data when a Radar Session isn't available or doesn't contain a referrer.
         :param _builtins.str session: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
                A [Radar Session](https://docs.stripe.com/radar/radar-session) is a snapshot of the browser metadata and device details that help Radar make more accurate predictions on your payments.
         """
+        if referrer is not None:
+            pulumi.set(__self__, "referrer", referrer)
         if session is not None:
             pulumi.set(__self__, "session", session)
+
+    @_builtins.property
+    @pulumi.getter
+    def referrer(self) -> Optional[_builtins.str]:
+        """
+        **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        The referrer URL of the current checkout session. You can use this to supply session-level referrer data when a Radar Session isn't available or doesn't contain a referrer.
+        """
+        return pulumi.get(self, "referrer")
 
     @_builtins.property
     @pulumi.getter
@@ -29688,7 +31215,7 @@ class PaymentLinkCustomFieldLabel(dict):
                  custom: _builtins.str,
                  type: _builtins.str):
         """
-        :param _builtins.str custom: Custom text for the label, displayed to the customer. Up to 50 characters.
+        :param _builtins.str custom: Custom text for the label, displayed to the customer. Up to 100 characters.
         :param _builtins.str type: The type of the label.
         """
         pulumi.set(__self__, "custom", custom)
@@ -29698,7 +31225,7 @@ class PaymentLinkCustomFieldLabel(dict):
     @pulumi.getter
     def custom(self) -> _builtins.str:
         """
-        Custom text for the label, displayed to the customer. Up to 50 characters.
+        Custom text for the label, displayed to the customer. Up to 100 characters.
         """
         return pulumi.get(self, "custom")
 
@@ -30502,6 +32029,8 @@ class PaymentLinkLineItemPriceDataProductData(dict):
         suggest = None
         if key == "taxCode":
             suggest = "tax_code"
+        elif key == "taxDetails":
+            suggest = "tax_details"
         elif key == "unitLabel":
             suggest = "unit_label"
 
@@ -30522,6 +32051,7 @@ class PaymentLinkLineItemPriceDataProductData(dict):
                  images: Optional[Sequence[_builtins.str]] = None,
                  metadata: Optional[Mapping[str, _builtins.str]] = None,
                  tax_code: Optional[_builtins.str] = None,
+                 tax_details: Optional['outputs.PaymentLinkLineItemPriceDataProductDataTaxDetails'] = None,
                  unit_label: Optional[_builtins.str] = None):
         """
         :param _builtins.str name: The product's name, meant to be displayable to the customer.
@@ -30529,6 +32059,7 @@ class PaymentLinkLineItemPriceDataProductData(dict):
         :param Sequence[_builtins.str] images: A list of up to 8 URLs of images for this product, meant to be displayable to the customer.
         :param Mapping[str, _builtins.str] metadata: Set of [key-value pairs](https://docs.stripe.com/api/metadata) that you can attach to an object. This can be useful for storing additional information about the object in a structured format. Individual keys can be unset by posting an empty value to them. All keys can be unset by posting an empty value to <span pulumi-lang-nodejs="`metadata`" pulumi-lang-dotnet="`Metadata`" pulumi-lang-go="`metadata`" pulumi-lang-python="`metadata`" pulumi-lang-yaml="`metadata`" pulumi-lang-java="`metadata`" pulumi-lang-hcl="`metadata`">`metadata`</span>.
         :param _builtins.str tax_code: A [tax code](https://docs.stripe.com/tax/tax-categories) ID.
+        :param 'PaymentLinkLineItemPriceDataProductDataTaxDetailsArgs' tax_details: Tax details for this product, including the [tax code](https://www.terraform.io/tax/tax-codes) and an optional performance location.
         :param _builtins.str unit_label: A label that represents units of this product. When set, this will be included in customers' receipts, invoices, Checkout, and the customer portal.
         """
         pulumi.set(__self__, "name", name)
@@ -30540,6 +32071,8 @@ class PaymentLinkLineItemPriceDataProductData(dict):
             pulumi.set(__self__, "metadata", metadata)
         if tax_code is not None:
             pulumi.set(__self__, "tax_code", tax_code)
+        if tax_details is not None:
+            pulumi.set(__self__, "tax_details", tax_details)
         if unit_label is not None:
             pulumi.set(__self__, "unit_label", unit_label)
 
@@ -30584,12 +32117,70 @@ class PaymentLinkLineItemPriceDataProductData(dict):
         return pulumi.get(self, "tax_code")
 
     @_builtins.property
+    @pulumi.getter(name="taxDetails")
+    def tax_details(self) -> Optional['outputs.PaymentLinkLineItemPriceDataProductDataTaxDetails']:
+        """
+        Tax details for this product, including the [tax code](https://www.terraform.io/tax/tax-codes) and an optional performance location.
+        """
+        return pulumi.get(self, "tax_details")
+
+    @_builtins.property
     @pulumi.getter(name="unitLabel")
     def unit_label(self) -> Optional[_builtins.str]:
         """
         A label that represents units of this product. When set, this will be included in customers' receipts, invoices, Checkout, and the customer portal.
         """
         return pulumi.get(self, "unit_label")
+
+
+@pulumi.output_type
+class PaymentLinkLineItemPriceDataProductDataTaxDetails(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "performanceLocation":
+            suggest = "performance_location"
+        elif key == "taxCode":
+            suggest = "tax_code"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in PaymentLinkLineItemPriceDataProductDataTaxDetails. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        PaymentLinkLineItemPriceDataProductDataTaxDetails.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        PaymentLinkLineItemPriceDataProductDataTaxDetails.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 performance_location: Optional[_builtins.str] = None,
+                 tax_code: Optional[_builtins.str] = None):
+        """
+        :param _builtins.str performance_location: A tax location ID. Depending on the [tax code](https://www.terraform.io/tax/tax-for-tickets/reference/tax-location-performance), this is required, optional, or not supported.
+        :param _builtins.str tax_code: A [tax code](https://docs.stripe.com/tax/tax-categories) ID.
+        """
+        if performance_location is not None:
+            pulumi.set(__self__, "performance_location", performance_location)
+        if tax_code is not None:
+            pulumi.set(__self__, "tax_code", tax_code)
+
+    @_builtins.property
+    @pulumi.getter(name="performanceLocation")
+    def performance_location(self) -> Optional[_builtins.str]:
+        """
+        A tax location ID. Depending on the [tax code](https://www.terraform.io/tax/tax-for-tickets/reference/tax-location-performance), this is required, optional, or not supported.
+        """
+        return pulumi.get(self, "performance_location")
+
+    @_builtins.property
+    @pulumi.getter(name="taxCode")
+    def tax_code(self) -> Optional[_builtins.str]:
+        """
+        A [tax code](https://docs.stripe.com/tax/tax-categories) ID.
+        """
+        return pulumi.get(self, "tax_code")
 
 
 @pulumi.output_type
@@ -31263,15 +32854,113 @@ class PaymentLinkSubscriptionData(dict):
 
 @pulumi.output_type
 class PaymentLinkSubscriptionDataInvoiceSettings(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "accountTaxIds":
+            suggest = "account_tax_ids"
+        elif key == "customFields":
+            suggest = "custom_fields"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in PaymentLinkSubscriptionDataInvoiceSettings. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        PaymentLinkSubscriptionDataInvoiceSettings.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        PaymentLinkSubscriptionDataInvoiceSettings.__key_warning(key)
+        return super().get(key, default)
+
     def __init__(__self__, *,
+                 account_tax_ids: Optional[Sequence[_builtins.str]] = None,
+                 custom_fields: Optional[Sequence['outputs.PaymentLinkSubscriptionDataInvoiceSettingsCustomField']] = None,
+                 description: Optional[_builtins.str] = None,
+                 footer: Optional[_builtins.str] = None,
                  issuer: Optional['outputs.PaymentLinkSubscriptionDataInvoiceSettingsIssuer'] = None):
+        """
+        :param Sequence[_builtins.str] account_tax_ids: The account tax IDs associated with the subscription. Will be set on invoices generated by the subscription.
+        :param Sequence['PaymentLinkSubscriptionDataInvoiceSettingsCustomFieldArgs'] custom_fields: A list of up to 4 custom fields to be displayed on the invoice.
+        :param _builtins.str description: An arbitrary string attached to the object. Often useful for displaying to users.
+        :param _builtins.str footer: Footer to be displayed on the invoice.
+        """
+        if account_tax_ids is not None:
+            pulumi.set(__self__, "account_tax_ids", account_tax_ids)
+        if custom_fields is not None:
+            pulumi.set(__self__, "custom_fields", custom_fields)
+        if description is not None:
+            pulumi.set(__self__, "description", description)
+        if footer is not None:
+            pulumi.set(__self__, "footer", footer)
         if issuer is not None:
             pulumi.set(__self__, "issuer", issuer)
+
+    @_builtins.property
+    @pulumi.getter(name="accountTaxIds")
+    def account_tax_ids(self) -> Optional[Sequence[_builtins.str]]:
+        """
+        The account tax IDs associated with the subscription. Will be set on invoices generated by the subscription.
+        """
+        return pulumi.get(self, "account_tax_ids")
+
+    @_builtins.property
+    @pulumi.getter(name="customFields")
+    def custom_fields(self) -> Optional[Sequence['outputs.PaymentLinkSubscriptionDataInvoiceSettingsCustomField']]:
+        """
+        A list of up to 4 custom fields to be displayed on the invoice.
+        """
+        return pulumi.get(self, "custom_fields")
+
+    @_builtins.property
+    @pulumi.getter
+    def description(self) -> Optional[_builtins.str]:
+        """
+        An arbitrary string attached to the object. Often useful for displaying to users.
+        """
+        return pulumi.get(self, "description")
+
+    @_builtins.property
+    @pulumi.getter
+    def footer(self) -> Optional[_builtins.str]:
+        """
+        Footer to be displayed on the invoice.
+        """
+        return pulumi.get(self, "footer")
 
     @_builtins.property
     @pulumi.getter
     def issuer(self) -> Optional['outputs.PaymentLinkSubscriptionDataInvoiceSettingsIssuer']:
         return pulumi.get(self, "issuer")
+
+
+@pulumi.output_type
+class PaymentLinkSubscriptionDataInvoiceSettingsCustomField(dict):
+    def __init__(__self__, *,
+                 name: _builtins.str,
+                 value: _builtins.str):
+        """
+        :param _builtins.str name: The name of the custom field.
+        :param _builtins.str value: The value of the custom field.
+        """
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "value", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> _builtins.str:
+        """
+        The name of the custom field.
+        """
+        return pulumi.get(self, "name")
+
+    @_builtins.property
+    @pulumi.getter
+    def value(self) -> _builtins.str:
+        """
+        The value of the custom field.
+        """
+        return pulumi.get(self, "value")
 
 
 @pulumi.output_type
@@ -31853,6 +33542,78 @@ class PaymentMethodBillingDetailsAddress(dict):
         State, county, province, or region ([ISO 3166-2](https://en.wikipedia.org/wiki/ISO_3166-2)).
         """
         return pulumi.get(self, "state")
+
+
+@pulumi.output_type
+class PaymentMethodBizum(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "buyerId":
+            suggest = "buyer_id"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in PaymentMethodBizum. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        PaymentMethodBizum.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        PaymentMethodBizum.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 buyer_id: Optional[_builtins.str] = None):
+        """
+        :param _builtins.str buyer_id: A unique identifier for the buyer as determined by the local payment processor.
+        """
+        if buyer_id is not None:
+            pulumi.set(__self__, "buyer_id", buyer_id)
+
+    @_builtins.property
+    @pulumi.getter(name="buyerId")
+    def buyer_id(self) -> Optional[_builtins.str]:
+        """
+        A unique identifier for the buyer as determined by the local payment processor.
+        """
+        return pulumi.get(self, "buyer_id")
+
+
+@pulumi.output_type
+class PaymentMethodBlik(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "buyerId":
+            suggest = "buyer_id"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in PaymentMethodBlik. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        PaymentMethodBlik.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        PaymentMethodBlik.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 buyer_id: Optional[_builtins.str] = None):
+        """
+        :param _builtins.str buyer_id: A unique and immutable identifier assigned by BLIK to every buyer.
+        """
+        if buyer_id is not None:
+            pulumi.set(__self__, "buyer_id", buyer_id)
+
+    @_builtins.property
+    @pulumi.getter(name="buyerId")
+    def buyer_id(self) -> Optional[_builtins.str]:
+        """
+        A unique and immutable identifier assigned by BLIK to every buyer.
+        """
+        return pulumi.get(self, "buyer_id")
 
 
 @pulumi.output_type
@@ -37645,6 +39406,93 @@ class PaymentMethodConfigurationPaypalDisplayPreference(dict):
 
 
 @pulumi.output_type
+class PaymentMethodConfigurationPaypay(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "displayPreference":
+            suggest = "display_preference"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in PaymentMethodConfigurationPaypay. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        PaymentMethodConfigurationPaypay.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        PaymentMethodConfigurationPaypay.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 available: Optional[_builtins.bool] = None,
+                 display_preference: Optional['outputs.PaymentMethodConfigurationPaypayDisplayPreference'] = None):
+        """
+        :param _builtins.bool available: Whether this payment method may be offered at checkout. True if <span pulumi-lang-nodejs="`displayPreference`" pulumi-lang-dotnet="`DisplayPreference`" pulumi-lang-go="`displayPreference`" pulumi-lang-python="`display_preference`" pulumi-lang-yaml="`displayPreference`" pulumi-lang-java="`displayPreference`" pulumi-lang-hcl="`display_preference`">`displayPreference`</span> is <span pulumi-lang-nodejs="`on`" pulumi-lang-dotnet="`On`" pulumi-lang-go="`on`" pulumi-lang-python="`on`" pulumi-lang-yaml="`on`" pulumi-lang-java="`on`" pulumi-lang-hcl="`on`">`on`</span> and the payment method's capability is active.
+        """
+        if available is not None:
+            pulumi.set(__self__, "available", available)
+        if display_preference is not None:
+            pulumi.set(__self__, "display_preference", display_preference)
+
+    @_builtins.property
+    @pulumi.getter
+    def available(self) -> Optional[_builtins.bool]:
+        """
+        Whether this payment method may be offered at checkout. True if <span pulumi-lang-nodejs="`displayPreference`" pulumi-lang-dotnet="`DisplayPreference`" pulumi-lang-go="`displayPreference`" pulumi-lang-python="`display_preference`" pulumi-lang-yaml="`displayPreference`" pulumi-lang-java="`displayPreference`" pulumi-lang-hcl="`display_preference`">`displayPreference`</span> is <span pulumi-lang-nodejs="`on`" pulumi-lang-dotnet="`On`" pulumi-lang-go="`on`" pulumi-lang-python="`on`" pulumi-lang-yaml="`on`" pulumi-lang-java="`on`" pulumi-lang-hcl="`on`">`on`</span> and the payment method's capability is active.
+        """
+        return pulumi.get(self, "available")
+
+    @_builtins.property
+    @pulumi.getter(name="displayPreference")
+    def display_preference(self) -> Optional['outputs.PaymentMethodConfigurationPaypayDisplayPreference']:
+        return pulumi.get(self, "display_preference")
+
+
+@pulumi.output_type
+class PaymentMethodConfigurationPaypayDisplayPreference(dict):
+    def __init__(__self__, *,
+                 overridable: Optional[_builtins.bool] = None,
+                 preference: Optional[_builtins.str] = None,
+                 value: Optional[_builtins.str] = None):
+        """
+        :param _builtins.bool overridable: For child configs, whether or not the account's preference will be observed. If <span pulumi-lang-nodejs="`false`" pulumi-lang-dotnet="`False`" pulumi-lang-go="`false`" pulumi-lang-python="`false`" pulumi-lang-yaml="`false`" pulumi-lang-java="`false`" pulumi-lang-hcl="`false`">`false`</span>, the parent configuration's default is used.
+        :param _builtins.str preference: The account's display preference.
+        :param _builtins.str value: The effective display preference value.
+        """
+        if overridable is not None:
+            pulumi.set(__self__, "overridable", overridable)
+        if preference is not None:
+            pulumi.set(__self__, "preference", preference)
+        if value is not None:
+            pulumi.set(__self__, "value", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def overridable(self) -> Optional[_builtins.bool]:
+        """
+        For child configs, whether or not the account's preference will be observed. If <span pulumi-lang-nodejs="`false`" pulumi-lang-dotnet="`False`" pulumi-lang-go="`false`" pulumi-lang-python="`false`" pulumi-lang-yaml="`false`" pulumi-lang-java="`false`" pulumi-lang-hcl="`false`">`false`</span>, the parent configuration's default is used.
+        """
+        return pulumi.get(self, "overridable")
+
+    @_builtins.property
+    @pulumi.getter
+    def preference(self) -> Optional[_builtins.str]:
+        """
+        The account's display preference.
+        """
+        return pulumi.get(self, "preference")
+
+    @_builtins.property
+    @pulumi.getter
+    def value(self) -> Optional[_builtins.str]:
+        """
+        The effective display preference value.
+        """
+        return pulumi.get(self, "value")
+
+
+@pulumi.output_type
 class PaymentMethodConfigurationPayto(dict):
     @staticmethod
     def __key_warning(key: str):
@@ -38299,6 +40147,93 @@ class PaymentMethodConfigurationSepaDebit(dict):
 
 @pulumi.output_type
 class PaymentMethodConfigurationSepaDebitDisplayPreference(dict):
+    def __init__(__self__, *,
+                 overridable: Optional[_builtins.bool] = None,
+                 preference: Optional[_builtins.str] = None,
+                 value: Optional[_builtins.str] = None):
+        """
+        :param _builtins.bool overridable: For child configs, whether or not the account's preference will be observed. If <span pulumi-lang-nodejs="`false`" pulumi-lang-dotnet="`False`" pulumi-lang-go="`false`" pulumi-lang-python="`false`" pulumi-lang-yaml="`false`" pulumi-lang-java="`false`" pulumi-lang-hcl="`false`">`false`</span>, the parent configuration's default is used.
+        :param _builtins.str preference: The account's display preference.
+        :param _builtins.str value: The effective display preference value.
+        """
+        if overridable is not None:
+            pulumi.set(__self__, "overridable", overridable)
+        if preference is not None:
+            pulumi.set(__self__, "preference", preference)
+        if value is not None:
+            pulumi.set(__self__, "value", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def overridable(self) -> Optional[_builtins.bool]:
+        """
+        For child configs, whether or not the account's preference will be observed. If <span pulumi-lang-nodejs="`false`" pulumi-lang-dotnet="`False`" pulumi-lang-go="`false`" pulumi-lang-python="`false`" pulumi-lang-yaml="`false`" pulumi-lang-java="`false`" pulumi-lang-hcl="`false`">`false`</span>, the parent configuration's default is used.
+        """
+        return pulumi.get(self, "overridable")
+
+    @_builtins.property
+    @pulumi.getter
+    def preference(self) -> Optional[_builtins.str]:
+        """
+        The account's display preference.
+        """
+        return pulumi.get(self, "preference")
+
+    @_builtins.property
+    @pulumi.getter
+    def value(self) -> Optional[_builtins.str]:
+        """
+        The effective display preference value.
+        """
+        return pulumi.get(self, "value")
+
+
+@pulumi.output_type
+class PaymentMethodConfigurationSequra(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "displayPreference":
+            suggest = "display_preference"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in PaymentMethodConfigurationSequra. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        PaymentMethodConfigurationSequra.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        PaymentMethodConfigurationSequra.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 available: Optional[_builtins.bool] = None,
+                 display_preference: Optional['outputs.PaymentMethodConfigurationSequraDisplayPreference'] = None):
+        """
+        :param _builtins.bool available: Whether this payment method may be offered at checkout. True if <span pulumi-lang-nodejs="`displayPreference`" pulumi-lang-dotnet="`DisplayPreference`" pulumi-lang-go="`displayPreference`" pulumi-lang-python="`display_preference`" pulumi-lang-yaml="`displayPreference`" pulumi-lang-java="`displayPreference`" pulumi-lang-hcl="`display_preference`">`displayPreference`</span> is <span pulumi-lang-nodejs="`on`" pulumi-lang-dotnet="`On`" pulumi-lang-go="`on`" pulumi-lang-python="`on`" pulumi-lang-yaml="`on`" pulumi-lang-java="`on`" pulumi-lang-hcl="`on`">`on`</span> and the payment method's capability is active.
+        """
+        if available is not None:
+            pulumi.set(__self__, "available", available)
+        if display_preference is not None:
+            pulumi.set(__self__, "display_preference", display_preference)
+
+    @_builtins.property
+    @pulumi.getter
+    def available(self) -> Optional[_builtins.bool]:
+        """
+        Whether this payment method may be offered at checkout. True if <span pulumi-lang-nodejs="`displayPreference`" pulumi-lang-dotnet="`DisplayPreference`" pulumi-lang-go="`displayPreference`" pulumi-lang-python="`display_preference`" pulumi-lang-yaml="`displayPreference`" pulumi-lang-java="`displayPreference`" pulumi-lang-hcl="`display_preference`">`displayPreference`</span> is <span pulumi-lang-nodejs="`on`" pulumi-lang-dotnet="`On`" pulumi-lang-go="`on`" pulumi-lang-python="`on`" pulumi-lang-yaml="`on`" pulumi-lang-java="`on`" pulumi-lang-hcl="`on`">`on`</span> and the payment method's capability is active.
+        """
+        return pulumi.get(self, "available")
+
+    @_builtins.property
+    @pulumi.getter(name="displayPreference")
+    def display_preference(self) -> Optional['outputs.PaymentMethodConfigurationSequraDisplayPreference']:
+        return pulumi.get(self, "display_preference")
+
+
+@pulumi.output_type
+class PaymentMethodConfigurationSequraDisplayPreference(dict):
     def __init__(__self__, *,
                  overridable: Optional[_builtins.bool] = None,
                  preference: Optional[_builtins.str] = None,
@@ -39582,7 +41517,7 @@ class PaymentMethodFpx(dict):
                  bank: _builtins.str,
                  account_holder_type: Optional[_builtins.str] = None):
         """
-        :param _builtins.str bank: The customer's bank, if provided. Can be one of <span pulumi-lang-nodejs="`affinBank`" pulumi-lang-dotnet="`AffinBank`" pulumi-lang-go="`affinBank`" pulumi-lang-python="`affin_bank`" pulumi-lang-yaml="`affinBank`" pulumi-lang-java="`affinBank`" pulumi-lang-hcl="`affin_bank`">`affinBank`</span>, <span pulumi-lang-nodejs="`agrobank`" pulumi-lang-dotnet="`Agrobank`" pulumi-lang-go="`agrobank`" pulumi-lang-python="`agrobank`" pulumi-lang-yaml="`agrobank`" pulumi-lang-java="`agrobank`" pulumi-lang-hcl="`agrobank`">`agrobank`</span>, <span pulumi-lang-nodejs="`allianceBank`" pulumi-lang-dotnet="`AllianceBank`" pulumi-lang-go="`allianceBank`" pulumi-lang-python="`alliance_bank`" pulumi-lang-yaml="`allianceBank`" pulumi-lang-java="`allianceBank`" pulumi-lang-hcl="`alliance_bank`">`allianceBank`</span>, <span pulumi-lang-nodejs="`ambank`" pulumi-lang-dotnet="`Ambank`" pulumi-lang-go="`ambank`" pulumi-lang-python="`ambank`" pulumi-lang-yaml="`ambank`" pulumi-lang-java="`ambank`" pulumi-lang-hcl="`ambank`">`ambank`</span>, <span pulumi-lang-nodejs="`bankIslam`" pulumi-lang-dotnet="`BankIslam`" pulumi-lang-go="`bankIslam`" pulumi-lang-python="`bank_islam`" pulumi-lang-yaml="`bankIslam`" pulumi-lang-java="`bankIslam`" pulumi-lang-hcl="`bank_islam`">`bankIslam`</span>, <span pulumi-lang-nodejs="`bankMuamalat`" pulumi-lang-dotnet="`BankMuamalat`" pulumi-lang-go="`bankMuamalat`" pulumi-lang-python="`bank_muamalat`" pulumi-lang-yaml="`bankMuamalat`" pulumi-lang-java="`bankMuamalat`" pulumi-lang-hcl="`bank_muamalat`">`bankMuamalat`</span>, <span pulumi-lang-nodejs="`bankRakyat`" pulumi-lang-dotnet="`BankRakyat`" pulumi-lang-go="`bankRakyat`" pulumi-lang-python="`bank_rakyat`" pulumi-lang-yaml="`bankRakyat`" pulumi-lang-java="`bankRakyat`" pulumi-lang-hcl="`bank_rakyat`">`bankRakyat`</span>, <span pulumi-lang-nodejs="`bsn`" pulumi-lang-dotnet="`Bsn`" pulumi-lang-go="`bsn`" pulumi-lang-python="`bsn`" pulumi-lang-yaml="`bsn`" pulumi-lang-java="`bsn`" pulumi-lang-hcl="`bsn`">`bsn`</span>, <span pulumi-lang-nodejs="`cimb`" pulumi-lang-dotnet="`Cimb`" pulumi-lang-go="`cimb`" pulumi-lang-python="`cimb`" pulumi-lang-yaml="`cimb`" pulumi-lang-java="`cimb`" pulumi-lang-hcl="`cimb`">`cimb`</span>, <span pulumi-lang-nodejs="`hongLeongBank`" pulumi-lang-dotnet="`HongLeongBank`" pulumi-lang-go="`hongLeongBank`" pulumi-lang-python="`hong_leong_bank`" pulumi-lang-yaml="`hongLeongBank`" pulumi-lang-java="`hongLeongBank`" pulumi-lang-hcl="`hong_leong_bank`">`hongLeongBank`</span>, <span pulumi-lang-nodejs="`hsbc`" pulumi-lang-dotnet="`Hsbc`" pulumi-lang-go="`hsbc`" pulumi-lang-python="`hsbc`" pulumi-lang-yaml="`hsbc`" pulumi-lang-java="`hsbc`" pulumi-lang-hcl="`hsbc`">`hsbc`</span>, <span pulumi-lang-nodejs="`kfh`" pulumi-lang-dotnet="`Kfh`" pulumi-lang-go="`kfh`" pulumi-lang-python="`kfh`" pulumi-lang-yaml="`kfh`" pulumi-lang-java="`kfh`" pulumi-lang-hcl="`kfh`">`kfh`</span>, <span pulumi-lang-nodejs="`maybank2u`" pulumi-lang-dotnet="`Maybank2u`" pulumi-lang-go="`maybank2u`" pulumi-lang-python="`maybank2u`" pulumi-lang-yaml="`maybank2u`" pulumi-lang-java="`maybank2u`" pulumi-lang-hcl="`maybank2u`">`maybank2u`</span>, <span pulumi-lang-nodejs="`ocbc`" pulumi-lang-dotnet="`Ocbc`" pulumi-lang-go="`ocbc`" pulumi-lang-python="`ocbc`" pulumi-lang-yaml="`ocbc`" pulumi-lang-java="`ocbc`" pulumi-lang-hcl="`ocbc`">`ocbc`</span>, <span pulumi-lang-nodejs="`publicBank`" pulumi-lang-dotnet="`PublicBank`" pulumi-lang-go="`publicBank`" pulumi-lang-python="`public_bank`" pulumi-lang-yaml="`publicBank`" pulumi-lang-java="`publicBank`" pulumi-lang-hcl="`public_bank`">`publicBank`</span>, <span pulumi-lang-nodejs="`rhb`" pulumi-lang-dotnet="`Rhb`" pulumi-lang-go="`rhb`" pulumi-lang-python="`rhb`" pulumi-lang-yaml="`rhb`" pulumi-lang-java="`rhb`" pulumi-lang-hcl="`rhb`">`rhb`</span>, <span pulumi-lang-nodejs="`standardChartered`" pulumi-lang-dotnet="`StandardChartered`" pulumi-lang-go="`standardChartered`" pulumi-lang-python="`standard_chartered`" pulumi-lang-yaml="`standardChartered`" pulumi-lang-java="`standardChartered`" pulumi-lang-hcl="`standard_chartered`">`standardChartered`</span>, <span pulumi-lang-nodejs="`uob`" pulumi-lang-dotnet="`Uob`" pulumi-lang-go="`uob`" pulumi-lang-python="`uob`" pulumi-lang-yaml="`uob`" pulumi-lang-java="`uob`" pulumi-lang-hcl="`uob`">`uob`</span>, <span pulumi-lang-nodejs="`deutscheBank`" pulumi-lang-dotnet="`DeutscheBank`" pulumi-lang-go="`deutscheBank`" pulumi-lang-python="`deutsche_bank`" pulumi-lang-yaml="`deutscheBank`" pulumi-lang-java="`deutscheBank`" pulumi-lang-hcl="`deutsche_bank`">`deutscheBank`</span>, <span pulumi-lang-nodejs="`maybank2e`" pulumi-lang-dotnet="`Maybank2e`" pulumi-lang-go="`maybank2e`" pulumi-lang-python="`maybank2e`" pulumi-lang-yaml="`maybank2e`" pulumi-lang-java="`maybank2e`" pulumi-lang-hcl="`maybank2e`">`maybank2e`</span>, <span pulumi-lang-nodejs="`pbEnterprise`" pulumi-lang-dotnet="`PbEnterprise`" pulumi-lang-go="`pbEnterprise`" pulumi-lang-python="`pb_enterprise`" pulumi-lang-yaml="`pbEnterprise`" pulumi-lang-java="`pbEnterprise`" pulumi-lang-hcl="`pb_enterprise`">`pbEnterprise`</span>, or <span pulumi-lang-nodejs="`bankOfChina`" pulumi-lang-dotnet="`BankOfChina`" pulumi-lang-go="`bankOfChina`" pulumi-lang-python="`bank_of_china`" pulumi-lang-yaml="`bankOfChina`" pulumi-lang-java="`bankOfChina`" pulumi-lang-hcl="`bank_of_china`">`bankOfChina`</span>.
+        :param _builtins.str bank: The customer's bank, if provided. Can be one of <span pulumi-lang-nodejs="`affinBank`" pulumi-lang-dotnet="`AffinBank`" pulumi-lang-go="`affinBank`" pulumi-lang-python="`affin_bank`" pulumi-lang-yaml="`affinBank`" pulumi-lang-java="`affinBank`" pulumi-lang-hcl="`affin_bank`">`affinBank`</span>, <span pulumi-lang-nodejs="`agrobank`" pulumi-lang-dotnet="`Agrobank`" pulumi-lang-go="`agrobank`" pulumi-lang-python="`agrobank`" pulumi-lang-yaml="`agrobank`" pulumi-lang-java="`agrobank`" pulumi-lang-hcl="`agrobank`">`agrobank`</span>, <span pulumi-lang-nodejs="`allianceBank`" pulumi-lang-dotnet="`AllianceBank`" pulumi-lang-go="`allianceBank`" pulumi-lang-python="`alliance_bank`" pulumi-lang-yaml="`allianceBank`" pulumi-lang-java="`allianceBank`" pulumi-lang-hcl="`alliance_bank`">`allianceBank`</span>, <span pulumi-lang-nodejs="`ambank`" pulumi-lang-dotnet="`Ambank`" pulumi-lang-go="`ambank`" pulumi-lang-python="`ambank`" pulumi-lang-yaml="`ambank`" pulumi-lang-java="`ambank`" pulumi-lang-hcl="`ambank`">`ambank`</span>, <span pulumi-lang-nodejs="`bankIslam`" pulumi-lang-dotnet="`BankIslam`" pulumi-lang-go="`bankIslam`" pulumi-lang-python="`bank_islam`" pulumi-lang-yaml="`bankIslam`" pulumi-lang-java="`bankIslam`" pulumi-lang-hcl="`bank_islam`">`bankIslam`</span>, <span pulumi-lang-nodejs="`bankMuamalat`" pulumi-lang-dotnet="`BankMuamalat`" pulumi-lang-go="`bankMuamalat`" pulumi-lang-python="`bank_muamalat`" pulumi-lang-yaml="`bankMuamalat`" pulumi-lang-java="`bankMuamalat`" pulumi-lang-hcl="`bank_muamalat`">`bankMuamalat`</span>, <span pulumi-lang-nodejs="`bnpParibas`" pulumi-lang-dotnet="`BnpParibas`" pulumi-lang-go="`bnpParibas`" pulumi-lang-python="`bnp_paribas`" pulumi-lang-yaml="`bnpParibas`" pulumi-lang-java="`bnpParibas`" pulumi-lang-hcl="`bnp_paribas`">`bnpParibas`</span>, <span pulumi-lang-nodejs="`bankRakyat`" pulumi-lang-dotnet="`BankRakyat`" pulumi-lang-go="`bankRakyat`" pulumi-lang-python="`bank_rakyat`" pulumi-lang-yaml="`bankRakyat`" pulumi-lang-java="`bankRakyat`" pulumi-lang-hcl="`bank_rakyat`">`bankRakyat`</span>, <span pulumi-lang-nodejs="`bsn`" pulumi-lang-dotnet="`Bsn`" pulumi-lang-go="`bsn`" pulumi-lang-python="`bsn`" pulumi-lang-yaml="`bsn`" pulumi-lang-java="`bsn`" pulumi-lang-hcl="`bsn`">`bsn`</span>, <span pulumi-lang-nodejs="`cimb`" pulumi-lang-dotnet="`Cimb`" pulumi-lang-go="`cimb`" pulumi-lang-python="`cimb`" pulumi-lang-yaml="`cimb`" pulumi-lang-java="`cimb`" pulumi-lang-hcl="`cimb`">`cimb`</span>, <span pulumi-lang-nodejs="`citibank`" pulumi-lang-dotnet="`Citibank`" pulumi-lang-go="`citibank`" pulumi-lang-python="`citibank`" pulumi-lang-yaml="`citibank`" pulumi-lang-java="`citibank`" pulumi-lang-hcl="`citibank`">`citibank`</span>, <span pulumi-lang-nodejs="`hongLeongBank`" pulumi-lang-dotnet="`HongLeongBank`" pulumi-lang-go="`hongLeongBank`" pulumi-lang-python="`hong_leong_bank`" pulumi-lang-yaml="`hongLeongBank`" pulumi-lang-java="`hongLeongBank`" pulumi-lang-hcl="`hong_leong_bank`">`hongLeongBank`</span>, <span pulumi-lang-nodejs="`hsbc`" pulumi-lang-dotnet="`Hsbc`" pulumi-lang-go="`hsbc`" pulumi-lang-python="`hsbc`" pulumi-lang-yaml="`hsbc`" pulumi-lang-java="`hsbc`" pulumi-lang-hcl="`hsbc`">`hsbc`</span>, <span pulumi-lang-nodejs="`kfh`" pulumi-lang-dotnet="`Kfh`" pulumi-lang-go="`kfh`" pulumi-lang-python="`kfh`" pulumi-lang-yaml="`kfh`" pulumi-lang-java="`kfh`" pulumi-lang-hcl="`kfh`">`kfh`</span>, <span pulumi-lang-nodejs="`maybank2u`" pulumi-lang-dotnet="`Maybank2u`" pulumi-lang-go="`maybank2u`" pulumi-lang-python="`maybank2u`" pulumi-lang-yaml="`maybank2u`" pulumi-lang-java="`maybank2u`" pulumi-lang-hcl="`maybank2u`">`maybank2u`</span>, <span pulumi-lang-nodejs="`ocbc`" pulumi-lang-dotnet="`Ocbc`" pulumi-lang-go="`ocbc`" pulumi-lang-python="`ocbc`" pulumi-lang-yaml="`ocbc`" pulumi-lang-java="`ocbc`" pulumi-lang-hcl="`ocbc`">`ocbc`</span>, <span pulumi-lang-nodejs="`publicBank`" pulumi-lang-dotnet="`PublicBank`" pulumi-lang-go="`publicBank`" pulumi-lang-python="`public_bank`" pulumi-lang-yaml="`publicBank`" pulumi-lang-java="`publicBank`" pulumi-lang-hcl="`public_bank`">`publicBank`</span>, <span pulumi-lang-nodejs="`rhb`" pulumi-lang-dotnet="`Rhb`" pulumi-lang-go="`rhb`" pulumi-lang-python="`rhb`" pulumi-lang-yaml="`rhb`" pulumi-lang-java="`rhb`" pulumi-lang-hcl="`rhb`">`rhb`</span>, <span pulumi-lang-nodejs="`standardChartered`" pulumi-lang-dotnet="`StandardChartered`" pulumi-lang-go="`standardChartered`" pulumi-lang-python="`standard_chartered`" pulumi-lang-yaml="`standardChartered`" pulumi-lang-java="`standardChartered`" pulumi-lang-hcl="`standard_chartered`">`standardChartered`</span>, <span pulumi-lang-nodejs="`uob`" pulumi-lang-dotnet="`Uob`" pulumi-lang-go="`uob`" pulumi-lang-python="`uob`" pulumi-lang-yaml="`uob`" pulumi-lang-java="`uob`" pulumi-lang-hcl="`uob`">`uob`</span>, <span pulumi-lang-nodejs="`deutscheBank`" pulumi-lang-dotnet="`DeutscheBank`" pulumi-lang-go="`deutscheBank`" pulumi-lang-python="`deutsche_bank`" pulumi-lang-yaml="`deutscheBank`" pulumi-lang-java="`deutscheBank`" pulumi-lang-hcl="`deutsche_bank`">`deutscheBank`</span>, <span pulumi-lang-nodejs="`maybank2e`" pulumi-lang-dotnet="`Maybank2e`" pulumi-lang-go="`maybank2e`" pulumi-lang-python="`maybank2e`" pulumi-lang-yaml="`maybank2e`" pulumi-lang-java="`maybank2e`" pulumi-lang-hcl="`maybank2e`">`maybank2e`</span>, <span pulumi-lang-nodejs="`mbsbBank`" pulumi-lang-dotnet="`MbsbBank`" pulumi-lang-go="`mbsbBank`" pulumi-lang-python="`mbsb_bank`" pulumi-lang-yaml="`mbsbBank`" pulumi-lang-java="`mbsbBank`" pulumi-lang-hcl="`mbsb_bank`">`mbsbBank`</span>, <span pulumi-lang-nodejs="`pbEnterprise`" pulumi-lang-dotnet="`PbEnterprise`" pulumi-lang-go="`pbEnterprise`" pulumi-lang-python="`pb_enterprise`" pulumi-lang-yaml="`pbEnterprise`" pulumi-lang-java="`pbEnterprise`" pulumi-lang-hcl="`pb_enterprise`">`pbEnterprise`</span>, or <span pulumi-lang-nodejs="`bankOfChina`" pulumi-lang-dotnet="`BankOfChina`" pulumi-lang-go="`bankOfChina`" pulumi-lang-python="`bank_of_china`" pulumi-lang-yaml="`bankOfChina`" pulumi-lang-java="`bankOfChina`" pulumi-lang-hcl="`bank_of_china`">`bankOfChina`</span>.
         :param _builtins.str account_holder_type: Account holder type, if provided. Can be one of <span pulumi-lang-nodejs="`individual`" pulumi-lang-dotnet="`Individual`" pulumi-lang-go="`individual`" pulumi-lang-python="`individual`" pulumi-lang-yaml="`individual`" pulumi-lang-java="`individual`" pulumi-lang-hcl="`individual`">`individual`</span> or <span pulumi-lang-nodejs="`company`" pulumi-lang-dotnet="`Company`" pulumi-lang-go="`company`" pulumi-lang-python="`company`" pulumi-lang-yaml="`company`" pulumi-lang-java="`company`" pulumi-lang-hcl="`company`">`company`</span>.
         """
         pulumi.set(__self__, "bank", bank)
@@ -39593,7 +41528,7 @@ class PaymentMethodFpx(dict):
     @pulumi.getter
     def bank(self) -> _builtins.str:
         """
-        The customer's bank, if provided. Can be one of <span pulumi-lang-nodejs="`affinBank`" pulumi-lang-dotnet="`AffinBank`" pulumi-lang-go="`affinBank`" pulumi-lang-python="`affin_bank`" pulumi-lang-yaml="`affinBank`" pulumi-lang-java="`affinBank`" pulumi-lang-hcl="`affin_bank`">`affinBank`</span>, <span pulumi-lang-nodejs="`agrobank`" pulumi-lang-dotnet="`Agrobank`" pulumi-lang-go="`agrobank`" pulumi-lang-python="`agrobank`" pulumi-lang-yaml="`agrobank`" pulumi-lang-java="`agrobank`" pulumi-lang-hcl="`agrobank`">`agrobank`</span>, <span pulumi-lang-nodejs="`allianceBank`" pulumi-lang-dotnet="`AllianceBank`" pulumi-lang-go="`allianceBank`" pulumi-lang-python="`alliance_bank`" pulumi-lang-yaml="`allianceBank`" pulumi-lang-java="`allianceBank`" pulumi-lang-hcl="`alliance_bank`">`allianceBank`</span>, <span pulumi-lang-nodejs="`ambank`" pulumi-lang-dotnet="`Ambank`" pulumi-lang-go="`ambank`" pulumi-lang-python="`ambank`" pulumi-lang-yaml="`ambank`" pulumi-lang-java="`ambank`" pulumi-lang-hcl="`ambank`">`ambank`</span>, <span pulumi-lang-nodejs="`bankIslam`" pulumi-lang-dotnet="`BankIslam`" pulumi-lang-go="`bankIslam`" pulumi-lang-python="`bank_islam`" pulumi-lang-yaml="`bankIslam`" pulumi-lang-java="`bankIslam`" pulumi-lang-hcl="`bank_islam`">`bankIslam`</span>, <span pulumi-lang-nodejs="`bankMuamalat`" pulumi-lang-dotnet="`BankMuamalat`" pulumi-lang-go="`bankMuamalat`" pulumi-lang-python="`bank_muamalat`" pulumi-lang-yaml="`bankMuamalat`" pulumi-lang-java="`bankMuamalat`" pulumi-lang-hcl="`bank_muamalat`">`bankMuamalat`</span>, <span pulumi-lang-nodejs="`bankRakyat`" pulumi-lang-dotnet="`BankRakyat`" pulumi-lang-go="`bankRakyat`" pulumi-lang-python="`bank_rakyat`" pulumi-lang-yaml="`bankRakyat`" pulumi-lang-java="`bankRakyat`" pulumi-lang-hcl="`bank_rakyat`">`bankRakyat`</span>, <span pulumi-lang-nodejs="`bsn`" pulumi-lang-dotnet="`Bsn`" pulumi-lang-go="`bsn`" pulumi-lang-python="`bsn`" pulumi-lang-yaml="`bsn`" pulumi-lang-java="`bsn`" pulumi-lang-hcl="`bsn`">`bsn`</span>, <span pulumi-lang-nodejs="`cimb`" pulumi-lang-dotnet="`Cimb`" pulumi-lang-go="`cimb`" pulumi-lang-python="`cimb`" pulumi-lang-yaml="`cimb`" pulumi-lang-java="`cimb`" pulumi-lang-hcl="`cimb`">`cimb`</span>, <span pulumi-lang-nodejs="`hongLeongBank`" pulumi-lang-dotnet="`HongLeongBank`" pulumi-lang-go="`hongLeongBank`" pulumi-lang-python="`hong_leong_bank`" pulumi-lang-yaml="`hongLeongBank`" pulumi-lang-java="`hongLeongBank`" pulumi-lang-hcl="`hong_leong_bank`">`hongLeongBank`</span>, <span pulumi-lang-nodejs="`hsbc`" pulumi-lang-dotnet="`Hsbc`" pulumi-lang-go="`hsbc`" pulumi-lang-python="`hsbc`" pulumi-lang-yaml="`hsbc`" pulumi-lang-java="`hsbc`" pulumi-lang-hcl="`hsbc`">`hsbc`</span>, <span pulumi-lang-nodejs="`kfh`" pulumi-lang-dotnet="`Kfh`" pulumi-lang-go="`kfh`" pulumi-lang-python="`kfh`" pulumi-lang-yaml="`kfh`" pulumi-lang-java="`kfh`" pulumi-lang-hcl="`kfh`">`kfh`</span>, <span pulumi-lang-nodejs="`maybank2u`" pulumi-lang-dotnet="`Maybank2u`" pulumi-lang-go="`maybank2u`" pulumi-lang-python="`maybank2u`" pulumi-lang-yaml="`maybank2u`" pulumi-lang-java="`maybank2u`" pulumi-lang-hcl="`maybank2u`">`maybank2u`</span>, <span pulumi-lang-nodejs="`ocbc`" pulumi-lang-dotnet="`Ocbc`" pulumi-lang-go="`ocbc`" pulumi-lang-python="`ocbc`" pulumi-lang-yaml="`ocbc`" pulumi-lang-java="`ocbc`" pulumi-lang-hcl="`ocbc`">`ocbc`</span>, <span pulumi-lang-nodejs="`publicBank`" pulumi-lang-dotnet="`PublicBank`" pulumi-lang-go="`publicBank`" pulumi-lang-python="`public_bank`" pulumi-lang-yaml="`publicBank`" pulumi-lang-java="`publicBank`" pulumi-lang-hcl="`public_bank`">`publicBank`</span>, <span pulumi-lang-nodejs="`rhb`" pulumi-lang-dotnet="`Rhb`" pulumi-lang-go="`rhb`" pulumi-lang-python="`rhb`" pulumi-lang-yaml="`rhb`" pulumi-lang-java="`rhb`" pulumi-lang-hcl="`rhb`">`rhb`</span>, <span pulumi-lang-nodejs="`standardChartered`" pulumi-lang-dotnet="`StandardChartered`" pulumi-lang-go="`standardChartered`" pulumi-lang-python="`standard_chartered`" pulumi-lang-yaml="`standardChartered`" pulumi-lang-java="`standardChartered`" pulumi-lang-hcl="`standard_chartered`">`standardChartered`</span>, <span pulumi-lang-nodejs="`uob`" pulumi-lang-dotnet="`Uob`" pulumi-lang-go="`uob`" pulumi-lang-python="`uob`" pulumi-lang-yaml="`uob`" pulumi-lang-java="`uob`" pulumi-lang-hcl="`uob`">`uob`</span>, <span pulumi-lang-nodejs="`deutscheBank`" pulumi-lang-dotnet="`DeutscheBank`" pulumi-lang-go="`deutscheBank`" pulumi-lang-python="`deutsche_bank`" pulumi-lang-yaml="`deutscheBank`" pulumi-lang-java="`deutscheBank`" pulumi-lang-hcl="`deutsche_bank`">`deutscheBank`</span>, <span pulumi-lang-nodejs="`maybank2e`" pulumi-lang-dotnet="`Maybank2e`" pulumi-lang-go="`maybank2e`" pulumi-lang-python="`maybank2e`" pulumi-lang-yaml="`maybank2e`" pulumi-lang-java="`maybank2e`" pulumi-lang-hcl="`maybank2e`">`maybank2e`</span>, <span pulumi-lang-nodejs="`pbEnterprise`" pulumi-lang-dotnet="`PbEnterprise`" pulumi-lang-go="`pbEnterprise`" pulumi-lang-python="`pb_enterprise`" pulumi-lang-yaml="`pbEnterprise`" pulumi-lang-java="`pbEnterprise`" pulumi-lang-hcl="`pb_enterprise`">`pbEnterprise`</span>, or <span pulumi-lang-nodejs="`bankOfChina`" pulumi-lang-dotnet="`BankOfChina`" pulumi-lang-go="`bankOfChina`" pulumi-lang-python="`bank_of_china`" pulumi-lang-yaml="`bankOfChina`" pulumi-lang-java="`bankOfChina`" pulumi-lang-hcl="`bank_of_china`">`bankOfChina`</span>.
+        The customer's bank, if provided. Can be one of <span pulumi-lang-nodejs="`affinBank`" pulumi-lang-dotnet="`AffinBank`" pulumi-lang-go="`affinBank`" pulumi-lang-python="`affin_bank`" pulumi-lang-yaml="`affinBank`" pulumi-lang-java="`affinBank`" pulumi-lang-hcl="`affin_bank`">`affinBank`</span>, <span pulumi-lang-nodejs="`agrobank`" pulumi-lang-dotnet="`Agrobank`" pulumi-lang-go="`agrobank`" pulumi-lang-python="`agrobank`" pulumi-lang-yaml="`agrobank`" pulumi-lang-java="`agrobank`" pulumi-lang-hcl="`agrobank`">`agrobank`</span>, <span pulumi-lang-nodejs="`allianceBank`" pulumi-lang-dotnet="`AllianceBank`" pulumi-lang-go="`allianceBank`" pulumi-lang-python="`alliance_bank`" pulumi-lang-yaml="`allianceBank`" pulumi-lang-java="`allianceBank`" pulumi-lang-hcl="`alliance_bank`">`allianceBank`</span>, <span pulumi-lang-nodejs="`ambank`" pulumi-lang-dotnet="`Ambank`" pulumi-lang-go="`ambank`" pulumi-lang-python="`ambank`" pulumi-lang-yaml="`ambank`" pulumi-lang-java="`ambank`" pulumi-lang-hcl="`ambank`">`ambank`</span>, <span pulumi-lang-nodejs="`bankIslam`" pulumi-lang-dotnet="`BankIslam`" pulumi-lang-go="`bankIslam`" pulumi-lang-python="`bank_islam`" pulumi-lang-yaml="`bankIslam`" pulumi-lang-java="`bankIslam`" pulumi-lang-hcl="`bank_islam`">`bankIslam`</span>, <span pulumi-lang-nodejs="`bankMuamalat`" pulumi-lang-dotnet="`BankMuamalat`" pulumi-lang-go="`bankMuamalat`" pulumi-lang-python="`bank_muamalat`" pulumi-lang-yaml="`bankMuamalat`" pulumi-lang-java="`bankMuamalat`" pulumi-lang-hcl="`bank_muamalat`">`bankMuamalat`</span>, <span pulumi-lang-nodejs="`bnpParibas`" pulumi-lang-dotnet="`BnpParibas`" pulumi-lang-go="`bnpParibas`" pulumi-lang-python="`bnp_paribas`" pulumi-lang-yaml="`bnpParibas`" pulumi-lang-java="`bnpParibas`" pulumi-lang-hcl="`bnp_paribas`">`bnpParibas`</span>, <span pulumi-lang-nodejs="`bankRakyat`" pulumi-lang-dotnet="`BankRakyat`" pulumi-lang-go="`bankRakyat`" pulumi-lang-python="`bank_rakyat`" pulumi-lang-yaml="`bankRakyat`" pulumi-lang-java="`bankRakyat`" pulumi-lang-hcl="`bank_rakyat`">`bankRakyat`</span>, <span pulumi-lang-nodejs="`bsn`" pulumi-lang-dotnet="`Bsn`" pulumi-lang-go="`bsn`" pulumi-lang-python="`bsn`" pulumi-lang-yaml="`bsn`" pulumi-lang-java="`bsn`" pulumi-lang-hcl="`bsn`">`bsn`</span>, <span pulumi-lang-nodejs="`cimb`" pulumi-lang-dotnet="`Cimb`" pulumi-lang-go="`cimb`" pulumi-lang-python="`cimb`" pulumi-lang-yaml="`cimb`" pulumi-lang-java="`cimb`" pulumi-lang-hcl="`cimb`">`cimb`</span>, <span pulumi-lang-nodejs="`citibank`" pulumi-lang-dotnet="`Citibank`" pulumi-lang-go="`citibank`" pulumi-lang-python="`citibank`" pulumi-lang-yaml="`citibank`" pulumi-lang-java="`citibank`" pulumi-lang-hcl="`citibank`">`citibank`</span>, <span pulumi-lang-nodejs="`hongLeongBank`" pulumi-lang-dotnet="`HongLeongBank`" pulumi-lang-go="`hongLeongBank`" pulumi-lang-python="`hong_leong_bank`" pulumi-lang-yaml="`hongLeongBank`" pulumi-lang-java="`hongLeongBank`" pulumi-lang-hcl="`hong_leong_bank`">`hongLeongBank`</span>, <span pulumi-lang-nodejs="`hsbc`" pulumi-lang-dotnet="`Hsbc`" pulumi-lang-go="`hsbc`" pulumi-lang-python="`hsbc`" pulumi-lang-yaml="`hsbc`" pulumi-lang-java="`hsbc`" pulumi-lang-hcl="`hsbc`">`hsbc`</span>, <span pulumi-lang-nodejs="`kfh`" pulumi-lang-dotnet="`Kfh`" pulumi-lang-go="`kfh`" pulumi-lang-python="`kfh`" pulumi-lang-yaml="`kfh`" pulumi-lang-java="`kfh`" pulumi-lang-hcl="`kfh`">`kfh`</span>, <span pulumi-lang-nodejs="`maybank2u`" pulumi-lang-dotnet="`Maybank2u`" pulumi-lang-go="`maybank2u`" pulumi-lang-python="`maybank2u`" pulumi-lang-yaml="`maybank2u`" pulumi-lang-java="`maybank2u`" pulumi-lang-hcl="`maybank2u`">`maybank2u`</span>, <span pulumi-lang-nodejs="`ocbc`" pulumi-lang-dotnet="`Ocbc`" pulumi-lang-go="`ocbc`" pulumi-lang-python="`ocbc`" pulumi-lang-yaml="`ocbc`" pulumi-lang-java="`ocbc`" pulumi-lang-hcl="`ocbc`">`ocbc`</span>, <span pulumi-lang-nodejs="`publicBank`" pulumi-lang-dotnet="`PublicBank`" pulumi-lang-go="`publicBank`" pulumi-lang-python="`public_bank`" pulumi-lang-yaml="`publicBank`" pulumi-lang-java="`publicBank`" pulumi-lang-hcl="`public_bank`">`publicBank`</span>, <span pulumi-lang-nodejs="`rhb`" pulumi-lang-dotnet="`Rhb`" pulumi-lang-go="`rhb`" pulumi-lang-python="`rhb`" pulumi-lang-yaml="`rhb`" pulumi-lang-java="`rhb`" pulumi-lang-hcl="`rhb`">`rhb`</span>, <span pulumi-lang-nodejs="`standardChartered`" pulumi-lang-dotnet="`StandardChartered`" pulumi-lang-go="`standardChartered`" pulumi-lang-python="`standard_chartered`" pulumi-lang-yaml="`standardChartered`" pulumi-lang-java="`standardChartered`" pulumi-lang-hcl="`standard_chartered`">`standardChartered`</span>, <span pulumi-lang-nodejs="`uob`" pulumi-lang-dotnet="`Uob`" pulumi-lang-go="`uob`" pulumi-lang-python="`uob`" pulumi-lang-yaml="`uob`" pulumi-lang-java="`uob`" pulumi-lang-hcl="`uob`">`uob`</span>, <span pulumi-lang-nodejs="`deutscheBank`" pulumi-lang-dotnet="`DeutscheBank`" pulumi-lang-go="`deutscheBank`" pulumi-lang-python="`deutsche_bank`" pulumi-lang-yaml="`deutscheBank`" pulumi-lang-java="`deutscheBank`" pulumi-lang-hcl="`deutsche_bank`">`deutscheBank`</span>, <span pulumi-lang-nodejs="`maybank2e`" pulumi-lang-dotnet="`Maybank2e`" pulumi-lang-go="`maybank2e`" pulumi-lang-python="`maybank2e`" pulumi-lang-yaml="`maybank2e`" pulumi-lang-java="`maybank2e`" pulumi-lang-hcl="`maybank2e`">`maybank2e`</span>, <span pulumi-lang-nodejs="`mbsbBank`" pulumi-lang-dotnet="`MbsbBank`" pulumi-lang-go="`mbsbBank`" pulumi-lang-python="`mbsb_bank`" pulumi-lang-yaml="`mbsbBank`" pulumi-lang-java="`mbsbBank`" pulumi-lang-hcl="`mbsb_bank`">`mbsbBank`</span>, <span pulumi-lang-nodejs="`pbEnterprise`" pulumi-lang-dotnet="`PbEnterprise`" pulumi-lang-go="`pbEnterprise`" pulumi-lang-python="`pb_enterprise`" pulumi-lang-yaml="`pbEnterprise`" pulumi-lang-java="`pbEnterprise`" pulumi-lang-hcl="`pb_enterprise`">`pbEnterprise`</span>, or <span pulumi-lang-nodejs="`bankOfChina`" pulumi-lang-dotnet="`BankOfChina`" pulumi-lang-go="`bankOfChina`" pulumi-lang-python="`bank_of_china`" pulumi-lang-yaml="`bankOfChina`" pulumi-lang-java="`bankOfChina`" pulumi-lang-hcl="`bank_of_china`">`bankOfChina`</span>.
         """
         return pulumi.get(self, "bank")
 
@@ -40335,6 +42270,25 @@ class PaymentMethodPayto(dict):
         The PayID alias for the bank account.
         """
         return pulumi.get(self, "pay_id")
+
+
+@pulumi.output_type
+class PaymentMethodPix(dict):
+    def __init__(__self__, *,
+                 fingerprint: Optional[_builtins.str] = None):
+        """
+        :param _builtins.str fingerprint: Uniquely identifies this particular Pix account. You can use this attribute to check whether two Pix accounts are the same.
+        """
+        if fingerprint is not None:
+            pulumi.set(__self__, "fingerprint", fingerprint)
+
+    @_builtins.property
+    @pulumi.getter
+    def fingerprint(self) -> Optional[_builtins.str]:
+        """
+        Uniquely identifies this particular Pix account. You can use this attribute to check whether two Pix accounts are the same.
+        """
+        return pulumi.get(self, "fingerprint")
 
 
 @pulumi.output_type
@@ -41406,7 +43360,7 @@ class PersonDocumentsCompanyAuthorization(dict):
                  files: Optional[Sequence[_builtins.str]] = None):
         """
         :param Sequence[_builtins.str] files: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
-               One or more document ids returned by a [file upload](https://api.stripe.com#create_file) with a <span pulumi-lang-nodejs="`purpose`" pulumi-lang-dotnet="`Purpose`" pulumi-lang-go="`purpose`" pulumi-lang-python="`purpose`" pulumi-lang-yaml="`purpose`" pulumi-lang-java="`purpose`" pulumi-lang-hcl="`purpose`">`purpose`</span> value of <span pulumi-lang-nodejs="`accountRequirement`" pulumi-lang-dotnet="`AccountRequirement`" pulumi-lang-go="`accountRequirement`" pulumi-lang-python="`account_requirement`" pulumi-lang-yaml="`accountRequirement`" pulumi-lang-java="`accountRequirement`" pulumi-lang-hcl="`account_requirement`">`accountRequirement`</span>.
+               One or more document ids returned by a [file upload](https://docs.stripe.com/api#create_file) with a <span pulumi-lang-nodejs="`purpose`" pulumi-lang-dotnet="`Purpose`" pulumi-lang-go="`purpose`" pulumi-lang-python="`purpose`" pulumi-lang-yaml="`purpose`" pulumi-lang-java="`purpose`" pulumi-lang-hcl="`purpose`">`purpose`</span> value of <span pulumi-lang-nodejs="`accountRequirement`" pulumi-lang-dotnet="`AccountRequirement`" pulumi-lang-go="`accountRequirement`" pulumi-lang-python="`account_requirement`" pulumi-lang-yaml="`accountRequirement`" pulumi-lang-java="`accountRequirement`" pulumi-lang-hcl="`account_requirement`">`accountRequirement`</span>.
         """
         if files is not None:
             pulumi.set(__self__, "files", files)
@@ -41416,7 +43370,7 @@ class PersonDocumentsCompanyAuthorization(dict):
     def files(self) -> Optional[Sequence[_builtins.str]]:
         """
         **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
-        One or more document ids returned by a [file upload](https://api.stripe.com#create_file) with a <span pulumi-lang-nodejs="`purpose`" pulumi-lang-dotnet="`Purpose`" pulumi-lang-go="`purpose`" pulumi-lang-python="`purpose`" pulumi-lang-yaml="`purpose`" pulumi-lang-java="`purpose`" pulumi-lang-hcl="`purpose`">`purpose`</span> value of <span pulumi-lang-nodejs="`accountRequirement`" pulumi-lang-dotnet="`AccountRequirement`" pulumi-lang-go="`accountRequirement`" pulumi-lang-python="`account_requirement`" pulumi-lang-yaml="`accountRequirement`" pulumi-lang-java="`accountRequirement`" pulumi-lang-hcl="`account_requirement`">`accountRequirement`</span>.
+        One or more document ids returned by a [file upload](https://docs.stripe.com/api#create_file) with a <span pulumi-lang-nodejs="`purpose`" pulumi-lang-dotnet="`Purpose`" pulumi-lang-go="`purpose`" pulumi-lang-python="`purpose`" pulumi-lang-yaml="`purpose`" pulumi-lang-java="`purpose`" pulumi-lang-hcl="`purpose`">`purpose`</span> value of <span pulumi-lang-nodejs="`accountRequirement`" pulumi-lang-dotnet="`AccountRequirement`" pulumi-lang-go="`accountRequirement`" pulumi-lang-python="`account_requirement`" pulumi-lang-yaml="`accountRequirement`" pulumi-lang-java="`accountRequirement`" pulumi-lang-hcl="`account_requirement`">`accountRequirement`</span>.
         """
         return pulumi.get(self, "files")
 
@@ -41427,7 +43381,7 @@ class PersonDocumentsPassport(dict):
                  files: Optional[Sequence[_builtins.str]] = None):
         """
         :param Sequence[_builtins.str] files: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
-               One or more document ids returned by a [file upload](https://api.stripe.com#create_file) with a <span pulumi-lang-nodejs="`purpose`" pulumi-lang-dotnet="`Purpose`" pulumi-lang-go="`purpose`" pulumi-lang-python="`purpose`" pulumi-lang-yaml="`purpose`" pulumi-lang-java="`purpose`" pulumi-lang-hcl="`purpose`">`purpose`</span> value of <span pulumi-lang-nodejs="`accountRequirement`" pulumi-lang-dotnet="`AccountRequirement`" pulumi-lang-go="`accountRequirement`" pulumi-lang-python="`account_requirement`" pulumi-lang-yaml="`accountRequirement`" pulumi-lang-java="`accountRequirement`" pulumi-lang-hcl="`account_requirement`">`accountRequirement`</span>.
+               One or more document ids returned by a [file upload](https://docs.stripe.com/api#create_file) with a <span pulumi-lang-nodejs="`purpose`" pulumi-lang-dotnet="`Purpose`" pulumi-lang-go="`purpose`" pulumi-lang-python="`purpose`" pulumi-lang-yaml="`purpose`" pulumi-lang-java="`purpose`" pulumi-lang-hcl="`purpose`">`purpose`</span> value of <span pulumi-lang-nodejs="`accountRequirement`" pulumi-lang-dotnet="`AccountRequirement`" pulumi-lang-go="`accountRequirement`" pulumi-lang-python="`account_requirement`" pulumi-lang-yaml="`accountRequirement`" pulumi-lang-java="`accountRequirement`" pulumi-lang-hcl="`account_requirement`">`accountRequirement`</span>.
         """
         if files is not None:
             pulumi.set(__self__, "files", files)
@@ -41437,7 +43391,7 @@ class PersonDocumentsPassport(dict):
     def files(self) -> Optional[Sequence[_builtins.str]]:
         """
         **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
-        One or more document ids returned by a [file upload](https://api.stripe.com#create_file) with a <span pulumi-lang-nodejs="`purpose`" pulumi-lang-dotnet="`Purpose`" pulumi-lang-go="`purpose`" pulumi-lang-python="`purpose`" pulumi-lang-yaml="`purpose`" pulumi-lang-java="`purpose`" pulumi-lang-hcl="`purpose`">`purpose`</span> value of <span pulumi-lang-nodejs="`accountRequirement`" pulumi-lang-dotnet="`AccountRequirement`" pulumi-lang-go="`accountRequirement`" pulumi-lang-python="`account_requirement`" pulumi-lang-yaml="`accountRequirement`" pulumi-lang-java="`accountRequirement`" pulumi-lang-hcl="`account_requirement`">`accountRequirement`</span>.
+        One or more document ids returned by a [file upload](https://docs.stripe.com/api#create_file) with a <span pulumi-lang-nodejs="`purpose`" pulumi-lang-dotnet="`Purpose`" pulumi-lang-go="`purpose`" pulumi-lang-python="`purpose`" pulumi-lang-yaml="`purpose`" pulumi-lang-java="`purpose`" pulumi-lang-hcl="`purpose`">`purpose`</span> value of <span pulumi-lang-nodejs="`accountRequirement`" pulumi-lang-dotnet="`AccountRequirement`" pulumi-lang-go="`accountRequirement`" pulumi-lang-python="`account_requirement`" pulumi-lang-yaml="`accountRequirement`" pulumi-lang-java="`accountRequirement`" pulumi-lang-hcl="`account_requirement`">`accountRequirement`</span>.
         """
         return pulumi.get(self, "files")
 
@@ -41448,7 +43402,7 @@ class PersonDocumentsVisa(dict):
                  files: Optional[Sequence[_builtins.str]] = None):
         """
         :param Sequence[_builtins.str] files: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
-               One or more document ids returned by a [file upload](https://api.stripe.com#create_file) with a <span pulumi-lang-nodejs="`purpose`" pulumi-lang-dotnet="`Purpose`" pulumi-lang-go="`purpose`" pulumi-lang-python="`purpose`" pulumi-lang-yaml="`purpose`" pulumi-lang-java="`purpose`" pulumi-lang-hcl="`purpose`">`purpose`</span> value of <span pulumi-lang-nodejs="`accountRequirement`" pulumi-lang-dotnet="`AccountRequirement`" pulumi-lang-go="`accountRequirement`" pulumi-lang-python="`account_requirement`" pulumi-lang-yaml="`accountRequirement`" pulumi-lang-java="`accountRequirement`" pulumi-lang-hcl="`account_requirement`">`accountRequirement`</span>.
+               One or more document ids returned by a [file upload](https://docs.stripe.com/api#create_file) with a <span pulumi-lang-nodejs="`purpose`" pulumi-lang-dotnet="`Purpose`" pulumi-lang-go="`purpose`" pulumi-lang-python="`purpose`" pulumi-lang-yaml="`purpose`" pulumi-lang-java="`purpose`" pulumi-lang-hcl="`purpose`">`purpose`</span> value of <span pulumi-lang-nodejs="`accountRequirement`" pulumi-lang-dotnet="`AccountRequirement`" pulumi-lang-go="`accountRequirement`" pulumi-lang-python="`account_requirement`" pulumi-lang-yaml="`accountRequirement`" pulumi-lang-java="`accountRequirement`" pulumi-lang-hcl="`account_requirement`">`accountRequirement`</span>.
         """
         if files is not None:
             pulumi.set(__self__, "files", files)
@@ -41458,7 +43412,7 @@ class PersonDocumentsVisa(dict):
     def files(self) -> Optional[Sequence[_builtins.str]]:
         """
         **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
-        One or more document ids returned by a [file upload](https://api.stripe.com#create_file) with a <span pulumi-lang-nodejs="`purpose`" pulumi-lang-dotnet="`Purpose`" pulumi-lang-go="`purpose`" pulumi-lang-python="`purpose`" pulumi-lang-yaml="`purpose`" pulumi-lang-java="`purpose`" pulumi-lang-hcl="`purpose`">`purpose`</span> value of <span pulumi-lang-nodejs="`accountRequirement`" pulumi-lang-dotnet="`AccountRequirement`" pulumi-lang-go="`accountRequirement`" pulumi-lang-python="`account_requirement`" pulumi-lang-yaml="`accountRequirement`" pulumi-lang-java="`accountRequirement`" pulumi-lang-hcl="`account_requirement`">`accountRequirement`</span>.
+        One or more document ids returned by a [file upload](https://docs.stripe.com/api#create_file) with a <span pulumi-lang-nodejs="`purpose`" pulumi-lang-dotnet="`Purpose`" pulumi-lang-go="`purpose`" pulumi-lang-python="`purpose`" pulumi-lang-yaml="`purpose`" pulumi-lang-java="`purpose`" pulumi-lang-hcl="`purpose`">`purpose`</span> value of <span pulumi-lang-nodejs="`accountRequirement`" pulumi-lang-dotnet="`AccountRequirement`" pulumi-lang-go="`accountRequirement`" pulumi-lang-python="`account_requirement`" pulumi-lang-yaml="`accountRequirement`" pulumi-lang-java="`accountRequirement`" pulumi-lang-hcl="`account_requirement`">`accountRequirement`</span>.
         """
         return pulumi.get(self, "files")
 
@@ -41498,7 +43452,7 @@ class PersonFutureRequirements(dict):
         """
         :param Sequence['PersonFutureRequirementsAlternativeArgs'] alternatives: Fields that are due and can be resolved by providing the corresponding alternative fields instead. Many alternatives can list the same <span pulumi-lang-nodejs="`originalFieldsDue`" pulumi-lang-dotnet="`OriginalFieldsDue`" pulumi-lang-go="`originalFieldsDue`" pulumi-lang-python="`original_fields_due`" pulumi-lang-yaml="`originalFieldsDue`" pulumi-lang-java="`originalFieldsDue`" pulumi-lang-hcl="`original_fields_due`">`originalFieldsDue`</span>, and any of these alternatives can serve as a pathway for attempting to resolve the fields again. Re-providing <span pulumi-lang-nodejs="`originalFieldsDue`" pulumi-lang-dotnet="`OriginalFieldsDue`" pulumi-lang-go="`originalFieldsDue`" pulumi-lang-python="`original_fields_due`" pulumi-lang-yaml="`originalFieldsDue`" pulumi-lang-java="`originalFieldsDue`" pulumi-lang-hcl="`original_fields_due`">`originalFieldsDue`</span> also serves as a pathway for attempting to resolve the fields again.
         :param Sequence[_builtins.str] currently_dues: Fields that need to be resolved to keep the person's account enabled. If not resolved by the account's `future_requirements<span pulumi-lang-nodejs="[currentDeadline]" pulumi-lang-dotnet="[CurrentDeadline]" pulumi-lang-go="[currentDeadline]" pulumi-lang-python="[current_deadline]" pulumi-lang-yaml="[currentDeadline]" pulumi-lang-java="[currentDeadline]" pulumi-lang-hcl="[current_deadline]">[currentDeadline]</span>`, these fields will transition to the main <span pulumi-lang-nodejs="`requirements`" pulumi-lang-dotnet="`Requirements`" pulumi-lang-go="`requirements`" pulumi-lang-python="`requirements`" pulumi-lang-yaml="`requirements`" pulumi-lang-java="`requirements`" pulumi-lang-hcl="`requirements`">`requirements`</span> hash, and may immediately become <span pulumi-lang-nodejs="`pastDue`" pulumi-lang-dotnet="`PastDue`" pulumi-lang-go="`pastDue`" pulumi-lang-python="`past_due`" pulumi-lang-yaml="`pastDue`" pulumi-lang-java="`pastDue`" pulumi-lang-hcl="`past_due`">`pastDue`</span>, but the account may also be given a grace period depending on the account's enablement state prior to transition.
-        :param Sequence['PersonFutureRequirementsErrorArgs'] errors: Details about validation and verification failures for <span pulumi-lang-nodejs="`due`" pulumi-lang-dotnet="`Due`" pulumi-lang-go="`due`" pulumi-lang-python="`due`" pulumi-lang-yaml="`due`" pulumi-lang-java="`due`" pulumi-lang-hcl="`due`">`due`</span> requirements that must be resolved.
+        :param Sequence['PersonFutureRequirementsErrorArgs'] errors: Fields that are <span pulumi-lang-nodejs="`currentlyDue`" pulumi-lang-dotnet="`CurrentlyDue`" pulumi-lang-go="`currentlyDue`" pulumi-lang-python="`currently_due`" pulumi-lang-yaml="`currentlyDue`" pulumi-lang-java="`currentlyDue`" pulumi-lang-hcl="`currently_due`">`currentlyDue`</span> and need to be collected again because validation or verification failed.
         :param Sequence[_builtins.str] eventually_dues: Fields you must collect when all thresholds are reached. As they become required, they appear in <span pulumi-lang-nodejs="`currentlyDue`" pulumi-lang-dotnet="`CurrentlyDue`" pulumi-lang-go="`currentlyDue`" pulumi-lang-python="`currently_due`" pulumi-lang-yaml="`currentlyDue`" pulumi-lang-java="`currentlyDue`" pulumi-lang-hcl="`currently_due`">`currentlyDue`</span> as well, and the account's `future_requirements<span pulumi-lang-nodejs="[currentDeadline]" pulumi-lang-dotnet="[CurrentDeadline]" pulumi-lang-go="[currentDeadline]" pulumi-lang-python="[current_deadline]" pulumi-lang-yaml="[currentDeadline]" pulumi-lang-java="[currentDeadline]" pulumi-lang-hcl="[current_deadline]">[currentDeadline]</span>` becomes set.
         :param Sequence[_builtins.str] past_dues: Fields that haven't been resolved by the account's `requirements.current_deadline`. These fields need to be resolved to enable the person's account. `future_requirements.past_due` is a subset of `requirements.past_due`.
         :param Sequence[_builtins.str] pending_verifications: Fields that are being reviewed, or might become required depending on the results of a review. If the review fails, these fields can move to <span pulumi-lang-nodejs="`eventuallyDue`" pulumi-lang-dotnet="`EventuallyDue`" pulumi-lang-go="`eventuallyDue`" pulumi-lang-python="`eventually_due`" pulumi-lang-yaml="`eventuallyDue`" pulumi-lang-java="`eventuallyDue`" pulumi-lang-hcl="`eventually_due`">`eventuallyDue`</span>, <span pulumi-lang-nodejs="`currentlyDue`" pulumi-lang-dotnet="`CurrentlyDue`" pulumi-lang-go="`currentlyDue`" pulumi-lang-python="`currently_due`" pulumi-lang-yaml="`currentlyDue`" pulumi-lang-java="`currentlyDue`" pulumi-lang-hcl="`currently_due`">`currentlyDue`</span>, <span pulumi-lang-nodejs="`pastDue`" pulumi-lang-dotnet="`PastDue`" pulumi-lang-go="`pastDue`" pulumi-lang-python="`past_due`" pulumi-lang-yaml="`pastDue`" pulumi-lang-java="`pastDue`" pulumi-lang-hcl="`past_due`">`pastDue`</span> or <span pulumi-lang-nodejs="`alternatives`" pulumi-lang-dotnet="`Alternatives`" pulumi-lang-go="`alternatives`" pulumi-lang-python="`alternatives`" pulumi-lang-yaml="`alternatives`" pulumi-lang-java="`alternatives`" pulumi-lang-hcl="`alternatives`">`alternatives`</span>. Fields might appear in <span pulumi-lang-nodejs="`eventuallyDue`" pulumi-lang-dotnet="`EventuallyDue`" pulumi-lang-go="`eventuallyDue`" pulumi-lang-python="`eventually_due`" pulumi-lang-yaml="`eventuallyDue`" pulumi-lang-java="`eventuallyDue`" pulumi-lang-hcl="`eventually_due`">`eventuallyDue`</span>, <span pulumi-lang-nodejs="`currentlyDue`" pulumi-lang-dotnet="`CurrentlyDue`" pulumi-lang-go="`currentlyDue`" pulumi-lang-python="`currently_due`" pulumi-lang-yaml="`currentlyDue`" pulumi-lang-java="`currentlyDue`" pulumi-lang-hcl="`currently_due`">`currentlyDue`</span>, <span pulumi-lang-nodejs="`pastDue`" pulumi-lang-dotnet="`PastDue`" pulumi-lang-go="`pastDue`" pulumi-lang-python="`past_due`" pulumi-lang-yaml="`pastDue`" pulumi-lang-java="`pastDue`" pulumi-lang-hcl="`past_due`">`pastDue`</span> or <span pulumi-lang-nodejs="`alternatives`" pulumi-lang-dotnet="`Alternatives`" pulumi-lang-go="`alternatives`" pulumi-lang-python="`alternatives`" pulumi-lang-yaml="`alternatives`" pulumi-lang-java="`alternatives`" pulumi-lang-hcl="`alternatives`">`alternatives`</span> and in <span pulumi-lang-nodejs="`pendingVerification`" pulumi-lang-dotnet="`PendingVerification`" pulumi-lang-go="`pendingVerification`" pulumi-lang-python="`pending_verification`" pulumi-lang-yaml="`pendingVerification`" pulumi-lang-java="`pendingVerification`" pulumi-lang-hcl="`pending_verification`">`pendingVerification`</span> if one verification fails but another is still pending.
@@ -41536,7 +43490,7 @@ class PersonFutureRequirements(dict):
     @pulumi.getter
     def errors(self) -> Optional[Sequence['outputs.PersonFutureRequirementsError']]:
         """
-        Details about validation and verification failures for <span pulumi-lang-nodejs="`due`" pulumi-lang-dotnet="`Due`" pulumi-lang-go="`due`" pulumi-lang-python="`due`" pulumi-lang-yaml="`due`" pulumi-lang-java="`due`" pulumi-lang-hcl="`due`">`due`</span> requirements that must be resolved.
+        Fields that are <span pulumi-lang-nodejs="`currentlyDue`" pulumi-lang-dotnet="`CurrentlyDue`" pulumi-lang-go="`currentlyDue`" pulumi-lang-python="`currently_due`" pulumi-lang-yaml="`currentlyDue`" pulumi-lang-java="`currentlyDue`" pulumi-lang-hcl="`currently_due`">`currentlyDue`</span> and need to be collected again because validation or verification failed.
         """
         return pulumi.get(self, "errors")
 
@@ -41911,7 +43865,7 @@ class PersonRequirements(dict):
         """
         :param Sequence['PersonRequirementsAlternativeArgs'] alternatives: Fields that are due and can be resolved by providing the corresponding alternative fields instead. Many alternatives can list the same <span pulumi-lang-nodejs="`originalFieldsDue`" pulumi-lang-dotnet="`OriginalFieldsDue`" pulumi-lang-go="`originalFieldsDue`" pulumi-lang-python="`original_fields_due`" pulumi-lang-yaml="`originalFieldsDue`" pulumi-lang-java="`originalFieldsDue`" pulumi-lang-hcl="`original_fields_due`">`originalFieldsDue`</span>, and any of these alternatives can serve as a pathway for attempting to resolve the fields again. Re-providing <span pulumi-lang-nodejs="`originalFieldsDue`" pulumi-lang-dotnet="`OriginalFieldsDue`" pulumi-lang-go="`originalFieldsDue`" pulumi-lang-python="`original_fields_due`" pulumi-lang-yaml="`originalFieldsDue`" pulumi-lang-java="`originalFieldsDue`" pulumi-lang-hcl="`original_fields_due`">`originalFieldsDue`</span> also serves as a pathway for attempting to resolve the fields again.
         :param Sequence[_builtins.str] currently_dues: Fields that need to be resolved to keep the person's account enabled. If not resolved by the account's <span pulumi-lang-nodejs="`currentDeadline`" pulumi-lang-dotnet="`CurrentDeadline`" pulumi-lang-go="`currentDeadline`" pulumi-lang-python="`current_deadline`" pulumi-lang-yaml="`currentDeadline`" pulumi-lang-java="`currentDeadline`" pulumi-lang-hcl="`current_deadline`">`currentDeadline`</span>, these fields will appear in <span pulumi-lang-nodejs="`pastDue`" pulumi-lang-dotnet="`PastDue`" pulumi-lang-go="`pastDue`" pulumi-lang-python="`past_due`" pulumi-lang-yaml="`pastDue`" pulumi-lang-java="`pastDue`" pulumi-lang-hcl="`past_due`">`pastDue`</span> as well, and the account is disabled.
-        :param Sequence['PersonRequirementsErrorArgs'] errors: Details about validation and verification failures for <span pulumi-lang-nodejs="`due`" pulumi-lang-dotnet="`Due`" pulumi-lang-go="`due`" pulumi-lang-python="`due`" pulumi-lang-yaml="`due`" pulumi-lang-java="`due`" pulumi-lang-hcl="`due`">`due`</span> requirements that must be resolved.
+        :param Sequence['PersonRequirementsErrorArgs'] errors: Fields that are <span pulumi-lang-nodejs="`currentlyDue`" pulumi-lang-dotnet="`CurrentlyDue`" pulumi-lang-go="`currentlyDue`" pulumi-lang-python="`currently_due`" pulumi-lang-yaml="`currentlyDue`" pulumi-lang-java="`currentlyDue`" pulumi-lang-hcl="`currently_due`">`currentlyDue`</span> and need to be collected again because validation or verification failed.
         :param Sequence[_builtins.str] eventually_dues: Fields you must collect when all thresholds are reached. As they become required, they appear in <span pulumi-lang-nodejs="`currentlyDue`" pulumi-lang-dotnet="`CurrentlyDue`" pulumi-lang-go="`currentlyDue`" pulumi-lang-python="`currently_due`" pulumi-lang-yaml="`currentlyDue`" pulumi-lang-java="`currentlyDue`" pulumi-lang-hcl="`currently_due`">`currentlyDue`</span> as well, and the account's <span pulumi-lang-nodejs="`currentDeadline`" pulumi-lang-dotnet="`CurrentDeadline`" pulumi-lang-go="`currentDeadline`" pulumi-lang-python="`current_deadline`" pulumi-lang-yaml="`currentDeadline`" pulumi-lang-java="`currentDeadline`" pulumi-lang-hcl="`current_deadline`">`currentDeadline`</span> becomes set.
         :param Sequence[_builtins.str] past_dues: Fields that haven't been resolved by <span pulumi-lang-nodejs="`currentDeadline`" pulumi-lang-dotnet="`CurrentDeadline`" pulumi-lang-go="`currentDeadline`" pulumi-lang-python="`current_deadline`" pulumi-lang-yaml="`currentDeadline`" pulumi-lang-java="`currentDeadline`" pulumi-lang-hcl="`current_deadline`">`currentDeadline`</span>. These fields need to be resolved to enable the person's account.
         :param Sequence[_builtins.str] pending_verifications: Fields that are being reviewed, or might become required depending on the results of a review. If the review fails, these fields can move to <span pulumi-lang-nodejs="`eventuallyDue`" pulumi-lang-dotnet="`EventuallyDue`" pulumi-lang-go="`eventuallyDue`" pulumi-lang-python="`eventually_due`" pulumi-lang-yaml="`eventuallyDue`" pulumi-lang-java="`eventuallyDue`" pulumi-lang-hcl="`eventually_due`">`eventuallyDue`</span>, <span pulumi-lang-nodejs="`currentlyDue`" pulumi-lang-dotnet="`CurrentlyDue`" pulumi-lang-go="`currentlyDue`" pulumi-lang-python="`currently_due`" pulumi-lang-yaml="`currentlyDue`" pulumi-lang-java="`currentlyDue`" pulumi-lang-hcl="`currently_due`">`currentlyDue`</span>, <span pulumi-lang-nodejs="`pastDue`" pulumi-lang-dotnet="`PastDue`" pulumi-lang-go="`pastDue`" pulumi-lang-python="`past_due`" pulumi-lang-yaml="`pastDue`" pulumi-lang-java="`pastDue`" pulumi-lang-hcl="`past_due`">`pastDue`</span> or <span pulumi-lang-nodejs="`alternatives`" pulumi-lang-dotnet="`Alternatives`" pulumi-lang-go="`alternatives`" pulumi-lang-python="`alternatives`" pulumi-lang-yaml="`alternatives`" pulumi-lang-java="`alternatives`" pulumi-lang-hcl="`alternatives`">`alternatives`</span>. Fields might appear in <span pulumi-lang-nodejs="`eventuallyDue`" pulumi-lang-dotnet="`EventuallyDue`" pulumi-lang-go="`eventuallyDue`" pulumi-lang-python="`eventually_due`" pulumi-lang-yaml="`eventuallyDue`" pulumi-lang-java="`eventuallyDue`" pulumi-lang-hcl="`eventually_due`">`eventuallyDue`</span>, <span pulumi-lang-nodejs="`currentlyDue`" pulumi-lang-dotnet="`CurrentlyDue`" pulumi-lang-go="`currentlyDue`" pulumi-lang-python="`currently_due`" pulumi-lang-yaml="`currentlyDue`" pulumi-lang-java="`currentlyDue`" pulumi-lang-hcl="`currently_due`">`currentlyDue`</span>, <span pulumi-lang-nodejs="`pastDue`" pulumi-lang-dotnet="`PastDue`" pulumi-lang-go="`pastDue`" pulumi-lang-python="`past_due`" pulumi-lang-yaml="`pastDue`" pulumi-lang-java="`pastDue`" pulumi-lang-hcl="`past_due`">`pastDue`</span> or <span pulumi-lang-nodejs="`alternatives`" pulumi-lang-dotnet="`Alternatives`" pulumi-lang-go="`alternatives`" pulumi-lang-python="`alternatives`" pulumi-lang-yaml="`alternatives`" pulumi-lang-java="`alternatives`" pulumi-lang-hcl="`alternatives`">`alternatives`</span> and in <span pulumi-lang-nodejs="`pendingVerification`" pulumi-lang-dotnet="`PendingVerification`" pulumi-lang-go="`pendingVerification`" pulumi-lang-python="`pending_verification`" pulumi-lang-yaml="`pendingVerification`" pulumi-lang-java="`pendingVerification`" pulumi-lang-hcl="`pending_verification`">`pendingVerification`</span> if one verification fails but another is still pending.
@@ -41949,7 +43903,7 @@ class PersonRequirements(dict):
     @pulumi.getter
     def errors(self) -> Optional[Sequence['outputs.PersonRequirementsError']]:
         """
-        Details about validation and verification failures for <span pulumi-lang-nodejs="`due`" pulumi-lang-dotnet="`Due`" pulumi-lang-go="`due`" pulumi-lang-python="`due`" pulumi-lang-yaml="`due`" pulumi-lang-java="`due`" pulumi-lang-hcl="`due`">`due`</span> requirements that must be resolved.
+        Fields that are <span pulumi-lang-nodejs="`currentlyDue`" pulumi-lang-dotnet="`CurrentlyDue`" pulumi-lang-go="`currentlyDue`" pulumi-lang-python="`currently_due`" pulumi-lang-yaml="`currentlyDue`" pulumi-lang-java="`currentlyDue`" pulumi-lang-hcl="`currently_due`">`currentlyDue`</span> and need to be collected again because validation or verification failed.
         """
         return pulumi.get(self, "errors")
 
@@ -42338,10 +44292,10 @@ class PersonVerificationAdditionalDocument(dict):
                  details_code: Optional[_builtins.str] = None,
                  front: Optional[_builtins.str] = None):
         """
-        :param _builtins.str back: The back of an ID returned by a [file upload](https://api.stripe.com#create_file) with a <span pulumi-lang-nodejs="`purpose`" pulumi-lang-dotnet="`Purpose`" pulumi-lang-go="`purpose`" pulumi-lang-python="`purpose`" pulumi-lang-yaml="`purpose`" pulumi-lang-java="`purpose`" pulumi-lang-hcl="`purpose`">`purpose`</span> value of <span pulumi-lang-nodejs="`identityDocument`" pulumi-lang-dotnet="`IdentityDocument`" pulumi-lang-go="`identityDocument`" pulumi-lang-python="`identity_document`" pulumi-lang-yaml="`identityDocument`" pulumi-lang-java="`identityDocument`" pulumi-lang-hcl="`identity_document`">`identityDocument`</span>.
+        :param _builtins.str back: The back of an ID returned by a [file upload](https://docs.stripe.com/api#create_file) with a <span pulumi-lang-nodejs="`purpose`" pulumi-lang-dotnet="`Purpose`" pulumi-lang-go="`purpose`" pulumi-lang-python="`purpose`" pulumi-lang-yaml="`purpose`" pulumi-lang-java="`purpose`" pulumi-lang-hcl="`purpose`">`purpose`</span> value of <span pulumi-lang-nodejs="`identityDocument`" pulumi-lang-dotnet="`IdentityDocument`" pulumi-lang-go="`identityDocument`" pulumi-lang-python="`identity_document`" pulumi-lang-yaml="`identityDocument`" pulumi-lang-java="`identityDocument`" pulumi-lang-hcl="`identity_document`">`identityDocument`</span>.
         :param _builtins.str details: A user-displayable string describing the verification state of this document. For example, if a document is uploaded and the picture is too fuzzy, this may say "Identity document is too unclear to read".
         :param _builtins.str details_code: One of <span pulumi-lang-nodejs="`documentCorrupt`" pulumi-lang-dotnet="`DocumentCorrupt`" pulumi-lang-go="`documentCorrupt`" pulumi-lang-python="`document_corrupt`" pulumi-lang-yaml="`documentCorrupt`" pulumi-lang-java="`documentCorrupt`" pulumi-lang-hcl="`document_corrupt`">`documentCorrupt`</span>, <span pulumi-lang-nodejs="`documentCountryNotSupported`" pulumi-lang-dotnet="`DocumentCountryNotSupported`" pulumi-lang-go="`documentCountryNotSupported`" pulumi-lang-python="`document_country_not_supported`" pulumi-lang-yaml="`documentCountryNotSupported`" pulumi-lang-java="`documentCountryNotSupported`" pulumi-lang-hcl="`document_country_not_supported`">`documentCountryNotSupported`</span>, <span pulumi-lang-nodejs="`documentExpired`" pulumi-lang-dotnet="`DocumentExpired`" pulumi-lang-go="`documentExpired`" pulumi-lang-python="`document_expired`" pulumi-lang-yaml="`documentExpired`" pulumi-lang-java="`documentExpired`" pulumi-lang-hcl="`document_expired`">`documentExpired`</span>, <span pulumi-lang-nodejs="`documentFailedCopy`" pulumi-lang-dotnet="`DocumentFailedCopy`" pulumi-lang-go="`documentFailedCopy`" pulumi-lang-python="`document_failed_copy`" pulumi-lang-yaml="`documentFailedCopy`" pulumi-lang-java="`documentFailedCopy`" pulumi-lang-hcl="`document_failed_copy`">`documentFailedCopy`</span>, <span pulumi-lang-nodejs="`documentFailedOther`" pulumi-lang-dotnet="`DocumentFailedOther`" pulumi-lang-go="`documentFailedOther`" pulumi-lang-python="`document_failed_other`" pulumi-lang-yaml="`documentFailedOther`" pulumi-lang-java="`documentFailedOther`" pulumi-lang-hcl="`document_failed_other`">`documentFailedOther`</span>, <span pulumi-lang-nodejs="`documentFailedTestMode`" pulumi-lang-dotnet="`DocumentFailedTestMode`" pulumi-lang-go="`documentFailedTestMode`" pulumi-lang-python="`document_failed_test_mode`" pulumi-lang-yaml="`documentFailedTestMode`" pulumi-lang-java="`documentFailedTestMode`" pulumi-lang-hcl="`document_failed_test_mode`">`documentFailedTestMode`</span>, <span pulumi-lang-nodejs="`documentFraudulent`" pulumi-lang-dotnet="`DocumentFraudulent`" pulumi-lang-go="`documentFraudulent`" pulumi-lang-python="`document_fraudulent`" pulumi-lang-yaml="`documentFraudulent`" pulumi-lang-java="`documentFraudulent`" pulumi-lang-hcl="`document_fraudulent`">`documentFraudulent`</span>, <span pulumi-lang-nodejs="`documentFailedGreyscale`" pulumi-lang-dotnet="`DocumentFailedGreyscale`" pulumi-lang-go="`documentFailedGreyscale`" pulumi-lang-python="`document_failed_greyscale`" pulumi-lang-yaml="`documentFailedGreyscale`" pulumi-lang-java="`documentFailedGreyscale`" pulumi-lang-hcl="`document_failed_greyscale`">`documentFailedGreyscale`</span>, <span pulumi-lang-nodejs="`documentIncomplete`" pulumi-lang-dotnet="`DocumentIncomplete`" pulumi-lang-go="`documentIncomplete`" pulumi-lang-python="`document_incomplete`" pulumi-lang-yaml="`documentIncomplete`" pulumi-lang-java="`documentIncomplete`" pulumi-lang-hcl="`document_incomplete`">`documentIncomplete`</span>, <span pulumi-lang-nodejs="`documentInvalid`" pulumi-lang-dotnet="`DocumentInvalid`" pulumi-lang-go="`documentInvalid`" pulumi-lang-python="`document_invalid`" pulumi-lang-yaml="`documentInvalid`" pulumi-lang-java="`documentInvalid`" pulumi-lang-hcl="`document_invalid`">`documentInvalid`</span>, <span pulumi-lang-nodejs="`documentManipulated`" pulumi-lang-dotnet="`DocumentManipulated`" pulumi-lang-go="`documentManipulated`" pulumi-lang-python="`document_manipulated`" pulumi-lang-yaml="`documentManipulated`" pulumi-lang-java="`documentManipulated`" pulumi-lang-hcl="`document_manipulated`">`documentManipulated`</span>, <span pulumi-lang-nodejs="`documentMissingBack`" pulumi-lang-dotnet="`DocumentMissingBack`" pulumi-lang-go="`documentMissingBack`" pulumi-lang-python="`document_missing_back`" pulumi-lang-yaml="`documentMissingBack`" pulumi-lang-java="`documentMissingBack`" pulumi-lang-hcl="`document_missing_back`">`documentMissingBack`</span>, <span pulumi-lang-nodejs="`documentMissingFront`" pulumi-lang-dotnet="`DocumentMissingFront`" pulumi-lang-go="`documentMissingFront`" pulumi-lang-python="`document_missing_front`" pulumi-lang-yaml="`documentMissingFront`" pulumi-lang-java="`documentMissingFront`" pulumi-lang-hcl="`document_missing_front`">`documentMissingFront`</span>, <span pulumi-lang-nodejs="`documentNotReadable`" pulumi-lang-dotnet="`DocumentNotReadable`" pulumi-lang-go="`documentNotReadable`" pulumi-lang-python="`document_not_readable`" pulumi-lang-yaml="`documentNotReadable`" pulumi-lang-java="`documentNotReadable`" pulumi-lang-hcl="`document_not_readable`">`documentNotReadable`</span>, <span pulumi-lang-nodejs="`documentNotUploaded`" pulumi-lang-dotnet="`DocumentNotUploaded`" pulumi-lang-go="`documentNotUploaded`" pulumi-lang-python="`document_not_uploaded`" pulumi-lang-yaml="`documentNotUploaded`" pulumi-lang-java="`documentNotUploaded`" pulumi-lang-hcl="`document_not_uploaded`">`documentNotUploaded`</span>, <span pulumi-lang-nodejs="`documentPhotoMismatch`" pulumi-lang-dotnet="`DocumentPhotoMismatch`" pulumi-lang-go="`documentPhotoMismatch`" pulumi-lang-python="`document_photo_mismatch`" pulumi-lang-yaml="`documentPhotoMismatch`" pulumi-lang-java="`documentPhotoMismatch`" pulumi-lang-hcl="`document_photo_mismatch`">`documentPhotoMismatch`</span>, <span pulumi-lang-nodejs="`documentTooLarge`" pulumi-lang-dotnet="`DocumentTooLarge`" pulumi-lang-go="`documentTooLarge`" pulumi-lang-python="`document_too_large`" pulumi-lang-yaml="`documentTooLarge`" pulumi-lang-java="`documentTooLarge`" pulumi-lang-hcl="`document_too_large`">`documentTooLarge`</span>, or <span pulumi-lang-nodejs="`documentTypeNotSupported`" pulumi-lang-dotnet="`DocumentTypeNotSupported`" pulumi-lang-go="`documentTypeNotSupported`" pulumi-lang-python="`document_type_not_supported`" pulumi-lang-yaml="`documentTypeNotSupported`" pulumi-lang-java="`documentTypeNotSupported`" pulumi-lang-hcl="`document_type_not_supported`">`documentTypeNotSupported`</span>. A machine-readable code specifying the verification state for this document.
-        :param _builtins.str front: The front of an ID returned by a [file upload](https://api.stripe.com#create_file) with a <span pulumi-lang-nodejs="`purpose`" pulumi-lang-dotnet="`Purpose`" pulumi-lang-go="`purpose`" pulumi-lang-python="`purpose`" pulumi-lang-yaml="`purpose`" pulumi-lang-java="`purpose`" pulumi-lang-hcl="`purpose`">`purpose`</span> value of <span pulumi-lang-nodejs="`identityDocument`" pulumi-lang-dotnet="`IdentityDocument`" pulumi-lang-go="`identityDocument`" pulumi-lang-python="`identity_document`" pulumi-lang-yaml="`identityDocument`" pulumi-lang-java="`identityDocument`" pulumi-lang-hcl="`identity_document`">`identityDocument`</span>.
+        :param _builtins.str front: The front of an ID returned by a [file upload](https://docs.stripe.com/api#create_file) with a <span pulumi-lang-nodejs="`purpose`" pulumi-lang-dotnet="`Purpose`" pulumi-lang-go="`purpose`" pulumi-lang-python="`purpose`" pulumi-lang-yaml="`purpose`" pulumi-lang-java="`purpose`" pulumi-lang-hcl="`purpose`">`purpose`</span> value of <span pulumi-lang-nodejs="`identityDocument`" pulumi-lang-dotnet="`IdentityDocument`" pulumi-lang-go="`identityDocument`" pulumi-lang-python="`identity_document`" pulumi-lang-yaml="`identityDocument`" pulumi-lang-java="`identityDocument`" pulumi-lang-hcl="`identity_document`">`identityDocument`</span>.
         """
         if back is not None:
             pulumi.set(__self__, "back", back)
@@ -42356,7 +44310,7 @@ class PersonVerificationAdditionalDocument(dict):
     @pulumi.getter
     def back(self) -> Optional[_builtins.str]:
         """
-        The back of an ID returned by a [file upload](https://api.stripe.com#create_file) with a <span pulumi-lang-nodejs="`purpose`" pulumi-lang-dotnet="`Purpose`" pulumi-lang-go="`purpose`" pulumi-lang-python="`purpose`" pulumi-lang-yaml="`purpose`" pulumi-lang-java="`purpose`" pulumi-lang-hcl="`purpose`">`purpose`</span> value of <span pulumi-lang-nodejs="`identityDocument`" pulumi-lang-dotnet="`IdentityDocument`" pulumi-lang-go="`identityDocument`" pulumi-lang-python="`identity_document`" pulumi-lang-yaml="`identityDocument`" pulumi-lang-java="`identityDocument`" pulumi-lang-hcl="`identity_document`">`identityDocument`</span>.
+        The back of an ID returned by a [file upload](https://docs.stripe.com/api#create_file) with a <span pulumi-lang-nodejs="`purpose`" pulumi-lang-dotnet="`Purpose`" pulumi-lang-go="`purpose`" pulumi-lang-python="`purpose`" pulumi-lang-yaml="`purpose`" pulumi-lang-java="`purpose`" pulumi-lang-hcl="`purpose`">`purpose`</span> value of <span pulumi-lang-nodejs="`identityDocument`" pulumi-lang-dotnet="`IdentityDocument`" pulumi-lang-go="`identityDocument`" pulumi-lang-python="`identity_document`" pulumi-lang-yaml="`identityDocument`" pulumi-lang-java="`identityDocument`" pulumi-lang-hcl="`identity_document`">`identityDocument`</span>.
         """
         return pulumi.get(self, "back")
 
@@ -42380,7 +44334,7 @@ class PersonVerificationAdditionalDocument(dict):
     @pulumi.getter
     def front(self) -> Optional[_builtins.str]:
         """
-        The front of an ID returned by a [file upload](https://api.stripe.com#create_file) with a <span pulumi-lang-nodejs="`purpose`" pulumi-lang-dotnet="`Purpose`" pulumi-lang-go="`purpose`" pulumi-lang-python="`purpose`" pulumi-lang-yaml="`purpose`" pulumi-lang-java="`purpose`" pulumi-lang-hcl="`purpose`">`purpose`</span> value of <span pulumi-lang-nodejs="`identityDocument`" pulumi-lang-dotnet="`IdentityDocument`" pulumi-lang-go="`identityDocument`" pulumi-lang-python="`identity_document`" pulumi-lang-yaml="`identityDocument`" pulumi-lang-java="`identityDocument`" pulumi-lang-hcl="`identity_document`">`identityDocument`</span>.
+        The front of an ID returned by a [file upload](https://docs.stripe.com/api#create_file) with a <span pulumi-lang-nodejs="`purpose`" pulumi-lang-dotnet="`Purpose`" pulumi-lang-go="`purpose`" pulumi-lang-python="`purpose`" pulumi-lang-yaml="`purpose`" pulumi-lang-java="`purpose`" pulumi-lang-hcl="`purpose`">`purpose`</span> value of <span pulumi-lang-nodejs="`identityDocument`" pulumi-lang-dotnet="`IdentityDocument`" pulumi-lang-go="`identityDocument`" pulumi-lang-python="`identity_document`" pulumi-lang-yaml="`identityDocument`" pulumi-lang-java="`identityDocument`" pulumi-lang-hcl="`identity_document`">`identityDocument`</span>.
         """
         return pulumi.get(self, "front")
 
@@ -42410,10 +44364,10 @@ class PersonVerificationDocument(dict):
                  details_code: Optional[_builtins.str] = None,
                  front: Optional[_builtins.str] = None):
         """
-        :param _builtins.str back: The back of an ID returned by a [file upload](https://api.stripe.com#create_file) with a <span pulumi-lang-nodejs="`purpose`" pulumi-lang-dotnet="`Purpose`" pulumi-lang-go="`purpose`" pulumi-lang-python="`purpose`" pulumi-lang-yaml="`purpose`" pulumi-lang-java="`purpose`" pulumi-lang-hcl="`purpose`">`purpose`</span> value of <span pulumi-lang-nodejs="`identityDocument`" pulumi-lang-dotnet="`IdentityDocument`" pulumi-lang-go="`identityDocument`" pulumi-lang-python="`identity_document`" pulumi-lang-yaml="`identityDocument`" pulumi-lang-java="`identityDocument`" pulumi-lang-hcl="`identity_document`">`identityDocument`</span>.
+        :param _builtins.str back: The back of an ID returned by a [file upload](https://docs.stripe.com/api#create_file) with a <span pulumi-lang-nodejs="`purpose`" pulumi-lang-dotnet="`Purpose`" pulumi-lang-go="`purpose`" pulumi-lang-python="`purpose`" pulumi-lang-yaml="`purpose`" pulumi-lang-java="`purpose`" pulumi-lang-hcl="`purpose`">`purpose`</span> value of <span pulumi-lang-nodejs="`identityDocument`" pulumi-lang-dotnet="`IdentityDocument`" pulumi-lang-go="`identityDocument`" pulumi-lang-python="`identity_document`" pulumi-lang-yaml="`identityDocument`" pulumi-lang-java="`identityDocument`" pulumi-lang-hcl="`identity_document`">`identityDocument`</span>.
         :param _builtins.str details: A user-displayable string describing the verification state of this document. For example, if a document is uploaded and the picture is too fuzzy, this may say "Identity document is too unclear to read".
         :param _builtins.str details_code: One of <span pulumi-lang-nodejs="`documentCorrupt`" pulumi-lang-dotnet="`DocumentCorrupt`" pulumi-lang-go="`documentCorrupt`" pulumi-lang-python="`document_corrupt`" pulumi-lang-yaml="`documentCorrupt`" pulumi-lang-java="`documentCorrupt`" pulumi-lang-hcl="`document_corrupt`">`documentCorrupt`</span>, <span pulumi-lang-nodejs="`documentCountryNotSupported`" pulumi-lang-dotnet="`DocumentCountryNotSupported`" pulumi-lang-go="`documentCountryNotSupported`" pulumi-lang-python="`document_country_not_supported`" pulumi-lang-yaml="`documentCountryNotSupported`" pulumi-lang-java="`documentCountryNotSupported`" pulumi-lang-hcl="`document_country_not_supported`">`documentCountryNotSupported`</span>, <span pulumi-lang-nodejs="`documentExpired`" pulumi-lang-dotnet="`DocumentExpired`" pulumi-lang-go="`documentExpired`" pulumi-lang-python="`document_expired`" pulumi-lang-yaml="`documentExpired`" pulumi-lang-java="`documentExpired`" pulumi-lang-hcl="`document_expired`">`documentExpired`</span>, <span pulumi-lang-nodejs="`documentFailedCopy`" pulumi-lang-dotnet="`DocumentFailedCopy`" pulumi-lang-go="`documentFailedCopy`" pulumi-lang-python="`document_failed_copy`" pulumi-lang-yaml="`documentFailedCopy`" pulumi-lang-java="`documentFailedCopy`" pulumi-lang-hcl="`document_failed_copy`">`documentFailedCopy`</span>, <span pulumi-lang-nodejs="`documentFailedOther`" pulumi-lang-dotnet="`DocumentFailedOther`" pulumi-lang-go="`documentFailedOther`" pulumi-lang-python="`document_failed_other`" pulumi-lang-yaml="`documentFailedOther`" pulumi-lang-java="`documentFailedOther`" pulumi-lang-hcl="`document_failed_other`">`documentFailedOther`</span>, <span pulumi-lang-nodejs="`documentFailedTestMode`" pulumi-lang-dotnet="`DocumentFailedTestMode`" pulumi-lang-go="`documentFailedTestMode`" pulumi-lang-python="`document_failed_test_mode`" pulumi-lang-yaml="`documentFailedTestMode`" pulumi-lang-java="`documentFailedTestMode`" pulumi-lang-hcl="`document_failed_test_mode`">`documentFailedTestMode`</span>, <span pulumi-lang-nodejs="`documentFraudulent`" pulumi-lang-dotnet="`DocumentFraudulent`" pulumi-lang-go="`documentFraudulent`" pulumi-lang-python="`document_fraudulent`" pulumi-lang-yaml="`documentFraudulent`" pulumi-lang-java="`documentFraudulent`" pulumi-lang-hcl="`document_fraudulent`">`documentFraudulent`</span>, <span pulumi-lang-nodejs="`documentFailedGreyscale`" pulumi-lang-dotnet="`DocumentFailedGreyscale`" pulumi-lang-go="`documentFailedGreyscale`" pulumi-lang-python="`document_failed_greyscale`" pulumi-lang-yaml="`documentFailedGreyscale`" pulumi-lang-java="`documentFailedGreyscale`" pulumi-lang-hcl="`document_failed_greyscale`">`documentFailedGreyscale`</span>, <span pulumi-lang-nodejs="`documentIncomplete`" pulumi-lang-dotnet="`DocumentIncomplete`" pulumi-lang-go="`documentIncomplete`" pulumi-lang-python="`document_incomplete`" pulumi-lang-yaml="`documentIncomplete`" pulumi-lang-java="`documentIncomplete`" pulumi-lang-hcl="`document_incomplete`">`documentIncomplete`</span>, <span pulumi-lang-nodejs="`documentInvalid`" pulumi-lang-dotnet="`DocumentInvalid`" pulumi-lang-go="`documentInvalid`" pulumi-lang-python="`document_invalid`" pulumi-lang-yaml="`documentInvalid`" pulumi-lang-java="`documentInvalid`" pulumi-lang-hcl="`document_invalid`">`documentInvalid`</span>, <span pulumi-lang-nodejs="`documentManipulated`" pulumi-lang-dotnet="`DocumentManipulated`" pulumi-lang-go="`documentManipulated`" pulumi-lang-python="`document_manipulated`" pulumi-lang-yaml="`documentManipulated`" pulumi-lang-java="`documentManipulated`" pulumi-lang-hcl="`document_manipulated`">`documentManipulated`</span>, <span pulumi-lang-nodejs="`documentMissingBack`" pulumi-lang-dotnet="`DocumentMissingBack`" pulumi-lang-go="`documentMissingBack`" pulumi-lang-python="`document_missing_back`" pulumi-lang-yaml="`documentMissingBack`" pulumi-lang-java="`documentMissingBack`" pulumi-lang-hcl="`document_missing_back`">`documentMissingBack`</span>, <span pulumi-lang-nodejs="`documentMissingFront`" pulumi-lang-dotnet="`DocumentMissingFront`" pulumi-lang-go="`documentMissingFront`" pulumi-lang-python="`document_missing_front`" pulumi-lang-yaml="`documentMissingFront`" pulumi-lang-java="`documentMissingFront`" pulumi-lang-hcl="`document_missing_front`">`documentMissingFront`</span>, <span pulumi-lang-nodejs="`documentNotReadable`" pulumi-lang-dotnet="`DocumentNotReadable`" pulumi-lang-go="`documentNotReadable`" pulumi-lang-python="`document_not_readable`" pulumi-lang-yaml="`documentNotReadable`" pulumi-lang-java="`documentNotReadable`" pulumi-lang-hcl="`document_not_readable`">`documentNotReadable`</span>, <span pulumi-lang-nodejs="`documentNotUploaded`" pulumi-lang-dotnet="`DocumentNotUploaded`" pulumi-lang-go="`documentNotUploaded`" pulumi-lang-python="`document_not_uploaded`" pulumi-lang-yaml="`documentNotUploaded`" pulumi-lang-java="`documentNotUploaded`" pulumi-lang-hcl="`document_not_uploaded`">`documentNotUploaded`</span>, <span pulumi-lang-nodejs="`documentPhotoMismatch`" pulumi-lang-dotnet="`DocumentPhotoMismatch`" pulumi-lang-go="`documentPhotoMismatch`" pulumi-lang-python="`document_photo_mismatch`" pulumi-lang-yaml="`documentPhotoMismatch`" pulumi-lang-java="`documentPhotoMismatch`" pulumi-lang-hcl="`document_photo_mismatch`">`documentPhotoMismatch`</span>, <span pulumi-lang-nodejs="`documentTooLarge`" pulumi-lang-dotnet="`DocumentTooLarge`" pulumi-lang-go="`documentTooLarge`" pulumi-lang-python="`document_too_large`" pulumi-lang-yaml="`documentTooLarge`" pulumi-lang-java="`documentTooLarge`" pulumi-lang-hcl="`document_too_large`">`documentTooLarge`</span>, or <span pulumi-lang-nodejs="`documentTypeNotSupported`" pulumi-lang-dotnet="`DocumentTypeNotSupported`" pulumi-lang-go="`documentTypeNotSupported`" pulumi-lang-python="`document_type_not_supported`" pulumi-lang-yaml="`documentTypeNotSupported`" pulumi-lang-java="`documentTypeNotSupported`" pulumi-lang-hcl="`document_type_not_supported`">`documentTypeNotSupported`</span>. A machine-readable code specifying the verification state for this document.
-        :param _builtins.str front: The front of an ID returned by a [file upload](https://api.stripe.com#create_file) with a <span pulumi-lang-nodejs="`purpose`" pulumi-lang-dotnet="`Purpose`" pulumi-lang-go="`purpose`" pulumi-lang-python="`purpose`" pulumi-lang-yaml="`purpose`" pulumi-lang-java="`purpose`" pulumi-lang-hcl="`purpose`">`purpose`</span> value of <span pulumi-lang-nodejs="`identityDocument`" pulumi-lang-dotnet="`IdentityDocument`" pulumi-lang-go="`identityDocument`" pulumi-lang-python="`identity_document`" pulumi-lang-yaml="`identityDocument`" pulumi-lang-java="`identityDocument`" pulumi-lang-hcl="`identity_document`">`identityDocument`</span>.
+        :param _builtins.str front: The front of an ID returned by a [file upload](https://docs.stripe.com/api#create_file) with a <span pulumi-lang-nodejs="`purpose`" pulumi-lang-dotnet="`Purpose`" pulumi-lang-go="`purpose`" pulumi-lang-python="`purpose`" pulumi-lang-yaml="`purpose`" pulumi-lang-java="`purpose`" pulumi-lang-hcl="`purpose`">`purpose`</span> value of <span pulumi-lang-nodejs="`identityDocument`" pulumi-lang-dotnet="`IdentityDocument`" pulumi-lang-go="`identityDocument`" pulumi-lang-python="`identity_document`" pulumi-lang-yaml="`identityDocument`" pulumi-lang-java="`identityDocument`" pulumi-lang-hcl="`identity_document`">`identityDocument`</span>.
         """
         if back is not None:
             pulumi.set(__self__, "back", back)
@@ -42428,7 +44382,7 @@ class PersonVerificationDocument(dict):
     @pulumi.getter
     def back(self) -> Optional[_builtins.str]:
         """
-        The back of an ID returned by a [file upload](https://api.stripe.com#create_file) with a <span pulumi-lang-nodejs="`purpose`" pulumi-lang-dotnet="`Purpose`" pulumi-lang-go="`purpose`" pulumi-lang-python="`purpose`" pulumi-lang-yaml="`purpose`" pulumi-lang-java="`purpose`" pulumi-lang-hcl="`purpose`">`purpose`</span> value of <span pulumi-lang-nodejs="`identityDocument`" pulumi-lang-dotnet="`IdentityDocument`" pulumi-lang-go="`identityDocument`" pulumi-lang-python="`identity_document`" pulumi-lang-yaml="`identityDocument`" pulumi-lang-java="`identityDocument`" pulumi-lang-hcl="`identity_document`">`identityDocument`</span>.
+        The back of an ID returned by a [file upload](https://docs.stripe.com/api#create_file) with a <span pulumi-lang-nodejs="`purpose`" pulumi-lang-dotnet="`Purpose`" pulumi-lang-go="`purpose`" pulumi-lang-python="`purpose`" pulumi-lang-yaml="`purpose`" pulumi-lang-java="`purpose`" pulumi-lang-hcl="`purpose`">`purpose`</span> value of <span pulumi-lang-nodejs="`identityDocument`" pulumi-lang-dotnet="`IdentityDocument`" pulumi-lang-go="`identityDocument`" pulumi-lang-python="`identity_document`" pulumi-lang-yaml="`identityDocument`" pulumi-lang-java="`identityDocument`" pulumi-lang-hcl="`identity_document`">`identityDocument`</span>.
         """
         return pulumi.get(self, "back")
 
@@ -42452,7 +44406,7 @@ class PersonVerificationDocument(dict):
     @pulumi.getter
     def front(self) -> Optional[_builtins.str]:
         """
-        The front of an ID returned by a [file upload](https://api.stripe.com#create_file) with a <span pulumi-lang-nodejs="`purpose`" pulumi-lang-dotnet="`Purpose`" pulumi-lang-go="`purpose`" pulumi-lang-python="`purpose`" pulumi-lang-yaml="`purpose`" pulumi-lang-java="`purpose`" pulumi-lang-hcl="`purpose`">`purpose`</span> value of <span pulumi-lang-nodejs="`identityDocument`" pulumi-lang-dotnet="`IdentityDocument`" pulumi-lang-go="`identityDocument`" pulumi-lang-python="`identity_document`" pulumi-lang-yaml="`identityDocument`" pulumi-lang-java="`identityDocument`" pulumi-lang-hcl="`identity_document`">`identityDocument`</span>.
+        The front of an ID returned by a [file upload](https://docs.stripe.com/api#create_file) with a <span pulumi-lang-nodejs="`purpose`" pulumi-lang-dotnet="`Purpose`" pulumi-lang-go="`purpose`" pulumi-lang-python="`purpose`" pulumi-lang-yaml="`purpose`" pulumi-lang-java="`purpose`" pulumi-lang-hcl="`purpose`">`purpose`</span> value of <span pulumi-lang-nodejs="`identityDocument`" pulumi-lang-dotnet="`IdentityDocument`" pulumi-lang-go="`identityDocument`" pulumi-lang-python="`identity_document`" pulumi-lang-yaml="`identityDocument`" pulumi-lang-java="`identityDocument`" pulumi-lang-hcl="`identity_document`">`identityDocument`</span>.
         """
         return pulumi.get(self, "front")
 
@@ -42903,6 +44857,8 @@ class PriceProductData(dict):
             suggest = "statement_descriptor"
         elif key == "taxCode":
             suggest = "tax_code"
+        elif key == "taxDetails":
+            suggest = "tax_details"
         elif key == "unitLabel":
             suggest = "unit_label"
 
@@ -42924,6 +44880,7 @@ class PriceProductData(dict):
                  metadata: Optional[Mapping[str, _builtins.str]] = None,
                  statement_descriptor: Optional[_builtins.str] = None,
                  tax_code: Optional[_builtins.str] = None,
+                 tax_details: Optional['outputs.PriceProductDataTaxDetails'] = None,
                  unit_label: Optional[_builtins.str] = None):
         """
         :param _builtins.str name: The product's name, meant to be displayable to the customer.
@@ -42934,6 +44891,7 @@ class PriceProductData(dict):
                
                This may be up to 22 characters. The statement description may not include `<`, `>`, `\\`, `"`, `'` characters, and will appear on your customer's statement in capital letters. Non-ASCII characters are automatically stripped.
         :param _builtins.str tax_code: A [tax code](https://docs.stripe.com/tax/tax-categories) ID.
+        :param 'PriceProductDataTaxDetailsArgs' tax_details: Tax details for this product, including the [tax code](https://www.terraform.io/tax/tax-codes) and an optional performance location.
         :param _builtins.str unit_label: A label that represents units of this product. When set, this will be included in customers' receipts, invoices, Checkout, and the customer portal.
         """
         pulumi.set(__self__, "name", name)
@@ -42947,6 +44905,8 @@ class PriceProductData(dict):
             pulumi.set(__self__, "statement_descriptor", statement_descriptor)
         if tax_code is not None:
             pulumi.set(__self__, "tax_code", tax_code)
+        if tax_details is not None:
+            pulumi.set(__self__, "tax_details", tax_details)
         if unit_label is not None:
             pulumi.set(__self__, "unit_label", unit_label)
 
@@ -43001,12 +44961,70 @@ class PriceProductData(dict):
         return pulumi.get(self, "tax_code")
 
     @_builtins.property
+    @pulumi.getter(name="taxDetails")
+    def tax_details(self) -> Optional['outputs.PriceProductDataTaxDetails']:
+        """
+        Tax details for this product, including the [tax code](https://www.terraform.io/tax/tax-codes) and an optional performance location.
+        """
+        return pulumi.get(self, "tax_details")
+
+    @_builtins.property
     @pulumi.getter(name="unitLabel")
     def unit_label(self) -> Optional[_builtins.str]:
         """
         A label that represents units of this product. When set, this will be included in customers' receipts, invoices, Checkout, and the customer portal.
         """
         return pulumi.get(self, "unit_label")
+
+
+@pulumi.output_type
+class PriceProductDataTaxDetails(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "performanceLocation":
+            suggest = "performance_location"
+        elif key == "taxCode":
+            suggest = "tax_code"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in PriceProductDataTaxDetails. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        PriceProductDataTaxDetails.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        PriceProductDataTaxDetails.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 performance_location: Optional[_builtins.str] = None,
+                 tax_code: Optional[_builtins.str] = None):
+        """
+        :param _builtins.str performance_location: A tax location ID. Depending on the [tax code](https://www.terraform.io/tax/tax-for-tickets/reference/tax-location-performance), this is required, optional, or not supported.
+        :param _builtins.str tax_code: A [tax code](https://docs.stripe.com/tax/tax-categories) ID.
+        """
+        if performance_location is not None:
+            pulumi.set(__self__, "performance_location", performance_location)
+        if tax_code is not None:
+            pulumi.set(__self__, "tax_code", tax_code)
+
+    @_builtins.property
+    @pulumi.getter(name="performanceLocation")
+    def performance_location(self) -> Optional[_builtins.str]:
+        """
+        A tax location ID. Depending on the [tax code](https://www.terraform.io/tax/tax-for-tickets/reference/tax-location-performance), this is required, optional, or not supported.
+        """
+        return pulumi.get(self, "performance_location")
+
+    @_builtins.property
+    @pulumi.getter(name="taxCode")
+    def tax_code(self) -> Optional[_builtins.str]:
+        """
+        A [tax code](https://docs.stripe.com/tax/tax-categories) ID.
+        """
+        return pulumi.get(self, "tax_code")
 
 
 @pulumi.output_type
@@ -43231,6 +45249,94 @@ class PriceTransformQuantity(dict):
         After division, either round the result <span pulumi-lang-nodejs="`up`" pulumi-lang-dotnet="`Up`" pulumi-lang-go="`up`" pulumi-lang-python="`up`" pulumi-lang-yaml="`up`" pulumi-lang-java="`up`" pulumi-lang-hcl="`up`">`up`</span> or <span pulumi-lang-nodejs="`down`" pulumi-lang-dotnet="`Down`" pulumi-lang-go="`down`" pulumi-lang-python="`down`" pulumi-lang-yaml="`down`" pulumi-lang-java="`down`" pulumi-lang-hcl="`down`">`down`</span>.
         """
         return pulumi.get(self, "round")
+
+
+@pulumi.output_type
+class ProductCatalogTrialOfferDuration(dict):
+    def __init__(__self__, *,
+                 type: _builtins.str,
+                 relative: Optional['outputs.ProductCatalogTrialOfferDurationRelative'] = None):
+        """
+        :param _builtins.str type: The type of trial offer duration.
+        """
+        pulumi.set(__self__, "type", type)
+        if relative is not None:
+            pulumi.set(__self__, "relative", relative)
+
+    @_builtins.property
+    @pulumi.getter
+    def type(self) -> _builtins.str:
+        """
+        The type of trial offer duration.
+        """
+        return pulumi.get(self, "type")
+
+    @_builtins.property
+    @pulumi.getter
+    def relative(self) -> Optional['outputs.ProductCatalogTrialOfferDurationRelative']:
+        return pulumi.get(self, "relative")
+
+
+@pulumi.output_type
+class ProductCatalogTrialOfferDurationRelative(dict):
+    def __init__(__self__, *,
+                 iterations: _builtins.float):
+        """
+        :param _builtins.float iterations: The number of iterations of the price's interval for this trial offer.
+        """
+        pulumi.set(__self__, "iterations", iterations)
+
+    @_builtins.property
+    @pulumi.getter
+    def iterations(self) -> _builtins.float:
+        """
+        The number of iterations of the price's interval for this trial offer.
+        """
+        return pulumi.get(self, "iterations")
+
+
+@pulumi.output_type
+class ProductCatalogTrialOfferEndBehavior(dict):
+    def __init__(__self__, *,
+                 transition: 'outputs.ProductCatalogTrialOfferEndBehaviorTransition',
+                 type: Optional[_builtins.str] = None):
+        """
+        :param _builtins.str type: The type of behavior when the trial offer ends.
+        """
+        pulumi.set(__self__, "transition", transition)
+        if type is not None:
+            pulumi.set(__self__, "type", type)
+
+    @_builtins.property
+    @pulumi.getter
+    def transition(self) -> 'outputs.ProductCatalogTrialOfferEndBehaviorTransition':
+        return pulumi.get(self, "transition")
+
+    @_builtins.property
+    @pulumi.getter
+    def type(self) -> Optional[_builtins.str]:
+        """
+        The type of behavior when the trial offer ends.
+        """
+        return pulumi.get(self, "type")
+
+
+@pulumi.output_type
+class ProductCatalogTrialOfferEndBehaviorTransition(dict):
+    def __init__(__self__, *,
+                 price: _builtins.str):
+        """
+        :param _builtins.str price: The new price to use at the end of the trial offer period.
+        """
+        pulumi.set(__self__, "price", price)
+
+    @_builtins.property
+    @pulumi.getter
+    def price(self) -> _builtins.str:
+        """
+        The new price to use at the end of the trial offer period.
+        """
+        return pulumi.get(self, "price")
 
 
 @pulumi.output_type
@@ -43777,6 +45883,56 @@ class ProductPackageDimension(dict):
 
 
 @pulumi.output_type
+class ProductTaxDetails(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "performanceLocation":
+            suggest = "performance_location"
+        elif key == "taxCode":
+            suggest = "tax_code"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in ProductTaxDetails. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        ProductTaxDetails.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        ProductTaxDetails.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 performance_location: Optional[_builtins.str] = None,
+                 tax_code: Optional[_builtins.str] = None):
+        """
+        :param _builtins.str performance_location: The ID of a tax location with type <span pulumi-lang-nodejs="`performance`" pulumi-lang-dotnet="`Performance`" pulumi-lang-go="`performance`" pulumi-lang-python="`performance`" pulumi-lang-yaml="`performance`" pulumi-lang-java="`performance`" pulumi-lang-hcl="`performance`">`performance`</span>, representing where the performance takes place.
+        :param _builtins.str tax_code: A [tax code](https://docs.stripe.com/tax/tax-categories) ID.
+        """
+        if performance_location is not None:
+            pulumi.set(__self__, "performance_location", performance_location)
+        if tax_code is not None:
+            pulumi.set(__self__, "tax_code", tax_code)
+
+    @_builtins.property
+    @pulumi.getter(name="performanceLocation")
+    def performance_location(self) -> Optional[_builtins.str]:
+        """
+        The ID of a tax location with type <span pulumi-lang-nodejs="`performance`" pulumi-lang-dotnet="`Performance`" pulumi-lang-go="`performance`" pulumi-lang-python="`performance`" pulumi-lang-yaml="`performance`" pulumi-lang-java="`performance`" pulumi-lang-hcl="`performance`">`performance`</span>, representing where the performance takes place.
+        """
+        return pulumi.get(self, "performance_location")
+
+    @_builtins.property
+    @pulumi.getter(name="taxCode")
+    def tax_code(self) -> Optional[_builtins.str]:
+        """
+        A [tax code](https://docs.stripe.com/tax/tax-categories) ID.
+        """
+        return pulumi.get(self, "tax_code")
+
+
+@pulumi.output_type
 class PromotionCodePromotion(dict):
     def __init__(__self__, *,
                  type: _builtins.str,
@@ -44127,7 +46283,9 @@ class QuoteInvoiceSettings(dict):
     @staticmethod
     def __key_warning(key: str):
         suggest = None
-        if key == "daysUntilDue":
+        if key == "customFields":
+            suggest = "custom_fields"
+        elif key == "daysUntilDue":
             suggest = "days_until_due"
 
         if suggest:
@@ -44142,15 +46300,35 @@ class QuoteInvoiceSettings(dict):
         return super().get(key, default)
 
     def __init__(__self__, *,
+                 custom_fields: Optional[Sequence['outputs.QuoteInvoiceSettingsCustomField']] = None,
                  days_until_due: Optional[_builtins.float] = None,
+                 description: Optional[_builtins.str] = None,
+                 footer: Optional[_builtins.str] = None,
                  issuer: Optional['outputs.QuoteInvoiceSettingsIssuer'] = None):
         """
+        :param Sequence['QuoteInvoiceSettingsCustomFieldArgs'] custom_fields: A list of up to 4 custom fields to be displayed on the invoice.
         :param _builtins.float days_until_due: Number of days within which a customer must pay invoices generated by this quote. This value will be <span pulumi-lang-nodejs="`null`" pulumi-lang-dotnet="`Null`" pulumi-lang-go="`null`" pulumi-lang-python="`null`" pulumi-lang-yaml="`null`" pulumi-lang-java="`null`" pulumi-lang-hcl="`null`">`null`</span> for quotes where `collection_method=charge_automatically`.
+        :param _builtins.str description: An arbitrary string attached to the object. Often useful for displaying to users.
+        :param _builtins.str footer: Footer to be displayed on the invoice.
         """
+        if custom_fields is not None:
+            pulumi.set(__self__, "custom_fields", custom_fields)
         if days_until_due is not None:
             pulumi.set(__self__, "days_until_due", days_until_due)
+        if description is not None:
+            pulumi.set(__self__, "description", description)
+        if footer is not None:
+            pulumi.set(__self__, "footer", footer)
         if issuer is not None:
             pulumi.set(__self__, "issuer", issuer)
+
+    @_builtins.property
+    @pulumi.getter(name="customFields")
+    def custom_fields(self) -> Optional[Sequence['outputs.QuoteInvoiceSettingsCustomField']]:
+        """
+        A list of up to 4 custom fields to be displayed on the invoice.
+        """
+        return pulumi.get(self, "custom_fields")
 
     @_builtins.property
     @pulumi.getter(name="daysUntilDue")
@@ -44162,8 +46340,53 @@ class QuoteInvoiceSettings(dict):
 
     @_builtins.property
     @pulumi.getter
+    def description(self) -> Optional[_builtins.str]:
+        """
+        An arbitrary string attached to the object. Often useful for displaying to users.
+        """
+        return pulumi.get(self, "description")
+
+    @_builtins.property
+    @pulumi.getter
+    def footer(self) -> Optional[_builtins.str]:
+        """
+        Footer to be displayed on the invoice.
+        """
+        return pulumi.get(self, "footer")
+
+    @_builtins.property
+    @pulumi.getter
     def issuer(self) -> Optional['outputs.QuoteInvoiceSettingsIssuer']:
         return pulumi.get(self, "issuer")
+
+
+@pulumi.output_type
+class QuoteInvoiceSettingsCustomField(dict):
+    def __init__(__self__, *,
+                 name: _builtins.str,
+                 value: _builtins.str):
+        """
+        :param _builtins.str name: The name of the custom field.
+        :param _builtins.str value: The value of the custom field.
+        """
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "value", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> _builtins.str:
+        """
+        The name of the custom field.
+        """
+        return pulumi.get(self, "name")
+
+    @_builtins.property
+    @pulumi.getter
+    def value(self) -> _builtins.str:
+        """
+        The value of the custom field.
+        """
+        return pulumi.get(self, "value")
 
 
 @pulumi.output_type
@@ -44811,7 +47034,7 @@ class QuoteTotalDetailsBreakdownDiscount(dict):
                  discount: Optional[_builtins.str] = None):
         """
         :param _builtins.float amount: The amount discounted.
-        :param _builtins.str discount: A discount represents the actual application of a [coupon](https://api.stripe.com#coupons) or [promotion code](https://api.stripe.com#promotion_codes).
+        :param _builtins.str discount: A discount represents the actual application of a [coupon](https://docs.stripe.com/api#coupons) or [promotion code](https://docs.stripe.com/api#promotion_codes).
                It contains information about when the discount began, when it will end, and what it is applied to.
                
                Related guide: [Applying discounts to subscriptions](https://docs.stripe.com/billing/subscriptions/discounts)
@@ -44833,7 +47056,7 @@ class QuoteTotalDetailsBreakdownDiscount(dict):
     @pulumi.getter
     def discount(self) -> Optional[_builtins.str]:
         """
-        A discount represents the actual application of a [coupon](https://api.stripe.com#coupons) or [promotion code](https://api.stripe.com#promotion_codes).
+        A discount represents the actual application of a [coupon](https://docs.stripe.com/api#coupons) or [promotion code](https://docs.stripe.com/api#promotion_codes).
         It contains information about when the discount began, when it will end, and what it is applied to.
 
         Related guide: [Applying discounts to subscriptions](https://docs.stripe.com/billing/subscriptions/discounts)
@@ -45084,7 +47307,7 @@ class SetupIntentLastSetupError(dict):
                  source: Optional[_builtins.str] = None,
                  type: Optional[_builtins.str] = None):
         """
-        :param _builtins.str advice_code: For card errors resulting from a card issuer decline, a short string indicating [how to proceed with an error](https://docs.stripe.com/declines#retrying-issuer-declines) if they provide one.
+        :param _builtins.str advice_code: For card errors resulting from a card issuer decline, a short string indicating [how to proceed with an error](https://docs.stripe.com/declines/card#retrying-issuer-declines) if they provide one.
         :param _builtins.str charge: For card errors, the ID of the failed charge.
         :param _builtins.str code: For some errors that could be handled programmatically, a short string indicating the [error code](https://docs.stripe.com/error-codes) reported.
         :param _builtins.str decline_code: For card errors resulting from a card issuer decline, a short string indicating the [card issuer's reason for the decline](https://docs.stripe.com/declines#issuer-declines) if they provide one.
@@ -45113,7 +47336,7 @@ class SetupIntentLastSetupError(dict):
         :param _builtins.str request_log_url: A URL to the request log entry in your dashboard.
         :param _builtins.str setup_intent: A SetupIntent guides you through the process of setting up and saving a customer's payment credentials for future payments.
                For example, you can use a SetupIntent to set up and save your customer's card without immediately collecting a payment.
-               Later, you can use [PaymentIntents](https://api.stripe.com#payment_intents) to drive the payment flow.
+               Later, you can use [PaymentIntents](https://docs.stripe.com/api#payment_intents) to drive the payment flow.
                
                Create a SetupIntent when you're ready to collect your customer's payment credentials.
                Don't maintain long-lived, unconfirmed SetupIntents because they might not be valid.
@@ -45124,9 +47347,9 @@ class SetupIntentLastSetupError(dict):
                For example, cardholders in [certain regions](https://stripe.com/guides/strong-customer-authentication) might need to be run through
                [Strong Customer Authentication](https://docs.stripe.com/strong-customer-authentication) during payment method collection
                to streamline later [off-session payments](https://docs.stripe.com/payments/setup-intents).
-               If you use the SetupIntent with a [Customer](https://api.stripe.com#setup_intent_object-customer),
+               If you use the SetupIntent with a [Customer](https://docs.stripe.com/api#setup_intent_object-customer),
                it automatically attaches the resulting payment method to that Customer after successful setup.
-               We recommend using SetupIntents or <span pulumi-lang-nodejs="[setupFutureUsage]" pulumi-lang-dotnet="[SetupFutureUsage]" pulumi-lang-go="[setupFutureUsage]" pulumi-lang-python="[setup_future_usage]" pulumi-lang-yaml="[setupFutureUsage]" pulumi-lang-java="[setupFutureUsage]" pulumi-lang-hcl="[setup_future_usage]">[setupFutureUsage]</span>(https://api.stripe.com#payment_intent_object-setup_future_usage) on
+               We recommend using SetupIntents or <span pulumi-lang-nodejs="[setupFutureUsage]" pulumi-lang-dotnet="[SetupFutureUsage]" pulumi-lang-go="[setupFutureUsage]" pulumi-lang-python="[setup_future_usage]" pulumi-lang-yaml="[setupFutureUsage]" pulumi-lang-java="[setupFutureUsage]" pulumi-lang-hcl="[setup_future_usage]">[setupFutureUsage]</span>(https://docs.stripe.com/api#payment_intent_object-setup_future_usage) on
                PaymentIntents to save payment methods to prevent saving invalid or unoptimized payment methods.
                
                By using SetupIntents, you can reduce friction for your customers, even as regulations change over time.
@@ -45171,7 +47394,7 @@ class SetupIntentLastSetupError(dict):
     @pulumi.getter(name="adviceCode")
     def advice_code(self) -> Optional[_builtins.str]:
         """
-        For card errors resulting from a card issuer decline, a short string indicating [how to proceed with an error](https://docs.stripe.com/declines#retrying-issuer-declines) if they provide one.
+        For card errors resulting from a card issuer decline, a short string indicating [how to proceed with an error](https://docs.stripe.com/declines/card#retrying-issuer-declines) if they provide one.
         """
         return pulumi.get(self, "advice_code")
 
@@ -45291,7 +47514,7 @@ class SetupIntentLastSetupError(dict):
         """
         A SetupIntent guides you through the process of setting up and saving a customer's payment credentials for future payments.
         For example, you can use a SetupIntent to set up and save your customer's card without immediately collecting a payment.
-        Later, you can use [PaymentIntents](https://api.stripe.com#payment_intents) to drive the payment flow.
+        Later, you can use [PaymentIntents](https://docs.stripe.com/api#payment_intents) to drive the payment flow.
 
         Create a SetupIntent when you're ready to collect your customer's payment credentials.
         Don't maintain long-lived, unconfirmed SetupIntents because they might not be valid.
@@ -45302,9 +47525,9 @@ class SetupIntentLastSetupError(dict):
         For example, cardholders in [certain regions](https://stripe.com/guides/strong-customer-authentication) might need to be run through
         [Strong Customer Authentication](https://docs.stripe.com/strong-customer-authentication) during payment method collection
         to streamline later [off-session payments](https://docs.stripe.com/payments/setup-intents).
-        If you use the SetupIntent with a [Customer](https://api.stripe.com#setup_intent_object-customer),
+        If you use the SetupIntent with a [Customer](https://docs.stripe.com/api#setup_intent_object-customer),
         it automatically attaches the resulting payment method to that Customer after successful setup.
-        We recommend using SetupIntents or <span pulumi-lang-nodejs="[setupFutureUsage]" pulumi-lang-dotnet="[SetupFutureUsage]" pulumi-lang-go="[setupFutureUsage]" pulumi-lang-python="[setup_future_usage]" pulumi-lang-yaml="[setupFutureUsage]" pulumi-lang-java="[setupFutureUsage]" pulumi-lang-hcl="[setup_future_usage]">[setupFutureUsage]</span>(https://api.stripe.com#payment_intent_object-setup_future_usage) on
+        We recommend using SetupIntents or <span pulumi-lang-nodejs="[setupFutureUsage]" pulumi-lang-dotnet="[SetupFutureUsage]" pulumi-lang-go="[setupFutureUsage]" pulumi-lang-python="[setup_future_usage]" pulumi-lang-yaml="[setupFutureUsage]" pulumi-lang-java="[setupFutureUsage]" pulumi-lang-hcl="[setup_future_usage]">[setupFutureUsage]</span>(https://docs.stripe.com/api#payment_intent_object-setup_future_usage) on
         PaymentIntents to save payment methods to prevent saving invalid or unoptimized payment methods.
 
         By using SetupIntents, you can reduce friction for your customers, even as regulations change over time.
@@ -47503,6 +49726,7 @@ class SetupIntentPaymentMethodOptions(dict):
     def __init__(__self__, *,
                  acss_debit: Optional['outputs.SetupIntentPaymentMethodOptionsAcssDebit'] = None,
                  bacs_debit: Optional['outputs.SetupIntentPaymentMethodOptionsBacsDebit'] = None,
+                 blik: Optional['outputs.SetupIntentPaymentMethodOptionsBlik'] = None,
                  card: Optional['outputs.SetupIntentPaymentMethodOptionsCard'] = None,
                  klarna: Optional['outputs.SetupIntentPaymentMethodOptionsKlarna'] = None,
                  link: Optional['outputs.SetupIntentPaymentMethodOptionsLink'] = None,
@@ -47516,6 +49740,8 @@ class SetupIntentPaymentMethodOptions(dict):
             pulumi.set(__self__, "acss_debit", acss_debit)
         if bacs_debit is not None:
             pulumi.set(__self__, "bacs_debit", bacs_debit)
+        if blik is not None:
+            pulumi.set(__self__, "blik", blik)
         if card is not None:
             pulumi.set(__self__, "card", card)
         if klarna is not None:
@@ -47544,6 +49770,11 @@ class SetupIntentPaymentMethodOptions(dict):
     @pulumi.getter(name="bacsDebit")
     def bacs_debit(self) -> Optional['outputs.SetupIntentPaymentMethodOptionsBacsDebit']:
         return pulumi.get(self, "bacs_debit")
+
+    @_builtins.property
+    @pulumi.getter
+    def blik(self) -> Optional['outputs.SetupIntentPaymentMethodOptionsBlik']:
+        return pulumi.get(self, "blik")
 
     @_builtins.property
     @pulumi.getter
@@ -47808,6 +50039,98 @@ class SetupIntentPaymentMethodOptionsBacsDebitMandateOptions(dict):
 
 
 @pulumi.output_type
+class SetupIntentPaymentMethodOptionsBlik(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "mandateOptions":
+            suggest = "mandate_options"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in SetupIntentPaymentMethodOptionsBlik. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        SetupIntentPaymentMethodOptionsBlik.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        SetupIntentPaymentMethodOptionsBlik.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 code: Optional[_builtins.str] = None,
+                 mandate_options: Optional['outputs.SetupIntentPaymentMethodOptionsBlikMandateOptions'] = None):
+        """
+        :param _builtins.str code: The 6-digit BLIK code that a customer has generated using their banking application. Can only be set on confirmation.
+        """
+        if code is not None:
+            pulumi.set(__self__, "code", code)
+        if mandate_options is not None:
+            pulumi.set(__self__, "mandate_options", mandate_options)
+
+    @_builtins.property
+    @pulumi.getter
+    def code(self) -> Optional[_builtins.str]:
+        """
+        The 6-digit BLIK code that a customer has generated using their banking application. Can only be set on confirmation.
+        """
+        return pulumi.get(self, "code")
+
+    @_builtins.property
+    @pulumi.getter(name="mandateOptions")
+    def mandate_options(self) -> Optional['outputs.SetupIntentPaymentMethodOptionsBlikMandateOptions']:
+        return pulumi.get(self, "mandate_options")
+
+
+@pulumi.output_type
+class SetupIntentPaymentMethodOptionsBlikMandateOptions(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "expiresAt":
+            suggest = "expires_at"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in SetupIntentPaymentMethodOptionsBlikMandateOptions. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        SetupIntentPaymentMethodOptionsBlikMandateOptions.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        SetupIntentPaymentMethodOptionsBlikMandateOptions.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 expires_at: Optional[_builtins.float] = None,
+                 type: Optional[_builtins.str] = None):
+        """
+        :param _builtins.float expires_at: Date at which the mandate expires.
+        :param _builtins.str type: Type of the mandate.
+        """
+        if expires_at is not None:
+            pulumi.set(__self__, "expires_at", expires_at)
+        if type is not None:
+            pulumi.set(__self__, "type", type)
+
+    @_builtins.property
+    @pulumi.getter(name="expiresAt")
+    def expires_at(self) -> Optional[_builtins.float]:
+        """
+        Date at which the mandate expires.
+        """
+        return pulumi.get(self, "expires_at")
+
+    @_builtins.property
+    @pulumi.getter
+    def type(self) -> Optional[_builtins.str]:
+        """
+        Type of the mandate.
+        """
+        return pulumi.get(self, "type")
+
+
+@pulumi.output_type
 class SetupIntentPaymentMethodOptionsCard(dict):
     @staticmethod
     def __key_warning(key: str):
@@ -47816,6 +50139,8 @@ class SetupIntentPaymentMethodOptionsCard(dict):
             suggest = "mandate_options"
         elif key == "requestThreeDSecure":
             suggest = "request_three_d_secure"
+        elif key == "setupCredentialUsage":
+            suggest = "setup_credential_usage"
         elif key == "threeDSecure":
             suggest = "three_d_secure"
 
@@ -47835,6 +50160,7 @@ class SetupIntentPaymentMethodOptionsCard(dict):
                  moto: Optional[_builtins.bool] = None,
                  network: Optional[_builtins.str] = None,
                  request_three_d_secure: Optional[_builtins.str] = None,
+                 setup_credential_usage: Optional[_builtins.str] = None,
                  three_d_secure: Optional['outputs.SetupIntentPaymentMethodOptionsCardThreeDSecure'] = None):
         """
         :param 'SetupIntentPaymentMethodOptionsCardMandateOptionsArgs' mandate_options: Configuration options for setting up an eMandate for cards issued in India.
@@ -47843,6 +50169,7 @@ class SetupIntentPaymentMethodOptionsCard(dict):
                parameter can only be provided during confirmation.
         :param _builtins.str network: Selected network to process this SetupIntent on. Depends on the available networks of the card attached to the setup intent. Can be only set confirm-time.
         :param _builtins.str request_three_d_secure: We strongly recommend that you rely on our SCA Engine to automatically prompt your customers for authentication based on risk level and [other requirements](https://docs.stripe.com/strong-customer-authentication). However, if you wish to request 3D Secure based on logic from your own fraud engine, provide this option. If not provided, this value defaults to <span pulumi-lang-nodejs="`automatic`" pulumi-lang-dotnet="`Automatic`" pulumi-lang-go="`automatic`" pulumi-lang-python="`automatic`" pulumi-lang-yaml="`automatic`" pulumi-lang-java="`automatic`" pulumi-lang-hcl="`automatic`">`automatic`</span>. Read our guide on [manually requesting 3D Secure](https://docs.stripe.com/payments/3d-secure/authentication-flow#manual-three-ds) for more information on how this configuration interacts with Radar and our SCA Engine.
+        :param _builtins.str setup_credential_usage: Set to indicate the future transaction type usage for the card being set up.
         :param 'SetupIntentPaymentMethodOptionsCardThreeDSecureArgs' three_d_secure: If 3D Secure authentication was performed with a third-party provider,
                the authentication details to use for this setup.
         """
@@ -47854,6 +50181,8 @@ class SetupIntentPaymentMethodOptionsCard(dict):
             pulumi.set(__self__, "network", network)
         if request_three_d_secure is not None:
             pulumi.set(__self__, "request_three_d_secure", request_three_d_secure)
+        if setup_credential_usage is not None:
+            pulumi.set(__self__, "setup_credential_usage", setup_credential_usage)
         if three_d_secure is not None:
             pulumi.set(__self__, "three_d_secure", three_d_secure)
 
@@ -47890,6 +50219,14 @@ class SetupIntentPaymentMethodOptionsCard(dict):
         We strongly recommend that you rely on our SCA Engine to automatically prompt your customers for authentication based on risk level and [other requirements](https://docs.stripe.com/strong-customer-authentication). However, if you wish to request 3D Secure based on logic from your own fraud engine, provide this option. If not provided, this value defaults to <span pulumi-lang-nodejs="`automatic`" pulumi-lang-dotnet="`Automatic`" pulumi-lang-go="`automatic`" pulumi-lang-python="`automatic`" pulumi-lang-yaml="`automatic`" pulumi-lang-java="`automatic`" pulumi-lang-hcl="`automatic`">`automatic`</span>. Read our guide on [manually requesting 3D Secure](https://docs.stripe.com/payments/3d-secure/authentication-flow#manual-three-ds) for more information on how this configuration interacts with Radar and our SCA Engine.
         """
         return pulumi.get(self, "request_three_d_secure")
+
+    @_builtins.property
+    @pulumi.getter(name="setupCredentialUsage")
+    def setup_credential_usage(self) -> Optional[_builtins.str]:
+        """
+        Set to indicate the future transaction type usage for the card being set up.
+        """
+        return pulumi.get(self, "setup_credential_usage")
 
     @_builtins.property
     @pulumi.getter(name="threeDSecure")
@@ -53686,19 +56023,40 @@ class SubscriptionBillingThresholds(dict):
 
 @pulumi.output_type
 class SubscriptionCancellationDetails(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "feedbackOption":
+            suggest = "feedback_option"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in SubscriptionCancellationDetails. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        SubscriptionCancellationDetails.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        SubscriptionCancellationDetails.__key_warning(key)
+        return super().get(key, default)
+
     def __init__(__self__, *,
                  comment: Optional[_builtins.str] = None,
                  feedback: Optional[_builtins.str] = None,
+                 feedback_option: Optional[_builtins.str] = None,
                  reason: Optional[_builtins.str] = None):
         """
         :param _builtins.str comment: Additional comments about why the user canceled the subscription, if the subscription was canceled explicitly by the user.
         :param _builtins.str feedback: The customer submitted reason for why they canceled, if the subscription was canceled explicitly by the user.
+        :param _builtins.str feedback_option: Customized feedback options that provide deeper insight into why the subscription was canceled, if the subscription was canceled explicitly by the user.
         :param _builtins.str reason: Why this subscription was canceled.
         """
         if comment is not None:
             pulumi.set(__self__, "comment", comment)
         if feedback is not None:
             pulumi.set(__self__, "feedback", feedback)
+        if feedback_option is not None:
+            pulumi.set(__self__, "feedback_option", feedback_option)
         if reason is not None:
             pulumi.set(__self__, "reason", reason)
 
@@ -53717,6 +56075,14 @@ class SubscriptionCancellationDetails(dict):
         The customer submitted reason for why they canceled, if the subscription was canceled explicitly by the user.
         """
         return pulumi.get(self, "feedback")
+
+    @_builtins.property
+    @pulumi.getter(name="feedbackOption")
+    def feedback_option(self) -> Optional[_builtins.str]:
+        """
+        Customized feedback options that provide deeper insight into why the subscription was canceled, if the subscription was canceled explicitly by the user.
+        """
+        return pulumi.get(self, "feedback_option")
 
     @_builtins.property
     @pulumi.getter
@@ -53794,6 +56160,8 @@ class SubscriptionInvoiceSettings(dict):
         suggest = None
         if key == "accountTaxIds":
             suggest = "account_tax_ids"
+        elif key == "customFields":
+            suggest = "custom_fields"
 
         if suggest:
             pulumi.log.warn(f"Key '{key}' not found in SubscriptionInvoiceSettings. Access the value via the '{suggest}' property getter instead.")
@@ -53808,12 +56176,24 @@ class SubscriptionInvoiceSettings(dict):
 
     def __init__(__self__, *,
                  account_tax_ids: Optional[Sequence[_builtins.str]] = None,
+                 custom_fields: Optional[Sequence['outputs.SubscriptionInvoiceSettingsCustomField']] = None,
+                 description: Optional[_builtins.str] = None,
+                 footer: Optional[_builtins.str] = None,
                  issuer: Optional['outputs.SubscriptionInvoiceSettingsIssuer'] = None):
         """
         :param Sequence[_builtins.str] account_tax_ids: The account tax IDs associated with the subscription. Will be set on invoices generated by the subscription.
+        :param Sequence['SubscriptionInvoiceSettingsCustomFieldArgs'] custom_fields: A list of up to 4 custom fields to be displayed on the invoice.
+        :param _builtins.str description: An arbitrary string attached to the object. Often useful for displaying to users.
+        :param _builtins.str footer: Footer to be displayed on the invoice.
         """
         if account_tax_ids is not None:
             pulumi.set(__self__, "account_tax_ids", account_tax_ids)
+        if custom_fields is not None:
+            pulumi.set(__self__, "custom_fields", custom_fields)
+        if description is not None:
+            pulumi.set(__self__, "description", description)
+        if footer is not None:
+            pulumi.set(__self__, "footer", footer)
         if issuer is not None:
             pulumi.set(__self__, "issuer", issuer)
 
@@ -53826,9 +56206,62 @@ class SubscriptionInvoiceSettings(dict):
         return pulumi.get(self, "account_tax_ids")
 
     @_builtins.property
+    @pulumi.getter(name="customFields")
+    def custom_fields(self) -> Optional[Sequence['outputs.SubscriptionInvoiceSettingsCustomField']]:
+        """
+        A list of up to 4 custom fields to be displayed on the invoice.
+        """
+        return pulumi.get(self, "custom_fields")
+
+    @_builtins.property
+    @pulumi.getter
+    def description(self) -> Optional[_builtins.str]:
+        """
+        An arbitrary string attached to the object. Often useful for displaying to users.
+        """
+        return pulumi.get(self, "description")
+
+    @_builtins.property
+    @pulumi.getter
+    def footer(self) -> Optional[_builtins.str]:
+        """
+        Footer to be displayed on the invoice.
+        """
+        return pulumi.get(self, "footer")
+
+    @_builtins.property
     @pulumi.getter
     def issuer(self) -> Optional['outputs.SubscriptionInvoiceSettingsIssuer']:
         return pulumi.get(self, "issuer")
+
+
+@pulumi.output_type
+class SubscriptionInvoiceSettingsCustomField(dict):
+    def __init__(__self__, *,
+                 name: _builtins.str,
+                 value: _builtins.str):
+        """
+        :param _builtins.str name: The name of the custom field.
+        :param _builtins.str value: The value of the custom field.
+        """
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "value", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> _builtins.str:
+        """
+        The name of the custom field.
+        """
+        return pulumi.get(self, "name")
+
+    @_builtins.property
+    @pulumi.getter
+    def value(self) -> _builtins.str:
+        """
+        The value of the custom field.
+        """
+        return pulumi.get(self, "value")
 
 
 @pulumi.output_type
@@ -53868,6 +56301,8 @@ class SubscriptionItem(dict):
         suggest = None
         if key == "billingThresholds":
             suggest = "billing_thresholds"
+        elif key == "currentTrial":
+            suggest = "current_trial"
         elif key == "priceData":
             suggest = "price_data"
         elif key == "taxRates":
@@ -53886,6 +56321,7 @@ class SubscriptionItem(dict):
 
     def __init__(__self__, *,
                  billing_thresholds: Optional['outputs.SubscriptionItemBillingThresholds'] = None,
+                 current_trial: Optional['outputs.SubscriptionItemCurrentTrial'] = None,
                  discounts: Optional[Sequence['outputs.SubscriptionItemDiscount']] = None,
                  id: Optional[_builtins.str] = None,
                  metadata: Optional[Mapping[str, _builtins.str]] = None,
@@ -53895,6 +56331,7 @@ class SubscriptionItem(dict):
                  tax_rates: Optional[Sequence[_builtins.str]] = None):
         """
         :param 'SubscriptionItemBillingThresholdsArgs' billing_thresholds: Define thresholds at which an invoice will be sent, and the subscription advanced to a new billing period. Pass an empty string to remove previously-defined thresholds.
+        :param 'SubscriptionItemCurrentTrialArgs' current_trial: The trial offer to apply to this subscription item.
         :param Sequence['SubscriptionItemDiscountArgs'] discounts: The coupons to redeem into discounts for the subscription item.
         :param _builtins.str id: Unique identifier for the object.
         :param Mapping[str, _builtins.str] metadata: Set of [key-value pairs](https://docs.stripe.com/api/metadata) that you can attach to an object. This can be useful for storing additional information about the object in a structured format. Individual keys can be unset by posting an empty value to them. All keys can be unset by posting an empty value to <span pulumi-lang-nodejs="`metadata`" pulumi-lang-dotnet="`Metadata`" pulumi-lang-go="`metadata`" pulumi-lang-python="`metadata`" pulumi-lang-yaml="`metadata`" pulumi-lang-java="`metadata`" pulumi-lang-hcl="`metadata`">`metadata`</span>.
@@ -53905,6 +56342,8 @@ class SubscriptionItem(dict):
         """
         if billing_thresholds is not None:
             pulumi.set(__self__, "billing_thresholds", billing_thresholds)
+        if current_trial is not None:
+            pulumi.set(__self__, "current_trial", current_trial)
         if discounts is not None:
             pulumi.set(__self__, "discounts", discounts)
         if id is not None:
@@ -53927,6 +56366,14 @@ class SubscriptionItem(dict):
         Define thresholds at which an invoice will be sent, and the subscription advanced to a new billing period. Pass an empty string to remove previously-defined thresholds.
         """
         return pulumi.get(self, "billing_thresholds")
+
+    @_builtins.property
+    @pulumi.getter(name="currentTrial")
+    def current_trial(self) -> Optional['outputs.SubscriptionItemCurrentTrial']:
+        """
+        The trial offer to apply to this subscription item.
+        """
+        return pulumi.get(self, "current_trial")
 
     @_builtins.property
     @pulumi.getter
@@ -54018,6 +56465,69 @@ class SubscriptionItemBillingThresholds(dict):
         Usage threshold that triggers the subscription to create an invoice
         """
         return pulumi.get(self, "usage_gte")
+
+
+@pulumi.output_type
+class SubscriptionItemCurrentTrial(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "trialOffer":
+            suggest = "trial_offer"
+        elif key == "endDate":
+            suggest = "end_date"
+        elif key == "startDate":
+            suggest = "start_date"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in SubscriptionItemCurrentTrial. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        SubscriptionItemCurrentTrial.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        SubscriptionItemCurrentTrial.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 trial_offer: _builtins.str,
+                 end_date: Optional[_builtins.float] = None,
+                 start_date: Optional[_builtins.float] = None):
+        """
+        :param _builtins.str trial_offer: The Trial Offer ID applied to the subscription item.
+        :param _builtins.float end_date: The time the current trial ends.
+        :param _builtins.float start_date: The time the current trial started.
+        """
+        pulumi.set(__self__, "trial_offer", trial_offer)
+        if end_date is not None:
+            pulumi.set(__self__, "end_date", end_date)
+        if start_date is not None:
+            pulumi.set(__self__, "start_date", start_date)
+
+    @_builtins.property
+    @pulumi.getter(name="trialOffer")
+    def trial_offer(self) -> _builtins.str:
+        """
+        The Trial Offer ID applied to the subscription item.
+        """
+        return pulumi.get(self, "trial_offer")
+
+    @_builtins.property
+    @pulumi.getter(name="endDate")
+    def end_date(self) -> Optional[_builtins.float]:
+        """
+        The time the current trial ends.
+        """
+        return pulumi.get(self, "end_date")
+
+    @_builtins.property
+    @pulumi.getter(name="startDate")
+    def start_date(self) -> Optional[_builtins.float]:
+        """
+        The time the current trial started.
+        """
+        return pulumi.get(self, "start_date")
 
 
 @pulumi.output_type
@@ -54397,6 +56907,8 @@ class SubscriptionPaymentSettingsPaymentMethodOptions(dict):
     def __init__(__self__, *,
                  acss_debit: Optional['outputs.SubscriptionPaymentSettingsPaymentMethodOptionsAcssDebit'] = None,
                  bancontact: Optional['outputs.SubscriptionPaymentSettingsPaymentMethodOptionsBancontact'] = None,
+                 billie: Optional['outputs.SubscriptionPaymentSettingsPaymentMethodOptionsBillie'] = None,
+                 blik: Optional['outputs.SubscriptionPaymentSettingsPaymentMethodOptionsBlik'] = None,
                  card: Optional['outputs.SubscriptionPaymentSettingsPaymentMethodOptionsCard'] = None,
                  customer_balance: Optional['outputs.SubscriptionPaymentSettingsPaymentMethodOptionsCustomerBalance'] = None,
                  payto: Optional['outputs.SubscriptionPaymentSettingsPaymentMethodOptionsPayto'] = None,
@@ -54406,6 +56918,8 @@ class SubscriptionPaymentSettingsPaymentMethodOptions(dict):
         """
         :param 'SubscriptionPaymentSettingsPaymentMethodOptionsAcssDebitArgs' acss_debit: This sub-hash contains details about the Canadian pre-authorized debit payment method options to pass to invoices created by the subscription.
         :param 'SubscriptionPaymentSettingsPaymentMethodOptionsBancontactArgs' bancontact: This sub-hash contains details about the Bancontact payment method options to pass to invoices created by the subscription.
+        :param 'SubscriptionPaymentSettingsPaymentMethodOptionsBillieArgs' billie: This sub-hash contains details about the Billie payment method options to pass to invoices created by the subscription.
+        :param 'SubscriptionPaymentSettingsPaymentMethodOptionsBlikArgs' blik: This sub-hash contains details about the Blik payment method options to pass to invoices created by the subscription.
         :param 'SubscriptionPaymentSettingsPaymentMethodOptionsCardArgs' card: This sub-hash contains details about the Card payment method options to pass to invoices created by the subscription.
         :param 'SubscriptionPaymentSettingsPaymentMethodOptionsCustomerBalanceArgs' customer_balance: This sub-hash contains details about the Bank transfer payment method options to pass to invoices created by the subscription.
         :param 'SubscriptionPaymentSettingsPaymentMethodOptionsPaytoArgs' payto: This sub-hash contains details about the PayTo payment method options to pass to invoices created by the subscription.
@@ -54417,6 +56931,10 @@ class SubscriptionPaymentSettingsPaymentMethodOptions(dict):
             pulumi.set(__self__, "acss_debit", acss_debit)
         if bancontact is not None:
             pulumi.set(__self__, "bancontact", bancontact)
+        if billie is not None:
+            pulumi.set(__self__, "billie", billie)
+        if blik is not None:
+            pulumi.set(__self__, "blik", blik)
         if card is not None:
             pulumi.set(__self__, "card", card)
         if customer_balance is not None:
@@ -54445,6 +56963,22 @@ class SubscriptionPaymentSettingsPaymentMethodOptions(dict):
         This sub-hash contains details about the Bancontact payment method options to pass to invoices created by the subscription.
         """
         return pulumi.get(self, "bancontact")
+
+    @_builtins.property
+    @pulumi.getter
+    def billie(self) -> Optional['outputs.SubscriptionPaymentSettingsPaymentMethodOptionsBillie']:
+        """
+        This sub-hash contains details about the Billie payment method options to pass to invoices created by the subscription.
+        """
+        return pulumi.get(self, "billie")
+
+    @_builtins.property
+    @pulumi.getter
+    def blik(self) -> Optional['outputs.SubscriptionPaymentSettingsPaymentMethodOptionsBlik']:
+        """
+        This sub-hash contains details about the Blik payment method options to pass to invoices created by the subscription.
+        """
+        return pulumi.get(self, "blik")
 
     @_builtins.property
     @pulumi.getter
@@ -54611,6 +57145,284 @@ class SubscriptionPaymentSettingsPaymentMethodOptionsBancontact(dict):
         Preferred language of the Bancontact authorization page that the customer is redirected to.
         """
         return pulumi.get(self, "preferred_language")
+
+
+@pulumi.output_type
+class SubscriptionPaymentSettingsPaymentMethodOptionsBillie(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "companyDetails":
+            suggest = "company_details"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in SubscriptionPaymentSettingsPaymentMethodOptionsBillie. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        SubscriptionPaymentSettingsPaymentMethodOptionsBillie.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        SubscriptionPaymentSettingsPaymentMethodOptionsBillie.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 company_details: Optional['outputs.SubscriptionPaymentSettingsPaymentMethodOptionsBillieCompanyDetails'] = None):
+        if company_details is not None:
+            pulumi.set(__self__, "company_details", company_details)
+
+    @_builtins.property
+    @pulumi.getter(name="companyDetails")
+    def company_details(self) -> Optional['outputs.SubscriptionPaymentSettingsPaymentMethodOptionsBillieCompanyDetails']:
+        return pulumi.get(self, "company_details")
+
+
+@pulumi.output_type
+class SubscriptionPaymentSettingsPaymentMethodOptionsBillieCompanyDetails(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "registeredAddress":
+            suggest = "registered_address"
+        elif key == "registeredName":
+            suggest = "registered_name"
+        elif key == "registrationNumber":
+            suggest = "registration_number"
+        elif key == "registrationType":
+            suggest = "registration_type"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in SubscriptionPaymentSettingsPaymentMethodOptionsBillieCompanyDetails. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        SubscriptionPaymentSettingsPaymentMethodOptionsBillieCompanyDetails.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        SubscriptionPaymentSettingsPaymentMethodOptionsBillieCompanyDetails.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 registered_address: Optional['outputs.SubscriptionPaymentSettingsPaymentMethodOptionsBillieCompanyDetailsRegisteredAddress'] = None,
+                 registered_name: Optional[_builtins.str] = None,
+                 registration_number: Optional[_builtins.str] = None,
+                 registration_type: Optional[_builtins.str] = None,
+                 vat: Optional[_builtins.str] = None):
+        """
+        :param _builtins.str registered_name: Company or entity name.
+        :param _builtins.str registration_number: The official registration number for the given registration type.
+        :param _builtins.str registration_type: Type of registration the company or entity holds in their registered country.
+        :param _builtins.str vat: VAT ID number.
+        """
+        if registered_address is not None:
+            pulumi.set(__self__, "registered_address", registered_address)
+        if registered_name is not None:
+            pulumi.set(__self__, "registered_name", registered_name)
+        if registration_number is not None:
+            pulumi.set(__self__, "registration_number", registration_number)
+        if registration_type is not None:
+            pulumi.set(__self__, "registration_type", registration_type)
+        if vat is not None:
+            pulumi.set(__self__, "vat", vat)
+
+    @_builtins.property
+    @pulumi.getter(name="registeredAddress")
+    def registered_address(self) -> Optional['outputs.SubscriptionPaymentSettingsPaymentMethodOptionsBillieCompanyDetailsRegisteredAddress']:
+        return pulumi.get(self, "registered_address")
+
+    @_builtins.property
+    @pulumi.getter(name="registeredName")
+    def registered_name(self) -> Optional[_builtins.str]:
+        """
+        Company or entity name.
+        """
+        return pulumi.get(self, "registered_name")
+
+    @_builtins.property
+    @pulumi.getter(name="registrationNumber")
+    def registration_number(self) -> Optional[_builtins.str]:
+        """
+        The official registration number for the given registration type.
+        """
+        return pulumi.get(self, "registration_number")
+
+    @_builtins.property
+    @pulumi.getter(name="registrationType")
+    def registration_type(self) -> Optional[_builtins.str]:
+        """
+        Type of registration the company or entity holds in their registered country.
+        """
+        return pulumi.get(self, "registration_type")
+
+    @_builtins.property
+    @pulumi.getter
+    def vat(self) -> Optional[_builtins.str]:
+        """
+        VAT ID number.
+        """
+        return pulumi.get(self, "vat")
+
+
+@pulumi.output_type
+class SubscriptionPaymentSettingsPaymentMethodOptionsBillieCompanyDetailsRegisteredAddress(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "postalCode":
+            suggest = "postal_code"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in SubscriptionPaymentSettingsPaymentMethodOptionsBillieCompanyDetailsRegisteredAddress. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        SubscriptionPaymentSettingsPaymentMethodOptionsBillieCompanyDetailsRegisteredAddress.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        SubscriptionPaymentSettingsPaymentMethodOptionsBillieCompanyDetailsRegisteredAddress.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 city: Optional[_builtins.str] = None,
+                 country: Optional[_builtins.str] = None,
+                 line1: Optional[_builtins.str] = None,
+                 line2: Optional[_builtins.str] = None,
+                 postal_code: Optional[_builtins.str] = None,
+                 state: Optional[_builtins.str] = None):
+        """
+        :param _builtins.str city: City, district, suburb, town, or village.
+        :param _builtins.str country: Two-letter country code.
+        :param _builtins.str line1: Address line 1 (for example, street, PO Box, or company name).
+        :param _builtins.str line2: Address line 2 (for example, apartment, suite, unit, or building).
+        :param _builtins.str postal_code: ZIP or postal code.
+        :param _builtins.str state: State, county, province, or region.
+        """
+        if city is not None:
+            pulumi.set(__self__, "city", city)
+        if country is not None:
+            pulumi.set(__self__, "country", country)
+        if line1 is not None:
+            pulumi.set(__self__, "line1", line1)
+        if line2 is not None:
+            pulumi.set(__self__, "line2", line2)
+        if postal_code is not None:
+            pulumi.set(__self__, "postal_code", postal_code)
+        if state is not None:
+            pulumi.set(__self__, "state", state)
+
+    @_builtins.property
+    @pulumi.getter
+    def city(self) -> Optional[_builtins.str]:
+        """
+        City, district, suburb, town, or village.
+        """
+        return pulumi.get(self, "city")
+
+    @_builtins.property
+    @pulumi.getter
+    def country(self) -> Optional[_builtins.str]:
+        """
+        Two-letter country code.
+        """
+        return pulumi.get(self, "country")
+
+    @_builtins.property
+    @pulumi.getter
+    def line1(self) -> Optional[_builtins.str]:
+        """
+        Address line 1 (for example, street, PO Box, or company name).
+        """
+        return pulumi.get(self, "line1")
+
+    @_builtins.property
+    @pulumi.getter
+    def line2(self) -> Optional[_builtins.str]:
+        """
+        Address line 2 (for example, apartment, suite, unit, or building).
+        """
+        return pulumi.get(self, "line2")
+
+    @_builtins.property
+    @pulumi.getter(name="postalCode")
+    def postal_code(self) -> Optional[_builtins.str]:
+        """
+        ZIP or postal code.
+        """
+        return pulumi.get(self, "postal_code")
+
+    @_builtins.property
+    @pulumi.getter
+    def state(self) -> Optional[_builtins.str]:
+        """
+        State, county, province, or region.
+        """
+        return pulumi.get(self, "state")
+
+
+@pulumi.output_type
+class SubscriptionPaymentSettingsPaymentMethodOptionsBlik(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "mandateOptions":
+            suggest = "mandate_options"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in SubscriptionPaymentSettingsPaymentMethodOptionsBlik. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        SubscriptionPaymentSettingsPaymentMethodOptionsBlik.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        SubscriptionPaymentSettingsPaymentMethodOptionsBlik.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 mandate_options: Optional['outputs.SubscriptionPaymentSettingsPaymentMethodOptionsBlikMandateOptions'] = None):
+        if mandate_options is not None:
+            pulumi.set(__self__, "mandate_options", mandate_options)
+
+    @_builtins.property
+    @pulumi.getter(name="mandateOptions")
+    def mandate_options(self) -> Optional['outputs.SubscriptionPaymentSettingsPaymentMethodOptionsBlikMandateOptions']:
+        return pulumi.get(self, "mandate_options")
+
+
+@pulumi.output_type
+class SubscriptionPaymentSettingsPaymentMethodOptionsBlikMandateOptions(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "expiresAt":
+            suggest = "expires_at"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in SubscriptionPaymentSettingsPaymentMethodOptionsBlikMandateOptions. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        SubscriptionPaymentSettingsPaymentMethodOptionsBlikMandateOptions.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        SubscriptionPaymentSettingsPaymentMethodOptionsBlikMandateOptions.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 expires_at: Optional[_builtins.float] = None):
+        """
+        :param _builtins.float expires_at: Date when the mandate expires and no further payments will be charged. If not provided, the mandate will be set to be indefinite.
+        """
+        if expires_at is not None:
+            pulumi.set(__self__, "expires_at", expires_at)
+
+    @_builtins.property
+    @pulumi.getter(name="expiresAt")
+    def expires_at(self) -> Optional[_builtins.float]:
+        """
+        Date when the mandate expires and no further payments will be charged. If not provided, the mandate will be set to be indefinite.
+        """
+        return pulumi.get(self, "expires_at")
 
 
 @pulumi.output_type
@@ -54954,7 +57766,7 @@ class SubscriptionPaymentSettingsPaymentMethodOptionsPix(dict):
                  expires_after_seconds: Optional[_builtins.float] = None,
                  mandate_options: Optional['outputs.SubscriptionPaymentSettingsPaymentMethodOptionsPixMandateOptions'] = None):
         """
-        :param _builtins.float expires_after_seconds: The number of seconds (between 10 and 1209600) after which Pix payment will expire. Defaults to 86400 seconds.
+        :param _builtins.float expires_after_seconds: The number of seconds after PaymentIntent confirmation when the Pix expires (between 60 and 1209600, inclusive). If unspecified, defaults to 14400 seconds (4 hours).
         """
         if expires_after_seconds is not None:
             pulumi.set(__self__, "expires_after_seconds", expires_after_seconds)
@@ -54965,7 +57777,7 @@ class SubscriptionPaymentSettingsPaymentMethodOptionsPix(dict):
     @pulumi.getter(name="expiresAfterSeconds")
     def expires_after_seconds(self) -> Optional[_builtins.float]:
         """
-        The number of seconds (between 10 and 1209600) after which Pix payment will expire. Defaults to 86400 seconds.
+        The number of seconds after PaymentIntent confirmation when the Pix expires (between 60 and 1209600, inclusive). If unspecified, defaults to 14400 seconds (4 hours).
         """
         return pulumi.get(self, "expires_after_seconds")
 
@@ -55330,6 +58142,8 @@ class SubscriptionPendingUpdate(dict):
         suggest = None
         if key == "billingCycleAnchor":
             suggest = "billing_cycle_anchor"
+        elif key == "cancelAtPeriodEnd":
+            suggest = "cancel_at_period_end"
         elif key == "expiresAt":
             suggest = "expires_at"
         elif key == "trialEnd":
@@ -55350,6 +58164,7 @@ class SubscriptionPendingUpdate(dict):
 
     def __init__(__self__, *,
                  billing_cycle_anchor: Optional[_builtins.float] = None,
+                 cancel_at_period_end: Optional[_builtins.bool] = None,
                  discount: Optional[_builtins.str] = None,
                  expires_at: Optional[_builtins.float] = None,
                  metadata: Optional[Mapping[str, _builtins.str]] = None,
@@ -55357,14 +58172,17 @@ class SubscriptionPendingUpdate(dict):
                  trial_from_plan: Optional[_builtins.bool] = None):
         """
         :param _builtins.float billing_cycle_anchor: If the update is applied, determines the date of the first full invoice, and, for plans with <span pulumi-lang-nodejs="`month`" pulumi-lang-dotnet="`Month`" pulumi-lang-go="`month`" pulumi-lang-python="`month`" pulumi-lang-yaml="`month`" pulumi-lang-java="`month`" pulumi-lang-hcl="`month`">`month`</span> or <span pulumi-lang-nodejs="`year`" pulumi-lang-dotnet="`Year`" pulumi-lang-go="`year`" pulumi-lang-python="`year`" pulumi-lang-yaml="`year`" pulumi-lang-java="`year`" pulumi-lang-hcl="`year`">`year`</span> intervals, the day of the month for subsequent invoices. The timestamp is in UTC format.
+        :param _builtins.bool cancel_at_period_end: Indicates whether this subscription should cancel at the end of the current period if the update is applied.
         :param _builtins.str discount: The pending subscription-level discount that will be applied when the pending update is applied.
         :param _builtins.float expires_at: The point after which the changes reflected by this update will be discarded and no longer applied.
         :param Mapping[str, _builtins.str] metadata: Set of [key-value pairs](https://docs.stripe.com/api/metadata) that you can attach to an object. This can be useful for storing additional information about the object in a structured format.
         :param _builtins.float trial_end: Unix timestamp representing the end of the trial period the customer will get before being charged for the first time, if the update is applied.
-        :param _builtins.bool trial_from_plan: Indicates if a plan's <span pulumi-lang-nodejs="`trialPeriodDays`" pulumi-lang-dotnet="`TrialPeriodDays`" pulumi-lang-go="`trialPeriodDays`" pulumi-lang-python="`trial_period_days`" pulumi-lang-yaml="`trialPeriodDays`" pulumi-lang-java="`trialPeriodDays`" pulumi-lang-hcl="`trial_period_days`">`trialPeriodDays`</span> should be applied to the subscription. Setting <span pulumi-lang-nodejs="`trialEnd`" pulumi-lang-dotnet="`TrialEnd`" pulumi-lang-go="`trialEnd`" pulumi-lang-python="`trial_end`" pulumi-lang-yaml="`trialEnd`" pulumi-lang-java="`trialEnd`" pulumi-lang-hcl="`trial_end`">`trialEnd`</span> per subscription is preferred, and this defaults to <span pulumi-lang-nodejs="`false`" pulumi-lang-dotnet="`False`" pulumi-lang-go="`false`" pulumi-lang-python="`false`" pulumi-lang-yaml="`false`" pulumi-lang-java="`false`" pulumi-lang-hcl="`false`">`false`</span>. Setting this flag to <span pulumi-lang-nodejs="`true`" pulumi-lang-dotnet="`True`" pulumi-lang-go="`true`" pulumi-lang-python="`true`" pulumi-lang-yaml="`true`" pulumi-lang-java="`true`" pulumi-lang-hcl="`true`">`true`</span> together with <span pulumi-lang-nodejs="`trialEnd`" pulumi-lang-dotnet="`TrialEnd`" pulumi-lang-go="`trialEnd`" pulumi-lang-python="`trial_end`" pulumi-lang-yaml="`trialEnd`" pulumi-lang-java="`trialEnd`" pulumi-lang-hcl="`trial_end`">`trialEnd`</span> is not allowed. See [Using trial periods on subscriptions](https://docs.stripe.com/billing/subscriptions/trials) to learn more.
+        :param _builtins.bool trial_from_plan: Indicates if a plan's <span pulumi-lang-nodejs="`trialPeriodDays`" pulumi-lang-dotnet="`TrialPeriodDays`" pulumi-lang-go="`trialPeriodDays`" pulumi-lang-python="`trial_period_days`" pulumi-lang-yaml="`trialPeriodDays`" pulumi-lang-java="`trialPeriodDays`" pulumi-lang-hcl="`trial_period_days`">`trialPeriodDays`</span> should be applied to the subscription. Setting <span pulumi-lang-nodejs="`trialEnd`" pulumi-lang-dotnet="`TrialEnd`" pulumi-lang-go="`trialEnd`" pulumi-lang-python="`trial_end`" pulumi-lang-yaml="`trialEnd`" pulumi-lang-java="`trialEnd`" pulumi-lang-hcl="`trial_end`">`trialEnd`</span> per subscription is preferred, and this defaults to <span pulumi-lang-nodejs="`false`" pulumi-lang-dotnet="`False`" pulumi-lang-go="`false`" pulumi-lang-python="`false`" pulumi-lang-yaml="`false`" pulumi-lang-java="`false`" pulumi-lang-hcl="`false`">`false`</span>. Setting this flag to <span pulumi-lang-nodejs="`true`" pulumi-lang-dotnet="`True`" pulumi-lang-go="`true`" pulumi-lang-python="`true`" pulumi-lang-yaml="`true`" pulumi-lang-java="`true`" pulumi-lang-hcl="`true`">`true`</span> together with <span pulumi-lang-nodejs="`trialEnd`" pulumi-lang-dotnet="`TrialEnd`" pulumi-lang-go="`trialEnd`" pulumi-lang-python="`trial_end`" pulumi-lang-yaml="`trialEnd`" pulumi-lang-java="`trialEnd`" pulumi-lang-hcl="`trial_end`">`trialEnd`</span> is not allowed. See [Using trial periods on subscriptions](https://docs.stripe.com/billing/subscriptions/trials/free-trials) to learn more.
         """
         if billing_cycle_anchor is not None:
             pulumi.set(__self__, "billing_cycle_anchor", billing_cycle_anchor)
+        if cancel_at_period_end is not None:
+            pulumi.set(__self__, "cancel_at_period_end", cancel_at_period_end)
         if discount is not None:
             pulumi.set(__self__, "discount", discount)
         if expires_at is not None:
@@ -55383,6 +58201,14 @@ class SubscriptionPendingUpdate(dict):
         If the update is applied, determines the date of the first full invoice, and, for plans with <span pulumi-lang-nodejs="`month`" pulumi-lang-dotnet="`Month`" pulumi-lang-go="`month`" pulumi-lang-python="`month`" pulumi-lang-yaml="`month`" pulumi-lang-java="`month`" pulumi-lang-hcl="`month`">`month`</span> or <span pulumi-lang-nodejs="`year`" pulumi-lang-dotnet="`Year`" pulumi-lang-go="`year`" pulumi-lang-python="`year`" pulumi-lang-yaml="`year`" pulumi-lang-java="`year`" pulumi-lang-hcl="`year`">`year`</span> intervals, the day of the month for subsequent invoices. The timestamp is in UTC format.
         """
         return pulumi.get(self, "billing_cycle_anchor")
+
+    @_builtins.property
+    @pulumi.getter(name="cancelAtPeriodEnd")
+    def cancel_at_period_end(self) -> Optional[_builtins.bool]:
+        """
+        Indicates whether this subscription should cancel at the end of the current period if the update is applied.
+        """
+        return pulumi.get(self, "cancel_at_period_end")
 
     @_builtins.property
     @pulumi.getter
@@ -55420,7 +58246,7 @@ class SubscriptionPendingUpdate(dict):
     @pulumi.getter(name="trialFromPlan")
     def trial_from_plan(self) -> Optional[_builtins.bool]:
         """
-        Indicates if a plan's <span pulumi-lang-nodejs="`trialPeriodDays`" pulumi-lang-dotnet="`TrialPeriodDays`" pulumi-lang-go="`trialPeriodDays`" pulumi-lang-python="`trial_period_days`" pulumi-lang-yaml="`trialPeriodDays`" pulumi-lang-java="`trialPeriodDays`" pulumi-lang-hcl="`trial_period_days`">`trialPeriodDays`</span> should be applied to the subscription. Setting <span pulumi-lang-nodejs="`trialEnd`" pulumi-lang-dotnet="`TrialEnd`" pulumi-lang-go="`trialEnd`" pulumi-lang-python="`trial_end`" pulumi-lang-yaml="`trialEnd`" pulumi-lang-java="`trialEnd`" pulumi-lang-hcl="`trial_end`">`trialEnd`</span> per subscription is preferred, and this defaults to <span pulumi-lang-nodejs="`false`" pulumi-lang-dotnet="`False`" pulumi-lang-go="`false`" pulumi-lang-python="`false`" pulumi-lang-yaml="`false`" pulumi-lang-java="`false`" pulumi-lang-hcl="`false`">`false`</span>. Setting this flag to <span pulumi-lang-nodejs="`true`" pulumi-lang-dotnet="`True`" pulumi-lang-go="`true`" pulumi-lang-python="`true`" pulumi-lang-yaml="`true`" pulumi-lang-java="`true`" pulumi-lang-hcl="`true`">`true`</span> together with <span pulumi-lang-nodejs="`trialEnd`" pulumi-lang-dotnet="`TrialEnd`" pulumi-lang-go="`trialEnd`" pulumi-lang-python="`trial_end`" pulumi-lang-yaml="`trialEnd`" pulumi-lang-java="`trialEnd`" pulumi-lang-hcl="`trial_end`">`trialEnd`</span> is not allowed. See [Using trial periods on subscriptions](https://docs.stripe.com/billing/subscriptions/trials) to learn more.
+        Indicates if a plan's <span pulumi-lang-nodejs="`trialPeriodDays`" pulumi-lang-dotnet="`TrialPeriodDays`" pulumi-lang-go="`trialPeriodDays`" pulumi-lang-python="`trial_period_days`" pulumi-lang-yaml="`trialPeriodDays`" pulumi-lang-java="`trialPeriodDays`" pulumi-lang-hcl="`trial_period_days`">`trialPeriodDays`</span> should be applied to the subscription. Setting <span pulumi-lang-nodejs="`trialEnd`" pulumi-lang-dotnet="`TrialEnd`" pulumi-lang-go="`trialEnd`" pulumi-lang-python="`trial_end`" pulumi-lang-yaml="`trialEnd`" pulumi-lang-java="`trialEnd`" pulumi-lang-hcl="`trial_end`">`trialEnd`</span> per subscription is preferred, and this defaults to <span pulumi-lang-nodejs="`false`" pulumi-lang-dotnet="`False`" pulumi-lang-go="`false`" pulumi-lang-python="`false`" pulumi-lang-yaml="`false`" pulumi-lang-java="`false`" pulumi-lang-hcl="`false`">`false`</span>. Setting this flag to <span pulumi-lang-nodejs="`true`" pulumi-lang-dotnet="`True`" pulumi-lang-go="`true`" pulumi-lang-python="`true`" pulumi-lang-yaml="`true`" pulumi-lang-java="`true`" pulumi-lang-hcl="`true`">`true`</span> together with <span pulumi-lang-nodejs="`trialEnd`" pulumi-lang-dotnet="`TrialEnd`" pulumi-lang-go="`trialEnd`" pulumi-lang-python="`trial_end`" pulumi-lang-yaml="`trialEnd`" pulumi-lang-java="`trialEnd`" pulumi-lang-hcl="`trial_end`">`trialEnd`</span> is not allowed. See [Using trial periods on subscriptions](https://docs.stripe.com/billing/subscriptions/trials/free-trials) to learn more.
         """
         return pulumi.get(self, "trial_from_plan")
 
@@ -55904,6 +58730,8 @@ class SubscriptionScheduleDefaultSettingsInvoiceSettings(dict):
         suggest = None
         if key == "accountTaxIds":
             suggest = "account_tax_ids"
+        elif key == "customFields":
+            suggest = "custom_fields"
         elif key == "daysUntilDue":
             suggest = "days_until_due"
 
@@ -55920,16 +58748,28 @@ class SubscriptionScheduleDefaultSettingsInvoiceSettings(dict):
 
     def __init__(__self__, *,
                  account_tax_ids: Optional[Sequence[_builtins.str]] = None,
+                 custom_fields: Optional[Sequence['outputs.SubscriptionScheduleDefaultSettingsInvoiceSettingsCustomField']] = None,
                  days_until_due: Optional[_builtins.float] = None,
+                 description: Optional[_builtins.str] = None,
+                 footer: Optional[_builtins.str] = None,
                  issuer: Optional['outputs.SubscriptionScheduleDefaultSettingsInvoiceSettingsIssuer'] = None):
         """
         :param Sequence[_builtins.str] account_tax_ids: The account tax IDs associated with the subscription schedule. Will be set on invoices generated by the subscription schedule.
+        :param Sequence['SubscriptionScheduleDefaultSettingsInvoiceSettingsCustomFieldArgs'] custom_fields: A list of up to 4 custom fields to be displayed on the invoice.
         :param _builtins.float days_until_due: Number of days within which a customer must pay invoices generated by this subscription schedule. This value will be <span pulumi-lang-nodejs="`null`" pulumi-lang-dotnet="`Null`" pulumi-lang-go="`null`" pulumi-lang-python="`null`" pulumi-lang-yaml="`null`" pulumi-lang-java="`null`" pulumi-lang-hcl="`null`">`null`</span> for subscription schedules where `billing=charge_automatically`.
+        :param _builtins.str description: An arbitrary string attached to the object. Often useful for displaying to users.
+        :param _builtins.str footer: Footer to be displayed on the invoice.
         """
         if account_tax_ids is not None:
             pulumi.set(__self__, "account_tax_ids", account_tax_ids)
+        if custom_fields is not None:
+            pulumi.set(__self__, "custom_fields", custom_fields)
         if days_until_due is not None:
             pulumi.set(__self__, "days_until_due", days_until_due)
+        if description is not None:
+            pulumi.set(__self__, "description", description)
+        if footer is not None:
+            pulumi.set(__self__, "footer", footer)
         if issuer is not None:
             pulumi.set(__self__, "issuer", issuer)
 
@@ -55942,6 +58782,14 @@ class SubscriptionScheduleDefaultSettingsInvoiceSettings(dict):
         return pulumi.get(self, "account_tax_ids")
 
     @_builtins.property
+    @pulumi.getter(name="customFields")
+    def custom_fields(self) -> Optional[Sequence['outputs.SubscriptionScheduleDefaultSettingsInvoiceSettingsCustomField']]:
+        """
+        A list of up to 4 custom fields to be displayed on the invoice.
+        """
+        return pulumi.get(self, "custom_fields")
+
+    @_builtins.property
     @pulumi.getter(name="daysUntilDue")
     def days_until_due(self) -> Optional[_builtins.float]:
         """
@@ -55951,8 +58799,53 @@ class SubscriptionScheduleDefaultSettingsInvoiceSettings(dict):
 
     @_builtins.property
     @pulumi.getter
+    def description(self) -> Optional[_builtins.str]:
+        """
+        An arbitrary string attached to the object. Often useful for displaying to users.
+        """
+        return pulumi.get(self, "description")
+
+    @_builtins.property
+    @pulumi.getter
+    def footer(self) -> Optional[_builtins.str]:
+        """
+        Footer to be displayed on the invoice.
+        """
+        return pulumi.get(self, "footer")
+
+    @_builtins.property
+    @pulumi.getter
     def issuer(self) -> Optional['outputs.SubscriptionScheduleDefaultSettingsInvoiceSettingsIssuer']:
         return pulumi.get(self, "issuer")
+
+
+@pulumi.output_type
+class SubscriptionScheduleDefaultSettingsInvoiceSettingsCustomField(dict):
+    def __init__(__self__, *,
+                 name: _builtins.str,
+                 value: _builtins.str):
+        """
+        :param _builtins.str name: The name of the custom field.
+        :param _builtins.str value: The value of the custom field.
+        """
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "value", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> _builtins.str:
+        """
+        The name of the custom field.
+        """
+        return pulumi.get(self, "name")
+
+    @_builtins.property
+    @pulumi.getter
+    def value(self) -> _builtins.str:
+        """
+        The value of the custom field.
+        """
+        return pulumi.get(self, "value")
 
 
 @pulumi.output_type
@@ -56030,6 +58923,467 @@ class SubscriptionScheduleDefaultSettingsTransferData(dict):
         A non-negative decimal between 0 and 100, with at most two decimal places. This represents the percentage of the subscription invoice total that will be transferred to the destination account. By default, the entire amount is transferred to the destination.
         """
         return pulumi.get(self, "amount_percent")
+
+
+@pulumi.output_type
+class SubscriptionSchedulePauseSchedule(dict):
+    def __init__(__self__, *,
+                 key: Optional[_builtins.str] = None,
+                 pause: Optional['outputs.SubscriptionSchedulePauseSchedulePause'] = None,
+                 resume: Optional['outputs.SubscriptionSchedulePauseScheduleResume'] = None):
+        """
+        :param _builtins.str key: A unique identifier for this pause schedule.
+        :param 'SubscriptionSchedulePauseScheduleResumeArgs' resume: Details about when and how the subscription resumes.
+        """
+        if key is not None:
+            pulumi.set(__self__, "key", key)
+        if pause is not None:
+            pulumi.set(__self__, "pause", pause)
+        if resume is not None:
+            pulumi.set(__self__, "resume", resume)
+
+    @_builtins.property
+    @pulumi.getter
+    def key(self) -> Optional[_builtins.str]:
+        """
+        A unique identifier for this pause schedule.
+        """
+        return pulumi.get(self, "key")
+
+    @_builtins.property
+    @pulumi.getter
+    def pause(self) -> Optional['outputs.SubscriptionSchedulePauseSchedulePause']:
+        return pulumi.get(self, "pause")
+
+    @_builtins.property
+    @pulumi.getter
+    def resume(self) -> Optional['outputs.SubscriptionSchedulePauseScheduleResume']:
+        """
+        Details about when and how the subscription resumes.
+        """
+        return pulumi.get(self, "resume")
+
+
+@pulumi.output_type
+class SubscriptionSchedulePauseSchedulePause(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "pauseAt":
+            suggest = "pause_at"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in SubscriptionSchedulePauseSchedulePause. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        SubscriptionSchedulePauseSchedulePause.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        SubscriptionSchedulePauseSchedulePause.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 pause_at: _builtins.float,
+                 settings: Optional['outputs.SubscriptionSchedulePauseSchedulePauseSettings'] = None,
+                 status: Optional['outputs.SubscriptionSchedulePauseSchedulePauseStatus'] = None):
+        """
+        :param _builtins.float pause_at: Time at which the subscription pauses.
+        :param 'SubscriptionSchedulePauseSchedulePauseSettingsArgs' settings: Settings controlling billing behavior during the pause.
+        """
+        pulumi.set(__self__, "pause_at", pause_at)
+        if settings is not None:
+            pulumi.set(__self__, "settings", settings)
+        if status is not None:
+            pulumi.set(__self__, "status", status)
+
+    @_builtins.property
+    @pulumi.getter(name="pauseAt")
+    def pause_at(self) -> _builtins.float:
+        """
+        Time at which the subscription pauses.
+        """
+        return pulumi.get(self, "pause_at")
+
+    @_builtins.property
+    @pulumi.getter
+    def settings(self) -> Optional['outputs.SubscriptionSchedulePauseSchedulePauseSettings']:
+        """
+        Settings controlling billing behavior during the pause.
+        """
+        return pulumi.get(self, "settings")
+
+    @_builtins.property
+    @pulumi.getter
+    def status(self) -> Optional['outputs.SubscriptionSchedulePauseSchedulePauseStatus']:
+        return pulumi.get(self, "status")
+
+
+@pulumi.output_type
+class SubscriptionSchedulePauseSchedulePauseSettings(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "billFor":
+            suggest = "bill_for"
+        elif key == "invoicingBehavior":
+            suggest = "invoicing_behavior"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in SubscriptionSchedulePauseSchedulePauseSettings. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        SubscriptionSchedulePauseSchedulePauseSettings.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        SubscriptionSchedulePauseSchedulePauseSettings.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 bill_for: Optional['outputs.SubscriptionSchedulePauseSchedulePauseSettingsBillFor'] = None,
+                 invoicing_behavior: Optional[_builtins.str] = None,
+                 type: Optional[_builtins.str] = None):
+        """
+        :param _builtins.str invoicing_behavior: Determines how to handle debits and credits when pausing.
+        :param _builtins.str type: The type of pause settings.
+        """
+        if bill_for is not None:
+            pulumi.set(__self__, "bill_for", bill_for)
+        if invoicing_behavior is not None:
+            pulumi.set(__self__, "invoicing_behavior", invoicing_behavior)
+        if type is not None:
+            pulumi.set(__self__, "type", type)
+
+    @_builtins.property
+    @pulumi.getter(name="billFor")
+    def bill_for(self) -> Optional['outputs.SubscriptionSchedulePauseSchedulePauseSettingsBillFor']:
+        return pulumi.get(self, "bill_for")
+
+    @_builtins.property
+    @pulumi.getter(name="invoicingBehavior")
+    def invoicing_behavior(self) -> Optional[_builtins.str]:
+        """
+        Determines how to handle debits and credits when pausing.
+        """
+        return pulumi.get(self, "invoicing_behavior")
+
+    @_builtins.property
+    @pulumi.getter
+    def type(self) -> Optional[_builtins.str]:
+        """
+        The type of pause settings.
+        """
+        return pulumi.get(self, "type")
+
+
+@pulumi.output_type
+class SubscriptionSchedulePauseSchedulePauseSettingsBillFor(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "outstandingUsageThrough":
+            suggest = "outstanding_usage_through"
+        elif key == "unusedTimeFrom":
+            suggest = "unused_time_from"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in SubscriptionSchedulePauseSchedulePauseSettingsBillFor. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        SubscriptionSchedulePauseSchedulePauseSettingsBillFor.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        SubscriptionSchedulePauseSchedulePauseSettingsBillFor.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 outstanding_usage_through: Optional['outputs.SubscriptionSchedulePauseSchedulePauseSettingsBillForOutstandingUsageThrough'] = None,
+                 unused_time_from: Optional['outputs.SubscriptionSchedulePauseSchedulePauseSettingsBillForUnusedTimeFrom'] = None):
+        if outstanding_usage_through is not None:
+            pulumi.set(__self__, "outstanding_usage_through", outstanding_usage_through)
+        if unused_time_from is not None:
+            pulumi.set(__self__, "unused_time_from", unused_time_from)
+
+    @_builtins.property
+    @pulumi.getter(name="outstandingUsageThrough")
+    def outstanding_usage_through(self) -> Optional['outputs.SubscriptionSchedulePauseSchedulePauseSettingsBillForOutstandingUsageThrough']:
+        return pulumi.get(self, "outstanding_usage_through")
+
+    @_builtins.property
+    @pulumi.getter(name="unusedTimeFrom")
+    def unused_time_from(self) -> Optional['outputs.SubscriptionSchedulePauseSchedulePauseSettingsBillForUnusedTimeFrom']:
+        return pulumi.get(self, "unused_time_from")
+
+
+@pulumi.output_type
+class SubscriptionSchedulePauseSchedulePauseSettingsBillForOutstandingUsageThrough(dict):
+    def __init__(__self__, *,
+                 type: Optional[_builtins.str] = None):
+        """
+        :param _builtins.str type: The type of outstanding usage billing behavior.
+        """
+        if type is not None:
+            pulumi.set(__self__, "type", type)
+
+    @_builtins.property
+    @pulumi.getter
+    def type(self) -> Optional[_builtins.str]:
+        """
+        The type of outstanding usage billing behavior.
+        """
+        return pulumi.get(self, "type")
+
+
+@pulumi.output_type
+class SubscriptionSchedulePauseSchedulePauseSettingsBillForUnusedTimeFrom(dict):
+    def __init__(__self__, *,
+                 type: Optional[_builtins.str] = None):
+        """
+        :param _builtins.str type: The type of unused time credit behavior.
+        """
+        if type is not None:
+            pulumi.set(__self__, "type", type)
+
+    @_builtins.property
+    @pulumi.getter
+    def type(self) -> Optional[_builtins.str]:
+        """
+        The type of unused time credit behavior.
+        """
+        return pulumi.get(self, "type")
+
+
+@pulumi.output_type
+class SubscriptionSchedulePauseSchedulePauseStatus(dict):
+    def __init__(__self__, *,
+                 error: Optional['outputs.SubscriptionSchedulePauseSchedulePauseStatusError'] = None,
+                 type: Optional[_builtins.str] = None):
+        """
+        :param _builtins.str type: The lifecycle state of the pause operation.
+        """
+        if error is not None:
+            pulumi.set(__self__, "error", error)
+        if type is not None:
+            pulumi.set(__self__, "type", type)
+
+    @_builtins.property
+    @pulumi.getter
+    def error(self) -> Optional['outputs.SubscriptionSchedulePauseSchedulePauseStatusError']:
+        return pulumi.get(self, "error")
+
+    @_builtins.property
+    @pulumi.getter
+    def type(self) -> Optional[_builtins.str]:
+        """
+        The lifecycle state of the pause operation.
+        """
+        return pulumi.get(self, "type")
+
+
+@pulumi.output_type
+class SubscriptionSchedulePauseSchedulePauseStatusError(dict):
+    def __init__(__self__, *,
+                 code: Optional[_builtins.str] = None,
+                 message: Optional[_builtins.str] = None):
+        """
+        :param _builtins.str code: A machine-readable error code.
+        :param _builtins.str message: A description of the error.
+        """
+        if code is not None:
+            pulumi.set(__self__, "code", code)
+        if message is not None:
+            pulumi.set(__self__, "message", message)
+
+    @_builtins.property
+    @pulumi.getter
+    def code(self) -> Optional[_builtins.str]:
+        """
+        A machine-readable error code.
+        """
+        return pulumi.get(self, "code")
+
+    @_builtins.property
+    @pulumi.getter
+    def message(self) -> Optional[_builtins.str]:
+        """
+        A description of the error.
+        """
+        return pulumi.get(self, "message")
+
+
+@pulumi.output_type
+class SubscriptionSchedulePauseScheduleResume(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "resumeAt":
+            suggest = "resume_at"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in SubscriptionSchedulePauseScheduleResume. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        SubscriptionSchedulePauseScheduleResume.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        SubscriptionSchedulePauseScheduleResume.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 resume_at: _builtins.float,
+                 settings: Optional['outputs.SubscriptionSchedulePauseScheduleResumeSettings'] = None,
+                 status: Optional['outputs.SubscriptionSchedulePauseScheduleResumeStatus'] = None):
+        """
+        :param _builtins.float resume_at: Time at which the subscription resumes.
+        """
+        pulumi.set(__self__, "resume_at", resume_at)
+        if settings is not None:
+            pulumi.set(__self__, "settings", settings)
+        if status is not None:
+            pulumi.set(__self__, "status", status)
+
+    @_builtins.property
+    @pulumi.getter(name="resumeAt")
+    def resume_at(self) -> _builtins.float:
+        """
+        Time at which the subscription resumes.
+        """
+        return pulumi.get(self, "resume_at")
+
+    @_builtins.property
+    @pulumi.getter
+    def settings(self) -> Optional['outputs.SubscriptionSchedulePauseScheduleResumeSettings']:
+        return pulumi.get(self, "settings")
+
+    @_builtins.property
+    @pulumi.getter
+    def status(self) -> Optional['outputs.SubscriptionSchedulePauseScheduleResumeStatus']:
+        return pulumi.get(self, "status")
+
+
+@pulumi.output_type
+class SubscriptionSchedulePauseScheduleResumeSettings(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "billingCycleAnchor":
+            suggest = "billing_cycle_anchor"
+        elif key == "paymentBehavior":
+            suggest = "payment_behavior"
+        elif key == "prorationBehavior":
+            suggest = "proration_behavior"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in SubscriptionSchedulePauseScheduleResumeSettings. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        SubscriptionSchedulePauseScheduleResumeSettings.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        SubscriptionSchedulePauseScheduleResumeSettings.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 billing_cycle_anchor: Optional[_builtins.str] = None,
+                 payment_behavior: Optional[_builtins.str] = None,
+                 proration_behavior: Optional[_builtins.str] = None):
+        """
+        :param _builtins.str billing_cycle_anchor: The billing cycle anchor that applies when the subscription is resumed.
+        :param _builtins.str payment_behavior: Controls whether Stripe attempts payment on the resumption invoice and how that affects the subscription's status.
+        :param _builtins.str proration_behavior: Determines how to handle prorations resulting from the<span pulumi-lang-nodejs=" billingCycleAnchor " pulumi-lang-dotnet=" BillingCycleAnchor " pulumi-lang-go=" billingCycleAnchor " pulumi-lang-python=" billing_cycle_anchor " pulumi-lang-yaml=" billingCycleAnchor " pulumi-lang-java=" billingCycleAnchor " pulumi-lang-hcl=" billing_cycle_anchor "> billingCycleAnchor </span>change on resume.
+        """
+        if billing_cycle_anchor is not None:
+            pulumi.set(__self__, "billing_cycle_anchor", billing_cycle_anchor)
+        if payment_behavior is not None:
+            pulumi.set(__self__, "payment_behavior", payment_behavior)
+        if proration_behavior is not None:
+            pulumi.set(__self__, "proration_behavior", proration_behavior)
+
+    @_builtins.property
+    @pulumi.getter(name="billingCycleAnchor")
+    def billing_cycle_anchor(self) -> Optional[_builtins.str]:
+        """
+        The billing cycle anchor that applies when the subscription is resumed.
+        """
+        return pulumi.get(self, "billing_cycle_anchor")
+
+    @_builtins.property
+    @pulumi.getter(name="paymentBehavior")
+    def payment_behavior(self) -> Optional[_builtins.str]:
+        """
+        Controls whether Stripe attempts payment on the resumption invoice and how that affects the subscription's status.
+        """
+        return pulumi.get(self, "payment_behavior")
+
+    @_builtins.property
+    @pulumi.getter(name="prorationBehavior")
+    def proration_behavior(self) -> Optional[_builtins.str]:
+        """
+        Determines how to handle prorations resulting from the<span pulumi-lang-nodejs=" billingCycleAnchor " pulumi-lang-dotnet=" BillingCycleAnchor " pulumi-lang-go=" billingCycleAnchor " pulumi-lang-python=" billing_cycle_anchor " pulumi-lang-yaml=" billingCycleAnchor " pulumi-lang-java=" billingCycleAnchor " pulumi-lang-hcl=" billing_cycle_anchor "> billingCycleAnchor </span>change on resume.
+        """
+        return pulumi.get(self, "proration_behavior")
+
+
+@pulumi.output_type
+class SubscriptionSchedulePauseScheduleResumeStatus(dict):
+    def __init__(__self__, *,
+                 error: Optional['outputs.SubscriptionSchedulePauseScheduleResumeStatusError'] = None,
+                 type: Optional[_builtins.str] = None):
+        """
+        :param _builtins.str type: The lifecycle state of the resume operation.
+        """
+        if error is not None:
+            pulumi.set(__self__, "error", error)
+        if type is not None:
+            pulumi.set(__self__, "type", type)
+
+    @_builtins.property
+    @pulumi.getter
+    def error(self) -> Optional['outputs.SubscriptionSchedulePauseScheduleResumeStatusError']:
+        return pulumi.get(self, "error")
+
+    @_builtins.property
+    @pulumi.getter
+    def type(self) -> Optional[_builtins.str]:
+        """
+        The lifecycle state of the resume operation.
+        """
+        return pulumi.get(self, "type")
+
+
+@pulumi.output_type
+class SubscriptionSchedulePauseScheduleResumeStatusError(dict):
+    def __init__(__self__, *,
+                 code: Optional[_builtins.str] = None,
+                 message: Optional[_builtins.str] = None):
+        """
+        :param _builtins.str code: A machine-readable error code.
+        :param _builtins.str message: A description of the error.
+        """
+        if code is not None:
+            pulumi.set(__self__, "code", code)
+        if message is not None:
+            pulumi.set(__self__, "message", message)
+
+    @_builtins.property
+    @pulumi.getter
+    def code(self) -> Optional[_builtins.str]:
+        """
+        A machine-readable error code.
+        """
+        return pulumi.get(self, "code")
+
+    @_builtins.property
+    @pulumi.getter
+    def message(self) -> Optional[_builtins.str]:
+        """
+        A description of the error.
+        """
+        return pulumi.get(self, "message")
 
 
 @pulumi.output_type
@@ -56939,6 +60293,8 @@ class SubscriptionSchedulePhaseInvoiceSettings(dict):
         suggest = None
         if key == "accountTaxIds":
             suggest = "account_tax_ids"
+        elif key == "customFields":
+            suggest = "custom_fields"
         elif key == "daysUntilDue":
             suggest = "days_until_due"
 
@@ -56955,17 +60311,29 @@ class SubscriptionSchedulePhaseInvoiceSettings(dict):
 
     def __init__(__self__, *,
                  account_tax_ids: Optional[Sequence[_builtins.str]] = None,
+                 custom_fields: Optional[Sequence['outputs.SubscriptionSchedulePhaseInvoiceSettingsCustomField']] = None,
                  days_until_due: Optional[_builtins.float] = None,
+                 description: Optional[_builtins.str] = None,
+                 footer: Optional[_builtins.str] = None,
                  issuer: Optional['outputs.SubscriptionSchedulePhaseInvoiceSettingsIssuer'] = None):
         """
         :param Sequence[_builtins.str] account_tax_ids: The account tax IDs associated with this phase of the subscription schedule. Will be set on invoices generated by this phase of the subscription schedule.
+        :param Sequence['SubscriptionSchedulePhaseInvoiceSettingsCustomFieldArgs'] custom_fields: A list of up to 4 custom fields to be displayed on the invoice.
         :param _builtins.float days_until_due: Number of days within which a customer must pay invoices generated by this subscription schedule. This value will be <span pulumi-lang-nodejs="`null`" pulumi-lang-dotnet="`Null`" pulumi-lang-go="`null`" pulumi-lang-python="`null`" pulumi-lang-yaml="`null`" pulumi-lang-java="`null`" pulumi-lang-hcl="`null`">`null`</span> for subscription schedules where `billing=charge_automatically`.
+        :param _builtins.str description: An arbitrary string attached to the object. Often useful for displaying to users.
+        :param _builtins.str footer: Footer to be displayed on the invoice.
         :param 'SubscriptionSchedulePhaseInvoiceSettingsIssuerArgs' issuer: The connected account that issues the invoice. The invoice is presented with the branding and support information of the specified account.
         """
         if account_tax_ids is not None:
             pulumi.set(__self__, "account_tax_ids", account_tax_ids)
+        if custom_fields is not None:
+            pulumi.set(__self__, "custom_fields", custom_fields)
         if days_until_due is not None:
             pulumi.set(__self__, "days_until_due", days_until_due)
+        if description is not None:
+            pulumi.set(__self__, "description", description)
+        if footer is not None:
+            pulumi.set(__self__, "footer", footer)
         if issuer is not None:
             pulumi.set(__self__, "issuer", issuer)
 
@@ -56978,6 +60346,14 @@ class SubscriptionSchedulePhaseInvoiceSettings(dict):
         return pulumi.get(self, "account_tax_ids")
 
     @_builtins.property
+    @pulumi.getter(name="customFields")
+    def custom_fields(self) -> Optional[Sequence['outputs.SubscriptionSchedulePhaseInvoiceSettingsCustomField']]:
+        """
+        A list of up to 4 custom fields to be displayed on the invoice.
+        """
+        return pulumi.get(self, "custom_fields")
+
+    @_builtins.property
     @pulumi.getter(name="daysUntilDue")
     def days_until_due(self) -> Optional[_builtins.float]:
         """
@@ -56987,11 +60363,56 @@ class SubscriptionSchedulePhaseInvoiceSettings(dict):
 
     @_builtins.property
     @pulumi.getter
+    def description(self) -> Optional[_builtins.str]:
+        """
+        An arbitrary string attached to the object. Often useful for displaying to users.
+        """
+        return pulumi.get(self, "description")
+
+    @_builtins.property
+    @pulumi.getter
+    def footer(self) -> Optional[_builtins.str]:
+        """
+        Footer to be displayed on the invoice.
+        """
+        return pulumi.get(self, "footer")
+
+    @_builtins.property
+    @pulumi.getter
     def issuer(self) -> Optional['outputs.SubscriptionSchedulePhaseInvoiceSettingsIssuer']:
         """
         The connected account that issues the invoice. The invoice is presented with the branding and support information of the specified account.
         """
         return pulumi.get(self, "issuer")
+
+
+@pulumi.output_type
+class SubscriptionSchedulePhaseInvoiceSettingsCustomField(dict):
+    def __init__(__self__, *,
+                 name: _builtins.str,
+                 value: _builtins.str):
+        """
+        :param _builtins.str name: The name of the custom field.
+        :param _builtins.str value: The value of the custom field.
+        """
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "value", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> _builtins.str:
+        """
+        The name of the custom field.
+        """
+        return pulumi.get(self, "name")
+
+    @_builtins.property
+    @pulumi.getter
+    def value(self) -> _builtins.str:
+        """
+        The value of the custom field.
+        """
+        return pulumi.get(self, "value")
 
 
 @pulumi.output_type
@@ -57435,6 +60856,104 @@ class SubscriptionSchedulePhaseTransferData(dict):
 
 
 @pulumi.output_type
+class SubscriptionStatusDetails(dict):
+    def __init__(__self__, *,
+                 paused: Optional['outputs.SubscriptionStatusDetailsPaused'] = None):
+        """
+        :param 'SubscriptionStatusDetailsPausedArgs' paused: Indicates when and why the subscription transitioned to the paused status.
+        """
+        if paused is not None:
+            pulumi.set(__self__, "paused", paused)
+
+    @_builtins.property
+    @pulumi.getter
+    def paused(self) -> Optional['outputs.SubscriptionStatusDetailsPaused']:
+        """
+        Indicates when and why the subscription transitioned to the paused status.
+        """
+        return pulumi.get(self, "paused")
+
+
+@pulumi.output_type
+class SubscriptionStatusDetailsPaused(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "transitionedAt":
+            suggest = "transitioned_at"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in SubscriptionStatusDetailsPaused. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        SubscriptionStatusDetailsPaused.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        SubscriptionStatusDetailsPaused.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 subscription: Optional['outputs.SubscriptionStatusDetailsPausedSubscription'] = None,
+                 transitioned_at: Optional[_builtins.float] = None,
+                 type: Optional[_builtins.str] = None):
+        """
+        :param 'SubscriptionStatusDetailsPausedSubscriptionArgs' subscription: Information on the `type=subscription` pause.
+        :param _builtins.float transitioned_at: Unix timestamp in seconds of when the subscription status transitioned to <span pulumi-lang-nodejs="`paused`" pulumi-lang-dotnet="`Paused`" pulumi-lang-go="`paused`" pulumi-lang-python="`paused`" pulumi-lang-yaml="`paused`" pulumi-lang-java="`paused`" pulumi-lang-hcl="`paused`">`paused`</span>.
+        :param _builtins.str type: The type of pause.
+        """
+        if subscription is not None:
+            pulumi.set(__self__, "subscription", subscription)
+        if transitioned_at is not None:
+            pulumi.set(__self__, "transitioned_at", transitioned_at)
+        if type is not None:
+            pulumi.set(__self__, "type", type)
+
+    @_builtins.property
+    @pulumi.getter
+    def subscription(self) -> Optional['outputs.SubscriptionStatusDetailsPausedSubscription']:
+        """
+        Information on the `type=subscription` pause.
+        """
+        return pulumi.get(self, "subscription")
+
+    @_builtins.property
+    @pulumi.getter(name="transitionedAt")
+    def transitioned_at(self) -> Optional[_builtins.float]:
+        """
+        Unix timestamp in seconds of when the subscription status transitioned to <span pulumi-lang-nodejs="`paused`" pulumi-lang-dotnet="`Paused`" pulumi-lang-go="`paused`" pulumi-lang-python="`paused`" pulumi-lang-yaml="`paused`" pulumi-lang-java="`paused`" pulumi-lang-hcl="`paused`">`paused`</span>.
+        """
+        return pulumi.get(self, "transitioned_at")
+
+    @_builtins.property
+    @pulumi.getter
+    def type(self) -> Optional[_builtins.str]:
+        """
+        The type of pause.
+        """
+        return pulumi.get(self, "type")
+
+
+@pulumi.output_type
+class SubscriptionStatusDetailsPausedSubscription(dict):
+    def __init__(__self__, *,
+                 type: Optional[_builtins.str] = None):
+        """
+        :param _builtins.str type: The reason that the subscription was paused.
+        """
+        if type is not None:
+            pulumi.set(__self__, "type", type)
+
+    @_builtins.property
+    @pulumi.getter
+    def type(self) -> Optional[_builtins.str]:
+        """
+        The reason that the subscription was paused.
+        """
+        return pulumi.get(self, "type")
+
+
+@pulumi.output_type
 class SubscriptionTransferData(dict):
     @staticmethod
     def __key_warning(key: str):
@@ -57521,7 +61040,9 @@ class SubscriptionTrialSettingsEndBehavior(dict):
     @staticmethod
     def __key_warning(key: str):
         suggest = None
-        if key == "missingPaymentMethod":
+        if key == "billingCycleAnchor":
+            suggest = "billing_cycle_anchor"
+        elif key == "missingPaymentMethod":
             suggest = "missing_payment_method"
 
         if suggest:
@@ -57536,15 +61057,28 @@ class SubscriptionTrialSettingsEndBehavior(dict):
         return super().get(key, default)
 
     def __init__(__self__, *,
-                 missing_payment_method: _builtins.str):
+                 billing_cycle_anchor: Optional[_builtins.str] = None,
+                 missing_payment_method: Optional[_builtins.str] = None):
         """
+        :param _builtins.str billing_cycle_anchor: Indicates how the subscription's billing cycle anchor is reset when a trial ends. If not set, the default is <span pulumi-lang-nodejs="`now`" pulumi-lang-dotnet="`Now`" pulumi-lang-go="`now`" pulumi-lang-python="`now`" pulumi-lang-yaml="`now`" pulumi-lang-java="`now`" pulumi-lang-hcl="`now`">`now`</span>.
         :param _builtins.str missing_payment_method: Indicates how the subscription should change when the trial ends if the user did not provide a payment method.
         """
-        pulumi.set(__self__, "missing_payment_method", missing_payment_method)
+        if billing_cycle_anchor is not None:
+            pulumi.set(__self__, "billing_cycle_anchor", billing_cycle_anchor)
+        if missing_payment_method is not None:
+            pulumi.set(__self__, "missing_payment_method", missing_payment_method)
+
+    @_builtins.property
+    @pulumi.getter(name="billingCycleAnchor")
+    def billing_cycle_anchor(self) -> Optional[_builtins.str]:
+        """
+        Indicates how the subscription's billing cycle anchor is reset when a trial ends. If not set, the default is <span pulumi-lang-nodejs="`now`" pulumi-lang-dotnet="`Now`" pulumi-lang-go="`now`" pulumi-lang-python="`now`" pulumi-lang-yaml="`now`" pulumi-lang-java="`now`" pulumi-lang-hcl="`now`">`now`</span>.
+        """
+        return pulumi.get(self, "billing_cycle_anchor")
 
     @_builtins.property
     @pulumi.getter(name="missingPaymentMethod")
-    def missing_payment_method(self) -> _builtins.str:
+    def missing_payment_method(self) -> Optional[_builtins.str]:
         """
         Indicates how the subscription should change when the trial ends if the user did not provide a payment method.
         """
@@ -57698,6 +61232,101 @@ class TaxIdVerification(dict):
 
 
 @pulumi.output_type
+class TaxLocationAddress(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "postalCode":
+            suggest = "postal_code"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in TaxLocationAddress. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        TaxLocationAddress.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        TaxLocationAddress.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 country: _builtins.str,
+                 city: Optional[_builtins.str] = None,
+                 line1: Optional[_builtins.str] = None,
+                 line2: Optional[_builtins.str] = None,
+                 postal_code: Optional[_builtins.str] = None,
+                 state: Optional[_builtins.str] = None):
+        """
+        :param _builtins.str country: Two-letter country code ([ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2)).
+        :param _builtins.str city: City, district, suburb, town, or village.
+        :param _builtins.str line1: Address line 1, such as the street, PO Box, or company name.
+        :param _builtins.str line2: Address line 2, such as the apartment, suite, unit, or building.
+        :param _builtins.str postal_code: ZIP or postal code.
+        :param _builtins.str state: State, county, province, or region ([ISO 3166-2](https://en.wikipedia.org/wiki/ISO_3166-2)).
+        """
+        pulumi.set(__self__, "country", country)
+        if city is not None:
+            pulumi.set(__self__, "city", city)
+        if line1 is not None:
+            pulumi.set(__self__, "line1", line1)
+        if line2 is not None:
+            pulumi.set(__self__, "line2", line2)
+        if postal_code is not None:
+            pulumi.set(__self__, "postal_code", postal_code)
+        if state is not None:
+            pulumi.set(__self__, "state", state)
+
+    @_builtins.property
+    @pulumi.getter
+    def country(self) -> _builtins.str:
+        """
+        Two-letter country code ([ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2)).
+        """
+        return pulumi.get(self, "country")
+
+    @_builtins.property
+    @pulumi.getter
+    def city(self) -> Optional[_builtins.str]:
+        """
+        City, district, suburb, town, or village.
+        """
+        return pulumi.get(self, "city")
+
+    @_builtins.property
+    @pulumi.getter
+    def line1(self) -> Optional[_builtins.str]:
+        """
+        Address line 1, such as the street, PO Box, or company name.
+        """
+        return pulumi.get(self, "line1")
+
+    @_builtins.property
+    @pulumi.getter
+    def line2(self) -> Optional[_builtins.str]:
+        """
+        Address line 2, such as the apartment, suite, unit, or building.
+        """
+        return pulumi.get(self, "line2")
+
+    @_builtins.property
+    @pulumi.getter(name="postalCode")
+    def postal_code(self) -> Optional[_builtins.str]:
+        """
+        ZIP or postal code.
+        """
+        return pulumi.get(self, "postal_code")
+
+    @_builtins.property
+    @pulumi.getter
+    def state(self) -> Optional[_builtins.str]:
+        """
+        State, county, province, or region ([ISO 3166-2](https://en.wikipedia.org/wiki/ISO_3166-2)).
+        """
+        return pulumi.get(self, "state")
+
+
+@pulumi.output_type
 class TaxRateFlatAmount(dict):
     def __init__(__self__, *,
                  amount: Optional[_builtins.float] = None,
@@ -57767,10 +61396,12 @@ class TaxRegistrationCountryOptions(dict):
                  bh: Optional['outputs.TaxRegistrationCountryOptionsBh'] = None,
                  bj: Optional['outputs.TaxRegistrationCountryOptionsBj'] = None,
                  bs: Optional['outputs.TaxRegistrationCountryOptionsBs'] = None,
+                 bw: Optional['outputs.TaxRegistrationCountryOptionsBw'] = None,
                  by: Optional['outputs.TaxRegistrationCountryOptionsBy'] = None,
                  ca: Optional['outputs.TaxRegistrationCountryOptionsCa'] = None,
                  cd: Optional['outputs.TaxRegistrationCountryOptionsCd'] = None,
                  ch: Optional['outputs.TaxRegistrationCountryOptionsCh'] = None,
+                 ci: Optional['outputs.TaxRegistrationCountryOptionsCi'] = None,
                  cl: Optional['outputs.TaxRegistrationCountryOptionsCl'] = None,
                  cm: Optional['outputs.TaxRegistrationCountryOptionsCm'] = None,
                  co: Optional['outputs.TaxRegistrationCountryOptionsCo'] = None,
@@ -57789,6 +61420,7 @@ class TaxRegistrationCountryOptions(dict):
                  fr: Optional['outputs.TaxRegistrationCountryOptionsFr'] = None,
                  gb: Optional['outputs.TaxRegistrationCountryOptionsGb'] = None,
                  ge: Optional['outputs.TaxRegistrationCountryOptionsGe'] = None,
+                 gh: Optional['outputs.TaxRegistrationCountryOptionsGh'] = None,
                  gn: Optional['outputs.TaxRegistrationCountryOptionsGn'] = None,
                  gr: Optional['outputs.TaxRegistrationCountryOptionsGr'] = None,
                  hr: Optional['outputs.TaxRegistrationCountryOptionsHr'] = None,
@@ -57815,6 +61447,7 @@ class TaxRegistrationCountryOptions(dict):
                  mk: Optional['outputs.TaxRegistrationCountryOptionsMk'] = None,
                  mr: Optional['outputs.TaxRegistrationCountryOptionsMr'] = None,
                  mt: Optional['outputs.TaxRegistrationCountryOptionsMt'] = None,
+                 mu: Optional['outputs.TaxRegistrationCountryOptionsMu'] = None,
                  mx: Optional['outputs.TaxRegistrationCountryOptionsMx'] = None,
                  my: Optional['outputs.TaxRegistrationCountryOptionsMy'] = None,
                  ng: Optional['outputs.TaxRegistrationCountryOptionsNg'] = None,
@@ -57885,6 +61518,8 @@ class TaxRegistrationCountryOptions(dict):
             pulumi.set(__self__, "bj", bj)
         if bs is not None:
             pulumi.set(__self__, "bs", bs)
+        if bw is not None:
+            pulumi.set(__self__, "bw", bw)
         if by is not None:
             pulumi.set(__self__, "by", by)
         if ca is not None:
@@ -57893,6 +61528,8 @@ class TaxRegistrationCountryOptions(dict):
             pulumi.set(__self__, "cd", cd)
         if ch is not None:
             pulumi.set(__self__, "ch", ch)
+        if ci is not None:
+            pulumi.set(__self__, "ci", ci)
         if cl is not None:
             pulumi.set(__self__, "cl", cl)
         if cm is not None:
@@ -57929,6 +61566,8 @@ class TaxRegistrationCountryOptions(dict):
             pulumi.set(__self__, "gb", gb)
         if ge is not None:
             pulumi.set(__self__, "ge", ge)
+        if gh is not None:
+            pulumi.set(__self__, "gh", gh)
         if gn is not None:
             pulumi.set(__self__, "gn", gn)
         if gr is not None:
@@ -57981,6 +61620,8 @@ class TaxRegistrationCountryOptions(dict):
             pulumi.set(__self__, "mr", mr)
         if mt is not None:
             pulumi.set(__self__, "mt", mt)
+        if mu is not None:
+            pulumi.set(__self__, "mu", mu)
         if mx is not None:
             pulumi.set(__self__, "mx", mx)
         if my is not None:
@@ -58141,6 +61782,11 @@ class TaxRegistrationCountryOptions(dict):
 
     @_builtins.property
     @pulumi.getter
+    def bw(self) -> Optional['outputs.TaxRegistrationCountryOptionsBw']:
+        return pulumi.get(self, "bw")
+
+    @_builtins.property
+    @pulumi.getter
     def by(self) -> Optional['outputs.TaxRegistrationCountryOptionsBy']:
         return pulumi.get(self, "by")
 
@@ -58158,6 +61804,11 @@ class TaxRegistrationCountryOptions(dict):
     @pulumi.getter
     def ch(self) -> Optional['outputs.TaxRegistrationCountryOptionsCh']:
         return pulumi.get(self, "ch")
+
+    @_builtins.property
+    @pulumi.getter
+    def ci(self) -> Optional['outputs.TaxRegistrationCountryOptionsCi']:
+        return pulumi.get(self, "ci")
 
     @_builtins.property
     @pulumi.getter
@@ -58248,6 +61899,11 @@ class TaxRegistrationCountryOptions(dict):
     @pulumi.getter
     def ge(self) -> Optional['outputs.TaxRegistrationCountryOptionsGe']:
         return pulumi.get(self, "ge")
+
+    @_builtins.property
+    @pulumi.getter
+    def gh(self) -> Optional['outputs.TaxRegistrationCountryOptionsGh']:
+        return pulumi.get(self, "gh")
 
     @_builtins.property
     @pulumi.getter
@@ -58378,6 +62034,11 @@ class TaxRegistrationCountryOptions(dict):
     @pulumi.getter
     def mt(self) -> Optional['outputs.TaxRegistrationCountryOptionsMt']:
         return pulumi.get(self, "mt")
+
+    @_builtins.property
+    @pulumi.getter
+    def mu(self) -> Optional['outputs.TaxRegistrationCountryOptionsMu']:
+        return pulumi.get(self, "mu")
 
     @_builtins.property
     @pulumi.getter
@@ -59516,6 +63177,24 @@ class TaxRegistrationCountryOptionsBsStandard(dict):
 
 
 @pulumi.output_type
+class TaxRegistrationCountryOptionsBw(dict):
+    def __init__(__self__, *,
+                 type: _builtins.str):
+        """
+        :param _builtins.str type: Type of registration in <span pulumi-lang-nodejs="`country`" pulumi-lang-dotnet="`Country`" pulumi-lang-go="`country`" pulumi-lang-python="`country`" pulumi-lang-yaml="`country`" pulumi-lang-java="`country`" pulumi-lang-hcl="`country`">`country`</span>.
+        """
+        pulumi.set(__self__, "type", type)
+
+    @_builtins.property
+    @pulumi.getter
+    def type(self) -> _builtins.str:
+        """
+        Type of registration in <span pulumi-lang-nodejs="`country`" pulumi-lang-dotnet="`Country`" pulumi-lang-go="`country`" pulumi-lang-python="`country`" pulumi-lang-yaml="`country`" pulumi-lang-java="`country`" pulumi-lang-hcl="`country`">`country`</span>.
+        """
+        return pulumi.get(self, "type")
+
+
+@pulumi.output_type
 class TaxRegistrationCountryOptionsBy(dict):
     def __init__(__self__, *,
                  type: _builtins.str):
@@ -59720,6 +63399,24 @@ class TaxRegistrationCountryOptionsChStandard(dict):
         Place of supply scheme used in an Default standard registration.
         """
         return pulumi.get(self, "place_of_supply_scheme")
+
+
+@pulumi.output_type
+class TaxRegistrationCountryOptionsCi(dict):
+    def __init__(__self__, *,
+                 type: _builtins.str):
+        """
+        :param _builtins.str type: Type of registration in <span pulumi-lang-nodejs="`country`" pulumi-lang-dotnet="`Country`" pulumi-lang-go="`country`" pulumi-lang-python="`country`" pulumi-lang-yaml="`country`" pulumi-lang-java="`country`" pulumi-lang-hcl="`country`">`country`</span>.
+        """
+        pulumi.set(__self__, "type", type)
+
+    @_builtins.property
+    @pulumi.getter
+    def type(self) -> _builtins.str:
+        """
+        Type of registration in <span pulumi-lang-nodejs="`country`" pulumi-lang-dotnet="`Country`" pulumi-lang-go="`country`" pulumi-lang-python="`country`" pulumi-lang-yaml="`country`" pulumi-lang-java="`country`" pulumi-lang-hcl="`country`">`country`</span>.
+        """
+        return pulumi.get(self, "type")
 
 
 @pulumi.output_type
@@ -60159,7 +63856,7 @@ class TaxRegistrationCountryOptionsEs(dict):
                  type: _builtins.str,
                  standard: Optional['outputs.TaxRegistrationCountryOptionsEsStandard'] = None):
         """
-        :param _builtins.str type: Type of registration in an EU country.
+        :param _builtins.str type: Type of registration in ES.
         """
         pulumi.set(__self__, "type", type)
         if standard is not None:
@@ -60169,7 +63866,7 @@ class TaxRegistrationCountryOptionsEs(dict):
     @pulumi.getter
     def type(self) -> _builtins.str:
         """
-        Type of registration in an EU country.
+        Type of registration in ES.
         """
         return pulumi.get(self, "type")
 
@@ -60466,6 +64163,24 @@ class TaxRegistrationCountryOptionsGbStandard(dict):
 
 @pulumi.output_type
 class TaxRegistrationCountryOptionsGe(dict):
+    def __init__(__self__, *,
+                 type: _builtins.str):
+        """
+        :param _builtins.str type: Type of registration in <span pulumi-lang-nodejs="`country`" pulumi-lang-dotnet="`Country`" pulumi-lang-go="`country`" pulumi-lang-python="`country`" pulumi-lang-yaml="`country`" pulumi-lang-java="`country`" pulumi-lang-hcl="`country`">`country`</span>.
+        """
+        pulumi.set(__self__, "type", type)
+
+    @_builtins.property
+    @pulumi.getter
+    def type(self) -> _builtins.str:
+        """
+        Type of registration in <span pulumi-lang-nodejs="`country`" pulumi-lang-dotnet="`Country`" pulumi-lang-go="`country`" pulumi-lang-python="`country`" pulumi-lang-yaml="`country`" pulumi-lang-java="`country`" pulumi-lang-hcl="`country`">`country`</span>.
+        """
+        return pulumi.get(self, "type")
+
+
+@pulumi.output_type
+class TaxRegistrationCountryOptionsGh(dict):
     def __init__(__self__, *,
                  type: _builtins.str):
         """
@@ -61622,6 +65337,24 @@ class TaxRegistrationCountryOptionsMtStandard(dict):
 
 
 @pulumi.output_type
+class TaxRegistrationCountryOptionsMu(dict):
+    def __init__(__self__, *,
+                 type: _builtins.str):
+        """
+        :param _builtins.str type: Type of registration in <span pulumi-lang-nodejs="`country`" pulumi-lang-dotnet="`Country`" pulumi-lang-go="`country`" pulumi-lang-python="`country`" pulumi-lang-yaml="`country`" pulumi-lang-java="`country`" pulumi-lang-hcl="`country`">`country`</span>.
+        """
+        pulumi.set(__self__, "type", type)
+
+    @_builtins.property
+    @pulumi.getter
+    def type(self) -> _builtins.str:
+        """
+        Type of registration in <span pulumi-lang-nodejs="`country`" pulumi-lang-dotnet="`Country`" pulumi-lang-go="`country`" pulumi-lang-python="`country`" pulumi-lang-yaml="`country`" pulumi-lang-java="`country`" pulumi-lang-hcl="`country`">`country`</span>.
+        """
+        return pulumi.get(self, "type")
+
+
+@pulumi.output_type
 class TaxRegistrationCountryOptionsMx(dict):
     def __init__(__self__, *,
                  type: _builtins.str):
@@ -62725,12 +66458,34 @@ class TaxRegistrationCountryOptionsUs(dict):
     @staticmethod
     def __key_warning(key: str):
         suggest = None
-        if key == "localAmusementTax":
+        if key == "admissionsTax":
+            suggest = "admissions_tax"
+        elif key == "attendanceTax":
+            suggest = "attendance_tax"
+        elif key == "entertainmentTax":
+            suggest = "entertainment_tax"
+        elif key == "grossReceiptsTax":
+            suggest = "gross_receipts_tax"
+        elif key == "hospitalityTax":
+            suggest = "hospitality_tax"
+        elif key == "localAmusementTax":
             suggest = "local_amusement_tax"
         elif key == "localLeaseTax":
             suggest = "local_lease_tax"
+        elif key == "luxuryTax":
+            suggest = "luxury_tax"
+        elif key == "massTransitParkingTax":
+            suggest = "mass_transit_parking_tax"
+        elif key == "parkingTax":
+            suggest = "parking_tax"
+        elif key == "resortTax":
+            suggest = "resort_tax"
         elif key == "stateSalesTax":
             suggest = "state_sales_tax"
+        elif key == "tourismTax":
+            suggest = "tourism_tax"
+        elif key == "utilityUsersTax":
+            suggest = "utility_users_tax"
 
         if suggest:
             pulumi.log.warn(f"Key '{key}' not found in TaxRegistrationCountryOptionsUs. Access the value via the '{suggest}' property getter instead.")
@@ -62746,21 +66501,54 @@ class TaxRegistrationCountryOptionsUs(dict):
     def __init__(__self__, *,
                  state: _builtins.str,
                  type: _builtins.str,
+                 admissions_tax: Optional['outputs.TaxRegistrationCountryOptionsUsAdmissionsTax'] = None,
+                 attendance_tax: Optional['outputs.TaxRegistrationCountryOptionsUsAttendanceTax'] = None,
+                 entertainment_tax: Optional['outputs.TaxRegistrationCountryOptionsUsEntertainmentTax'] = None,
+                 gross_receipts_tax: Optional['outputs.TaxRegistrationCountryOptionsUsGrossReceiptsTax'] = None,
+                 hospitality_tax: Optional['outputs.TaxRegistrationCountryOptionsUsHospitalityTax'] = None,
                  local_amusement_tax: Optional['outputs.TaxRegistrationCountryOptionsUsLocalAmusementTax'] = None,
                  local_lease_tax: Optional['outputs.TaxRegistrationCountryOptionsUsLocalLeaseTax'] = None,
-                 state_sales_tax: Optional['outputs.TaxRegistrationCountryOptionsUsStateSalesTax'] = None):
+                 luxury_tax: Optional['outputs.TaxRegistrationCountryOptionsUsLuxuryTax'] = None,
+                 mass_transit_parking_tax: Optional['outputs.TaxRegistrationCountryOptionsUsMassTransitParkingTax'] = None,
+                 parking_tax: Optional['outputs.TaxRegistrationCountryOptionsUsParkingTax'] = None,
+                 resort_tax: Optional['outputs.TaxRegistrationCountryOptionsUsResortTax'] = None,
+                 state_sales_tax: Optional['outputs.TaxRegistrationCountryOptionsUsStateSalesTax'] = None,
+                 tourism_tax: Optional['outputs.TaxRegistrationCountryOptionsUsTourismTax'] = None,
+                 utility_users_tax: Optional['outputs.TaxRegistrationCountryOptionsUsUtilityUsersTax'] = None):
         """
         :param _builtins.str state: Two-letter US state code ([ISO 3166-2](https://en.wikipedia.org/wiki/ISO_3166-2)).
         :param _builtins.str type: Type of registration in the US.
         """
         pulumi.set(__self__, "state", state)
         pulumi.set(__self__, "type", type)
+        if admissions_tax is not None:
+            pulumi.set(__self__, "admissions_tax", admissions_tax)
+        if attendance_tax is not None:
+            pulumi.set(__self__, "attendance_tax", attendance_tax)
+        if entertainment_tax is not None:
+            pulumi.set(__self__, "entertainment_tax", entertainment_tax)
+        if gross_receipts_tax is not None:
+            pulumi.set(__self__, "gross_receipts_tax", gross_receipts_tax)
+        if hospitality_tax is not None:
+            pulumi.set(__self__, "hospitality_tax", hospitality_tax)
         if local_amusement_tax is not None:
             pulumi.set(__self__, "local_amusement_tax", local_amusement_tax)
         if local_lease_tax is not None:
             pulumi.set(__self__, "local_lease_tax", local_lease_tax)
+        if luxury_tax is not None:
+            pulumi.set(__self__, "luxury_tax", luxury_tax)
+        if mass_transit_parking_tax is not None:
+            pulumi.set(__self__, "mass_transit_parking_tax", mass_transit_parking_tax)
+        if parking_tax is not None:
+            pulumi.set(__self__, "parking_tax", parking_tax)
+        if resort_tax is not None:
+            pulumi.set(__self__, "resort_tax", resort_tax)
         if state_sales_tax is not None:
             pulumi.set(__self__, "state_sales_tax", state_sales_tax)
+        if tourism_tax is not None:
+            pulumi.set(__self__, "tourism_tax", tourism_tax)
+        if utility_users_tax is not None:
+            pulumi.set(__self__, "utility_users_tax", utility_users_tax)
 
     @_builtins.property
     @pulumi.getter
@@ -62779,6 +66567,31 @@ class TaxRegistrationCountryOptionsUs(dict):
         return pulumi.get(self, "type")
 
     @_builtins.property
+    @pulumi.getter(name="admissionsTax")
+    def admissions_tax(self) -> Optional['outputs.TaxRegistrationCountryOptionsUsAdmissionsTax']:
+        return pulumi.get(self, "admissions_tax")
+
+    @_builtins.property
+    @pulumi.getter(name="attendanceTax")
+    def attendance_tax(self) -> Optional['outputs.TaxRegistrationCountryOptionsUsAttendanceTax']:
+        return pulumi.get(self, "attendance_tax")
+
+    @_builtins.property
+    @pulumi.getter(name="entertainmentTax")
+    def entertainment_tax(self) -> Optional['outputs.TaxRegistrationCountryOptionsUsEntertainmentTax']:
+        return pulumi.get(self, "entertainment_tax")
+
+    @_builtins.property
+    @pulumi.getter(name="grossReceiptsTax")
+    def gross_receipts_tax(self) -> Optional['outputs.TaxRegistrationCountryOptionsUsGrossReceiptsTax']:
+        return pulumi.get(self, "gross_receipts_tax")
+
+    @_builtins.property
+    @pulumi.getter(name="hospitalityTax")
+    def hospitality_tax(self) -> Optional['outputs.TaxRegistrationCountryOptionsUsHospitalityTax']:
+        return pulumi.get(self, "hospitality_tax")
+
+    @_builtins.property
     @pulumi.getter(name="localAmusementTax")
     def local_amusement_tax(self) -> Optional['outputs.TaxRegistrationCountryOptionsUsLocalAmusementTax']:
         return pulumi.get(self, "local_amusement_tax")
@@ -62789,9 +66602,129 @@ class TaxRegistrationCountryOptionsUs(dict):
         return pulumi.get(self, "local_lease_tax")
 
     @_builtins.property
+    @pulumi.getter(name="luxuryTax")
+    def luxury_tax(self) -> Optional['outputs.TaxRegistrationCountryOptionsUsLuxuryTax']:
+        return pulumi.get(self, "luxury_tax")
+
+    @_builtins.property
+    @pulumi.getter(name="massTransitParkingTax")
+    def mass_transit_parking_tax(self) -> Optional['outputs.TaxRegistrationCountryOptionsUsMassTransitParkingTax']:
+        return pulumi.get(self, "mass_transit_parking_tax")
+
+    @_builtins.property
+    @pulumi.getter(name="parkingTax")
+    def parking_tax(self) -> Optional['outputs.TaxRegistrationCountryOptionsUsParkingTax']:
+        return pulumi.get(self, "parking_tax")
+
+    @_builtins.property
+    @pulumi.getter(name="resortTax")
+    def resort_tax(self) -> Optional['outputs.TaxRegistrationCountryOptionsUsResortTax']:
+        return pulumi.get(self, "resort_tax")
+
+    @_builtins.property
     @pulumi.getter(name="stateSalesTax")
     def state_sales_tax(self) -> Optional['outputs.TaxRegistrationCountryOptionsUsStateSalesTax']:
         return pulumi.get(self, "state_sales_tax")
+
+    @_builtins.property
+    @pulumi.getter(name="tourismTax")
+    def tourism_tax(self) -> Optional['outputs.TaxRegistrationCountryOptionsUsTourismTax']:
+        return pulumi.get(self, "tourism_tax")
+
+    @_builtins.property
+    @pulumi.getter(name="utilityUsersTax")
+    def utility_users_tax(self) -> Optional['outputs.TaxRegistrationCountryOptionsUsUtilityUsersTax']:
+        return pulumi.get(self, "utility_users_tax")
+
+
+@pulumi.output_type
+class TaxRegistrationCountryOptionsUsAdmissionsTax(dict):
+    def __init__(__self__, *,
+                 jurisdiction: _builtins.str):
+        """
+        :param _builtins.str jurisdiction: A [jurisdiction code](https://docs.stripe.com/tax/registering?type=admissions_tax#registration-types) representing the local jurisdiction.
+        """
+        pulumi.set(__self__, "jurisdiction", jurisdiction)
+
+    @_builtins.property
+    @pulumi.getter
+    def jurisdiction(self) -> _builtins.str:
+        """
+        A [jurisdiction code](https://docs.stripe.com/tax/registering?type=admissions_tax#registration-types) representing the local jurisdiction.
+        """
+        return pulumi.get(self, "jurisdiction")
+
+
+@pulumi.output_type
+class TaxRegistrationCountryOptionsUsAttendanceTax(dict):
+    def __init__(__self__, *,
+                 jurisdiction: _builtins.str):
+        """
+        :param _builtins.str jurisdiction: A [jurisdiction code](https://docs.stripe.com/tax/registering?type=attendance_tax#registration-types) representing the local jurisdiction.
+        """
+        pulumi.set(__self__, "jurisdiction", jurisdiction)
+
+    @_builtins.property
+    @pulumi.getter
+    def jurisdiction(self) -> _builtins.str:
+        """
+        A [jurisdiction code](https://docs.stripe.com/tax/registering?type=attendance_tax#registration-types) representing the local jurisdiction.
+        """
+        return pulumi.get(self, "jurisdiction")
+
+
+@pulumi.output_type
+class TaxRegistrationCountryOptionsUsEntertainmentTax(dict):
+    def __init__(__self__, *,
+                 jurisdiction: _builtins.str):
+        """
+        :param _builtins.str jurisdiction: A [jurisdiction code](https://docs.stripe.com/tax/registering?type=entertainment_tax#registration-types) representing the local jurisdiction.
+        """
+        pulumi.set(__self__, "jurisdiction", jurisdiction)
+
+    @_builtins.property
+    @pulumi.getter
+    def jurisdiction(self) -> _builtins.str:
+        """
+        A [jurisdiction code](https://docs.stripe.com/tax/registering?type=entertainment_tax#registration-types) representing the local jurisdiction.
+        """
+        return pulumi.get(self, "jurisdiction")
+
+
+@pulumi.output_type
+class TaxRegistrationCountryOptionsUsGrossReceiptsTax(dict):
+    def __init__(__self__, *,
+                 jurisdiction: _builtins.str):
+        """
+        :param _builtins.str jurisdiction: A [jurisdiction code](https://docs.stripe.com/tax/registering?type=gross_receipts_tax#registration-types) representing the local jurisdiction.
+        """
+        pulumi.set(__self__, "jurisdiction", jurisdiction)
+
+    @_builtins.property
+    @pulumi.getter
+    def jurisdiction(self) -> _builtins.str:
+        """
+        A [jurisdiction code](https://docs.stripe.com/tax/registering?type=gross_receipts_tax#registration-types) representing the local jurisdiction.
+        """
+        return pulumi.get(self, "jurisdiction")
+
+
+@pulumi.output_type
+class TaxRegistrationCountryOptionsUsHospitalityTax(dict):
+    def __init__(__self__, *,
+                 jurisdiction: _builtins.str):
+        """
+        :param _builtins.str jurisdiction: A [jurisdiction code](https://docs.stripe.com/tax/registering?type=hospitality_tax#registration-types) representing the local jurisdiction.
+        """
+        pulumi.set(__self__, "jurisdiction", jurisdiction)
+
+    @_builtins.property
+    @pulumi.getter
+    def jurisdiction(self) -> _builtins.str:
+        """
+        A [jurisdiction code](https://docs.stripe.com/tax/registering?type=hospitality_tax#registration-types) representing the local jurisdiction.
+        """
+        return pulumi.get(self, "jurisdiction")
 
 
 @pulumi.output_type
@@ -62826,6 +66759,78 @@ class TaxRegistrationCountryOptionsUsLocalLeaseTax(dict):
     def jurisdiction(self) -> _builtins.str:
         """
         A [FIPS code](https://www.census.gov/library/reference/code-lists/ansi.html) representing the local jurisdiction.
+        """
+        return pulumi.get(self, "jurisdiction")
+
+
+@pulumi.output_type
+class TaxRegistrationCountryOptionsUsLuxuryTax(dict):
+    def __init__(__self__, *,
+                 jurisdiction: _builtins.str):
+        """
+        :param _builtins.str jurisdiction: A [jurisdiction code](https://docs.stripe.com/tax/registering?type=luxury_tax#registration-types) representing the local jurisdiction.
+        """
+        pulumi.set(__self__, "jurisdiction", jurisdiction)
+
+    @_builtins.property
+    @pulumi.getter
+    def jurisdiction(self) -> _builtins.str:
+        """
+        A [jurisdiction code](https://docs.stripe.com/tax/registering?type=luxury_tax#registration-types) representing the local jurisdiction.
+        """
+        return pulumi.get(self, "jurisdiction")
+
+
+@pulumi.output_type
+class TaxRegistrationCountryOptionsUsMassTransitParkingTax(dict):
+    def __init__(__self__, *,
+                 jurisdiction: _builtins.str):
+        """
+        :param _builtins.str jurisdiction: A [jurisdiction code](https://docs.stripe.com/tax/registering?type=mass_transit_parking_tax#registration-types) representing the local jurisdiction.
+        """
+        pulumi.set(__self__, "jurisdiction", jurisdiction)
+
+    @_builtins.property
+    @pulumi.getter
+    def jurisdiction(self) -> _builtins.str:
+        """
+        A [jurisdiction code](https://docs.stripe.com/tax/registering?type=mass_transit_parking_tax#registration-types) representing the local jurisdiction.
+        """
+        return pulumi.get(self, "jurisdiction")
+
+
+@pulumi.output_type
+class TaxRegistrationCountryOptionsUsParkingTax(dict):
+    def __init__(__self__, *,
+                 jurisdiction: _builtins.str):
+        """
+        :param _builtins.str jurisdiction: A [jurisdiction code](https://docs.stripe.com/tax/registering?type=parking_tax#registration-types) representing the local jurisdiction.
+        """
+        pulumi.set(__self__, "jurisdiction", jurisdiction)
+
+    @_builtins.property
+    @pulumi.getter
+    def jurisdiction(self) -> _builtins.str:
+        """
+        A [jurisdiction code](https://docs.stripe.com/tax/registering?type=parking_tax#registration-types) representing the local jurisdiction.
+        """
+        return pulumi.get(self, "jurisdiction")
+
+
+@pulumi.output_type
+class TaxRegistrationCountryOptionsUsResortTax(dict):
+    def __init__(__self__, *,
+                 jurisdiction: _builtins.str):
+        """
+        :param _builtins.str jurisdiction: A [jurisdiction code](https://docs.stripe.com/tax/registering?type=resort_tax#registration-types) representing the local jurisdiction.
+        """
+        pulumi.set(__self__, "jurisdiction", jurisdiction)
+
+    @_builtins.property
+    @pulumi.getter
+    def jurisdiction(self) -> _builtins.str:
+        """
+        A [jurisdiction code](https://docs.stripe.com/tax/registering?type=resort_tax#registration-types) representing the local jurisdiction.
         """
         return pulumi.get(self, "jurisdiction")
 
@@ -62874,6 +66879,42 @@ class TaxRegistrationCountryOptionsUsStateSalesTaxElection(dict):
     def jurisdiction(self) -> Optional[_builtins.str]:
         """
         A [FIPS code](https://www.census.gov/library/reference/code-lists/ansi.html) representing the local jurisdiction.
+        """
+        return pulumi.get(self, "jurisdiction")
+
+
+@pulumi.output_type
+class TaxRegistrationCountryOptionsUsTourismTax(dict):
+    def __init__(__self__, *,
+                 jurisdiction: _builtins.str):
+        """
+        :param _builtins.str jurisdiction: A [jurisdiction code](https://docs.stripe.com/tax/registering?type=tourism_tax#registration-types) representing the local jurisdiction.
+        """
+        pulumi.set(__self__, "jurisdiction", jurisdiction)
+
+    @_builtins.property
+    @pulumi.getter
+    def jurisdiction(self) -> _builtins.str:
+        """
+        A [jurisdiction code](https://docs.stripe.com/tax/registering?type=tourism_tax#registration-types) representing the local jurisdiction.
+        """
+        return pulumi.get(self, "jurisdiction")
+
+
+@pulumi.output_type
+class TaxRegistrationCountryOptionsUsUtilityUsersTax(dict):
+    def __init__(__self__, *,
+                 jurisdiction: _builtins.str):
+        """
+        :param _builtins.str jurisdiction: A [jurisdiction code](https://docs.stripe.com/tax/registering?type=utility_users_tax#registration-types) representing the local jurisdiction.
+        """
+        pulumi.set(__self__, "jurisdiction", jurisdiction)
+
+    @_builtins.property
+    @pulumi.getter
+    def jurisdiction(self) -> _builtins.str:
+        """
+        A [jurisdiction code](https://docs.stripe.com/tax/registering?type=utility_users_tax#registration-types) representing the local jurisdiction.
         """
         return pulumi.get(self, "jurisdiction")
 
@@ -63205,6 +67246,42 @@ class TerminalConfigurationOffline(dict):
 
 
 @pulumi.output_type
+class TerminalConfigurationReaderSecurity(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "adminMenuPasscode":
+            suggest = "admin_menu_passcode"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in TerminalConfigurationReaderSecurity. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        TerminalConfigurationReaderSecurity.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        TerminalConfigurationReaderSecurity.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 admin_menu_passcode: Optional[_builtins.str] = None):
+        """
+        :param _builtins.str admin_menu_passcode: Passcode used to access a reader's admin menu.
+        """
+        if admin_menu_passcode is not None:
+            pulumi.set(__self__, "admin_menu_passcode", admin_menu_passcode)
+
+    @_builtins.property
+    @pulumi.getter(name="adminMenuPasscode")
+    def admin_menu_passcode(self) -> Optional[_builtins.str]:
+        """
+        Passcode used to access a reader's admin menu.
+        """
+        return pulumi.get(self, "admin_menu_passcode")
+
+
+@pulumi.output_type
 class TerminalConfigurationRebootWindow(dict):
     @staticmethod
     def __key_warning(key: str):
@@ -63273,6 +67350,25 @@ class TerminalConfigurationStripeS700(dict):
 
 @pulumi.output_type
 class TerminalConfigurationStripeS710(dict):
+    def __init__(__self__, *,
+                 splashscreen: Optional[_builtins.str] = None):
+        """
+        :param _builtins.str splashscreen: A File ID representing an image to display on the reader
+        """
+        if splashscreen is not None:
+            pulumi.set(__self__, "splashscreen", splashscreen)
+
+    @_builtins.property
+    @pulumi.getter
+    def splashscreen(self) -> Optional[_builtins.str]:
+        """
+        A File ID representing an image to display on the reader
+        """
+        return pulumi.get(self, "splashscreen")
+
+
+@pulumi.output_type
+class TerminalConfigurationStripeT600(dict):
     def __init__(__self__, *,
                  splashscreen: Optional[_builtins.str] = None):
         """
@@ -65566,7 +69662,7 @@ class TerminalReaderActionApiError(dict):
                  source: Optional[_builtins.str] = None,
                  type: Optional[_builtins.str] = None):
         """
-        :param _builtins.str advice_code: For card errors resulting from a card issuer decline, a short string indicating [how to proceed with an error](https://docs.stripe.com/declines#retrying-issuer-declines) if they provide one.
+        :param _builtins.str advice_code: For card errors resulting from a card issuer decline, a short string indicating [how to proceed with an error](https://docs.stripe.com/declines/card#retrying-issuer-declines) if they provide one.
         :param _builtins.str charge: For card errors, the ID of the failed charge.
         :param _builtins.str code: For some errors that could be handled programmatically, a short string indicating the [error code](https://docs.stripe.com/error-codes) reported.
         :param _builtins.str decline_code: For card errors resulting from a card issuer decline, a short string indicating the [card issuer's reason for the decline](https://docs.stripe.com/declines#issuer-declines) if they provide one.
@@ -65595,7 +69691,7 @@ class TerminalReaderActionApiError(dict):
         :param _builtins.str request_log_url: A URL to the request log entry in your dashboard.
         :param _builtins.str setup_intent: A SetupIntent guides you through the process of setting up and saving a customer's payment credentials for future payments.
                For example, you can use a SetupIntent to set up and save your customer's card without immediately collecting a payment.
-               Later, you can use [PaymentIntents](https://api.stripe.com#payment_intents) to drive the payment flow.
+               Later, you can use [PaymentIntents](https://docs.stripe.com/api#payment_intents) to drive the payment flow.
                
                Create a SetupIntent when you're ready to collect your customer's payment credentials.
                Don't maintain long-lived, unconfirmed SetupIntents because they might not be valid.
@@ -65606,9 +69702,9 @@ class TerminalReaderActionApiError(dict):
                For example, cardholders in [certain regions](https://stripe.com/guides/strong-customer-authentication) might need to be run through
                [Strong Customer Authentication](https://docs.stripe.com/strong-customer-authentication) during payment method collection
                to streamline later [off-session payments](https://docs.stripe.com/payments/setup-intents).
-               If you use the SetupIntent with a [Customer](https://api.stripe.com#setup_intent_object-customer),
+               If you use the SetupIntent with a [Customer](https://docs.stripe.com/api#setup_intent_object-customer),
                it automatically attaches the resulting payment method to that Customer after successful setup.
-               We recommend using SetupIntents or <span pulumi-lang-nodejs="[setupFutureUsage]" pulumi-lang-dotnet="[SetupFutureUsage]" pulumi-lang-go="[setupFutureUsage]" pulumi-lang-python="[setup_future_usage]" pulumi-lang-yaml="[setupFutureUsage]" pulumi-lang-java="[setupFutureUsage]" pulumi-lang-hcl="[setup_future_usage]">[setupFutureUsage]</span>(https://api.stripe.com#payment_intent_object-setup_future_usage) on
+               We recommend using SetupIntents or <span pulumi-lang-nodejs="[setupFutureUsage]" pulumi-lang-dotnet="[SetupFutureUsage]" pulumi-lang-go="[setupFutureUsage]" pulumi-lang-python="[setup_future_usage]" pulumi-lang-yaml="[setupFutureUsage]" pulumi-lang-java="[setupFutureUsage]" pulumi-lang-hcl="[setup_future_usage]">[setupFutureUsage]</span>(https://docs.stripe.com/api#payment_intent_object-setup_future_usage) on
                PaymentIntents to save payment methods to prevent saving invalid or unoptimized payment methods.
                
                By using SetupIntents, you can reduce friction for your customers, even as regulations change over time.
@@ -65653,7 +69749,7 @@ class TerminalReaderActionApiError(dict):
     @pulumi.getter(name="adviceCode")
     def advice_code(self) -> Optional[_builtins.str]:
         """
-        For card errors resulting from a card issuer decline, a short string indicating [how to proceed with an error](https://docs.stripe.com/declines#retrying-issuer-declines) if they provide one.
+        For card errors resulting from a card issuer decline, a short string indicating [how to proceed with an error](https://docs.stripe.com/declines/card#retrying-issuer-declines) if they provide one.
         """
         return pulumi.get(self, "advice_code")
 
@@ -65773,7 +69869,7 @@ class TerminalReaderActionApiError(dict):
         """
         A SetupIntent guides you through the process of setting up and saving a customer's payment credentials for future payments.
         For example, you can use a SetupIntent to set up and save your customer's card without immediately collecting a payment.
-        Later, you can use [PaymentIntents](https://api.stripe.com#payment_intents) to drive the payment flow.
+        Later, you can use [PaymentIntents](https://docs.stripe.com/api#payment_intents) to drive the payment flow.
 
         Create a SetupIntent when you're ready to collect your customer's payment credentials.
         Don't maintain long-lived, unconfirmed SetupIntents because they might not be valid.
@@ -65784,9 +69880,9 @@ class TerminalReaderActionApiError(dict):
         For example, cardholders in [certain regions](https://stripe.com/guides/strong-customer-authentication) might need to be run through
         [Strong Customer Authentication](https://docs.stripe.com/strong-customer-authentication) during payment method collection
         to streamline later [off-session payments](https://docs.stripe.com/payments/setup-intents).
-        If you use the SetupIntent with a [Customer](https://api.stripe.com#setup_intent_object-customer),
+        If you use the SetupIntent with a [Customer](https://docs.stripe.com/api#setup_intent_object-customer),
         it automatically attaches the resulting payment method to that Customer after successful setup.
-        We recommend using SetupIntents or <span pulumi-lang-nodejs="[setupFutureUsage]" pulumi-lang-dotnet="[SetupFutureUsage]" pulumi-lang-go="[setupFutureUsage]" pulumi-lang-python="[setup_future_usage]" pulumi-lang-yaml="[setupFutureUsage]" pulumi-lang-java="[setupFutureUsage]" pulumi-lang-hcl="[setup_future_usage]">[setupFutureUsage]</span>(https://api.stripe.com#payment_intent_object-setup_future_usage) on
+        We recommend using SetupIntents or <span pulumi-lang-nodejs="[setupFutureUsage]" pulumi-lang-dotnet="[SetupFutureUsage]" pulumi-lang-go="[setupFutureUsage]" pulumi-lang-python="[setup_future_usage]" pulumi-lang-yaml="[setupFutureUsage]" pulumi-lang-java="[setupFutureUsage]" pulumi-lang-hcl="[setup_future_usage]">[setupFutureUsage]</span>(https://docs.stripe.com/api#payment_intent_object-setup_future_usage) on
         PaymentIntents to save payment methods to prevent saving invalid or unoptimized payment methods.
 
         By using SetupIntents, you can reduce friction for your customers, even as regulations change over time.
@@ -67262,6 +71358,1422 @@ class TerminalReaderActionSetReaderDisplayCartLineItem(dict):
         The quantity of the line item.
         """
         return pulumi.get(self, "quantity")
+
+
+@pulumi.output_type
+class ThreeDSecureAuthenticationAcquirerDetails(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "acquirerBin":
+            suggest = "acquirer_bin"
+        elif key == "acquirerCountry":
+            suggest = "acquirer_country"
+        elif key == "acquirerMerchantId":
+            suggest = "acquirer_merchant_id"
+        elif key == "merchantName":
+            suggest = "merchant_name"
+        elif key == "requestorId":
+            suggest = "requestor_id"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in ThreeDSecureAuthenticationAcquirerDetails. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        ThreeDSecureAuthenticationAcquirerDetails.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        ThreeDSecureAuthenticationAcquirerDetails.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 acquirer_bin: _builtins.str,
+                 acquirer_country: _builtins.str,
+                 acquirer_merchant_id: _builtins.str,
+                 mcc: Optional[_builtins.str] = None,
+                 merchant_name: Optional[_builtins.str] = None,
+                 requestor_id: Optional[_builtins.str] = None):
+        """
+        :param _builtins.str acquirer_bin: The Acquirer BIN (specific to the directory_server).
+        :param _builtins.str acquirer_country: The two-letter country code of the acquirer ([ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2)).
+        :param _builtins.str acquirer_merchant_id: The Merchant ID (or Card Acceptor ID) that your acquirer assigned you (specific to the directory_server).
+        :param _builtins.str mcc: The [merchant category code](https://en.wikipedia.org/wiki/Merchant_category_code) as defined by each payment system or directory server.
+        :param _builtins.str merchant_name: The merchant name assigned by the acquirer or payment system. Same name used in the authorization message as defined in [ISO 8583](https://en.wikipedia.org/wiki/ISO_8583).
+        :param _builtins.str requestor_id: Requestor ID if you’re enrolled in the card network’s 3DS program. Otherwise, you can omit this field because Stripe assigns a Requestor ID with the card networks.
+        """
+        pulumi.set(__self__, "acquirer_bin", acquirer_bin)
+        pulumi.set(__self__, "acquirer_country", acquirer_country)
+        pulumi.set(__self__, "acquirer_merchant_id", acquirer_merchant_id)
+        if mcc is not None:
+            pulumi.set(__self__, "mcc", mcc)
+        if merchant_name is not None:
+            pulumi.set(__self__, "merchant_name", merchant_name)
+        if requestor_id is not None:
+            pulumi.set(__self__, "requestor_id", requestor_id)
+
+    @_builtins.property
+    @pulumi.getter(name="acquirerBin")
+    def acquirer_bin(self) -> _builtins.str:
+        """
+        The Acquirer BIN (specific to the directory_server).
+        """
+        return pulumi.get(self, "acquirer_bin")
+
+    @_builtins.property
+    @pulumi.getter(name="acquirerCountry")
+    def acquirer_country(self) -> _builtins.str:
+        """
+        The two-letter country code of the acquirer ([ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2)).
+        """
+        return pulumi.get(self, "acquirer_country")
+
+    @_builtins.property
+    @pulumi.getter(name="acquirerMerchantId")
+    def acquirer_merchant_id(self) -> _builtins.str:
+        """
+        The Merchant ID (or Card Acceptor ID) that your acquirer assigned you (specific to the directory_server).
+        """
+        return pulumi.get(self, "acquirer_merchant_id")
+
+    @_builtins.property
+    @pulumi.getter
+    def mcc(self) -> Optional[_builtins.str]:
+        """
+        The [merchant category code](https://en.wikipedia.org/wiki/Merchant_category_code) as defined by each payment system or directory server.
+        """
+        return pulumi.get(self, "mcc")
+
+    @_builtins.property
+    @pulumi.getter(name="merchantName")
+    def merchant_name(self) -> Optional[_builtins.str]:
+        """
+        The merchant name assigned by the acquirer or payment system. Same name used in the authorization message as defined in [ISO 8583](https://en.wikipedia.org/wiki/ISO_8583).
+        """
+        return pulumi.get(self, "merchant_name")
+
+    @_builtins.property
+    @pulumi.getter(name="requestorId")
+    def requestor_id(self) -> Optional[_builtins.str]:
+        """
+        Requestor ID if you’re enrolled in the card network’s 3DS program. Otherwise, you can omit this field because Stripe assigns a Requestor ID with the card networks.
+        """
+        return pulumi.get(self, "requestor_id")
+
+
+@pulumi.output_type
+class ThreeDSecureAuthenticationChannel(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "threeRI":
+            suggest = "three_ri"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in ThreeDSecureAuthenticationChannel. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        ThreeDSecureAuthenticationChannel.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        ThreeDSecureAuthenticationChannel.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 type: _builtins.str,
+                 browser: Optional['outputs.ThreeDSecureAuthenticationChannelBrowser'] = None,
+                 three_ri: Optional['outputs.ThreeDSecureAuthenticationChannelThreeRI'] = None):
+        """
+        :param _builtins.str type: Type of channel you would prefer to use for this 3DS Authentication. Only browser.
+        :param 'ThreeDSecureAuthenticationChannelBrowserArgs' browser: Contains details on the browser for a standalone 3DS Authentication.
+        :param 'ThreeDSecureAuthenticationChannelThreeRIArgs' three_ri: Contains details for a 3RI standalone 3DS Authentication.
+        """
+        pulumi.set(__self__, "type", type)
+        if browser is not None:
+            pulumi.set(__self__, "browser", browser)
+        if three_ri is not None:
+            pulumi.set(__self__, "three_ri", three_ri)
+
+    @_builtins.property
+    @pulumi.getter
+    def type(self) -> _builtins.str:
+        """
+        Type of channel you would prefer to use for this 3DS Authentication. Only browser.
+        """
+        return pulumi.get(self, "type")
+
+    @_builtins.property
+    @pulumi.getter
+    def browser(self) -> Optional['outputs.ThreeDSecureAuthenticationChannelBrowser']:
+        """
+        Contains details on the browser for a standalone 3DS Authentication.
+        """
+        return pulumi.get(self, "browser")
+
+    @_builtins.property
+    @pulumi.getter(name="threeRI")
+    def three_ri(self) -> Optional['outputs.ThreeDSecureAuthenticationChannelThreeRI']:
+        """
+        Contains details for a 3RI standalone 3DS Authentication.
+        """
+        return pulumi.get(self, "three_ri")
+
+
+@pulumi.output_type
+class ThreeDSecureAuthenticationChannelBrowser(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "acceptHeader":
+            suggest = "accept_header"
+        elif key == "ipAddress":
+            suggest = "ip_address"
+        elif key == "javascriptEnabled":
+            suggest = "javascript_enabled"
+        elif key == "userAgent":
+            suggest = "user_agent"
+        elif key == "colorDepth":
+            suggest = "color_depth"
+        elif key == "deviceId":
+            suggest = "device_id"
+        elif key == "javaEnabled":
+            suggest = "java_enabled"
+        elif key == "screenHeight":
+            suggest = "screen_height"
+        elif key == "screenWidth":
+            suggest = "screen_width"
+        elif key == "timezoneOffset":
+            suggest = "timezone_offset"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in ThreeDSecureAuthenticationChannelBrowser. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        ThreeDSecureAuthenticationChannelBrowser.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        ThreeDSecureAuthenticationChannelBrowser.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 accept_header: _builtins.str,
+                 ip_address: _builtins.str,
+                 javascript_enabled: _builtins.bool,
+                 language: _builtins.str,
+                 user_agent: _builtins.str,
+                 color_depth: Optional[_builtins.float] = None,
+                 device_id: Optional[_builtins.str] = None,
+                 java_enabled: Optional[_builtins.bool] = None,
+                 screen_height: Optional[_builtins.float] = None,
+                 screen_width: Optional[_builtins.float] = None,
+                 timezone_offset: Optional[_builtins.float] = None):
+        """
+        :param _builtins.str accept_header: The HTTP accept headers from the cardholder's browser.
+        :param _builtins.str ip_address: The IP address of the browser.
+        :param _builtins.bool javascript_enabled: The cardholder browser’s ability to execute JavaScript.
+        :param _builtins.str language: An IETF BCP 47 language tag representing the browser language.
+        :param _builtins.str user_agent: The browser user agent.
+        :param _builtins.float color_depth: The color depth of the cardholder’s screen.
+        :param _builtins.str device_id: Unique and immutable identifier linked to a device that is consistent across 3DS transactions for the specific user device. For example: hardware device ID or a platform-calculated device fingerprint.
+        :param _builtins.bool java_enabled: The cardholder browser’s ability to execute Java.
+        :param _builtins.float screen_height: The total height of the cardholder’s screen in pixels.
+        :param _builtins.float screen_width: The total width of the cardholder’s screen in pixels.
+        :param _builtins.float timezone_offset: The time difference between UTC time and the local time of the cardholder’s browser, in minutes.
+        """
+        pulumi.set(__self__, "accept_header", accept_header)
+        pulumi.set(__self__, "ip_address", ip_address)
+        pulumi.set(__self__, "javascript_enabled", javascript_enabled)
+        pulumi.set(__self__, "language", language)
+        pulumi.set(__self__, "user_agent", user_agent)
+        if color_depth is not None:
+            pulumi.set(__self__, "color_depth", color_depth)
+        if device_id is not None:
+            pulumi.set(__self__, "device_id", device_id)
+        if java_enabled is not None:
+            pulumi.set(__self__, "java_enabled", java_enabled)
+        if screen_height is not None:
+            pulumi.set(__self__, "screen_height", screen_height)
+        if screen_width is not None:
+            pulumi.set(__self__, "screen_width", screen_width)
+        if timezone_offset is not None:
+            pulumi.set(__self__, "timezone_offset", timezone_offset)
+
+    @_builtins.property
+    @pulumi.getter(name="acceptHeader")
+    def accept_header(self) -> _builtins.str:
+        """
+        The HTTP accept headers from the cardholder's browser.
+        """
+        return pulumi.get(self, "accept_header")
+
+    @_builtins.property
+    @pulumi.getter(name="ipAddress")
+    def ip_address(self) -> _builtins.str:
+        """
+        The IP address of the browser.
+        """
+        return pulumi.get(self, "ip_address")
+
+    @_builtins.property
+    @pulumi.getter(name="javascriptEnabled")
+    def javascript_enabled(self) -> _builtins.bool:
+        """
+        The cardholder browser’s ability to execute JavaScript.
+        """
+        return pulumi.get(self, "javascript_enabled")
+
+    @_builtins.property
+    @pulumi.getter
+    def language(self) -> _builtins.str:
+        """
+        An IETF BCP 47 language tag representing the browser language.
+        """
+        return pulumi.get(self, "language")
+
+    @_builtins.property
+    @pulumi.getter(name="userAgent")
+    def user_agent(self) -> _builtins.str:
+        """
+        The browser user agent.
+        """
+        return pulumi.get(self, "user_agent")
+
+    @_builtins.property
+    @pulumi.getter(name="colorDepth")
+    def color_depth(self) -> Optional[_builtins.float]:
+        """
+        The color depth of the cardholder’s screen.
+        """
+        return pulumi.get(self, "color_depth")
+
+    @_builtins.property
+    @pulumi.getter(name="deviceId")
+    def device_id(self) -> Optional[_builtins.str]:
+        """
+        Unique and immutable identifier linked to a device that is consistent across 3DS transactions for the specific user device. For example: hardware device ID or a platform-calculated device fingerprint.
+        """
+        return pulumi.get(self, "device_id")
+
+    @_builtins.property
+    @pulumi.getter(name="javaEnabled")
+    def java_enabled(self) -> Optional[_builtins.bool]:
+        """
+        The cardholder browser’s ability to execute Java.
+        """
+        return pulumi.get(self, "java_enabled")
+
+    @_builtins.property
+    @pulumi.getter(name="screenHeight")
+    def screen_height(self) -> Optional[_builtins.float]:
+        """
+        The total height of the cardholder’s screen in pixels.
+        """
+        return pulumi.get(self, "screen_height")
+
+    @_builtins.property
+    @pulumi.getter(name="screenWidth")
+    def screen_width(self) -> Optional[_builtins.float]:
+        """
+        The total width of the cardholder’s screen in pixels.
+        """
+        return pulumi.get(self, "screen_width")
+
+    @_builtins.property
+    @pulumi.getter(name="timezoneOffset")
+    def timezone_offset(self) -> Optional[_builtins.float]:
+        """
+        The time difference between UTC time and the local time of the cardholder’s browser, in minutes.
+        """
+        return pulumi.get(self, "timezone_offset")
+
+
+@pulumi.output_type
+class ThreeDSecureAuthenticationChannelThreeRI(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "previousAuthentication":
+            suggest = "previous_authentication"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in ThreeDSecureAuthenticationChannelThreeRI. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        ThreeDSecureAuthenticationChannelThreeRI.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        ThreeDSecureAuthenticationChannelThreeRI.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 previous_authentication: _builtins.str,
+                 type: _builtins.str):
+        """
+        :param _builtins.str previous_authentication: ID of the previous initial authenticated 3DS Authentication object.
+        :param _builtins.str type: Type of the 3RI Authentication.
+        """
+        pulumi.set(__self__, "previous_authentication", previous_authentication)
+        pulumi.set(__self__, "type", type)
+
+    @_builtins.property
+    @pulumi.getter(name="previousAuthentication")
+    def previous_authentication(self) -> _builtins.str:
+        """
+        ID of the previous initial authenticated 3DS Authentication object.
+        """
+        return pulumi.get(self, "previous_authentication")
+
+    @_builtins.property
+    @pulumi.getter
+    def type(self) -> _builtins.str:
+        """
+        Type of the 3RI Authentication.
+        """
+        return pulumi.get(self, "type")
+
+
+@pulumi.output_type
+class ThreeDSecureAuthenticationFlowPreference(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "dataShare":
+            suggest = "data_share"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in ThreeDSecureAuthenticationFlowPreference. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        ThreeDSecureAuthenticationFlowPreference.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        ThreeDSecureAuthenticationFlowPreference.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 type: _builtins.str,
+                 challenge: Optional['outputs.ThreeDSecureAuthenticationFlowPreferenceChallenge'] = None,
+                 data_share: Optional['outputs.ThreeDSecureAuthenticationFlowPreferenceDataShare'] = None,
+                 frictionless: Optional['outputs.ThreeDSecureAuthenticationFlowPreferenceFrictionless'] = None):
+        """
+        :param _builtins.str type: Type of flow you requested for this 3DS Authentication.
+        """
+        pulumi.set(__self__, "type", type)
+        if challenge is not None:
+            pulumi.set(__self__, "challenge", challenge)
+        if data_share is not None:
+            pulumi.set(__self__, "data_share", data_share)
+        if frictionless is not None:
+            pulumi.set(__self__, "frictionless", frictionless)
+
+    @_builtins.property
+    @pulumi.getter
+    def type(self) -> _builtins.str:
+        """
+        Type of flow you requested for this 3DS Authentication.
+        """
+        return pulumi.get(self, "type")
+
+    @_builtins.property
+    @pulumi.getter
+    def challenge(self) -> Optional['outputs.ThreeDSecureAuthenticationFlowPreferenceChallenge']:
+        return pulumi.get(self, "challenge")
+
+    @_builtins.property
+    @pulumi.getter(name="dataShare")
+    def data_share(self) -> Optional['outputs.ThreeDSecureAuthenticationFlowPreferenceDataShare']:
+        return pulumi.get(self, "data_share")
+
+    @_builtins.property
+    @pulumi.getter
+    def frictionless(self) -> Optional['outputs.ThreeDSecureAuthenticationFlowPreferenceFrictionless']:
+        return pulumi.get(self, "frictionless")
+
+
+@pulumi.output_type
+class ThreeDSecureAuthenticationFlowPreferenceChallenge(dict):
+    def __init__(__self__, *,
+                 type: _builtins.str):
+        """
+        :param _builtins.str type: Type of challenge flow you requested for this 3DS Authentication.
+        """
+        pulumi.set(__self__, "type", type)
+
+    @_builtins.property
+    @pulumi.getter
+    def type(self) -> _builtins.str:
+        """
+        Type of challenge flow you requested for this 3DS Authentication.
+        """
+        return pulumi.get(self, "type")
+
+
+@pulumi.output_type
+class ThreeDSecureAuthenticationFlowPreferenceDataShare(dict):
+    def __init__(__self__, *,
+                 type: _builtins.str):
+        """
+        :param _builtins.str type: Type of data share flow you requested for this 3DS Authentication.
+        """
+        pulumi.set(__self__, "type", type)
+
+    @_builtins.property
+    @pulumi.getter
+    def type(self) -> _builtins.str:
+        """
+        Type of data share flow you requested for this 3DS Authentication.
+        """
+        return pulumi.get(self, "type")
+
+
+@pulumi.output_type
+class ThreeDSecureAuthenticationFlowPreferenceFrictionless(dict):
+    def __init__(__self__, *,
+                 type: _builtins.str):
+        """
+        :param _builtins.str type: Type of frictionless flow you requested for this 3DS Authentication.
+        """
+        pulumi.set(__self__, "type", type)
+
+    @_builtins.property
+    @pulumi.getter
+    def type(self) -> _builtins.str:
+        """
+        Type of frictionless flow you requested for this 3DS Authentication.
+        """
+        return pulumi.get(self, "type")
+
+
+@pulumi.output_type
+class ThreeDSecureAuthenticationFutureUsage(dict):
+    def __init__(__self__, *,
+                 type: _builtins.str,
+                 installment: Optional['outputs.ThreeDSecureAuthenticationFutureUsageInstallment'] = None,
+                 recurring: Optional['outputs.ThreeDSecureAuthenticationFutureUsageRecurring'] = None):
+        """
+        :param _builtins.str type: The type of future usage declared for this 3DS Authentication.
+        :param 'ThreeDSecureAuthenticationFutureUsageInstallmentArgs' installment: Details about installment payments
+        :param 'ThreeDSecureAuthenticationFutureUsageRecurringArgs' recurring: Details about recurring payments
+        """
+        pulumi.set(__self__, "type", type)
+        if installment is not None:
+            pulumi.set(__self__, "installment", installment)
+        if recurring is not None:
+            pulumi.set(__self__, "recurring", recurring)
+
+    @_builtins.property
+    @pulumi.getter
+    def type(self) -> _builtins.str:
+        """
+        The type of future usage declared for this 3DS Authentication.
+        """
+        return pulumi.get(self, "type")
+
+    @_builtins.property
+    @pulumi.getter
+    def installment(self) -> Optional['outputs.ThreeDSecureAuthenticationFutureUsageInstallment']:
+        """
+        Details about installment payments
+        """
+        return pulumi.get(self, "installment")
+
+    @_builtins.property
+    @pulumi.getter
+    def recurring(self) -> Optional['outputs.ThreeDSecureAuthenticationFutureUsageRecurring']:
+        """
+        Details about recurring payments
+        """
+        return pulumi.get(self, "recurring")
+
+
+@pulumi.output_type
+class ThreeDSecureAuthenticationFutureUsageInstallment(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "intervalCount":
+            suggest = "interval_count"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in ThreeDSecureAuthenticationFutureUsageInstallment. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        ThreeDSecureAuthenticationFutureUsageInstallment.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        ThreeDSecureAuthenticationFutureUsageInstallment.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 amount: _builtins.float,
+                 expiry: 'outputs.ThreeDSecureAuthenticationFutureUsageInstallmentExpiry',
+                 number: _builtins.float,
+                 interval: Optional[_builtins.str] = None,
+                 interval_count: Optional[_builtins.float] = None):
+        """
+        :param _builtins.float amount: A non-negative integer representing the amount in the [smallest currency unit](https://www.terraform.io/currencies#zero-decimal).
+        :param 'ThreeDSecureAuthenticationFutureUsageInstallmentExpiryArgs' expiry: Information about recurring payment expiry
+        :param _builtins.float number: The maximum number of installments.
+        :param _builtins.str interval: The unit of time for <span pulumi-lang-nodejs="`intervalCount`" pulumi-lang-dotnet="`IntervalCount`" pulumi-lang-go="`intervalCount`" pulumi-lang-python="`interval_count`" pulumi-lang-yaml="`intervalCount`" pulumi-lang-java="`intervalCount`" pulumi-lang-hcl="`interval_count`">`intervalCount`</span>.
+        :param _builtins.float interval_count: The minimum number of time intervals between authorizations.
+        """
+        pulumi.set(__self__, "amount", amount)
+        pulumi.set(__self__, "expiry", expiry)
+        pulumi.set(__self__, "number", number)
+        if interval is not None:
+            pulumi.set(__self__, "interval", interval)
+        if interval_count is not None:
+            pulumi.set(__self__, "interval_count", interval_count)
+
+    @_builtins.property
+    @pulumi.getter
+    def amount(self) -> _builtins.float:
+        """
+        A non-negative integer representing the amount in the [smallest currency unit](https://www.terraform.io/currencies#zero-decimal).
+        """
+        return pulumi.get(self, "amount")
+
+    @_builtins.property
+    @pulumi.getter
+    def expiry(self) -> 'outputs.ThreeDSecureAuthenticationFutureUsageInstallmentExpiry':
+        """
+        Information about recurring payment expiry
+        """
+        return pulumi.get(self, "expiry")
+
+    @_builtins.property
+    @pulumi.getter
+    def number(self) -> _builtins.float:
+        """
+        The maximum number of installments.
+        """
+        return pulumi.get(self, "number")
+
+    @_builtins.property
+    @pulumi.getter
+    def interval(self) -> Optional[_builtins.str]:
+        """
+        The unit of time for <span pulumi-lang-nodejs="`intervalCount`" pulumi-lang-dotnet="`IntervalCount`" pulumi-lang-go="`intervalCount`" pulumi-lang-python="`interval_count`" pulumi-lang-yaml="`intervalCount`" pulumi-lang-java="`intervalCount`" pulumi-lang-hcl="`interval_count`">`intervalCount`</span>.
+        """
+        return pulumi.get(self, "interval")
+
+    @_builtins.property
+    @pulumi.getter(name="intervalCount")
+    def interval_count(self) -> Optional[_builtins.float]:
+        """
+        The minimum number of time intervals between authorizations.
+        """
+        return pulumi.get(self, "interval_count")
+
+
+@pulumi.output_type
+class ThreeDSecureAuthenticationFutureUsageInstallmentExpiry(dict):
+    def __init__(__self__, *,
+                 type: _builtins.str,
+                 date: Optional[_builtins.str] = None):
+        pulumi.set(__self__, "type", type)
+        if date is not None:
+            pulumi.set(__self__, "date", date)
+
+    @_builtins.property
+    @pulumi.getter
+    def type(self) -> _builtins.str:
+        return pulumi.get(self, "type")
+
+    @_builtins.property
+    @pulumi.getter
+    def date(self) -> Optional[_builtins.str]:
+        return pulumi.get(self, "date")
+
+
+@pulumi.output_type
+class ThreeDSecureAuthenticationFutureUsageRecurring(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "intervalCount":
+            suggest = "interval_count"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in ThreeDSecureAuthenticationFutureUsageRecurring. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        ThreeDSecureAuthenticationFutureUsageRecurring.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        ThreeDSecureAuthenticationFutureUsageRecurring.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 amount: _builtins.float,
+                 expiry: 'outputs.ThreeDSecureAuthenticationFutureUsageRecurringExpiry',
+                 interval: Optional[_builtins.str] = None,
+                 interval_count: Optional[_builtins.float] = None):
+        """
+        :param _builtins.float amount: A non-negative integer representing the amount in the [smallest currency unit](https://www.terraform.io/currencies#zero-decimal).
+        :param 'ThreeDSecureAuthenticationFutureUsageRecurringExpiryArgs' expiry: Information about recurring payment expiry
+        :param _builtins.str interval: The unit of time for <span pulumi-lang-nodejs="`intervalCount`" pulumi-lang-dotnet="`IntervalCount`" pulumi-lang-go="`intervalCount`" pulumi-lang-python="`interval_count`" pulumi-lang-yaml="`intervalCount`" pulumi-lang-java="`intervalCount`" pulumi-lang-hcl="`interval_count`">`intervalCount`</span>.
+        :param _builtins.float interval_count: The minimum number of time intervals between authorizations.
+        """
+        pulumi.set(__self__, "amount", amount)
+        pulumi.set(__self__, "expiry", expiry)
+        if interval is not None:
+            pulumi.set(__self__, "interval", interval)
+        if interval_count is not None:
+            pulumi.set(__self__, "interval_count", interval_count)
+
+    @_builtins.property
+    @pulumi.getter
+    def amount(self) -> _builtins.float:
+        """
+        A non-negative integer representing the amount in the [smallest currency unit](https://www.terraform.io/currencies#zero-decimal).
+        """
+        return pulumi.get(self, "amount")
+
+    @_builtins.property
+    @pulumi.getter
+    def expiry(self) -> 'outputs.ThreeDSecureAuthenticationFutureUsageRecurringExpiry':
+        """
+        Information about recurring payment expiry
+        """
+        return pulumi.get(self, "expiry")
+
+    @_builtins.property
+    @pulumi.getter
+    def interval(self) -> Optional[_builtins.str]:
+        """
+        The unit of time for <span pulumi-lang-nodejs="`intervalCount`" pulumi-lang-dotnet="`IntervalCount`" pulumi-lang-go="`intervalCount`" pulumi-lang-python="`interval_count`" pulumi-lang-yaml="`intervalCount`" pulumi-lang-java="`intervalCount`" pulumi-lang-hcl="`interval_count`">`intervalCount`</span>.
+        """
+        return pulumi.get(self, "interval")
+
+    @_builtins.property
+    @pulumi.getter(name="intervalCount")
+    def interval_count(self) -> Optional[_builtins.float]:
+        """
+        The minimum number of time intervals between authorizations.
+        """
+        return pulumi.get(self, "interval_count")
+
+
+@pulumi.output_type
+class ThreeDSecureAuthenticationFutureUsageRecurringExpiry(dict):
+    def __init__(__self__, *,
+                 type: _builtins.str,
+                 date: Optional[_builtins.str] = None):
+        pulumi.set(__self__, "type", type)
+        if date is not None:
+            pulumi.set(__self__, "date", date)
+
+    @_builtins.property
+    @pulumi.getter
+    def type(self) -> _builtins.str:
+        return pulumi.get(self, "type")
+
+    @_builtins.property
+    @pulumi.getter
+    def date(self) -> Optional[_builtins.str]:
+        return pulumi.get(self, "date")
+
+
+@pulumi.output_type
+class ThreeDSecureAuthenticationOutcomeDetails(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "acsTransactionId":
+            suggest = "acs_transaction_id"
+        elif key == "aresTransStatus":
+            suggest = "ares_trans_status"
+        elif key == "dsTransactionId":
+            suggest = "ds_transaction_id"
+        elif key == "networkDetails":
+            suggest = "network_details"
+        elif key == "protocolVersion":
+            suggest = "protocol_version"
+        elif key == "requestorChallengeIndicator":
+            suggest = "requestor_challenge_indicator"
+        elif key == "rreqTransStatus":
+            suggest = "rreq_trans_status"
+        elif key == "threeDsServerTransactionId":
+            suggest = "three_ds_server_transaction_id"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in ThreeDSecureAuthenticationOutcomeDetails. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        ThreeDSecureAuthenticationOutcomeDetails.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        ThreeDSecureAuthenticationOutcomeDetails.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 acs_transaction_id: Optional[_builtins.str] = None,
+                 ares: Optional[_builtins.str] = None,
+                 ares_trans_status: Optional[_builtins.str] = None,
+                 cryptogram: Optional[_builtins.str] = None,
+                 ds_transaction_id: Optional[_builtins.str] = None,
+                 eci: Optional[_builtins.str] = None,
+                 network_details: Optional['outputs.ThreeDSecureAuthenticationOutcomeDetailsNetworkDetails'] = None,
+                 protocol_version: Optional[_builtins.str] = None,
+                 requestor_challenge_indicator: Optional[_builtins.str] = None,
+                 rreq: Optional[_builtins.str] = None,
+                 rreq_trans_status: Optional[_builtins.str] = None,
+                 three_ds_server_transaction_id: Optional[_builtins.str] = None):
+        """
+        :param _builtins.str acs_transaction_id: Universally unique transaction identifier assigned by the issuer to identify the transaction.
+        :param _builtins.str ares: The Authentication Response Message (ARes) is the issuer's response to the AReq message.
+        :param _builtins.str ares_trans_status: TransStatus field on the ARes
+        :param _builtins.str cryptogram: A 28-character Base64 string proving that 3DS was completed. Store this value securely, and don’t reuse it for multiple authorizations.
+        :param _builtins.str ds_transaction_id: The 3DS2 Directory Server Transaction ID.
+        :param _builtins.str eci: Electronic Commerce Indicator provided by the issuer to indicate the result of this 3DS Authentication.
+        :param 'ThreeDSecureAuthenticationOutcomeDetailsNetworkDetailsArgs' network_details: Contains details specific to the individual network.
+        :param _builtins.str protocol_version: The 3DS protocol version used for this 3DS Authentication.
+        :param _builtins.str requestor_challenge_indicator: The indicator provided to the issuer by Stripe in the AReq that indicates whether a challenge is requested for this Authentication. This indicator should match the<span pulumi-lang-nodejs=" flowPreference " pulumi-lang-dotnet=" FlowPreference " pulumi-lang-go=" flowPreference " pulumi-lang-python=" flow_preference " pulumi-lang-yaml=" flowPreference " pulumi-lang-java=" flowPreference " pulumi-lang-hcl=" flow_preference "> flowPreference </span>you specified but may be overridden (for compliance reasons for example).
+        :param _builtins.str rreq: The Results Request Message (RReq) communicates the results of the authentication or verification.
+        :param _builtins.str rreq_trans_status: TransStatus field on the RReq
+        :param _builtins.str three_ds_server_transaction_id: Universally unique transaction identifier assigned by Stripe to identify the transaction.
+        """
+        if acs_transaction_id is not None:
+            pulumi.set(__self__, "acs_transaction_id", acs_transaction_id)
+        if ares is not None:
+            pulumi.set(__self__, "ares", ares)
+        if ares_trans_status is not None:
+            pulumi.set(__self__, "ares_trans_status", ares_trans_status)
+        if cryptogram is not None:
+            pulumi.set(__self__, "cryptogram", cryptogram)
+        if ds_transaction_id is not None:
+            pulumi.set(__self__, "ds_transaction_id", ds_transaction_id)
+        if eci is not None:
+            pulumi.set(__self__, "eci", eci)
+        if network_details is not None:
+            pulumi.set(__self__, "network_details", network_details)
+        if protocol_version is not None:
+            pulumi.set(__self__, "protocol_version", protocol_version)
+        if requestor_challenge_indicator is not None:
+            pulumi.set(__self__, "requestor_challenge_indicator", requestor_challenge_indicator)
+        if rreq is not None:
+            pulumi.set(__self__, "rreq", rreq)
+        if rreq_trans_status is not None:
+            pulumi.set(__self__, "rreq_trans_status", rreq_trans_status)
+        if three_ds_server_transaction_id is not None:
+            pulumi.set(__self__, "three_ds_server_transaction_id", three_ds_server_transaction_id)
+
+    @_builtins.property
+    @pulumi.getter(name="acsTransactionId")
+    def acs_transaction_id(self) -> Optional[_builtins.str]:
+        """
+        Universally unique transaction identifier assigned by the issuer to identify the transaction.
+        """
+        return pulumi.get(self, "acs_transaction_id")
+
+    @_builtins.property
+    @pulumi.getter
+    def ares(self) -> Optional[_builtins.str]:
+        """
+        The Authentication Response Message (ARes) is the issuer's response to the AReq message.
+        """
+        return pulumi.get(self, "ares")
+
+    @_builtins.property
+    @pulumi.getter(name="aresTransStatus")
+    def ares_trans_status(self) -> Optional[_builtins.str]:
+        """
+        TransStatus field on the ARes
+        """
+        return pulumi.get(self, "ares_trans_status")
+
+    @_builtins.property
+    @pulumi.getter
+    def cryptogram(self) -> Optional[_builtins.str]:
+        """
+        A 28-character Base64 string proving that 3DS was completed. Store this value securely, and don’t reuse it for multiple authorizations.
+        """
+        return pulumi.get(self, "cryptogram")
+
+    @_builtins.property
+    @pulumi.getter(name="dsTransactionId")
+    def ds_transaction_id(self) -> Optional[_builtins.str]:
+        """
+        The 3DS2 Directory Server Transaction ID.
+        """
+        return pulumi.get(self, "ds_transaction_id")
+
+    @_builtins.property
+    @pulumi.getter
+    def eci(self) -> Optional[_builtins.str]:
+        """
+        Electronic Commerce Indicator provided by the issuer to indicate the result of this 3DS Authentication.
+        """
+        return pulumi.get(self, "eci")
+
+    @_builtins.property
+    @pulumi.getter(name="networkDetails")
+    def network_details(self) -> Optional['outputs.ThreeDSecureAuthenticationOutcomeDetailsNetworkDetails']:
+        """
+        Contains details specific to the individual network.
+        """
+        return pulumi.get(self, "network_details")
+
+    @_builtins.property
+    @pulumi.getter(name="protocolVersion")
+    def protocol_version(self) -> Optional[_builtins.str]:
+        """
+        The 3DS protocol version used for this 3DS Authentication.
+        """
+        return pulumi.get(self, "protocol_version")
+
+    @_builtins.property
+    @pulumi.getter(name="requestorChallengeIndicator")
+    def requestor_challenge_indicator(self) -> Optional[_builtins.str]:
+        """
+        The indicator provided to the issuer by Stripe in the AReq that indicates whether a challenge is requested for this Authentication. This indicator should match the<span pulumi-lang-nodejs=" flowPreference " pulumi-lang-dotnet=" FlowPreference " pulumi-lang-go=" flowPreference " pulumi-lang-python=" flow_preference " pulumi-lang-yaml=" flowPreference " pulumi-lang-java=" flowPreference " pulumi-lang-hcl=" flow_preference "> flowPreference </span>you specified but may be overridden (for compliance reasons for example).
+        """
+        return pulumi.get(self, "requestor_challenge_indicator")
+
+    @_builtins.property
+    @pulumi.getter
+    def rreq(self) -> Optional[_builtins.str]:
+        """
+        The Results Request Message (RReq) communicates the results of the authentication or verification.
+        """
+        return pulumi.get(self, "rreq")
+
+    @_builtins.property
+    @pulumi.getter(name="rreqTransStatus")
+    def rreq_trans_status(self) -> Optional[_builtins.str]:
+        """
+        TransStatus field on the RReq
+        """
+        return pulumi.get(self, "rreq_trans_status")
+
+    @_builtins.property
+    @pulumi.getter(name="threeDsServerTransactionId")
+    def three_ds_server_transaction_id(self) -> Optional[_builtins.str]:
+        """
+        Universally unique transaction identifier assigned by Stripe to identify the transaction.
+        """
+        return pulumi.get(self, "three_ds_server_transaction_id")
+
+
+@pulumi.output_type
+class ThreeDSecureAuthenticationOutcomeDetailsNetworkDetails(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "cartesBancaires":
+            suggest = "cartes_bancaires"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in ThreeDSecureAuthenticationOutcomeDetailsNetworkDetails. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        ThreeDSecureAuthenticationOutcomeDetailsNetworkDetails.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        ThreeDSecureAuthenticationOutcomeDetailsNetworkDetails.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 cartes_bancaires: Optional['outputs.ThreeDSecureAuthenticationOutcomeDetailsNetworkDetailsCartesBancaires'] = None):
+        """
+        :param 'ThreeDSecureAuthenticationOutcomeDetailsNetworkDetailsCartesBancairesArgs' cartes_bancaires: Contains details for Cartes Bancaires specific fields in the authentication outcomes.
+        """
+        if cartes_bancaires is not None:
+            pulumi.set(__self__, "cartes_bancaires", cartes_bancaires)
+
+    @_builtins.property
+    @pulumi.getter(name="cartesBancaires")
+    def cartes_bancaires(self) -> Optional['outputs.ThreeDSecureAuthenticationOutcomeDetailsNetworkDetailsCartesBancaires']:
+        """
+        Contains details for Cartes Bancaires specific fields in the authentication outcomes.
+        """
+        return pulumi.get(self, "cartes_bancaires")
+
+
+@pulumi.output_type
+class ThreeDSecureAuthenticationOutcomeDetailsNetworkDetailsCartesBancaires(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "cbExemption":
+            suggest = "cb_exemption"
+        elif key == "cbScore":
+            suggest = "cb_score"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in ThreeDSecureAuthenticationOutcomeDetailsNetworkDetailsCartesBancaires. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        ThreeDSecureAuthenticationOutcomeDetailsNetworkDetailsCartesBancaires.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        ThreeDSecureAuthenticationOutcomeDetailsNetworkDetailsCartesBancaires.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 avalgo: Optional[_builtins.str] = None,
+                 cb_exemption: Optional[_builtins.str] = None,
+                 cb_score: Optional[_builtins.str] = None):
+        """
+        :param _builtins.str avalgo: The cryptogram calculation algorithm used by the card Issuer's ACS to calculate the Authentication cryptogram. Also known as cavvAlgorithm. ARes/RReq messageExtension: `CB-AVALGO`
+        :param _builtins.str cb_exemption: The exemption indicator returned from Cartes Bancaires in the ARes. This is a 3 byte bitmap (lowest significant byte first and most significant bit first) that has been Base64 encoded. String (4 characters). ARes message extension: `CB-EXEMPTION`
+        :param _builtins.str cb_score: The risk score returned from Cartes Bancaires in the ARes. Numeric value 0-99. ARes/RReq message extension: `CB-SCORE`
+        """
+        if avalgo is not None:
+            pulumi.set(__self__, "avalgo", avalgo)
+        if cb_exemption is not None:
+            pulumi.set(__self__, "cb_exemption", cb_exemption)
+        if cb_score is not None:
+            pulumi.set(__self__, "cb_score", cb_score)
+
+    @_builtins.property
+    @pulumi.getter
+    def avalgo(self) -> Optional[_builtins.str]:
+        """
+        The cryptogram calculation algorithm used by the card Issuer's ACS to calculate the Authentication cryptogram. Also known as cavvAlgorithm. ARes/RReq messageExtension: `CB-AVALGO`
+        """
+        return pulumi.get(self, "avalgo")
+
+    @_builtins.property
+    @pulumi.getter(name="cbExemption")
+    def cb_exemption(self) -> Optional[_builtins.str]:
+        """
+        The exemption indicator returned from Cartes Bancaires in the ARes. This is a 3 byte bitmap (lowest significant byte first and most significant bit first) that has been Base64 encoded. String (4 characters). ARes message extension: `CB-EXEMPTION`
+        """
+        return pulumi.get(self, "cb_exemption")
+
+    @_builtins.property
+    @pulumi.getter(name="cbScore")
+    def cb_score(self) -> Optional[_builtins.str]:
+        """
+        The risk score returned from Cartes Bancaires in the ARes. Numeric value 0-99. ARes/RReq message extension: `CB-SCORE`
+        """
+        return pulumi.get(self, "cb_score")
+
+
+@pulumi.output_type
+class ThreeDSecureAuthenticationPaymentMethodData(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "billingDetails":
+            suggest = "billing_details"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in ThreeDSecureAuthenticationPaymentMethodData. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        ThreeDSecureAuthenticationPaymentMethodData.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        ThreeDSecureAuthenticationPaymentMethodData.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 card: 'outputs.ThreeDSecureAuthenticationPaymentMethodDataCard',
+                 type: _builtins.str,
+                 billing_details: Optional['outputs.ThreeDSecureAuthenticationPaymentMethodDataBillingDetails'] = None):
+        """
+        :param 'ThreeDSecureAuthenticationPaymentMethodDataCardArgs' card: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        :param _builtins.str type: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+               The type of the PaymentMethod. An additional hash is included on the PaymentMethod with a name matching this value. It contains additional information specific to the PaymentMethod type.
+        :param 'ThreeDSecureAuthenticationPaymentMethodDataBillingDetailsArgs' billing_details: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+               Billing information associated with the PaymentMethod that may be used or required by particular types of payment methods.
+        """
+        pulumi.set(__self__, "card", card)
+        pulumi.set(__self__, "type", type)
+        if billing_details is not None:
+            pulumi.set(__self__, "billing_details", billing_details)
+
+    @_builtins.property
+    @pulumi.getter
+    def card(self) -> 'outputs.ThreeDSecureAuthenticationPaymentMethodDataCard':
+        """
+        **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        """
+        return pulumi.get(self, "card")
+
+    @_builtins.property
+    @pulumi.getter
+    def type(self) -> _builtins.str:
+        """
+        **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        The type of the PaymentMethod. An additional hash is included on the PaymentMethod with a name matching this value. It contains additional information specific to the PaymentMethod type.
+        """
+        return pulumi.get(self, "type")
+
+    @_builtins.property
+    @pulumi.getter(name="billingDetails")
+    def billing_details(self) -> Optional['outputs.ThreeDSecureAuthenticationPaymentMethodDataBillingDetails']:
+        """
+        **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        Billing information associated with the PaymentMethod that may be used or required by particular types of payment methods.
+        """
+        return pulumi.get(self, "billing_details")
+
+
+@pulumi.output_type
+class ThreeDSecureAuthenticationPaymentMethodDataBillingDetails(dict):
+    def __init__(__self__, *,
+                 address: Optional['outputs.ThreeDSecureAuthenticationPaymentMethodDataBillingDetailsAddress'] = None,
+                 email: Optional[_builtins.str] = None,
+                 name: Optional[_builtins.str] = None,
+                 phone: Optional[_builtins.str] = None):
+        """
+        :param 'ThreeDSecureAuthenticationPaymentMethodDataBillingDetailsAddressArgs' address: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+               Billing address.
+        :param _builtins.str email: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+               Email address.
+        :param _builtins.str name: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+               Full name.
+        :param _builtins.str phone: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+               Billing phone number (including extension).
+        """
+        if address is not None:
+            pulumi.set(__self__, "address", address)
+        if email is not None:
+            pulumi.set(__self__, "email", email)
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+        if phone is not None:
+            pulumi.set(__self__, "phone", phone)
+
+    @_builtins.property
+    @pulumi.getter
+    def address(self) -> Optional['outputs.ThreeDSecureAuthenticationPaymentMethodDataBillingDetailsAddress']:
+        """
+        **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        Billing address.
+        """
+        return pulumi.get(self, "address")
+
+    @_builtins.property
+    @pulumi.getter
+    def email(self) -> Optional[_builtins.str]:
+        """
+        **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        Email address.
+        """
+        return pulumi.get(self, "email")
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> Optional[_builtins.str]:
+        """
+        **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        Full name.
+        """
+        return pulumi.get(self, "name")
+
+    @_builtins.property
+    @pulumi.getter
+    def phone(self) -> Optional[_builtins.str]:
+        """
+        **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        Billing phone number (including extension).
+        """
+        return pulumi.get(self, "phone")
+
+
+@pulumi.output_type
+class ThreeDSecureAuthenticationPaymentMethodDataBillingDetailsAddress(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "postalCode":
+            suggest = "postal_code"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in ThreeDSecureAuthenticationPaymentMethodDataBillingDetailsAddress. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        ThreeDSecureAuthenticationPaymentMethodDataBillingDetailsAddress.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        ThreeDSecureAuthenticationPaymentMethodDataBillingDetailsAddress.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 city: Optional[_builtins.str] = None,
+                 country: Optional[_builtins.str] = None,
+                 line1: Optional[_builtins.str] = None,
+                 line2: Optional[_builtins.str] = None,
+                 postal_code: Optional[_builtins.str] = None,
+                 state: Optional[_builtins.str] = None):
+        """
+        :param _builtins.str city: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+               City, district, suburb, town, or village.
+        :param _builtins.str country: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+               Two-letter country code ([ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2)).
+        :param _builtins.str line1: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+               Address line 1, such as the street, PO Box, or company name.
+        :param _builtins.str line2: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+               Address line 2, such as the apartment, suite, unit, or building.
+        :param _builtins.str postal_code: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+               ZIP or postal code.
+        :param _builtins.str state: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+               Country subdivision code defined in ISO 3166-2.
+        """
+        if city is not None:
+            pulumi.set(__self__, "city", city)
+        if country is not None:
+            pulumi.set(__self__, "country", country)
+        if line1 is not None:
+            pulumi.set(__self__, "line1", line1)
+        if line2 is not None:
+            pulumi.set(__self__, "line2", line2)
+        if postal_code is not None:
+            pulumi.set(__self__, "postal_code", postal_code)
+        if state is not None:
+            pulumi.set(__self__, "state", state)
+
+    @_builtins.property
+    @pulumi.getter
+    def city(self) -> Optional[_builtins.str]:
+        """
+        **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        City, district, suburb, town, or village.
+        """
+        return pulumi.get(self, "city")
+
+    @_builtins.property
+    @pulumi.getter
+    def country(self) -> Optional[_builtins.str]:
+        """
+        **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        Two-letter country code ([ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2)).
+        """
+        return pulumi.get(self, "country")
+
+    @_builtins.property
+    @pulumi.getter
+    def line1(self) -> Optional[_builtins.str]:
+        """
+        **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        Address line 1, such as the street, PO Box, or company name.
+        """
+        return pulumi.get(self, "line1")
+
+    @_builtins.property
+    @pulumi.getter
+    def line2(self) -> Optional[_builtins.str]:
+        """
+        **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        Address line 2, such as the apartment, suite, unit, or building.
+        """
+        return pulumi.get(self, "line2")
+
+    @_builtins.property
+    @pulumi.getter(name="postalCode")
+    def postal_code(self) -> Optional[_builtins.str]:
+        """
+        **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        ZIP or postal code.
+        """
+        return pulumi.get(self, "postal_code")
+
+    @_builtins.property
+    @pulumi.getter
+    def state(self) -> Optional[_builtins.str]:
+        """
+        **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        Country subdivision code defined in ISO 3166-2.
+        """
+        return pulumi.get(self, "state")
+
+
+@pulumi.output_type
+class ThreeDSecureAuthenticationPaymentMethodDataCard(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "expMonth":
+            suggest = "exp_month"
+        elif key == "expYear":
+            suggest = "exp_year"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in ThreeDSecureAuthenticationPaymentMethodDataCard. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        ThreeDSecureAuthenticationPaymentMethodDataCard.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        ThreeDSecureAuthenticationPaymentMethodDataCard.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 cvc: Optional[_builtins.str] = None,
+                 exp_month: Optional[_builtins.float] = None,
+                 exp_year: Optional[_builtins.float] = None,
+                 number: Optional[_builtins.str] = None,
+                 token: Optional[_builtins.str] = None):
+        """
+        :param _builtins.str cvc: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        :param _builtins.float exp_month: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        :param _builtins.float exp_year: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        :param _builtins.str number: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        :param _builtins.str token: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        """
+        if cvc is not None:
+            pulumi.set(__self__, "cvc", cvc)
+        if exp_month is not None:
+            pulumi.set(__self__, "exp_month", exp_month)
+        if exp_year is not None:
+            pulumi.set(__self__, "exp_year", exp_year)
+        if number is not None:
+            pulumi.set(__self__, "number", number)
+        if token is not None:
+            pulumi.set(__self__, "token", token)
+
+    @_builtins.property
+    @pulumi.getter
+    def cvc(self) -> Optional[_builtins.str]:
+        """
+        **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        """
+        return pulumi.get(self, "cvc")
+
+    @_builtins.property
+    @pulumi.getter(name="expMonth")
+    def exp_month(self) -> Optional[_builtins.float]:
+        """
+        **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        """
+        return pulumi.get(self, "exp_month")
+
+    @_builtins.property
+    @pulumi.getter(name="expYear")
+    def exp_year(self) -> Optional[_builtins.float]:
+        """
+        **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        """
+        return pulumi.get(self, "exp_year")
+
+    @_builtins.property
+    @pulumi.getter
+    def number(self) -> Optional[_builtins.str]:
+        """
+        **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        """
+        return pulumi.get(self, "number")
+
+    @_builtins.property
+    @pulumi.getter
+    def token(self) -> Optional[_builtins.str]:
+        """
+        **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        """
+        return pulumi.get(self, "token")
+
+
+@pulumi.output_type
+class ThreeDSecureAuthenticationShippingAddress(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "postalCode":
+            suggest = "postal_code"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in ThreeDSecureAuthenticationShippingAddress. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        ThreeDSecureAuthenticationShippingAddress.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        ThreeDSecureAuthenticationShippingAddress.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 city: Optional[_builtins.str] = None,
+                 country: Optional[_builtins.str] = None,
+                 line1: Optional[_builtins.str] = None,
+                 line2: Optional[_builtins.str] = None,
+                 postal_code: Optional[_builtins.str] = None,
+                 state: Optional[_builtins.str] = None):
+        """
+        :param _builtins.str city: City, district, suburb, town, or village.
+        :param _builtins.str country: Two-letter country code ([ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2)).
+        :param _builtins.str line1: Address line 1, such as the street, PO Box, or company name.
+        :param _builtins.str line2: Address line 2, such as the apartment, suite, unit, or building.
+        :param _builtins.str postal_code: ZIP or postal code.
+        :param _builtins.str state: State, county, province, or region ([ISO 3166-2](https://en.wikipedia.org/wiki/ISO_3166-2)).
+        """
+        if city is not None:
+            pulumi.set(__self__, "city", city)
+        if country is not None:
+            pulumi.set(__self__, "country", country)
+        if line1 is not None:
+            pulumi.set(__self__, "line1", line1)
+        if line2 is not None:
+            pulumi.set(__self__, "line2", line2)
+        if postal_code is not None:
+            pulumi.set(__self__, "postal_code", postal_code)
+        if state is not None:
+            pulumi.set(__self__, "state", state)
+
+    @_builtins.property
+    @pulumi.getter
+    def city(self) -> Optional[_builtins.str]:
+        """
+        City, district, suburb, town, or village.
+        """
+        return pulumi.get(self, "city")
+
+    @_builtins.property
+    @pulumi.getter
+    def country(self) -> Optional[_builtins.str]:
+        """
+        Two-letter country code ([ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2)).
+        """
+        return pulumi.get(self, "country")
+
+    @_builtins.property
+    @pulumi.getter
+    def line1(self) -> Optional[_builtins.str]:
+        """
+        Address line 1, such as the street, PO Box, or company name.
+        """
+        return pulumi.get(self, "line1")
+
+    @_builtins.property
+    @pulumi.getter
+    def line2(self) -> Optional[_builtins.str]:
+        """
+        Address line 2, such as the apartment, suite, unit, or building.
+        """
+        return pulumi.get(self, "line2")
+
+    @_builtins.property
+    @pulumi.getter(name="postalCode")
+    def postal_code(self) -> Optional[_builtins.str]:
+        """
+        ZIP or postal code.
+        """
+        return pulumi.get(self, "postal_code")
+
+    @_builtins.property
+    @pulumi.getter
+    def state(self) -> Optional[_builtins.str]:
+        """
+        State, county, province, or region ([ISO 3166-2](https://en.wikipedia.org/wiki/ISO_3166-2)).
+        """
+        return pulumi.get(self, "state")
 
 
 @pulumi.output_type
@@ -68917,10 +74429,10 @@ class V2CoreEventDestinationAmazonEventbridge(dict):
                  aws_event_source_arn: Optional[_builtins.str] = None,
                  aws_event_source_status: Optional[_builtins.str] = None):
         """
-        :param _builtins.str aws_account_id: The AWS account ID.
-        :param _builtins.str aws_region: The region of the AWS event source.
-        :param _builtins.str aws_event_source_arn: The ARN of the AWS event source.
-        :param _builtins.str aws_event_source_status: The state of the AWS event source.
+        :param _builtins.str aws_account_id: The AWS account ID that owns the event bus receiving events.
+        :param _builtins.str aws_region: The AWS region where Stripe creates the partner event source.
+        :param _builtins.str aws_event_source_arn: The ARN of the Stripe-created partner event source in your AWS account.
+        :param _builtins.str aws_event_source_status: The AWS-reported lifecycle state of the partner event source.
         """
         pulumi.set(__self__, "aws_account_id", aws_account_id)
         pulumi.set(__self__, "aws_region", aws_region)
@@ -68933,7 +74445,7 @@ class V2CoreEventDestinationAmazonEventbridge(dict):
     @pulumi.getter(name="awsAccountId")
     def aws_account_id(self) -> _builtins.str:
         """
-        The AWS account ID.
+        The AWS account ID that owns the event bus receiving events.
         """
         return pulumi.get(self, "aws_account_id")
 
@@ -68941,7 +74453,7 @@ class V2CoreEventDestinationAmazonEventbridge(dict):
     @pulumi.getter(name="awsRegion")
     def aws_region(self) -> _builtins.str:
         """
-        The region of the AWS event source.
+        The AWS region where Stripe creates the partner event source.
         """
         return pulumi.get(self, "aws_region")
 
@@ -68949,7 +74461,7 @@ class V2CoreEventDestinationAmazonEventbridge(dict):
     @pulumi.getter(name="awsEventSourceArn")
     def aws_event_source_arn(self) -> Optional[_builtins.str]:
         """
-        The ARN of the AWS event source.
+        The ARN of the Stripe-created partner event source in your AWS account.
         """
         return pulumi.get(self, "aws_event_source_arn")
 
@@ -68957,7 +74469,7 @@ class V2CoreEventDestinationAmazonEventbridge(dict):
     @pulumi.getter(name="awsEventSourceStatus")
     def aws_event_source_status(self) -> Optional[_builtins.str]:
         """
-        The state of the AWS event source.
+        The AWS-reported lifecycle state of the partner event source.
         """
         return pulumi.get(self, "aws_event_source_status")
 
@@ -68996,11 +74508,11 @@ class V2CoreEventDestinationAzureEventGrid(dict):
                  azure_partner_topic_name: Optional[_builtins.str] = None,
                  azure_partner_topic_status: Optional[_builtins.str] = None):
         """
-        :param _builtins.str azure_region: The Azure region.
-        :param _builtins.str azure_resource_group_name: The name of the Azure resource group.
-        :param _builtins.str azure_subscription_id: The Azure subscription ID.
-        :param _builtins.str azure_partner_topic_name: The name of the Azure partner topic.
-        :param _builtins.str azure_partner_topic_status: The status of the Azure partner topic.
+        :param _builtins.str azure_region: The Azure region where the partner topic is located.
+        :param _builtins.str azure_resource_group_name: The Azure resource group containing the partner topic.
+        :param _builtins.str azure_subscription_id: The Azure subscription containing the resource group and partner topic.
+        :param _builtins.str azure_partner_topic_name: The name of the Stripe-created partner topic that receives events.
+        :param _builtins.str azure_partner_topic_status: The Azure-reported lifecycle state of the partner topic.
         """
         pulumi.set(__self__, "azure_region", azure_region)
         pulumi.set(__self__, "azure_resource_group_name", azure_resource_group_name)
@@ -69014,7 +74526,7 @@ class V2CoreEventDestinationAzureEventGrid(dict):
     @pulumi.getter(name="azureRegion")
     def azure_region(self) -> _builtins.str:
         """
-        The Azure region.
+        The Azure region where the partner topic is located.
         """
         return pulumi.get(self, "azure_region")
 
@@ -69022,7 +74534,7 @@ class V2CoreEventDestinationAzureEventGrid(dict):
     @pulumi.getter(name="azureResourceGroupName")
     def azure_resource_group_name(self) -> _builtins.str:
         """
-        The name of the Azure resource group.
+        The Azure resource group containing the partner topic.
         """
         return pulumi.get(self, "azure_resource_group_name")
 
@@ -69030,7 +74542,7 @@ class V2CoreEventDestinationAzureEventGrid(dict):
     @pulumi.getter(name="azureSubscriptionId")
     def azure_subscription_id(self) -> _builtins.str:
         """
-        The Azure subscription ID.
+        The Azure subscription containing the resource group and partner topic.
         """
         return pulumi.get(self, "azure_subscription_id")
 
@@ -69038,7 +74550,7 @@ class V2CoreEventDestinationAzureEventGrid(dict):
     @pulumi.getter(name="azurePartnerTopicName")
     def azure_partner_topic_name(self) -> Optional[_builtins.str]:
         """
-        The name of the Azure partner topic.
+        The name of the Stripe-created partner topic that receives events.
         """
         return pulumi.get(self, "azure_partner_topic_name")
 
@@ -69046,7 +74558,7 @@ class V2CoreEventDestinationAzureEventGrid(dict):
     @pulumi.getter(name="azurePartnerTopicStatus")
     def azure_partner_topic_status(self) -> Optional[_builtins.str]:
         """
-        The status of the Azure partner topic.
+        The Azure-reported lifecycle state of the partner topic.
         """
         return pulumi.get(self, "azure_partner_topic_status")
 
@@ -69056,7 +74568,7 @@ class V2CoreEventDestinationStatusDetails(dict):
     def __init__(__self__, *,
                  disabled: Optional['outputs.V2CoreEventDestinationStatusDetailsDisabled'] = None):
         """
-        :param 'V2CoreEventDestinationStatusDetailsDisabledArgs' disabled: Details about why the event destination has been disabled.
+        :param 'V2CoreEventDestinationStatusDetailsDisabledArgs' disabled: Present when the destination was disabled; identifies the cause, time, and provider-side object involved when available.
         """
         if disabled is not None:
             pulumi.set(__self__, "disabled", disabled)
@@ -69065,7 +74577,7 @@ class V2CoreEventDestinationStatusDetails(dict):
     @pulumi.getter
     def disabled(self) -> Optional['outputs.V2CoreEventDestinationStatusDetailsDisabled']:
         """
-        Details about why the event destination has been disabled.
+        Present when the destination was disabled; identifies the cause, time, and provider-side object involved when available.
         """
         return pulumi.get(self, "disabled")
 
@@ -69112,8 +74624,8 @@ class V2CoreEventDestinationWebhookEndpoint(dict):
                  url: _builtins.str,
                  signing_secret: Optional[_builtins.str] = None):
         """
-        :param _builtins.str url: The URL of the webhook endpoint, includable.
-        :param _builtins.str signing_secret: The signing secret of the webhook endpoint, only includable on creation.
+        :param _builtins.str url: The URL where Stripe sends matching events. Live mode requires HTTPS; sandbox mode also supports HTTP. Returned only when explicitly included.
+        :param _builtins.str signing_secret: The secret used to verify Stripe signatures on delivered events. Returned only in the create response when explicitly included; public API clients cannot retrieve it later.
         """
         pulumi.set(__self__, "url", url)
         if signing_secret is not None:
@@ -69123,7 +74635,7 @@ class V2CoreEventDestinationWebhookEndpoint(dict):
     @pulumi.getter
     def url(self) -> _builtins.str:
         """
-        The URL of the webhook endpoint, includable.
+        The URL where Stripe sends matching events. Live mode requires HTTPS; sandbox mode also supports HTTP. Returned only when explicitly included.
         """
         return pulumi.get(self, "url")
 
@@ -69131,8 +74643,3337 @@ class V2CoreEventDestinationWebhookEndpoint(dict):
     @pulumi.getter(name="signingSecret")
     def signing_secret(self) -> Optional[_builtins.str]:
         """
-        The signing secret of the webhook endpoint, only includable on creation.
+        The secret used to verify Stripe signatures on delivered events. Returned only in the create response when explicitly included; public API clients cannot retrieve it later.
         """
         return pulumi.get(self, "signing_secret")
+
+
+@pulumi.output_type
+class V2CoreVaultUsBankAccountVerification(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "microdepositVerificationDetails":
+            suggest = "microdeposit_verification_details"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in V2CoreVaultUsBankAccountVerification. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        V2CoreVaultUsBankAccountVerification.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        V2CoreVaultUsBankAccountVerification.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 microdeposit_verification_details: Optional['outputs.V2CoreVaultUsBankAccountVerificationMicrodepositVerificationDetails'] = None,
+                 status: Optional[_builtins.str] = None):
+        """
+        :param 'V2CoreVaultUsBankAccountVerificationMicrodepositVerificationDetailsArgs' microdeposit_verification_details: The microdeposit verification details if the status is awaiting verification.
+        :param _builtins.str status: The bank account verification status.
+        """
+        if microdeposit_verification_details is not None:
+            pulumi.set(__self__, "microdeposit_verification_details", microdeposit_verification_details)
+        if status is not None:
+            pulumi.set(__self__, "status", status)
+
+    @_builtins.property
+    @pulumi.getter(name="microdepositVerificationDetails")
+    def microdeposit_verification_details(self) -> Optional['outputs.V2CoreVaultUsBankAccountVerificationMicrodepositVerificationDetails']:
+        """
+        The microdeposit verification details if the status is awaiting verification.
+        """
+        return pulumi.get(self, "microdeposit_verification_details")
+
+    @_builtins.property
+    @pulumi.getter
+    def status(self) -> Optional[_builtins.str]:
+        """
+        The bank account verification status.
+        """
+        return pulumi.get(self, "status")
+
+
+@pulumi.output_type
+class V2CoreVaultUsBankAccountVerificationMicrodepositVerificationDetails(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "microdepositType":
+            suggest = "microdeposit_type"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in V2CoreVaultUsBankAccountVerificationMicrodepositVerificationDetails. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        V2CoreVaultUsBankAccountVerificationMicrodepositVerificationDetails.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        V2CoreVaultUsBankAccountVerificationMicrodepositVerificationDetails.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 expires: Optional[_builtins.str] = None,
+                 microdeposit_type: Optional[_builtins.str] = None,
+                 sent: Optional[_builtins.str] = None):
+        """
+        :param _builtins.str expires: Time when microdeposits will expire and have to be re-sent.
+        :param _builtins.str microdeposit_type: Microdeposit type can be amounts or descriptor_type.
+        :param _builtins.str sent: Time when microdeposits were sent.
+        """
+        if expires is not None:
+            pulumi.set(__self__, "expires", expires)
+        if microdeposit_type is not None:
+            pulumi.set(__self__, "microdeposit_type", microdeposit_type)
+        if sent is not None:
+            pulumi.set(__self__, "sent", sent)
+
+    @_builtins.property
+    @pulumi.getter
+    def expires(self) -> Optional[_builtins.str]:
+        """
+        Time when microdeposits will expire and have to be re-sent.
+        """
+        return pulumi.get(self, "expires")
+
+    @_builtins.property
+    @pulumi.getter(name="microdepositType")
+    def microdeposit_type(self) -> Optional[_builtins.str]:
+        """
+        Microdeposit type can be amounts or descriptor_type.
+        """
+        return pulumi.get(self, "microdeposit_type")
+
+    @_builtins.property
+    @pulumi.getter
+    def sent(self) -> Optional[_builtins.str]:
+        """
+        Time when microdeposits were sent.
+        """
+        return pulumi.get(self, "sent")
+
+
+@pulumi.output_type
+class V2MoneyManagementFinancialAddressBankAccount(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "sortCode":
+            suggest = "sort_code"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in V2MoneyManagementFinancialAddressBankAccount. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        V2MoneyManagementFinancialAddressBankAccount.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        V2MoneyManagementFinancialAddressBankAccount.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 currency: _builtins.str,
+                 aba: Optional['outputs.V2MoneyManagementFinancialAddressBankAccountAba'] = None,
+                 country: Optional[_builtins.str] = None,
+                 iban: Optional['outputs.V2MoneyManagementFinancialAddressBankAccountIban'] = None,
+                 sort_code: Optional['outputs.V2MoneyManagementFinancialAddressBankAccountSortCode'] = None,
+                 type: Optional[_builtins.str] = None):
+        """
+        :param _builtins.str currency: Open Enum. The currency of the bank account.
+        :param 'V2MoneyManagementFinancialAddressBankAccountAbaArgs' aba: ABA bank account details (US).
+        :param _builtins.str country: The country of the bank account. Always included in the response, but null while the bank
+               account is pending and its country is not yet known.
+        :param 'V2MoneyManagementFinancialAddressBankAccountIbanArgs' iban: IBAN bank account details.
+        :param 'V2MoneyManagementFinancialAddressBankAccountSortCodeArgs' sort_code: Sort code bank account details (UK).
+        :param _builtins.str type: Open Enum. The type of bank account details.
+        """
+        pulumi.set(__self__, "currency", currency)
+        if aba is not None:
+            pulumi.set(__self__, "aba", aba)
+        if country is not None:
+            pulumi.set(__self__, "country", country)
+        if iban is not None:
+            pulumi.set(__self__, "iban", iban)
+        if sort_code is not None:
+            pulumi.set(__self__, "sort_code", sort_code)
+        if type is not None:
+            pulumi.set(__self__, "type", type)
+
+    @_builtins.property
+    @pulumi.getter
+    def currency(self) -> _builtins.str:
+        """
+        Open Enum. The currency of the bank account.
+        """
+        return pulumi.get(self, "currency")
+
+    @_builtins.property
+    @pulumi.getter
+    def aba(self) -> Optional['outputs.V2MoneyManagementFinancialAddressBankAccountAba']:
+        """
+        ABA bank account details (US).
+        """
+        return pulumi.get(self, "aba")
+
+    @_builtins.property
+    @pulumi.getter
+    def country(self) -> Optional[_builtins.str]:
+        """
+        The country of the bank account. Always included in the response, but null while the bank
+        account is pending and its country is not yet known.
+        """
+        return pulumi.get(self, "country")
+
+    @_builtins.property
+    @pulumi.getter
+    def iban(self) -> Optional['outputs.V2MoneyManagementFinancialAddressBankAccountIban']:
+        """
+        IBAN bank account details.
+        """
+        return pulumi.get(self, "iban")
+
+    @_builtins.property
+    @pulumi.getter(name="sortCode")
+    def sort_code(self) -> Optional['outputs.V2MoneyManagementFinancialAddressBankAccountSortCode']:
+        """
+        Sort code bank account details (UK).
+        """
+        return pulumi.get(self, "sort_code")
+
+    @_builtins.property
+    @pulumi.getter
+    def type(self) -> Optional[_builtins.str]:
+        """
+        Open Enum. The type of bank account details.
+        """
+        return pulumi.get(self, "type")
+
+
+@pulumi.output_type
+class V2MoneyManagementFinancialAddressBankAccountAba(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "accountHolderName":
+            suggest = "account_holder_name"
+        elif key == "accountNumber":
+            suggest = "account_number"
+        elif key == "bankName":
+            suggest = "bank_name"
+        elif key == "routingNumber":
+            suggest = "routing_number"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in V2MoneyManagementFinancialAddressBankAccountAba. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        V2MoneyManagementFinancialAddressBankAccountAba.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        V2MoneyManagementFinancialAddressBankAccountAba.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 account_holder_name: Optional[_builtins.str] = None,
+                 account_number: Optional[_builtins.str] = None,
+                 address: Optional['outputs.V2MoneyManagementFinancialAddressBankAccountAbaAddress'] = None,
+                 bank_name: Optional[_builtins.str] = None,
+                 routing_number: Optional[_builtins.str] = None):
+        """
+        :param _builtins.str account_holder_name: The name of the account holder.
+        :param _builtins.str account_number: The full account number. Empty while the bank account is pending allocation.
+        :param 'V2MoneyManagementFinancialAddressBankAccountAbaAddressArgs' address: The address of the account holder.
+        :param _builtins.str bank_name: The name of the bank.
+        :param _builtins.str routing_number: The ABA routing number.
+        """
+        if account_holder_name is not None:
+            pulumi.set(__self__, "account_holder_name", account_holder_name)
+        if account_number is not None:
+            pulumi.set(__self__, "account_number", account_number)
+        if address is not None:
+            pulumi.set(__self__, "address", address)
+        if bank_name is not None:
+            pulumi.set(__self__, "bank_name", bank_name)
+        if routing_number is not None:
+            pulumi.set(__self__, "routing_number", routing_number)
+
+    @_builtins.property
+    @pulumi.getter(name="accountHolderName")
+    def account_holder_name(self) -> Optional[_builtins.str]:
+        """
+        The name of the account holder.
+        """
+        return pulumi.get(self, "account_holder_name")
+
+    @_builtins.property
+    @pulumi.getter(name="accountNumber")
+    def account_number(self) -> Optional[_builtins.str]:
+        """
+        The full account number. Empty while the bank account is pending allocation.
+        """
+        return pulumi.get(self, "account_number")
+
+    @_builtins.property
+    @pulumi.getter
+    def address(self) -> Optional['outputs.V2MoneyManagementFinancialAddressBankAccountAbaAddress']:
+        """
+        The address of the account holder.
+        """
+        return pulumi.get(self, "address")
+
+    @_builtins.property
+    @pulumi.getter(name="bankName")
+    def bank_name(self) -> Optional[_builtins.str]:
+        """
+        The name of the bank.
+        """
+        return pulumi.get(self, "bank_name")
+
+    @_builtins.property
+    @pulumi.getter(name="routingNumber")
+    def routing_number(self) -> Optional[_builtins.str]:
+        """
+        The ABA routing number.
+        """
+        return pulumi.get(self, "routing_number")
+
+
+@pulumi.output_type
+class V2MoneyManagementFinancialAddressBankAccountAbaAddress(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "postalCode":
+            suggest = "postal_code"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in V2MoneyManagementFinancialAddressBankAccountAbaAddress. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        V2MoneyManagementFinancialAddressBankAccountAbaAddress.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        V2MoneyManagementFinancialAddressBankAccountAbaAddress.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 city: Optional[_builtins.str] = None,
+                 country: Optional[_builtins.str] = None,
+                 line1: Optional[_builtins.str] = None,
+                 line2: Optional[_builtins.str] = None,
+                 postal_code: Optional[_builtins.str] = None,
+                 state: Optional[_builtins.str] = None,
+                 town: Optional[_builtins.str] = None):
+        """
+        :param _builtins.str city: City.
+        :param _builtins.str country: Country.
+        :param _builtins.str line1: Address line 1.
+        :param _builtins.str line2: Address line 2.
+        :param _builtins.str postal_code: Postal code.
+        :param _builtins.str state: State or province.
+        :param _builtins.str town: Town or suburb.
+        """
+        if city is not None:
+            pulumi.set(__self__, "city", city)
+        if country is not None:
+            pulumi.set(__self__, "country", country)
+        if line1 is not None:
+            pulumi.set(__self__, "line1", line1)
+        if line2 is not None:
+            pulumi.set(__self__, "line2", line2)
+        if postal_code is not None:
+            pulumi.set(__self__, "postal_code", postal_code)
+        if state is not None:
+            pulumi.set(__self__, "state", state)
+        if town is not None:
+            pulumi.set(__self__, "town", town)
+
+    @_builtins.property
+    @pulumi.getter
+    def city(self) -> Optional[_builtins.str]:
+        """
+        City.
+        """
+        return pulumi.get(self, "city")
+
+    @_builtins.property
+    @pulumi.getter
+    def country(self) -> Optional[_builtins.str]:
+        """
+        Country.
+        """
+        return pulumi.get(self, "country")
+
+    @_builtins.property
+    @pulumi.getter
+    def line1(self) -> Optional[_builtins.str]:
+        """
+        Address line 1.
+        """
+        return pulumi.get(self, "line1")
+
+    @_builtins.property
+    @pulumi.getter
+    def line2(self) -> Optional[_builtins.str]:
+        """
+        Address line 2.
+        """
+        return pulumi.get(self, "line2")
+
+    @_builtins.property
+    @pulumi.getter(name="postalCode")
+    def postal_code(self) -> Optional[_builtins.str]:
+        """
+        Postal code.
+        """
+        return pulumi.get(self, "postal_code")
+
+    @_builtins.property
+    @pulumi.getter
+    def state(self) -> Optional[_builtins.str]:
+        """
+        State or province.
+        """
+        return pulumi.get(self, "state")
+
+    @_builtins.property
+    @pulumi.getter
+    def town(self) -> Optional[_builtins.str]:
+        """
+        Town or suburb.
+        """
+        return pulumi.get(self, "town")
+
+
+@pulumi.output_type
+class V2MoneyManagementFinancialAddressBankAccountIban(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "accountHolderName":
+            suggest = "account_holder_name"
+        elif key == "bankName":
+            suggest = "bank_name"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in V2MoneyManagementFinancialAddressBankAccountIban. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        V2MoneyManagementFinancialAddressBankAccountIban.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        V2MoneyManagementFinancialAddressBankAccountIban.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 account_holder_name: Optional[_builtins.str] = None,
+                 bank_name: Optional[_builtins.str] = None,
+                 iban: Optional[_builtins.str] = None):
+        """
+        :param _builtins.str account_holder_name: The name of the account holder.
+        :param _builtins.str bank_name: The name of the bank.
+        :param _builtins.str iban: The full IBAN. Empty while the bank account is pending allocation.
+        """
+        if account_holder_name is not None:
+            pulumi.set(__self__, "account_holder_name", account_holder_name)
+        if bank_name is not None:
+            pulumi.set(__self__, "bank_name", bank_name)
+        if iban is not None:
+            pulumi.set(__self__, "iban", iban)
+
+    @_builtins.property
+    @pulumi.getter(name="accountHolderName")
+    def account_holder_name(self) -> Optional[_builtins.str]:
+        """
+        The name of the account holder.
+        """
+        return pulumi.get(self, "account_holder_name")
+
+    @_builtins.property
+    @pulumi.getter(name="bankName")
+    def bank_name(self) -> Optional[_builtins.str]:
+        """
+        The name of the bank.
+        """
+        return pulumi.get(self, "bank_name")
+
+    @_builtins.property
+    @pulumi.getter
+    def iban(self) -> Optional[_builtins.str]:
+        """
+        The full IBAN. Empty while the bank account is pending allocation.
+        """
+        return pulumi.get(self, "iban")
+
+
+@pulumi.output_type
+class V2MoneyManagementFinancialAddressBankAccountSortCode(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "accountHolderName":
+            suggest = "account_holder_name"
+        elif key == "accountNumber":
+            suggest = "account_number"
+        elif key == "sortCode":
+            suggest = "sort_code"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in V2MoneyManagementFinancialAddressBankAccountSortCode. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        V2MoneyManagementFinancialAddressBankAccountSortCode.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        V2MoneyManagementFinancialAddressBankAccountSortCode.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 account_holder_name: Optional[_builtins.str] = None,
+                 account_number: Optional[_builtins.str] = None,
+                 sort_code: Optional[_builtins.str] = None):
+        """
+        :param _builtins.str account_holder_name: The name of the account holder.
+        :param _builtins.str account_number: The full account number. Empty while the bank account is pending allocation.
+        :param _builtins.str sort_code: The sort code.
+        """
+        if account_holder_name is not None:
+            pulumi.set(__self__, "account_holder_name", account_holder_name)
+        if account_number is not None:
+            pulumi.set(__self__, "account_number", account_number)
+        if sort_code is not None:
+            pulumi.set(__self__, "sort_code", sort_code)
+
+    @_builtins.property
+    @pulumi.getter(name="accountHolderName")
+    def account_holder_name(self) -> Optional[_builtins.str]:
+        """
+        The name of the account holder.
+        """
+        return pulumi.get(self, "account_holder_name")
+
+    @_builtins.property
+    @pulumi.getter(name="accountNumber")
+    def account_number(self) -> Optional[_builtins.str]:
+        """
+        The full account number. Empty while the bank account is pending allocation.
+        """
+        return pulumi.get(self, "account_number")
+
+    @_builtins.property
+    @pulumi.getter(name="sortCode")
+    def sort_code(self) -> Optional[_builtins.str]:
+        """
+        The sort code.
+        """
+        return pulumi.get(self, "sort_code")
+
+
+@pulumi.output_type
+class V2MoneyManagementInboundTransferAmount(dict):
+    def __init__(__self__, *,
+                 currency: _builtins.str,
+                 value: _builtins.float):
+        """
+        :param _builtins.str currency: The currency of the monetary amount.
+        :param _builtins.float value: The monetary amount in minor units of the currency.
+        """
+        pulumi.set(__self__, "currency", currency)
+        pulumi.set(__self__, "value", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def currency(self) -> _builtins.str:
+        """
+        The currency of the monetary amount.
+        """
+        return pulumi.get(self, "currency")
+
+    @_builtins.property
+    @pulumi.getter
+    def value(self) -> _builtins.float:
+        """
+        The monetary amount in minor units of the currency.
+        """
+        return pulumi.get(self, "value")
+
+
+@pulumi.output_type
+class V2MoneyManagementInboundTransferFrom(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "paymentMethod":
+            suggest = "payment_method"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in V2MoneyManagementInboundTransferFrom. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        V2MoneyManagementInboundTransferFrom.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        V2MoneyManagementInboundTransferFrom.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 payment_method: 'outputs.V2MoneyManagementInboundTransferFromPaymentMethod',
+                 currency: Optional[_builtins.str] = None,
+                 debited: Optional['outputs.V2MoneyManagementInboundTransferFromDebited'] = None):
+        """
+        :param 'V2MoneyManagementInboundTransferFromPaymentMethodArgs' payment_method: The bank account credential used to fund the InboundTransfer (for example, a US bank account), not a Payments API `pm_` PaymentMethod.
+        :param _builtins.str currency: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+               An optional currency field used to specify which currency is debited from the Payment Method.
+               Since many Payment Methods support only one currency, this field is optional.
+        :param 'V2MoneyManagementInboundTransferFromDebitedArgs' debited: The amount in specified currency that was debited from the Payment Method.
+        """
+        pulumi.set(__self__, "payment_method", payment_method)
+        if currency is not None:
+            pulumi.set(__self__, "currency", currency)
+        if debited is not None:
+            pulumi.set(__self__, "debited", debited)
+
+    @_builtins.property
+    @pulumi.getter(name="paymentMethod")
+    def payment_method(self) -> 'outputs.V2MoneyManagementInboundTransferFromPaymentMethod':
+        """
+        The bank account credential used to fund the InboundTransfer (for example, a US bank account), not a Payments API `pm_` PaymentMethod.
+        """
+        return pulumi.get(self, "payment_method")
+
+    @_builtins.property
+    @pulumi.getter
+    def currency(self) -> Optional[_builtins.str]:
+        """
+        **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        An optional currency field used to specify which currency is debited from the Payment Method.
+        Since many Payment Methods support only one currency, this field is optional.
+        """
+        return pulumi.get(self, "currency")
+
+    @_builtins.property
+    @pulumi.getter
+    def debited(self) -> Optional['outputs.V2MoneyManagementInboundTransferFromDebited']:
+        """
+        The amount in specified currency that was debited from the Payment Method.
+        """
+        return pulumi.get(self, "debited")
+
+
+@pulumi.output_type
+class V2MoneyManagementInboundTransferFromDebited(dict):
+    def __init__(__self__, *,
+                 currency: Optional[_builtins.str] = None,
+                 value: Optional[_builtins.float] = None):
+        """
+        :param _builtins.str currency: The currency of the monetary amount.
+        :param _builtins.float value: The monetary amount in minor units of the currency.
+        """
+        if currency is not None:
+            pulumi.set(__self__, "currency", currency)
+        if value is not None:
+            pulumi.set(__self__, "value", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def currency(self) -> Optional[_builtins.str]:
+        """
+        The currency of the monetary amount.
+        """
+        return pulumi.get(self, "currency")
+
+    @_builtins.property
+    @pulumi.getter
+    def value(self) -> Optional[_builtins.float]:
+        """
+        The monetary amount in minor units of the currency.
+        """
+        return pulumi.get(self, "value")
+
+
+@pulumi.output_type
+class V2MoneyManagementInboundTransferFromPaymentMethod(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "usBankAccount":
+            suggest = "us_bank_account"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in V2MoneyManagementInboundTransferFromPaymentMethod. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        V2MoneyManagementInboundTransferFromPaymentMethod.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        V2MoneyManagementInboundTransferFromPaymentMethod.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 type: Optional[_builtins.str] = None,
+                 us_bank_account: Optional[_builtins.str] = None):
+        """
+        :param _builtins.str type: The type of PaymentMethod used to create the InboundTransfer. Clients should tolerate future values.
+        :param _builtins.str us_bank_account: The destination US bank account identifier. eg "usba_***".
+        """
+        if type is not None:
+            pulumi.set(__self__, "type", type)
+        if us_bank_account is not None:
+            pulumi.set(__self__, "us_bank_account", us_bank_account)
+
+    @_builtins.property
+    @pulumi.getter
+    def type(self) -> Optional[_builtins.str]:
+        """
+        The type of PaymentMethod used to create the InboundTransfer. Clients should tolerate future values.
+        """
+        return pulumi.get(self, "type")
+
+    @_builtins.property
+    @pulumi.getter(name="usBankAccount")
+    def us_bank_account(self) -> Optional[_builtins.str]:
+        """
+        The destination US bank account identifier. eg "usba_***".
+        """
+        return pulumi.get(self, "us_bank_account")
+
+
+@pulumi.output_type
+class V2MoneyManagementInboundTransferTo(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "financialAccount":
+            suggest = "financial_account"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in V2MoneyManagementInboundTransferTo. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        V2MoneyManagementInboundTransferTo.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        V2MoneyManagementInboundTransferTo.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 currency: _builtins.str,
+                 financial_account: _builtins.str,
+                 credited: Optional['outputs.V2MoneyManagementInboundTransferToCredited'] = None):
+        """
+        :param _builtins.str currency: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+               The currency to credit to the FinancialAccount.
+        :param _builtins.str financial_account: The FinancialAccount that funds will land in.
+        :param 'V2MoneyManagementInboundTransferToCreditedArgs' credited: The amount by which the FinancialAccount balance is credited.
+        """
+        pulumi.set(__self__, "currency", currency)
+        pulumi.set(__self__, "financial_account", financial_account)
+        if credited is not None:
+            pulumi.set(__self__, "credited", credited)
+
+    @_builtins.property
+    @pulumi.getter
+    def currency(self) -> _builtins.str:
+        """
+        **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        The currency to credit to the FinancialAccount.
+        """
+        return pulumi.get(self, "currency")
+
+    @_builtins.property
+    @pulumi.getter(name="financialAccount")
+    def financial_account(self) -> _builtins.str:
+        """
+        The FinancialAccount that funds will land in.
+        """
+        return pulumi.get(self, "financial_account")
+
+    @_builtins.property
+    @pulumi.getter
+    def credited(self) -> Optional['outputs.V2MoneyManagementInboundTransferToCredited']:
+        """
+        The amount by which the FinancialAccount balance is credited.
+        """
+        return pulumi.get(self, "credited")
+
+
+@pulumi.output_type
+class V2MoneyManagementInboundTransferToCredited(dict):
+    def __init__(__self__, *,
+                 currency: Optional[_builtins.str] = None,
+                 value: Optional[_builtins.float] = None):
+        """
+        :param _builtins.str currency: The currency of the monetary amount.
+        :param _builtins.float value: The monetary amount in minor units of the currency.
+        """
+        if currency is not None:
+            pulumi.set(__self__, "currency", currency)
+        if value is not None:
+            pulumi.set(__self__, "value", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def currency(self) -> Optional[_builtins.str]:
+        """
+        The currency of the monetary amount.
+        """
+        return pulumi.get(self, "currency")
+
+    @_builtins.property
+    @pulumi.getter
+    def value(self) -> Optional[_builtins.float]:
+        """
+        The monetary amount in minor units of the currency.
+        """
+        return pulumi.get(self, "value")
+
+
+@pulumi.output_type
+class V2MoneyManagementInboundTransferTransferHistory(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "bankDebitFailed":
+            suggest = "bank_debit_failed"
+        elif key == "bankDebitReturned":
+            suggest = "bank_debit_returned"
+        elif key == "effectiveAt":
+            suggest = "effective_at"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in V2MoneyManagementInboundTransferTransferHistory. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        V2MoneyManagementInboundTransferTransferHistory.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        V2MoneyManagementInboundTransferTransferHistory.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 bank_debit_failed: Optional['outputs.V2MoneyManagementInboundTransferTransferHistoryBankDebitFailed'] = None,
+                 bank_debit_returned: Optional['outputs.V2MoneyManagementInboundTransferTransferHistoryBankDebitReturned'] = None,
+                 created: Optional[_builtins.str] = None,
+                 effective_at: Optional[_builtins.str] = None,
+                 id: Optional[_builtins.str] = None,
+                 type: Optional[_builtins.str] = None):
+        """
+        :param 'V2MoneyManagementInboundTransferTransferHistoryBankDebitFailedArgs' bank_debit_failed: The InboundTransfer failed. See <span pulumi-lang-nodejs="`failureReason`" pulumi-lang-dotnet="`FailureReason`" pulumi-lang-go="`failureReason`" pulumi-lang-python="`failure_reason`" pulumi-lang-yaml="`failureReason`" pulumi-lang-java="`failureReason`" pulumi-lang-hcl="`failure_reason`">`failureReason`</span> for more details.
+        :param 'V2MoneyManagementInboundTransferTransferHistoryBankDebitReturnedArgs' bank_debit_returned: The InboundTransfer was returned. The original transaction has been reversed.
+        :param _builtins.str created: Creation time of the HistoryEntry in RFC 3339 format and UTC.
+        :param _builtins.str effective_at: Effective at time of the HistoryEntry in RFC 3339 format and UTC.
+        :param _builtins.str id: A unique ID for the HistoryEntry.
+        :param _builtins.str type: Open Enum. The type of the HistoryEntry.
+        """
+        if bank_debit_failed is not None:
+            pulumi.set(__self__, "bank_debit_failed", bank_debit_failed)
+        if bank_debit_returned is not None:
+            pulumi.set(__self__, "bank_debit_returned", bank_debit_returned)
+        if created is not None:
+            pulumi.set(__self__, "created", created)
+        if effective_at is not None:
+            pulumi.set(__self__, "effective_at", effective_at)
+        if id is not None:
+            pulumi.set(__self__, "id", id)
+        if type is not None:
+            pulumi.set(__self__, "type", type)
+
+    @_builtins.property
+    @pulumi.getter(name="bankDebitFailed")
+    def bank_debit_failed(self) -> Optional['outputs.V2MoneyManagementInboundTransferTransferHistoryBankDebitFailed']:
+        """
+        The InboundTransfer failed. See <span pulumi-lang-nodejs="`failureReason`" pulumi-lang-dotnet="`FailureReason`" pulumi-lang-go="`failureReason`" pulumi-lang-python="`failure_reason`" pulumi-lang-yaml="`failureReason`" pulumi-lang-java="`failureReason`" pulumi-lang-hcl="`failure_reason`">`failureReason`</span> for more details.
+        """
+        return pulumi.get(self, "bank_debit_failed")
+
+    @_builtins.property
+    @pulumi.getter(name="bankDebitReturned")
+    def bank_debit_returned(self) -> Optional['outputs.V2MoneyManagementInboundTransferTransferHistoryBankDebitReturned']:
+        """
+        The InboundTransfer was returned. The original transaction has been reversed.
+        """
+        return pulumi.get(self, "bank_debit_returned")
+
+    @_builtins.property
+    @pulumi.getter
+    def created(self) -> Optional[_builtins.str]:
+        """
+        Creation time of the HistoryEntry in RFC 3339 format and UTC.
+        """
+        return pulumi.get(self, "created")
+
+    @_builtins.property
+    @pulumi.getter(name="effectiveAt")
+    def effective_at(self) -> Optional[_builtins.str]:
+        """
+        Effective at time of the HistoryEntry in RFC 3339 format and UTC.
+        """
+        return pulumi.get(self, "effective_at")
+
+    @_builtins.property
+    @pulumi.getter
+    def id(self) -> Optional[_builtins.str]:
+        """
+        A unique ID for the HistoryEntry.
+        """
+        return pulumi.get(self, "id")
+
+    @_builtins.property
+    @pulumi.getter
+    def type(self) -> Optional[_builtins.str]:
+        """
+        Open Enum. The type of the HistoryEntry.
+        """
+        return pulumi.get(self, "type")
+
+
+@pulumi.output_type
+class V2MoneyManagementInboundTransferTransferHistoryBankDebitFailed(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "failureReason":
+            suggest = "failure_reason"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in V2MoneyManagementInboundTransferTransferHistoryBankDebitFailed. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        V2MoneyManagementInboundTransferTransferHistoryBankDebitFailed.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        V2MoneyManagementInboundTransferTransferHistoryBankDebitFailed.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 failure_reason: Optional[_builtins.str] = None):
+        """
+        :param _builtins.str failure_reason: Open Enum. The return reason for the failed InboundTransfer.
+        """
+        if failure_reason is not None:
+            pulumi.set(__self__, "failure_reason", failure_reason)
+
+    @_builtins.property
+    @pulumi.getter(name="failureReason")
+    def failure_reason(self) -> Optional[_builtins.str]:
+        """
+        Open Enum. The return reason for the failed InboundTransfer.
+        """
+        return pulumi.get(self, "failure_reason")
+
+
+@pulumi.output_type
+class V2MoneyManagementInboundTransferTransferHistoryBankDebitReturned(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "returnReason":
+            suggest = "return_reason"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in V2MoneyManagementInboundTransferTransferHistoryBankDebitReturned. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        V2MoneyManagementInboundTransferTransferHistoryBankDebitReturned.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        V2MoneyManagementInboundTransferTransferHistoryBankDebitReturned.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 return_reason: Optional[_builtins.str] = None):
+        """
+        :param _builtins.str return_reason: Open Enum. The return reason for the returned InboundTransfer.
+        """
+        if return_reason is not None:
+            pulumi.set(__self__, "return_reason", return_reason)
+
+    @_builtins.property
+    @pulumi.getter(name="returnReason")
+    def return_reason(self) -> Optional[_builtins.str]:
+        """
+        Open Enum. The return reason for the returned InboundTransfer.
+        """
+        return pulumi.get(self, "return_reason")
+
+
+@pulumi.output_type
+class V2MoneyManagementOutboundPaymentAmount(dict):
+    def __init__(__self__, *,
+                 currency: _builtins.str,
+                 value: _builtins.float):
+        """
+        :param _builtins.str currency: The currency of the monetary amount.
+        :param _builtins.float value: The monetary amount in minor units of the currency.
+        """
+        pulumi.set(__self__, "currency", currency)
+        pulumi.set(__self__, "value", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def currency(self) -> _builtins.str:
+        """
+        The currency of the monetary amount.
+        """
+        return pulumi.get(self, "currency")
+
+    @_builtins.property
+    @pulumi.getter
+    def value(self) -> _builtins.float:
+        """
+        The monetary amount in minor units of the currency.
+        """
+        return pulumi.get(self, "value")
+
+
+@pulumi.output_type
+class V2MoneyManagementOutboundPaymentFrom(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "financialAccount":
+            suggest = "financial_account"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in V2MoneyManagementOutboundPaymentFrom. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        V2MoneyManagementOutboundPaymentFrom.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        V2MoneyManagementOutboundPaymentFrom.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 currency: _builtins.str,
+                 financial_account: _builtins.str,
+                 debited: Optional['outputs.V2MoneyManagementOutboundPaymentFromDebited'] = None):
+        """
+        :param _builtins.str currency: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+               Describes the FinancialAmount's currency drawn from.
+        :param _builtins.str financial_account: The FinancialAccount that funds were pulled from.
+        :param 'V2MoneyManagementOutboundPaymentFromDebitedArgs' debited: The monetary amount debited from the sender, only set on responses.
+        """
+        pulumi.set(__self__, "currency", currency)
+        pulumi.set(__self__, "financial_account", financial_account)
+        if debited is not None:
+            pulumi.set(__self__, "debited", debited)
+
+    @_builtins.property
+    @pulumi.getter
+    def currency(self) -> _builtins.str:
+        """
+        **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        Describes the FinancialAmount's currency drawn from.
+        """
+        return pulumi.get(self, "currency")
+
+    @_builtins.property
+    @pulumi.getter(name="financialAccount")
+    def financial_account(self) -> _builtins.str:
+        """
+        The FinancialAccount that funds were pulled from.
+        """
+        return pulumi.get(self, "financial_account")
+
+    @_builtins.property
+    @pulumi.getter
+    def debited(self) -> Optional['outputs.V2MoneyManagementOutboundPaymentFromDebited']:
+        """
+        The monetary amount debited from the sender, only set on responses.
+        """
+        return pulumi.get(self, "debited")
+
+
+@pulumi.output_type
+class V2MoneyManagementOutboundPaymentFromDebited(dict):
+    def __init__(__self__, *,
+                 currency: Optional[_builtins.str] = None,
+                 value: Optional[_builtins.float] = None):
+        """
+        :param _builtins.str currency: The currency of the monetary amount.
+        :param _builtins.float value: The monetary amount in minor units of the currency.
+        """
+        if currency is not None:
+            pulumi.set(__self__, "currency", currency)
+        if value is not None:
+            pulumi.set(__self__, "value", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def currency(self) -> Optional[_builtins.str]:
+        """
+        The currency of the monetary amount.
+        """
+        return pulumi.get(self, "currency")
+
+    @_builtins.property
+    @pulumi.getter
+    def value(self) -> Optional[_builtins.float]:
+        """
+        The monetary amount in minor units of the currency.
+        """
+        return pulumi.get(self, "value")
+
+
+@pulumi.output_type
+class V2MoneyManagementOutboundPaymentRecipientNotification(dict):
+    def __init__(__self__, *,
+                 setting: _builtins.str):
+        """
+        :param _builtins.str setting: Closed Enum. Configuration option to enable or disable notifications to recipients.
+               Do not send notifications when <span pulumi-lang-nodejs="`setting`" pulumi-lang-dotnet="`Setting`" pulumi-lang-go="`setting`" pulumi-lang-python="`setting`" pulumi-lang-yaml="`setting`" pulumi-lang-java="`setting`" pulumi-lang-hcl="`setting`">`setting`</span> is <span pulumi-lang-nodejs="`none`" pulumi-lang-dotnet="`None`" pulumi-lang-go="`none`" pulumi-lang-python="`none`" pulumi-lang-yaml="`none`" pulumi-lang-java="`none`" pulumi-lang-hcl="`none`">`none`</span>. Use the account setting when <span pulumi-lang-nodejs="`setting`" pulumi-lang-dotnet="`Setting`" pulumi-lang-go="`setting`" pulumi-lang-python="`setting`" pulumi-lang-yaml="`setting`" pulumi-lang-java="`setting`" pulumi-lang-hcl="`setting`">`setting`</span> is <span pulumi-lang-nodejs="`configured`" pulumi-lang-dotnet="`Configured`" pulumi-lang-go="`configured`" pulumi-lang-python="`configured`" pulumi-lang-yaml="`configured`" pulumi-lang-java="`configured`" pulumi-lang-hcl="`configured`">`configured`</span> or omitted.
+        """
+        pulumi.set(__self__, "setting", setting)
+
+    @_builtins.property
+    @pulumi.getter
+    def setting(self) -> _builtins.str:
+        """
+        Closed Enum. Configuration option to enable or disable notifications to recipients.
+        Do not send notifications when <span pulumi-lang-nodejs="`setting`" pulumi-lang-dotnet="`Setting`" pulumi-lang-go="`setting`" pulumi-lang-python="`setting`" pulumi-lang-yaml="`setting`" pulumi-lang-java="`setting`" pulumi-lang-hcl="`setting`">`setting`</span> is <span pulumi-lang-nodejs="`none`" pulumi-lang-dotnet="`None`" pulumi-lang-go="`none`" pulumi-lang-python="`none`" pulumi-lang-yaml="`none`" pulumi-lang-java="`none`" pulumi-lang-hcl="`none`">`none`</span>. Use the account setting when <span pulumi-lang-nodejs="`setting`" pulumi-lang-dotnet="`Setting`" pulumi-lang-go="`setting`" pulumi-lang-python="`setting`" pulumi-lang-yaml="`setting`" pulumi-lang-java="`setting`" pulumi-lang-hcl="`setting`">`setting`</span> is <span pulumi-lang-nodejs="`configured`" pulumi-lang-dotnet="`Configured`" pulumi-lang-go="`configured`" pulumi-lang-python="`configured`" pulumi-lang-yaml="`configured`" pulumi-lang-java="`configured`" pulumi-lang-hcl="`configured`">`configured`</span> or omitted.
+        """
+        return pulumi.get(self, "setting")
+
+
+@pulumi.output_type
+class V2MoneyManagementOutboundPaymentStatusDetails(dict):
+    def __init__(__self__, *,
+                 failed: Optional['outputs.V2MoneyManagementOutboundPaymentStatusDetailsFailed'] = None,
+                 processing: Optional['outputs.V2MoneyManagementOutboundPaymentStatusDetailsProcessing'] = None,
+                 returned: Optional['outputs.V2MoneyManagementOutboundPaymentStatusDetailsReturned'] = None):
+        """
+        :param 'V2MoneyManagementOutboundPaymentStatusDetailsFailedArgs' failed: The <span pulumi-lang-nodejs="`failed`" pulumi-lang-dotnet="`Failed`" pulumi-lang-go="`failed`" pulumi-lang-python="`failed`" pulumi-lang-yaml="`failed`" pulumi-lang-java="`failed`" pulumi-lang-hcl="`failed`">`failed`</span> status reason.
+        :param 'V2MoneyManagementOutboundPaymentStatusDetailsProcessingArgs' processing: The <span pulumi-lang-nodejs="`processing`" pulumi-lang-dotnet="`Processing`" pulumi-lang-go="`processing`" pulumi-lang-python="`processing`" pulumi-lang-yaml="`processing`" pulumi-lang-java="`processing`" pulumi-lang-hcl="`processing`">`processing`</span> status details.
+        :param 'V2MoneyManagementOutboundPaymentStatusDetailsReturnedArgs' returned: The <span pulumi-lang-nodejs="`returned`" pulumi-lang-dotnet="`Returned`" pulumi-lang-go="`returned`" pulumi-lang-python="`returned`" pulumi-lang-yaml="`returned`" pulumi-lang-java="`returned`" pulumi-lang-hcl="`returned`">`returned`</span> status reason.
+        """
+        if failed is not None:
+            pulumi.set(__self__, "failed", failed)
+        if processing is not None:
+            pulumi.set(__self__, "processing", processing)
+        if returned is not None:
+            pulumi.set(__self__, "returned", returned)
+
+    @_builtins.property
+    @pulumi.getter
+    def failed(self) -> Optional['outputs.V2MoneyManagementOutboundPaymentStatusDetailsFailed']:
+        """
+        The <span pulumi-lang-nodejs="`failed`" pulumi-lang-dotnet="`Failed`" pulumi-lang-go="`failed`" pulumi-lang-python="`failed`" pulumi-lang-yaml="`failed`" pulumi-lang-java="`failed`" pulumi-lang-hcl="`failed`">`failed`</span> status reason.
+        """
+        return pulumi.get(self, "failed")
+
+    @_builtins.property
+    @pulumi.getter
+    def processing(self) -> Optional['outputs.V2MoneyManagementOutboundPaymentStatusDetailsProcessing']:
+        """
+        The <span pulumi-lang-nodejs="`processing`" pulumi-lang-dotnet="`Processing`" pulumi-lang-go="`processing`" pulumi-lang-python="`processing`" pulumi-lang-yaml="`processing`" pulumi-lang-java="`processing`" pulumi-lang-hcl="`processing`">`processing`</span> status details.
+        """
+        return pulumi.get(self, "processing")
+
+    @_builtins.property
+    @pulumi.getter
+    def returned(self) -> Optional['outputs.V2MoneyManagementOutboundPaymentStatusDetailsReturned']:
+        """
+        The <span pulumi-lang-nodejs="`returned`" pulumi-lang-dotnet="`Returned`" pulumi-lang-go="`returned`" pulumi-lang-python="`returned`" pulumi-lang-yaml="`returned`" pulumi-lang-java="`returned`" pulumi-lang-hcl="`returned`">`returned`</span> status reason.
+        """
+        return pulumi.get(self, "returned")
+
+
+@pulumi.output_type
+class V2MoneyManagementOutboundPaymentStatusDetailsFailed(dict):
+    def __init__(__self__, *,
+                 reason: Optional[_builtins.str] = None):
+        """
+        :param _builtins.str reason: Open Enum. The <span pulumi-lang-nodejs="`failed`" pulumi-lang-dotnet="`Failed`" pulumi-lang-go="`failed`" pulumi-lang-python="`failed`" pulumi-lang-yaml="`failed`" pulumi-lang-java="`failed`" pulumi-lang-hcl="`failed`">`failed`</span> status reason.
+        """
+        if reason is not None:
+            pulumi.set(__self__, "reason", reason)
+
+    @_builtins.property
+    @pulumi.getter
+    def reason(self) -> Optional[_builtins.str]:
+        """
+        Open Enum. The <span pulumi-lang-nodejs="`failed`" pulumi-lang-dotnet="`Failed`" pulumi-lang-go="`failed`" pulumi-lang-python="`failed`" pulumi-lang-yaml="`failed`" pulumi-lang-java="`failed`" pulumi-lang-hcl="`failed`">`failed`</span> status reason.
+        """
+        return pulumi.get(self, "reason")
+
+
+@pulumi.output_type
+class V2MoneyManagementOutboundPaymentStatusDetailsProcessing(dict):
+    def __init__(__self__, *,
+                 reason: Optional[_builtins.str] = None):
+        """
+        :param _builtins.str reason: Open Enum. The <span pulumi-lang-nodejs="`processing`" pulumi-lang-dotnet="`Processing`" pulumi-lang-go="`processing`" pulumi-lang-python="`processing`" pulumi-lang-yaml="`processing`" pulumi-lang-java="`processing`" pulumi-lang-hcl="`processing`">`processing`</span> status reason.
+        """
+        if reason is not None:
+            pulumi.set(__self__, "reason", reason)
+
+    @_builtins.property
+    @pulumi.getter
+    def reason(self) -> Optional[_builtins.str]:
+        """
+        Open Enum. The <span pulumi-lang-nodejs="`processing`" pulumi-lang-dotnet="`Processing`" pulumi-lang-go="`processing`" pulumi-lang-python="`processing`" pulumi-lang-yaml="`processing`" pulumi-lang-java="`processing`" pulumi-lang-hcl="`processing`">`processing`</span> status reason.
+        """
+        return pulumi.get(self, "reason")
+
+
+@pulumi.output_type
+class V2MoneyManagementOutboundPaymentStatusDetailsReturned(dict):
+    def __init__(__self__, *,
+                 reason: Optional[_builtins.str] = None):
+        """
+        :param _builtins.str reason: Open Enum. The <span pulumi-lang-nodejs="`returned`" pulumi-lang-dotnet="`Returned`" pulumi-lang-go="`returned`" pulumi-lang-python="`returned`" pulumi-lang-yaml="`returned`" pulumi-lang-java="`returned`" pulumi-lang-hcl="`returned`">`returned`</span> status reason.
+        """
+        if reason is not None:
+            pulumi.set(__self__, "reason", reason)
+
+    @_builtins.property
+    @pulumi.getter
+    def reason(self) -> Optional[_builtins.str]:
+        """
+        Open Enum. The <span pulumi-lang-nodejs="`returned`" pulumi-lang-dotnet="`Returned`" pulumi-lang-go="`returned`" pulumi-lang-python="`returned`" pulumi-lang-yaml="`returned`" pulumi-lang-java="`returned`" pulumi-lang-hcl="`returned`">`returned`</span> status reason.
+        """
+        return pulumi.get(self, "reason")
+
+
+@pulumi.output_type
+class V2MoneyManagementOutboundPaymentStatusTransitions(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "canceledAt":
+            suggest = "canceled_at"
+        elif key == "failedAt":
+            suggest = "failed_at"
+        elif key == "postedAt":
+            suggest = "posted_at"
+        elif key == "returnedAt":
+            suggest = "returned_at"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in V2MoneyManagementOutboundPaymentStatusTransitions. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        V2MoneyManagementOutboundPaymentStatusTransitions.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        V2MoneyManagementOutboundPaymentStatusTransitions.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 canceled_at: Optional[_builtins.str] = None,
+                 failed_at: Optional[_builtins.str] = None,
+                 posted_at: Optional[_builtins.str] = None,
+                 returned_at: Optional[_builtins.str] = None):
+        """
+        :param _builtins.str canceled_at: Timestamp describing when an OutboundPayment changed status to <span pulumi-lang-nodejs="`canceled`" pulumi-lang-dotnet="`Canceled`" pulumi-lang-go="`canceled`" pulumi-lang-python="`canceled`" pulumi-lang-yaml="`canceled`" pulumi-lang-java="`canceled`" pulumi-lang-hcl="`canceled`">`canceled`</span>.
+               Represented as a RFC 3339 date & time UTC value in millisecond precision, for example: 2022-09-18T13:22:18.123Z.
+        :param _builtins.str failed_at: Timestamp describing when an OutboundPayment changed status to <span pulumi-lang-nodejs="`failed`" pulumi-lang-dotnet="`Failed`" pulumi-lang-go="`failed`" pulumi-lang-python="`failed`" pulumi-lang-yaml="`failed`" pulumi-lang-java="`failed`" pulumi-lang-hcl="`failed`">`failed`</span>.
+               Represented as a RFC 3339 date & time UTC value in millisecond precision, for example: 2022-09-18T13:22:18.123Z.
+        :param _builtins.str posted_at: Timestamp describing when an OutboundPayment changed status to <span pulumi-lang-nodejs="`posted`" pulumi-lang-dotnet="`Posted`" pulumi-lang-go="`posted`" pulumi-lang-python="`posted`" pulumi-lang-yaml="`posted`" pulumi-lang-java="`posted`" pulumi-lang-hcl="`posted`">`posted`</span>.
+               Represented as a RFC 3339 date & time UTC value in millisecond precision, for example: 2022-09-18T13:22:18.123Z.
+        :param _builtins.str returned_at: Timestamp describing when an OutboundPayment changed status to <span pulumi-lang-nodejs="`returned`" pulumi-lang-dotnet="`Returned`" pulumi-lang-go="`returned`" pulumi-lang-python="`returned`" pulumi-lang-yaml="`returned`" pulumi-lang-java="`returned`" pulumi-lang-hcl="`returned`">`returned`</span>.
+               Represented as a RFC 3339 date & time UTC value in millisecond precision, for example: 2022-09-18T13:22:18.123Z.
+        """
+        if canceled_at is not None:
+            pulumi.set(__self__, "canceled_at", canceled_at)
+        if failed_at is not None:
+            pulumi.set(__self__, "failed_at", failed_at)
+        if posted_at is not None:
+            pulumi.set(__self__, "posted_at", posted_at)
+        if returned_at is not None:
+            pulumi.set(__self__, "returned_at", returned_at)
+
+    @_builtins.property
+    @pulumi.getter(name="canceledAt")
+    def canceled_at(self) -> Optional[_builtins.str]:
+        """
+        Timestamp describing when an OutboundPayment changed status to <span pulumi-lang-nodejs="`canceled`" pulumi-lang-dotnet="`Canceled`" pulumi-lang-go="`canceled`" pulumi-lang-python="`canceled`" pulumi-lang-yaml="`canceled`" pulumi-lang-java="`canceled`" pulumi-lang-hcl="`canceled`">`canceled`</span>.
+        Represented as a RFC 3339 date & time UTC value in millisecond precision, for example: 2022-09-18T13:22:18.123Z.
+        """
+        return pulumi.get(self, "canceled_at")
+
+    @_builtins.property
+    @pulumi.getter(name="failedAt")
+    def failed_at(self) -> Optional[_builtins.str]:
+        """
+        Timestamp describing when an OutboundPayment changed status to <span pulumi-lang-nodejs="`failed`" pulumi-lang-dotnet="`Failed`" pulumi-lang-go="`failed`" pulumi-lang-python="`failed`" pulumi-lang-yaml="`failed`" pulumi-lang-java="`failed`" pulumi-lang-hcl="`failed`">`failed`</span>.
+        Represented as a RFC 3339 date & time UTC value in millisecond precision, for example: 2022-09-18T13:22:18.123Z.
+        """
+        return pulumi.get(self, "failed_at")
+
+    @_builtins.property
+    @pulumi.getter(name="postedAt")
+    def posted_at(self) -> Optional[_builtins.str]:
+        """
+        Timestamp describing when an OutboundPayment changed status to <span pulumi-lang-nodejs="`posted`" pulumi-lang-dotnet="`Posted`" pulumi-lang-go="`posted`" pulumi-lang-python="`posted`" pulumi-lang-yaml="`posted`" pulumi-lang-java="`posted`" pulumi-lang-hcl="`posted`">`posted`</span>.
+        Represented as a RFC 3339 date & time UTC value in millisecond precision, for example: 2022-09-18T13:22:18.123Z.
+        """
+        return pulumi.get(self, "posted_at")
+
+    @_builtins.property
+    @pulumi.getter(name="returnedAt")
+    def returned_at(self) -> Optional[_builtins.str]:
+        """
+        Timestamp describing when an OutboundPayment changed status to <span pulumi-lang-nodejs="`returned`" pulumi-lang-dotnet="`Returned`" pulumi-lang-go="`returned`" pulumi-lang-python="`returned`" pulumi-lang-yaml="`returned`" pulumi-lang-java="`returned`" pulumi-lang-hcl="`returned`">`returned`</span>.
+        Represented as a RFC 3339 date & time UTC value in millisecond precision, for example: 2022-09-18T13:22:18.123Z.
+        """
+        return pulumi.get(self, "returned_at")
+
+
+@pulumi.output_type
+class V2MoneyManagementOutboundPaymentTo(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "payoutMethod":
+            suggest = "payout_method"
+        elif key == "payoutMethodOptions":
+            suggest = "payout_method_options"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in V2MoneyManagementOutboundPaymentTo. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        V2MoneyManagementOutboundPaymentTo.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        V2MoneyManagementOutboundPaymentTo.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 recipient: _builtins.str,
+                 credited: Optional['outputs.V2MoneyManagementOutboundPaymentToCredited'] = None,
+                 currency: Optional[_builtins.str] = None,
+                 payout_method: Optional[_builtins.str] = None,
+                 payout_method_options: Optional['outputs.V2MoneyManagementOutboundPaymentToPayoutMethodOptions'] = None):
+        """
+        :param _builtins.str recipient: To which account the OutboundPayment is sent.
+        :param 'V2MoneyManagementOutboundPaymentToCreditedArgs' credited: The monetary amount being credited to the destination.
+        :param _builtins.str currency: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+               Describes the currency to send to the recipient.
+               If included, this currency must match a currency supported by the destination.
+               Can be omitted in the following cases:
+               - destination only supports one currency
+               - destination supports multiple currencies and one matches `from.currency`
+               - destination supports multiple currencies and one matches `amount.currency`
+                 When both `from.currency` and `amount.currency` are supported, Stripe selects `from.currency` to minimize currency conversion.
+        :param _builtins.str payout_method: The payout method which the OutboundPayment uses to send payout.
+        :param 'V2MoneyManagementOutboundPaymentToPayoutMethodOptionsArgs' payout_method_options: Payout method options for the OutboundPayment.
+        """
+        pulumi.set(__self__, "recipient", recipient)
+        if credited is not None:
+            pulumi.set(__self__, "credited", credited)
+        if currency is not None:
+            pulumi.set(__self__, "currency", currency)
+        if payout_method is not None:
+            pulumi.set(__self__, "payout_method", payout_method)
+        if payout_method_options is not None:
+            pulumi.set(__self__, "payout_method_options", payout_method_options)
+
+    @_builtins.property
+    @pulumi.getter
+    def recipient(self) -> _builtins.str:
+        """
+        To which account the OutboundPayment is sent.
+        """
+        return pulumi.get(self, "recipient")
+
+    @_builtins.property
+    @pulumi.getter
+    def credited(self) -> Optional['outputs.V2MoneyManagementOutboundPaymentToCredited']:
+        """
+        The monetary amount being credited to the destination.
+        """
+        return pulumi.get(self, "credited")
+
+    @_builtins.property
+    @pulumi.getter
+    def currency(self) -> Optional[_builtins.str]:
+        """
+        **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        Describes the currency to send to the recipient.
+        If included, this currency must match a currency supported by the destination.
+        Can be omitted in the following cases:
+        - destination only supports one currency
+        - destination supports multiple currencies and one matches `from.currency`
+        - destination supports multiple currencies and one matches `amount.currency`
+          When both `from.currency` and `amount.currency` are supported, Stripe selects `from.currency` to minimize currency conversion.
+        """
+        return pulumi.get(self, "currency")
+
+    @_builtins.property
+    @pulumi.getter(name="payoutMethod")
+    def payout_method(self) -> Optional[_builtins.str]:
+        """
+        The payout method which the OutboundPayment uses to send payout.
+        """
+        return pulumi.get(self, "payout_method")
+
+    @_builtins.property
+    @pulumi.getter(name="payoutMethodOptions")
+    def payout_method_options(self) -> Optional['outputs.V2MoneyManagementOutboundPaymentToPayoutMethodOptions']:
+        """
+        Payout method options for the OutboundPayment.
+        """
+        return pulumi.get(self, "payout_method_options")
+
+
+@pulumi.output_type
+class V2MoneyManagementOutboundPaymentToCredited(dict):
+    def __init__(__self__, *,
+                 currency: Optional[_builtins.str] = None,
+                 value: Optional[_builtins.float] = None):
+        """
+        :param _builtins.str currency: The currency of the monetary amount.
+        :param _builtins.float value: The monetary amount in minor units of the currency.
+        """
+        if currency is not None:
+            pulumi.set(__self__, "currency", currency)
+        if value is not None:
+            pulumi.set(__self__, "value", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def currency(self) -> Optional[_builtins.str]:
+        """
+        The currency of the monetary amount.
+        """
+        return pulumi.get(self, "currency")
+
+    @_builtins.property
+    @pulumi.getter
+    def value(self) -> Optional[_builtins.float]:
+        """
+        The monetary amount in minor units of the currency.
+        """
+        return pulumi.get(self, "value")
+
+
+@pulumi.output_type
+class V2MoneyManagementOutboundPaymentToPayoutMethodOptions(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "bankAccount":
+            suggest = "bank_account"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in V2MoneyManagementOutboundPaymentToPayoutMethodOptions. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        V2MoneyManagementOutboundPaymentToPayoutMethodOptions.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        V2MoneyManagementOutboundPaymentToPayoutMethodOptions.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 bank_account: Optional['outputs.V2MoneyManagementOutboundPaymentToPayoutMethodOptionsBankAccount'] = None):
+        """
+        :param 'V2MoneyManagementOutboundPaymentToPayoutMethodOptionsBankAccountArgs' bank_account: Options for bank account payout methods.
+        """
+        if bank_account is not None:
+            pulumi.set(__self__, "bank_account", bank_account)
+
+    @_builtins.property
+    @pulumi.getter(name="bankAccount")
+    def bank_account(self) -> Optional['outputs.V2MoneyManagementOutboundPaymentToPayoutMethodOptionsBankAccount']:
+        """
+        Options for bank account payout methods.
+        """
+        return pulumi.get(self, "bank_account")
+
+
+@pulumi.output_type
+class V2MoneyManagementOutboundPaymentToPayoutMethodOptionsBankAccount(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "preferredNetworkOptions":
+            suggest = "preferred_network_options"
+        elif key == "preferredNetworks":
+            suggest = "preferred_networks"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in V2MoneyManagementOutboundPaymentToPayoutMethodOptionsBankAccount. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        V2MoneyManagementOutboundPaymentToPayoutMethodOptionsBankAccount.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        V2MoneyManagementOutboundPaymentToPayoutMethodOptionsBankAccount.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 preferred_network_options: Optional['outputs.V2MoneyManagementOutboundPaymentToPayoutMethodOptionsBankAccountPreferredNetworkOptions'] = None,
+                 preferred_networks: Optional[Sequence[_builtins.str]] = None):
+        """
+        :param 'V2MoneyManagementOutboundPaymentToPayoutMethodOptionsBankAccountPreferredNetworkOptionsArgs' preferred_network_options: Per-network configuration options.
+        :param Sequence[_builtins.str] preferred_networks: The preferred networks to use for this OutboundPayment.
+        """
+        if preferred_network_options is not None:
+            pulumi.set(__self__, "preferred_network_options", preferred_network_options)
+        if preferred_networks is not None:
+            pulumi.set(__self__, "preferred_networks", preferred_networks)
+
+    @_builtins.property
+    @pulumi.getter(name="preferredNetworkOptions")
+    def preferred_network_options(self) -> Optional['outputs.V2MoneyManagementOutboundPaymentToPayoutMethodOptionsBankAccountPreferredNetworkOptions']:
+        """
+        Per-network configuration options.
+        """
+        return pulumi.get(self, "preferred_network_options")
+
+    @_builtins.property
+    @pulumi.getter(name="preferredNetworks")
+    def preferred_networks(self) -> Optional[Sequence[_builtins.str]]:
+        """
+        The preferred networks to use for this OutboundPayment.
+        """
+        return pulumi.get(self, "preferred_networks")
+
+
+@pulumi.output_type
+class V2MoneyManagementOutboundPaymentToPayoutMethodOptionsBankAccountPreferredNetworkOptions(dict):
+    def __init__(__self__, *,
+                 ach: Optional['outputs.V2MoneyManagementOutboundPaymentToPayoutMethodOptionsBankAccountPreferredNetworkOptionsAch'] = None):
+        """
+        :param 'V2MoneyManagementOutboundPaymentToPayoutMethodOptionsBankAccountPreferredNetworkOptionsAchArgs' ach: ACH-specific network options.
+        """
+        if ach is not None:
+            pulumi.set(__self__, "ach", ach)
+
+    @_builtins.property
+    @pulumi.getter
+    def ach(self) -> Optional['outputs.V2MoneyManagementOutboundPaymentToPayoutMethodOptionsBankAccountPreferredNetworkOptionsAch']:
+        """
+        ACH-specific network options.
+        """
+        return pulumi.get(self, "ach")
+
+
+@pulumi.output_type
+class V2MoneyManagementOutboundPaymentToPayoutMethodOptionsBankAccountPreferredNetworkOptionsAch(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "transactionPurpose":
+            suggest = "transaction_purpose"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in V2MoneyManagementOutboundPaymentToPayoutMethodOptionsBankAccountPreferredNetworkOptionsAch. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        V2MoneyManagementOutboundPaymentToPayoutMethodOptionsBankAccountPreferredNetworkOptionsAch.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        V2MoneyManagementOutboundPaymentToPayoutMethodOptionsBankAccountPreferredNetworkOptionsAch.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 submission: Optional[_builtins.str] = None,
+                 transaction_purpose: Optional[_builtins.str] = None):
+        """
+        :param _builtins.str submission: Open Enum. ACH submission timing.
+        :param _builtins.str transaction_purpose: The transaction purpose for this ACH payment.
+        """
+        if submission is not None:
+            pulumi.set(__self__, "submission", submission)
+        if transaction_purpose is not None:
+            pulumi.set(__self__, "transaction_purpose", transaction_purpose)
+
+    @_builtins.property
+    @pulumi.getter
+    def submission(self) -> Optional[_builtins.str]:
+        """
+        Open Enum. ACH submission timing.
+        """
+        return pulumi.get(self, "submission")
+
+    @_builtins.property
+    @pulumi.getter(name="transactionPurpose")
+    def transaction_purpose(self) -> Optional[_builtins.str]:
+        """
+        The transaction purpose for this ACH payment.
+        """
+        return pulumi.get(self, "transaction_purpose")
+
+
+@pulumi.output_type
+class V2MoneyManagementOutboundPaymentTrackingDetails(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "bankAccount":
+            suggest = "bank_account"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in V2MoneyManagementOutboundPaymentTrackingDetails. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        V2MoneyManagementOutboundPaymentTrackingDetails.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        V2MoneyManagementOutboundPaymentTrackingDetails.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 bank_account: Optional['outputs.V2MoneyManagementOutboundPaymentTrackingDetailsBankAccount'] = None,
+                 card: Optional['outputs.V2MoneyManagementOutboundPaymentTrackingDetailsCard'] = None,
+                 status: Optional[_builtins.str] = None,
+                 type: Optional[_builtins.str] = None):
+        """
+        :param 'V2MoneyManagementOutboundPaymentTrackingDetailsBankAccountArgs' bank_account: Bank account tracking details.
+        :param 'V2MoneyManagementOutboundPaymentTrackingDetailsCardArgs' card: Card tracking details.
+        :param _builtins.str status: The status of the tracking details for this OutboundPayment.
+        :param _builtins.str type: The type of tracking details for this OutboundPayment.
+        """
+        if bank_account is not None:
+            pulumi.set(__self__, "bank_account", bank_account)
+        if card is not None:
+            pulumi.set(__self__, "card", card)
+        if status is not None:
+            pulumi.set(__self__, "status", status)
+        if type is not None:
+            pulumi.set(__self__, "type", type)
+
+    @_builtins.property
+    @pulumi.getter(name="bankAccount")
+    def bank_account(self) -> Optional['outputs.V2MoneyManagementOutboundPaymentTrackingDetailsBankAccount']:
+        """
+        Bank account tracking details.
+        """
+        return pulumi.get(self, "bank_account")
+
+    @_builtins.property
+    @pulumi.getter
+    def card(self) -> Optional['outputs.V2MoneyManagementOutboundPaymentTrackingDetailsCard']:
+        """
+        Card tracking details.
+        """
+        return pulumi.get(self, "card")
+
+    @_builtins.property
+    @pulumi.getter
+    def status(self) -> Optional[_builtins.str]:
+        """
+        The status of the tracking details for this OutboundPayment.
+        """
+        return pulumi.get(self, "status")
+
+    @_builtins.property
+    @pulumi.getter
+    def type(self) -> Optional[_builtins.str]:
+        """
+        The type of tracking details for this OutboundPayment.
+        """
+        return pulumi.get(self, "type")
+
+
+@pulumi.output_type
+class V2MoneyManagementOutboundPaymentTrackingDetailsBankAccount(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "traceId":
+            suggest = "trace_id"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in V2MoneyManagementOutboundPaymentTrackingDetailsBankAccount. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        V2MoneyManagementOutboundPaymentTrackingDetailsBankAccount.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        V2MoneyManagementOutboundPaymentTrackingDetailsBankAccount.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 trace_id: Optional[_builtins.str] = None):
+        """
+        :param _builtins.str trace_id: A unique identifier that can be used to track this OutboundPayment with the recipient bank. Banks might call this a “reference number” or something similar.
+        """
+        if trace_id is not None:
+            pulumi.set(__self__, "trace_id", trace_id)
+
+    @_builtins.property
+    @pulumi.getter(name="traceId")
+    def trace_id(self) -> Optional[_builtins.str]:
+        """
+        A unique identifier that can be used to track this OutboundPayment with the recipient bank. Banks might call this a “reference number” or something similar.
+        """
+        return pulumi.get(self, "trace_id")
+
+
+@pulumi.output_type
+class V2MoneyManagementOutboundPaymentTrackingDetailsCard(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "retrievalReference":
+            suggest = "retrieval_reference"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in V2MoneyManagementOutboundPaymentTrackingDetailsCard. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        V2MoneyManagementOutboundPaymentTrackingDetailsCard.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        V2MoneyManagementOutboundPaymentTrackingDetailsCard.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 retrieval_reference: Optional[_builtins.str] = None):
+        """
+        :param _builtins.str retrieval_reference: A unique identifier that can be used to track this OutboundPayment with the recipient card.
+        """
+        if retrieval_reference is not None:
+            pulumi.set(__self__, "retrieval_reference", retrieval_reference)
+
+    @_builtins.property
+    @pulumi.getter(name="retrievalReference")
+    def retrieval_reference(self) -> Optional[_builtins.str]:
+        """
+        A unique identifier that can be used to track this OutboundPayment with the recipient card.
+        """
+        return pulumi.get(self, "retrieval_reference")
+
+
+@pulumi.output_type
+class V2MoneyManagementOutboundSetupIntentPayoutMethodData(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "bankAccount":
+            suggest = "bank_account"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in V2MoneyManagementOutboundSetupIntentPayoutMethodData. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        V2MoneyManagementOutboundSetupIntentPayoutMethodData.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        V2MoneyManagementOutboundSetupIntentPayoutMethodData.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 type: _builtins.str,
+                 bank_account: Optional['outputs.V2MoneyManagementOutboundSetupIntentPayoutMethodDataBankAccount'] = None):
+        """
+        :param _builtins.str type: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+               Open Enum. The type of payout method to be created.
+        :param 'V2MoneyManagementOutboundSetupIntentPayoutMethodDataBankAccountArgs' bank_account: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+               The type specific details of the bank account payout method.
+        """
+        pulumi.set(__self__, "type", type)
+        if bank_account is not None:
+            pulumi.set(__self__, "bank_account", bank_account)
+
+    @_builtins.property
+    @pulumi.getter
+    def type(self) -> _builtins.str:
+        """
+        **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        Open Enum. The type of payout method to be created.
+        """
+        return pulumi.get(self, "type")
+
+    @_builtins.property
+    @pulumi.getter(name="bankAccount")
+    def bank_account(self) -> Optional['outputs.V2MoneyManagementOutboundSetupIntentPayoutMethodDataBankAccount']:
+        """
+        **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        The type specific details of the bank account payout method.
+        """
+        return pulumi.get(self, "bank_account")
+
+
+@pulumi.output_type
+class V2MoneyManagementOutboundSetupIntentPayoutMethodDataBankAccount(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "accountNumber":
+            suggest = "account_number"
+        elif key == "bankAccountType":
+            suggest = "bank_account_type"
+        elif key == "branchNumber":
+            suggest = "branch_number"
+        elif key == "routingNumber":
+            suggest = "routing_number"
+        elif key == "swiftCode":
+            suggest = "swift_code"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in V2MoneyManagementOutboundSetupIntentPayoutMethodDataBankAccount. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        V2MoneyManagementOutboundSetupIntentPayoutMethodDataBankAccount.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        V2MoneyManagementOutboundSetupIntentPayoutMethodDataBankAccount.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 account_number: _builtins.str,
+                 country: _builtins.str,
+                 currency: _builtins.str,
+                 bank_account_type: Optional[_builtins.str] = None,
+                 branch_number: Optional[_builtins.str] = None,
+                 routing_number: Optional[_builtins.str] = None,
+                 swift_code: Optional[_builtins.str] = None):
+        """
+        :param _builtins.str account_number: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+               The account number or IBAN of the bank account.
+        :param _builtins.str country: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+               The country code of the bank account.
+        :param _builtins.str currency: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+               The currency of the bank account.
+        :param _builtins.str bank_account_type: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+               Closed Enum. The type of the bank account (checking or savings).
+        :param _builtins.str branch_number: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+               The branch number of the bank account, if present.
+        :param _builtins.str routing_number: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+               The routing number of the bank account, if present.
+        :param _builtins.str swift_code: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+               The swift code of the bank account, if present.
+        """
+        pulumi.set(__self__, "account_number", account_number)
+        pulumi.set(__self__, "country", country)
+        pulumi.set(__self__, "currency", currency)
+        if bank_account_type is not None:
+            pulumi.set(__self__, "bank_account_type", bank_account_type)
+        if branch_number is not None:
+            pulumi.set(__self__, "branch_number", branch_number)
+        if routing_number is not None:
+            pulumi.set(__self__, "routing_number", routing_number)
+        if swift_code is not None:
+            pulumi.set(__self__, "swift_code", swift_code)
+
+    @_builtins.property
+    @pulumi.getter(name="accountNumber")
+    def account_number(self) -> _builtins.str:
+        """
+        **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        The account number or IBAN of the bank account.
+        """
+        return pulumi.get(self, "account_number")
+
+    @_builtins.property
+    @pulumi.getter
+    def country(self) -> _builtins.str:
+        """
+        **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        The country code of the bank account.
+        """
+        return pulumi.get(self, "country")
+
+    @_builtins.property
+    @pulumi.getter
+    def currency(self) -> _builtins.str:
+        """
+        **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        The currency of the bank account.
+        """
+        return pulumi.get(self, "currency")
+
+    @_builtins.property
+    @pulumi.getter(name="bankAccountType")
+    def bank_account_type(self) -> Optional[_builtins.str]:
+        """
+        **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        Closed Enum. The type of the bank account (checking or savings).
+        """
+        return pulumi.get(self, "bank_account_type")
+
+    @_builtins.property
+    @pulumi.getter(name="branchNumber")
+    def branch_number(self) -> Optional[_builtins.str]:
+        """
+        **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        The branch number of the bank account, if present.
+        """
+        return pulumi.get(self, "branch_number")
+
+    @_builtins.property
+    @pulumi.getter(name="routingNumber")
+    def routing_number(self) -> Optional[_builtins.str]:
+        """
+        **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        The routing number of the bank account, if present.
+        """
+        return pulumi.get(self, "routing_number")
+
+    @_builtins.property
+    @pulumi.getter(name="swiftCode")
+    def swift_code(self) -> Optional[_builtins.str]:
+        """
+        **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        The swift code of the bank account, if present.
+        """
+        return pulumi.get(self, "swift_code")
+
+
+@pulumi.output_type
+class V2MoneyManagementPayoutIntentAmount(dict):
+    def __init__(__self__, *,
+                 currency: _builtins.str,
+                 value: _builtins.float):
+        """
+        :param _builtins.str currency: The currency of the monetary amount.
+        :param _builtins.float value: The monetary amount in minor units of the currency.
+        """
+        pulumi.set(__self__, "currency", currency)
+        pulumi.set(__self__, "value", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def currency(self) -> _builtins.str:
+        """
+        The currency of the monetary amount.
+        """
+        return pulumi.get(self, "currency")
+
+    @_builtins.property
+    @pulumi.getter
+    def value(self) -> _builtins.float:
+        """
+        The monetary amount in minor units of the currency.
+        """
+        return pulumi.get(self, "value")
+
+
+@pulumi.output_type
+class V2MoneyManagementPayoutIntentEstimatedFee(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "networkFeeDetails":
+            suggest = "network_fee_details"
+        elif key == "taxAmount":
+            suggest = "tax_amount"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in V2MoneyManagementPayoutIntentEstimatedFee. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        V2MoneyManagementPayoutIntentEstimatedFee.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        V2MoneyManagementPayoutIntentEstimatedFee.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 amount: Optional['outputs.V2MoneyManagementPayoutIntentEstimatedFeeAmount'] = None,
+                 network_fee_details: Optional['outputs.V2MoneyManagementPayoutIntentEstimatedFeeNetworkFeeDetails'] = None,
+                 tax_amount: Optional['outputs.V2MoneyManagementPayoutIntentEstimatedFeeTaxAmount'] = None,
+                 type: Optional[_builtins.str] = None):
+        """
+        :param 'V2MoneyManagementPayoutIntentEstimatedFeeAmountArgs' amount: The fee amount.
+        :param 'V2MoneyManagementPayoutIntentEstimatedFeeNetworkFeeDetailsArgs' network_fee_details: Details about the network and options associated with this fee. Present when <span pulumi-lang-nodejs="`type`" pulumi-lang-dotnet="`Type`" pulumi-lang-go="`type`" pulumi-lang-python="`type`" pulumi-lang-yaml="`type`" pulumi-lang-java="`type`" pulumi-lang-hcl="`type`">`type`</span> is <span pulumi-lang-nodejs="`networkFee`" pulumi-lang-dotnet="`NetworkFee`" pulumi-lang-go="`networkFee`" pulumi-lang-python="`network_fee`" pulumi-lang-yaml="`networkFee`" pulumi-lang-java="`networkFee`" pulumi-lang-hcl="`network_fee`">`networkFee`</span>.
+        :param 'V2MoneyManagementPayoutIntentEstimatedFeeTaxAmountArgs' tax_amount: Tax charged for this fee, if applicable. Value expressed as a decimal string in major units.
+        :param _builtins.str type: Open Enum. The type of fee.
+        """
+        if amount is not None:
+            pulumi.set(__self__, "amount", amount)
+        if network_fee_details is not None:
+            pulumi.set(__self__, "network_fee_details", network_fee_details)
+        if tax_amount is not None:
+            pulumi.set(__self__, "tax_amount", tax_amount)
+        if type is not None:
+            pulumi.set(__self__, "type", type)
+
+    @_builtins.property
+    @pulumi.getter
+    def amount(self) -> Optional['outputs.V2MoneyManagementPayoutIntentEstimatedFeeAmount']:
+        """
+        The fee amount.
+        """
+        return pulumi.get(self, "amount")
+
+    @_builtins.property
+    @pulumi.getter(name="networkFeeDetails")
+    def network_fee_details(self) -> Optional['outputs.V2MoneyManagementPayoutIntentEstimatedFeeNetworkFeeDetails']:
+        """
+        Details about the network and options associated with this fee. Present when <span pulumi-lang-nodejs="`type`" pulumi-lang-dotnet="`Type`" pulumi-lang-go="`type`" pulumi-lang-python="`type`" pulumi-lang-yaml="`type`" pulumi-lang-java="`type`" pulumi-lang-hcl="`type`">`type`</span> is <span pulumi-lang-nodejs="`networkFee`" pulumi-lang-dotnet="`NetworkFee`" pulumi-lang-go="`networkFee`" pulumi-lang-python="`network_fee`" pulumi-lang-yaml="`networkFee`" pulumi-lang-java="`networkFee`" pulumi-lang-hcl="`network_fee`">`networkFee`</span>.
+        """
+        return pulumi.get(self, "network_fee_details")
+
+    @_builtins.property
+    @pulumi.getter(name="taxAmount")
+    def tax_amount(self) -> Optional['outputs.V2MoneyManagementPayoutIntentEstimatedFeeTaxAmount']:
+        """
+        Tax charged for this fee, if applicable. Value expressed as a decimal string in major units.
+        """
+        return pulumi.get(self, "tax_amount")
+
+    @_builtins.property
+    @pulumi.getter
+    def type(self) -> Optional[_builtins.str]:
+        """
+        Open Enum. The type of fee.
+        """
+        return pulumi.get(self, "type")
+
+
+@pulumi.output_type
+class V2MoneyManagementPayoutIntentEstimatedFeeAmount(dict):
+    def __init__(__self__, *,
+                 currency: Optional[_builtins.str] = None,
+                 value: Optional[_builtins.float] = None):
+        """
+        :param _builtins.str currency: The currency of the monetary amount.
+        :param _builtins.float value: The monetary amount in minor units of the currency.
+        """
+        if currency is not None:
+            pulumi.set(__self__, "currency", currency)
+        if value is not None:
+            pulumi.set(__self__, "value", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def currency(self) -> Optional[_builtins.str]:
+        """
+        The currency of the monetary amount.
+        """
+        return pulumi.get(self, "currency")
+
+    @_builtins.property
+    @pulumi.getter
+    def value(self) -> Optional[_builtins.float]:
+        """
+        The monetary amount in minor units of the currency.
+        """
+        return pulumi.get(self, "value")
+
+
+@pulumi.output_type
+class V2MoneyManagementPayoutIntentEstimatedFeeNetworkFeeDetails(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "networkOptions":
+            suggest = "network_options"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in V2MoneyManagementPayoutIntentEstimatedFeeNetworkFeeDetails. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        V2MoneyManagementPayoutIntentEstimatedFeeNetworkFeeDetails.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        V2MoneyManagementPayoutIntentEstimatedFeeNetworkFeeDetails.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 network: Optional[_builtins.str] = None,
+                 network_options: Optional['outputs.V2MoneyManagementPayoutIntentEstimatedFeeNetworkFeeDetailsNetworkOptions'] = None):
+        """
+        :param _builtins.str network: The network associated with the fee.
+        :param 'V2MoneyManagementPayoutIntentEstimatedFeeNetworkFeeDetailsNetworkOptionsArgs' network_options: Per-network options that affect the fee.
+        """
+        if network is not None:
+            pulumi.set(__self__, "network", network)
+        if network_options is not None:
+            pulumi.set(__self__, "network_options", network_options)
+
+    @_builtins.property
+    @pulumi.getter
+    def network(self) -> Optional[_builtins.str]:
+        """
+        The network associated with the fee.
+        """
+        return pulumi.get(self, "network")
+
+    @_builtins.property
+    @pulumi.getter(name="networkOptions")
+    def network_options(self) -> Optional['outputs.V2MoneyManagementPayoutIntentEstimatedFeeNetworkFeeDetailsNetworkOptions']:
+        """
+        Per-network options that affect the fee.
+        """
+        return pulumi.get(self, "network_options")
+
+
+@pulumi.output_type
+class V2MoneyManagementPayoutIntentEstimatedFeeNetworkFeeDetailsNetworkOptions(dict):
+    def __init__(__self__, *,
+                 ach: Optional['outputs.V2MoneyManagementPayoutIntentEstimatedFeeNetworkFeeDetailsNetworkOptionsAch'] = None):
+        """
+        :param 'V2MoneyManagementPayoutIntentEstimatedFeeNetworkFeeDetailsNetworkOptionsAchArgs' ach: ACH-specific network fee options.
+        """
+        if ach is not None:
+            pulumi.set(__self__, "ach", ach)
+
+    @_builtins.property
+    @pulumi.getter
+    def ach(self) -> Optional['outputs.V2MoneyManagementPayoutIntentEstimatedFeeNetworkFeeDetailsNetworkOptionsAch']:
+        """
+        ACH-specific network fee options.
+        """
+        return pulumi.get(self, "ach")
+
+
+@pulumi.output_type
+class V2MoneyManagementPayoutIntentEstimatedFeeNetworkFeeDetailsNetworkOptionsAch(dict):
+    def __init__(__self__, *,
+                 submission: Optional[_builtins.str] = None):
+        """
+        :param _builtins.str submission: Open Enum. ACH submission timing.
+        """
+        if submission is not None:
+            pulumi.set(__self__, "submission", submission)
+
+    @_builtins.property
+    @pulumi.getter
+    def submission(self) -> Optional[_builtins.str]:
+        """
+        Open Enum. ACH submission timing.
+        """
+        return pulumi.get(self, "submission")
+
+
+@pulumi.output_type
+class V2MoneyManagementPayoutIntentEstimatedFeeTaxAmount(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "valueDecimal":
+            suggest = "value_decimal"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in V2MoneyManagementPayoutIntentEstimatedFeeTaxAmount. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        V2MoneyManagementPayoutIntentEstimatedFeeTaxAmount.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        V2MoneyManagementPayoutIntentEstimatedFeeTaxAmount.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 currency: Optional[_builtins.str] = None,
+                 value_decimal: Optional[_builtins.str] = None):
+        """
+        :param _builtins.str currency: Currency code.
+        :param _builtins.str value_decimal: Tax amount value represented as a decimal string in major units.
+        """
+        if currency is not None:
+            pulumi.set(__self__, "currency", currency)
+        if value_decimal is not None:
+            pulumi.set(__self__, "value_decimal", value_decimal)
+
+    @_builtins.property
+    @pulumi.getter
+    def currency(self) -> Optional[_builtins.str]:
+        """
+        Currency code.
+        """
+        return pulumi.get(self, "currency")
+
+    @_builtins.property
+    @pulumi.getter(name="valueDecimal")
+    def value_decimal(self) -> Optional[_builtins.str]:
+        """
+        Tax amount value represented as a decimal string in major units.
+        """
+        return pulumi.get(self, "value_decimal")
+
+
+@pulumi.output_type
+class V2MoneyManagementPayoutIntentFrom(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "financialAccount":
+            suggest = "financial_account"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in V2MoneyManagementPayoutIntentFrom. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        V2MoneyManagementPayoutIntentFrom.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        V2MoneyManagementPayoutIntentFrom.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 currency: _builtins.str,
+                 financial_account: _builtins.str,
+                 debited: Optional['outputs.V2MoneyManagementPayoutIntentFromDebited'] = None):
+        """
+        :param _builtins.str currency: The currency of the financial account.
+        :param _builtins.str financial_account: The FinancialAccount that funds are pulled from.
+        :param 'V2MoneyManagementPayoutIntentFromDebitedArgs' debited: Estimated amount to be debited from the financial account.
+        """
+        pulumi.set(__self__, "currency", currency)
+        pulumi.set(__self__, "financial_account", financial_account)
+        if debited is not None:
+            pulumi.set(__self__, "debited", debited)
+
+    @_builtins.property
+    @pulumi.getter
+    def currency(self) -> _builtins.str:
+        """
+        The currency of the financial account.
+        """
+        return pulumi.get(self, "currency")
+
+    @_builtins.property
+    @pulumi.getter(name="financialAccount")
+    def financial_account(self) -> _builtins.str:
+        """
+        The FinancialAccount that funds are pulled from.
+        """
+        return pulumi.get(self, "financial_account")
+
+    @_builtins.property
+    @pulumi.getter
+    def debited(self) -> Optional['outputs.V2MoneyManagementPayoutIntentFromDebited']:
+        """
+        Estimated amount to be debited from the financial account.
+        """
+        return pulumi.get(self, "debited")
+
+
+@pulumi.output_type
+class V2MoneyManagementPayoutIntentFromDebited(dict):
+    def __init__(__self__, *,
+                 currency: Optional[_builtins.str] = None,
+                 value: Optional[_builtins.float] = None):
+        """
+        :param _builtins.str currency: The currency of the monetary amount.
+        :param _builtins.float value: The monetary amount in minor units of the currency.
+        """
+        if currency is not None:
+            pulumi.set(__self__, "currency", currency)
+        if value is not None:
+            pulumi.set(__self__, "value", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def currency(self) -> Optional[_builtins.str]:
+        """
+        The currency of the monetary amount.
+        """
+        return pulumi.get(self, "currency")
+
+    @_builtins.property
+    @pulumi.getter
+    def value(self) -> Optional[_builtins.float]:
+        """
+        The monetary amount in minor units of the currency.
+        """
+        return pulumi.get(self, "value")
+
+
+@pulumi.output_type
+class V2MoneyManagementPayoutIntentFxQuote(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "lockDuration":
+            suggest = "lock_duration"
+        elif key == "lockExpiresAt":
+            suggest = "lock_expires_at"
+        elif key == "lockStatus":
+            suggest = "lock_status"
+        elif key == "toCurrency":
+            suggest = "to_currency"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in V2MoneyManagementPayoutIntentFxQuote. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        V2MoneyManagementPayoutIntentFxQuote.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        V2MoneyManagementPayoutIntentFxQuote.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 lock_duration: Optional[_builtins.str] = None,
+                 lock_expires_at: Optional[_builtins.str] = None,
+                 lock_status: Optional[_builtins.str] = None,
+                 rates: Optional[Mapping[str, 'outputs.V2MoneyManagementPayoutIntentFxQuoteRates']] = None,
+                 to_currency: Optional[_builtins.str] = None):
+        """
+        :param _builtins.str lock_duration: Open Enum. Duration of the FX rate lock.
+        :param _builtins.str lock_expires_at: Timestamp when the rate lock expires. Null when rate locking is not supported.
+        :param _builtins.str lock_status: Open Enum. Lock status of the FX rate.
+        :param Mapping[str, 'V2MoneyManagementPayoutIntentFxQuoteRatesArgs'] rates: Maps each source currency to its exchange rate into <span pulumi-lang-nodejs="`toCurrency`" pulumi-lang-dotnet="`ToCurrency`" pulumi-lang-go="`toCurrency`" pulumi-lang-python="`to_currency`" pulumi-lang-yaml="`toCurrency`" pulumi-lang-java="`toCurrency`" pulumi-lang-hcl="`to_currency`">`toCurrency`</span>.
+        :param _builtins.str to_currency: The destination currency.
+        """
+        if lock_duration is not None:
+            pulumi.set(__self__, "lock_duration", lock_duration)
+        if lock_expires_at is not None:
+            pulumi.set(__self__, "lock_expires_at", lock_expires_at)
+        if lock_status is not None:
+            pulumi.set(__self__, "lock_status", lock_status)
+        if rates is not None:
+            pulumi.set(__self__, "rates", rates)
+        if to_currency is not None:
+            pulumi.set(__self__, "to_currency", to_currency)
+
+    @_builtins.property
+    @pulumi.getter(name="lockDuration")
+    def lock_duration(self) -> Optional[_builtins.str]:
+        """
+        Open Enum. Duration of the FX rate lock.
+        """
+        return pulumi.get(self, "lock_duration")
+
+    @_builtins.property
+    @pulumi.getter(name="lockExpiresAt")
+    def lock_expires_at(self) -> Optional[_builtins.str]:
+        """
+        Timestamp when the rate lock expires. Null when rate locking is not supported.
+        """
+        return pulumi.get(self, "lock_expires_at")
+
+    @_builtins.property
+    @pulumi.getter(name="lockStatus")
+    def lock_status(self) -> Optional[_builtins.str]:
+        """
+        Open Enum. Lock status of the FX rate.
+        """
+        return pulumi.get(self, "lock_status")
+
+    @_builtins.property
+    @pulumi.getter
+    def rates(self) -> Optional[Mapping[str, 'outputs.V2MoneyManagementPayoutIntentFxQuoteRates']]:
+        """
+        Maps each source currency to its exchange rate into <span pulumi-lang-nodejs="`toCurrency`" pulumi-lang-dotnet="`ToCurrency`" pulumi-lang-go="`toCurrency`" pulumi-lang-python="`to_currency`" pulumi-lang-yaml="`toCurrency`" pulumi-lang-java="`toCurrency`" pulumi-lang-hcl="`to_currency`">`toCurrency`</span>.
+        """
+        return pulumi.get(self, "rates")
+
+    @_builtins.property
+    @pulumi.getter(name="toCurrency")
+    def to_currency(self) -> Optional[_builtins.str]:
+        """
+        The destination currency.
+        """
+        return pulumi.get(self, "to_currency")
+
+
+@pulumi.output_type
+class V2MoneyManagementPayoutIntentFxQuoteRates(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "exchangeRate":
+            suggest = "exchange_rate"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in V2MoneyManagementPayoutIntentFxQuoteRates. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        V2MoneyManagementPayoutIntentFxQuoteRates.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        V2MoneyManagementPayoutIntentFxQuoteRates.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 exchange_rate: Optional[_builtins.str] = None):
+        """
+        :param _builtins.str exchange_rate: The exchange rate from the source currency to <span pulumi-lang-nodejs="`toCurrency`" pulumi-lang-dotnet="`ToCurrency`" pulumi-lang-go="`toCurrency`" pulumi-lang-python="`to_currency`" pulumi-lang-yaml="`toCurrency`" pulumi-lang-java="`toCurrency`" pulumi-lang-hcl="`to_currency`">`toCurrency`</span>, represented as a decimal string
+               (for example, `1.1520`) to preserve the full precision of the rate.
+        """
+        if exchange_rate is not None:
+            pulumi.set(__self__, "exchange_rate", exchange_rate)
+
+    @_builtins.property
+    @pulumi.getter(name="exchangeRate")
+    def exchange_rate(self) -> Optional[_builtins.str]:
+        """
+        The exchange rate from the source currency to <span pulumi-lang-nodejs="`toCurrency`" pulumi-lang-dotnet="`ToCurrency`" pulumi-lang-go="`toCurrency`" pulumi-lang-python="`to_currency`" pulumi-lang-yaml="`toCurrency`" pulumi-lang-java="`toCurrency`" pulumi-lang-hcl="`to_currency`">`toCurrency`</span>, represented as a decimal string
+        (for example, `1.1520`) to preserve the full precision of the rate.
+        """
+        return pulumi.get(self, "exchange_rate")
+
+
+@pulumi.output_type
+class V2MoneyManagementPayoutIntentLatestPayout(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "outboundPayment":
+            suggest = "outbound_payment"
+        elif key == "outboundTransfer":
+            suggest = "outbound_transfer"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in V2MoneyManagementPayoutIntentLatestPayout. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        V2MoneyManagementPayoutIntentLatestPayout.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        V2MoneyManagementPayoutIntentLatestPayout.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 outbound_payment: Optional[_builtins.str] = None,
+                 outbound_transfer: Optional[_builtins.str] = None,
+                 type: Optional[_builtins.str] = None):
+        """
+        :param _builtins.str outbound_payment: The ID of the OutboundPayment, if applicable.
+        :param _builtins.str outbound_transfer: The ID of the OutboundTransfer, if applicable.
+        :param _builtins.str type: The type of payout.
+        """
+        if outbound_payment is not None:
+            pulumi.set(__self__, "outbound_payment", outbound_payment)
+        if outbound_transfer is not None:
+            pulumi.set(__self__, "outbound_transfer", outbound_transfer)
+        if type is not None:
+            pulumi.set(__self__, "type", type)
+
+    @_builtins.property
+    @pulumi.getter(name="outboundPayment")
+    def outbound_payment(self) -> Optional[_builtins.str]:
+        """
+        The ID of the OutboundPayment, if applicable.
+        """
+        return pulumi.get(self, "outbound_payment")
+
+    @_builtins.property
+    @pulumi.getter(name="outboundTransfer")
+    def outbound_transfer(self) -> Optional[_builtins.str]:
+        """
+        The ID of the OutboundTransfer, if applicable.
+        """
+        return pulumi.get(self, "outbound_transfer")
+
+    @_builtins.property
+    @pulumi.getter
+    def type(self) -> Optional[_builtins.str]:
+        """
+        The type of payout.
+        """
+        return pulumi.get(self, "type")
+
+
+@pulumi.output_type
+class V2MoneyManagementPayoutIntentNextAction(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "handleFailure":
+            suggest = "handle_failure"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in V2MoneyManagementPayoutIntentNextAction. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        V2MoneyManagementPayoutIntentNextAction.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        V2MoneyManagementPayoutIntentNextAction.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 confirm: Optional['outputs.V2MoneyManagementPayoutIntentNextActionConfirm'] = None,
+                 handle_failure: Optional['outputs.V2MoneyManagementPayoutIntentNextActionHandleFailure'] = None,
+                 type: Optional[_builtins.str] = None):
+        """
+        :param 'V2MoneyManagementPayoutIntentNextActionConfirmArgs' confirm: Details about a confirmation required. Populated when <span pulumi-lang-nodejs="`type`" pulumi-lang-dotnet="`Type`" pulumi-lang-go="`type`" pulumi-lang-python="`type`" pulumi-lang-yaml="`type`" pulumi-lang-java="`type`" pulumi-lang-hcl="`type`">`type`</span> is <span pulumi-lang-nodejs="`confirm`" pulumi-lang-dotnet="`Confirm`" pulumi-lang-go="`confirm`" pulumi-lang-python="`confirm`" pulumi-lang-yaml="`confirm`" pulumi-lang-java="`confirm`" pulumi-lang-hcl="`confirm`">`confirm`</span>.
+        :param 'V2MoneyManagementPayoutIntentNextActionHandleFailureArgs' handle_failure: Details about a failure that requires user action. Populated when <span pulumi-lang-nodejs="`type`" pulumi-lang-dotnet="`Type`" pulumi-lang-go="`type`" pulumi-lang-python="`type`" pulumi-lang-yaml="`type`" pulumi-lang-java="`type`" pulumi-lang-hcl="`type`">`type`</span> is <span pulumi-lang-nodejs="`handleFailure`" pulumi-lang-dotnet="`HandleFailure`" pulumi-lang-go="`handleFailure`" pulumi-lang-python="`handle_failure`" pulumi-lang-yaml="`handleFailure`" pulumi-lang-java="`handleFailure`" pulumi-lang-hcl="`handle_failure`">`handleFailure`</span>.
+        :param _builtins.str type: Open Enum. The type of next action required.
+        """
+        if confirm is not None:
+            pulumi.set(__self__, "confirm", confirm)
+        if handle_failure is not None:
+            pulumi.set(__self__, "handle_failure", handle_failure)
+        if type is not None:
+            pulumi.set(__self__, "type", type)
+
+    @_builtins.property
+    @pulumi.getter
+    def confirm(self) -> Optional['outputs.V2MoneyManagementPayoutIntentNextActionConfirm']:
+        """
+        Details about a confirmation required. Populated when <span pulumi-lang-nodejs="`type`" pulumi-lang-dotnet="`Type`" pulumi-lang-go="`type`" pulumi-lang-python="`type`" pulumi-lang-yaml="`type`" pulumi-lang-java="`type`" pulumi-lang-hcl="`type`">`type`</span> is <span pulumi-lang-nodejs="`confirm`" pulumi-lang-dotnet="`Confirm`" pulumi-lang-go="`confirm`" pulumi-lang-python="`confirm`" pulumi-lang-yaml="`confirm`" pulumi-lang-java="`confirm`" pulumi-lang-hcl="`confirm`">`confirm`</span>.
+        """
+        return pulumi.get(self, "confirm")
+
+    @_builtins.property
+    @pulumi.getter(name="handleFailure")
+    def handle_failure(self) -> Optional['outputs.V2MoneyManagementPayoutIntentNextActionHandleFailure']:
+        """
+        Details about a failure that requires user action. Populated when <span pulumi-lang-nodejs="`type`" pulumi-lang-dotnet="`Type`" pulumi-lang-go="`type`" pulumi-lang-python="`type`" pulumi-lang-yaml="`type`" pulumi-lang-java="`type`" pulumi-lang-hcl="`type`">`type`</span> is <span pulumi-lang-nodejs="`handleFailure`" pulumi-lang-dotnet="`HandleFailure`" pulumi-lang-go="`handleFailure`" pulumi-lang-python="`handle_failure`" pulumi-lang-yaml="`handleFailure`" pulumi-lang-java="`handleFailure`" pulumi-lang-hcl="`handle_failure`">`handleFailure`</span>.
+        """
+        return pulumi.get(self, "handle_failure")
+
+    @_builtins.property
+    @pulumi.getter
+    def type(self) -> Optional[_builtins.str]:
+        """
+        Open Enum. The type of next action required.
+        """
+        return pulumi.get(self, "type")
+
+
+@pulumi.output_type
+class V2MoneyManagementPayoutIntentNextActionConfirm(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "fieldsToReviews":
+            suggest = "fields_to_reviews"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in V2MoneyManagementPayoutIntentNextActionConfirm. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        V2MoneyManagementPayoutIntentNextActionConfirm.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        V2MoneyManagementPayoutIntentNextActionConfirm.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 fields_to_reviews: Optional[Sequence[_builtins.str]] = None,
+                 reason: Optional[_builtins.str] = None):
+        """
+        :param Sequence[_builtins.str] fields_to_reviews: The PayoutIntent fields that must be reviewed before confirmation.
+        :param _builtins.str reason: Open Enum. The reason the PayoutIntent requires confirmation.
+        """
+        if fields_to_reviews is not None:
+            pulumi.set(__self__, "fields_to_reviews", fields_to_reviews)
+        if reason is not None:
+            pulumi.set(__self__, "reason", reason)
+
+    @_builtins.property
+    @pulumi.getter(name="fieldsToReviews")
+    def fields_to_reviews(self) -> Optional[Sequence[_builtins.str]]:
+        """
+        The PayoutIntent fields that must be reviewed before confirmation.
+        """
+        return pulumi.get(self, "fields_to_reviews")
+
+    @_builtins.property
+    @pulumi.getter
+    def reason(self) -> Optional[_builtins.str]:
+        """
+        Open Enum. The reason the PayoutIntent requires confirmation.
+        """
+        return pulumi.get(self, "reason")
+
+
+@pulumi.output_type
+class V2MoneyManagementPayoutIntentNextActionHandleFailure(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "failureReason":
+            suggest = "failure_reason"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in V2MoneyManagementPayoutIntentNextActionHandleFailure. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        V2MoneyManagementPayoutIntentNextActionHandleFailure.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        V2MoneyManagementPayoutIntentNextActionHandleFailure.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 failure_reason: Optional[_builtins.str] = None):
+        """
+        :param _builtins.str failure_reason: Open Enum. The reason for the failure.
+        """
+        if failure_reason is not None:
+            pulumi.set(__self__, "failure_reason", failure_reason)
+
+    @_builtins.property
+    @pulumi.getter(name="failureReason")
+    def failure_reason(self) -> Optional[_builtins.str]:
+        """
+        Open Enum. The reason for the failure.
+        """
+        return pulumi.get(self, "failure_reason")
+
+
+@pulumi.output_type
+class V2MoneyManagementPayoutIntentRecipientNotification(dict):
+    def __init__(__self__, *,
+                 setting: _builtins.str):
+        """
+        :param _builtins.str setting: Closed Enum. Configuration option to enable or disable notifications to recipients.
+               Do not send notifications when <span pulumi-lang-nodejs="`setting`" pulumi-lang-dotnet="`Setting`" pulumi-lang-go="`setting`" pulumi-lang-python="`setting`" pulumi-lang-yaml="`setting`" pulumi-lang-java="`setting`" pulumi-lang-hcl="`setting`">`setting`</span> is <span pulumi-lang-nodejs="`none`" pulumi-lang-dotnet="`None`" pulumi-lang-go="`none`" pulumi-lang-python="`none`" pulumi-lang-yaml="`none`" pulumi-lang-java="`none`" pulumi-lang-hcl="`none`">`none`</span>. Use the account setting when <span pulumi-lang-nodejs="`setting`" pulumi-lang-dotnet="`Setting`" pulumi-lang-go="`setting`" pulumi-lang-python="`setting`" pulumi-lang-yaml="`setting`" pulumi-lang-java="`setting`" pulumi-lang-hcl="`setting`">`setting`</span> is <span pulumi-lang-nodejs="`configured`" pulumi-lang-dotnet="`Configured`" pulumi-lang-go="`configured`" pulumi-lang-python="`configured`" pulumi-lang-yaml="`configured`" pulumi-lang-java="`configured`" pulumi-lang-hcl="`configured`">`configured`</span> or omitted.
+        """
+        pulumi.set(__self__, "setting", setting)
+
+    @_builtins.property
+    @pulumi.getter
+    def setting(self) -> _builtins.str:
+        """
+        Closed Enum. Configuration option to enable or disable notifications to recipients.
+        Do not send notifications when <span pulumi-lang-nodejs="`setting`" pulumi-lang-dotnet="`Setting`" pulumi-lang-go="`setting`" pulumi-lang-python="`setting`" pulumi-lang-yaml="`setting`" pulumi-lang-java="`setting`" pulumi-lang-hcl="`setting`">`setting`</span> is <span pulumi-lang-nodejs="`none`" pulumi-lang-dotnet="`None`" pulumi-lang-go="`none`" pulumi-lang-python="`none`" pulumi-lang-yaml="`none`" pulumi-lang-java="`none`" pulumi-lang-hcl="`none`">`none`</span>. Use the account setting when <span pulumi-lang-nodejs="`setting`" pulumi-lang-dotnet="`Setting`" pulumi-lang-go="`setting`" pulumi-lang-python="`setting`" pulumi-lang-yaml="`setting`" pulumi-lang-java="`setting`" pulumi-lang-hcl="`setting`">`setting`</span> is <span pulumi-lang-nodejs="`configured`" pulumi-lang-dotnet="`Configured`" pulumi-lang-go="`configured`" pulumi-lang-python="`configured`" pulumi-lang-yaml="`configured`" pulumi-lang-java="`configured`" pulumi-lang-hcl="`configured`">`configured`</span> or omitted.
+        """
+        return pulumi.get(self, "setting")
+
+
+@pulumi.output_type
+class V2MoneyManagementPayoutIntentRecipientVerification(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "matchResult":
+            suggest = "match_result"
+        elif key == "matchResultDetails":
+            suggest = "match_result_details"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in V2MoneyManagementPayoutIntentRecipientVerification. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        V2MoneyManagementPayoutIntentRecipientVerification.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        V2MoneyManagementPayoutIntentRecipientVerification.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 match_result: Optional[_builtins.str] = None,
+                 match_result_details: Optional['outputs.V2MoneyManagementPayoutIntentRecipientVerificationMatchResultDetails'] = None):
+        """
+        :param _builtins.str match_result: Closed Enum. The recipient-verification provider's match result.
+        :param 'V2MoneyManagementPayoutIntentRecipientVerificationMatchResultDetailsArgs' match_result_details: Details associated with the match result.
+        """
+        if match_result is not None:
+            pulumi.set(__self__, "match_result", match_result)
+        if match_result_details is not None:
+            pulumi.set(__self__, "match_result_details", match_result_details)
+
+    @_builtins.property
+    @pulumi.getter(name="matchResult")
+    def match_result(self) -> Optional[_builtins.str]:
+        """
+        Closed Enum. The recipient-verification provider's match result.
+        """
+        return pulumi.get(self, "match_result")
+
+    @_builtins.property
+    @pulumi.getter(name="matchResultDetails")
+    def match_result_details(self) -> Optional['outputs.V2MoneyManagementPayoutIntentRecipientVerificationMatchResultDetails']:
+        """
+        Details associated with the match result.
+        """
+        return pulumi.get(self, "match_result_details")
+
+
+@pulumi.output_type
+class V2MoneyManagementPayoutIntentRecipientVerificationMatchResultDetails(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "matchedBusinessType":
+            suggest = "matched_business_type"
+        elif key == "matchedName":
+            suggest = "matched_name"
+        elif key == "providedBusinessType":
+            suggest = "provided_business_type"
+        elif key == "providedName":
+            suggest = "provided_name"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in V2MoneyManagementPayoutIntentRecipientVerificationMatchResultDetails. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        V2MoneyManagementPayoutIntentRecipientVerificationMatchResultDetails.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        V2MoneyManagementPayoutIntentRecipientVerificationMatchResultDetails.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 matched_business_type: Optional[_builtins.str] = None,
+                 matched_name: Optional[_builtins.str] = None,
+                 message: Optional[_builtins.str] = None,
+                 provided_business_type: Optional[_builtins.str] = None,
+                 provided_name: Optional[_builtins.str] = None):
+        """
+        :param _builtins.str matched_business_type: The business type returned by the recipient-verification provider.
+        :param _builtins.str matched_name: The account name returned by the recipient-verification provider.
+        :param _builtins.str message: A message describing the match result.
+        :param _builtins.str provided_business_type: The business type provided for recipient verification.
+        :param _builtins.str provided_name: The name associated with the provided recipient.
+        """
+        if matched_business_type is not None:
+            pulumi.set(__self__, "matched_business_type", matched_business_type)
+        if matched_name is not None:
+            pulumi.set(__self__, "matched_name", matched_name)
+        if message is not None:
+            pulumi.set(__self__, "message", message)
+        if provided_business_type is not None:
+            pulumi.set(__self__, "provided_business_type", provided_business_type)
+        if provided_name is not None:
+            pulumi.set(__self__, "provided_name", provided_name)
+
+    @_builtins.property
+    @pulumi.getter(name="matchedBusinessType")
+    def matched_business_type(self) -> Optional[_builtins.str]:
+        """
+        The business type returned by the recipient-verification provider.
+        """
+        return pulumi.get(self, "matched_business_type")
+
+    @_builtins.property
+    @pulumi.getter(name="matchedName")
+    def matched_name(self) -> Optional[_builtins.str]:
+        """
+        The account name returned by the recipient-verification provider.
+        """
+        return pulumi.get(self, "matched_name")
+
+    @_builtins.property
+    @pulumi.getter
+    def message(self) -> Optional[_builtins.str]:
+        """
+        A message describing the match result.
+        """
+        return pulumi.get(self, "message")
+
+    @_builtins.property
+    @pulumi.getter(name="providedBusinessType")
+    def provided_business_type(self) -> Optional[_builtins.str]:
+        """
+        The business type provided for recipient verification.
+        """
+        return pulumi.get(self, "provided_business_type")
+
+    @_builtins.property
+    @pulumi.getter(name="providedName")
+    def provided_name(self) -> Optional[_builtins.str]:
+        """
+        The name associated with the provided recipient.
+        """
+        return pulumi.get(self, "provided_name")
+
+
+@pulumi.output_type
+class V2MoneyManagementPayoutIntentScheduleOptions(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "executeOn":
+            suggest = "execute_on"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in V2MoneyManagementPayoutIntentScheduleOptions. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        V2MoneyManagementPayoutIntentScheduleOptions.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        V2MoneyManagementPayoutIntentScheduleOptions.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 execute_on: Optional[_builtins.str] = None):
+        """
+        :param _builtins.str execute_on: The date when the payout should be executed, in YYYY-MM-DD format.
+        """
+        if execute_on is not None:
+            pulumi.set(__self__, "execute_on", execute_on)
+
+    @_builtins.property
+    @pulumi.getter(name="executeOn")
+    def execute_on(self) -> Optional[_builtins.str]:
+        """
+        The date when the payout should be executed, in YYYY-MM-DD format.
+        """
+        return pulumi.get(self, "execute_on")
+
+
+@pulumi.output_type
+class V2MoneyManagementPayoutIntentStatusTransitions(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "canceledAt":
+            suggest = "canceled_at"
+        elif key == "postedAt":
+            suggest = "posted_at"
+        elif key == "processingAt":
+            suggest = "processing_at"
+        elif key == "requiresActionAt":
+            suggest = "requires_action_at"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in V2MoneyManagementPayoutIntentStatusTransitions. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        V2MoneyManagementPayoutIntentStatusTransitions.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        V2MoneyManagementPayoutIntentStatusTransitions.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 canceled_at: Optional[_builtins.str] = None,
+                 posted_at: Optional[_builtins.str] = None,
+                 processing_at: Optional[_builtins.str] = None,
+                 requires_action_at: Optional[_builtins.str] = None):
+        """
+        :param _builtins.str canceled_at: Timestamp describing when a PayoutIntent changed status to <span pulumi-lang-nodejs="`canceled`" pulumi-lang-dotnet="`Canceled`" pulumi-lang-go="`canceled`" pulumi-lang-python="`canceled`" pulumi-lang-yaml="`canceled`" pulumi-lang-java="`canceled`" pulumi-lang-hcl="`canceled`">`canceled`</span>.
+               Represented as a RFC 3339 date & time UTC value in millisecond precision, for example: 2022-09-18T13:22:18.123Z.
+        :param _builtins.str posted_at: Timestamp describing when a PayoutIntent changed status to <span pulumi-lang-nodejs="`posted`" pulumi-lang-dotnet="`Posted`" pulumi-lang-go="`posted`" pulumi-lang-python="`posted`" pulumi-lang-yaml="`posted`" pulumi-lang-java="`posted`" pulumi-lang-hcl="`posted`">`posted`</span>.
+               Represented as a RFC 3339 date & time UTC value in millisecond precision, for example: 2022-09-18T13:22:18.123Z.
+        :param _builtins.str processing_at: Timestamp describing when a PayoutIntent changed status to <span pulumi-lang-nodejs="`processing`" pulumi-lang-dotnet="`Processing`" pulumi-lang-go="`processing`" pulumi-lang-python="`processing`" pulumi-lang-yaml="`processing`" pulumi-lang-java="`processing`" pulumi-lang-hcl="`processing`">`processing`</span>.
+               Represented as a RFC 3339 date & time UTC value in millisecond precision, for example: 2022-09-18T13:22:18.123Z.
+        :param _builtins.str requires_action_at: Timestamp describing when a PayoutIntent changed status to <span pulumi-lang-nodejs="`requiresAction`" pulumi-lang-dotnet="`RequiresAction`" pulumi-lang-go="`requiresAction`" pulumi-lang-python="`requires_action`" pulumi-lang-yaml="`requiresAction`" pulumi-lang-java="`requiresAction`" pulumi-lang-hcl="`requires_action`">`requiresAction`</span>.
+               Represented as a RFC 3339 date & time UTC value in millisecond precision, for example: 2022-09-18T13:22:18.123Z.
+        """
+        if canceled_at is not None:
+            pulumi.set(__self__, "canceled_at", canceled_at)
+        if posted_at is not None:
+            pulumi.set(__self__, "posted_at", posted_at)
+        if processing_at is not None:
+            pulumi.set(__self__, "processing_at", processing_at)
+        if requires_action_at is not None:
+            pulumi.set(__self__, "requires_action_at", requires_action_at)
+
+    @_builtins.property
+    @pulumi.getter(name="canceledAt")
+    def canceled_at(self) -> Optional[_builtins.str]:
+        """
+        Timestamp describing when a PayoutIntent changed status to <span pulumi-lang-nodejs="`canceled`" pulumi-lang-dotnet="`Canceled`" pulumi-lang-go="`canceled`" pulumi-lang-python="`canceled`" pulumi-lang-yaml="`canceled`" pulumi-lang-java="`canceled`" pulumi-lang-hcl="`canceled`">`canceled`</span>.
+        Represented as a RFC 3339 date & time UTC value in millisecond precision, for example: 2022-09-18T13:22:18.123Z.
+        """
+        return pulumi.get(self, "canceled_at")
+
+    @_builtins.property
+    @pulumi.getter(name="postedAt")
+    def posted_at(self) -> Optional[_builtins.str]:
+        """
+        Timestamp describing when a PayoutIntent changed status to <span pulumi-lang-nodejs="`posted`" pulumi-lang-dotnet="`Posted`" pulumi-lang-go="`posted`" pulumi-lang-python="`posted`" pulumi-lang-yaml="`posted`" pulumi-lang-java="`posted`" pulumi-lang-hcl="`posted`">`posted`</span>.
+        Represented as a RFC 3339 date & time UTC value in millisecond precision, for example: 2022-09-18T13:22:18.123Z.
+        """
+        return pulumi.get(self, "posted_at")
+
+    @_builtins.property
+    @pulumi.getter(name="processingAt")
+    def processing_at(self) -> Optional[_builtins.str]:
+        """
+        Timestamp describing when a PayoutIntent changed status to <span pulumi-lang-nodejs="`processing`" pulumi-lang-dotnet="`Processing`" pulumi-lang-go="`processing`" pulumi-lang-python="`processing`" pulumi-lang-yaml="`processing`" pulumi-lang-java="`processing`" pulumi-lang-hcl="`processing`">`processing`</span>.
+        Represented as a RFC 3339 date & time UTC value in millisecond precision, for example: 2022-09-18T13:22:18.123Z.
+        """
+        return pulumi.get(self, "processing_at")
+
+    @_builtins.property
+    @pulumi.getter(name="requiresActionAt")
+    def requires_action_at(self) -> Optional[_builtins.str]:
+        """
+        Timestamp describing when a PayoutIntent changed status to <span pulumi-lang-nodejs="`requiresAction`" pulumi-lang-dotnet="`RequiresAction`" pulumi-lang-go="`requiresAction`" pulumi-lang-python="`requires_action`" pulumi-lang-yaml="`requiresAction`" pulumi-lang-java="`requiresAction`" pulumi-lang-hcl="`requires_action`">`requiresAction`</span>.
+        Represented as a RFC 3339 date & time UTC value in millisecond precision, for example: 2022-09-18T13:22:18.123Z.
+        """
+        return pulumi.get(self, "requires_action_at")
+
+
+@pulumi.output_type
+class V2MoneyManagementPayoutIntentTo(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "payoutMethod":
+            suggest = "payout_method"
+        elif key == "payoutMethodOptions":
+            suggest = "payout_method_options"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in V2MoneyManagementPayoutIntentTo. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        V2MoneyManagementPayoutIntentTo.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        V2MoneyManagementPayoutIntentTo.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 credited: Optional['outputs.V2MoneyManagementPayoutIntentToCredited'] = None,
+                 currency: Optional[_builtins.str] = None,
+                 payout_method: Optional[_builtins.str] = None,
+                 payout_method_options: Optional['outputs.V2MoneyManagementPayoutIntentToPayoutMethodOptions'] = None,
+                 recipient: Optional[_builtins.str] = None):
+        """
+        :param 'V2MoneyManagementPayoutIntentToCreditedArgs' credited: Estimated amount to be credited to the recipient in the destination currency.
+        :param _builtins.str currency: The currency to send to the recipient.
+        :param _builtins.str payout_method: The payout method ID for the PayoutIntent. Optional when the PayoutIntent creates an OutboundPayment and the recipient has a default payout method. Required when the PayoutIntent creates an OutboundTransfer.
+        :param 'V2MoneyManagementPayoutIntentToPayoutMethodOptionsArgs' payout_method_options: Payout method options for the PayoutIntent.
+        :param _builtins.str recipient: The recipient ID for the PayoutIntent.
+        """
+        if credited is not None:
+            pulumi.set(__self__, "credited", credited)
+        if currency is not None:
+            pulumi.set(__self__, "currency", currency)
+        if payout_method is not None:
+            pulumi.set(__self__, "payout_method", payout_method)
+        if payout_method_options is not None:
+            pulumi.set(__self__, "payout_method_options", payout_method_options)
+        if recipient is not None:
+            pulumi.set(__self__, "recipient", recipient)
+
+    @_builtins.property
+    @pulumi.getter
+    def credited(self) -> Optional['outputs.V2MoneyManagementPayoutIntentToCredited']:
+        """
+        Estimated amount to be credited to the recipient in the destination currency.
+        """
+        return pulumi.get(self, "credited")
+
+    @_builtins.property
+    @pulumi.getter
+    def currency(self) -> Optional[_builtins.str]:
+        """
+        The currency to send to the recipient.
+        """
+        return pulumi.get(self, "currency")
+
+    @_builtins.property
+    @pulumi.getter(name="payoutMethod")
+    def payout_method(self) -> Optional[_builtins.str]:
+        """
+        The payout method ID for the PayoutIntent. Optional when the PayoutIntent creates an OutboundPayment and the recipient has a default payout method. Required when the PayoutIntent creates an OutboundTransfer.
+        """
+        return pulumi.get(self, "payout_method")
+
+    @_builtins.property
+    @pulumi.getter(name="payoutMethodOptions")
+    def payout_method_options(self) -> Optional['outputs.V2MoneyManagementPayoutIntentToPayoutMethodOptions']:
+        """
+        Payout method options for the PayoutIntent.
+        """
+        return pulumi.get(self, "payout_method_options")
+
+    @_builtins.property
+    @pulumi.getter
+    def recipient(self) -> Optional[_builtins.str]:
+        """
+        The recipient ID for the PayoutIntent.
+        """
+        return pulumi.get(self, "recipient")
+
+
+@pulumi.output_type
+class V2MoneyManagementPayoutIntentToCredited(dict):
+    def __init__(__self__, *,
+                 currency: Optional[_builtins.str] = None,
+                 value: Optional[_builtins.float] = None):
+        """
+        :param _builtins.str currency: The currency of the monetary amount.
+        :param _builtins.float value: The monetary amount in minor units of the currency.
+        """
+        if currency is not None:
+            pulumi.set(__self__, "currency", currency)
+        if value is not None:
+            pulumi.set(__self__, "value", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def currency(self) -> Optional[_builtins.str]:
+        """
+        The currency of the monetary amount.
+        """
+        return pulumi.get(self, "currency")
+
+    @_builtins.property
+    @pulumi.getter
+    def value(self) -> Optional[_builtins.float]:
+        """
+        The monetary amount in minor units of the currency.
+        """
+        return pulumi.get(self, "value")
+
+
+@pulumi.output_type
+class V2MoneyManagementPayoutIntentToPayoutMethodOptions(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "bankAccount":
+            suggest = "bank_account"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in V2MoneyManagementPayoutIntentToPayoutMethodOptions. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        V2MoneyManagementPayoutIntentToPayoutMethodOptions.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        V2MoneyManagementPayoutIntentToPayoutMethodOptions.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 bank_account: Optional['outputs.V2MoneyManagementPayoutIntentToPayoutMethodOptionsBankAccount'] = None):
+        """
+        :param 'V2MoneyManagementPayoutIntentToPayoutMethodOptionsBankAccountArgs' bank_account: Options for bank account payout methods.
+        """
+        if bank_account is not None:
+            pulumi.set(__self__, "bank_account", bank_account)
+
+    @_builtins.property
+    @pulumi.getter(name="bankAccount")
+    def bank_account(self) -> Optional['outputs.V2MoneyManagementPayoutIntentToPayoutMethodOptionsBankAccount']:
+        """
+        Options for bank account payout methods.
+        """
+        return pulumi.get(self, "bank_account")
+
+
+@pulumi.output_type
+class V2MoneyManagementPayoutIntentToPayoutMethodOptionsBankAccount(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "preferredNetworkOptions":
+            suggest = "preferred_network_options"
+        elif key == "preferredNetworks":
+            suggest = "preferred_networks"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in V2MoneyManagementPayoutIntentToPayoutMethodOptionsBankAccount. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        V2MoneyManagementPayoutIntentToPayoutMethodOptionsBankAccount.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        V2MoneyManagementPayoutIntentToPayoutMethodOptionsBankAccount.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 preferred_network_options: Optional['outputs.V2MoneyManagementPayoutIntentToPayoutMethodOptionsBankAccountPreferredNetworkOptions'] = None,
+                 preferred_networks: Optional[Sequence[_builtins.str]] = None):
+        """
+        :param 'V2MoneyManagementPayoutIntentToPayoutMethodOptionsBankAccountPreferredNetworkOptionsArgs' preferred_network_options: Per-network configuration options.
+        :param Sequence[_builtins.str] preferred_networks: The preferred networks to use for this PayoutIntent.
+        """
+        if preferred_network_options is not None:
+            pulumi.set(__self__, "preferred_network_options", preferred_network_options)
+        if preferred_networks is not None:
+            pulumi.set(__self__, "preferred_networks", preferred_networks)
+
+    @_builtins.property
+    @pulumi.getter(name="preferredNetworkOptions")
+    def preferred_network_options(self) -> Optional['outputs.V2MoneyManagementPayoutIntentToPayoutMethodOptionsBankAccountPreferredNetworkOptions']:
+        """
+        Per-network configuration options.
+        """
+        return pulumi.get(self, "preferred_network_options")
+
+    @_builtins.property
+    @pulumi.getter(name="preferredNetworks")
+    def preferred_networks(self) -> Optional[Sequence[_builtins.str]]:
+        """
+        The preferred networks to use for this PayoutIntent.
+        """
+        return pulumi.get(self, "preferred_networks")
+
+
+@pulumi.output_type
+class V2MoneyManagementPayoutIntentToPayoutMethodOptionsBankAccountPreferredNetworkOptions(dict):
+    def __init__(__self__, *,
+                 ach: Optional['outputs.V2MoneyManagementPayoutIntentToPayoutMethodOptionsBankAccountPreferredNetworkOptionsAch'] = None):
+        """
+        :param 'V2MoneyManagementPayoutIntentToPayoutMethodOptionsBankAccountPreferredNetworkOptionsAchArgs' ach: ACH-specific network options.
+        """
+        if ach is not None:
+            pulumi.set(__self__, "ach", ach)
+
+    @_builtins.property
+    @pulumi.getter
+    def ach(self) -> Optional['outputs.V2MoneyManagementPayoutIntentToPayoutMethodOptionsBankAccountPreferredNetworkOptionsAch']:
+        """
+        ACH-specific network options.
+        """
+        return pulumi.get(self, "ach")
+
+
+@pulumi.output_type
+class V2MoneyManagementPayoutIntentToPayoutMethodOptionsBankAccountPreferredNetworkOptionsAch(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "transactionPurpose":
+            suggest = "transaction_purpose"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in V2MoneyManagementPayoutIntentToPayoutMethodOptionsBankAccountPreferredNetworkOptionsAch. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        V2MoneyManagementPayoutIntentToPayoutMethodOptionsBankAccountPreferredNetworkOptionsAch.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        V2MoneyManagementPayoutIntentToPayoutMethodOptionsBankAccountPreferredNetworkOptionsAch.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 submission: Optional[_builtins.str] = None,
+                 transaction_purpose: Optional[_builtins.str] = None):
+        """
+        :param _builtins.str submission: Open Enum. ACH submission timing.
+        :param _builtins.str transaction_purpose: The transaction purpose for this ACH payment.
+        """
+        if submission is not None:
+            pulumi.set(__self__, "submission", submission)
+        if transaction_purpose is not None:
+            pulumi.set(__self__, "transaction_purpose", transaction_purpose)
+
+    @_builtins.property
+    @pulumi.getter
+    def submission(self) -> Optional[_builtins.str]:
+        """
+        Open Enum. ACH submission timing.
+        """
+        return pulumi.get(self, "submission")
+
+    @_builtins.property
+    @pulumi.getter(name="transactionPurpose")
+    def transaction_purpose(self) -> Optional[_builtins.str]:
+        """
+        The transaction purpose for this ACH payment.
+        """
+        return pulumi.get(self, "transaction_purpose")
+
+
+@pulumi.output_type
+class V2MoneyManagementRecipientVerificationConsumedBy(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "outboundPayment":
+            suggest = "outbound_payment"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in V2MoneyManagementRecipientVerificationConsumedBy. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        V2MoneyManagementRecipientVerificationConsumedBy.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        V2MoneyManagementRecipientVerificationConsumedBy.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 outbound_payment: Optional[_builtins.str] = None,
+                 type: Optional[_builtins.str] = None):
+        """
+        :param _builtins.str outbound_payment: The ID of the OutboundPayment that consumed the RecipientVerification.
+        :param _builtins.str type: The type of resource that consumed the RecipientVerification.
+        """
+        if outbound_payment is not None:
+            pulumi.set(__self__, "outbound_payment", outbound_payment)
+        if type is not None:
+            pulumi.set(__self__, "type", type)
+
+    @_builtins.property
+    @pulumi.getter(name="outboundPayment")
+    def outbound_payment(self) -> Optional[_builtins.str]:
+        """
+        The ID of the OutboundPayment that consumed the RecipientVerification.
+        """
+        return pulumi.get(self, "outbound_payment")
+
+    @_builtins.property
+    @pulumi.getter
+    def type(self) -> Optional[_builtins.str]:
+        """
+        The type of resource that consumed the RecipientVerification.
+        """
+        return pulumi.get(self, "type")
+
+
+@pulumi.output_type
+class V2MoneyManagementRecipientVerificationMatchResultDetails(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "matchedBusinessType":
+            suggest = "matched_business_type"
+        elif key == "matchedName":
+            suggest = "matched_name"
+        elif key == "providedBusinessType":
+            suggest = "provided_business_type"
+        elif key == "providedName":
+            suggest = "provided_name"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in V2MoneyManagementRecipientVerificationMatchResultDetails. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        V2MoneyManagementRecipientVerificationMatchResultDetails.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        V2MoneyManagementRecipientVerificationMatchResultDetails.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 matched_business_type: Optional[_builtins.str] = None,
+                 matched_name: Optional[_builtins.str] = None,
+                 message: Optional[_builtins.str] = None,
+                 provided_business_type: Optional[_builtins.str] = None,
+                 provided_name: Optional[_builtins.str] = None):
+        """
+        :param _builtins.str matched_business_type: The business type matched by the provider. Only present for Confirmation of Payee (CoP) verifications.
+        :param _builtins.str matched_name: The account name associated with the bank account as provided by the VoP provider, only present if there is a match or close match.
+        :param _builtins.str message: A message describing the match result.
+        :param _builtins.str provided_business_type: The business type provided by the user. Only present for Confirmation of Payee (CoP) verifications.
+        :param _builtins.str provided_name: The name associated with the provided recipient.
+        """
+        if matched_business_type is not None:
+            pulumi.set(__self__, "matched_business_type", matched_business_type)
+        if matched_name is not None:
+            pulumi.set(__self__, "matched_name", matched_name)
+        if message is not None:
+            pulumi.set(__self__, "message", message)
+        if provided_business_type is not None:
+            pulumi.set(__self__, "provided_business_type", provided_business_type)
+        if provided_name is not None:
+            pulumi.set(__self__, "provided_name", provided_name)
+
+    @_builtins.property
+    @pulumi.getter(name="matchedBusinessType")
+    def matched_business_type(self) -> Optional[_builtins.str]:
+        """
+        The business type matched by the provider. Only present for Confirmation of Payee (CoP) verifications.
+        """
+        return pulumi.get(self, "matched_business_type")
+
+    @_builtins.property
+    @pulumi.getter(name="matchedName")
+    def matched_name(self) -> Optional[_builtins.str]:
+        """
+        The account name associated with the bank account as provided by the VoP provider, only present if there is a match or close match.
+        """
+        return pulumi.get(self, "matched_name")
+
+    @_builtins.property
+    @pulumi.getter
+    def message(self) -> Optional[_builtins.str]:
+        """
+        A message describing the match result.
+        """
+        return pulumi.get(self, "message")
+
+    @_builtins.property
+    @pulumi.getter(name="providedBusinessType")
+    def provided_business_type(self) -> Optional[_builtins.str]:
+        """
+        The business type provided by the user. Only present for Confirmation of Payee (CoP) verifications.
+        """
+        return pulumi.get(self, "provided_business_type")
+
+    @_builtins.property
+    @pulumi.getter(name="providedName")
+    def provided_name(self) -> Optional[_builtins.str]:
+        """
+        The name associated with the provided recipient.
+        """
+        return pulumi.get(self, "provided_name")
+
+
+@pulumi.output_type
+class V2MoneyManagementRecipientVerificationStatusTransitions(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "acknowledgedAt":
+            suggest = "acknowledged_at"
+        elif key == "consumedAt":
+            suggest = "consumed_at"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in V2MoneyManagementRecipientVerificationStatusTransitions. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        V2MoneyManagementRecipientVerificationStatusTransitions.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        V2MoneyManagementRecipientVerificationStatusTransitions.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 acknowledged_at: Optional[_builtins.str] = None,
+                 consumed_at: Optional[_builtins.str] = None):
+        """
+        :param _builtins.str acknowledged_at: Timestamp describing when a RecipientVerification changed status to <span pulumi-lang-nodejs="`acknowledged`" pulumi-lang-dotnet="`Acknowledged`" pulumi-lang-go="`acknowledged`" pulumi-lang-python="`acknowledged`" pulumi-lang-yaml="`acknowledged`" pulumi-lang-java="`acknowledged`" pulumi-lang-hcl="`acknowledged`">`acknowledged`</span>.
+               Represented as a RFC 3339 date & time UTC value in millisecond precision, for example: 2022-09-18T13:22:18.123Z.
+        :param _builtins.str consumed_at: Timestamp describing when a RecipientVerification changed status to <span pulumi-lang-nodejs="`consumed`" pulumi-lang-dotnet="`Consumed`" pulumi-lang-go="`consumed`" pulumi-lang-python="`consumed`" pulumi-lang-yaml="`consumed`" pulumi-lang-java="`consumed`" pulumi-lang-hcl="`consumed`">`consumed`</span>.
+               Represented as a RFC 3339 date & time UTC value in millisecond precision, for example: 2022-09-18T13:22:18.123Z.
+        """
+        if acknowledged_at is not None:
+            pulumi.set(__self__, "acknowledged_at", acknowledged_at)
+        if consumed_at is not None:
+            pulumi.set(__self__, "consumed_at", consumed_at)
+
+    @_builtins.property
+    @pulumi.getter(name="acknowledgedAt")
+    def acknowledged_at(self) -> Optional[_builtins.str]:
+        """
+        Timestamp describing when a RecipientVerification changed status to <span pulumi-lang-nodejs="`acknowledged`" pulumi-lang-dotnet="`Acknowledged`" pulumi-lang-go="`acknowledged`" pulumi-lang-python="`acknowledged`" pulumi-lang-yaml="`acknowledged`" pulumi-lang-java="`acknowledged`" pulumi-lang-hcl="`acknowledged`">`acknowledged`</span>.
+        Represented as a RFC 3339 date & time UTC value in millisecond precision, for example: 2022-09-18T13:22:18.123Z.
+        """
+        return pulumi.get(self, "acknowledged_at")
+
+    @_builtins.property
+    @pulumi.getter(name="consumedAt")
+    def consumed_at(self) -> Optional[_builtins.str]:
+        """
+        Timestamp describing when a RecipientVerification changed status to <span pulumi-lang-nodejs="`consumed`" pulumi-lang-dotnet="`Consumed`" pulumi-lang-go="`consumed`" pulumi-lang-python="`consumed`" pulumi-lang-yaml="`consumed`" pulumi-lang-java="`consumed`" pulumi-lang-hcl="`consumed`">`consumed`</span>.
+        Represented as a RFC 3339 date & time UTC value in millisecond precision, for example: 2022-09-18T13:22:18.123Z.
+        """
+        return pulumi.get(self, "consumed_at")
 
 

@@ -783,8 +783,8 @@ class CreditNote(pulumi.CustomResource):
                  out_of_band_amount: pulumi.Input[Optional[_builtins.float]] = None,
                  reason: pulumi.Input[Optional[_builtins.str]] = None,
                  refund_amount: pulumi.Input[Optional[_builtins.float]] = None,
-                 refunds: pulumi.Input[Optional[Sequence[pulumi.Input[Union['CreditNoteRefundArgs', 'CreditNoteRefundArgsDict']]]]] = None,
-                 shipping_cost: pulumi.Input[Optional[Union['CreditNoteShippingCostArgs', 'CreditNoteShippingCostArgsDict']]] = None,
+                 refunds: pulumi.Input[Optional[Sequence[pulumi.Input[Union['CreditNoteRefundArgs', 'CreditNoteRefundArgsDict', 'outputs.CreditNoteRefund']]]]] = None,
+                 shipping_cost: pulumi.Input[Optional[Union['CreditNoteShippingCostArgs', 'CreditNoteShippingCostArgsDict', 'outputs.CreditNoteShippingCost']]] = None,
                  __props__=None):
         """
         Create a CreditNote resource with the given unique name, props, and options.
@@ -804,8 +804,8 @@ class CreditNote(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] reason: Reason for issuing this credit note, one of <span pulumi-lang-nodejs="`duplicate`" pulumi-lang-dotnet="`Duplicate`" pulumi-lang-go="`duplicate`" pulumi-lang-python="`duplicate`" pulumi-lang-yaml="`duplicate`" pulumi-lang-java="`duplicate`" pulumi-lang-hcl="`duplicate`">`duplicate`</span>, <span pulumi-lang-nodejs="`fraudulent`" pulumi-lang-dotnet="`Fraudulent`" pulumi-lang-go="`fraudulent`" pulumi-lang-python="`fraudulent`" pulumi-lang-yaml="`fraudulent`" pulumi-lang-java="`fraudulent`" pulumi-lang-hcl="`fraudulent`">`fraudulent`</span>, <span pulumi-lang-nodejs="`orderChange`" pulumi-lang-dotnet="`OrderChange`" pulumi-lang-go="`orderChange`" pulumi-lang-python="`order_change`" pulumi-lang-yaml="`orderChange`" pulumi-lang-java="`orderChange`" pulumi-lang-hcl="`order_change`">`orderChange`</span>, or <span pulumi-lang-nodejs="`productUnsatisfactory`" pulumi-lang-dotnet="`ProductUnsatisfactory`" pulumi-lang-go="`productUnsatisfactory`" pulumi-lang-python="`product_unsatisfactory`" pulumi-lang-yaml="`productUnsatisfactory`" pulumi-lang-java="`productUnsatisfactory`" pulumi-lang-hcl="`product_unsatisfactory`">`productUnsatisfactory`</span>
         :param pulumi.Input[_builtins.float] refund_amount: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
                The integer amount in cents (or local equivalent) representing the amount to refund. If set, a refund will be created for the charge associated with the invoice.
-        :param pulumi.Input[Sequence[pulumi.Input[Union['CreditNoteRefundArgs', 'CreditNoteRefundArgsDict']]]] refunds: Refunds related to this credit note.
-        :param pulumi.Input[Union['CreditNoteShippingCostArgs', 'CreditNoteShippingCostArgsDict']] shipping_cost: The details of the cost of shipping, including the ShippingRate applied to the invoice.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['CreditNoteRefundArgs', 'CreditNoteRefundArgsDict', 'outputs.CreditNoteRefund']]]] refunds: Refunds related to this credit note.
+        :param pulumi.Input[Union['CreditNoteShippingCostArgs', 'CreditNoteShippingCostArgsDict', 'outputs.CreditNoteShippingCost']] shipping_cost: The details of the cost of shipping, including the ShippingRate applied to the invoice.
         """
         ...
     @overload
@@ -841,8 +841,8 @@ class CreditNote(pulumi.CustomResource):
                  out_of_band_amount: pulumi.Input[Optional[_builtins.float]] = None,
                  reason: pulumi.Input[Optional[_builtins.str]] = None,
                  refund_amount: pulumi.Input[Optional[_builtins.float]] = None,
-                 refunds: pulumi.Input[Optional[Sequence[pulumi.Input[Union['CreditNoteRefundArgs', 'CreditNoteRefundArgsDict']]]]] = None,
-                 shipping_cost: pulumi.Input[Optional[Union['CreditNoteShippingCostArgs', 'CreditNoteShippingCostArgsDict']]] = None,
+                 refunds: pulumi.Input[Optional[Sequence[pulumi.Input[Union['CreditNoteRefundArgs', 'CreditNoteRefundArgsDict', 'outputs.CreditNoteRefund']]]]] = None,
+                 shipping_cost: pulumi.Input[Optional[Union['CreditNoteShippingCostArgs', 'CreditNoteShippingCostArgsDict', 'outputs.CreditNoteShippingCost']]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -908,7 +908,7 @@ class CreditNote(pulumi.CustomResource):
             customer: pulumi.Input[Optional[_builtins.str]] = None,
             customer_balance_transaction: pulumi.Input[Optional[_builtins.str]] = None,
             discount_amount: pulumi.Input[Optional[_builtins.float]] = None,
-            discount_amounts: pulumi.Input[Optional[Sequence[pulumi.Input[Union['CreditNoteDiscountAmountArgs', 'CreditNoteDiscountAmountArgsDict']]]]] = None,
+            discount_amounts: pulumi.Input[Optional[Sequence[pulumi.Input[Union['CreditNoteDiscountAmountArgs', 'CreditNoteDiscountAmountArgsDict', 'outputs.CreditNoteDiscountAmount']]]]] = None,
             effective_at: pulumi.Input[Optional[_builtins.float]] = None,
             email_type: pulumi.Input[Optional[_builtins.str]] = None,
             invoice: pulumi.Input[Optional[_builtins.str]] = None,
@@ -920,17 +920,17 @@ class CreditNote(pulumi.CustomResource):
             out_of_band_amount: pulumi.Input[Optional[_builtins.float]] = None,
             post_payment_amount: pulumi.Input[Optional[_builtins.float]] = None,
             pre_payment_amount: pulumi.Input[Optional[_builtins.float]] = None,
-            pretax_credit_amounts: pulumi.Input[Optional[Sequence[pulumi.Input[Union['CreditNotePretaxCreditAmountArgs', 'CreditNotePretaxCreditAmountArgsDict']]]]] = None,
+            pretax_credit_amounts: pulumi.Input[Optional[Sequence[pulumi.Input[Union['CreditNotePretaxCreditAmountArgs', 'CreditNotePretaxCreditAmountArgsDict', 'outputs.CreditNotePretaxCreditAmount']]]]] = None,
             reason: pulumi.Input[Optional[_builtins.str]] = None,
             refund_amount: pulumi.Input[Optional[_builtins.float]] = None,
-            refunds: pulumi.Input[Optional[Sequence[pulumi.Input[Union['CreditNoteRefundArgs', 'CreditNoteRefundArgsDict']]]]] = None,
-            shipping_cost: pulumi.Input[Optional[Union['CreditNoteShippingCostArgs', 'CreditNoteShippingCostArgsDict']]] = None,
+            refunds: pulumi.Input[Optional[Sequence[pulumi.Input[Union['CreditNoteRefundArgs', 'CreditNoteRefundArgsDict', 'outputs.CreditNoteRefund']]]]] = None,
+            shipping_cost: pulumi.Input[Optional[Union['CreditNoteShippingCostArgs', 'CreditNoteShippingCostArgsDict', 'outputs.CreditNoteShippingCost']]] = None,
             status: pulumi.Input[Optional[_builtins.str]] = None,
             subtotal: pulumi.Input[Optional[_builtins.float]] = None,
             subtotal_excluding_tax: pulumi.Input[Optional[_builtins.float]] = None,
             total: pulumi.Input[Optional[_builtins.float]] = None,
             total_excluding_tax: pulumi.Input[Optional[_builtins.float]] = None,
-            total_taxes: pulumi.Input[Optional[Sequence[pulumi.Input[Union['CreditNoteTotalTaxArgs', 'CreditNoteTotalTaxArgsDict']]]]] = None,
+            total_taxes: pulumi.Input[Optional[Sequence[pulumi.Input[Union['CreditNoteTotalTaxArgs', 'CreditNoteTotalTaxArgsDict', 'outputs.CreditNoteTotalTax']]]]] = None,
             type: pulumi.Input[Optional[_builtins.str]] = None,
             voided_at: pulumi.Input[Optional[_builtins.float]] = None) -> 'CreditNote':
         """
@@ -949,7 +949,7 @@ class CreditNote(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] customer: ID of the customer.
         :param pulumi.Input[_builtins.str] customer_balance_transaction: Customer balance transaction related to this credit note.
         :param pulumi.Input[_builtins.float] discount_amount: The integer amount in cents (or local equivalent) representing the total amount of discount that was credited.
-        :param pulumi.Input[Sequence[pulumi.Input[Union['CreditNoteDiscountAmountArgs', 'CreditNoteDiscountAmountArgsDict']]]] discount_amounts: The aggregate amounts calculated per discount for all line items.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['CreditNoteDiscountAmountArgs', 'CreditNoteDiscountAmountArgsDict', 'outputs.CreditNoteDiscountAmount']]]] discount_amounts: The aggregate amounts calculated per discount for all line items.
         :param pulumi.Input[_builtins.float] effective_at: The date when this credit note is in effect. Same as <span pulumi-lang-nodejs="`created`" pulumi-lang-dotnet="`Created`" pulumi-lang-go="`created`" pulumi-lang-python="`created`" pulumi-lang-yaml="`created`" pulumi-lang-java="`created`" pulumi-lang-hcl="`created`">`created`</span> unless overwritten. When defined, this value replaces the system-generated 'Date of issue' printed on the credit note PDF.
         :param pulumi.Input[_builtins.str] email_type: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
                Type of email to send to the customer, one of <span pulumi-lang-nodejs="`creditNote`" pulumi-lang-dotnet="`CreditNote`" pulumi-lang-go="`creditNote`" pulumi-lang-python="`credit_note`" pulumi-lang-yaml="`creditNote`" pulumi-lang-java="`creditNote`" pulumi-lang-hcl="`credit_note`">`creditNote`</span> or <span pulumi-lang-nodejs="`none`" pulumi-lang-dotnet="`None`" pulumi-lang-go="`none`" pulumi-lang-python="`none`" pulumi-lang-yaml="`none`" pulumi-lang-java="`none`" pulumi-lang-hcl="`none`">`none`</span> and the default is <span pulumi-lang-nodejs="`creditNote`" pulumi-lang-dotnet="`CreditNote`" pulumi-lang-go="`creditNote`" pulumi-lang-python="`credit_note`" pulumi-lang-yaml="`creditNote`" pulumi-lang-java="`creditNote`" pulumi-lang-hcl="`credit_note`">`creditNote`</span>.
@@ -962,18 +962,18 @@ class CreditNote(pulumi.CustomResource):
         :param pulumi.Input[_builtins.float] out_of_band_amount: Amount that was credited outside of Stripe.
         :param pulumi.Input[_builtins.float] post_payment_amount: The amount of the credit note that was refunded to the customer, credited to the customer's balance, credited outside of Stripe, or any combination thereof.
         :param pulumi.Input[_builtins.float] pre_payment_amount: The amount of the credit note by which the invoice's <span pulumi-lang-nodejs="`amountRemaining`" pulumi-lang-dotnet="`AmountRemaining`" pulumi-lang-go="`amountRemaining`" pulumi-lang-python="`amount_remaining`" pulumi-lang-yaml="`amountRemaining`" pulumi-lang-java="`amountRemaining`" pulumi-lang-hcl="`amount_remaining`">`amountRemaining`</span> and <span pulumi-lang-nodejs="`amountDue`" pulumi-lang-dotnet="`AmountDue`" pulumi-lang-go="`amountDue`" pulumi-lang-python="`amount_due`" pulumi-lang-yaml="`amountDue`" pulumi-lang-java="`amountDue`" pulumi-lang-hcl="`amount_due`">`amountDue`</span> were reduced.
-        :param pulumi.Input[Sequence[pulumi.Input[Union['CreditNotePretaxCreditAmountArgs', 'CreditNotePretaxCreditAmountArgsDict']]]] pretax_credit_amounts: The pretax credit amounts (ex: discount, credit grants, etc) for all line items.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['CreditNotePretaxCreditAmountArgs', 'CreditNotePretaxCreditAmountArgsDict', 'outputs.CreditNotePretaxCreditAmount']]]] pretax_credit_amounts: The pretax credit amounts (ex: discount, credit grants, etc) for all line items.
         :param pulumi.Input[_builtins.str] reason: Reason for issuing this credit note, one of <span pulumi-lang-nodejs="`duplicate`" pulumi-lang-dotnet="`Duplicate`" pulumi-lang-go="`duplicate`" pulumi-lang-python="`duplicate`" pulumi-lang-yaml="`duplicate`" pulumi-lang-java="`duplicate`" pulumi-lang-hcl="`duplicate`">`duplicate`</span>, <span pulumi-lang-nodejs="`fraudulent`" pulumi-lang-dotnet="`Fraudulent`" pulumi-lang-go="`fraudulent`" pulumi-lang-python="`fraudulent`" pulumi-lang-yaml="`fraudulent`" pulumi-lang-java="`fraudulent`" pulumi-lang-hcl="`fraudulent`">`fraudulent`</span>, <span pulumi-lang-nodejs="`orderChange`" pulumi-lang-dotnet="`OrderChange`" pulumi-lang-go="`orderChange`" pulumi-lang-python="`order_change`" pulumi-lang-yaml="`orderChange`" pulumi-lang-java="`orderChange`" pulumi-lang-hcl="`order_change`">`orderChange`</span>, or <span pulumi-lang-nodejs="`productUnsatisfactory`" pulumi-lang-dotnet="`ProductUnsatisfactory`" pulumi-lang-go="`productUnsatisfactory`" pulumi-lang-python="`product_unsatisfactory`" pulumi-lang-yaml="`productUnsatisfactory`" pulumi-lang-java="`productUnsatisfactory`" pulumi-lang-hcl="`product_unsatisfactory`">`productUnsatisfactory`</span>
         :param pulumi.Input[_builtins.float] refund_amount: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
                The integer amount in cents (or local equivalent) representing the amount to refund. If set, a refund will be created for the charge associated with the invoice.
-        :param pulumi.Input[Sequence[pulumi.Input[Union['CreditNoteRefundArgs', 'CreditNoteRefundArgsDict']]]] refunds: Refunds related to this credit note.
-        :param pulumi.Input[Union['CreditNoteShippingCostArgs', 'CreditNoteShippingCostArgsDict']] shipping_cost: The details of the cost of shipping, including the ShippingRate applied to the invoice.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['CreditNoteRefundArgs', 'CreditNoteRefundArgsDict', 'outputs.CreditNoteRefund']]]] refunds: Refunds related to this credit note.
+        :param pulumi.Input[Union['CreditNoteShippingCostArgs', 'CreditNoteShippingCostArgsDict', 'outputs.CreditNoteShippingCost']] shipping_cost: The details of the cost of shipping, including the ShippingRate applied to the invoice.
         :param pulumi.Input[_builtins.str] status: Status of this credit note, one of <span pulumi-lang-nodejs="`issued`" pulumi-lang-dotnet="`Issued`" pulumi-lang-go="`issued`" pulumi-lang-python="`issued`" pulumi-lang-yaml="`issued`" pulumi-lang-java="`issued`" pulumi-lang-hcl="`issued`">`issued`</span> or <span pulumi-lang-nodejs="`void`" pulumi-lang-dotnet="`Void`" pulumi-lang-go="`void`" pulumi-lang-python="`void`" pulumi-lang-yaml="`void`" pulumi-lang-java="`void`" pulumi-lang-hcl="`void`">`void`</span>. Learn more about [voiding credit notes](https://docs.stripe.com/billing/invoices/credit-notes#voiding).
         :param pulumi.Input[_builtins.float] subtotal: The integer amount in cents (or local equivalent) representing the amount of the credit note, excluding exclusive tax and invoice level discounts.
         :param pulumi.Input[_builtins.float] subtotal_excluding_tax: The integer amount in cents (or local equivalent) representing the amount of the credit note, excluding all tax and invoice level discounts.
         :param pulumi.Input[_builtins.float] total: The integer amount in cents (or local equivalent) representing the total amount of the credit note, including tax and all discount.
         :param pulumi.Input[_builtins.float] total_excluding_tax: The integer amount in cents (or local equivalent) representing the total amount of the credit note, excluding tax, but including discounts.
-        :param pulumi.Input[Sequence[pulumi.Input[Union['CreditNoteTotalTaxArgs', 'CreditNoteTotalTaxArgsDict']]]] total_taxes: The aggregate tax information for all line items.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['CreditNoteTotalTaxArgs', 'CreditNoteTotalTaxArgsDict', 'outputs.CreditNoteTotalTax']]]] total_taxes: The aggregate tax information for all line items.
         :param pulumi.Input[_builtins.str] type: Type of this credit note, one of <span pulumi-lang-nodejs="`prePayment`" pulumi-lang-dotnet="`PrePayment`" pulumi-lang-go="`prePayment`" pulumi-lang-python="`pre_payment`" pulumi-lang-yaml="`prePayment`" pulumi-lang-java="`prePayment`" pulumi-lang-hcl="`pre_payment`">`prePayment`</span> or <span pulumi-lang-nodejs="`postPayment`" pulumi-lang-dotnet="`PostPayment`" pulumi-lang-go="`postPayment`" pulumi-lang-python="`post_payment`" pulumi-lang-yaml="`postPayment`" pulumi-lang-java="`postPayment`" pulumi-lang-hcl="`post_payment`">`postPayment`</span>. A <span pulumi-lang-nodejs="`prePayment`" pulumi-lang-dotnet="`PrePayment`" pulumi-lang-go="`prePayment`" pulumi-lang-python="`pre_payment`" pulumi-lang-yaml="`prePayment`" pulumi-lang-java="`prePayment`" pulumi-lang-hcl="`pre_payment`">`prePayment`</span> credit note means it was issued when the invoice was open. A <span pulumi-lang-nodejs="`postPayment`" pulumi-lang-dotnet="`PostPayment`" pulumi-lang-go="`postPayment`" pulumi-lang-python="`post_payment`" pulumi-lang-yaml="`postPayment`" pulumi-lang-java="`postPayment`" pulumi-lang-hcl="`post_payment`">`postPayment`</span> credit note means it was issued when the invoice was paid.
         :param pulumi.Input[_builtins.float] voided_at: The time that the credit note was voided.
         """
@@ -1015,6 +1015,78 @@ class CreditNote(pulumi.CustomResource):
         __props__.__dict__["type"] = type
         __props__.__dict__["voided_at"] = voided_at
         return CreditNote(resource_name, opts=opts, __props__=__props__)
+
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            amount: pulumi.Input[Optional[_builtins.float]] = None,
+            amount_shipping: pulumi.Input[Optional[_builtins.float]] = None,
+            created: pulumi.Input[Optional[_builtins.float]] = None,
+            credit_amount: pulumi.Input[Optional[_builtins.float]] = None,
+            currency: pulumi.Input[Optional[_builtins.str]] = None,
+            customer: pulumi.Input[Optional[_builtins.str]] = None,
+            customer_balance_transaction: pulumi.Input[Optional[_builtins.str]] = None,
+            discount_amount: pulumi.Input[Optional[_builtins.float]] = None,
+            discount_amounts: pulumi.Input[Optional[Sequence[pulumi.Input[Union['CreditNoteDiscountAmountArgs', 'CreditNoteDiscountAmountArgsDict', 'outputs.CreditNoteDiscountAmount']]]]] = None,
+            effective_at: pulumi.Input[Optional[_builtins.float]] = None,
+            email_type: pulumi.Input[Optional[_builtins.str]] = None,
+            invoice: pulumi.Input[Optional[_builtins.str]] = None,
+            livemode: pulumi.Input[Optional[_builtins.bool]] = None,
+            memo: pulumi.Input[Optional[_builtins.str]] = None,
+            metadata: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+            number: pulumi.Input[Optional[_builtins.str]] = None,
+            object: pulumi.Input[Optional[_builtins.str]] = None,
+            out_of_band_amount: pulumi.Input[Optional[_builtins.float]] = None,
+            post_payment_amount: pulumi.Input[Optional[_builtins.float]] = None,
+            pre_payment_amount: pulumi.Input[Optional[_builtins.float]] = None,
+            pretax_credit_amounts: pulumi.Input[Optional[Sequence[pulumi.Input[Union['CreditNotePretaxCreditAmountArgs', 'CreditNotePretaxCreditAmountArgsDict', 'outputs.CreditNotePretaxCreditAmount']]]]] = None,
+            reason: pulumi.Input[Optional[_builtins.str]] = None,
+            refund_amount: pulumi.Input[Optional[_builtins.float]] = None,
+            refunds: pulumi.Input[Optional[Sequence[pulumi.Input[Union['CreditNoteRefundArgs', 'CreditNoteRefundArgsDict', 'outputs.CreditNoteRefund']]]]] = None,
+            shipping_cost: pulumi.Input[Optional[Union['CreditNoteShippingCostArgs', 'CreditNoteShippingCostArgsDict', 'outputs.CreditNoteShippingCost']]] = None,
+            status: pulumi.Input[Optional[_builtins.str]] = None,
+            subtotal: pulumi.Input[Optional[_builtins.float]] = None,
+            subtotal_excluding_tax: pulumi.Input[Optional[_builtins.float]] = None,
+            total: pulumi.Input[Optional[_builtins.float]] = None,
+            total_excluding_tax: pulumi.Input[Optional[_builtins.float]] = None,
+            total_taxes: pulumi.Input[Optional[Sequence[pulumi.Input[Union['CreditNoteTotalTaxArgs', 'CreditNoteTotalTaxArgsDict', 'outputs.CreditNoteTotalTax']]]]] = None,
+            type: pulumi.Input[Optional[_builtins.str]] = None,
+            voided_at: pulumi.Input[Optional[_builtins.float]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["amount"] = amount
+        __props__["amountShipping"] = amount_shipping
+        __props__["created"] = created
+        __props__["creditAmount"] = credit_amount
+        __props__["currency"] = currency
+        __props__["customer"] = customer
+        __props__["customerBalanceTransaction"] = customer_balance_transaction
+        __props__["discountAmount"] = discount_amount
+        __props__["discountAmounts"] = discount_amounts
+        __props__["effectiveAt"] = effective_at
+        __props__["emailType"] = email_type
+        __props__["invoice"] = invoice
+        __props__["livemode"] = livemode
+        __props__["memo"] = memo
+        __props__["metadata"] = metadata
+        __props__["number"] = number
+        __props__["object"] = object
+        __props__["outOfBandAmount"] = out_of_band_amount
+        __props__["postPaymentAmount"] = post_payment_amount
+        __props__["prePaymentAmount"] = pre_payment_amount
+        __props__["pretaxCreditAmounts"] = pretax_credit_amounts
+        __props__["reason"] = reason
+        __props__["refundAmount"] = refund_amount
+        __props__["refunds"] = refunds
+        __props__["shippingCost"] = shipping_cost
+        __props__["status"] = status
+        __props__["subtotal"] = subtotal
+        __props__["subtotalExcludingTax"] = subtotal_excluding_tax
+        __props__["total"] = total
+        __props__["totalExcludingTax"] = total_excluding_tax
+        __props__["totalTaxes"] = total_taxes
+        __props__["type"] = type
+        __props__["voidedAt"] = voided_at
+        return pulumi.runtime.exists_resource(None, 'stripe:index/creditNote:CreditNote', id, __props__, opts or pulumi.ResourceOptions(), package_ref=_utilities.get_package())
 
     @_builtins.property
     @pulumi.getter

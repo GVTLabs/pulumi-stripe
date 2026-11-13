@@ -20,6 +20,17 @@ export class PaymentMethodConfiguration extends pulumi.CustomResource {
         return new PaymentMethodConfiguration(name, <any>state, { ...opts, id: id });
     }
 
+    /**
+     * Check whether an existing PaymentMethodConfiguration resource with the given ID exists.
+     *
+     * @param id The _unique_ provider ID of the resource to check.
+     * @param state Any extra arguments used during the lookup.
+     * @param opts Optional settings to control the behavior of the CustomResource.
+     */
+    public static exists(id: pulumi.Input<string>, state?: PaymentMethodConfigurationState, opts?: pulumi.CustomResourceOptions): pulumi.Output<boolean> {
+        return pulumi.runtime.existsResource("stripe:index/paymentMethodConfiguration:PaymentMethodConfiguration", id, <any>state || {}, { ...opts }, utilities.getPackage());
+    }
+
     /** @internal */
     public static readonly __pulumiType = 'stripe:index/paymentMethodConfiguration:PaymentMethodConfiguration';
 
@@ -109,6 +120,7 @@ export class PaymentMethodConfiguration extends pulumi.CustomResource {
     declare public readonly payco: pulumi.Output<outputs.PaymentMethodConfigurationPayco>;
     declare public readonly paynow: pulumi.Output<outputs.PaymentMethodConfigurationPaynow>;
     declare public readonly paypal: pulumi.Output<outputs.PaymentMethodConfigurationPaypal>;
+    declare public readonly paypay: pulumi.Output<outputs.PaymentMethodConfigurationPaypay>;
     declare public readonly payto: pulumi.Output<outputs.PaymentMethodConfigurationPayto>;
     declare public readonly pix: pulumi.Output<outputs.PaymentMethodConfigurationPix>;
     declare public readonly promptpay: pulumi.Output<outputs.PaymentMethodConfigurationPromptpay>;
@@ -117,6 +129,7 @@ export class PaymentMethodConfiguration extends pulumi.CustomResource {
     declare public readonly satispay: pulumi.Output<outputs.PaymentMethodConfigurationSatispay>;
     declare public readonly scalapay: pulumi.Output<outputs.PaymentMethodConfigurationScalapay>;
     declare public readonly sepaDebit: pulumi.Output<outputs.PaymentMethodConfigurationSepaDebit>;
+    declare public readonly sequra: pulumi.Output<outputs.PaymentMethodConfigurationSequra>;
     declare public readonly sofort: pulumi.Output<outputs.PaymentMethodConfigurationSofort>;
     declare public readonly sunbit: pulumi.Output<outputs.PaymentMethodConfigurationSunbit>;
     declare public readonly swish: pulumi.Output<outputs.PaymentMethodConfigurationSwish>;
@@ -189,6 +202,7 @@ export class PaymentMethodConfiguration extends pulumi.CustomResource {
             resourceInputs["payco"] = state?.payco;
             resourceInputs["paynow"] = state?.paynow;
             resourceInputs["paypal"] = state?.paypal;
+            resourceInputs["paypay"] = state?.paypay;
             resourceInputs["payto"] = state?.payto;
             resourceInputs["pix"] = state?.pix;
             resourceInputs["promptpay"] = state?.promptpay;
@@ -197,6 +211,7 @@ export class PaymentMethodConfiguration extends pulumi.CustomResource {
             resourceInputs["satispay"] = state?.satispay;
             resourceInputs["scalapay"] = state?.scalapay;
             resourceInputs["sepaDebit"] = state?.sepaDebit;
+            resourceInputs["sequra"] = state?.sequra;
             resourceInputs["sofort"] = state?.sofort;
             resourceInputs["sunbit"] = state?.sunbit;
             resourceInputs["swish"] = state?.swish;
@@ -253,6 +268,7 @@ export class PaymentMethodConfiguration extends pulumi.CustomResource {
             resourceInputs["payco"] = args?.payco;
             resourceInputs["paynow"] = args?.paynow;
             resourceInputs["paypal"] = args?.paypal;
+            resourceInputs["paypay"] = args?.paypay;
             resourceInputs["payto"] = args?.payto;
             resourceInputs["pix"] = args?.pix;
             resourceInputs["promptpay"] = args?.promptpay;
@@ -261,6 +277,7 @@ export class PaymentMethodConfiguration extends pulumi.CustomResource {
             resourceInputs["satispay"] = args?.satispay;
             resourceInputs["scalapay"] = args?.scalapay;
             resourceInputs["sepaDebit"] = args?.sepaDebit;
+            resourceInputs["sequra"] = args?.sequra;
             resourceInputs["sofort"] = args?.sofort;
             resourceInputs["sunbit"] = args?.sunbit;
             resourceInputs["swish"] = args?.swish;
@@ -360,6 +377,7 @@ export interface PaymentMethodConfigurationState {
     payco?: pulumi.Input<inputs.PaymentMethodConfigurationPayco | undefined>;
     paynow?: pulumi.Input<inputs.PaymentMethodConfigurationPaynow | undefined>;
     paypal?: pulumi.Input<inputs.PaymentMethodConfigurationPaypal | undefined>;
+    paypay?: pulumi.Input<inputs.PaymentMethodConfigurationPaypay | undefined>;
     payto?: pulumi.Input<inputs.PaymentMethodConfigurationPayto | undefined>;
     pix?: pulumi.Input<inputs.PaymentMethodConfigurationPix | undefined>;
     promptpay?: pulumi.Input<inputs.PaymentMethodConfigurationPromptpay | undefined>;
@@ -368,6 +386,7 @@ export interface PaymentMethodConfigurationState {
     satispay?: pulumi.Input<inputs.PaymentMethodConfigurationSatispay | undefined>;
     scalapay?: pulumi.Input<inputs.PaymentMethodConfigurationScalapay | undefined>;
     sepaDebit?: pulumi.Input<inputs.PaymentMethodConfigurationSepaDebit | undefined>;
+    sequra?: pulumi.Input<inputs.PaymentMethodConfigurationSequra | undefined>;
     sofort?: pulumi.Input<inputs.PaymentMethodConfigurationSofort | undefined>;
     sunbit?: pulumi.Input<inputs.PaymentMethodConfigurationSunbit | undefined>;
     swish?: pulumi.Input<inputs.PaymentMethodConfigurationSwish | undefined>;
@@ -441,6 +460,7 @@ export interface PaymentMethodConfigurationArgs {
     payco?: pulumi.Input<inputs.PaymentMethodConfigurationPayco | undefined>;
     paynow?: pulumi.Input<inputs.PaymentMethodConfigurationPaynow | undefined>;
     paypal?: pulumi.Input<inputs.PaymentMethodConfigurationPaypal | undefined>;
+    paypay?: pulumi.Input<inputs.PaymentMethodConfigurationPaypay | undefined>;
     payto?: pulumi.Input<inputs.PaymentMethodConfigurationPayto | undefined>;
     pix?: pulumi.Input<inputs.PaymentMethodConfigurationPix | undefined>;
     promptpay?: pulumi.Input<inputs.PaymentMethodConfigurationPromptpay | undefined>;
@@ -449,6 +469,7 @@ export interface PaymentMethodConfigurationArgs {
     satispay?: pulumi.Input<inputs.PaymentMethodConfigurationSatispay | undefined>;
     scalapay?: pulumi.Input<inputs.PaymentMethodConfigurationScalapay | undefined>;
     sepaDebit?: pulumi.Input<inputs.PaymentMethodConfigurationSepaDebit | undefined>;
+    sequra?: pulumi.Input<inputs.PaymentMethodConfigurationSequra | undefined>;
     sofort?: pulumi.Input<inputs.PaymentMethodConfigurationSofort | undefined>;
     sunbit?: pulumi.Input<inputs.PaymentMethodConfigurationSunbit | undefined>;
     swish?: pulumi.Input<inputs.PaymentMethodConfigurationSwish | undefined>;

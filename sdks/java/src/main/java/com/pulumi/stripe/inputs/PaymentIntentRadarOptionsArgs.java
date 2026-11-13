@@ -17,6 +17,23 @@ public final class PaymentIntentRadarOptionsArgs extends com.pulumi.resources.Re
 
     /**
      * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * The referrer URL of the current checkout session. You can use this to supply session-level referrer data when a Radar Session isn&#39;t available or doesn&#39;t contain a referrer.
+     * 
+     */
+    @Import(name="referrer")
+    private @Nullable Output<String> referrer;
+
+    /**
+     * @return **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * The referrer URL of the current checkout session. You can use this to supply session-level referrer data when a Radar Session isn&#39;t available or doesn&#39;t contain a referrer.
+     * 
+     */
+    public Optional<Output<String>> referrer() {
+        return Optional.ofNullable(this.referrer);
+    }
+
+    /**
+     * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
      * A [Radar Session](https://docs.stripe.com/radar/radar-session) is a snapshot of the browser metadata and device details that help Radar make more accurate predictions on your payments.
      * 
      */
@@ -35,6 +52,7 @@ public final class PaymentIntentRadarOptionsArgs extends com.pulumi.resources.Re
     private PaymentIntentRadarOptionsArgs() {}
 
     private PaymentIntentRadarOptionsArgs(PaymentIntentRadarOptionsArgs $) {
+        this.referrer = $.referrer;
         this.session = $.session;
     }
 
@@ -54,6 +72,29 @@ public final class PaymentIntentRadarOptionsArgs extends com.pulumi.resources.Re
 
         public Builder(PaymentIntentRadarOptionsArgs defaults) {
             $ = new PaymentIntentRadarOptionsArgs(Objects.requireNonNull(defaults));
+        }
+
+        /**
+         * @param referrer **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+         * The referrer URL of the current checkout session. You can use this to supply session-level referrer data when a Radar Session isn&#39;t available or doesn&#39;t contain a referrer.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder referrer(@Nullable Output<String> referrer) {
+            $.referrer = referrer;
+            return this;
+        }
+
+        /**
+         * @param referrer **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+         * The referrer URL of the current checkout session. You can use this to supply session-level referrer data when a Radar Session isn&#39;t available or doesn&#39;t contain a referrer.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder referrer(String referrer) {
+            return referrer(Output.of(referrer));
         }
 
         /**

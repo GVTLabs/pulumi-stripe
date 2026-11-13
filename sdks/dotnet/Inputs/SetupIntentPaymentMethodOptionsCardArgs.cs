@@ -39,6 +39,12 @@ namespace Pulumi.Stripe.Inputs
         public Input<string>? RequestThreeDSecure { get; set; }
 
         /// <summary>
+        /// Set to indicate the future transaction type usage for the card being set up.
+        /// </summary>
+        [Input("setupCredentialUsage")]
+        public Input<string>? SetupCredentialUsage { get; set; }
+
+        /// <summary>
         /// If 3D Secure authentication was performed with a third-party provider,
         /// the authentication details to use for this setup.
         /// </summary>

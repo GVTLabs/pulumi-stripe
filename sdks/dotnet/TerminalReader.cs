@@ -80,7 +80,7 @@ namespace Pulumi.Stripe
         public Output<string> SerialNumber { get; private set; } = null!;
 
         /// <summary>
-        /// The networking status of the reader. We do not recommend using this field in flows that may block taking payments.
+        /// The networking status of the reader. This value is &lt;span pulumi-lang-nodejs="`null`" pulumi-lang-dotnet="`Null`" pulumi-lang-go="`null`" pulumi-lang-python="`null`" pulumi-lang-yaml="`null`" pulumi-lang-java="`null`" pulumi-lang-hcl="`null`"&gt;`null`&lt;/span&gt; for mobile readers. We do not recommend using this field in flows that may block taking payments.
         /// </summary>
         [Output("status")]
         public Output<string> Status { get; private set; } = null!;
@@ -268,7 +268,7 @@ namespace Pulumi.Stripe
         public Input<string>? SerialNumber { get; set; }
 
         /// <summary>
-        /// The networking status of the reader. We do not recommend using this field in flows that may block taking payments.
+        /// The networking status of the reader. This value is &lt;span pulumi-lang-nodejs="`null`" pulumi-lang-dotnet="`Null`" pulumi-lang-go="`null`" pulumi-lang-python="`null`" pulumi-lang-yaml="`null`" pulumi-lang-java="`null`" pulumi-lang-hcl="`null`"&gt;`null`&lt;/span&gt; for mobile readers. We do not recommend using this field in flows that may block taking payments.
         /// </summary>
         [Input("status")]
         public Input<string>? Status { get; set; }

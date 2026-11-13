@@ -22,6 +22,12 @@ namespace Pulumi.Stripe.Inputs
         public Input<Inputs.IssuingCardShippingAddressValidationArgs>? AddressValidation { get; set; }
 
         /// <summary>
+        /// The name of the business at the shipping address, used on the shipping label to ensure delivery when the card is shipped to a cardholder's workplace.
+        /// </summary>
+        [Input("businessName")]
+        public Input<string>? BusinessName { get; set; }
+
+        /// <summary>
         /// The delivery company that shipped a card.
         /// </summary>
         [Input("carrier")]
@@ -32,6 +38,12 @@ namespace Pulumi.Stripe.Inputs
         /// </summary>
         [Input("customs")]
         public Input<Inputs.IssuingCardShippingCustomsArgs>? Customs { get; set; }
+
+        /// <summary>
+        /// The time the card was reported as delivered. Null for undelivered or untracked shipments, or if Stripe has not recorded a delivery time.
+        /// </summary>
+        [Input("deliveredAt")]
+        public Input<double>? DeliveredAt { get; set; }
 
         /// <summary>
         /// A unix timestamp representing a best estimate of when the card will be delivered.
@@ -62,6 +74,12 @@ namespace Pulumi.Stripe.Inputs
         /// </summary>
         [Input("service")]
         public Input<string>? Service { get; set; }
+
+        /// <summary>
+        /// The time the card was reported as shipped. Null if Stripe has not recorded a shipment time.
+        /// </summary>
+        [Input("shippedAt")]
+        public Input<double>? ShippedAt { get; set; }
 
         /// <summary>
         /// The delivery status of the card.

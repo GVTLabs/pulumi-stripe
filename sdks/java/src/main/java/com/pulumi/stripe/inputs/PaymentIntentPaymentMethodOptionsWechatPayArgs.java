@@ -16,14 +16,14 @@ public final class PaymentIntentPaymentMethodOptionsWechatPayArgs extends com.pu
     public static final PaymentIntentPaymentMethodOptionsWechatPayArgs Empty = new PaymentIntentPaymentMethodOptionsWechatPayArgs();
 
     /**
-     * The app ID registered with WeChat Pay. Only required when client is ios or android.
+     * The app ID registered with WeChat Pay. Only required when client is ios, android, or mini_program.
      * 
      */
     @Import(name="appId")
     private @Nullable Output<String> appId;
 
     /**
-     * @return The app ID registered with WeChat Pay. Only required when client is ios or android.
+     * @return The app ID registered with WeChat Pay. Only required when client is ios, android, or mini_program.
      * 
      */
     public Optional<Output<String>> appId() {
@@ -99,7 +99,7 @@ public final class PaymentIntentPaymentMethodOptionsWechatPayArgs extends com.pu
         }
 
         /**
-         * @param appId The app ID registered with WeChat Pay. Only required when client is ios or android.
+         * @param appId The app ID registered with WeChat Pay. Only required when client is ios, android, or mini_program.
          * 
          * @return builder
          * 
@@ -110,7 +110,7 @@ public final class PaymentIntentPaymentMethodOptionsWechatPayArgs extends com.pu
         }
 
         /**
-         * @param appId The app ID registered with WeChat Pay. Only required when client is ios or android.
+         * @param appId The app ID registered with WeChat Pay. Only required when client is ios, android, or mini_program.
          * 
          * @return builder
          * 

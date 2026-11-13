@@ -30,7 +30,7 @@ class WebhookEndpointArgs:
 
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] enabled_events: The list of events to enable for this endpoint. `['*']` indicates that all events are enabled, except those that require explicit selection.
         :param pulumi.Input[_builtins.str] url: The URL of the webhook endpoint.
-        :param pulumi.Input[_builtins.str] api_version: The API version events are rendered as for this webhook endpoint.
+        :param pulumi.Input[_builtins.str] api_version: The API version that events are rendered as for this webhook endpoint. You can't change this value after you create the endpoint.
         :param pulumi.Input[_builtins.bool] connect: Whether this endpoint should receive events from connected accounts (<span pulumi-lang-nodejs="`true`" pulumi-lang-dotnet="`True`" pulumi-lang-go="`true`" pulumi-lang-python="`true`" pulumi-lang-yaml="`true`" pulumi-lang-java="`true`" pulumi-lang-hcl="`true`">`true`</span>), or from your account (<span pulumi-lang-nodejs="`false`" pulumi-lang-dotnet="`False`" pulumi-lang-go="`false`" pulumi-lang-python="`false`" pulumi-lang-yaml="`false`" pulumi-lang-java="`false`" pulumi-lang-hcl="`false`">`false`</span>). Defaults to <span pulumi-lang-nodejs="`false`" pulumi-lang-dotnet="`False`" pulumi-lang-go="`false`" pulumi-lang-python="`false`" pulumi-lang-yaml="`false`" pulumi-lang-java="`false`" pulumi-lang-hcl="`false`">`false`</span>.
         :param pulumi.Input[_builtins.str] description: An optional description of what the webhook is used for.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] metadata: Set of [key-value pairs](https://docs.stripe.com/api/metadata) that you can attach to an object. This can be useful for storing additional information about the object in a structured format.
@@ -74,7 +74,7 @@ class WebhookEndpointArgs:
     @pulumi.getter(name="apiVersion")
     def api_version(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
-        The API version events are rendered as for this webhook endpoint.
+        The API version that events are rendered as for this webhook endpoint. You can't change this value after you create the endpoint.
         """
         return pulumi.get(self, "api_version")
 
@@ -137,7 +137,7 @@ class _WebhookEndpointState:
         """
         Input properties used for looking up and filtering WebhookEndpoint resources.
 
-        :param pulumi.Input[_builtins.str] api_version: The API version events are rendered as for this webhook endpoint.
+        :param pulumi.Input[_builtins.str] api_version: The API version that events are rendered as for this webhook endpoint. You can't change this value after you create the endpoint.
         :param pulumi.Input[_builtins.str] application: The ID of the associated Connect application.
         :param pulumi.Input[_builtins.bool] connect: Whether this endpoint should receive events from connected accounts (<span pulumi-lang-nodejs="`true`" pulumi-lang-dotnet="`True`" pulumi-lang-go="`true`" pulumi-lang-python="`true`" pulumi-lang-yaml="`true`" pulumi-lang-java="`true`" pulumi-lang-hcl="`true`">`true`</span>), or from your account (<span pulumi-lang-nodejs="`false`" pulumi-lang-dotnet="`False`" pulumi-lang-go="`false`" pulumi-lang-python="`false`" pulumi-lang-yaml="`false`" pulumi-lang-java="`false`" pulumi-lang-hcl="`false`">`false`</span>). Defaults to <span pulumi-lang-nodejs="`false`" pulumi-lang-dotnet="`False`" pulumi-lang-go="`false`" pulumi-lang-python="`false`" pulumi-lang-yaml="`false`" pulumi-lang-java="`false`" pulumi-lang-hcl="`false`">`false`</span>.
         :param pulumi.Input[_builtins.float] created: Time at which the object was created. Measured in seconds since the Unix epoch.
@@ -179,7 +179,7 @@ class _WebhookEndpointState:
     @pulumi.getter(name="apiVersion")
     def api_version(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
-        The API version events are rendered as for this webhook endpoint.
+        The API version that events are rendered as for this webhook endpoint. You can't change this value after you create the endpoint.
         """
         return pulumi.get(self, "api_version")
 
@@ -338,7 +338,7 @@ class WebhookEndpoint(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[_builtins.str] api_version: The API version events are rendered as for this webhook endpoint.
+        :param pulumi.Input[_builtins.str] api_version: The API version that events are rendered as for this webhook endpoint. You can't change this value after you create the endpoint.
         :param pulumi.Input[_builtins.bool] connect: Whether this endpoint should receive events from connected accounts (<span pulumi-lang-nodejs="`true`" pulumi-lang-dotnet="`True`" pulumi-lang-go="`true`" pulumi-lang-python="`true`" pulumi-lang-yaml="`true`" pulumi-lang-java="`true`" pulumi-lang-hcl="`true`">`true`</span>), or from your account (<span pulumi-lang-nodejs="`false`" pulumi-lang-dotnet="`False`" pulumi-lang-go="`false`" pulumi-lang-python="`false`" pulumi-lang-yaml="`false`" pulumi-lang-java="`false`" pulumi-lang-hcl="`false`">`false`</span>). Defaults to <span pulumi-lang-nodejs="`false`" pulumi-lang-dotnet="`False`" pulumi-lang-go="`false`" pulumi-lang-python="`false`" pulumi-lang-yaml="`false`" pulumi-lang-java="`false`" pulumi-lang-hcl="`false`">`false`</span>.
         :param pulumi.Input[_builtins.str] description: An optional description of what the webhook is used for.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] enabled_events: The list of events to enable for this endpoint. `['*']` indicates that all events are enabled, except those that require explicit selection.
@@ -432,7 +432,7 @@ class WebhookEndpoint(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[_builtins.str] api_version: The API version events are rendered as for this webhook endpoint.
+        :param pulumi.Input[_builtins.str] api_version: The API version that events are rendered as for this webhook endpoint. You can't change this value after you create the endpoint.
         :param pulumi.Input[_builtins.str] application: The ID of the associated Connect application.
         :param pulumi.Input[_builtins.bool] connect: Whether this endpoint should receive events from connected accounts (<span pulumi-lang-nodejs="`true`" pulumi-lang-dotnet="`True`" pulumi-lang-go="`true`" pulumi-lang-python="`true`" pulumi-lang-yaml="`true`" pulumi-lang-java="`true`" pulumi-lang-hcl="`true`">`true`</span>), or from your account (<span pulumi-lang-nodejs="`false`" pulumi-lang-dotnet="`False`" pulumi-lang-go="`false`" pulumi-lang-python="`false`" pulumi-lang-yaml="`false`" pulumi-lang-java="`false`" pulumi-lang-hcl="`false`">`false`</span>). Defaults to <span pulumi-lang-nodejs="`false`" pulumi-lang-dotnet="`False`" pulumi-lang-go="`false`" pulumi-lang-python="`false`" pulumi-lang-yaml="`false`" pulumi-lang-java="`false`" pulumi-lang-hcl="`false`">`false`</span>.
         :param pulumi.Input[_builtins.float] created: Time at which the object was created. Measured in seconds since the Unix epoch.
@@ -463,11 +463,41 @@ class WebhookEndpoint(pulumi.CustomResource):
         __props__.__dict__["url"] = url
         return WebhookEndpoint(resource_name, opts=opts, __props__=__props__)
 
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            api_version: pulumi.Input[Optional[_builtins.str]] = None,
+            application: pulumi.Input[Optional[_builtins.str]] = None,
+            connect: pulumi.Input[Optional[_builtins.bool]] = None,
+            created: pulumi.Input[Optional[_builtins.float]] = None,
+            description: pulumi.Input[Optional[_builtins.str]] = None,
+            enabled_events: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            livemode: pulumi.Input[Optional[_builtins.bool]] = None,
+            metadata: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+            object: pulumi.Input[Optional[_builtins.str]] = None,
+            secret: pulumi.Input[Optional[_builtins.str]] = None,
+            status: pulumi.Input[Optional[_builtins.str]] = None,
+            url: pulumi.Input[Optional[_builtins.str]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["apiVersion"] = api_version
+        __props__["application"] = application
+        __props__["connect"] = connect
+        __props__["created"] = created
+        __props__["description"] = description
+        __props__["enabledEvents"] = enabled_events
+        __props__["livemode"] = livemode
+        __props__["metadata"] = metadata
+        __props__["object"] = object
+        __props__["secret"] = secret
+        __props__["status"] = status
+        __props__["url"] = url
+        return pulumi.runtime.exists_resource(None, 'stripe:index/webhookEndpoint:WebhookEndpoint', id, __props__, opts or pulumi.ResourceOptions(), package_ref=_utilities.get_package())
+
     @_builtins.property
     @pulumi.getter(name="apiVersion")
     def api_version(self) -> pulumi.Output[_builtins.str]:
         """
-        The API version events are rendered as for this webhook endpoint.
+        The API version that events are rendered as for this webhook endpoint. You can't change this value after you create the endpoint.
         """
         return pulumi.get(self, "api_version")
 

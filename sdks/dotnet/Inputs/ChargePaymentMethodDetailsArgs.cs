@@ -156,6 +156,9 @@ namespace Pulumi.Stripe.Inputs
         [Input("sepaDebit")]
         public Input<Inputs.ChargePaymentMethodDetailsSepaDebitArgs>? SepaDebit { get; set; }
 
+        [Input("sequra")]
+        public Input<Inputs.ChargePaymentMethodDetailsSequraArgs>? Sequra { get; set; }
+
         [Input("sofort")]
         public Input<Inputs.ChargePaymentMethodDetailsSofortArgs>? Sofort { get; set; }
 

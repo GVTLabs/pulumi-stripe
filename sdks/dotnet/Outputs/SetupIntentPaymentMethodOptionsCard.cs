@@ -32,6 +32,10 @@ namespace Pulumi.Stripe.Outputs
         /// </summary>
         public readonly string? RequestThreeDSecure;
         /// <summary>
+        /// Set to indicate the future transaction type usage for the card being set up.
+        /// </summary>
+        public readonly string? SetupCredentialUsage;
+        /// <summary>
         /// If 3D Secure authentication was performed with a third-party provider,
         /// the authentication details to use for this setup.
         /// </summary>
@@ -47,12 +51,15 @@ namespace Pulumi.Stripe.Outputs
 
             string? requestThreeDSecure,
 
+            string? setupCredentialUsage,
+
             Outputs.SetupIntentPaymentMethodOptionsCardThreeDSecure? threeDSecure)
         {
             MandateOptions = mandateOptions;
             Moto = moto;
             Network = network;
             RequestThreeDSecure = requestThreeDSecure;
+            SetupCredentialUsage = setupCredentialUsage;
             ThreeDSecure = threeDSecure;
         }
     }

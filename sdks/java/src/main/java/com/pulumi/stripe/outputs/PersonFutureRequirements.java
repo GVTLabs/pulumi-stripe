@@ -24,7 +24,7 @@ public final class PersonFutureRequirements {
      */
     private @Nullable List<String> currentlyDues;
     /**
-     * @return Details about validation and verification failures for &lt;span pulumi-lang-nodejs=&#34;`due`&#34; pulumi-lang-dotnet=&#34;`Due`&#34; pulumi-lang-go=&#34;`due`&#34; pulumi-lang-python=&#34;`due`&#34; pulumi-lang-yaml=&#34;`due`&#34; pulumi-lang-java=&#34;`due`&#34; pulumi-lang-hcl=&#34;`due`&#34;&gt;`due`&lt;/span&gt; requirements that must be resolved.
+     * @return Fields that are &lt;span pulumi-lang-nodejs=&#34;`currentlyDue`&#34; pulumi-lang-dotnet=&#34;`CurrentlyDue`&#34; pulumi-lang-go=&#34;`currentlyDue`&#34; pulumi-lang-python=&#34;`currently_due`&#34; pulumi-lang-yaml=&#34;`currentlyDue`&#34; pulumi-lang-java=&#34;`currentlyDue`&#34; pulumi-lang-hcl=&#34;`currently_due`&#34;&gt;`currentlyDue`&lt;/span&gt; and need to be collected again because validation or verification failed.
      * 
      */
     private @Nullable List<PersonFutureRequirementsError> errors;
@@ -60,7 +60,7 @@ public final class PersonFutureRequirements {
         return this.currentlyDues == null ? List.of() : this.currentlyDues;
     }
     /**
-     * @return Details about validation and verification failures for &lt;span pulumi-lang-nodejs=&#34;`due`&#34; pulumi-lang-dotnet=&#34;`Due`&#34; pulumi-lang-go=&#34;`due`&#34; pulumi-lang-python=&#34;`due`&#34; pulumi-lang-yaml=&#34;`due`&#34; pulumi-lang-java=&#34;`due`&#34; pulumi-lang-hcl=&#34;`due`&#34;&gt;`due`&lt;/span&gt; requirements that must be resolved.
+     * @return Fields that are &lt;span pulumi-lang-nodejs=&#34;`currentlyDue`&#34; pulumi-lang-dotnet=&#34;`CurrentlyDue`&#34; pulumi-lang-go=&#34;`currentlyDue`&#34; pulumi-lang-python=&#34;`currently_due`&#34; pulumi-lang-yaml=&#34;`currentlyDue`&#34; pulumi-lang-java=&#34;`currentlyDue`&#34; pulumi-lang-hcl=&#34;`currently_due`&#34;&gt;`currentlyDue`&lt;/span&gt; and need to be collected again because validation or verification failed.
      * 
      */
     public List<PersonFutureRequirementsError> errors() {

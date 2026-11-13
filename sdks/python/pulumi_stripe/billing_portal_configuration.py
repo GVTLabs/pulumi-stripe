@@ -32,7 +32,7 @@ class BillingPortalConfigurationArgs:
         The set of arguments for constructing a BillingPortalConfiguration resource.
 
         :param pulumi.Input[_builtins.bool] active: Whether the configuration is active and can be used to create portal sessions.
-        :param pulumi.Input[_builtins.str] default_return_url: The default URL to redirect customers to when they click on the portal's link to return to your website. This can be [overriden](https://docs.stripe.com/api/customer_portal/sessions/create#create_portal_session-return_url) when creating the session.
+        :param pulumi.Input[_builtins.str] default_return_url: The default URL to redirect customers to when they click on the portal's link to return to your website. This can be [overridden](https://docs.stripe.com/api/customer_portal/sessions/create#create_portal_session-return_url) when creating the session.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] metadata: Set of [key-value pairs](https://docs.stripe.com/api/metadata) that you can attach to an object. This can be useful for storing additional information about the object in a structured format.
         :param pulumi.Input[_builtins.str] name: The name of the configuration.
         """
@@ -84,7 +84,7 @@ class BillingPortalConfigurationArgs:
     @pulumi.getter(name="defaultReturnUrl")
     def default_return_url(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
-        The default URL to redirect customers to when they click on the portal's link to return to your website. This can be [overriden](https://docs.stripe.com/api/customer_portal/sessions/create#create_portal_session-return_url) when creating the session.
+        The default URL to redirect customers to when they click on the portal's link to return to your website. This can be [overridden](https://docs.stripe.com/api/customer_portal/sessions/create#create_portal_session-return_url) when creating the session.
         """
         return pulumi.get(self, "default_return_url")
 
@@ -147,7 +147,7 @@ class _BillingPortalConfigurationState:
         :param pulumi.Input[_builtins.bool] active: Whether the configuration is active and can be used to create portal sessions.
         :param pulumi.Input[_builtins.str] application: ID of the Connect Application that created the configuration.
         :param pulumi.Input[_builtins.float] created: Time at which the object was created. Measured in seconds since the Unix epoch.
-        :param pulumi.Input[_builtins.str] default_return_url: The default URL to redirect customers to when they click on the portal's link to return to your website. This can be [overriden](https://docs.stripe.com/api/customer_portal/sessions/create#create_portal_session-return_url) when creating the session.
+        :param pulumi.Input[_builtins.str] default_return_url: The default URL to redirect customers to when they click on the portal's link to return to your website. This can be [overridden](https://docs.stripe.com/api/customer_portal/sessions/create#create_portal_session-return_url) when creating the session.
         :param pulumi.Input[_builtins.bool] is_default: Whether the configuration is the default. If <span pulumi-lang-nodejs="`true`" pulumi-lang-dotnet="`True`" pulumi-lang-go="`true`" pulumi-lang-python="`true`" pulumi-lang-yaml="`true`" pulumi-lang-java="`true`" pulumi-lang-hcl="`true`">`true`</span>, this configuration can be managed in the Dashboard and portal sessions will use this configuration unless it is overriden when creating the session.
         :param pulumi.Input[_builtins.bool] livemode: If the object exists in live mode, the value is <span pulumi-lang-nodejs="`true`" pulumi-lang-dotnet="`True`" pulumi-lang-go="`true`" pulumi-lang-python="`true`" pulumi-lang-yaml="`true`" pulumi-lang-java="`true`" pulumi-lang-hcl="`true`">`true`</span>. If the object exists in test mode, the value is <span pulumi-lang-nodejs="`false`" pulumi-lang-dotnet="`False`" pulumi-lang-go="`false`" pulumi-lang-python="`false`" pulumi-lang-yaml="`false`" pulumi-lang-java="`false`" pulumi-lang-hcl="`false`">`false`</span>.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] metadata: Set of [key-value pairs](https://docs.stripe.com/api/metadata) that you can attach to an object. This can be useful for storing additional information about the object in a structured format.
@@ -228,7 +228,7 @@ class _BillingPortalConfigurationState:
     @pulumi.getter(name="defaultReturnUrl")
     def default_return_url(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
-        The default URL to redirect customers to when they click on the portal's link to return to your website. This can be [overriden](https://docs.stripe.com/api/customer_portal/sessions/create#create_portal_session-return_url) when creating the session.
+        The default URL to redirect customers to when they click on the portal's link to return to your website. This can be [overridden](https://docs.stripe.com/api/customer_portal/sessions/create#create_portal_session-return_url) when creating the session.
         """
         return pulumi.get(self, "default_return_url")
 
@@ -322,10 +322,10 @@ class BillingPortalConfiguration(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  active: pulumi.Input[Optional[_builtins.bool]] = None,
-                 business_profile: pulumi.Input[Optional[Union['BillingPortalConfigurationBusinessProfileArgs', 'BillingPortalConfigurationBusinessProfileArgsDict']]] = None,
+                 business_profile: pulumi.Input[Optional[Union['BillingPortalConfigurationBusinessProfileArgs', 'BillingPortalConfigurationBusinessProfileArgsDict', 'outputs.BillingPortalConfigurationBusinessProfile']]] = None,
                  default_return_url: pulumi.Input[Optional[_builtins.str]] = None,
-                 features: pulumi.Input[Optional[Union['BillingPortalConfigurationFeaturesArgs', 'BillingPortalConfigurationFeaturesArgsDict']]] = None,
-                 login_page: pulumi.Input[Optional[Union['BillingPortalConfigurationLoginPageArgs', 'BillingPortalConfigurationLoginPageArgsDict']]] = None,
+                 features: pulumi.Input[Optional[Union['BillingPortalConfigurationFeaturesArgs', 'BillingPortalConfigurationFeaturesArgsDict', 'outputs.BillingPortalConfigurationFeatures']]] = None,
+                 login_page: pulumi.Input[Optional[Union['BillingPortalConfigurationLoginPageArgs', 'BillingPortalConfigurationLoginPageArgsDict', 'outputs.BillingPortalConfigurationLoginPage']]] = None,
                  metadata: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
                  name: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
@@ -335,7 +335,7 @@ class BillingPortalConfiguration(pulumi.CustomResource):
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.bool] active: Whether the configuration is active and can be used to create portal sessions.
-        :param pulumi.Input[_builtins.str] default_return_url: The default URL to redirect customers to when they click on the portal's link to return to your website. This can be [overriden](https://docs.stripe.com/api/customer_portal/sessions/create#create_portal_session-return_url) when creating the session.
+        :param pulumi.Input[_builtins.str] default_return_url: The default URL to redirect customers to when they click on the portal's link to return to your website. This can be [overridden](https://docs.stripe.com/api/customer_portal/sessions/create#create_portal_session-return_url) when creating the session.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] metadata: Set of [key-value pairs](https://docs.stripe.com/api/metadata) that you can attach to an object. This can be useful for storing additional information about the object in a structured format.
         :param pulumi.Input[_builtins.str] name: The name of the configuration.
         """
@@ -364,10 +364,10 @@ class BillingPortalConfiguration(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  active: pulumi.Input[Optional[_builtins.bool]] = None,
-                 business_profile: pulumi.Input[Optional[Union['BillingPortalConfigurationBusinessProfileArgs', 'BillingPortalConfigurationBusinessProfileArgsDict']]] = None,
+                 business_profile: pulumi.Input[Optional[Union['BillingPortalConfigurationBusinessProfileArgs', 'BillingPortalConfigurationBusinessProfileArgsDict', 'outputs.BillingPortalConfigurationBusinessProfile']]] = None,
                  default_return_url: pulumi.Input[Optional[_builtins.str]] = None,
-                 features: pulumi.Input[Optional[Union['BillingPortalConfigurationFeaturesArgs', 'BillingPortalConfigurationFeaturesArgsDict']]] = None,
-                 login_page: pulumi.Input[Optional[Union['BillingPortalConfigurationLoginPageArgs', 'BillingPortalConfigurationLoginPageArgsDict']]] = None,
+                 features: pulumi.Input[Optional[Union['BillingPortalConfigurationFeaturesArgs', 'BillingPortalConfigurationFeaturesArgsDict', 'outputs.BillingPortalConfigurationFeatures']]] = None,
+                 login_page: pulumi.Input[Optional[Union['BillingPortalConfigurationLoginPageArgs', 'BillingPortalConfigurationLoginPageArgsDict', 'outputs.BillingPortalConfigurationLoginPage']]] = None,
                  metadata: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
                  name: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
@@ -406,13 +406,13 @@ class BillingPortalConfiguration(pulumi.CustomResource):
             opts: Optional[pulumi.ResourceOptions] = None,
             active: pulumi.Input[Optional[_builtins.bool]] = None,
             application: pulumi.Input[Optional[_builtins.str]] = None,
-            business_profile: pulumi.Input[Optional[Union['BillingPortalConfigurationBusinessProfileArgs', 'BillingPortalConfigurationBusinessProfileArgsDict']]] = None,
+            business_profile: pulumi.Input[Optional[Union['BillingPortalConfigurationBusinessProfileArgs', 'BillingPortalConfigurationBusinessProfileArgsDict', 'outputs.BillingPortalConfigurationBusinessProfile']]] = None,
             created: pulumi.Input[Optional[_builtins.float]] = None,
             default_return_url: pulumi.Input[Optional[_builtins.str]] = None,
-            features: pulumi.Input[Optional[Union['BillingPortalConfigurationFeaturesArgs', 'BillingPortalConfigurationFeaturesArgsDict']]] = None,
+            features: pulumi.Input[Optional[Union['BillingPortalConfigurationFeaturesArgs', 'BillingPortalConfigurationFeaturesArgsDict', 'outputs.BillingPortalConfigurationFeatures']]] = None,
             is_default: pulumi.Input[Optional[_builtins.bool]] = None,
             livemode: pulumi.Input[Optional[_builtins.bool]] = None,
-            login_page: pulumi.Input[Optional[Union['BillingPortalConfigurationLoginPageArgs', 'BillingPortalConfigurationLoginPageArgsDict']]] = None,
+            login_page: pulumi.Input[Optional[Union['BillingPortalConfigurationLoginPageArgs', 'BillingPortalConfigurationLoginPageArgsDict', 'outputs.BillingPortalConfigurationLoginPage']]] = None,
             metadata: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
             name: pulumi.Input[Optional[_builtins.str]] = None,
             object: pulumi.Input[Optional[_builtins.str]] = None) -> 'BillingPortalConfiguration':
@@ -426,7 +426,7 @@ class BillingPortalConfiguration(pulumi.CustomResource):
         :param pulumi.Input[_builtins.bool] active: Whether the configuration is active and can be used to create portal sessions.
         :param pulumi.Input[_builtins.str] application: ID of the Connect Application that created the configuration.
         :param pulumi.Input[_builtins.float] created: Time at which the object was created. Measured in seconds since the Unix epoch.
-        :param pulumi.Input[_builtins.str] default_return_url: The default URL to redirect customers to when they click on the portal's link to return to your website. This can be [overriden](https://docs.stripe.com/api/customer_portal/sessions/create#create_portal_session-return_url) when creating the session.
+        :param pulumi.Input[_builtins.str] default_return_url: The default URL to redirect customers to when they click on the portal's link to return to your website. This can be [overridden](https://docs.stripe.com/api/customer_portal/sessions/create#create_portal_session-return_url) when creating the session.
         :param pulumi.Input[_builtins.bool] is_default: Whether the configuration is the default. If <span pulumi-lang-nodejs="`true`" pulumi-lang-dotnet="`True`" pulumi-lang-go="`true`" pulumi-lang-python="`true`" pulumi-lang-yaml="`true`" pulumi-lang-java="`true`" pulumi-lang-hcl="`true`">`true`</span>, this configuration can be managed in the Dashboard and portal sessions will use this configuration unless it is overriden when creating the session.
         :param pulumi.Input[_builtins.bool] livemode: If the object exists in live mode, the value is <span pulumi-lang-nodejs="`true`" pulumi-lang-dotnet="`True`" pulumi-lang-go="`true`" pulumi-lang-python="`true`" pulumi-lang-yaml="`true`" pulumi-lang-java="`true`" pulumi-lang-hcl="`true`">`true`</span>. If the object exists in test mode, the value is <span pulumi-lang-nodejs="`false`" pulumi-lang-dotnet="`False`" pulumi-lang-go="`false`" pulumi-lang-python="`false`" pulumi-lang-yaml="`false`" pulumi-lang-java="`false`" pulumi-lang-hcl="`false`">`false`</span>.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] metadata: Set of [key-value pairs](https://docs.stripe.com/api/metadata) that you can attach to an object. This can be useful for storing additional information about the object in a structured format.
@@ -450,6 +450,36 @@ class BillingPortalConfiguration(pulumi.CustomResource):
         __props__.__dict__["name"] = name
         __props__.__dict__["object"] = object
         return BillingPortalConfiguration(resource_name, opts=opts, __props__=__props__)
+
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            active: pulumi.Input[Optional[_builtins.bool]] = None,
+            application: pulumi.Input[Optional[_builtins.str]] = None,
+            business_profile: pulumi.Input[Optional[Union['BillingPortalConfigurationBusinessProfileArgs', 'BillingPortalConfigurationBusinessProfileArgsDict', 'outputs.BillingPortalConfigurationBusinessProfile']]] = None,
+            created: pulumi.Input[Optional[_builtins.float]] = None,
+            default_return_url: pulumi.Input[Optional[_builtins.str]] = None,
+            features: pulumi.Input[Optional[Union['BillingPortalConfigurationFeaturesArgs', 'BillingPortalConfigurationFeaturesArgsDict', 'outputs.BillingPortalConfigurationFeatures']]] = None,
+            is_default: pulumi.Input[Optional[_builtins.bool]] = None,
+            livemode: pulumi.Input[Optional[_builtins.bool]] = None,
+            login_page: pulumi.Input[Optional[Union['BillingPortalConfigurationLoginPageArgs', 'BillingPortalConfigurationLoginPageArgsDict', 'outputs.BillingPortalConfigurationLoginPage']]] = None,
+            metadata: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+            name: pulumi.Input[Optional[_builtins.str]] = None,
+            object: pulumi.Input[Optional[_builtins.str]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["active"] = active
+        __props__["application"] = application
+        __props__["businessProfile"] = business_profile
+        __props__["created"] = created
+        __props__["defaultReturnUrl"] = default_return_url
+        __props__["features"] = features
+        __props__["isDefault"] = is_default
+        __props__["livemode"] = livemode
+        __props__["loginPage"] = login_page
+        __props__["metadata"] = metadata
+        __props__["name"] = name
+        __props__["object"] = object
+        return pulumi.runtime.exists_resource(None, 'stripe:index/billingPortalConfiguration:BillingPortalConfiguration', id, __props__, opts or pulumi.ResourceOptions(), package_ref=_utilities.get_package())
 
     @_builtins.property
     @pulumi.getter
@@ -484,7 +514,7 @@ class BillingPortalConfiguration(pulumi.CustomResource):
     @pulumi.getter(name="defaultReturnUrl")
     def default_return_url(self) -> pulumi.Output[_builtins.str]:
         """
-        The default URL to redirect customers to when they click on the portal's link to return to your website. This can be [overriden](https://docs.stripe.com/api/customer_portal/sessions/create#create_portal_session-return_url) when creating the session.
+        The default URL to redirect customers to when they click on the portal's link to return to your website. This can be [overridden](https://docs.stripe.com/api/customer_portal/sessions/create#create_portal_session-return_url) when creating the session.
         """
         return pulumi.get(self, "default_return_url")
 

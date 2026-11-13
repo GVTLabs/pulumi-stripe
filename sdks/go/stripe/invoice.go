@@ -142,7 +142,7 @@ type Invoice struct {
 	PrePaymentCreditNotesAmount pulumi.Float64Output `pulumi:"prePaymentCreditNotesAmount"`
 	// This is the transaction number that appears on email receipts sent for this invoice.
 	ReceiptNumber pulumi.StringOutput `pulumi:"receiptNumber"`
-	// The rendering-related settings that control how the invoice is displayed on customer-facing surfaces such as PDF and Hosted Invoice Page.
+	// The rendering-related settings that control how invoices render in customer-facing interfaces such as the PDF or hosted invoice page.
 	Rendering InvoiceRenderingOutput `pulumi:"rendering"`
 	// The details of the cost of shipping, including the ShippingRate applied on the invoice.
 	ShippingCost InvoiceShippingCostOutput `pulumi:"shippingCost"`
@@ -154,6 +154,7 @@ type Invoice struct {
 	StatementDescriptor pulumi.StringOutput `pulumi:"statementDescriptor"`
 	// The status of the invoice, one of <span pulumi-lang-nodejs="`draft`" pulumi-lang-dotnet="`Draft`" pulumi-lang-go="`draft`" pulumi-lang-python="`draft`" pulumi-lang-yaml="`draft`" pulumi-lang-java="`draft`" pulumi-lang-hcl="`draft`">`draft`</span>, <span pulumi-lang-nodejs="`open`" pulumi-lang-dotnet="`Open`" pulumi-lang-go="`open`" pulumi-lang-python="`open`" pulumi-lang-yaml="`open`" pulumi-lang-java="`open`" pulumi-lang-hcl="`open`">`open`</span>, <span pulumi-lang-nodejs="`paid`" pulumi-lang-dotnet="`Paid`" pulumi-lang-go="`paid`" pulumi-lang-python="`paid`" pulumi-lang-yaml="`paid`" pulumi-lang-java="`paid`" pulumi-lang-hcl="`paid`">`paid`</span>, <span pulumi-lang-nodejs="`uncollectible`" pulumi-lang-dotnet="`Uncollectible`" pulumi-lang-go="`uncollectible`" pulumi-lang-python="`uncollectible`" pulumi-lang-yaml="`uncollectible`" pulumi-lang-java="`uncollectible`" pulumi-lang-hcl="`uncollectible`">`uncollectible`</span>, or <span pulumi-lang-nodejs="`void`" pulumi-lang-dotnet="`Void`" pulumi-lang-go="`void`" pulumi-lang-python="`void`" pulumi-lang-yaml="`void`" pulumi-lang-java="`void`" pulumi-lang-hcl="`void`">`void`</span>. [Learn more](https://docs.stripe.com/billing/invoices/workflow#workflow-overview)
 	Status            pulumi.StringOutput            `pulumi:"status"`
+	StatusDetails     InvoiceStatusDetailsOutput     `pulumi:"statusDetails"`
 	StatusTransitions InvoiceStatusTransitionsOutput `pulumi:"statusTransitions"`
 	Subscription      pulumi.StringOutput            `pulumi:"subscription"`
 	// Total of all subscriptions, invoice items, and prorations on the invoice before any invoice level discount or exclusive tax is applied. Item discounts are already incorporated
@@ -365,7 +366,7 @@ type invoiceState struct {
 	PrePaymentCreditNotesAmount *float64 `pulumi:"prePaymentCreditNotesAmount"`
 	// This is the transaction number that appears on email receipts sent for this invoice.
 	ReceiptNumber *string `pulumi:"receiptNumber"`
-	// The rendering-related settings that control how the invoice is displayed on customer-facing surfaces such as PDF and Hosted Invoice Page.
+	// The rendering-related settings that control how invoices render in customer-facing interfaces such as the PDF or hosted invoice page.
 	Rendering *InvoiceRendering `pulumi:"rendering"`
 	// The details of the cost of shipping, including the ShippingRate applied on the invoice.
 	ShippingCost *InvoiceShippingCost `pulumi:"shippingCost"`
@@ -377,6 +378,7 @@ type invoiceState struct {
 	StatementDescriptor *string `pulumi:"statementDescriptor"`
 	// The status of the invoice, one of <span pulumi-lang-nodejs="`draft`" pulumi-lang-dotnet="`Draft`" pulumi-lang-go="`draft`" pulumi-lang-python="`draft`" pulumi-lang-yaml="`draft`" pulumi-lang-java="`draft`" pulumi-lang-hcl="`draft`">`draft`</span>, <span pulumi-lang-nodejs="`open`" pulumi-lang-dotnet="`Open`" pulumi-lang-go="`open`" pulumi-lang-python="`open`" pulumi-lang-yaml="`open`" pulumi-lang-java="`open`" pulumi-lang-hcl="`open`">`open`</span>, <span pulumi-lang-nodejs="`paid`" pulumi-lang-dotnet="`Paid`" pulumi-lang-go="`paid`" pulumi-lang-python="`paid`" pulumi-lang-yaml="`paid`" pulumi-lang-java="`paid`" pulumi-lang-hcl="`paid`">`paid`</span>, <span pulumi-lang-nodejs="`uncollectible`" pulumi-lang-dotnet="`Uncollectible`" pulumi-lang-go="`uncollectible`" pulumi-lang-python="`uncollectible`" pulumi-lang-yaml="`uncollectible`" pulumi-lang-java="`uncollectible`" pulumi-lang-hcl="`uncollectible`">`uncollectible`</span>, or <span pulumi-lang-nodejs="`void`" pulumi-lang-dotnet="`Void`" pulumi-lang-go="`void`" pulumi-lang-python="`void`" pulumi-lang-yaml="`void`" pulumi-lang-java="`void`" pulumi-lang-hcl="`void`">`void`</span>. [Learn more](https://docs.stripe.com/billing/invoices/workflow#workflow-overview)
 	Status            *string                   `pulumi:"status"`
+	StatusDetails     *InvoiceStatusDetails     `pulumi:"statusDetails"`
 	StatusTransitions *InvoiceStatusTransitions `pulumi:"statusTransitions"`
 	Subscription      *string                   `pulumi:"subscription"`
 	// Total of all subscriptions, invoice items, and prorations on the invoice before any invoice level discount or exclusive tax is applied. Item discounts are already incorporated
@@ -532,7 +534,7 @@ type InvoiceState struct {
 	PrePaymentCreditNotesAmount pulumi.Float64PtrInput
 	// This is the transaction number that appears on email receipts sent for this invoice.
 	ReceiptNumber pulumi.StringPtrInput
-	// The rendering-related settings that control how the invoice is displayed on customer-facing surfaces such as PDF and Hosted Invoice Page.
+	// The rendering-related settings that control how invoices render in customer-facing interfaces such as the PDF or hosted invoice page.
 	Rendering InvoiceRenderingPtrInput
 	// The details of the cost of shipping, including the ShippingRate applied on the invoice.
 	ShippingCost InvoiceShippingCostPtrInput
@@ -544,6 +546,7 @@ type InvoiceState struct {
 	StatementDescriptor pulumi.StringPtrInput
 	// The status of the invoice, one of <span pulumi-lang-nodejs="`draft`" pulumi-lang-dotnet="`Draft`" pulumi-lang-go="`draft`" pulumi-lang-python="`draft`" pulumi-lang-yaml="`draft`" pulumi-lang-java="`draft`" pulumi-lang-hcl="`draft`">`draft`</span>, <span pulumi-lang-nodejs="`open`" pulumi-lang-dotnet="`Open`" pulumi-lang-go="`open`" pulumi-lang-python="`open`" pulumi-lang-yaml="`open`" pulumi-lang-java="`open`" pulumi-lang-hcl="`open`">`open`</span>, <span pulumi-lang-nodejs="`paid`" pulumi-lang-dotnet="`Paid`" pulumi-lang-go="`paid`" pulumi-lang-python="`paid`" pulumi-lang-yaml="`paid`" pulumi-lang-java="`paid`" pulumi-lang-hcl="`paid`">`paid`</span>, <span pulumi-lang-nodejs="`uncollectible`" pulumi-lang-dotnet="`Uncollectible`" pulumi-lang-go="`uncollectible`" pulumi-lang-python="`uncollectible`" pulumi-lang-yaml="`uncollectible`" pulumi-lang-java="`uncollectible`" pulumi-lang-hcl="`uncollectible`">`uncollectible`</span>, or <span pulumi-lang-nodejs="`void`" pulumi-lang-dotnet="`Void`" pulumi-lang-go="`void`" pulumi-lang-python="`void`" pulumi-lang-yaml="`void`" pulumi-lang-java="`void`" pulumi-lang-hcl="`void`">`void`</span>. [Learn more](https://docs.stripe.com/billing/invoices/workflow#workflow-overview)
 	Status            pulumi.StringPtrInput
+	StatusDetails     InvoiceStatusDetailsPtrInput
 	StatusTransitions InvoiceStatusTransitionsPtrInput
 	Subscription      pulumi.StringPtrInput
 	// Total of all subscriptions, invoice items, and prorations on the invoice before any invoice level discount or exclusive tax is applied. Item discounts are already incorporated
@@ -572,6 +575,18 @@ type InvoiceState struct {
 
 func (InvoiceState) ElementType() reflect.Type {
 	return reflect.TypeOf((*invoiceState)(nil)).Elem()
+}
+
+// InvoiceExists checks whether an existing Invoice resource with the given ID exists.
+func InvoiceExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *InvoiceState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	ref, err := internal.PkgGetPackageRef(ctx)
+	if err != nil {
+		return pulumi.Bool(false).ToBoolOutput().ApplyT(func(bool) (bool, error) {
+			return false, err
+		}).(pulumi.BoolOutput)
+	}
+	return ctx.ExistsResource("stripe:index/invoice:Invoice", id, state, ref, opts...)
 }
 
 type invoiceArgs struct {
@@ -627,7 +642,7 @@ type invoiceArgs struct {
 	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
 	// How to handle pending invoice items on invoice creation. Defaults to <span pulumi-lang-nodejs="`exclude`" pulumi-lang-dotnet="`Exclude`" pulumi-lang-go="`exclude`" pulumi-lang-python="`exclude`" pulumi-lang-yaml="`exclude`" pulumi-lang-java="`exclude`" pulumi-lang-hcl="`exclude`">`exclude`</span> if the parameter is omitted.
 	PendingInvoiceItemsBehavior *string `pulumi:"pendingInvoiceItemsBehavior"`
-	// The rendering-related settings that control how the invoice is displayed on customer-facing surfaces such as PDF and Hosted Invoice Page.
+	// The rendering-related settings that control how invoices render in customer-facing interfaces such as the PDF or hosted invoice page.
 	Rendering *InvoiceRendering `pulumi:"rendering"`
 	// The details of the cost of shipping, including the ShippingRate applied on the invoice.
 	ShippingCost *InvoiceShippingCost `pulumi:"shippingCost"`
@@ -695,7 +710,7 @@ type InvoiceArgs struct {
 	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
 	// How to handle pending invoice items on invoice creation. Defaults to <span pulumi-lang-nodejs="`exclude`" pulumi-lang-dotnet="`Exclude`" pulumi-lang-go="`exclude`" pulumi-lang-python="`exclude`" pulumi-lang-yaml="`exclude`" pulumi-lang-java="`exclude`" pulumi-lang-hcl="`exclude`">`exclude`</span> if the parameter is omitted.
 	PendingInvoiceItemsBehavior pulumi.StringPtrInput
-	// The rendering-related settings that control how the invoice is displayed on customer-facing surfaces such as PDF and Hosted Invoice Page.
+	// The rendering-related settings that control how invoices render in customer-facing interfaces such as the PDF or hosted invoice page.
 	Rendering InvoiceRenderingPtrInput
 	// The details of the cost of shipping, including the ShippingRate applied on the invoice.
 	ShippingCost InvoiceShippingCostPtrInput
@@ -1054,7 +1069,7 @@ func (o InvoiceOutput) ReceiptNumber() pulumi.StringOutput {
 	return o.ApplyT(func(v *Invoice) pulumi.StringOutput { return v.ReceiptNumber }).(pulumi.StringOutput)
 }
 
-// The rendering-related settings that control how the invoice is displayed on customer-facing surfaces such as PDF and Hosted Invoice Page.
+// The rendering-related settings that control how invoices render in customer-facing interfaces such as the PDF or hosted invoice page.
 func (o InvoiceOutput) Rendering() InvoiceRenderingOutput {
 	return o.ApplyT(func(v *Invoice) InvoiceRenderingOutput { return v.Rendering }).(InvoiceRenderingOutput)
 }
@@ -1082,6 +1097,10 @@ func (o InvoiceOutput) StatementDescriptor() pulumi.StringOutput {
 // The status of the invoice, one of <span pulumi-lang-nodejs="`draft`" pulumi-lang-dotnet="`Draft`" pulumi-lang-go="`draft`" pulumi-lang-python="`draft`" pulumi-lang-yaml="`draft`" pulumi-lang-java="`draft`" pulumi-lang-hcl="`draft`">`draft`</span>, <span pulumi-lang-nodejs="`open`" pulumi-lang-dotnet="`Open`" pulumi-lang-go="`open`" pulumi-lang-python="`open`" pulumi-lang-yaml="`open`" pulumi-lang-java="`open`" pulumi-lang-hcl="`open`">`open`</span>, <span pulumi-lang-nodejs="`paid`" pulumi-lang-dotnet="`Paid`" pulumi-lang-go="`paid`" pulumi-lang-python="`paid`" pulumi-lang-yaml="`paid`" pulumi-lang-java="`paid`" pulumi-lang-hcl="`paid`">`paid`</span>, <span pulumi-lang-nodejs="`uncollectible`" pulumi-lang-dotnet="`Uncollectible`" pulumi-lang-go="`uncollectible`" pulumi-lang-python="`uncollectible`" pulumi-lang-yaml="`uncollectible`" pulumi-lang-java="`uncollectible`" pulumi-lang-hcl="`uncollectible`">`uncollectible`</span>, or <span pulumi-lang-nodejs="`void`" pulumi-lang-dotnet="`Void`" pulumi-lang-go="`void`" pulumi-lang-python="`void`" pulumi-lang-yaml="`void`" pulumi-lang-java="`void`" pulumi-lang-hcl="`void`">`void`</span>. [Learn more](https://docs.stripe.com/billing/invoices/workflow#workflow-overview)
 func (o InvoiceOutput) Status() pulumi.StringOutput {
 	return o.ApplyT(func(v *Invoice) pulumi.StringOutput { return v.Status }).(pulumi.StringOutput)
+}
+
+func (o InvoiceOutput) StatusDetails() InvoiceStatusDetailsOutput {
+	return o.ApplyT(func(v *Invoice) InvoiceStatusDetailsOutput { return v.StatusDetails }).(InvoiceStatusDetailsOutput)
 }
 
 func (o InvoiceOutput) StatusTransitions() InvoiceStatusTransitionsOutput {

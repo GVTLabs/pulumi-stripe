@@ -74,14 +74,14 @@ public final class BillingPortalConfigurationState extends com.pulumi.resources.
     }
 
     /**
-     * The default URL to redirect customers to when they click on the portal&#39;s link to return to your website. This can be [overriden](https://docs.stripe.com/api/customer_portal/sessions/create#create_portal_session-return_url) when creating the session.
+     * The default URL to redirect customers to when they click on the portal&#39;s link to return to your website. This can be [overridden](https://docs.stripe.com/api/customer_portal/sessions/create#create_portal_session-return_url) when creating the session.
      * 
      */
     @Import(name="defaultReturnUrl")
     private @Nullable Output<String> defaultReturnUrl;
 
     /**
-     * @return The default URL to redirect customers to when they click on the portal&#39;s link to return to your website. This can be [overriden](https://docs.stripe.com/api/customer_portal/sessions/create#create_portal_session-return_url) when creating the session.
+     * @return The default URL to redirect customers to when they click on the portal&#39;s link to return to your website. This can be [overridden](https://docs.stripe.com/api/customer_portal/sessions/create#create_portal_session-return_url) when creating the session.
      * 
      */
     public Optional<Output<String>> defaultReturnUrl() {
@@ -285,7 +285,7 @@ public final class BillingPortalConfigurationState extends com.pulumi.resources.
         }
 
         /**
-         * @param defaultReturnUrl The default URL to redirect customers to when they click on the portal&#39;s link to return to your website. This can be [overriden](https://docs.stripe.com/api/customer_portal/sessions/create#create_portal_session-return_url) when creating the session.
+         * @param defaultReturnUrl The default URL to redirect customers to when they click on the portal&#39;s link to return to your website. This can be [overridden](https://docs.stripe.com/api/customer_portal/sessions/create#create_portal_session-return_url) when creating the session.
          * 
          * @return builder
          * 
@@ -296,7 +296,7 @@ public final class BillingPortalConfigurationState extends com.pulumi.resources.
         }
 
         /**
-         * @param defaultReturnUrl The default URL to redirect customers to when they click on the portal&#39;s link to return to your website. This can be [overriden](https://docs.stripe.com/api/customer_portal/sessions/create#create_portal_session-return_url) when creating the session.
+         * @param defaultReturnUrl The default URL to redirect customers to when they click on the portal&#39;s link to return to your website. This can be [overridden](https://docs.stripe.com/api/customer_portal/sessions/create#create_portal_session-return_url) when creating the session.
          * 
          * @return builder
          * 

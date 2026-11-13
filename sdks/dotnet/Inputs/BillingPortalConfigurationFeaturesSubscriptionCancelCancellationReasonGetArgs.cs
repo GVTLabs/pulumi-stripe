@@ -18,6 +18,18 @@ namespace Pulumi.Stripe.Inputs
         [Input("enabled", required: true)]
         public Input<bool> Enabled { get; set; } = null!;
 
+        [Input("feedbackOptions")]
+        private InputList<string>? _feedbackOptions;
+
+        /// <summary>
+        /// The IDs of custom feedback options configured for this cancellation reason.
+        /// </summary>
+        public InputList<string> FeedbackOptions
+        {
+            get => _feedbackOptions ?? (_feedbackOptions = new InputList<string>());
+            set => _feedbackOptions = value;
+        }
+
         [Input("options", required: true)]
         private InputList<string>? _options;
 

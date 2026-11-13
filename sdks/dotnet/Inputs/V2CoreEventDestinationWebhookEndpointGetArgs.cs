@@ -16,7 +16,7 @@ namespace Pulumi.Stripe.Inputs
         private Input<string>? _signingSecret;
 
         /// <summary>
-        /// The signing secret of the webhook endpoint, only includable on creation.
+        /// The secret used to verify Stripe signatures on delivered events. Returned only in the create response when explicitly included; public API clients cannot retrieve it later.
         /// </summary>
         public Input<string>? SigningSecret
         {
@@ -29,7 +29,7 @@ namespace Pulumi.Stripe.Inputs
         }
 
         /// <summary>
-        /// The URL of the webhook endpoint, includable.
+        /// The URL where Stripe sends matching events. Live mode requires HTTPS; sandbox mode also supports HTTP. Returned only when explicitly included.
         /// </summary>
         [Input("url", required: true)]
         public Input<string> Url { get; set; } = null!;

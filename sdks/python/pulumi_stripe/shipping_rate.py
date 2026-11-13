@@ -338,9 +338,9 @@ class ShippingRate(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  active: pulumi.Input[Optional[_builtins.bool]] = None,
-                 delivery_estimates: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ShippingRateDeliveryEstimateArgs', 'ShippingRateDeliveryEstimateArgsDict']]]]] = None,
+                 delivery_estimates: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ShippingRateDeliveryEstimateArgs', 'ShippingRateDeliveryEstimateArgsDict', 'outputs.ShippingRateDeliveryEstimate']]]]] = None,
                  display_name: pulumi.Input[Optional[_builtins.str]] = None,
-                 fixed_amounts: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ShippingRateFixedAmountArgs', 'ShippingRateFixedAmountArgsDict']]]]] = None,
+                 fixed_amounts: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ShippingRateFixedAmountArgs', 'ShippingRateFixedAmountArgsDict', 'outputs.ShippingRateFixedAmount']]]]] = None,
                  metadata: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
                  tax_behavior: pulumi.Input[Optional[_builtins.str]] = None,
                  tax_code: pulumi.Input[Optional[_builtins.str]] = None,
@@ -352,7 +352,7 @@ class ShippingRate(pulumi.CustomResource):
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.bool] active: Whether the shipping rate can be used for new purchases. Defaults to <span pulumi-lang-nodejs="`true`" pulumi-lang-dotnet="`True`" pulumi-lang-go="`true`" pulumi-lang-python="`true`" pulumi-lang-yaml="`true`" pulumi-lang-java="`true`" pulumi-lang-hcl="`true`">`true`</span>.
-        :param pulumi.Input[Sequence[pulumi.Input[Union['ShippingRateDeliveryEstimateArgs', 'ShippingRateDeliveryEstimateArgsDict']]]] delivery_estimates: The estimated range for how long shipping will take, meant to be displayable to the customer. This will appear on CheckoutSessions.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['ShippingRateDeliveryEstimateArgs', 'ShippingRateDeliveryEstimateArgsDict', 'outputs.ShippingRateDeliveryEstimate']]]] delivery_estimates: The estimated range for how long shipping will take, meant to be displayable to the customer. This will appear on CheckoutSessions.
         :param pulumi.Input[_builtins.str] display_name: The name of the shipping rate, meant to be displayable to the customer. This will appear on CheckoutSessions.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] metadata: Set of [key-value pairs](https://docs.stripe.com/api/metadata) that you can attach to an object. This can be useful for storing additional information about the object in a structured format.
         :param pulumi.Input[_builtins.str] tax_behavior: Specifies whether the rate is considered inclusive of taxes or exclusive of taxes. One of <span pulumi-lang-nodejs="`inclusive`" pulumi-lang-dotnet="`Inclusive`" pulumi-lang-go="`inclusive`" pulumi-lang-python="`inclusive`" pulumi-lang-yaml="`inclusive`" pulumi-lang-java="`inclusive`" pulumi-lang-hcl="`inclusive`">`inclusive`</span>, <span pulumi-lang-nodejs="`exclusive`" pulumi-lang-dotnet="`Exclusive`" pulumi-lang-go="`exclusive`" pulumi-lang-python="`exclusive`" pulumi-lang-yaml="`exclusive`" pulumi-lang-java="`exclusive`" pulumi-lang-hcl="`exclusive`">`exclusive`</span>, or <span pulumi-lang-nodejs="`unspecified`" pulumi-lang-dotnet="`Unspecified`" pulumi-lang-go="`unspecified`" pulumi-lang-python="`unspecified`" pulumi-lang-yaml="`unspecified`" pulumi-lang-java="`unspecified`" pulumi-lang-hcl="`unspecified`">`unspecified`</span>.
@@ -384,9 +384,9 @@ class ShippingRate(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  active: pulumi.Input[Optional[_builtins.bool]] = None,
-                 delivery_estimates: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ShippingRateDeliveryEstimateArgs', 'ShippingRateDeliveryEstimateArgsDict']]]]] = None,
+                 delivery_estimates: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ShippingRateDeliveryEstimateArgs', 'ShippingRateDeliveryEstimateArgsDict', 'outputs.ShippingRateDeliveryEstimate']]]]] = None,
                  display_name: pulumi.Input[Optional[_builtins.str]] = None,
-                 fixed_amounts: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ShippingRateFixedAmountArgs', 'ShippingRateFixedAmountArgsDict']]]]] = None,
+                 fixed_amounts: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ShippingRateFixedAmountArgs', 'ShippingRateFixedAmountArgsDict', 'outputs.ShippingRateFixedAmount']]]]] = None,
                  metadata: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
                  tax_behavior: pulumi.Input[Optional[_builtins.str]] = None,
                  tax_code: pulumi.Input[Optional[_builtins.str]] = None,
@@ -426,9 +426,9 @@ class ShippingRate(pulumi.CustomResource):
             opts: Optional[pulumi.ResourceOptions] = None,
             active: pulumi.Input[Optional[_builtins.bool]] = None,
             created: pulumi.Input[Optional[_builtins.float]] = None,
-            delivery_estimates: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ShippingRateDeliveryEstimateArgs', 'ShippingRateDeliveryEstimateArgsDict']]]]] = None,
+            delivery_estimates: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ShippingRateDeliveryEstimateArgs', 'ShippingRateDeliveryEstimateArgsDict', 'outputs.ShippingRateDeliveryEstimate']]]]] = None,
             display_name: pulumi.Input[Optional[_builtins.str]] = None,
-            fixed_amounts: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ShippingRateFixedAmountArgs', 'ShippingRateFixedAmountArgsDict']]]]] = None,
+            fixed_amounts: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ShippingRateFixedAmountArgs', 'ShippingRateFixedAmountArgsDict', 'outputs.ShippingRateFixedAmount']]]]] = None,
             livemode: pulumi.Input[Optional[_builtins.bool]] = None,
             metadata: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
             object: pulumi.Input[Optional[_builtins.str]] = None,
@@ -444,7 +444,7 @@ class ShippingRate(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.bool] active: Whether the shipping rate can be used for new purchases. Defaults to <span pulumi-lang-nodejs="`true`" pulumi-lang-dotnet="`True`" pulumi-lang-go="`true`" pulumi-lang-python="`true`" pulumi-lang-yaml="`true`" pulumi-lang-java="`true`" pulumi-lang-hcl="`true`">`true`</span>.
         :param pulumi.Input[_builtins.float] created: Time at which the object was created. Measured in seconds since the Unix epoch.
-        :param pulumi.Input[Sequence[pulumi.Input[Union['ShippingRateDeliveryEstimateArgs', 'ShippingRateDeliveryEstimateArgsDict']]]] delivery_estimates: The estimated range for how long shipping will take, meant to be displayable to the customer. This will appear on CheckoutSessions.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['ShippingRateDeliveryEstimateArgs', 'ShippingRateDeliveryEstimateArgsDict', 'outputs.ShippingRateDeliveryEstimate']]]] delivery_estimates: The estimated range for how long shipping will take, meant to be displayable to the customer. This will appear on CheckoutSessions.
         :param pulumi.Input[_builtins.str] display_name: The name of the shipping rate, meant to be displayable to the customer. This will appear on CheckoutSessions.
         :param pulumi.Input[_builtins.bool] livemode: If the object exists in live mode, the value is <span pulumi-lang-nodejs="`true`" pulumi-lang-dotnet="`True`" pulumi-lang-go="`true`" pulumi-lang-python="`true`" pulumi-lang-yaml="`true`" pulumi-lang-java="`true`" pulumi-lang-hcl="`true`">`true`</span>. If the object exists in test mode, the value is <span pulumi-lang-nodejs="`false`" pulumi-lang-dotnet="`False`" pulumi-lang-go="`false`" pulumi-lang-python="`false`" pulumi-lang-yaml="`false`" pulumi-lang-java="`false`" pulumi-lang-hcl="`false`">`false`</span>.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] metadata: Set of [key-value pairs](https://docs.stripe.com/api/metadata) that you can attach to an object. This can be useful for storing additional information about the object in a structured format.
@@ -469,6 +469,34 @@ class ShippingRate(pulumi.CustomResource):
         __props__.__dict__["tax_code"] = tax_code
         __props__.__dict__["type"] = type
         return ShippingRate(resource_name, opts=opts, __props__=__props__)
+
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            active: pulumi.Input[Optional[_builtins.bool]] = None,
+            created: pulumi.Input[Optional[_builtins.float]] = None,
+            delivery_estimates: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ShippingRateDeliveryEstimateArgs', 'ShippingRateDeliveryEstimateArgsDict', 'outputs.ShippingRateDeliveryEstimate']]]]] = None,
+            display_name: pulumi.Input[Optional[_builtins.str]] = None,
+            fixed_amounts: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ShippingRateFixedAmountArgs', 'ShippingRateFixedAmountArgsDict', 'outputs.ShippingRateFixedAmount']]]]] = None,
+            livemode: pulumi.Input[Optional[_builtins.bool]] = None,
+            metadata: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+            object: pulumi.Input[Optional[_builtins.str]] = None,
+            tax_behavior: pulumi.Input[Optional[_builtins.str]] = None,
+            tax_code: pulumi.Input[Optional[_builtins.str]] = None,
+            type: pulumi.Input[Optional[_builtins.str]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["active"] = active
+        __props__["created"] = created
+        __props__["deliveryEstimates"] = delivery_estimates
+        __props__["displayName"] = display_name
+        __props__["fixedAmounts"] = fixed_amounts
+        __props__["livemode"] = livemode
+        __props__["metadata"] = metadata
+        __props__["object"] = object
+        __props__["taxBehavior"] = tax_behavior
+        __props__["taxCode"] = tax_code
+        __props__["type"] = type
+        return pulumi.runtime.exists_resource(None, 'stripe:index/shippingRate:ShippingRate', id, __props__, opts or pulumi.ResourceOptions(), package_ref=_utilities.get_package())
 
     @_builtins.property
     @pulumi.getter

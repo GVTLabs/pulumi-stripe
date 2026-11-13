@@ -33,14 +33,14 @@ public final class PaymentIntentPaymentMethodOptionsPixArgs extends com.pulumi.r
     }
 
     /**
-     * The number of seconds (between 10 and 1209600) after which Pix payment will expire.
+     * The number of seconds after PaymentIntent confirmation when the Pix expires (between 60 and 1209600, inclusive). If neither expiration option is supplied, defaults to 14400 seconds (4 hours). Mutually exclusive with &lt;span pulumi-lang-nodejs=&#34;`expiresAt`&#34; pulumi-lang-dotnet=&#34;`ExpiresAt`&#34; pulumi-lang-go=&#34;`expiresAt`&#34; pulumi-lang-python=&#34;`expires_at`&#34; pulumi-lang-yaml=&#34;`expiresAt`&#34; pulumi-lang-java=&#34;`expiresAt`&#34; pulumi-lang-hcl=&#34;`expires_at`&#34;&gt;`expiresAt`&lt;/span&gt;.
      * 
      */
     @Import(name="expiresAfterSeconds")
     private @Nullable Output<Double> expiresAfterSeconds;
 
     /**
-     * @return The number of seconds (between 10 and 1209600) after which Pix payment will expire.
+     * @return The number of seconds after PaymentIntent confirmation when the Pix expires (between 60 and 1209600, inclusive). If neither expiration option is supplied, defaults to 14400 seconds (4 hours). Mutually exclusive with &lt;span pulumi-lang-nodejs=&#34;`expiresAt`&#34; pulumi-lang-dotnet=&#34;`ExpiresAt`&#34; pulumi-lang-go=&#34;`expiresAt`&#34; pulumi-lang-python=&#34;`expires_at`&#34; pulumi-lang-yaml=&#34;`expiresAt`&#34; pulumi-lang-java=&#34;`expiresAt`&#34; pulumi-lang-hcl=&#34;`expires_at`&#34;&gt;`expiresAt`&lt;/span&gt;.
      * 
      */
     public Optional<Output<Double>> expiresAfterSeconds() {
@@ -48,14 +48,14 @@ public final class PaymentIntentPaymentMethodOptionsPixArgs extends com.pulumi.r
     }
 
     /**
-     * The timestamp at which the Pix expires.
+     * The absolute Unix timestamp at which the Pix expires. When supplied as an input, it must be between 60 and 1209600 seconds from the current time at validation, inclusive. If neither expiration option is supplied, the Pix expires 14400 seconds (4 hours) after PaymentIntent confirmation. Mutually exclusive with &lt;span pulumi-lang-nodejs=&#34;`expiresAfterSeconds`&#34; pulumi-lang-dotnet=&#34;`ExpiresAfterSeconds`&#34; pulumi-lang-go=&#34;`expiresAfterSeconds`&#34; pulumi-lang-python=&#34;`expires_after_seconds`&#34; pulumi-lang-yaml=&#34;`expiresAfterSeconds`&#34; pulumi-lang-java=&#34;`expiresAfterSeconds`&#34; pulumi-lang-hcl=&#34;`expires_after_seconds`&#34;&gt;`expiresAfterSeconds`&lt;/span&gt;.
      * 
      */
     @Import(name="expiresAt")
     private @Nullable Output<Double> expiresAt;
 
     /**
-     * @return The timestamp at which the Pix expires.
+     * @return The absolute Unix timestamp at which the Pix expires. When supplied as an input, it must be between 60 and 1209600 seconds from the current time at validation, inclusive. If neither expiration option is supplied, the Pix expires 14400 seconds (4 hours) after PaymentIntent confirmation. Mutually exclusive with &lt;span pulumi-lang-nodejs=&#34;`expiresAfterSeconds`&#34; pulumi-lang-dotnet=&#34;`ExpiresAfterSeconds`&#34; pulumi-lang-go=&#34;`expiresAfterSeconds`&#34; pulumi-lang-python=&#34;`expires_after_seconds`&#34; pulumi-lang-yaml=&#34;`expiresAfterSeconds`&#34; pulumi-lang-java=&#34;`expiresAfterSeconds`&#34; pulumi-lang-hcl=&#34;`expires_after_seconds`&#34;&gt;`expiresAfterSeconds`&lt;/span&gt;.
      * 
      */
     public Optional<Output<Double>> expiresAt() {
@@ -146,7 +146,7 @@ public final class PaymentIntentPaymentMethodOptionsPixArgs extends com.pulumi.r
         }
 
         /**
-         * @param expiresAfterSeconds The number of seconds (between 10 and 1209600) after which Pix payment will expire.
+         * @param expiresAfterSeconds The number of seconds after PaymentIntent confirmation when the Pix expires (between 60 and 1209600, inclusive). If neither expiration option is supplied, defaults to 14400 seconds (4 hours). Mutually exclusive with &lt;span pulumi-lang-nodejs=&#34;`expiresAt`&#34; pulumi-lang-dotnet=&#34;`ExpiresAt`&#34; pulumi-lang-go=&#34;`expiresAt`&#34; pulumi-lang-python=&#34;`expires_at`&#34; pulumi-lang-yaml=&#34;`expiresAt`&#34; pulumi-lang-java=&#34;`expiresAt`&#34; pulumi-lang-hcl=&#34;`expires_at`&#34;&gt;`expiresAt`&lt;/span&gt;.
          * 
          * @return builder
          * 
@@ -157,7 +157,7 @@ public final class PaymentIntentPaymentMethodOptionsPixArgs extends com.pulumi.r
         }
 
         /**
-         * @param expiresAfterSeconds The number of seconds (between 10 and 1209600) after which Pix payment will expire.
+         * @param expiresAfterSeconds The number of seconds after PaymentIntent confirmation when the Pix expires (between 60 and 1209600, inclusive). If neither expiration option is supplied, defaults to 14400 seconds (4 hours). Mutually exclusive with &lt;span pulumi-lang-nodejs=&#34;`expiresAt`&#34; pulumi-lang-dotnet=&#34;`ExpiresAt`&#34; pulumi-lang-go=&#34;`expiresAt`&#34; pulumi-lang-python=&#34;`expires_at`&#34; pulumi-lang-yaml=&#34;`expiresAt`&#34; pulumi-lang-java=&#34;`expiresAt`&#34; pulumi-lang-hcl=&#34;`expires_at`&#34;&gt;`expiresAt`&lt;/span&gt;.
          * 
          * @return builder
          * 
@@ -167,7 +167,7 @@ public final class PaymentIntentPaymentMethodOptionsPixArgs extends com.pulumi.r
         }
 
         /**
-         * @param expiresAt The timestamp at which the Pix expires.
+         * @param expiresAt The absolute Unix timestamp at which the Pix expires. When supplied as an input, it must be between 60 and 1209600 seconds from the current time at validation, inclusive. If neither expiration option is supplied, the Pix expires 14400 seconds (4 hours) after PaymentIntent confirmation. Mutually exclusive with &lt;span pulumi-lang-nodejs=&#34;`expiresAfterSeconds`&#34; pulumi-lang-dotnet=&#34;`ExpiresAfterSeconds`&#34; pulumi-lang-go=&#34;`expiresAfterSeconds`&#34; pulumi-lang-python=&#34;`expires_after_seconds`&#34; pulumi-lang-yaml=&#34;`expiresAfterSeconds`&#34; pulumi-lang-java=&#34;`expiresAfterSeconds`&#34; pulumi-lang-hcl=&#34;`expires_after_seconds`&#34;&gt;`expiresAfterSeconds`&lt;/span&gt;.
          * 
          * @return builder
          * 
@@ -178,7 +178,7 @@ public final class PaymentIntentPaymentMethodOptionsPixArgs extends com.pulumi.r
         }
 
         /**
-         * @param expiresAt The timestamp at which the Pix expires.
+         * @param expiresAt The absolute Unix timestamp at which the Pix expires. When supplied as an input, it must be between 60 and 1209600 seconds from the current time at validation, inclusive. If neither expiration option is supplied, the Pix expires 14400 seconds (4 hours) after PaymentIntent confirmation. Mutually exclusive with &lt;span pulumi-lang-nodejs=&#34;`expiresAfterSeconds`&#34; pulumi-lang-dotnet=&#34;`ExpiresAfterSeconds`&#34; pulumi-lang-go=&#34;`expiresAfterSeconds`&#34; pulumi-lang-python=&#34;`expires_after_seconds`&#34; pulumi-lang-yaml=&#34;`expiresAfterSeconds`&#34; pulumi-lang-java=&#34;`expiresAfterSeconds`&#34; pulumi-lang-hcl=&#34;`expires_after_seconds`&#34;&gt;`expiresAfterSeconds`&lt;/span&gt;.
          * 
          * @return builder
          * 

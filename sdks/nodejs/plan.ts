@@ -20,6 +20,17 @@ export class Plan extends pulumi.CustomResource {
         return new Plan(name, <any>state, { ...opts, id: id });
     }
 
+    /**
+     * Check whether an existing Plan resource with the given ID exists.
+     *
+     * @param id The _unique_ provider ID of the resource to check.
+     * @param state Any extra arguments used during the lookup.
+     * @param opts Optional settings to control the behavior of the CustomResource.
+     */
+    public static exists(id: pulumi.Input<string>, state?: PlanState, opts?: pulumi.CustomResourceOptions): pulumi.Output<boolean> {
+        return pulumi.runtime.existsResource("stripe:index/plan:Plan", id, <any>state || {}, { ...opts }, utilities.getPackage());
+    }
+
     /** @internal */
     public static readonly __pulumiType = 'stripe:index/plan:Plan';
 
@@ -87,6 +98,10 @@ export class Plan extends pulumi.CustomResource {
      */
     declare public /*out*/ readonly object: pulumi.Output<string>;
     /**
+     * Unique identifier for the object.
+     */
+    declare public readonly planId: pulumi.Output<string>;
+    /**
      * The product whose pricing this plan determines.
      */
     declare public readonly product: pulumi.Output<string>;
@@ -137,6 +152,7 @@ export class Plan extends pulumi.CustomResource {
             resourceInputs["meter"] = state?.meter;
             resourceInputs["nickname"] = state?.nickname;
             resourceInputs["object"] = state?.object;
+            resourceInputs["planId"] = state?.planId;
             resourceInputs["product"] = state?.product;
             resourceInputs["tiers"] = state?.tiers;
             resourceInputs["tiersMode"] = state?.tiersMode;
@@ -161,6 +177,7 @@ export class Plan extends pulumi.CustomResource {
             resourceInputs["metadata"] = args?.metadata;
             resourceInputs["meter"] = args?.meter;
             resourceInputs["nickname"] = args?.nickname;
+            resourceInputs["planId"] = args?.planId;
             resourceInputs["product"] = args?.product;
             resourceInputs["tiers"] = args?.tiers;
             resourceInputs["tiersMode"] = args?.tiersMode;
@@ -233,6 +250,10 @@ export interface PlanState {
      */
     object?: pulumi.Input<string | undefined>;
     /**
+     * Unique identifier for the object.
+     */
+    planId?: pulumi.Input<string | undefined>;
+    /**
      * The product whose pricing this plan determines.
      */
     product?: pulumi.Input<string | undefined>;
@@ -302,6 +323,10 @@ export interface PlanArgs {
      * A brief description of the plan, hidden from customers.
      */
     nickname?: pulumi.Input<string | undefined>;
+    /**
+     * Unique identifier for the object.
+     */
+    planId?: pulumi.Input<string | undefined>;
     /**
      * The product whose pricing this plan determines.
      */

@@ -5,6 +5,7 @@ package com.pulumi.stripe.inputs;
 
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
+import com.pulumi.stripe.inputs.ChargePaymentMethodDetailsCardWalletLinkArgs;
 import com.pulumi.stripe.inputs.ChargePaymentMethodDetailsCardWalletMasterpassArgs;
 import com.pulumi.stripe.inputs.ChargePaymentMethodDetailsCardWalletVisaCheckoutArgs;
 import java.lang.String;
@@ -30,6 +31,13 @@ public final class ChargePaymentMethodDetailsCardWalletArgs extends com.pulumi.r
      */
     public Optional<Output<String>> dynamicLast4() {
         return Optional.ofNullable(this.dynamicLast4);
+    }
+
+    @Import(name="link")
+    private @Nullable Output<ChargePaymentMethodDetailsCardWalletLinkArgs> link;
+
+    public Optional<Output<ChargePaymentMethodDetailsCardWalletLinkArgs>> link() {
+        return Optional.ofNullable(this.link);
     }
 
     @Import(name="masterpass")
@@ -65,6 +73,7 @@ public final class ChargePaymentMethodDetailsCardWalletArgs extends com.pulumi.r
 
     private ChargePaymentMethodDetailsCardWalletArgs(ChargePaymentMethodDetailsCardWalletArgs $) {
         this.dynamicLast4 = $.dynamicLast4;
+        this.link = $.link;
         this.masterpass = $.masterpass;
         this.type = $.type;
         this.visaCheckout = $.visaCheckout;
@@ -107,6 +116,15 @@ public final class ChargePaymentMethodDetailsCardWalletArgs extends com.pulumi.r
          */
         public Builder dynamicLast4(String dynamicLast4) {
             return dynamicLast4(Output.of(dynamicLast4));
+        }
+
+        public Builder link(@Nullable Output<ChargePaymentMethodDetailsCardWalletLinkArgs> link) {
+            $.link = link;
+            return this;
+        }
+
+        public Builder link(ChargePaymentMethodDetailsCardWalletLinkArgs link) {
+            return link(Output.of(link));
         }
 
         public Builder masterpass(@Nullable Output<ChargePaymentMethodDetailsCardWalletMasterpassArgs> masterpass) {

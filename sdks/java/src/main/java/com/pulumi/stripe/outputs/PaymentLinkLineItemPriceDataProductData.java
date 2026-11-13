@@ -5,6 +5,7 @@ package com.pulumi.stripe.outputs;
 
 import com.pulumi.core.annotations.CustomType;
 import com.pulumi.exceptions.MissingRequiredPropertyException;
+import com.pulumi.stripe.outputs.PaymentLinkLineItemPriceDataProductDataTaxDetails;
 import java.lang.String;
 import java.util.List;
 import java.util.Map;
@@ -39,6 +40,11 @@ public final class PaymentLinkLineItemPriceDataProductData {
      * 
      */
     private @Nullable String taxCode;
+    /**
+     * @return Tax details for this product, including the [tax code](https://www.terraform.io/tax/tax-codes) and an optional performance location.
+     * 
+     */
+    private @Nullable PaymentLinkLineItemPriceDataProductDataTaxDetails taxDetails;
     /**
      * @return A label that represents units of this product. When set, this will be included in customers&#39; receipts, invoices, Checkout, and the customer portal.
      * 
@@ -82,6 +88,13 @@ public final class PaymentLinkLineItemPriceDataProductData {
         return Optional.ofNullable(this.taxCode);
     }
     /**
+     * @return Tax details for this product, including the [tax code](https://www.terraform.io/tax/tax-codes) and an optional performance location.
+     * 
+     */
+    public Optional<PaymentLinkLineItemPriceDataProductDataTaxDetails> taxDetails() {
+        return Optional.ofNullable(this.taxDetails);
+    }
+    /**
      * @return A label that represents units of this product. When set, this will be included in customers&#39; receipts, invoices, Checkout, and the customer portal.
      * 
      */
@@ -103,6 +116,7 @@ public final class PaymentLinkLineItemPriceDataProductData {
         private @Nullable Map<String,String> metadata;
         private String name;
         private @Nullable String taxCode;
+        private @Nullable PaymentLinkLineItemPriceDataProductDataTaxDetails taxDetails;
         private @Nullable String unitLabel;
         public Builder() {}
         public Builder(PaymentLinkLineItemPriceDataProductData defaults) {
@@ -112,6 +126,7 @@ public final class PaymentLinkLineItemPriceDataProductData {
     	      this.metadata = defaults.metadata;
     	      this.name = defaults.name;
     	      this.taxCode = defaults.taxCode;
+    	      this.taxDetails = defaults.taxDetails;
     	      this.unitLabel = defaults.unitLabel;
         }
 
@@ -151,6 +166,12 @@ public final class PaymentLinkLineItemPriceDataProductData {
             return this;
         }
         @CustomType.Setter
+        public Builder taxDetails(@Nullable PaymentLinkLineItemPriceDataProductDataTaxDetails taxDetails) {
+
+            this.taxDetails = taxDetails;
+            return this;
+        }
+        @CustomType.Setter
         public Builder unitLabel(@Nullable String unitLabel) {
 
             this.unitLabel = unitLabel;
@@ -163,6 +184,7 @@ public final class PaymentLinkLineItemPriceDataProductData {
             _resultValue.metadata = metadata;
             _resultValue.name = name;
             _resultValue.taxCode = taxCode;
+            _resultValue.taxDetails = taxDetails;
             _resultValue.unitLabel = unitLabel;
             return _resultValue;
         }

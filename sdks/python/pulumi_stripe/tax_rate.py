@@ -585,7 +585,7 @@ class TaxRate(pulumi.CustomResource):
             description: pulumi.Input[Optional[_builtins.str]] = None,
             display_name: pulumi.Input[Optional[_builtins.str]] = None,
             effective_percentage: pulumi.Input[Optional[_builtins.float]] = None,
-            flat_amount: pulumi.Input[Optional[Union['TaxRateFlatAmountArgs', 'TaxRateFlatAmountArgsDict']]] = None,
+            flat_amount: pulumi.Input[Optional[Union['TaxRateFlatAmountArgs', 'TaxRateFlatAmountArgsDict', 'outputs.TaxRateFlatAmount']]] = None,
             inclusive: pulumi.Input[Optional[_builtins.bool]] = None,
             jurisdiction: pulumi.Input[Optional[_builtins.str]] = None,
             jurisdiction_level: pulumi.Input[Optional[_builtins.str]] = None,
@@ -611,7 +611,7 @@ class TaxRate(pulumi.CustomResource):
         :param pulumi.Input[_builtins.float] effective_percentage: Actual/effective tax rate percentage out of 100. For tax calculations with automatic_tax[enabled]=true,
                this percentage reflects the rate actually used to calculate tax based on the product's taxability
                and whether the user is registered to collect taxes in the corresponding jurisdiction.
-        :param pulumi.Input[Union['TaxRateFlatAmountArgs', 'TaxRateFlatAmountArgsDict']] flat_amount: The amount of the tax rate when the <span pulumi-lang-nodejs="`rateType`" pulumi-lang-dotnet="`RateType`" pulumi-lang-go="`rateType`" pulumi-lang-python="`rate_type`" pulumi-lang-yaml="`rateType`" pulumi-lang-java="`rateType`" pulumi-lang-hcl="`rate_type`">`rateType`</span> is <span pulumi-lang-nodejs="`flatAmount`" pulumi-lang-dotnet="`FlatAmount`" pulumi-lang-go="`flatAmount`" pulumi-lang-python="`flat_amount`" pulumi-lang-yaml="`flatAmount`" pulumi-lang-java="`flatAmount`" pulumi-lang-hcl="`flat_amount`">`flatAmount`</span>. Tax rates with <span pulumi-lang-nodejs="`rateType`" pulumi-lang-dotnet="`RateType`" pulumi-lang-go="`rateType`" pulumi-lang-python="`rate_type`" pulumi-lang-yaml="`rateType`" pulumi-lang-java="`rateType`" pulumi-lang-hcl="`rate_type`">`rateType`</span> <span pulumi-lang-nodejs="`percentage`" pulumi-lang-dotnet="`Percentage`" pulumi-lang-go="`percentage`" pulumi-lang-python="`percentage`" pulumi-lang-yaml="`percentage`" pulumi-lang-java="`percentage`" pulumi-lang-hcl="`percentage`">`percentage`</span> can vary based on the transaction, resulting in this field being <span pulumi-lang-nodejs="`null`" pulumi-lang-dotnet="`Null`" pulumi-lang-go="`null`" pulumi-lang-python="`null`" pulumi-lang-yaml="`null`" pulumi-lang-java="`null`" pulumi-lang-hcl="`null`">`null`</span>. This field exposes the amount and currency of the flat tax rate.
+        :param pulumi.Input[Union['TaxRateFlatAmountArgs', 'TaxRateFlatAmountArgsDict', 'outputs.TaxRateFlatAmount']] flat_amount: The amount of the tax rate when the <span pulumi-lang-nodejs="`rateType`" pulumi-lang-dotnet="`RateType`" pulumi-lang-go="`rateType`" pulumi-lang-python="`rate_type`" pulumi-lang-yaml="`rateType`" pulumi-lang-java="`rateType`" pulumi-lang-hcl="`rate_type`">`rateType`</span> is <span pulumi-lang-nodejs="`flatAmount`" pulumi-lang-dotnet="`FlatAmount`" pulumi-lang-go="`flatAmount`" pulumi-lang-python="`flat_amount`" pulumi-lang-yaml="`flatAmount`" pulumi-lang-java="`flatAmount`" pulumi-lang-hcl="`flat_amount`">`flatAmount`</span>. Tax rates with <span pulumi-lang-nodejs="`rateType`" pulumi-lang-dotnet="`RateType`" pulumi-lang-go="`rateType`" pulumi-lang-python="`rate_type`" pulumi-lang-yaml="`rateType`" pulumi-lang-java="`rateType`" pulumi-lang-hcl="`rate_type`">`rateType`</span> <span pulumi-lang-nodejs="`percentage`" pulumi-lang-dotnet="`Percentage`" pulumi-lang-go="`percentage`" pulumi-lang-python="`percentage`" pulumi-lang-yaml="`percentage`" pulumi-lang-java="`percentage`" pulumi-lang-hcl="`percentage`">`percentage`</span> can vary based on the transaction, resulting in this field being <span pulumi-lang-nodejs="`null`" pulumi-lang-dotnet="`Null`" pulumi-lang-go="`null`" pulumi-lang-python="`null`" pulumi-lang-yaml="`null`" pulumi-lang-java="`null`" pulumi-lang-hcl="`null`">`null`</span>. This field exposes the amount and currency of the flat tax rate.
         :param pulumi.Input[_builtins.bool] inclusive: This specifies if the tax rate is inclusive or exclusive.
         :param pulumi.Input[_builtins.str] jurisdiction: The jurisdiction for the tax rate. You can use this label field for tax reporting purposes. It also appears on your customer’s invoice.
         :param pulumi.Input[_builtins.str] jurisdiction_level: The level of the jurisdiction that imposes this tax rate. Will be <span pulumi-lang-nodejs="`null`" pulumi-lang-dotnet="`Null`" pulumi-lang-go="`null`" pulumi-lang-python="`null`" pulumi-lang-yaml="`null`" pulumi-lang-java="`null`" pulumi-lang-hcl="`null`">`null`</span> for manually defined tax rates.
@@ -645,6 +645,46 @@ class TaxRate(pulumi.CustomResource):
         __props__.__dict__["state"] = state
         __props__.__dict__["tax_type"] = tax_type
         return TaxRate(resource_name, opts=opts, __props__=__props__)
+
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            active: pulumi.Input[Optional[_builtins.bool]] = None,
+            country: pulumi.Input[Optional[_builtins.str]] = None,
+            created: pulumi.Input[Optional[_builtins.float]] = None,
+            description: pulumi.Input[Optional[_builtins.str]] = None,
+            display_name: pulumi.Input[Optional[_builtins.str]] = None,
+            effective_percentage: pulumi.Input[Optional[_builtins.float]] = None,
+            flat_amount: pulumi.Input[Optional[Union['TaxRateFlatAmountArgs', 'TaxRateFlatAmountArgsDict', 'outputs.TaxRateFlatAmount']]] = None,
+            inclusive: pulumi.Input[Optional[_builtins.bool]] = None,
+            jurisdiction: pulumi.Input[Optional[_builtins.str]] = None,
+            jurisdiction_level: pulumi.Input[Optional[_builtins.str]] = None,
+            livemode: pulumi.Input[Optional[_builtins.bool]] = None,
+            metadata: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+            object: pulumi.Input[Optional[_builtins.str]] = None,
+            percentage: pulumi.Input[Optional[_builtins.float]] = None,
+            rate_type: pulumi.Input[Optional[_builtins.str]] = None,
+            state: pulumi.Input[Optional[_builtins.str]] = None,
+            tax_type: pulumi.Input[Optional[_builtins.str]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["active"] = active
+        __props__["country"] = country
+        __props__["created"] = created
+        __props__["description"] = description
+        __props__["displayName"] = display_name
+        __props__["effectivePercentage"] = effective_percentage
+        __props__["flatAmount"] = flat_amount
+        __props__["inclusive"] = inclusive
+        __props__["jurisdiction"] = jurisdiction
+        __props__["jurisdictionLevel"] = jurisdiction_level
+        __props__["livemode"] = livemode
+        __props__["metadata"] = metadata
+        __props__["object"] = object
+        __props__["percentage"] = percentage
+        __props__["rateType"] = rate_type
+        __props__["state"] = state
+        __props__["taxType"] = tax_type
+        return pulumi.runtime.exists_resource(None, 'stripe:index/taxRate:TaxRate', id, __props__, opts or pulumi.ResourceOptions(), package_ref=_utilities.get_package())
 
     @_builtins.property
     @pulumi.getter

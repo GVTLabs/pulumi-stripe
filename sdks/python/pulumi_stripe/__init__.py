@@ -7,8 +7,10 @@ from . import _utilities
 import typing
 # Export this package's modules as members:
 from .apple_pay_domain import *
+from .apps_install import *
 from .billing_alert import *
 from .billing_credit_grant import *
+from .billing_feedback_option import *
 from .billing_meter import *
 from .billing_portal_configuration import *
 from .charge import *
@@ -35,6 +37,7 @@ from .person import *
 from .plan import *
 from .price import *
 from .product import *
+from .product_catalog_trial_offer import *
 from .product_feature import *
 from .promotion_code import *
 from .provider import *
@@ -48,13 +51,23 @@ from .subscription import *
 from .subscription_item import *
 from .subscription_schedule import *
 from .tax_id import *
+from .tax_location import *
 from .tax_rate import *
 from .tax_registration import *
 from .terminal_configuration import *
 from .terminal_location import *
 from .terminal_reader import *
+from .three_d_secure_authentication import *
 from .treasury_financial_account import *
 from .v2_core_event_destination import *
+from .v2_core_vault_gb_bank_account import *
+from .v2_core_vault_us_bank_account import *
+from .v2_money_management_financial_address import *
+from .v2_money_management_inbound_transfer import *
+from .v2_money_management_outbound_payment import *
+from .v2_money_management_outbound_setup_intent import *
+from .v2_money_management_payout_intent import *
+from .v2_money_management_recipient_verification import *
 from .webhook_endpoint import *
 from ._inputs import *
 from . import outputs
@@ -79,6 +92,14 @@ _utilities.register(
  },
  {
   "pkg": "stripe",
+  "mod": "index/appsInstall",
+  "fqn": "pulumi_stripe",
+  "classes": {
+   "stripe:index/appsInstall:AppsInstall": "AppsInstall"
+  }
+ },
+ {
+  "pkg": "stripe",
   "mod": "index/billingAlert",
   "fqn": "pulumi_stripe",
   "classes": {
@@ -91,6 +112,14 @@ _utilities.register(
   "fqn": "pulumi_stripe",
   "classes": {
    "stripe:index/billingCreditGrant:BillingCreditGrant": "BillingCreditGrant"
+  }
+ },
+ {
+  "pkg": "stripe",
+  "mod": "index/billingFeedbackOption",
+  "fqn": "pulumi_stripe",
+  "classes": {
+   "stripe:index/billingFeedbackOption:BillingFeedbackOption": "BillingFeedbackOption"
   }
  },
  {
@@ -303,6 +332,14 @@ _utilities.register(
  },
  {
   "pkg": "stripe",
+  "mod": "index/productCatalogTrialOffer",
+  "fqn": "pulumi_stripe",
+  "classes": {
+   "stripe:index/productCatalogTrialOffer:ProductCatalogTrialOffer": "ProductCatalogTrialOffer"
+  }
+ },
+ {
+  "pkg": "stripe",
   "mod": "index/productFeature",
   "fqn": "pulumi_stripe",
   "classes": {
@@ -399,6 +436,14 @@ _utilities.register(
  },
  {
   "pkg": "stripe",
+  "mod": "index/taxLocation",
+  "fqn": "pulumi_stripe",
+  "classes": {
+   "stripe:index/taxLocation:TaxLocation": "TaxLocation"
+  }
+ },
+ {
+  "pkg": "stripe",
   "mod": "index/taxRate",
   "fqn": "pulumi_stripe",
   "classes": {
@@ -439,6 +484,14 @@ _utilities.register(
  },
  {
   "pkg": "stripe",
+  "mod": "index/threeDSecureAuthentication",
+  "fqn": "pulumi_stripe",
+  "classes": {
+   "stripe:index/threeDSecureAuthentication:ThreeDSecureAuthentication": "ThreeDSecureAuthentication"
+  }
+ },
+ {
+  "pkg": "stripe",
   "mod": "index/treasuryFinancialAccount",
   "fqn": "pulumi_stripe",
   "classes": {
@@ -451,6 +504,70 @@ _utilities.register(
   "fqn": "pulumi_stripe",
   "classes": {
    "stripe:index/v2CoreEventDestination:V2CoreEventDestination": "V2CoreEventDestination"
+  }
+ },
+ {
+  "pkg": "stripe",
+  "mod": "index/v2CoreVaultGbBankAccount",
+  "fqn": "pulumi_stripe",
+  "classes": {
+   "stripe:index/v2CoreVaultGbBankAccount:V2CoreVaultGbBankAccount": "V2CoreVaultGbBankAccount"
+  }
+ },
+ {
+  "pkg": "stripe",
+  "mod": "index/v2CoreVaultUsBankAccount",
+  "fqn": "pulumi_stripe",
+  "classes": {
+   "stripe:index/v2CoreVaultUsBankAccount:V2CoreVaultUsBankAccount": "V2CoreVaultUsBankAccount"
+  }
+ },
+ {
+  "pkg": "stripe",
+  "mod": "index/v2MoneyManagementFinancialAddress",
+  "fqn": "pulumi_stripe",
+  "classes": {
+   "stripe:index/v2MoneyManagementFinancialAddress:V2MoneyManagementFinancialAddress": "V2MoneyManagementFinancialAddress"
+  }
+ },
+ {
+  "pkg": "stripe",
+  "mod": "index/v2MoneyManagementInboundTransfer",
+  "fqn": "pulumi_stripe",
+  "classes": {
+   "stripe:index/v2MoneyManagementInboundTransfer:V2MoneyManagementInboundTransfer": "V2MoneyManagementInboundTransfer"
+  }
+ },
+ {
+  "pkg": "stripe",
+  "mod": "index/v2MoneyManagementOutboundPayment",
+  "fqn": "pulumi_stripe",
+  "classes": {
+   "stripe:index/v2MoneyManagementOutboundPayment:V2MoneyManagementOutboundPayment": "V2MoneyManagementOutboundPayment"
+  }
+ },
+ {
+  "pkg": "stripe",
+  "mod": "index/v2MoneyManagementOutboundSetupIntent",
+  "fqn": "pulumi_stripe",
+  "classes": {
+   "stripe:index/v2MoneyManagementOutboundSetupIntent:V2MoneyManagementOutboundSetupIntent": "V2MoneyManagementOutboundSetupIntent"
+  }
+ },
+ {
+  "pkg": "stripe",
+  "mod": "index/v2MoneyManagementPayoutIntent",
+  "fqn": "pulumi_stripe",
+  "classes": {
+   "stripe:index/v2MoneyManagementPayoutIntent:V2MoneyManagementPayoutIntent": "V2MoneyManagementPayoutIntent"
+  }
+ },
+ {
+  "pkg": "stripe",
+  "mod": "index/v2MoneyManagementRecipientVerification",
+  "fqn": "pulumi_stripe",
+  "classes": {
+   "stripe:index/v2MoneyManagementRecipientVerification:V2MoneyManagementRecipientVerification": "V2MoneyManagementRecipientVerification"
   }
  },
  {

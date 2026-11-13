@@ -22,6 +22,14 @@ namespace Pulumi.Stripe.Outputs
         /// </summary>
         public readonly Outputs.SubscriptionPaymentSettingsPaymentMethodOptionsBancontact? Bancontact;
         /// <summary>
+        /// This sub-hash contains details about the Billie payment method options to pass to invoices created by the subscription.
+        /// </summary>
+        public readonly Outputs.SubscriptionPaymentSettingsPaymentMethodOptionsBillie? Billie;
+        /// <summary>
+        /// This sub-hash contains details about the Blik payment method options to pass to invoices created by the subscription.
+        /// </summary>
+        public readonly Outputs.SubscriptionPaymentSettingsPaymentMethodOptionsBlik? Blik;
+        /// <summary>
         /// This sub-hash contains details about the Card payment method options to pass to invoices created by the subscription.
         /// </summary>
         public readonly Outputs.SubscriptionPaymentSettingsPaymentMethodOptionsCard? Card;
@@ -52,6 +60,10 @@ namespace Pulumi.Stripe.Outputs
 
             Outputs.SubscriptionPaymentSettingsPaymentMethodOptionsBancontact? bancontact,
 
+            Outputs.SubscriptionPaymentSettingsPaymentMethodOptionsBillie? billie,
+
+            Outputs.SubscriptionPaymentSettingsPaymentMethodOptionsBlik? blik,
+
             Outputs.SubscriptionPaymentSettingsPaymentMethodOptionsCard? card,
 
             Outputs.SubscriptionPaymentSettingsPaymentMethodOptionsCustomerBalance? customerBalance,
@@ -66,6 +78,8 @@ namespace Pulumi.Stripe.Outputs
         {
             AcssDebit = acssDebit;
             Bancontact = bancontact;
+            Billie = billie;
+            Blik = blik;
             Card = card;
             CustomerBalance = customerBalance;
             Payto = payto;

@@ -95,7 +95,7 @@ namespace Pulumi.Stripe
         public Output<ImmutableArray<Outputs.ClimateOrderDeliveryDetail>> DeliveryDetails { get; private set; } = null!;
 
         /// <summary>
-        /// The year this order is expected to be delivered.
+        /// The year this order is expected to be delivered. If the year is in the past, the order is a spot purchase and will be delivered within 30 days of purchase.
         /// </summary>
         [Output("expectedDeliveryYear")]
         public Output<double> ExpectedDeliveryYear { get; private set; } = null!;
@@ -349,7 +349,7 @@ namespace Pulumi.Stripe
         }
 
         /// <summary>
-        /// The year this order is expected to be delivered.
+        /// The year this order is expected to be delivered. If the year is in the past, the order is a spot purchase and will be delivered within 30 days of purchase.
         /// </summary>
         [Input("expectedDeliveryYear")]
         public Input<double>? ExpectedDeliveryYear { get; set; }

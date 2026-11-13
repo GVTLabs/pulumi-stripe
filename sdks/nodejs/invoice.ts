@@ -20,6 +20,17 @@ export class Invoice extends pulumi.CustomResource {
         return new Invoice(name, <any>state, { ...opts, id: id });
     }
 
+    /**
+     * Check whether an existing Invoice resource with the given ID exists.
+     *
+     * @param id The _unique_ provider ID of the resource to check.
+     * @param state Any extra arguments used during the lookup.
+     * @param opts Optional settings to control the behavior of the CustomResource.
+     */
+    public static exists(id: pulumi.Input<string>, state?: InvoiceState, opts?: pulumi.CustomResourceOptions): pulumi.Output<boolean> {
+        return pulumi.runtime.existsResource("stripe:index/invoice:Invoice", id, <any>state || {}, { ...opts }, utilities.getPackage());
+    }
+
     /** @internal */
     public static readonly __pulumiType = 'stripe:index/invoice:Invoice';
 
@@ -277,7 +288,7 @@ export class Invoice extends pulumi.CustomResource {
      */
     declare public /*out*/ readonly receiptNumber: pulumi.Output<string>;
     /**
-     * The rendering-related settings that control how the invoice is displayed on customer-facing surfaces such as PDF and Hosted Invoice Page.
+     * The rendering-related settings that control how invoices render in customer-facing interfaces such as the PDF or hosted invoice page.
      */
     declare public readonly rendering: pulumi.Output<outputs.InvoiceRendering>;
     /**
@@ -300,6 +311,7 @@ export class Invoice extends pulumi.CustomResource {
      * The status of the invoice, one of <span pulumi-lang-nodejs="`draft`" pulumi-lang-dotnet="`Draft`" pulumi-lang-go="`draft`" pulumi-lang-python="`draft`" pulumi-lang-yaml="`draft`" pulumi-lang-java="`draft`" pulumi-lang-hcl="`draft`">`draft`</span>, <span pulumi-lang-nodejs="`open`" pulumi-lang-dotnet="`Open`" pulumi-lang-go="`open`" pulumi-lang-python="`open`" pulumi-lang-yaml="`open`" pulumi-lang-java="`open`" pulumi-lang-hcl="`open`">`open`</span>, <span pulumi-lang-nodejs="`paid`" pulumi-lang-dotnet="`Paid`" pulumi-lang-go="`paid`" pulumi-lang-python="`paid`" pulumi-lang-yaml="`paid`" pulumi-lang-java="`paid`" pulumi-lang-hcl="`paid`">`paid`</span>, <span pulumi-lang-nodejs="`uncollectible`" pulumi-lang-dotnet="`Uncollectible`" pulumi-lang-go="`uncollectible`" pulumi-lang-python="`uncollectible`" pulumi-lang-yaml="`uncollectible`" pulumi-lang-java="`uncollectible`" pulumi-lang-hcl="`uncollectible`">`uncollectible`</span>, or <span pulumi-lang-nodejs="`void`" pulumi-lang-dotnet="`Void`" pulumi-lang-go="`void`" pulumi-lang-python="`void`" pulumi-lang-yaml="`void`" pulumi-lang-java="`void`" pulumi-lang-hcl="`void`">`void`</span>. [Learn more](https://docs.stripe.com/billing/invoices/workflow#workflow-overview)
      */
     declare public /*out*/ readonly status: pulumi.Output<string>;
+    declare public /*out*/ readonly statusDetails: pulumi.Output<outputs.InvoiceStatusDetails>;
     declare public /*out*/ readonly statusTransitions: pulumi.Output<outputs.InvoiceStatusTransitions>;
     declare public readonly subscription: pulumi.Output<string>;
     /**
@@ -424,6 +436,7 @@ export class Invoice extends pulumi.CustomResource {
             resourceInputs["startingBalance"] = state?.startingBalance;
             resourceInputs["statementDescriptor"] = state?.statementDescriptor;
             resourceInputs["status"] = state?.status;
+            resourceInputs["statusDetails"] = state?.statusDetails;
             resourceInputs["statusTransitions"] = state?.statusTransitions;
             resourceInputs["subscription"] = state?.subscription;
             resourceInputs["subtotal"] = state?.subtotal;
@@ -507,6 +520,7 @@ export class Invoice extends pulumi.CustomResource {
             resourceInputs["receiptNumber"] = undefined /*out*/;
             resourceInputs["startingBalance"] = undefined /*out*/;
             resourceInputs["status"] = undefined /*out*/;
+            resourceInputs["statusDetails"] = undefined /*out*/;
             resourceInputs["statusTransitions"] = undefined /*out*/;
             resourceInputs["subtotal"] = undefined /*out*/;
             resourceInputs["subtotalExcludingTax"] = undefined /*out*/;
@@ -773,7 +787,7 @@ export interface InvoiceState {
      */
     receiptNumber?: pulumi.Input<string | undefined>;
     /**
-     * The rendering-related settings that control how the invoice is displayed on customer-facing surfaces such as PDF and Hosted Invoice Page.
+     * The rendering-related settings that control how invoices render in customer-facing interfaces such as the PDF or hosted invoice page.
      */
     rendering?: pulumi.Input<inputs.InvoiceRendering | undefined>;
     /**
@@ -796,6 +810,7 @@ export interface InvoiceState {
      * The status of the invoice, one of <span pulumi-lang-nodejs="`draft`" pulumi-lang-dotnet="`Draft`" pulumi-lang-go="`draft`" pulumi-lang-python="`draft`" pulumi-lang-yaml="`draft`" pulumi-lang-java="`draft`" pulumi-lang-hcl="`draft`">`draft`</span>, <span pulumi-lang-nodejs="`open`" pulumi-lang-dotnet="`Open`" pulumi-lang-go="`open`" pulumi-lang-python="`open`" pulumi-lang-yaml="`open`" pulumi-lang-java="`open`" pulumi-lang-hcl="`open`">`open`</span>, <span pulumi-lang-nodejs="`paid`" pulumi-lang-dotnet="`Paid`" pulumi-lang-go="`paid`" pulumi-lang-python="`paid`" pulumi-lang-yaml="`paid`" pulumi-lang-java="`paid`" pulumi-lang-hcl="`paid`">`paid`</span>, <span pulumi-lang-nodejs="`uncollectible`" pulumi-lang-dotnet="`Uncollectible`" pulumi-lang-go="`uncollectible`" pulumi-lang-python="`uncollectible`" pulumi-lang-yaml="`uncollectible`" pulumi-lang-java="`uncollectible`" pulumi-lang-hcl="`uncollectible`">`uncollectible`</span>, or <span pulumi-lang-nodejs="`void`" pulumi-lang-dotnet="`Void`" pulumi-lang-go="`void`" pulumi-lang-python="`void`" pulumi-lang-yaml="`void`" pulumi-lang-java="`void`" pulumi-lang-hcl="`void`">`void`</span>. [Learn more](https://docs.stripe.com/billing/invoices/workflow#workflow-overview)
      */
     status?: pulumi.Input<string | undefined>;
+    statusDetails?: pulumi.Input<inputs.InvoiceStatusDetails | undefined>;
     statusTransitions?: pulumi.Input<inputs.InvoiceStatusTransitions | undefined>;
     subscription?: pulumi.Input<string | undefined>;
     /**
@@ -945,7 +960,7 @@ export interface InvoiceArgs {
      */
     pendingInvoiceItemsBehavior?: pulumi.Input<string | undefined>;
     /**
-     * The rendering-related settings that control how the invoice is displayed on customer-facing surfaces such as PDF and Hosted Invoice Page.
+     * The rendering-related settings that control how invoices render in customer-facing interfaces such as the PDF or hosted invoice page.
      */
     rendering?: pulumi.Input<inputs.InvoiceRendering | undefined>;
     /**

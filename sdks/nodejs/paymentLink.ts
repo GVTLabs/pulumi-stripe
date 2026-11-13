@@ -20,6 +20,17 @@ export class PaymentLink extends pulumi.CustomResource {
         return new PaymentLink(name, <any>state, { ...opts, id: id });
     }
 
+    /**
+     * Check whether an existing PaymentLink resource with the given ID exists.
+     *
+     * @param id The _unique_ provider ID of the resource to check.
+     * @param state Any extra arguments used during the lookup.
+     * @param opts Optional settings to control the behavior of the CustomResource.
+     */
+    public static exists(id: pulumi.Input<string>, state?: PaymentLinkState, opts?: pulumi.CustomResourceOptions): pulumi.Output<boolean> {
+        return pulumi.runtime.existsResource("stripe:index/paymentLink:PaymentLink", id, <any>state || {}, { ...opts }, utilities.getPackage());
+    }
+
     /** @internal */
     public static readonly __pulumiType = 'stripe:index/paymentLink:PaymentLink';
 
@@ -69,7 +80,7 @@ export class PaymentLink extends pulumi.CustomResource {
      */
     declare public readonly currency: pulumi.Output<string>;
     /**
-     * Collect additional information from your customer using custom fields. Up to 3 fields are supported. You can't set this parameter if <span pulumi-lang-nodejs="`uiMode`" pulumi-lang-dotnet="`UiMode`" pulumi-lang-go="`uiMode`" pulumi-lang-python="`ui_mode`" pulumi-lang-yaml="`uiMode`" pulumi-lang-java="`uiMode`" pulumi-lang-hcl="`ui_mode`">`uiMode`</span> is <span pulumi-lang-nodejs="`custom`" pulumi-lang-dotnet="`Custom`" pulumi-lang-go="`custom`" pulumi-lang-python="`custom`" pulumi-lang-yaml="`custom`" pulumi-lang-java="`custom`" pulumi-lang-hcl="`custom`">`custom`</span>.
+     * Collect additional information from your customer using custom fields. Up to 3 fields are supported. You can't set this parameter if <span pulumi-lang-nodejs="`uiMode`" pulumi-lang-dotnet="`UiMode`" pulumi-lang-go="`uiMode`" pulumi-lang-python="`ui_mode`" pulumi-lang-yaml="`uiMode`" pulumi-lang-java="`uiMode`" pulumi-lang-hcl="`ui_mode`">`uiMode`</span> is <span pulumi-lang-nodejs="`elements`" pulumi-lang-dotnet="`Elements`" pulumi-lang-go="`elements`" pulumi-lang-python="`elements`" pulumi-lang-yaml="`elements`" pulumi-lang-java="`elements`" pulumi-lang-hcl="`elements`">`elements`</span>.
      */
     declare public readonly customFields: pulumi.Output<outputs.PaymentLinkCustomField[]>;
     declare public readonly customText: pulumi.Output<outputs.PaymentLinkCustomText>;
@@ -296,7 +307,7 @@ export interface PaymentLinkState {
      */
     currency?: pulumi.Input<string | undefined>;
     /**
-     * Collect additional information from your customer using custom fields. Up to 3 fields are supported. You can't set this parameter if <span pulumi-lang-nodejs="`uiMode`" pulumi-lang-dotnet="`UiMode`" pulumi-lang-go="`uiMode`" pulumi-lang-python="`ui_mode`" pulumi-lang-yaml="`uiMode`" pulumi-lang-java="`uiMode`" pulumi-lang-hcl="`ui_mode`">`uiMode`</span> is <span pulumi-lang-nodejs="`custom`" pulumi-lang-dotnet="`Custom`" pulumi-lang-go="`custom`" pulumi-lang-python="`custom`" pulumi-lang-yaml="`custom`" pulumi-lang-java="`custom`" pulumi-lang-hcl="`custom`">`custom`</span>.
+     * Collect additional information from your customer using custom fields. Up to 3 fields are supported. You can't set this parameter if <span pulumi-lang-nodejs="`uiMode`" pulumi-lang-dotnet="`UiMode`" pulumi-lang-go="`uiMode`" pulumi-lang-python="`ui_mode`" pulumi-lang-yaml="`uiMode`" pulumi-lang-java="`uiMode`" pulumi-lang-hcl="`ui_mode`">`uiMode`</span> is <span pulumi-lang-nodejs="`elements`" pulumi-lang-dotnet="`Elements`" pulumi-lang-go="`elements`" pulumi-lang-python="`elements`" pulumi-lang-yaml="`elements`" pulumi-lang-java="`elements`" pulumi-lang-hcl="`elements`">`elements`</span>.
      */
     customFields?: pulumi.Input<pulumi.Input<inputs.PaymentLinkCustomField>[] | undefined>;
     customText?: pulumi.Input<inputs.PaymentLinkCustomText | undefined>;
@@ -424,7 +435,7 @@ export interface PaymentLinkArgs {
      */
     currency?: pulumi.Input<string | undefined>;
     /**
-     * Collect additional information from your customer using custom fields. Up to 3 fields are supported. You can't set this parameter if <span pulumi-lang-nodejs="`uiMode`" pulumi-lang-dotnet="`UiMode`" pulumi-lang-go="`uiMode`" pulumi-lang-python="`ui_mode`" pulumi-lang-yaml="`uiMode`" pulumi-lang-java="`uiMode`" pulumi-lang-hcl="`ui_mode`">`uiMode`</span> is <span pulumi-lang-nodejs="`custom`" pulumi-lang-dotnet="`Custom`" pulumi-lang-go="`custom`" pulumi-lang-python="`custom`" pulumi-lang-yaml="`custom`" pulumi-lang-java="`custom`" pulumi-lang-hcl="`custom`">`custom`</span>.
+     * Collect additional information from your customer using custom fields. Up to 3 fields are supported. You can't set this parameter if <span pulumi-lang-nodejs="`uiMode`" pulumi-lang-dotnet="`UiMode`" pulumi-lang-go="`uiMode`" pulumi-lang-python="`ui_mode`" pulumi-lang-yaml="`uiMode`" pulumi-lang-java="`uiMode`" pulumi-lang-hcl="`ui_mode`">`uiMode`</span> is <span pulumi-lang-nodejs="`elements`" pulumi-lang-dotnet="`Elements`" pulumi-lang-go="`elements`" pulumi-lang-python="`elements`" pulumi-lang-yaml="`elements`" pulumi-lang-java="`elements`" pulumi-lang-hcl="`elements`">`elements`</span>.
      */
     customFields?: pulumi.Input<pulumi.Input<inputs.PaymentLinkCustomField>[] | undefined>;
     customText?: pulumi.Input<inputs.PaymentLinkCustomText | undefined>;

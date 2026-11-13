@@ -23,10 +23,14 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 	switch typ {
 	case "stripe:index/applePayDomain:ApplePayDomain":
 		r = &ApplePayDomain{}
+	case "stripe:index/appsInstall:AppsInstall":
+		r = &AppsInstall{}
 	case "stripe:index/billingAlert:BillingAlert":
 		r = &BillingAlert{}
 	case "stripe:index/billingCreditGrant:BillingCreditGrant":
 		r = &BillingCreditGrant{}
+	case "stripe:index/billingFeedbackOption:BillingFeedbackOption":
+		r = &BillingFeedbackOption{}
 	case "stripe:index/billingMeter:BillingMeter":
 		r = &BillingMeter{}
 	case "stripe:index/billingPortalConfiguration:BillingPortalConfiguration":
@@ -79,6 +83,8 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &Price{}
 	case "stripe:index/product:Product":
 		r = &Product{}
+	case "stripe:index/productCatalogTrialOffer:ProductCatalogTrialOffer":
+		r = &ProductCatalogTrialOffer{}
 	case "stripe:index/productFeature:ProductFeature":
 		r = &ProductFeature{}
 	case "stripe:index/promotionCode:PromotionCode":
@@ -103,6 +109,8 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &SubscriptionSchedule{}
 	case "stripe:index/taxId:TaxId":
 		r = &TaxId{}
+	case "stripe:index/taxLocation:TaxLocation":
+		r = &TaxLocation{}
 	case "stripe:index/taxRate:TaxRate":
 		r = &TaxRate{}
 	case "stripe:index/taxRegistration:TaxRegistration":
@@ -113,10 +121,28 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &TerminalLocation{}
 	case "stripe:index/terminalReader:TerminalReader":
 		r = &TerminalReader{}
+	case "stripe:index/threeDSecureAuthentication:ThreeDSecureAuthentication":
+		r = &ThreeDSecureAuthentication{}
 	case "stripe:index/treasuryFinancialAccount:TreasuryFinancialAccount":
 		r = &TreasuryFinancialAccount{}
 	case "stripe:index/v2CoreEventDestination:V2CoreEventDestination":
 		r = &V2CoreEventDestination{}
+	case "stripe:index/v2CoreVaultGbBankAccount:V2CoreVaultGbBankAccount":
+		r = &V2CoreVaultGbBankAccount{}
+	case "stripe:index/v2CoreVaultUsBankAccount:V2CoreVaultUsBankAccount":
+		r = &V2CoreVaultUsBankAccount{}
+	case "stripe:index/v2MoneyManagementFinancialAddress:V2MoneyManagementFinancialAddress":
+		r = &V2MoneyManagementFinancialAddress{}
+	case "stripe:index/v2MoneyManagementInboundTransfer:V2MoneyManagementInboundTransfer":
+		r = &V2MoneyManagementInboundTransfer{}
+	case "stripe:index/v2MoneyManagementOutboundPayment:V2MoneyManagementOutboundPayment":
+		r = &V2MoneyManagementOutboundPayment{}
+	case "stripe:index/v2MoneyManagementOutboundSetupIntent:V2MoneyManagementOutboundSetupIntent":
+		r = &V2MoneyManagementOutboundSetupIntent{}
+	case "stripe:index/v2MoneyManagementPayoutIntent:V2MoneyManagementPayoutIntent":
+		r = &V2MoneyManagementPayoutIntent{}
+	case "stripe:index/v2MoneyManagementRecipientVerification:V2MoneyManagementRecipientVerification":
+		r = &V2MoneyManagementRecipientVerification{}
 	case "stripe:index/webhookEndpoint:WebhookEndpoint":
 		r = &WebhookEndpoint{}
 	default:
@@ -157,12 +183,22 @@ func init() {
 	)
 	pulumi.RegisterResourceModule(
 		"stripe",
+		"index/appsInstall",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"stripe",
 		"index/billingAlert",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(
 		"stripe",
 		"index/billingCreditGrant",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"stripe",
+		"index/billingFeedbackOption",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(
@@ -297,6 +333,11 @@ func init() {
 	)
 	pulumi.RegisterResourceModule(
 		"stripe",
+		"index/productCatalogTrialOffer",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"stripe",
 		"index/productFeature",
 		&module{version},
 	)
@@ -357,6 +398,11 @@ func init() {
 	)
 	pulumi.RegisterResourceModule(
 		"stripe",
+		"index/taxLocation",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"stripe",
 		"index/taxRate",
 		&module{version},
 	)
@@ -382,12 +428,57 @@ func init() {
 	)
 	pulumi.RegisterResourceModule(
 		"stripe",
+		"index/threeDSecureAuthentication",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"stripe",
 		"index/treasuryFinancialAccount",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(
 		"stripe",
 		"index/v2CoreEventDestination",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"stripe",
+		"index/v2CoreVaultGbBankAccount",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"stripe",
+		"index/v2CoreVaultUsBankAccount",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"stripe",
+		"index/v2MoneyManagementFinancialAddress",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"stripe",
+		"index/v2MoneyManagementInboundTransfer",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"stripe",
+		"index/v2MoneyManagementOutboundPayment",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"stripe",
+		"index/v2MoneyManagementOutboundSetupIntent",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"stripe",
+		"index/v2MoneyManagementPayoutIntent",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"stripe",
+		"index/v2MoneyManagementRecipientVerification",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(

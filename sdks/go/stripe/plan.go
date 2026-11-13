@@ -41,6 +41,8 @@ type Plan struct {
 	Nickname pulumi.StringOutput `pulumi:"nickname"`
 	// String representing the object's type. Objects of the same type share the same value.
 	Object pulumi.StringOutput `pulumi:"object"`
+	// Unique identifier for the object.
+	PlanId pulumi.StringOutput `pulumi:"planId"`
 	// The product whose pricing this plan determines.
 	Product pulumi.StringOutput `pulumi:"product"`
 	// Each element represents a pricing tier. This parameter requires <span pulumi-lang-nodejs="`billingScheme`" pulumi-lang-dotnet="`BillingScheme`" pulumi-lang-go="`billingScheme`" pulumi-lang-python="`billing_scheme`" pulumi-lang-yaml="`billingScheme`" pulumi-lang-java="`billingScheme`" pulumi-lang-hcl="`billing_scheme`">`billingScheme`</span> to be set to <span pulumi-lang-nodejs="`tiered`" pulumi-lang-dotnet="`Tiered`" pulumi-lang-go="`tiered`" pulumi-lang-python="`tiered`" pulumi-lang-yaml="`tiered`" pulumi-lang-java="`tiered`" pulumi-lang-hcl="`tiered`">`tiered`</span>. See also the documentation for <span pulumi-lang-nodejs="`billingScheme`" pulumi-lang-dotnet="`BillingScheme`" pulumi-lang-go="`billingScheme`" pulumi-lang-python="`billing_scheme`" pulumi-lang-yaml="`billingScheme`" pulumi-lang-java="`billingScheme`" pulumi-lang-hcl="`billing_scheme`">`billingScheme`</span>.
@@ -125,6 +127,8 @@ type planState struct {
 	Nickname *string `pulumi:"nickname"`
 	// String representing the object's type. Objects of the same type share the same value.
 	Object *string `pulumi:"object"`
+	// Unique identifier for the object.
+	PlanId *string `pulumi:"planId"`
 	// The product whose pricing this plan determines.
 	Product *string `pulumi:"product"`
 	// Each element represents a pricing tier. This parameter requires <span pulumi-lang-nodejs="`billingScheme`" pulumi-lang-dotnet="`BillingScheme`" pulumi-lang-go="`billingScheme`" pulumi-lang-python="`billing_scheme`" pulumi-lang-yaml="`billingScheme`" pulumi-lang-java="`billingScheme`" pulumi-lang-hcl="`billing_scheme`">`billingScheme`</span> to be set to <span pulumi-lang-nodejs="`tiered`" pulumi-lang-dotnet="`Tiered`" pulumi-lang-go="`tiered`" pulumi-lang-python="`tiered`" pulumi-lang-yaml="`tiered`" pulumi-lang-java="`tiered`" pulumi-lang-hcl="`tiered`">`tiered`</span>. See also the documentation for <span pulumi-lang-nodejs="`billingScheme`" pulumi-lang-dotnet="`BillingScheme`" pulumi-lang-go="`billingScheme`" pulumi-lang-python="`billing_scheme`" pulumi-lang-yaml="`billingScheme`" pulumi-lang-java="`billingScheme`" pulumi-lang-hcl="`billing_scheme`">`billingScheme`</span>.
@@ -166,6 +170,8 @@ type PlanState struct {
 	Nickname pulumi.StringPtrInput
 	// String representing the object's type. Objects of the same type share the same value.
 	Object pulumi.StringPtrInput
+	// Unique identifier for the object.
+	PlanId pulumi.StringPtrInput
 	// The product whose pricing this plan determines.
 	Product pulumi.StringPtrInput
 	// Each element represents a pricing tier. This parameter requires <span pulumi-lang-nodejs="`billingScheme`" pulumi-lang-dotnet="`BillingScheme`" pulumi-lang-go="`billingScheme`" pulumi-lang-python="`billing_scheme`" pulumi-lang-yaml="`billingScheme`" pulumi-lang-java="`billingScheme`" pulumi-lang-hcl="`billing_scheme`">`billingScheme`</span> to be set to <span pulumi-lang-nodejs="`tiered`" pulumi-lang-dotnet="`Tiered`" pulumi-lang-go="`tiered`" pulumi-lang-python="`tiered`" pulumi-lang-yaml="`tiered`" pulumi-lang-java="`tiered`" pulumi-lang-hcl="`tiered`">`tiered`</span>. See also the documentation for <span pulumi-lang-nodejs="`billingScheme`" pulumi-lang-dotnet="`BillingScheme`" pulumi-lang-go="`billingScheme`" pulumi-lang-python="`billing_scheme`" pulumi-lang-yaml="`billingScheme`" pulumi-lang-java="`billingScheme`" pulumi-lang-hcl="`billing_scheme`">`billingScheme`</span>.
@@ -182,6 +188,18 @@ type PlanState struct {
 
 func (PlanState) ElementType() reflect.Type {
 	return reflect.TypeOf((*planState)(nil)).Elem()
+}
+
+// PlanExists checks whether an existing Plan resource with the given ID exists.
+func PlanExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *PlanState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	ref, err := internal.PkgGetPackageRef(ctx)
+	if err != nil {
+		return pulumi.Bool(false).ToBoolOutput().ApplyT(func(bool) (bool, error) {
+			return false, err
+		}).(pulumi.BoolOutput)
+	}
+	return ctx.ExistsResource("stripe:index/plan:Plan", id, state, ref, opts...)
 }
 
 type planArgs struct {
@@ -205,6 +223,8 @@ type planArgs struct {
 	Meter *string `pulumi:"meter"`
 	// A brief description of the plan, hidden from customers.
 	Nickname *string `pulumi:"nickname"`
+	// Unique identifier for the object.
+	PlanId *string `pulumi:"planId"`
 	// The product whose pricing this plan determines.
 	Product *string `pulumi:"product"`
 	// Each element represents a pricing tier. This parameter requires <span pulumi-lang-nodejs="`billingScheme`" pulumi-lang-dotnet="`BillingScheme`" pulumi-lang-go="`billingScheme`" pulumi-lang-python="`billing_scheme`" pulumi-lang-yaml="`billingScheme`" pulumi-lang-java="`billingScheme`" pulumi-lang-hcl="`billing_scheme`">`billingScheme`</span> to be set to <span pulumi-lang-nodejs="`tiered`" pulumi-lang-dotnet="`Tiered`" pulumi-lang-go="`tiered`" pulumi-lang-python="`tiered`" pulumi-lang-yaml="`tiered`" pulumi-lang-java="`tiered`" pulumi-lang-hcl="`tiered`">`tiered`</span>. See also the documentation for <span pulumi-lang-nodejs="`billingScheme`" pulumi-lang-dotnet="`BillingScheme`" pulumi-lang-go="`billingScheme`" pulumi-lang-python="`billing_scheme`" pulumi-lang-yaml="`billingScheme`" pulumi-lang-java="`billingScheme`" pulumi-lang-hcl="`billing_scheme`">`billingScheme`</span>.
@@ -241,6 +261,8 @@ type PlanArgs struct {
 	Meter pulumi.StringPtrInput
 	// A brief description of the plan, hidden from customers.
 	Nickname pulumi.StringPtrInput
+	// Unique identifier for the object.
+	PlanId pulumi.StringPtrInput
 	// The product whose pricing this plan determines.
 	Product pulumi.StringPtrInput
 	// Each element represents a pricing tier. This parameter requires <span pulumi-lang-nodejs="`billingScheme`" pulumi-lang-dotnet="`BillingScheme`" pulumi-lang-go="`billingScheme`" pulumi-lang-python="`billing_scheme`" pulumi-lang-yaml="`billingScheme`" pulumi-lang-java="`billingScheme`" pulumi-lang-hcl="`billing_scheme`">`billingScheme`</span> to be set to <span pulumi-lang-nodejs="`tiered`" pulumi-lang-dotnet="`Tiered`" pulumi-lang-go="`tiered`" pulumi-lang-python="`tiered`" pulumi-lang-yaml="`tiered`" pulumi-lang-java="`tiered`" pulumi-lang-hcl="`tiered`">`tiered`</span>. See also the documentation for <span pulumi-lang-nodejs="`billingScheme`" pulumi-lang-dotnet="`BillingScheme`" pulumi-lang-go="`billingScheme`" pulumi-lang-python="`billing_scheme`" pulumi-lang-yaml="`billingScheme`" pulumi-lang-java="`billingScheme`" pulumi-lang-hcl="`billing_scheme`">`billingScheme`</span>.
@@ -355,6 +377,11 @@ func (o PlanOutput) Nickname() pulumi.StringOutput {
 // String representing the object's type. Objects of the same type share the same value.
 func (o PlanOutput) Object() pulumi.StringOutput {
 	return o.ApplyT(func(v *Plan) pulumi.StringOutput { return v.Object }).(pulumi.StringOutput)
+}
+
+// Unique identifier for the object.
+func (o PlanOutput) PlanId() pulumi.StringOutput {
+	return o.ApplyT(func(v *Plan) pulumi.StringOutput { return v.PlanId }).(pulumi.StringOutput)
 }
 
 // The product whose pricing this plan determines.

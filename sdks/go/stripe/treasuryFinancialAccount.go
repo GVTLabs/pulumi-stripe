@@ -176,6 +176,18 @@ func (TreasuryFinancialAccountState) ElementType() reflect.Type {
 	return reflect.TypeOf((*treasuryFinancialAccountState)(nil)).Elem()
 }
 
+// TreasuryFinancialAccountExists checks whether an existing TreasuryFinancialAccount resource with the given ID exists.
+func TreasuryFinancialAccountExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *TreasuryFinancialAccountState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	ref, err := internal.PkgGetPackageRef(ctx)
+	if err != nil {
+		return pulumi.Bool(false).ToBoolOutput().ApplyT(func(bool) (bool, error) {
+			return false, err
+		}).(pulumi.BoolOutput)
+	}
+	return ctx.ExistsResource("stripe:index/treasuryFinancialAccount:TreasuryFinancialAccount", id, state, ref, opts...)
+}
+
 type treasuryFinancialAccountArgs struct {
 	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
 	// Encodes whether a FinancialAccount has access to a particular Feature, with a <span pulumi-lang-nodejs="`status`" pulumi-lang-dotnet="`Status`" pulumi-lang-go="`status`" pulumi-lang-python="`status`" pulumi-lang-yaml="`status`" pulumi-lang-java="`status`" pulumi-lang-hcl="`status`">`status`</span> enum and associated <span pulumi-lang-nodejs="`statusDetails`" pulumi-lang-dotnet="`StatusDetails`" pulumi-lang-go="`statusDetails`" pulumi-lang-python="`status_details`" pulumi-lang-yaml="`statusDetails`" pulumi-lang-java="`statusDetails`" pulumi-lang-hcl="`status_details`">`statusDetails`</span>.

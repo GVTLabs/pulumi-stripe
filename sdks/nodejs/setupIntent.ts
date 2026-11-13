@@ -20,6 +20,17 @@ export class SetupIntent extends pulumi.CustomResource {
         return new SetupIntent(name, <any>state, { ...opts, id: id });
     }
 
+    /**
+     * Check whether an existing SetupIntent resource with the given ID exists.
+     *
+     * @param id The _unique_ provider ID of the resource to check.
+     * @param state Any extra arguments used during the lookup.
+     * @param opts Optional settings to control the behavior of the CustomResource.
+     */
+    public static exists(id: pulumi.Input<string>, state?: SetupIntentState, opts?: pulumi.CustomResourceOptions): pulumi.Output<boolean> {
+        return pulumi.runtime.existsResource("stripe:index/setupIntent:SetupIntent", id, <any>state || {}, { ...opts }, utilities.getPackage());
+    }
+
     /** @internal */
     public static readonly __pulumiType = 'stripe:index/setupIntent:SetupIntent';
 
@@ -34,6 +45,10 @@ export class SetupIntent extends pulumi.CustomResource {
         return obj['__pulumiType'] === SetupIntent.__pulumiType;
     }
 
+    /**
+     * The list of payment method types to allow for this SetupIntent. Stripe will only use methods in this list when determining the payment methods to offer.
+     */
+    declare public readonly allowedPaymentMethodTypes: pulumi.Output<string[]>;
     /**
      * ID of the Connect application that created the SetupIntent.
      */
@@ -164,7 +179,7 @@ export class SetupIntent extends pulumi.CustomResource {
     /**
      * The list of payment method types (e.g. card) that this SetupIntent is allowed to set up. A list of valid payment method types can be found [here](https://docs.stripe.com/api/payment_methods/object#payment_method_object-type).
      */
-    declare public readonly paymentMethodTypes: pulumi.Output<string[]>;
+    declare public /*out*/ readonly paymentMethodTypes: pulumi.Output<string[]>;
     /**
      * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
      * The URL to redirect your customer back to after they authenticate or cancel their payment on the payment method's app or site. To redirect to a mobile application, you can alternatively supply an application URI scheme. This parameter can only be used with [`confirm=true`](https://docs.stripe.com/api/setup_intents/create#create_setup_intent-confirm).
@@ -210,6 +225,7 @@ export class SetupIntent extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as SetupIntentState | undefined;
+            resourceInputs["allowedPaymentMethodTypes"] = state?.allowedPaymentMethodTypes;
             resourceInputs["application"] = state?.application;
             resourceInputs["attachToSelf"] = state?.attachToSelf;
             resourceInputs["automaticPaymentMethods"] = state?.automaticPaymentMethods;
@@ -247,6 +263,7 @@ export class SetupIntent extends pulumi.CustomResource {
             resourceInputs["useStripeSdk"] = state?.useStripeSdk;
         } else {
             const args = argsOrState as SetupIntentArgs | undefined;
+            resourceInputs["allowedPaymentMethodTypes"] = args?.allowedPaymentMethodTypes;
             resourceInputs["attachToSelf"] = args?.attachToSelf;
             resourceInputs["automaticPaymentMethods"] = args?.automaticPaymentMethods;
             resourceInputs["confirm"] = args?.confirm ? pulumi.secret(args.confirm) : undefined;
@@ -263,7 +280,6 @@ export class SetupIntent extends pulumi.CustomResource {
             resourceInputs["paymentMethodConfiguration"] = args?.paymentMethodConfiguration ? pulumi.secret(args.paymentMethodConfiguration) : undefined;
             resourceInputs["paymentMethodData"] = args?.paymentMethodData ? pulumi.secret(args.paymentMethodData) : undefined;
             resourceInputs["paymentMethodOptions"] = args?.paymentMethodOptions;
-            resourceInputs["paymentMethodTypes"] = args?.paymentMethodTypes;
             resourceInputs["returnUrl"] = args?.returnUrl ? pulumi.secret(args.returnUrl) : undefined;
             resourceInputs["singleUse"] = args?.singleUse ? pulumi.secret(args.singleUse) : undefined;
             resourceInputs["usage"] = args?.usage;
@@ -280,6 +296,7 @@ export class SetupIntent extends pulumi.CustomResource {
             resourceInputs["nextAction"] = undefined /*out*/;
             resourceInputs["object"] = undefined /*out*/;
             resourceInputs["paymentMethodConfigurationDetails"] = undefined /*out*/;
+            resourceInputs["paymentMethodTypes"] = undefined /*out*/;
             resourceInputs["singleUseMandate"] = undefined /*out*/;
             resourceInputs["status"] = undefined /*out*/;
         }
@@ -294,6 +311,10 @@ export class SetupIntent extends pulumi.CustomResource {
  * Input properties used for looking up and filtering SetupIntent resources.
  */
 export interface SetupIntentState {
+    /**
+     * The list of payment method types to allow for this SetupIntent. Stripe will only use methods in this list when determining the payment methods to offer.
+     */
+    allowedPaymentMethodTypes?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * ID of the Connect application that created the SetupIntent.
      */
@@ -463,6 +484,10 @@ export interface SetupIntentState {
  */
 export interface SetupIntentArgs {
     /**
+     * The list of payment method types to allow for this SetupIntent. Stripe will only use methods in this list when determining the payment methods to offer.
+     */
+    allowedPaymentMethodTypes?: pulumi.Input<pulumi.Input<string>[] | undefined>;
+    /**
      * If present, the SetupIntent's payment method will be attached to the in-context Stripe Account.
      *
      * It can only be used for this Stripe Account’s own money movement flows like InboundTransfer and OutboundTransfers. It cannot be set to true when setting up a PaymentMethod for a Customer, and defaults to false when attaching a PaymentMethod to a Customer.
@@ -542,10 +567,6 @@ export interface SetupIntentArgs {
      * Payment method-specific configuration for this SetupIntent.
      */
     paymentMethodOptions?: pulumi.Input<inputs.SetupIntentPaymentMethodOptions | undefined>;
-    /**
-     * The list of payment method types (e.g. card) that this SetupIntent is allowed to set up. A list of valid payment method types can be found [here](https://docs.stripe.com/api/payment_methods/object#payment_method_object-type).
-     */
-    paymentMethodTypes?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
      * The URL to redirect your customer back to after they authenticate or cancel their payment on the payment method's app or site. To redirect to a mobile application, you can alternatively supply an application URI scheme. This parameter can only be used with [`confirm=true`](https://docs.stripe.com/api/setup_intents/create#create_setup_intent-confirm).

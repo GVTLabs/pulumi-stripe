@@ -89,6 +89,12 @@ namespace Pulumi.Stripe.Inputs
         public Input<bool>? RequireCvcRecollection { get; set; }
 
         /// <summary>
+        /// Set to indicate the future transaction type usage for the card being set up.
+        /// </summary>
+        [Input("setupCredentialUsage")]
+        public Input<string>? SetupCredentialUsage { get; set; }
+
+        /// <summary>
         /// Indicates that you intend to make future payments with this PaymentIntent's payment method.
         /// 
         /// If you provide a Customer with the PaymentIntent, you can use this parameter to [attach the payment method](https://www.terraform.io/payments/save-during-payment) to the Customer after the PaymentIntent is confirmed and the customer completes any required actions. If you don't provide a Customer, you can still [attach](https://www.terraform.io/api/payment_methods/attach) the payment method to a Customer after the transaction completes.
@@ -111,6 +117,12 @@ namespace Pulumi.Stripe.Inputs
         /// </summary>
         [Input("statementDescriptorSuffixKanji")]
         public Input<string>? StatementDescriptorSuffixKanji { get; set; }
+
+        /// <summary>
+        /// Selected usage to indicate the transaction type of the off-session payment.
+        /// </summary>
+        [Input("storedCredentialUsage")]
+        public Input<string>? StoredCredentialUsage { get; set; }
 
         /// <summary>
         /// If 3D Secure authentication was performed with a third-party provider,

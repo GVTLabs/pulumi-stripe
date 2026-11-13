@@ -289,6 +289,18 @@ func (CreditNoteState) ElementType() reflect.Type {
 	return reflect.TypeOf((*creditNoteState)(nil)).Elem()
 }
 
+// CreditNoteExists checks whether an existing CreditNote resource with the given ID exists.
+func CreditNoteExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *CreditNoteState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	ref, err := internal.PkgGetPackageRef(ctx)
+	if err != nil {
+		return pulumi.Bool(false).ToBoolOutput().ApplyT(func(bool) (bool, error) {
+			return false, err
+		}).(pulumi.BoolOutput)
+	}
+	return ctx.ExistsResource("stripe:index/creditNote:CreditNote", id, state, ref, opts...)
+}
+
 type creditNoteArgs struct {
 	// The integer amount in cents (or local equivalent) representing the total amount of the credit note, including tax.
 	Amount *float64 `pulumi:"amount"`

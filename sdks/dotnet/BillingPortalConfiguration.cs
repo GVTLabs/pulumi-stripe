@@ -34,7 +34,7 @@ namespace Pulumi.Stripe
         public Output<double> Created { get; private set; } = null!;
 
         /// <summary>
-        /// The default URL to redirect customers to when they click on the portal's link to return to your website. This can be [overriden](https://docs.stripe.com/api/customer_portal/sessions/create#create_portal_session-return_url) when creating the session.
+        /// The default URL to redirect customers to when they click on the portal's link to return to your website. This can be [overridden](https://docs.stripe.com/api/customer_portal/sessions/create#create_portal_session-return_url) when creating the session.
         /// </summary>
         [Output("defaultReturnUrl")]
         public Output<string> DefaultReturnUrl { get; private set; } = null!;
@@ -131,7 +131,7 @@ namespace Pulumi.Stripe
         public Input<Inputs.BillingPortalConfigurationBusinessProfileArgs>? BusinessProfile { get; set; }
 
         /// <summary>
-        /// The default URL to redirect customers to when they click on the portal's link to return to your website. This can be [overriden](https://docs.stripe.com/api/customer_portal/sessions/create#create_portal_session-return_url) when creating the session.
+        /// The default URL to redirect customers to when they click on the portal's link to return to your website. This can be [overridden](https://docs.stripe.com/api/customer_portal/sessions/create#create_portal_session-return_url) when creating the session.
         /// </summary>
         [Input("defaultReturnUrl")]
         public Input<string>? DefaultReturnUrl { get; set; }
@@ -190,7 +190,7 @@ namespace Pulumi.Stripe
         public Input<double>? Created { get; set; }
 
         /// <summary>
-        /// The default URL to redirect customers to when they click on the portal's link to return to your website. This can be [overriden](https://docs.stripe.com/api/customer_portal/sessions/create#create_portal_session-return_url) when creating the session.
+        /// The default URL to redirect customers to when they click on the portal's link to return to your website. This can be [overridden](https://docs.stripe.com/api/customer_portal/sessions/create#create_portal_session-return_url) when creating the session.
         /// </summary>
         [Input("defaultReturnUrl")]
         public Input<string>? DefaultReturnUrl { get; set; }

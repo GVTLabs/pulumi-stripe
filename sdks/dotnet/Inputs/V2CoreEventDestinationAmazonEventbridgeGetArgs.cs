@@ -13,25 +13,25 @@ namespace Pulumi.Stripe.Inputs
     public sealed class V2CoreEventDestinationAmazonEventbridgeGetArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The AWS account ID.
+        /// The AWS account ID that owns the event bus receiving events.
         /// </summary>
         [Input("awsAccountId", required: true)]
         public Input<string> AwsAccountId { get; set; } = null!;
 
         /// <summary>
-        /// The ARN of the AWS event source.
+        /// The ARN of the Stripe-created partner event source in your AWS account.
         /// </summary>
         [Input("awsEventSourceArn")]
         public Input<string>? AwsEventSourceArn { get; set; }
 
         /// <summary>
-        /// The state of the AWS event source.
+        /// The AWS-reported lifecycle state of the partner event source.
         /// </summary>
         [Input("awsEventSourceStatus")]
         public Input<string>? AwsEventSourceStatus { get; set; }
 
         /// <summary>
-        /// The region of the AWS event source.
+        /// The AWS region where Stripe creates the partner event source.
         /// </summary>
         [Input("awsRegion", required: true)]
         public Input<string> AwsRegion { get; set; } = null!;

@@ -66,6 +66,10 @@ namespace Pulumi.Stripe.Outputs
         /// </summary>
         public readonly bool? RequireCvcRecollection;
         /// <summary>
+        /// Set to indicate the future transaction type usage for the card being set up.
+        /// </summary>
+        public readonly string? SetupCredentialUsage;
+        /// <summary>
         /// Indicates that you intend to make future payments with this PaymentIntent's payment method.
         /// 
         /// If you provide a Customer with the PaymentIntent, you can use this parameter to [attach the payment method](https://www.terraform.io/payments/save-during-payment) to the Customer after the PaymentIntent is confirmed and the customer completes any required actions. If you don't provide a Customer, you can still [attach](https://www.terraform.io/api/payment_methods/attach) the payment method to a Customer after the transaction completes.
@@ -83,6 +87,10 @@ namespace Pulumi.Stripe.Outputs
         /// Provides information about a card payment that customers see on their statements. Concatenated with the Kanji prefix (shortened Kanji descriptor) or Kanji statement descriptor that’s set on the account to form the complete statement descriptor. Maximum 17 characters. On card statements, the *concatenation* of both prefix and suffix (including separators) will appear truncated to 17 characters.
         /// </summary>
         public readonly string? StatementDescriptorSuffixKanji;
+        /// <summary>
+        /// Selected usage to indicate the transaction type of the off-session payment.
+        /// </summary>
+        public readonly string? StoredCredentialUsage;
         /// <summary>
         /// If 3D Secure authentication was performed with a third-party provider,
         /// the authentication details to use for this payment.
@@ -115,11 +123,15 @@ namespace Pulumi.Stripe.Outputs
 
             bool? requireCvcRecollection,
 
+            string? setupCredentialUsage,
+
             string? setupFutureUsage,
 
             string? statementDescriptorSuffixKana,
 
             string? statementDescriptorSuffixKanji,
+
+            string? storedCredentialUsage,
 
             Outputs.PaymentIntentPaymentMethodOptionsCardThreeDSecure? threeDSecure)
         {
@@ -135,9 +147,11 @@ namespace Pulumi.Stripe.Outputs
             RequestOvercapture = requestOvercapture;
             RequestThreeDSecure = requestThreeDSecure;
             RequireCvcRecollection = requireCvcRecollection;
+            SetupCredentialUsage = setupCredentialUsage;
             SetupFutureUsage = setupFutureUsage;
             StatementDescriptorSuffixKana = statementDescriptorSuffixKana;
             StatementDescriptorSuffixKanji = statementDescriptorSuffixKanji;
+            StoredCredentialUsage = storedCredentialUsage;
             ThreeDSecure = threeDSecure;
         }
     }

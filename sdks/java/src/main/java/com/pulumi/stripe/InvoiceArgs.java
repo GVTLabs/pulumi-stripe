@@ -402,14 +402,14 @@ public final class InvoiceArgs extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * The rendering-related settings that control how the invoice is displayed on customer-facing surfaces such as PDF and Hosted Invoice Page.
+     * The rendering-related settings that control how invoices render in customer-facing interfaces such as the PDF or hosted invoice page.
      * 
      */
     @Import(name="rendering")
     private @Nullable Output<InvoiceRenderingArgs> rendering;
 
     /**
-     * @return The rendering-related settings that control how the invoice is displayed on customer-facing surfaces such as PDF and Hosted Invoice Page.
+     * @return The rendering-related settings that control how invoices render in customer-facing interfaces such as the PDF or hosted invoice page.
      * 
      */
     public Optional<Output<InvoiceRenderingArgs>> rendering() {
@@ -1097,7 +1097,7 @@ public final class InvoiceArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param rendering The rendering-related settings that control how the invoice is displayed on customer-facing surfaces such as PDF and Hosted Invoice Page.
+         * @param rendering The rendering-related settings that control how invoices render in customer-facing interfaces such as the PDF or hosted invoice page.
          * 
          * @return builder
          * 
@@ -1108,7 +1108,7 @@ public final class InvoiceArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param rendering The rendering-related settings that control how the invoice is displayed on customer-facing surfaces such as PDF and Hosted Invoice Page.
+         * @param rendering The rendering-related settings that control how invoices render in customer-facing interfaces such as the PDF or hosted invoice page.
          * 
          * @return builder
          * 

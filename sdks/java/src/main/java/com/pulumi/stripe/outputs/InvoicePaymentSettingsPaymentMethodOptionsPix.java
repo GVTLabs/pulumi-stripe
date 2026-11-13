@@ -18,7 +18,7 @@ public final class InvoicePaymentSettingsPaymentMethodOptionsPix {
      */
     private @Nullable String amountIncludesIof;
     /**
-     * @return The number of seconds (between 10 and 1209600) after which Pix payment will expire. Defaults to 86400 seconds.
+     * @return The number of seconds after PaymentIntent confirmation when the Pix expires (between 60 and 1209600, inclusive). If unspecified, defaults to 14400 seconds (4 hours).
      * 
      */
     private @Nullable Double expiresAfterSeconds;
@@ -32,7 +32,7 @@ public final class InvoicePaymentSettingsPaymentMethodOptionsPix {
         return Optional.ofNullable(this.amountIncludesIof);
     }
     /**
-     * @return The number of seconds (between 10 and 1209600) after which Pix payment will expire. Defaults to 86400 seconds.
+     * @return The number of seconds after PaymentIntent confirmation when the Pix expires (between 60 and 1209600, inclusive). If unspecified, defaults to 14400 seconds (4 hours).
      * 
      */
     public Optional<Double> expiresAfterSeconds() {

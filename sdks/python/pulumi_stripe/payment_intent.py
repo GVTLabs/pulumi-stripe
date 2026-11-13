@@ -72,7 +72,7 @@ class PaymentIntentArgs:
                
                Payment methods attached to other Customers cannot be used with this PaymentIntent.
                
-               If <span pulumi-lang-nodejs="[setupFutureUsage]" pulumi-lang-dotnet="[SetupFutureUsage]" pulumi-lang-go="[setupFutureUsage]" pulumi-lang-python="[setup_future_usage]" pulumi-lang-yaml="[setupFutureUsage]" pulumi-lang-java="[setupFutureUsage]" pulumi-lang-hcl="[setup_future_usage]">[setupFutureUsage]</span>(https://api.stripe.com#payment_intent_object-setup_future_usage) is set and this PaymentIntent's payment method is not <span pulumi-lang-nodejs="`cardPresent`" pulumi-lang-dotnet="`CardPresent`" pulumi-lang-go="`cardPresent`" pulumi-lang-python="`card_present`" pulumi-lang-yaml="`cardPresent`" pulumi-lang-java="`cardPresent`" pulumi-lang-hcl="`card_present`">`cardPresent`</span>, then the payment method attaches to the Customer after the PaymentIntent has been confirmed and any required actions from the user are complete. If the payment method is <span pulumi-lang-nodejs="`cardPresent`" pulumi-lang-dotnet="`CardPresent`" pulumi-lang-go="`cardPresent`" pulumi-lang-python="`card_present`" pulumi-lang-yaml="`cardPresent`" pulumi-lang-java="`cardPresent`" pulumi-lang-hcl="`card_present`">`cardPresent`</span> and isn't a digital wallet, then a <span pulumi-lang-nodejs="[generatedCard]" pulumi-lang-dotnet="[GeneratedCard]" pulumi-lang-go="[generatedCard]" pulumi-lang-python="[generated_card]" pulumi-lang-yaml="[generatedCard]" pulumi-lang-java="[generatedCard]" pulumi-lang-hcl="[generated_card]">[generatedCard]</span>(https://docs.stripe.com/api/charges/object#charge_object-payment_method_details-card_present-generated_card) payment method representing the card is created and attached to the Customer instead.
+               If <span pulumi-lang-nodejs="[setupFutureUsage]" pulumi-lang-dotnet="[SetupFutureUsage]" pulumi-lang-go="[setupFutureUsage]" pulumi-lang-python="[setup_future_usage]" pulumi-lang-yaml="[setupFutureUsage]" pulumi-lang-java="[setupFutureUsage]" pulumi-lang-hcl="[setup_future_usage]">[setupFutureUsage]</span>(https://docs.stripe.com/api#payment_intent_object-setup_future_usage) is set and this PaymentIntent's payment method is not <span pulumi-lang-nodejs="`cardPresent`" pulumi-lang-dotnet="`CardPresent`" pulumi-lang-go="`cardPresent`" pulumi-lang-python="`card_present`" pulumi-lang-yaml="`cardPresent`" pulumi-lang-java="`cardPresent`" pulumi-lang-hcl="`card_present`">`cardPresent`</span>, then the payment method attaches to the Customer after the PaymentIntent has been confirmed and any required actions from the user are complete. If the payment method is <span pulumi-lang-nodejs="`cardPresent`" pulumi-lang-dotnet="`CardPresent`" pulumi-lang-go="`cardPresent`" pulumi-lang-python="`card_present`" pulumi-lang-yaml="`cardPresent`" pulumi-lang-java="`cardPresent`" pulumi-lang-hcl="`card_present`">`cardPresent`</span> and isn't a digital wallet, then a <span pulumi-lang-nodejs="[generatedCard]" pulumi-lang-dotnet="[GeneratedCard]" pulumi-lang-go="[generatedCard]" pulumi-lang-python="[generated_card]" pulumi-lang-yaml="[generatedCard]" pulumi-lang-java="[generatedCard]" pulumi-lang-hcl="[generated_card]">[generatedCard]</span>(https://docs.stripe.com/api/charges/object#charge_object-payment_method_details-card_present-generated_card) payment method representing the card is created and attached to the Customer instead.
         :param pulumi.Input[_builtins.str] description: An arbitrary string attached to the object. Often useful for displaying to users.
         :param pulumi.Input[_builtins.bool] error_on_requires_action: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
                Set to <span pulumi-lang-nodejs="`true`" pulumi-lang-dotnet="`True`" pulumi-lang-go="`true`" pulumi-lang-python="`true`" pulumi-lang-yaml="`true`" pulumi-lang-java="`true`" pulumi-lang-hcl="`true`">`true`</span> to fail the payment attempt if the PaymentIntent transitions into <span pulumi-lang-nodejs="`requiresAction`" pulumi-lang-dotnet="`RequiresAction`" pulumi-lang-go="`requiresAction`" pulumi-lang-python="`requires_action`" pulumi-lang-yaml="`requiresAction`" pulumi-lang-java="`requiresAction`" pulumi-lang-hcl="`requires_action`">`requiresAction`</span>. Use this parameter for simpler integrations that don't handle customer actions, such as [saving cards without authentication](https://docs.stripe.com/payments/save-card-without-authentication). This parameter can only be used with [`confirm=true`](https://docs.stripe.com/api/payment_intents/create#create_payment_intent-confirm).
@@ -285,7 +285,7 @@ class PaymentIntentArgs:
 
         Payment methods attached to other Customers cannot be used with this PaymentIntent.
 
-        If <span pulumi-lang-nodejs="[setupFutureUsage]" pulumi-lang-dotnet="[SetupFutureUsage]" pulumi-lang-go="[setupFutureUsage]" pulumi-lang-python="[setup_future_usage]" pulumi-lang-yaml="[setupFutureUsage]" pulumi-lang-java="[setupFutureUsage]" pulumi-lang-hcl="[setup_future_usage]">[setupFutureUsage]</span>(https://api.stripe.com#payment_intent_object-setup_future_usage) is set and this PaymentIntent's payment method is not <span pulumi-lang-nodejs="`cardPresent`" pulumi-lang-dotnet="`CardPresent`" pulumi-lang-go="`cardPresent`" pulumi-lang-python="`card_present`" pulumi-lang-yaml="`cardPresent`" pulumi-lang-java="`cardPresent`" pulumi-lang-hcl="`card_present`">`cardPresent`</span>, then the payment method attaches to the Customer after the PaymentIntent has been confirmed and any required actions from the user are complete. If the payment method is <span pulumi-lang-nodejs="`cardPresent`" pulumi-lang-dotnet="`CardPresent`" pulumi-lang-go="`cardPresent`" pulumi-lang-python="`card_present`" pulumi-lang-yaml="`cardPresent`" pulumi-lang-java="`cardPresent`" pulumi-lang-hcl="`card_present`">`cardPresent`</span> and isn't a digital wallet, then a <span pulumi-lang-nodejs="[generatedCard]" pulumi-lang-dotnet="[GeneratedCard]" pulumi-lang-go="[generatedCard]" pulumi-lang-python="[generated_card]" pulumi-lang-yaml="[generatedCard]" pulumi-lang-java="[generatedCard]" pulumi-lang-hcl="[generated_card]">[generatedCard]</span>(https://docs.stripe.com/api/charges/object#charge_object-payment_method_details-card_present-generated_card) payment method representing the card is created and attached to the Customer instead.
+        If <span pulumi-lang-nodejs="[setupFutureUsage]" pulumi-lang-dotnet="[SetupFutureUsage]" pulumi-lang-go="[setupFutureUsage]" pulumi-lang-python="[setup_future_usage]" pulumi-lang-yaml="[setupFutureUsage]" pulumi-lang-java="[setupFutureUsage]" pulumi-lang-hcl="[setup_future_usage]">[setupFutureUsage]</span>(https://docs.stripe.com/api#payment_intent_object-setup_future_usage) is set and this PaymentIntent's payment method is not <span pulumi-lang-nodejs="`cardPresent`" pulumi-lang-dotnet="`CardPresent`" pulumi-lang-go="`cardPresent`" pulumi-lang-python="`card_present`" pulumi-lang-yaml="`cardPresent`" pulumi-lang-java="`cardPresent`" pulumi-lang-hcl="`card_present`">`cardPresent`</span>, then the payment method attaches to the Customer after the PaymentIntent has been confirmed and any required actions from the user are complete. If the payment method is <span pulumi-lang-nodejs="`cardPresent`" pulumi-lang-dotnet="`CardPresent`" pulumi-lang-go="`cardPresent`" pulumi-lang-python="`card_present`" pulumi-lang-yaml="`cardPresent`" pulumi-lang-java="`cardPresent`" pulumi-lang-hcl="`card_present`">`cardPresent`</span> and isn't a digital wallet, then a <span pulumi-lang-nodejs="[generatedCard]" pulumi-lang-dotnet="[GeneratedCard]" pulumi-lang-go="[generatedCard]" pulumi-lang-python="[generated_card]" pulumi-lang-yaml="[generatedCard]" pulumi-lang-java="[generatedCard]" pulumi-lang-hcl="[generated_card]">[generatedCard]</span>(https://docs.stripe.com/api/charges/object#charge_object-payment_method_details-card_present-generated_card) payment method representing the card is created and attached to the Customer instead.
         """
         return pulumi.get(self, "customer")
 
@@ -622,6 +622,8 @@ class _PaymentIntentState:
                  payment_method_configuration_details: pulumi.Input[Optional['PaymentIntentPaymentMethodConfigurationDetailsArgs']] = None,
                  payment_method_data: pulumi.Input[Optional['PaymentIntentPaymentMethodDataArgs']] = None,
                  payment_method_options: pulumi.Input[Optional['PaymentIntentPaymentMethodOptionsArgs']] = None,
+                 payment_method_types: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 payment_record: pulumi.Input[Optional[_builtins.str]] = None,
                  presentment_details: pulumi.Input[Optional['PaymentIntentPresentmentDetailsArgs']] = None,
                  processing: pulumi.Input[Optional['PaymentIntentProcessingArgs']] = None,
                  radar_options: pulumi.Input[Optional['PaymentIntentRadarOptionsArgs']] = None,
@@ -667,7 +669,7 @@ class _PaymentIntentState:
                
                Payment methods attached to other Customers cannot be used with this PaymentIntent.
                
-               If <span pulumi-lang-nodejs="[setupFutureUsage]" pulumi-lang-dotnet="[SetupFutureUsage]" pulumi-lang-go="[setupFutureUsage]" pulumi-lang-python="[setup_future_usage]" pulumi-lang-yaml="[setupFutureUsage]" pulumi-lang-java="[setupFutureUsage]" pulumi-lang-hcl="[setup_future_usage]">[setupFutureUsage]</span>(https://api.stripe.com#payment_intent_object-setup_future_usage) is set and this PaymentIntent's payment method is not <span pulumi-lang-nodejs="`cardPresent`" pulumi-lang-dotnet="`CardPresent`" pulumi-lang-go="`cardPresent`" pulumi-lang-python="`card_present`" pulumi-lang-yaml="`cardPresent`" pulumi-lang-java="`cardPresent`" pulumi-lang-hcl="`card_present`">`cardPresent`</span>, then the payment method attaches to the Customer after the PaymentIntent has been confirmed and any required actions from the user are complete. If the payment method is <span pulumi-lang-nodejs="`cardPresent`" pulumi-lang-dotnet="`CardPresent`" pulumi-lang-go="`cardPresent`" pulumi-lang-python="`card_present`" pulumi-lang-yaml="`cardPresent`" pulumi-lang-java="`cardPresent`" pulumi-lang-hcl="`card_present`">`cardPresent`</span> and isn't a digital wallet, then a <span pulumi-lang-nodejs="[generatedCard]" pulumi-lang-dotnet="[GeneratedCard]" pulumi-lang-go="[generatedCard]" pulumi-lang-python="[generated_card]" pulumi-lang-yaml="[generatedCard]" pulumi-lang-java="[generatedCard]" pulumi-lang-hcl="[generated_card]">[generatedCard]</span>(https://docs.stripe.com/api/charges/object#charge_object-payment_method_details-card_present-generated_card) payment method representing the card is created and attached to the Customer instead.
+               If <span pulumi-lang-nodejs="[setupFutureUsage]" pulumi-lang-dotnet="[SetupFutureUsage]" pulumi-lang-go="[setupFutureUsage]" pulumi-lang-python="[setup_future_usage]" pulumi-lang-yaml="[setupFutureUsage]" pulumi-lang-java="[setupFutureUsage]" pulumi-lang-hcl="[setup_future_usage]">[setupFutureUsage]</span>(https://docs.stripe.com/api#payment_intent_object-setup_future_usage) is set and this PaymentIntent's payment method is not <span pulumi-lang-nodejs="`cardPresent`" pulumi-lang-dotnet="`CardPresent`" pulumi-lang-go="`cardPresent`" pulumi-lang-python="`card_present`" pulumi-lang-yaml="`cardPresent`" pulumi-lang-java="`cardPresent`" pulumi-lang-hcl="`card_present`">`cardPresent`</span>, then the payment method attaches to the Customer after the PaymentIntent has been confirmed and any required actions from the user are complete. If the payment method is <span pulumi-lang-nodejs="`cardPresent`" pulumi-lang-dotnet="`CardPresent`" pulumi-lang-go="`cardPresent`" pulumi-lang-python="`card_present`" pulumi-lang-yaml="`cardPresent`" pulumi-lang-java="`cardPresent`" pulumi-lang-hcl="`card_present`">`cardPresent`</span> and isn't a digital wallet, then a <span pulumi-lang-nodejs="[generatedCard]" pulumi-lang-dotnet="[GeneratedCard]" pulumi-lang-go="[generatedCard]" pulumi-lang-python="[generated_card]" pulumi-lang-yaml="[generatedCard]" pulumi-lang-java="[generatedCard]" pulumi-lang-hcl="[generated_card]">[generatedCard]</span>(https://docs.stripe.com/api/charges/object#charge_object-payment_method_details-card_present-generated_card) payment method representing the card is created and attached to the Customer instead.
         :param pulumi.Input[_builtins.str] description: An arbitrary string attached to the object. Often useful for displaying to users.
         :param pulumi.Input[_builtins.bool] error_on_requires_action: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
                Set to <span pulumi-lang-nodejs="`true`" pulumi-lang-dotnet="`True`" pulumi-lang-go="`true`" pulumi-lang-python="`true`" pulumi-lang-yaml="`true`" pulumi-lang-java="`true`" pulumi-lang-hcl="`true`">`true`</span> to fail the payment attempt if the PaymentIntent transitions into <span pulumi-lang-nodejs="`requiresAction`" pulumi-lang-dotnet="`RequiresAction`" pulumi-lang-go="`requiresAction`" pulumi-lang-python="`requires_action`" pulumi-lang-yaml="`requiresAction`" pulumi-lang-java="`requiresAction`" pulumi-lang-hcl="`requires_action`">`requiresAction`</span>. Use this parameter for simpler integrations that don't handle customer actions, such as [saving cards without authentication](https://docs.stripe.com/payments/save-card-without-authentication). This parameter can only be used with [`confirm=true`](https://docs.stripe.com/api/payment_intents/create#create_payment_intent-confirm).
@@ -694,6 +696,8 @@ class _PaymentIntentState:
                in the <span pulumi-lang-nodejs="[paymentMethod]" pulumi-lang-dotnet="[PaymentMethod]" pulumi-lang-go="[paymentMethod]" pulumi-lang-python="[payment_method]" pulumi-lang-yaml="[paymentMethod]" pulumi-lang-java="[paymentMethod]" pulumi-lang-hcl="[payment_method]">[paymentMethod]</span>(https://docs.stripe.com/api/payment_intents/object#payment_intent_object-payment_method)
                property on the PaymentIntent.
         :param pulumi.Input['PaymentIntentPaymentMethodOptionsArgs'] payment_method_options: Payment-method-specific configuration for this PaymentIntent.
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] payment_method_types: The list of payment method types (e.g. card) that this PaymentIntent is allowed to use. A comprehensive list of valid payment method types can be found [here](https://docs.stripe.com/api/payment_methods/object#payment_method_object-type).
+        :param pulumi.Input[_builtins.str] payment_record: ID of the [Payment Record object](https://docs.stripe.com/api/payment-record) created by this PaymentIntent.
         :param pulumi.Input['PaymentIntentProcessingArgs'] processing: If present, this property tells you about the processing state of the payment.
         :param pulumi.Input['PaymentIntentRadarOptionsArgs'] radar_options: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
                Options to configure Radar. Learn more about [Radar Sessions](https://docs.stripe.com/radar/radar-session).
@@ -792,6 +796,10 @@ class _PaymentIntentState:
             pulumi.set(__self__, "payment_method_data", payment_method_data)
         if payment_method_options is not None:
             pulumi.set(__self__, "payment_method_options", payment_method_options)
+        if payment_method_types is not None:
+            pulumi.set(__self__, "payment_method_types", payment_method_types)
+        if payment_record is not None:
+            pulumi.set(__self__, "payment_record", payment_record)
         if presentment_details is not None:
             pulumi.set(__self__, "presentment_details", presentment_details)
         if processing is not None:
@@ -1019,7 +1027,7 @@ class _PaymentIntentState:
 
         Payment methods attached to other Customers cannot be used with this PaymentIntent.
 
-        If <span pulumi-lang-nodejs="[setupFutureUsage]" pulumi-lang-dotnet="[SetupFutureUsage]" pulumi-lang-go="[setupFutureUsage]" pulumi-lang-python="[setup_future_usage]" pulumi-lang-yaml="[setupFutureUsage]" pulumi-lang-java="[setupFutureUsage]" pulumi-lang-hcl="[setup_future_usage]">[setupFutureUsage]</span>(https://api.stripe.com#payment_intent_object-setup_future_usage) is set and this PaymentIntent's payment method is not <span pulumi-lang-nodejs="`cardPresent`" pulumi-lang-dotnet="`CardPresent`" pulumi-lang-go="`cardPresent`" pulumi-lang-python="`card_present`" pulumi-lang-yaml="`cardPresent`" pulumi-lang-java="`cardPresent`" pulumi-lang-hcl="`card_present`">`cardPresent`</span>, then the payment method attaches to the Customer after the PaymentIntent has been confirmed and any required actions from the user are complete. If the payment method is <span pulumi-lang-nodejs="`cardPresent`" pulumi-lang-dotnet="`CardPresent`" pulumi-lang-go="`cardPresent`" pulumi-lang-python="`card_present`" pulumi-lang-yaml="`cardPresent`" pulumi-lang-java="`cardPresent`" pulumi-lang-hcl="`card_present`">`cardPresent`</span> and isn't a digital wallet, then a <span pulumi-lang-nodejs="[generatedCard]" pulumi-lang-dotnet="[GeneratedCard]" pulumi-lang-go="[generatedCard]" pulumi-lang-python="[generated_card]" pulumi-lang-yaml="[generatedCard]" pulumi-lang-java="[generatedCard]" pulumi-lang-hcl="[generated_card]">[generatedCard]</span>(https://docs.stripe.com/api/charges/object#charge_object-payment_method_details-card_present-generated_card) payment method representing the card is created and attached to the Customer instead.
+        If <span pulumi-lang-nodejs="[setupFutureUsage]" pulumi-lang-dotnet="[SetupFutureUsage]" pulumi-lang-go="[setupFutureUsage]" pulumi-lang-python="[setup_future_usage]" pulumi-lang-yaml="[setupFutureUsage]" pulumi-lang-java="[setupFutureUsage]" pulumi-lang-hcl="[setup_future_usage]">[setupFutureUsage]</span>(https://docs.stripe.com/api#payment_intent_object-setup_future_usage) is set and this PaymentIntent's payment method is not <span pulumi-lang-nodejs="`cardPresent`" pulumi-lang-dotnet="`CardPresent`" pulumi-lang-go="`cardPresent`" pulumi-lang-python="`card_present`" pulumi-lang-yaml="`cardPresent`" pulumi-lang-java="`cardPresent`" pulumi-lang-hcl="`card_present`">`cardPresent`</span>, then the payment method attaches to the Customer after the PaymentIntent has been confirmed and any required actions from the user are complete. If the payment method is <span pulumi-lang-nodejs="`cardPresent`" pulumi-lang-dotnet="`CardPresent`" pulumi-lang-go="`cardPresent`" pulumi-lang-python="`card_present`" pulumi-lang-yaml="`cardPresent`" pulumi-lang-java="`cardPresent`" pulumi-lang-hcl="`card_present`">`cardPresent`</span> and isn't a digital wallet, then a <span pulumi-lang-nodejs="[generatedCard]" pulumi-lang-dotnet="[GeneratedCard]" pulumi-lang-go="[generatedCard]" pulumi-lang-python="[generated_card]" pulumi-lang-yaml="[generatedCard]" pulumi-lang-java="[generatedCard]" pulumi-lang-hcl="[generated_card]">[generatedCard]</span>(https://docs.stripe.com/api/charges/object#charge_object-payment_method_details-card_present-generated_card) payment method representing the card is created and attached to the Customer instead.
         """
         return pulumi.get(self, "customer")
 
@@ -1270,6 +1278,30 @@ class _PaymentIntentState:
         pulumi.set(self, "payment_method_options", value)
 
     @_builtins.property
+    @pulumi.getter(name="paymentMethodTypes")
+    def payment_method_types(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
+        """
+        The list of payment method types (e.g. card) that this PaymentIntent is allowed to use. A comprehensive list of valid payment method types can be found [here](https://docs.stripe.com/api/payment_methods/object#payment_method_object-type).
+        """
+        return pulumi.get(self, "payment_method_types")
+
+    @payment_method_types.setter
+    def payment_method_types(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
+        pulumi.set(self, "payment_method_types", value)
+
+    @_builtins.property
+    @pulumi.getter(name="paymentRecord")
+    def payment_record(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        ID of the [Payment Record object](https://docs.stripe.com/api/payment-record) created by this PaymentIntent.
+        """
+        return pulumi.get(self, "payment_record")
+
+    @payment_record.setter
+    def payment_record(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "payment_record", value)
+
+    @_builtins.property
     @pulumi.getter(name="presentmentDetails")
     def presentment_details(self) -> pulumi.Input[Optional['PaymentIntentPresentmentDetailsArgs']]:
         return pulumi.get(self, "presentment_details")
@@ -1466,7 +1498,7 @@ class PaymentIntent(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  amount: pulumi.Input[Optional[_builtins.float]] = None,
                  application_fee_amount: pulumi.Input[Optional[_builtins.float]] = None,
-                 automatic_payment_methods: pulumi.Input[Optional[Union['PaymentIntentAutomaticPaymentMethodsArgs', 'PaymentIntentAutomaticPaymentMethodsArgsDict']]] = None,
+                 automatic_payment_methods: pulumi.Input[Optional[Union['PaymentIntentAutomaticPaymentMethodsArgs', 'PaymentIntentAutomaticPaymentMethodsArgsDict', 'outputs.PaymentIntentAutomaticPaymentMethods']]] = None,
                  capture_method: pulumi.Input[Optional[_builtins.str]] = None,
                  confirm: pulumi.Input[Optional[_builtins.bool]] = None,
                  confirmation_method: pulumi.Input[Optional[_builtins.str]] = None,
@@ -1476,24 +1508,24 @@ class PaymentIntent(pulumi.CustomResource):
                  description: pulumi.Input[Optional[_builtins.str]] = None,
                  error_on_requires_action: pulumi.Input[Optional[_builtins.bool]] = None,
                  excluded_payment_method_types: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 hooks: pulumi.Input[Optional[Union['PaymentIntentHooksArgs', 'PaymentIntentHooksArgsDict']]] = None,
+                 hooks: pulumi.Input[Optional[Union['PaymentIntentHooksArgs', 'PaymentIntentHooksArgsDict', 'outputs.PaymentIntentHooks']]] = None,
                  mandate: pulumi.Input[Optional[_builtins.str]] = None,
-                 mandate_data: pulumi.Input[Optional[Union['PaymentIntentMandateDataArgs', 'PaymentIntentMandateDataArgsDict']]] = None,
+                 mandate_data: pulumi.Input[Optional[Union['PaymentIntentMandateDataArgs', 'PaymentIntentMandateDataArgsDict', 'outputs.PaymentIntentMandateData']]] = None,
                  metadata: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
                  on_behalf_of: pulumi.Input[Optional[_builtins.str]] = None,
-                 payment_details: pulumi.Input[Optional[Union['PaymentIntentPaymentDetailsArgs', 'PaymentIntentPaymentDetailsArgsDict']]] = None,
+                 payment_details: pulumi.Input[Optional[Union['PaymentIntentPaymentDetailsArgs', 'PaymentIntentPaymentDetailsArgsDict', 'outputs.PaymentIntentPaymentDetails']]] = None,
                  payment_method: pulumi.Input[Optional[_builtins.str]] = None,
                  payment_method_configuration: pulumi.Input[Optional[_builtins.str]] = None,
-                 payment_method_data: pulumi.Input[Optional[Union['PaymentIntentPaymentMethodDataArgs', 'PaymentIntentPaymentMethodDataArgsDict']]] = None,
-                 payment_method_options: pulumi.Input[Optional[Union['PaymentIntentPaymentMethodOptionsArgs', 'PaymentIntentPaymentMethodOptionsArgsDict']]] = None,
-                 radar_options: pulumi.Input[Optional[Union['PaymentIntentRadarOptionsArgs', 'PaymentIntentRadarOptionsArgsDict']]] = None,
+                 payment_method_data: pulumi.Input[Optional[Union['PaymentIntentPaymentMethodDataArgs', 'PaymentIntentPaymentMethodDataArgsDict', 'outputs.PaymentIntentPaymentMethodData']]] = None,
+                 payment_method_options: pulumi.Input[Optional[Union['PaymentIntentPaymentMethodOptionsArgs', 'PaymentIntentPaymentMethodOptionsArgsDict', 'outputs.PaymentIntentPaymentMethodOptions']]] = None,
+                 radar_options: pulumi.Input[Optional[Union['PaymentIntentRadarOptionsArgs', 'PaymentIntentRadarOptionsArgsDict', 'outputs.PaymentIntentRadarOptions']]] = None,
                  receipt_email: pulumi.Input[Optional[_builtins.str]] = None,
                  return_url: pulumi.Input[Optional[_builtins.str]] = None,
                  setup_future_usage: pulumi.Input[Optional[_builtins.str]] = None,
-                 shipping: pulumi.Input[Optional[Union['PaymentIntentShippingArgs', 'PaymentIntentShippingArgsDict']]] = None,
+                 shipping: pulumi.Input[Optional[Union['PaymentIntentShippingArgs', 'PaymentIntentShippingArgsDict', 'outputs.PaymentIntentShipping']]] = None,
                  statement_descriptor: pulumi.Input[Optional[_builtins.str]] = None,
                  statement_descriptor_suffix: pulumi.Input[Optional[_builtins.str]] = None,
-                 transfer_data: pulumi.Input[Optional[Union['PaymentIntentTransferDataArgs', 'PaymentIntentTransferDataArgsDict']]] = None,
+                 transfer_data: pulumi.Input[Optional[Union['PaymentIntentTransferDataArgs', 'PaymentIntentTransferDataArgsDict', 'outputs.PaymentIntentTransferData']]] = None,
                  transfer_group: pulumi.Input[Optional[_builtins.str]] = None,
                  use_stripe_sdk: pulumi.Input[Optional[_builtins.bool]] = None,
                  __props__=None):
@@ -1504,7 +1536,7 @@ class PaymentIntent(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.float] amount: Amount intended to be collected by this PaymentIntent. A positive integer representing how much to charge in the [smallest currency unit](https://docs.stripe.com/currencies#zero-decimal) (e.g., 100 cents to charge $1.00 or 100 to charge ¥100, a zero-decimal currency). The minimum amount is $0.50 US or [equivalent in charge currency](https://docs.stripe.com/currencies#minimum-and-maximum-charge-amounts). The amount value supports up to eight digits (e.g., a value of 99999999 for a USD charge of $999,999.99).
         :param pulumi.Input[_builtins.float] application_fee_amount: The amount of the application fee (if any) that will be requested to be applied to the payment and transferred to the application owner's Stripe account. The amount of the application fee collected will be capped at the total amount captured. For more information, see the PaymentIntents [use case for connected accounts](https://docs.stripe.com/payments/connected-accounts).
-        :param pulumi.Input[Union['PaymentIntentAutomaticPaymentMethodsArgs', 'PaymentIntentAutomaticPaymentMethodsArgsDict']] automatic_payment_methods: Settings to configure compatible payment methods from the [Stripe Dashboard](https://dashboard.stripe.com/settings/payment_methods)
+        :param pulumi.Input[Union['PaymentIntentAutomaticPaymentMethodsArgs', 'PaymentIntentAutomaticPaymentMethodsArgsDict', 'outputs.PaymentIntentAutomaticPaymentMethods']] automatic_payment_methods: Settings to configure compatible payment methods from the [Stripe Dashboard](https://dashboard.stripe.com/settings/payment_methods)
         :param pulumi.Input[_builtins.str] capture_method: Controls when the funds will be captured from the customer's account.
         :param pulumi.Input[_builtins.bool] confirm: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
                Set to <span pulumi-lang-nodejs="`true`" pulumi-lang-dotnet="`True`" pulumi-lang-go="`true`" pulumi-lang-python="`true`" pulumi-lang-yaml="`true`" pulumi-lang-java="`true`" pulumi-lang-hcl="`true`">`true`</span> to attempt to [confirm this PaymentIntent](https://docs.stripe.com/api/payment_intents/confirm) immediately. This parameter defaults to <span pulumi-lang-nodejs="`false`" pulumi-lang-dotnet="`False`" pulumi-lang-go="`false`" pulumi-lang-python="`false`" pulumi-lang-yaml="`false`" pulumi-lang-java="`false`" pulumi-lang-hcl="`false`">`false`</span>. When creating and confirming a PaymentIntent at the same time, you can also provide the parameters available in the [Confirm API](https://docs.stripe.com/api/payment_intents/confirm).
@@ -1518,14 +1550,14 @@ class PaymentIntent(pulumi.CustomResource):
                
                Payment methods attached to other Customers cannot be used with this PaymentIntent.
                
-               If <span pulumi-lang-nodejs="[setupFutureUsage]" pulumi-lang-dotnet="[SetupFutureUsage]" pulumi-lang-go="[setupFutureUsage]" pulumi-lang-python="[setup_future_usage]" pulumi-lang-yaml="[setupFutureUsage]" pulumi-lang-java="[setupFutureUsage]" pulumi-lang-hcl="[setup_future_usage]">[setupFutureUsage]</span>(https://api.stripe.com#payment_intent_object-setup_future_usage) is set and this PaymentIntent's payment method is not <span pulumi-lang-nodejs="`cardPresent`" pulumi-lang-dotnet="`CardPresent`" pulumi-lang-go="`cardPresent`" pulumi-lang-python="`card_present`" pulumi-lang-yaml="`cardPresent`" pulumi-lang-java="`cardPresent`" pulumi-lang-hcl="`card_present`">`cardPresent`</span>, then the payment method attaches to the Customer after the PaymentIntent has been confirmed and any required actions from the user are complete. If the payment method is <span pulumi-lang-nodejs="`cardPresent`" pulumi-lang-dotnet="`CardPresent`" pulumi-lang-go="`cardPresent`" pulumi-lang-python="`card_present`" pulumi-lang-yaml="`cardPresent`" pulumi-lang-java="`cardPresent`" pulumi-lang-hcl="`card_present`">`cardPresent`</span> and isn't a digital wallet, then a <span pulumi-lang-nodejs="[generatedCard]" pulumi-lang-dotnet="[GeneratedCard]" pulumi-lang-go="[generatedCard]" pulumi-lang-python="[generated_card]" pulumi-lang-yaml="[generatedCard]" pulumi-lang-java="[generatedCard]" pulumi-lang-hcl="[generated_card]">[generatedCard]</span>(https://docs.stripe.com/api/charges/object#charge_object-payment_method_details-card_present-generated_card) payment method representing the card is created and attached to the Customer instead.
+               If <span pulumi-lang-nodejs="[setupFutureUsage]" pulumi-lang-dotnet="[SetupFutureUsage]" pulumi-lang-go="[setupFutureUsage]" pulumi-lang-python="[setup_future_usage]" pulumi-lang-yaml="[setupFutureUsage]" pulumi-lang-java="[setupFutureUsage]" pulumi-lang-hcl="[setup_future_usage]">[setupFutureUsage]</span>(https://docs.stripe.com/api#payment_intent_object-setup_future_usage) is set and this PaymentIntent's payment method is not <span pulumi-lang-nodejs="`cardPresent`" pulumi-lang-dotnet="`CardPresent`" pulumi-lang-go="`cardPresent`" pulumi-lang-python="`card_present`" pulumi-lang-yaml="`cardPresent`" pulumi-lang-java="`cardPresent`" pulumi-lang-hcl="`card_present`">`cardPresent`</span>, then the payment method attaches to the Customer after the PaymentIntent has been confirmed and any required actions from the user are complete. If the payment method is <span pulumi-lang-nodejs="`cardPresent`" pulumi-lang-dotnet="`CardPresent`" pulumi-lang-go="`cardPresent`" pulumi-lang-python="`card_present`" pulumi-lang-yaml="`cardPresent`" pulumi-lang-java="`cardPresent`" pulumi-lang-hcl="`card_present`">`cardPresent`</span> and isn't a digital wallet, then a <span pulumi-lang-nodejs="[generatedCard]" pulumi-lang-dotnet="[GeneratedCard]" pulumi-lang-go="[generatedCard]" pulumi-lang-python="[generated_card]" pulumi-lang-yaml="[generatedCard]" pulumi-lang-java="[generatedCard]" pulumi-lang-hcl="[generated_card]">[generatedCard]</span>(https://docs.stripe.com/api/charges/object#charge_object-payment_method_details-card_present-generated_card) payment method representing the card is created and attached to the Customer instead.
         :param pulumi.Input[_builtins.str] description: An arbitrary string attached to the object. Often useful for displaying to users.
         :param pulumi.Input[_builtins.bool] error_on_requires_action: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
                Set to <span pulumi-lang-nodejs="`true`" pulumi-lang-dotnet="`True`" pulumi-lang-go="`true`" pulumi-lang-python="`true`" pulumi-lang-yaml="`true`" pulumi-lang-java="`true`" pulumi-lang-hcl="`true`">`true`</span> to fail the payment attempt if the PaymentIntent transitions into <span pulumi-lang-nodejs="`requiresAction`" pulumi-lang-dotnet="`RequiresAction`" pulumi-lang-go="`requiresAction`" pulumi-lang-python="`requires_action`" pulumi-lang-yaml="`requiresAction`" pulumi-lang-java="`requiresAction`" pulumi-lang-hcl="`requires_action`">`requiresAction`</span>. Use this parameter for simpler integrations that don't handle customer actions, such as [saving cards without authentication](https://docs.stripe.com/payments/save-card-without-authentication). This parameter can only be used with [`confirm=true`](https://docs.stripe.com/api/payment_intents/create#create_payment_intent-confirm).
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] excluded_payment_method_types: The list of payment method types to exclude from use with this payment.
         :param pulumi.Input[_builtins.str] mandate: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
                ID of the mandate that's used for this payment. This parameter can only be used with [`confirm=true`](https://docs.stripe.com/api/payment_intents/create#create_payment_intent-confirm).
-        :param pulumi.Input[Union['PaymentIntentMandateDataArgs', 'PaymentIntentMandateDataArgsDict']] mandate_data: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        :param pulumi.Input[Union['PaymentIntentMandateDataArgs', 'PaymentIntentMandateDataArgsDict', 'outputs.PaymentIntentMandateData']] mandate_data: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
                This hash contains details about the Mandate to create. This parameter can only be used with [`confirm=true`](https://docs.stripe.com/api/payment_intents/create#create_payment_intent-confirm).
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] metadata: Set of [key-value pairs](https://docs.stripe.com/api/metadata) that you can attach to an object. This can be useful for storing additional information about the object in a structured format. Learn more about [storing information in metadata](https://docs.stripe.com/payments/payment-intents/creating-payment-intents#storing-information-in-metadata).
         :param pulumi.Input[_builtins.str] on_behalf_of: You can specify the settlement merchant as the
@@ -1533,12 +1565,12 @@ class PaymentIntent(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] payment_method: ID of the payment method used in this PaymentIntent.
         :param pulumi.Input[_builtins.str] payment_method_configuration: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
                The ID of the [payment method configuration](https://docs.stripe.com/api/payment_method_configurations) to use with this PaymentIntent.
-        :param pulumi.Input[Union['PaymentIntentPaymentMethodDataArgs', 'PaymentIntentPaymentMethodDataArgsDict']] payment_method_data: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        :param pulumi.Input[Union['PaymentIntentPaymentMethodDataArgs', 'PaymentIntentPaymentMethodDataArgsDict', 'outputs.PaymentIntentPaymentMethodData']] payment_method_data: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
                If provided, this hash will be used to create a PaymentMethod. The new PaymentMethod will appear
                in the <span pulumi-lang-nodejs="[paymentMethod]" pulumi-lang-dotnet="[PaymentMethod]" pulumi-lang-go="[paymentMethod]" pulumi-lang-python="[payment_method]" pulumi-lang-yaml="[paymentMethod]" pulumi-lang-java="[paymentMethod]" pulumi-lang-hcl="[payment_method]">[paymentMethod]</span>(https://docs.stripe.com/api/payment_intents/object#payment_intent_object-payment_method)
                property on the PaymentIntent.
-        :param pulumi.Input[Union['PaymentIntentPaymentMethodOptionsArgs', 'PaymentIntentPaymentMethodOptionsArgsDict']] payment_method_options: Payment-method-specific configuration for this PaymentIntent.
-        :param pulumi.Input[Union['PaymentIntentRadarOptionsArgs', 'PaymentIntentRadarOptionsArgsDict']] radar_options: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        :param pulumi.Input[Union['PaymentIntentPaymentMethodOptionsArgs', 'PaymentIntentPaymentMethodOptionsArgsDict', 'outputs.PaymentIntentPaymentMethodOptions']] payment_method_options: Payment-method-specific configuration for this PaymentIntent.
+        :param pulumi.Input[Union['PaymentIntentRadarOptionsArgs', 'PaymentIntentRadarOptionsArgsDict', 'outputs.PaymentIntentRadarOptions']] radar_options: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
                Options to configure Radar. Learn more about [Radar Sessions](https://docs.stripe.com/radar/radar-session).
         :param pulumi.Input[_builtins.str] receipt_email: Email address that the receipt for the resulting payment will be sent to. If <span pulumi-lang-nodejs="`receiptEmail`" pulumi-lang-dotnet="`ReceiptEmail`" pulumi-lang-go="`receiptEmail`" pulumi-lang-python="`receipt_email`" pulumi-lang-yaml="`receiptEmail`" pulumi-lang-java="`receiptEmail`" pulumi-lang-hcl="`receipt_email`">`receiptEmail`</span> is specified for a payment in live mode, a receipt will be sent regardless of your [email settings](https://dashboard.stripe.com/account/emails).
         :param pulumi.Input[_builtins.str] return_url: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
@@ -1550,12 +1582,12 @@ class PaymentIntent(pulumi.CustomResource):
                If the payment method is <span pulumi-lang-nodejs="`cardPresent`" pulumi-lang-dotnet="`CardPresent`" pulumi-lang-go="`cardPresent`" pulumi-lang-python="`card_present`" pulumi-lang-yaml="`cardPresent`" pulumi-lang-java="`cardPresent`" pulumi-lang-hcl="`card_present`">`cardPresent`</span> and isn't a digital wallet, Stripe creates and attaches a <span pulumi-lang-nodejs="[generatedCard]" pulumi-lang-dotnet="[GeneratedCard]" pulumi-lang-go="[generatedCard]" pulumi-lang-python="[generated_card]" pulumi-lang-yaml="[generatedCard]" pulumi-lang-java="[generatedCard]" pulumi-lang-hcl="[generated_card]">[generatedCard]</span>(https://www.terraform.io/api/charges/object#charge_object-payment_method_details-card_present-generated_card) payment method representing the card to the Customer instead.
                
                When processing card payments, Stripe uses <span pulumi-lang-nodejs="`setupFutureUsage`" pulumi-lang-dotnet="`SetupFutureUsage`" pulumi-lang-go="`setupFutureUsage`" pulumi-lang-python="`setup_future_usage`" pulumi-lang-yaml="`setupFutureUsage`" pulumi-lang-java="`setupFutureUsage`" pulumi-lang-hcl="`setup_future_usage`">`setupFutureUsage`</span> to help you comply with regional legislation and network rules, such as [SCA](https://www.terraform.io/strong-customer-authentication).
-        :param pulumi.Input[Union['PaymentIntentShippingArgs', 'PaymentIntentShippingArgsDict']] shipping: Shipping information for this PaymentIntent.
+        :param pulumi.Input[Union['PaymentIntentShippingArgs', 'PaymentIntentShippingArgsDict', 'outputs.PaymentIntentShipping']] shipping: Shipping information for this PaymentIntent.
         :param pulumi.Input[_builtins.str] statement_descriptor: Text that appears on the customer's statement as the statement descriptor for a non-card charge. This value overrides the account's default statement descriptor. For information about requirements, including the 22-character limit, see [the Statement Descriptor docs](https://docs.stripe.com/get-started/account/statement-descriptors).
                
                Setting this value for a card charge returns an error. For card charges, set the <span pulumi-lang-nodejs="[statementDescriptorSuffix]" pulumi-lang-dotnet="[StatementDescriptorSuffix]" pulumi-lang-go="[statementDescriptorSuffix]" pulumi-lang-python="[statement_descriptor_suffix]" pulumi-lang-yaml="[statementDescriptorSuffix]" pulumi-lang-java="[statementDescriptorSuffix]" pulumi-lang-hcl="[statement_descriptor_suffix]">[statementDescriptorSuffix]</span>(https://docs.stripe.com/get-started/account/statement-descriptors#dynamic) instead.
         :param pulumi.Input[_builtins.str] statement_descriptor_suffix: Provides information about a card charge. Concatenated to the account's [statement descriptor prefix](https://docs.stripe.com/get-started/account/statement-descriptors#static) to form the complete statement descriptor that appears on the customer's statement.
-        :param pulumi.Input[Union['PaymentIntentTransferDataArgs', 'PaymentIntentTransferDataArgsDict']] transfer_data: The data that automatically creates a Transfer after the payment finalizes. Learn more about the [use case for connected accounts](https://docs.stripe.com/payments/connected-accounts).
+        :param pulumi.Input[Union['PaymentIntentTransferDataArgs', 'PaymentIntentTransferDataArgsDict', 'outputs.PaymentIntentTransferData']] transfer_data: The data that automatically creates a Transfer after the payment finalizes. Learn more about the [use case for connected accounts](https://docs.stripe.com/payments/connected-accounts).
         :param pulumi.Input[_builtins.str] transfer_group: A string that identifies the resulting payment as part of a group. Learn more about the [use case for connected accounts](https://docs.stripe.com/connect/separate-charges-and-transfers).
         :param pulumi.Input[_builtins.bool] use_stripe_sdk: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
                Set to <span pulumi-lang-nodejs="`true`" pulumi-lang-dotnet="`True`" pulumi-lang-go="`true`" pulumi-lang-python="`true`" pulumi-lang-yaml="`true`" pulumi-lang-java="`true`" pulumi-lang-hcl="`true`">`true`</span> when confirming server-side and using Stripe.js, iOS, or Android client-side SDKs to handle the next actions.
@@ -1586,7 +1618,7 @@ class PaymentIntent(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  amount: pulumi.Input[Optional[_builtins.float]] = None,
                  application_fee_amount: pulumi.Input[Optional[_builtins.float]] = None,
-                 automatic_payment_methods: pulumi.Input[Optional[Union['PaymentIntentAutomaticPaymentMethodsArgs', 'PaymentIntentAutomaticPaymentMethodsArgsDict']]] = None,
+                 automatic_payment_methods: pulumi.Input[Optional[Union['PaymentIntentAutomaticPaymentMethodsArgs', 'PaymentIntentAutomaticPaymentMethodsArgsDict', 'outputs.PaymentIntentAutomaticPaymentMethods']]] = None,
                  capture_method: pulumi.Input[Optional[_builtins.str]] = None,
                  confirm: pulumi.Input[Optional[_builtins.bool]] = None,
                  confirmation_method: pulumi.Input[Optional[_builtins.str]] = None,
@@ -1596,24 +1628,24 @@ class PaymentIntent(pulumi.CustomResource):
                  description: pulumi.Input[Optional[_builtins.str]] = None,
                  error_on_requires_action: pulumi.Input[Optional[_builtins.bool]] = None,
                  excluded_payment_method_types: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 hooks: pulumi.Input[Optional[Union['PaymentIntentHooksArgs', 'PaymentIntentHooksArgsDict']]] = None,
+                 hooks: pulumi.Input[Optional[Union['PaymentIntentHooksArgs', 'PaymentIntentHooksArgsDict', 'outputs.PaymentIntentHooks']]] = None,
                  mandate: pulumi.Input[Optional[_builtins.str]] = None,
-                 mandate_data: pulumi.Input[Optional[Union['PaymentIntentMandateDataArgs', 'PaymentIntentMandateDataArgsDict']]] = None,
+                 mandate_data: pulumi.Input[Optional[Union['PaymentIntentMandateDataArgs', 'PaymentIntentMandateDataArgsDict', 'outputs.PaymentIntentMandateData']]] = None,
                  metadata: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
                  on_behalf_of: pulumi.Input[Optional[_builtins.str]] = None,
-                 payment_details: pulumi.Input[Optional[Union['PaymentIntentPaymentDetailsArgs', 'PaymentIntentPaymentDetailsArgsDict']]] = None,
+                 payment_details: pulumi.Input[Optional[Union['PaymentIntentPaymentDetailsArgs', 'PaymentIntentPaymentDetailsArgsDict', 'outputs.PaymentIntentPaymentDetails']]] = None,
                  payment_method: pulumi.Input[Optional[_builtins.str]] = None,
                  payment_method_configuration: pulumi.Input[Optional[_builtins.str]] = None,
-                 payment_method_data: pulumi.Input[Optional[Union['PaymentIntentPaymentMethodDataArgs', 'PaymentIntentPaymentMethodDataArgsDict']]] = None,
-                 payment_method_options: pulumi.Input[Optional[Union['PaymentIntentPaymentMethodOptionsArgs', 'PaymentIntentPaymentMethodOptionsArgsDict']]] = None,
-                 radar_options: pulumi.Input[Optional[Union['PaymentIntentRadarOptionsArgs', 'PaymentIntentRadarOptionsArgsDict']]] = None,
+                 payment_method_data: pulumi.Input[Optional[Union['PaymentIntentPaymentMethodDataArgs', 'PaymentIntentPaymentMethodDataArgsDict', 'outputs.PaymentIntentPaymentMethodData']]] = None,
+                 payment_method_options: pulumi.Input[Optional[Union['PaymentIntentPaymentMethodOptionsArgs', 'PaymentIntentPaymentMethodOptionsArgsDict', 'outputs.PaymentIntentPaymentMethodOptions']]] = None,
+                 radar_options: pulumi.Input[Optional[Union['PaymentIntentRadarOptionsArgs', 'PaymentIntentRadarOptionsArgsDict', 'outputs.PaymentIntentRadarOptions']]] = None,
                  receipt_email: pulumi.Input[Optional[_builtins.str]] = None,
                  return_url: pulumi.Input[Optional[_builtins.str]] = None,
                  setup_future_usage: pulumi.Input[Optional[_builtins.str]] = None,
-                 shipping: pulumi.Input[Optional[Union['PaymentIntentShippingArgs', 'PaymentIntentShippingArgsDict']]] = None,
+                 shipping: pulumi.Input[Optional[Union['PaymentIntentShippingArgs', 'PaymentIntentShippingArgsDict', 'outputs.PaymentIntentShipping']]] = None,
                  statement_descriptor: pulumi.Input[Optional[_builtins.str]] = None,
                  statement_descriptor_suffix: pulumi.Input[Optional[_builtins.str]] = None,
-                 transfer_data: pulumi.Input[Optional[Union['PaymentIntentTransferDataArgs', 'PaymentIntentTransferDataArgsDict']]] = None,
+                 transfer_data: pulumi.Input[Optional[Union['PaymentIntentTransferDataArgs', 'PaymentIntentTransferDataArgsDict', 'outputs.PaymentIntentTransferData']]] = None,
                  transfer_group: pulumi.Input[Optional[_builtins.str]] = None,
                  use_stripe_sdk: pulumi.Input[Optional[_builtins.bool]] = None,
                  __props__=None):
@@ -1675,6 +1707,8 @@ class PaymentIntent(pulumi.CustomResource):
             __props__.__dict__["next_action"] = None
             __props__.__dict__["object"] = None
             __props__.__dict__["payment_method_configuration_details"] = None
+            __props__.__dict__["payment_method_types"] = None
+            __props__.__dict__["payment_record"] = None
             __props__.__dict__["presentment_details"] = None
             __props__.__dict__["processing"] = None
             __props__.__dict__["review"] = None
@@ -1698,7 +1732,7 @@ class PaymentIntent(pulumi.CustomResource):
             amount_received: pulumi.Input[Optional[_builtins.float]] = None,
             application: pulumi.Input[Optional[_builtins.str]] = None,
             application_fee_amount: pulumi.Input[Optional[_builtins.float]] = None,
-            automatic_payment_methods: pulumi.Input[Optional[Union['PaymentIntentAutomaticPaymentMethodsArgs', 'PaymentIntentAutomaticPaymentMethodsArgsDict']]] = None,
+            automatic_payment_methods: pulumi.Input[Optional[Union['PaymentIntentAutomaticPaymentMethodsArgs', 'PaymentIntentAutomaticPaymentMethodsArgsDict', 'outputs.PaymentIntentAutomaticPaymentMethods']]] = None,
             canceled_at: pulumi.Input[Optional[_builtins.float]] = None,
             cancellation_reason: pulumi.Input[Optional[_builtins.str]] = None,
             capture_method: pulumi.Input[Optional[_builtins.str]] = None,
@@ -1712,36 +1746,38 @@ class PaymentIntent(pulumi.CustomResource):
             description: pulumi.Input[Optional[_builtins.str]] = None,
             error_on_requires_action: pulumi.Input[Optional[_builtins.bool]] = None,
             excluded_payment_method_types: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
-            hooks: pulumi.Input[Optional[Union['PaymentIntentHooksArgs', 'PaymentIntentHooksArgsDict']]] = None,
-            last_payment_error: pulumi.Input[Optional[Union['PaymentIntentLastPaymentErrorArgs', 'PaymentIntentLastPaymentErrorArgsDict']]] = None,
+            hooks: pulumi.Input[Optional[Union['PaymentIntentHooksArgs', 'PaymentIntentHooksArgsDict', 'outputs.PaymentIntentHooks']]] = None,
+            last_payment_error: pulumi.Input[Optional[Union['PaymentIntentLastPaymentErrorArgs', 'PaymentIntentLastPaymentErrorArgsDict', 'outputs.PaymentIntentLastPaymentError']]] = None,
             latest_charge: pulumi.Input[Optional[_builtins.str]] = None,
             livemode: pulumi.Input[Optional[_builtins.bool]] = None,
-            managed_payments: pulumi.Input[Optional[Union['PaymentIntentManagedPaymentsArgs', 'PaymentIntentManagedPaymentsArgsDict']]] = None,
+            managed_payments: pulumi.Input[Optional[Union['PaymentIntentManagedPaymentsArgs', 'PaymentIntentManagedPaymentsArgsDict', 'outputs.PaymentIntentManagedPayments']]] = None,
             mandate: pulumi.Input[Optional[_builtins.str]] = None,
-            mandate_data: pulumi.Input[Optional[Union['PaymentIntentMandateDataArgs', 'PaymentIntentMandateDataArgsDict']]] = None,
+            mandate_data: pulumi.Input[Optional[Union['PaymentIntentMandateDataArgs', 'PaymentIntentMandateDataArgsDict', 'outputs.PaymentIntentMandateData']]] = None,
             metadata: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-            next_action: pulumi.Input[Optional[Union['PaymentIntentNextActionArgs', 'PaymentIntentNextActionArgsDict']]] = None,
+            next_action: pulumi.Input[Optional[Union['PaymentIntentNextActionArgs', 'PaymentIntentNextActionArgsDict', 'outputs.PaymentIntentNextAction']]] = None,
             object: pulumi.Input[Optional[_builtins.str]] = None,
             on_behalf_of: pulumi.Input[Optional[_builtins.str]] = None,
-            payment_details: pulumi.Input[Optional[Union['PaymentIntentPaymentDetailsArgs', 'PaymentIntentPaymentDetailsArgsDict']]] = None,
+            payment_details: pulumi.Input[Optional[Union['PaymentIntentPaymentDetailsArgs', 'PaymentIntentPaymentDetailsArgsDict', 'outputs.PaymentIntentPaymentDetails']]] = None,
             payment_method: pulumi.Input[Optional[_builtins.str]] = None,
             payment_method_configuration: pulumi.Input[Optional[_builtins.str]] = None,
-            payment_method_configuration_details: pulumi.Input[Optional[Union['PaymentIntentPaymentMethodConfigurationDetailsArgs', 'PaymentIntentPaymentMethodConfigurationDetailsArgsDict']]] = None,
-            payment_method_data: pulumi.Input[Optional[Union['PaymentIntentPaymentMethodDataArgs', 'PaymentIntentPaymentMethodDataArgsDict']]] = None,
-            payment_method_options: pulumi.Input[Optional[Union['PaymentIntentPaymentMethodOptionsArgs', 'PaymentIntentPaymentMethodOptionsArgsDict']]] = None,
-            presentment_details: pulumi.Input[Optional[Union['PaymentIntentPresentmentDetailsArgs', 'PaymentIntentPresentmentDetailsArgsDict']]] = None,
-            processing: pulumi.Input[Optional[Union['PaymentIntentProcessingArgs', 'PaymentIntentProcessingArgsDict']]] = None,
-            radar_options: pulumi.Input[Optional[Union['PaymentIntentRadarOptionsArgs', 'PaymentIntentRadarOptionsArgsDict']]] = None,
+            payment_method_configuration_details: pulumi.Input[Optional[Union['PaymentIntentPaymentMethodConfigurationDetailsArgs', 'PaymentIntentPaymentMethodConfigurationDetailsArgsDict', 'outputs.PaymentIntentPaymentMethodConfigurationDetails']]] = None,
+            payment_method_data: pulumi.Input[Optional[Union['PaymentIntentPaymentMethodDataArgs', 'PaymentIntentPaymentMethodDataArgsDict', 'outputs.PaymentIntentPaymentMethodData']]] = None,
+            payment_method_options: pulumi.Input[Optional[Union['PaymentIntentPaymentMethodOptionsArgs', 'PaymentIntentPaymentMethodOptionsArgsDict', 'outputs.PaymentIntentPaymentMethodOptions']]] = None,
+            payment_method_types: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            payment_record: pulumi.Input[Optional[_builtins.str]] = None,
+            presentment_details: pulumi.Input[Optional[Union['PaymentIntentPresentmentDetailsArgs', 'PaymentIntentPresentmentDetailsArgsDict', 'outputs.PaymentIntentPresentmentDetails']]] = None,
+            processing: pulumi.Input[Optional[Union['PaymentIntentProcessingArgs', 'PaymentIntentProcessingArgsDict', 'outputs.PaymentIntentProcessing']]] = None,
+            radar_options: pulumi.Input[Optional[Union['PaymentIntentRadarOptionsArgs', 'PaymentIntentRadarOptionsArgsDict', 'outputs.PaymentIntentRadarOptions']]] = None,
             receipt_email: pulumi.Input[Optional[_builtins.str]] = None,
             return_url: pulumi.Input[Optional[_builtins.str]] = None,
             review: pulumi.Input[Optional[_builtins.str]] = None,
             setup_future_usage: pulumi.Input[Optional[_builtins.str]] = None,
-            shipping: pulumi.Input[Optional[Union['PaymentIntentShippingArgs', 'PaymentIntentShippingArgsDict']]] = None,
+            shipping: pulumi.Input[Optional[Union['PaymentIntentShippingArgs', 'PaymentIntentShippingArgsDict', 'outputs.PaymentIntentShipping']]] = None,
             source: pulumi.Input[Optional[_builtins.str]] = None,
             statement_descriptor: pulumi.Input[Optional[_builtins.str]] = None,
             statement_descriptor_suffix: pulumi.Input[Optional[_builtins.str]] = None,
             status: pulumi.Input[Optional[_builtins.str]] = None,
-            transfer_data: pulumi.Input[Optional[Union['PaymentIntentTransferDataArgs', 'PaymentIntentTransferDataArgsDict']]] = None,
+            transfer_data: pulumi.Input[Optional[Union['PaymentIntentTransferDataArgs', 'PaymentIntentTransferDataArgsDict', 'outputs.PaymentIntentTransferData']]] = None,
             transfer_group: pulumi.Input[Optional[_builtins.str]] = None,
             use_stripe_sdk: pulumi.Input[Optional[_builtins.bool]] = None) -> 'PaymentIntent':
         """
@@ -1756,7 +1792,7 @@ class PaymentIntent(pulumi.CustomResource):
         :param pulumi.Input[_builtins.float] amount_received: Amount that this PaymentIntent collects.
         :param pulumi.Input[_builtins.str] application: ID of the Connect application that created the PaymentIntent.
         :param pulumi.Input[_builtins.float] application_fee_amount: The amount of the application fee (if any) that will be requested to be applied to the payment and transferred to the application owner's Stripe account. The amount of the application fee collected will be capped at the total amount captured. For more information, see the PaymentIntents [use case for connected accounts](https://docs.stripe.com/payments/connected-accounts).
-        :param pulumi.Input[Union['PaymentIntentAutomaticPaymentMethodsArgs', 'PaymentIntentAutomaticPaymentMethodsArgsDict']] automatic_payment_methods: Settings to configure compatible payment methods from the [Stripe Dashboard](https://dashboard.stripe.com/settings/payment_methods)
+        :param pulumi.Input[Union['PaymentIntentAutomaticPaymentMethodsArgs', 'PaymentIntentAutomaticPaymentMethodsArgsDict', 'outputs.PaymentIntentAutomaticPaymentMethods']] automatic_payment_methods: Settings to configure compatible payment methods from the [Stripe Dashboard](https://dashboard.stripe.com/settings/payment_methods)
         :param pulumi.Input[_builtins.float] canceled_at: Populated when <span pulumi-lang-nodejs="`status`" pulumi-lang-dotnet="`Status`" pulumi-lang-go="`status`" pulumi-lang-python="`status`" pulumi-lang-yaml="`status`" pulumi-lang-java="`status`" pulumi-lang-hcl="`status`">`status`</span> is <span pulumi-lang-nodejs="`canceled`" pulumi-lang-dotnet="`Canceled`" pulumi-lang-go="`canceled`" pulumi-lang-python="`canceled`" pulumi-lang-yaml="`canceled`" pulumi-lang-java="`canceled`" pulumi-lang-hcl="`canceled`">`canceled`</span>, this is the time at which the PaymentIntent was canceled. Measured in seconds since the Unix epoch.
         :param pulumi.Input[_builtins.str] cancellation_reason: Reason for cancellation of this PaymentIntent, either user-provided (<span pulumi-lang-nodejs="`duplicate`" pulumi-lang-dotnet="`Duplicate`" pulumi-lang-go="`duplicate`" pulumi-lang-python="`duplicate`" pulumi-lang-yaml="`duplicate`" pulumi-lang-java="`duplicate`" pulumi-lang-hcl="`duplicate`">`duplicate`</span>, <span pulumi-lang-nodejs="`fraudulent`" pulumi-lang-dotnet="`Fraudulent`" pulumi-lang-go="`fraudulent`" pulumi-lang-python="`fraudulent`" pulumi-lang-yaml="`fraudulent`" pulumi-lang-java="`fraudulent`" pulumi-lang-hcl="`fraudulent`">`fraudulent`</span>, <span pulumi-lang-nodejs="`requestedByCustomer`" pulumi-lang-dotnet="`RequestedByCustomer`" pulumi-lang-go="`requestedByCustomer`" pulumi-lang-python="`requested_by_customer`" pulumi-lang-yaml="`requestedByCustomer`" pulumi-lang-java="`requestedByCustomer`" pulumi-lang-hcl="`requested_by_customer`">`requestedByCustomer`</span>, or <span pulumi-lang-nodejs="`abandoned`" pulumi-lang-dotnet="`Abandoned`" pulumi-lang-go="`abandoned`" pulumi-lang-python="`abandoned`" pulumi-lang-yaml="`abandoned`" pulumi-lang-java="`abandoned`" pulumi-lang-hcl="`abandoned`">`abandoned`</span>) or generated by Stripe internally (<span pulumi-lang-nodejs="`failedInvoice`" pulumi-lang-dotnet="`FailedInvoice`" pulumi-lang-go="`failedInvoice`" pulumi-lang-python="`failed_invoice`" pulumi-lang-yaml="`failedInvoice`" pulumi-lang-java="`failedInvoice`" pulumi-lang-hcl="`failed_invoice`">`failedInvoice`</span>, <span pulumi-lang-nodejs="`voidInvoice`" pulumi-lang-dotnet="`VoidInvoice`" pulumi-lang-go="`voidInvoice`" pulumi-lang-python="`void_invoice`" pulumi-lang-yaml="`voidInvoice`" pulumi-lang-java="`voidInvoice`" pulumi-lang-hcl="`void_invoice`">`voidInvoice`</span>, <span pulumi-lang-nodejs="`automatic`" pulumi-lang-dotnet="`Automatic`" pulumi-lang-go="`automatic`" pulumi-lang-python="`automatic`" pulumi-lang-yaml="`automatic`" pulumi-lang-java="`automatic`" pulumi-lang-hcl="`automatic`">`automatic`</span>, or <span pulumi-lang-nodejs="`expired`" pulumi-lang-dotnet="`Expired`" pulumi-lang-go="`expired`" pulumi-lang-python="`expired`" pulumi-lang-yaml="`expired`" pulumi-lang-java="`expired`" pulumi-lang-hcl="`expired`">`expired`</span>).
         :param pulumi.Input[_builtins.str] capture_method: Controls when the funds will be captured from the customer's account.
@@ -1778,35 +1814,37 @@ class PaymentIntent(pulumi.CustomResource):
                
                Payment methods attached to other Customers cannot be used with this PaymentIntent.
                
-               If <span pulumi-lang-nodejs="[setupFutureUsage]" pulumi-lang-dotnet="[SetupFutureUsage]" pulumi-lang-go="[setupFutureUsage]" pulumi-lang-python="[setup_future_usage]" pulumi-lang-yaml="[setupFutureUsage]" pulumi-lang-java="[setupFutureUsage]" pulumi-lang-hcl="[setup_future_usage]">[setupFutureUsage]</span>(https://api.stripe.com#payment_intent_object-setup_future_usage) is set and this PaymentIntent's payment method is not <span pulumi-lang-nodejs="`cardPresent`" pulumi-lang-dotnet="`CardPresent`" pulumi-lang-go="`cardPresent`" pulumi-lang-python="`card_present`" pulumi-lang-yaml="`cardPresent`" pulumi-lang-java="`cardPresent`" pulumi-lang-hcl="`card_present`">`cardPresent`</span>, then the payment method attaches to the Customer after the PaymentIntent has been confirmed and any required actions from the user are complete. If the payment method is <span pulumi-lang-nodejs="`cardPresent`" pulumi-lang-dotnet="`CardPresent`" pulumi-lang-go="`cardPresent`" pulumi-lang-python="`card_present`" pulumi-lang-yaml="`cardPresent`" pulumi-lang-java="`cardPresent`" pulumi-lang-hcl="`card_present`">`cardPresent`</span> and isn't a digital wallet, then a <span pulumi-lang-nodejs="[generatedCard]" pulumi-lang-dotnet="[GeneratedCard]" pulumi-lang-go="[generatedCard]" pulumi-lang-python="[generated_card]" pulumi-lang-yaml="[generatedCard]" pulumi-lang-java="[generatedCard]" pulumi-lang-hcl="[generated_card]">[generatedCard]</span>(https://docs.stripe.com/api/charges/object#charge_object-payment_method_details-card_present-generated_card) payment method representing the card is created and attached to the Customer instead.
+               If <span pulumi-lang-nodejs="[setupFutureUsage]" pulumi-lang-dotnet="[SetupFutureUsage]" pulumi-lang-go="[setupFutureUsage]" pulumi-lang-python="[setup_future_usage]" pulumi-lang-yaml="[setupFutureUsage]" pulumi-lang-java="[setupFutureUsage]" pulumi-lang-hcl="[setup_future_usage]">[setupFutureUsage]</span>(https://docs.stripe.com/api#payment_intent_object-setup_future_usage) is set and this PaymentIntent's payment method is not <span pulumi-lang-nodejs="`cardPresent`" pulumi-lang-dotnet="`CardPresent`" pulumi-lang-go="`cardPresent`" pulumi-lang-python="`card_present`" pulumi-lang-yaml="`cardPresent`" pulumi-lang-java="`cardPresent`" pulumi-lang-hcl="`card_present`">`cardPresent`</span>, then the payment method attaches to the Customer after the PaymentIntent has been confirmed and any required actions from the user are complete. If the payment method is <span pulumi-lang-nodejs="`cardPresent`" pulumi-lang-dotnet="`CardPresent`" pulumi-lang-go="`cardPresent`" pulumi-lang-python="`card_present`" pulumi-lang-yaml="`cardPresent`" pulumi-lang-java="`cardPresent`" pulumi-lang-hcl="`card_present`">`cardPresent`</span> and isn't a digital wallet, then a <span pulumi-lang-nodejs="[generatedCard]" pulumi-lang-dotnet="[GeneratedCard]" pulumi-lang-go="[generatedCard]" pulumi-lang-python="[generated_card]" pulumi-lang-yaml="[generatedCard]" pulumi-lang-java="[generatedCard]" pulumi-lang-hcl="[generated_card]">[generatedCard]</span>(https://docs.stripe.com/api/charges/object#charge_object-payment_method_details-card_present-generated_card) payment method representing the card is created and attached to the Customer instead.
         :param pulumi.Input[_builtins.str] description: An arbitrary string attached to the object. Often useful for displaying to users.
         :param pulumi.Input[_builtins.bool] error_on_requires_action: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
                Set to <span pulumi-lang-nodejs="`true`" pulumi-lang-dotnet="`True`" pulumi-lang-go="`true`" pulumi-lang-python="`true`" pulumi-lang-yaml="`true`" pulumi-lang-java="`true`" pulumi-lang-hcl="`true`">`true`</span> to fail the payment attempt if the PaymentIntent transitions into <span pulumi-lang-nodejs="`requiresAction`" pulumi-lang-dotnet="`RequiresAction`" pulumi-lang-go="`requiresAction`" pulumi-lang-python="`requires_action`" pulumi-lang-yaml="`requiresAction`" pulumi-lang-java="`requiresAction`" pulumi-lang-hcl="`requires_action`">`requiresAction`</span>. Use this parameter for simpler integrations that don't handle customer actions, such as [saving cards without authentication](https://docs.stripe.com/payments/save-card-without-authentication). This parameter can only be used with [`confirm=true`](https://docs.stripe.com/api/payment_intents/create#create_payment_intent-confirm).
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] excluded_payment_method_types: The list of payment method types to exclude from use with this payment.
-        :param pulumi.Input[Union['PaymentIntentLastPaymentErrorArgs', 'PaymentIntentLastPaymentErrorArgsDict']] last_payment_error: The payment error encountered in the previous PaymentIntent confirmation. It will be cleared if the PaymentIntent is later updated for any reason.
+        :param pulumi.Input[Union['PaymentIntentLastPaymentErrorArgs', 'PaymentIntentLastPaymentErrorArgsDict', 'outputs.PaymentIntentLastPaymentError']] last_payment_error: The payment error encountered in the previous PaymentIntent confirmation. It will be cleared if the PaymentIntent is later updated for any reason.
         :param pulumi.Input[_builtins.str] latest_charge: ID of the latest [Charge object](https://docs.stripe.com/api/charges) created by this PaymentIntent. This property is <span pulumi-lang-nodejs="`null`" pulumi-lang-dotnet="`Null`" pulumi-lang-go="`null`" pulumi-lang-python="`null`" pulumi-lang-yaml="`null`" pulumi-lang-java="`null`" pulumi-lang-hcl="`null`">`null`</span> until PaymentIntent confirmation is attempted.
         :param pulumi.Input[_builtins.bool] livemode: If the object exists in live mode, the value is <span pulumi-lang-nodejs="`true`" pulumi-lang-dotnet="`True`" pulumi-lang-go="`true`" pulumi-lang-python="`true`" pulumi-lang-yaml="`true`" pulumi-lang-java="`true`" pulumi-lang-hcl="`true`">`true`</span>. If the object exists in test mode, the value is <span pulumi-lang-nodejs="`false`" pulumi-lang-dotnet="`False`" pulumi-lang-go="`false`" pulumi-lang-python="`false`" pulumi-lang-yaml="`false`" pulumi-lang-java="`false`" pulumi-lang-hcl="`false`">`false`</span>.
-        :param pulumi.Input[Union['PaymentIntentManagedPaymentsArgs', 'PaymentIntentManagedPaymentsArgsDict']] managed_payments: Settings for Managed Payments.
+        :param pulumi.Input[Union['PaymentIntentManagedPaymentsArgs', 'PaymentIntentManagedPaymentsArgsDict', 'outputs.PaymentIntentManagedPayments']] managed_payments: Settings for Managed Payments.
         :param pulumi.Input[_builtins.str] mandate: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
                ID of the mandate that's used for this payment. This parameter can only be used with [`confirm=true`](https://docs.stripe.com/api/payment_intents/create#create_payment_intent-confirm).
-        :param pulumi.Input[Union['PaymentIntentMandateDataArgs', 'PaymentIntentMandateDataArgsDict']] mandate_data: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        :param pulumi.Input[Union['PaymentIntentMandateDataArgs', 'PaymentIntentMandateDataArgsDict', 'outputs.PaymentIntentMandateData']] mandate_data: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
                This hash contains details about the Mandate to create. This parameter can only be used with [`confirm=true`](https://docs.stripe.com/api/payment_intents/create#create_payment_intent-confirm).
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] metadata: Set of [key-value pairs](https://docs.stripe.com/api/metadata) that you can attach to an object. This can be useful for storing additional information about the object in a structured format. Learn more about [storing information in metadata](https://docs.stripe.com/payments/payment-intents/creating-payment-intents#storing-information-in-metadata).
-        :param pulumi.Input[Union['PaymentIntentNextActionArgs', 'PaymentIntentNextActionArgsDict']] next_action: If present, this property tells you what actions you need to take in order for your customer to fulfill a payment using the provided source.
+        :param pulumi.Input[Union['PaymentIntentNextActionArgs', 'PaymentIntentNextActionArgsDict', 'outputs.PaymentIntentNextAction']] next_action: If present, this property tells you what actions you need to take in order for your customer to fulfill a payment using the provided source.
         :param pulumi.Input[_builtins.str] object: String representing the object's type. Objects of the same type share the same value.
         :param pulumi.Input[_builtins.str] on_behalf_of: You can specify the settlement merchant as the
                connected account using the <span pulumi-lang-nodejs="`onBehalfOf`" pulumi-lang-dotnet="`OnBehalfOf`" pulumi-lang-go="`onBehalfOf`" pulumi-lang-python="`on_behalf_of`" pulumi-lang-yaml="`onBehalfOf`" pulumi-lang-java="`onBehalfOf`" pulumi-lang-hcl="`on_behalf_of`">`onBehalfOf`</span> attribute on the charge. See the PaymentIntents [use case for connected accounts](https://www.terraform.io/payments/connected-accounts) for details.
         :param pulumi.Input[_builtins.str] payment_method: ID of the payment method used in this PaymentIntent.
         :param pulumi.Input[_builtins.str] payment_method_configuration: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
                The ID of the [payment method configuration](https://docs.stripe.com/api/payment_method_configurations) to use with this PaymentIntent.
-        :param pulumi.Input[Union['PaymentIntentPaymentMethodConfigurationDetailsArgs', 'PaymentIntentPaymentMethodConfigurationDetailsArgsDict']] payment_method_configuration_details: Information about the [payment method configuration](https://docs.stripe.com/api/payment_method_configurations) used for this PaymentIntent.
-        :param pulumi.Input[Union['PaymentIntentPaymentMethodDataArgs', 'PaymentIntentPaymentMethodDataArgsDict']] payment_method_data: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        :param pulumi.Input[Union['PaymentIntentPaymentMethodConfigurationDetailsArgs', 'PaymentIntentPaymentMethodConfigurationDetailsArgsDict', 'outputs.PaymentIntentPaymentMethodConfigurationDetails']] payment_method_configuration_details: Information about the [payment method configuration](https://docs.stripe.com/api/payment_method_configurations) used for this PaymentIntent.
+        :param pulumi.Input[Union['PaymentIntentPaymentMethodDataArgs', 'PaymentIntentPaymentMethodDataArgsDict', 'outputs.PaymentIntentPaymentMethodData']] payment_method_data: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
                If provided, this hash will be used to create a PaymentMethod. The new PaymentMethod will appear
                in the <span pulumi-lang-nodejs="[paymentMethod]" pulumi-lang-dotnet="[PaymentMethod]" pulumi-lang-go="[paymentMethod]" pulumi-lang-python="[payment_method]" pulumi-lang-yaml="[paymentMethod]" pulumi-lang-java="[paymentMethod]" pulumi-lang-hcl="[payment_method]">[paymentMethod]</span>(https://docs.stripe.com/api/payment_intents/object#payment_intent_object-payment_method)
                property on the PaymentIntent.
-        :param pulumi.Input[Union['PaymentIntentPaymentMethodOptionsArgs', 'PaymentIntentPaymentMethodOptionsArgsDict']] payment_method_options: Payment-method-specific configuration for this PaymentIntent.
-        :param pulumi.Input[Union['PaymentIntentProcessingArgs', 'PaymentIntentProcessingArgsDict']] processing: If present, this property tells you about the processing state of the payment.
-        :param pulumi.Input[Union['PaymentIntentRadarOptionsArgs', 'PaymentIntentRadarOptionsArgsDict']] radar_options: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        :param pulumi.Input[Union['PaymentIntentPaymentMethodOptionsArgs', 'PaymentIntentPaymentMethodOptionsArgsDict', 'outputs.PaymentIntentPaymentMethodOptions']] payment_method_options: Payment-method-specific configuration for this PaymentIntent.
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] payment_method_types: The list of payment method types (e.g. card) that this PaymentIntent is allowed to use. A comprehensive list of valid payment method types can be found [here](https://docs.stripe.com/api/payment_methods/object#payment_method_object-type).
+        :param pulumi.Input[_builtins.str] payment_record: ID of the [Payment Record object](https://docs.stripe.com/api/payment-record) created by this PaymentIntent.
+        :param pulumi.Input[Union['PaymentIntentProcessingArgs', 'PaymentIntentProcessingArgsDict', 'outputs.PaymentIntentProcessing']] processing: If present, this property tells you about the processing state of the payment.
+        :param pulumi.Input[Union['PaymentIntentRadarOptionsArgs', 'PaymentIntentRadarOptionsArgsDict', 'outputs.PaymentIntentRadarOptions']] radar_options: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
                Options to configure Radar. Learn more about [Radar Sessions](https://docs.stripe.com/radar/radar-session).
         :param pulumi.Input[_builtins.str] receipt_email: Email address that the receipt for the resulting payment will be sent to. If <span pulumi-lang-nodejs="`receiptEmail`" pulumi-lang-dotnet="`ReceiptEmail`" pulumi-lang-go="`receiptEmail`" pulumi-lang-python="`receipt_email`" pulumi-lang-yaml="`receiptEmail`" pulumi-lang-java="`receiptEmail`" pulumi-lang-hcl="`receipt_email`">`receiptEmail`</span> is specified for a payment in live mode, a receipt will be sent regardless of your [email settings](https://dashboard.stripe.com/account/emails).
         :param pulumi.Input[_builtins.str] return_url: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
@@ -1819,14 +1857,14 @@ class PaymentIntent(pulumi.CustomResource):
                If the payment method is <span pulumi-lang-nodejs="`cardPresent`" pulumi-lang-dotnet="`CardPresent`" pulumi-lang-go="`cardPresent`" pulumi-lang-python="`card_present`" pulumi-lang-yaml="`cardPresent`" pulumi-lang-java="`cardPresent`" pulumi-lang-hcl="`card_present`">`cardPresent`</span> and isn't a digital wallet, Stripe creates and attaches a <span pulumi-lang-nodejs="[generatedCard]" pulumi-lang-dotnet="[GeneratedCard]" pulumi-lang-go="[generatedCard]" pulumi-lang-python="[generated_card]" pulumi-lang-yaml="[generatedCard]" pulumi-lang-java="[generatedCard]" pulumi-lang-hcl="[generated_card]">[generatedCard]</span>(https://www.terraform.io/api/charges/object#charge_object-payment_method_details-card_present-generated_card) payment method representing the card to the Customer instead.
                
                When processing card payments, Stripe uses <span pulumi-lang-nodejs="`setupFutureUsage`" pulumi-lang-dotnet="`SetupFutureUsage`" pulumi-lang-go="`setupFutureUsage`" pulumi-lang-python="`setup_future_usage`" pulumi-lang-yaml="`setupFutureUsage`" pulumi-lang-java="`setupFutureUsage`" pulumi-lang-hcl="`setup_future_usage`">`setupFutureUsage`</span> to help you comply with regional legislation and network rules, such as [SCA](https://www.terraform.io/strong-customer-authentication).
-        :param pulumi.Input[Union['PaymentIntentShippingArgs', 'PaymentIntentShippingArgsDict']] shipping: Shipping information for this PaymentIntent.
+        :param pulumi.Input[Union['PaymentIntentShippingArgs', 'PaymentIntentShippingArgsDict', 'outputs.PaymentIntentShipping']] shipping: Shipping information for this PaymentIntent.
         :param pulumi.Input[_builtins.str] source: This is a legacy field that will be removed in the future. It is the ID of the Source object that is associated with this PaymentIntent, if one was supplied.
         :param pulumi.Input[_builtins.str] statement_descriptor: Text that appears on the customer's statement as the statement descriptor for a non-card charge. This value overrides the account's default statement descriptor. For information about requirements, including the 22-character limit, see [the Statement Descriptor docs](https://docs.stripe.com/get-started/account/statement-descriptors).
                
                Setting this value for a card charge returns an error. For card charges, set the <span pulumi-lang-nodejs="[statementDescriptorSuffix]" pulumi-lang-dotnet="[StatementDescriptorSuffix]" pulumi-lang-go="[statementDescriptorSuffix]" pulumi-lang-python="[statement_descriptor_suffix]" pulumi-lang-yaml="[statementDescriptorSuffix]" pulumi-lang-java="[statementDescriptorSuffix]" pulumi-lang-hcl="[statement_descriptor_suffix]">[statementDescriptorSuffix]</span>(https://docs.stripe.com/get-started/account/statement-descriptors#dynamic) instead.
         :param pulumi.Input[_builtins.str] statement_descriptor_suffix: Provides information about a card charge. Concatenated to the account's [statement descriptor prefix](https://docs.stripe.com/get-started/account/statement-descriptors#static) to form the complete statement descriptor that appears on the customer's statement.
         :param pulumi.Input[_builtins.str] status: Status of this PaymentIntent, one of <span pulumi-lang-nodejs="`requiresPaymentMethod`" pulumi-lang-dotnet="`RequiresPaymentMethod`" pulumi-lang-go="`requiresPaymentMethod`" pulumi-lang-python="`requires_payment_method`" pulumi-lang-yaml="`requiresPaymentMethod`" pulumi-lang-java="`requiresPaymentMethod`" pulumi-lang-hcl="`requires_payment_method`">`requiresPaymentMethod`</span>, <span pulumi-lang-nodejs="`requiresConfirmation`" pulumi-lang-dotnet="`RequiresConfirmation`" pulumi-lang-go="`requiresConfirmation`" pulumi-lang-python="`requires_confirmation`" pulumi-lang-yaml="`requiresConfirmation`" pulumi-lang-java="`requiresConfirmation`" pulumi-lang-hcl="`requires_confirmation`">`requiresConfirmation`</span>, <span pulumi-lang-nodejs="`requiresAction`" pulumi-lang-dotnet="`RequiresAction`" pulumi-lang-go="`requiresAction`" pulumi-lang-python="`requires_action`" pulumi-lang-yaml="`requiresAction`" pulumi-lang-java="`requiresAction`" pulumi-lang-hcl="`requires_action`">`requiresAction`</span>, <span pulumi-lang-nodejs="`processing`" pulumi-lang-dotnet="`Processing`" pulumi-lang-go="`processing`" pulumi-lang-python="`processing`" pulumi-lang-yaml="`processing`" pulumi-lang-java="`processing`" pulumi-lang-hcl="`processing`">`processing`</span>, <span pulumi-lang-nodejs="`requiresCapture`" pulumi-lang-dotnet="`RequiresCapture`" pulumi-lang-go="`requiresCapture`" pulumi-lang-python="`requires_capture`" pulumi-lang-yaml="`requiresCapture`" pulumi-lang-java="`requiresCapture`" pulumi-lang-hcl="`requires_capture`">`requiresCapture`</span>, <span pulumi-lang-nodejs="`canceled`" pulumi-lang-dotnet="`Canceled`" pulumi-lang-go="`canceled`" pulumi-lang-python="`canceled`" pulumi-lang-yaml="`canceled`" pulumi-lang-java="`canceled`" pulumi-lang-hcl="`canceled`">`canceled`</span>, or <span pulumi-lang-nodejs="`succeeded`" pulumi-lang-dotnet="`Succeeded`" pulumi-lang-go="`succeeded`" pulumi-lang-python="`succeeded`" pulumi-lang-yaml="`succeeded`" pulumi-lang-java="`succeeded`" pulumi-lang-hcl="`succeeded`">`succeeded`</span>. Read more about each PaymentIntent [status](https://docs.stripe.com/payments/intents#intent-statuses).
-        :param pulumi.Input[Union['PaymentIntentTransferDataArgs', 'PaymentIntentTransferDataArgsDict']] transfer_data: The data that automatically creates a Transfer after the payment finalizes. Learn more about the [use case for connected accounts](https://docs.stripe.com/payments/connected-accounts).
+        :param pulumi.Input[Union['PaymentIntentTransferDataArgs', 'PaymentIntentTransferDataArgsDict', 'outputs.PaymentIntentTransferData']] transfer_data: The data that automatically creates a Transfer after the payment finalizes. Learn more about the [use case for connected accounts](https://docs.stripe.com/payments/connected-accounts).
         :param pulumi.Input[_builtins.str] transfer_group: A string that identifies the resulting payment as part of a group. Learn more about the [use case for connected accounts](https://docs.stripe.com/connect/separate-charges-and-transfers).
         :param pulumi.Input[_builtins.bool] use_stripe_sdk: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
                Set to <span pulumi-lang-nodejs="`true`" pulumi-lang-dotnet="`True`" pulumi-lang-go="`true`" pulumi-lang-python="`true`" pulumi-lang-yaml="`true`" pulumi-lang-java="`true`" pulumi-lang-hcl="`true`">`true`</span> when confirming server-side and using Stripe.js, iOS, or Android client-side SDKs to handle the next actions.
@@ -1871,6 +1909,8 @@ class PaymentIntent(pulumi.CustomResource):
         __props__.__dict__["payment_method_configuration_details"] = payment_method_configuration_details
         __props__.__dict__["payment_method_data"] = payment_method_data
         __props__.__dict__["payment_method_options"] = payment_method_options
+        __props__.__dict__["payment_method_types"] = payment_method_types
+        __props__.__dict__["payment_record"] = payment_record
         __props__.__dict__["presentment_details"] = presentment_details
         __props__.__dict__["processing"] = processing
         __props__.__dict__["radar_options"] = radar_options
@@ -1887,6 +1927,118 @@ class PaymentIntent(pulumi.CustomResource):
         __props__.__dict__["transfer_group"] = transfer_group
         __props__.__dict__["use_stripe_sdk"] = use_stripe_sdk
         return PaymentIntent(resource_name, opts=opts, __props__=__props__)
+
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            amount: pulumi.Input[Optional[_builtins.float]] = None,
+            amount_capturable: pulumi.Input[Optional[_builtins.float]] = None,
+            amount_received: pulumi.Input[Optional[_builtins.float]] = None,
+            application: pulumi.Input[Optional[_builtins.str]] = None,
+            application_fee_amount: pulumi.Input[Optional[_builtins.float]] = None,
+            automatic_payment_methods: pulumi.Input[Optional[Union['PaymentIntentAutomaticPaymentMethodsArgs', 'PaymentIntentAutomaticPaymentMethodsArgsDict', 'outputs.PaymentIntentAutomaticPaymentMethods']]] = None,
+            canceled_at: pulumi.Input[Optional[_builtins.float]] = None,
+            cancellation_reason: pulumi.Input[Optional[_builtins.str]] = None,
+            capture_method: pulumi.Input[Optional[_builtins.str]] = None,
+            client_secret: pulumi.Input[Optional[_builtins.str]] = None,
+            confirm: pulumi.Input[Optional[_builtins.bool]] = None,
+            confirmation_method: pulumi.Input[Optional[_builtins.str]] = None,
+            confirmation_token: pulumi.Input[Optional[_builtins.str]] = None,
+            created: pulumi.Input[Optional[_builtins.float]] = None,
+            currency: pulumi.Input[Optional[_builtins.str]] = None,
+            customer: pulumi.Input[Optional[_builtins.str]] = None,
+            description: pulumi.Input[Optional[_builtins.str]] = None,
+            error_on_requires_action: pulumi.Input[Optional[_builtins.bool]] = None,
+            excluded_payment_method_types: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            hooks: pulumi.Input[Optional[Union['PaymentIntentHooksArgs', 'PaymentIntentHooksArgsDict', 'outputs.PaymentIntentHooks']]] = None,
+            last_payment_error: pulumi.Input[Optional[Union['PaymentIntentLastPaymentErrorArgs', 'PaymentIntentLastPaymentErrorArgsDict', 'outputs.PaymentIntentLastPaymentError']]] = None,
+            latest_charge: pulumi.Input[Optional[_builtins.str]] = None,
+            livemode: pulumi.Input[Optional[_builtins.bool]] = None,
+            managed_payments: pulumi.Input[Optional[Union['PaymentIntentManagedPaymentsArgs', 'PaymentIntentManagedPaymentsArgsDict', 'outputs.PaymentIntentManagedPayments']]] = None,
+            mandate: pulumi.Input[Optional[_builtins.str]] = None,
+            mandate_data: pulumi.Input[Optional[Union['PaymentIntentMandateDataArgs', 'PaymentIntentMandateDataArgsDict', 'outputs.PaymentIntentMandateData']]] = None,
+            metadata: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+            next_action: pulumi.Input[Optional[Union['PaymentIntentNextActionArgs', 'PaymentIntentNextActionArgsDict', 'outputs.PaymentIntentNextAction']]] = None,
+            object: pulumi.Input[Optional[_builtins.str]] = None,
+            on_behalf_of: pulumi.Input[Optional[_builtins.str]] = None,
+            payment_details: pulumi.Input[Optional[Union['PaymentIntentPaymentDetailsArgs', 'PaymentIntentPaymentDetailsArgsDict', 'outputs.PaymentIntentPaymentDetails']]] = None,
+            payment_method: pulumi.Input[Optional[_builtins.str]] = None,
+            payment_method_configuration: pulumi.Input[Optional[_builtins.str]] = None,
+            payment_method_configuration_details: pulumi.Input[Optional[Union['PaymentIntentPaymentMethodConfigurationDetailsArgs', 'PaymentIntentPaymentMethodConfigurationDetailsArgsDict', 'outputs.PaymentIntentPaymentMethodConfigurationDetails']]] = None,
+            payment_method_data: pulumi.Input[Optional[Union['PaymentIntentPaymentMethodDataArgs', 'PaymentIntentPaymentMethodDataArgsDict', 'outputs.PaymentIntentPaymentMethodData']]] = None,
+            payment_method_options: pulumi.Input[Optional[Union['PaymentIntentPaymentMethodOptionsArgs', 'PaymentIntentPaymentMethodOptionsArgsDict', 'outputs.PaymentIntentPaymentMethodOptions']]] = None,
+            payment_method_types: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            payment_record: pulumi.Input[Optional[_builtins.str]] = None,
+            presentment_details: pulumi.Input[Optional[Union['PaymentIntentPresentmentDetailsArgs', 'PaymentIntentPresentmentDetailsArgsDict', 'outputs.PaymentIntentPresentmentDetails']]] = None,
+            processing: pulumi.Input[Optional[Union['PaymentIntentProcessingArgs', 'PaymentIntentProcessingArgsDict', 'outputs.PaymentIntentProcessing']]] = None,
+            radar_options: pulumi.Input[Optional[Union['PaymentIntentRadarOptionsArgs', 'PaymentIntentRadarOptionsArgsDict', 'outputs.PaymentIntentRadarOptions']]] = None,
+            receipt_email: pulumi.Input[Optional[_builtins.str]] = None,
+            return_url: pulumi.Input[Optional[_builtins.str]] = None,
+            review: pulumi.Input[Optional[_builtins.str]] = None,
+            setup_future_usage: pulumi.Input[Optional[_builtins.str]] = None,
+            shipping: pulumi.Input[Optional[Union['PaymentIntentShippingArgs', 'PaymentIntentShippingArgsDict', 'outputs.PaymentIntentShipping']]] = None,
+            source: pulumi.Input[Optional[_builtins.str]] = None,
+            statement_descriptor: pulumi.Input[Optional[_builtins.str]] = None,
+            statement_descriptor_suffix: pulumi.Input[Optional[_builtins.str]] = None,
+            status: pulumi.Input[Optional[_builtins.str]] = None,
+            transfer_data: pulumi.Input[Optional[Union['PaymentIntentTransferDataArgs', 'PaymentIntentTransferDataArgsDict', 'outputs.PaymentIntentTransferData']]] = None,
+            transfer_group: pulumi.Input[Optional[_builtins.str]] = None,
+            use_stripe_sdk: pulumi.Input[Optional[_builtins.bool]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["amount"] = amount
+        __props__["amountCapturable"] = amount_capturable
+        __props__["amountReceived"] = amount_received
+        __props__["application"] = application
+        __props__["applicationFeeAmount"] = application_fee_amount
+        __props__["automaticPaymentMethods"] = automatic_payment_methods
+        __props__["canceledAt"] = canceled_at
+        __props__["cancellationReason"] = cancellation_reason
+        __props__["captureMethod"] = capture_method
+        __props__["clientSecret"] = client_secret
+        __props__["confirm"] = confirm
+        __props__["confirmationMethod"] = confirmation_method
+        __props__["confirmationToken"] = confirmation_token
+        __props__["created"] = created
+        __props__["currency"] = currency
+        __props__["customer"] = customer
+        __props__["description"] = description
+        __props__["errorOnRequiresAction"] = error_on_requires_action
+        __props__["excludedPaymentMethodTypes"] = excluded_payment_method_types
+        __props__["hooks"] = hooks
+        __props__["lastPaymentError"] = last_payment_error
+        __props__["latestCharge"] = latest_charge
+        __props__["livemode"] = livemode
+        __props__["managedPayments"] = managed_payments
+        __props__["mandate"] = mandate
+        __props__["mandateData"] = mandate_data
+        __props__["metadata"] = metadata
+        __props__["nextAction"] = next_action
+        __props__["object"] = object
+        __props__["onBehalfOf"] = on_behalf_of
+        __props__["paymentDetails"] = payment_details
+        __props__["paymentMethod"] = payment_method
+        __props__["paymentMethodConfiguration"] = payment_method_configuration
+        __props__["paymentMethodConfigurationDetails"] = payment_method_configuration_details
+        __props__["paymentMethodData"] = payment_method_data
+        __props__["paymentMethodOptions"] = payment_method_options
+        __props__["paymentMethodTypes"] = payment_method_types
+        __props__["paymentRecord"] = payment_record
+        __props__["presentmentDetails"] = presentment_details
+        __props__["processing"] = processing
+        __props__["radarOptions"] = radar_options
+        __props__["receiptEmail"] = receipt_email
+        __props__["returnUrl"] = return_url
+        __props__["review"] = review
+        __props__["setupFutureUsage"] = setup_future_usage
+        __props__["shipping"] = shipping
+        __props__["source"] = source
+        __props__["statementDescriptor"] = statement_descriptor
+        __props__["statementDescriptorSuffix"] = statement_descriptor_suffix
+        __props__["status"] = status
+        __props__["transferData"] = transfer_data
+        __props__["transferGroup"] = transfer_group
+        __props__["useStripeSdk"] = use_stripe_sdk
+        return pulumi.runtime.exists_resource(None, 'stripe:index/paymentIntent:PaymentIntent', id, __props__, opts or pulumi.ResourceOptions(), package_ref=_utilities.get_package())
 
     @_builtins.property
     @pulumi.getter
@@ -2024,7 +2176,7 @@ class PaymentIntent(pulumi.CustomResource):
 
         Payment methods attached to other Customers cannot be used with this PaymentIntent.
 
-        If <span pulumi-lang-nodejs="[setupFutureUsage]" pulumi-lang-dotnet="[SetupFutureUsage]" pulumi-lang-go="[setupFutureUsage]" pulumi-lang-python="[setup_future_usage]" pulumi-lang-yaml="[setupFutureUsage]" pulumi-lang-java="[setupFutureUsage]" pulumi-lang-hcl="[setup_future_usage]">[setupFutureUsage]</span>(https://api.stripe.com#payment_intent_object-setup_future_usage) is set and this PaymentIntent's payment method is not <span pulumi-lang-nodejs="`cardPresent`" pulumi-lang-dotnet="`CardPresent`" pulumi-lang-go="`cardPresent`" pulumi-lang-python="`card_present`" pulumi-lang-yaml="`cardPresent`" pulumi-lang-java="`cardPresent`" pulumi-lang-hcl="`card_present`">`cardPresent`</span>, then the payment method attaches to the Customer after the PaymentIntent has been confirmed and any required actions from the user are complete. If the payment method is <span pulumi-lang-nodejs="`cardPresent`" pulumi-lang-dotnet="`CardPresent`" pulumi-lang-go="`cardPresent`" pulumi-lang-python="`card_present`" pulumi-lang-yaml="`cardPresent`" pulumi-lang-java="`cardPresent`" pulumi-lang-hcl="`card_present`">`cardPresent`</span> and isn't a digital wallet, then a <span pulumi-lang-nodejs="[generatedCard]" pulumi-lang-dotnet="[GeneratedCard]" pulumi-lang-go="[generatedCard]" pulumi-lang-python="[generated_card]" pulumi-lang-yaml="[generatedCard]" pulumi-lang-java="[generatedCard]" pulumi-lang-hcl="[generated_card]">[generatedCard]</span>(https://docs.stripe.com/api/charges/object#charge_object-payment_method_details-card_present-generated_card) payment method representing the card is created and attached to the Customer instead.
+        If <span pulumi-lang-nodejs="[setupFutureUsage]" pulumi-lang-dotnet="[SetupFutureUsage]" pulumi-lang-go="[setupFutureUsage]" pulumi-lang-python="[setup_future_usage]" pulumi-lang-yaml="[setupFutureUsage]" pulumi-lang-java="[setupFutureUsage]" pulumi-lang-hcl="[setup_future_usage]">[setupFutureUsage]</span>(https://docs.stripe.com/api#payment_intent_object-setup_future_usage) is set and this PaymentIntent's payment method is not <span pulumi-lang-nodejs="`cardPresent`" pulumi-lang-dotnet="`CardPresent`" pulumi-lang-go="`cardPresent`" pulumi-lang-python="`card_present`" pulumi-lang-yaml="`cardPresent`" pulumi-lang-java="`cardPresent`" pulumi-lang-hcl="`card_present`">`cardPresent`</span>, then the payment method attaches to the Customer after the PaymentIntent has been confirmed and any required actions from the user are complete. If the payment method is <span pulumi-lang-nodejs="`cardPresent`" pulumi-lang-dotnet="`CardPresent`" pulumi-lang-go="`cardPresent`" pulumi-lang-python="`card_present`" pulumi-lang-yaml="`cardPresent`" pulumi-lang-java="`cardPresent`" pulumi-lang-hcl="`card_present`">`cardPresent`</span> and isn't a digital wallet, then a <span pulumi-lang-nodejs="[generatedCard]" pulumi-lang-dotnet="[GeneratedCard]" pulumi-lang-go="[generatedCard]" pulumi-lang-python="[generated_card]" pulumi-lang-yaml="[generatedCard]" pulumi-lang-java="[generatedCard]" pulumi-lang-hcl="[generated_card]">[generatedCard]</span>(https://docs.stripe.com/api/charges/object#charge_object-payment_method_details-card_present-generated_card) payment method representing the card is created and attached to the Customer instead.
         """
         return pulumi.get(self, "customer")
 
@@ -2189,6 +2341,22 @@ class PaymentIntent(pulumi.CustomResource):
         Payment-method-specific configuration for this PaymentIntent.
         """
         return pulumi.get(self, "payment_method_options")
+
+    @_builtins.property
+    @pulumi.getter(name="paymentMethodTypes")
+    def payment_method_types(self) -> pulumi.Output[Sequence[_builtins.str]]:
+        """
+        The list of payment method types (e.g. card) that this PaymentIntent is allowed to use. A comprehensive list of valid payment method types can be found [here](https://docs.stripe.com/api/payment_methods/object#payment_method_object-type).
+        """
+        return pulumi.get(self, "payment_method_types")
+
+    @_builtins.property
+    @pulumi.getter(name="paymentRecord")
+    def payment_record(self) -> pulumi.Output[_builtins.str]:
+        """
+        ID of the [Payment Record object](https://docs.stripe.com/api/payment-record) created by this PaymentIntent.
+        """
+        return pulumi.get(self, "payment_record")
 
     @_builtins.property
     @pulumi.getter(name="presentmentDetails")

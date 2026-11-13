@@ -24,6 +24,30 @@ namespace Pulumi.Stripe.Inputs
             set => _accountTaxIds = value;
         }
 
+        [Input("customFields")]
+        private InputList<Inputs.SubscriptionInvoiceSettingsCustomFieldArgs>? _customFields;
+
+        /// <summary>
+        /// A list of up to 4 custom fields to be displayed on the invoice.
+        /// </summary>
+        public InputList<Inputs.SubscriptionInvoiceSettingsCustomFieldArgs> CustomFields
+        {
+            get => _customFields ?? (_customFields = new InputList<Inputs.SubscriptionInvoiceSettingsCustomFieldArgs>());
+            set => _customFields = value;
+        }
+
+        /// <summary>
+        /// An arbitrary string attached to the object. Often useful for displaying to users.
+        /// </summary>
+        [Input("description")]
+        public Input<string>? Description { get; set; }
+
+        /// <summary>
+        /// Footer to be displayed on the invoice.
+        /// </summary>
+        [Input("footer")]
+        public Input<string>? Footer { get; set; }
+
         [Input("issuer")]
         public Input<Inputs.SubscriptionInvoiceSettingsIssuerArgs>? Issuer { get; set; }
 

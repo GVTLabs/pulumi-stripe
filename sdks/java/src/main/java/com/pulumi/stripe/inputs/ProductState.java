@@ -8,6 +8,7 @@ import com.pulumi.core.annotations.Import;
 import com.pulumi.stripe.inputs.ProductDefaultPriceDataArgs;
 import com.pulumi.stripe.inputs.ProductMarketingFeatureArgs;
 import com.pulumi.stripe.inputs.ProductPackageDimensionArgs;
+import com.pulumi.stripe.inputs.ProductTaxDetailsArgs;
 import java.lang.Boolean;
 import java.lang.Double;
 import java.lang.String;
@@ -203,6 +204,21 @@ public final class ProductState extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
+     * Unique identifier for the object.
+     * 
+     */
+    @Import(name="productId")
+    private @Nullable Output<String> productId;
+
+    /**
+     * @return Unique identifier for the object.
+     * 
+     */
+    public Optional<Output<String>> productId() {
+        return Optional.ofNullable(this.productId);
+    }
+
+    /**
      * Whether this product is shipped (i.e., physical goods).
      * 
      */
@@ -245,6 +261,21 @@ public final class ProductState extends com.pulumi.resources.ResourceArgs {
      */
     public Optional<Output<String>> taxCode() {
         return Optional.ofNullable(this.taxCode);
+    }
+
+    /**
+     * Tax details for this product, including the [tax code](https://www.terraform.io/tax/tax-codes) and an optional performance location.
+     * 
+     */
+    @Import(name="taxDetails")
+    private @Nullable Output<ProductTaxDetailsArgs> taxDetails;
+
+    /**
+     * @return Tax details for this product, including the [tax code](https://www.terraform.io/tax/tax-codes) and an optional performance location.
+     * 
+     */
+    public Optional<Output<ProductTaxDetailsArgs>> taxDetails() {
+        return Optional.ofNullable(this.taxDetails);
     }
 
     /**
@@ -322,9 +353,11 @@ public final class ProductState extends com.pulumi.resources.ResourceArgs {
         this.name = $.name;
         this.object = $.object;
         this.packageDimensions = $.packageDimensions;
+        this.productId = $.productId;
         this.shippable = $.shippable;
         this.statementDescriptor = $.statementDescriptor;
         this.taxCode = $.taxCode;
+        this.taxDetails = $.taxDetails;
         this.type = $.type;
         this.unitLabel = $.unitLabel;
         this.updated = $.updated;
@@ -642,6 +675,27 @@ public final class ProductState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
+         * @param productId Unique identifier for the object.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder productId(@Nullable Output<String> productId) {
+            $.productId = productId;
+            return this;
+        }
+
+        /**
+         * @param productId Unique identifier for the object.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder productId(String productId) {
+            return productId(Output.of(productId));
+        }
+
+        /**
          * @param shippable Whether this product is shipped (i.e., physical goods).
          * 
          * @return builder
@@ -702,6 +756,27 @@ public final class ProductState extends com.pulumi.resources.ResourceArgs {
          */
         public Builder taxCode(String taxCode) {
             return taxCode(Output.of(taxCode));
+        }
+
+        /**
+         * @param taxDetails Tax details for this product, including the [tax code](https://www.terraform.io/tax/tax-codes) and an optional performance location.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder taxDetails(@Nullable Output<ProductTaxDetailsArgs> taxDetails) {
+            $.taxDetails = taxDetails;
+            return this;
+        }
+
+        /**
+         * @param taxDetails Tax details for this product, including the [tax code](https://www.terraform.io/tax/tax-codes) and an optional performance location.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder taxDetails(ProductTaxDetailsArgs taxDetails) {
+            return taxDetails(Output.of(taxDetails));
         }
 
         /**

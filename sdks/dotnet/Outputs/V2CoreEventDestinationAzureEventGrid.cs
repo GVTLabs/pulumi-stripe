@@ -14,23 +14,23 @@ namespace Pulumi.Stripe.Outputs
     public sealed class V2CoreEventDestinationAzureEventGrid
     {
         /// <summary>
-        /// The name of the Azure partner topic.
+        /// The name of the Stripe-created partner topic that receives events.
         /// </summary>
         public readonly string? AzurePartnerTopicName;
         /// <summary>
-        /// The status of the Azure partner topic.
+        /// The Azure-reported lifecycle state of the partner topic.
         /// </summary>
         public readonly string? AzurePartnerTopicStatus;
         /// <summary>
-        /// The Azure region.
+        /// The Azure region where the partner topic is located.
         /// </summary>
         public readonly string AzureRegion;
         /// <summary>
-        /// The name of the Azure resource group.
+        /// The Azure resource group containing the partner topic.
         /// </summary>
         public readonly string AzureResourceGroupName;
         /// <summary>
-        /// The Azure subscription ID.
+        /// The Azure subscription containing the resource group and partner topic.
         /// </summary>
         public readonly string AzureSubscriptionId;
 

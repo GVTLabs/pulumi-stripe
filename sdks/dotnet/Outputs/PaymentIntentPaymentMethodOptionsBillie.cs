@@ -17,11 +17,23 @@ namespace Pulumi.Stripe.Outputs
         /// Controls when the funds will be captured from the customer's account.
         /// </summary>
         public readonly string? CaptureMethod;
+        public readonly Outputs.PaymentIntentPaymentMethodOptionsBillieCompanyDetails? CompanyDetails;
+        /// <summary>
+        /// An identifier or reference that this payment corresponds to.
+        /// </summary>
+        public readonly string? Reference;
 
         [OutputConstructor]
-        private PaymentIntentPaymentMethodOptionsBillie(string? captureMethod)
+        private PaymentIntentPaymentMethodOptionsBillie(
+            string? captureMethod,
+
+            Outputs.PaymentIntentPaymentMethodOptionsBillieCompanyDetails? companyDetails,
+
+            string? reference)
         {
             CaptureMethod = captureMethod;
+            CompanyDetails = companyDetails;
+            Reference = reference;
         }
     }
 }

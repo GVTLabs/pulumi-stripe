@@ -56,10 +56,22 @@ namespace Pulumi.Stripe
         public Output<ImmutableArray<Outputs.InvoiceItemDiscount>> Discounts { get; private set; } = null!;
 
         /// <summary>
+        /// Array of field names that can't be modified. Attempting to update a frozen field returns an error.
+        /// </summary>
+        [Output("frozenFields")]
+        public Output<ImmutableArray<string>> FrozenFields { get; private set; } = null!;
+
+        /// <summary>
         /// The ID of the invoice this invoice item belongs to.
         /// </summary>
         [Output("invoice")]
         public Output<string> Invoice { get; private set; } = null!;
+
+        /// <summary>
+        /// The rules that control when this invoice item is eligible for invoicing. All rules must be satisfied for the item to be invoiced.
+        /// </summary>
+        [Output("invoicingRules")]
+        public Output<ImmutableArray<Outputs.InvoiceItemInvoicingRule>> InvoicingRules { get; private set; } = null!;
 
         /// <summary>
         /// If the object exists in live mode, the value is &lt;span pulumi-lang-nodejs="`true`" pulumi-lang-dotnet="`True`" pulumi-lang-go="`true`" pulumi-lang-python="`true`" pulumi-lang-yaml="`true`" pulumi-lang-java="`true`" pulumi-lang-hcl="`true`"&gt;`true`&lt;/span&gt;. If the object exists in test mode, the value is &lt;span pulumi-lang-nodejs="`false`" pulumi-lang-dotnet="`False`" pulumi-lang-go="`false`" pulumi-lang-python="`false`" pulumi-lang-yaml="`false`" pulumi-lang-java="`false`" pulumi-lang-hcl="`false`"&gt;`false`&lt;/span&gt;.
@@ -133,7 +145,7 @@ namespace Pulumi.Stripe
 
         /// <summary>
         /// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
-        /// Only required if a [default tax behavior](https://docs.stripe.com/tax/products-prices-tax-categories-tax-behavior#setting-a-default-tax-behavior-(recommended)) was not provided in the Stripe Tax settings. Specifies whether the price is considered inclusive of taxes or exclusive of taxes. One of &lt;span pulumi-lang-nodejs="`inclusive`" pulumi-lang-dotnet="`Inclusive`" pulumi-lang-go="`inclusive`" pulumi-lang-python="`inclusive`" pulumi-lang-yaml="`inclusive`" pulumi-lang-java="`inclusive`" pulumi-lang-hcl="`inclusive`"&gt;`inclusive`&lt;/span&gt;, &lt;span pulumi-lang-nodejs="`exclusive`" pulumi-lang-dotnet="`Exclusive`" pulumi-lang-go="`exclusive`" pulumi-lang-python="`exclusive`" pulumi-lang-yaml="`exclusive`" pulumi-lang-java="`exclusive`" pulumi-lang-hcl="`exclusive`"&gt;`exclusive`&lt;/span&gt;, or &lt;span pulumi-lang-nodejs="`unspecified`" pulumi-lang-dotnet="`Unspecified`" pulumi-lang-go="`unspecified`" pulumi-lang-python="`unspecified`" pulumi-lang-yaml="`unspecified`" pulumi-lang-java="`unspecified`" pulumi-lang-hcl="`unspecified`"&gt;`unspecified`&lt;/span&gt;. Once specified as either &lt;span pulumi-lang-nodejs="`inclusive`" pulumi-lang-dotnet="`Inclusive`" pulumi-lang-go="`inclusive`" pulumi-lang-python="`inclusive`" pulumi-lang-yaml="`inclusive`" pulumi-lang-java="`inclusive`" pulumi-lang-hcl="`inclusive`"&gt;`inclusive`&lt;/span&gt; or &lt;span pulumi-lang-nodejs="`exclusive`" pulumi-lang-dotnet="`Exclusive`" pulumi-lang-go="`exclusive`" pulumi-lang-python="`exclusive`" pulumi-lang-yaml="`exclusive`" pulumi-lang-java="`exclusive`" pulumi-lang-hcl="`exclusive`"&gt;`exclusive`&lt;/span&gt;, it cannot be changed.
+        /// Only required if a [default tax behavior](&lt;https://docs.stripe.com/tax/products-prices-tax-categories-tax-behavior#setting-a-default-tax-behavior-(recommended)&gt;) was not provided in the Stripe Tax settings. Specifies whether the price is considered inclusive of taxes or exclusive of taxes. One of &lt;span pulumi-lang-nodejs="`inclusive`" pulumi-lang-dotnet="`Inclusive`" pulumi-lang-go="`inclusive`" pulumi-lang-python="`inclusive`" pulumi-lang-yaml="`inclusive`" pulumi-lang-java="`inclusive`" pulumi-lang-hcl="`inclusive`"&gt;`inclusive`&lt;/span&gt;, &lt;span pulumi-lang-nodejs="`exclusive`" pulumi-lang-dotnet="`Exclusive`" pulumi-lang-go="`exclusive`" pulumi-lang-python="`exclusive`" pulumi-lang-yaml="`exclusive`" pulumi-lang-java="`exclusive`" pulumi-lang-hcl="`exclusive`"&gt;`exclusive`&lt;/span&gt;, or &lt;span pulumi-lang-nodejs="`unspecified`" pulumi-lang-dotnet="`Unspecified`" pulumi-lang-go="`unspecified`" pulumi-lang-python="`unspecified`" pulumi-lang-yaml="`unspecified`" pulumi-lang-java="`unspecified`" pulumi-lang-hcl="`unspecified`"&gt;`unspecified`&lt;/span&gt;. Once specified as either &lt;span pulumi-lang-nodejs="`inclusive`" pulumi-lang-dotnet="`Inclusive`" pulumi-lang-go="`inclusive`" pulumi-lang-python="`inclusive`" pulumi-lang-yaml="`inclusive`" pulumi-lang-java="`inclusive`" pulumi-lang-hcl="`inclusive`"&gt;`inclusive`&lt;/span&gt; or &lt;span pulumi-lang-nodejs="`exclusive`" pulumi-lang-dotnet="`Exclusive`" pulumi-lang-go="`exclusive`" pulumi-lang-python="`exclusive`" pulumi-lang-yaml="`exclusive`" pulumi-lang-java="`exclusive`" pulumi-lang-hcl="`exclusive`"&gt;`exclusive`&lt;/span&gt;, it cannot be changed.
         /// </summary>
         [Output("taxBehavior")]
         public Output<string?> TaxBehavior { get; private set; } = null!;
@@ -280,6 +292,18 @@ namespace Pulumi.Stripe
         [Input("invoice")]
         public Input<string>? Invoice { get; set; }
 
+        [Input("invoicingRules")]
+        private InputList<Inputs.InvoiceItemInvoicingRuleArgs>? _invoicingRules;
+
+        /// <summary>
+        /// The rules that control when this invoice item is eligible for invoicing. All rules must be satisfied for the item to be invoiced.
+        /// </summary>
+        public InputList<Inputs.InvoiceItemInvoicingRuleArgs> InvoicingRules
+        {
+            get => _invoicingRules ?? (_invoicingRules = new InputList<Inputs.InvoiceItemInvoicingRuleArgs>());
+            set => _invoicingRules = value;
+        }
+
         [Input("metadata")]
         private InputMap<string>? _metadata;
 
@@ -374,7 +398,7 @@ namespace Pulumi.Stripe
 
         /// <summary>
         /// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
-        /// Only required if a [default tax behavior](https://docs.stripe.com/tax/products-prices-tax-categories-tax-behavior#setting-a-default-tax-behavior-(recommended)) was not provided in the Stripe Tax settings. Specifies whether the price is considered inclusive of taxes or exclusive of taxes. One of &lt;span pulumi-lang-nodejs="`inclusive`" pulumi-lang-dotnet="`Inclusive`" pulumi-lang-go="`inclusive`" pulumi-lang-python="`inclusive`" pulumi-lang-yaml="`inclusive`" pulumi-lang-java="`inclusive`" pulumi-lang-hcl="`inclusive`"&gt;`inclusive`&lt;/span&gt;, &lt;span pulumi-lang-nodejs="`exclusive`" pulumi-lang-dotnet="`Exclusive`" pulumi-lang-go="`exclusive`" pulumi-lang-python="`exclusive`" pulumi-lang-yaml="`exclusive`" pulumi-lang-java="`exclusive`" pulumi-lang-hcl="`exclusive`"&gt;`exclusive`&lt;/span&gt;, or &lt;span pulumi-lang-nodejs="`unspecified`" pulumi-lang-dotnet="`Unspecified`" pulumi-lang-go="`unspecified`" pulumi-lang-python="`unspecified`" pulumi-lang-yaml="`unspecified`" pulumi-lang-java="`unspecified`" pulumi-lang-hcl="`unspecified`"&gt;`unspecified`&lt;/span&gt;. Once specified as either &lt;span pulumi-lang-nodejs="`inclusive`" pulumi-lang-dotnet="`Inclusive`" pulumi-lang-go="`inclusive`" pulumi-lang-python="`inclusive`" pulumi-lang-yaml="`inclusive`" pulumi-lang-java="`inclusive`" pulumi-lang-hcl="`inclusive`"&gt;`inclusive`&lt;/span&gt; or &lt;span pulumi-lang-nodejs="`exclusive`" pulumi-lang-dotnet="`Exclusive`" pulumi-lang-go="`exclusive`" pulumi-lang-python="`exclusive`" pulumi-lang-yaml="`exclusive`" pulumi-lang-java="`exclusive`" pulumi-lang-hcl="`exclusive`"&gt;`exclusive`&lt;/span&gt;, it cannot be changed.
+        /// Only required if a [default tax behavior](&lt;https://docs.stripe.com/tax/products-prices-tax-categories-tax-behavior#setting-a-default-tax-behavior-(recommended)&gt;) was not provided in the Stripe Tax settings. Specifies whether the price is considered inclusive of taxes or exclusive of taxes. One of &lt;span pulumi-lang-nodejs="`inclusive`" pulumi-lang-dotnet="`Inclusive`" pulumi-lang-go="`inclusive`" pulumi-lang-python="`inclusive`" pulumi-lang-yaml="`inclusive`" pulumi-lang-java="`inclusive`" pulumi-lang-hcl="`inclusive`"&gt;`inclusive`&lt;/span&gt;, &lt;span pulumi-lang-nodejs="`exclusive`" pulumi-lang-dotnet="`Exclusive`" pulumi-lang-go="`exclusive`" pulumi-lang-python="`exclusive`" pulumi-lang-yaml="`exclusive`" pulumi-lang-java="`exclusive`" pulumi-lang-hcl="`exclusive`"&gt;`exclusive`&lt;/span&gt;, or &lt;span pulumi-lang-nodejs="`unspecified`" pulumi-lang-dotnet="`Unspecified`" pulumi-lang-go="`unspecified`" pulumi-lang-python="`unspecified`" pulumi-lang-yaml="`unspecified`" pulumi-lang-java="`unspecified`" pulumi-lang-hcl="`unspecified`"&gt;`unspecified`&lt;/span&gt;. Once specified as either &lt;span pulumi-lang-nodejs="`inclusive`" pulumi-lang-dotnet="`Inclusive`" pulumi-lang-go="`inclusive`" pulumi-lang-python="`inclusive`" pulumi-lang-yaml="`inclusive`" pulumi-lang-java="`inclusive`" pulumi-lang-hcl="`inclusive`"&gt;`inclusive`&lt;/span&gt; or &lt;span pulumi-lang-nodejs="`exclusive`" pulumi-lang-dotnet="`Exclusive`" pulumi-lang-go="`exclusive`" pulumi-lang-python="`exclusive`" pulumi-lang-yaml="`exclusive`" pulumi-lang-java="`exclusive`" pulumi-lang-hcl="`exclusive`"&gt;`exclusive`&lt;/span&gt;, it cannot be changed.
         /// </summary>
         public Input<string>? TaxBehavior
         {
@@ -499,11 +523,35 @@ namespace Pulumi.Stripe
             set => _discounts = value;
         }
 
+        [Input("frozenFields")]
+        private InputList<string>? _frozenFields;
+
+        /// <summary>
+        /// Array of field names that can't be modified. Attempting to update a frozen field returns an error.
+        /// </summary>
+        public InputList<string> FrozenFields
+        {
+            get => _frozenFields ?? (_frozenFields = new InputList<string>());
+            set => _frozenFields = value;
+        }
+
         /// <summary>
         /// The ID of the invoice this invoice item belongs to.
         /// </summary>
         [Input("invoice")]
         public Input<string>? Invoice { get; set; }
+
+        [Input("invoicingRules")]
+        private InputList<Inputs.InvoiceItemInvoicingRuleGetArgs>? _invoicingRules;
+
+        /// <summary>
+        /// The rules that control when this invoice item is eligible for invoicing. All rules must be satisfied for the item to be invoiced.
+        /// </summary>
+        public InputList<Inputs.InvoiceItemInvoicingRuleGetArgs> InvoicingRules
+        {
+            get => _invoicingRules ?? (_invoicingRules = new InputList<Inputs.InvoiceItemInvoicingRuleGetArgs>());
+            set => _invoicingRules = value;
+        }
 
         /// <summary>
         /// If the object exists in live mode, the value is &lt;span pulumi-lang-nodejs="`true`" pulumi-lang-dotnet="`True`" pulumi-lang-go="`true`" pulumi-lang-python="`true`" pulumi-lang-yaml="`true`" pulumi-lang-java="`true`" pulumi-lang-hcl="`true`"&gt;`true`&lt;/span&gt;. If the object exists in test mode, the value is &lt;span pulumi-lang-nodejs="`false`" pulumi-lang-dotnet="`False`" pulumi-lang-go="`false`" pulumi-lang-python="`false`" pulumi-lang-yaml="`false`" pulumi-lang-java="`false`" pulumi-lang-hcl="`false`"&gt;`false`&lt;/span&gt;.
@@ -626,7 +674,7 @@ namespace Pulumi.Stripe
 
         /// <summary>
         /// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
-        /// Only required if a [default tax behavior](https://docs.stripe.com/tax/products-prices-tax-categories-tax-behavior#setting-a-default-tax-behavior-(recommended)) was not provided in the Stripe Tax settings. Specifies whether the price is considered inclusive of taxes or exclusive of taxes. One of &lt;span pulumi-lang-nodejs="`inclusive`" pulumi-lang-dotnet="`Inclusive`" pulumi-lang-go="`inclusive`" pulumi-lang-python="`inclusive`" pulumi-lang-yaml="`inclusive`" pulumi-lang-java="`inclusive`" pulumi-lang-hcl="`inclusive`"&gt;`inclusive`&lt;/span&gt;, &lt;span pulumi-lang-nodejs="`exclusive`" pulumi-lang-dotnet="`Exclusive`" pulumi-lang-go="`exclusive`" pulumi-lang-python="`exclusive`" pulumi-lang-yaml="`exclusive`" pulumi-lang-java="`exclusive`" pulumi-lang-hcl="`exclusive`"&gt;`exclusive`&lt;/span&gt;, or &lt;span pulumi-lang-nodejs="`unspecified`" pulumi-lang-dotnet="`Unspecified`" pulumi-lang-go="`unspecified`" pulumi-lang-python="`unspecified`" pulumi-lang-yaml="`unspecified`" pulumi-lang-java="`unspecified`" pulumi-lang-hcl="`unspecified`"&gt;`unspecified`&lt;/span&gt;. Once specified as either &lt;span pulumi-lang-nodejs="`inclusive`" pulumi-lang-dotnet="`Inclusive`" pulumi-lang-go="`inclusive`" pulumi-lang-python="`inclusive`" pulumi-lang-yaml="`inclusive`" pulumi-lang-java="`inclusive`" pulumi-lang-hcl="`inclusive`"&gt;`inclusive`&lt;/span&gt; or &lt;span pulumi-lang-nodejs="`exclusive`" pulumi-lang-dotnet="`Exclusive`" pulumi-lang-go="`exclusive`" pulumi-lang-python="`exclusive`" pulumi-lang-yaml="`exclusive`" pulumi-lang-java="`exclusive`" pulumi-lang-hcl="`exclusive`"&gt;`exclusive`&lt;/span&gt;, it cannot be changed.
+        /// Only required if a [default tax behavior](&lt;https://docs.stripe.com/tax/products-prices-tax-categories-tax-behavior#setting-a-default-tax-behavior-(recommended)&gt;) was not provided in the Stripe Tax settings. Specifies whether the price is considered inclusive of taxes or exclusive of taxes. One of &lt;span pulumi-lang-nodejs="`inclusive`" pulumi-lang-dotnet="`Inclusive`" pulumi-lang-go="`inclusive`" pulumi-lang-python="`inclusive`" pulumi-lang-yaml="`inclusive`" pulumi-lang-java="`inclusive`" pulumi-lang-hcl="`inclusive`"&gt;`inclusive`&lt;/span&gt;, &lt;span pulumi-lang-nodejs="`exclusive`" pulumi-lang-dotnet="`Exclusive`" pulumi-lang-go="`exclusive`" pulumi-lang-python="`exclusive`" pulumi-lang-yaml="`exclusive`" pulumi-lang-java="`exclusive`" pulumi-lang-hcl="`exclusive`"&gt;`exclusive`&lt;/span&gt;, or &lt;span pulumi-lang-nodejs="`unspecified`" pulumi-lang-dotnet="`Unspecified`" pulumi-lang-go="`unspecified`" pulumi-lang-python="`unspecified`" pulumi-lang-yaml="`unspecified`" pulumi-lang-java="`unspecified`" pulumi-lang-hcl="`unspecified`"&gt;`unspecified`&lt;/span&gt;. Once specified as either &lt;span pulumi-lang-nodejs="`inclusive`" pulumi-lang-dotnet="`Inclusive`" pulumi-lang-go="`inclusive`" pulumi-lang-python="`inclusive`" pulumi-lang-yaml="`inclusive`" pulumi-lang-java="`inclusive`" pulumi-lang-hcl="`inclusive`"&gt;`inclusive`&lt;/span&gt; or &lt;span pulumi-lang-nodejs="`exclusive`" pulumi-lang-dotnet="`Exclusive`" pulumi-lang-go="`exclusive`" pulumi-lang-python="`exclusive`" pulumi-lang-yaml="`exclusive`" pulumi-lang-java="`exclusive`" pulumi-lang-hcl="`exclusive`"&gt;`exclusive`&lt;/span&gt;, it cannot be changed.
         /// </summary>
         public Input<string>? TaxBehavior
         {

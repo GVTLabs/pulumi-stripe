@@ -19,6 +19,12 @@ namespace Pulumi.Stripe.Inputs
         [Input("country")]
         public Input<string>? Country { get; set; }
 
+        /// <summary>
+        /// The [funding source group code](https://docs.stripe.com/payments/link/link-payment-methods) applied to this Link payment at confirmation time.
+        /// </summary>
+        [Input("fundingSourceGroup")]
+        public Input<string>? FundingSourceGroup { get; set; }
+
         public ChargePaymentMethodDetailsLinkGetArgs()
         {
         }

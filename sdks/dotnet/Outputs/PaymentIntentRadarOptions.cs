@@ -15,13 +15,22 @@ namespace Pulumi.Stripe.Outputs
     {
         /// <summary>
         /// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        /// The referrer URL of the current checkout session. You can use this to supply session-level referrer data when a Radar Session isn't available or doesn't contain a referrer.
+        /// </summary>
+        public readonly string? Referrer;
+        /// <summary>
+        /// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
         /// A [Radar Session](https://docs.stripe.com/radar/radar-session) is a snapshot of the browser metadata and device details that help Radar make more accurate predictions on your payments.
         /// </summary>
         public readonly string? Session;
 
         [OutputConstructor]
-        private PaymentIntentRadarOptions(string? session)
+        private PaymentIntentRadarOptions(
+            string? referrer,
+
+            string? session)
         {
+            Referrer = referrer;
             Session = session;
         }
     }

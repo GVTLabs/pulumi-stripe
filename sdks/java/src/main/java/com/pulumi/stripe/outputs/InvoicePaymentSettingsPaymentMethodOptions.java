@@ -6,6 +6,7 @@ package com.pulumi.stripe.outputs;
 import com.pulumi.core.annotations.CustomType;
 import com.pulumi.stripe.outputs.InvoicePaymentSettingsPaymentMethodOptionsAcssDebit;
 import com.pulumi.stripe.outputs.InvoicePaymentSettingsPaymentMethodOptionsBancontact;
+import com.pulumi.stripe.outputs.InvoicePaymentSettingsPaymentMethodOptionsBillie;
 import com.pulumi.stripe.outputs.InvoicePaymentSettingsPaymentMethodOptionsCard;
 import com.pulumi.stripe.outputs.InvoicePaymentSettingsPaymentMethodOptionsCustomerBalance;
 import com.pulumi.stripe.outputs.InvoicePaymentSettingsPaymentMethodOptionsPayto;
@@ -28,6 +29,11 @@ public final class InvoicePaymentSettingsPaymentMethodOptions {
      * 
      */
     private @Nullable InvoicePaymentSettingsPaymentMethodOptionsBancontact bancontact;
+    /**
+     * @return If paying by &lt;span pulumi-lang-nodejs=&#34;`billie`&#34; pulumi-lang-dotnet=&#34;`Billie`&#34; pulumi-lang-go=&#34;`billie`&#34; pulumi-lang-python=&#34;`billie`&#34; pulumi-lang-yaml=&#34;`billie`&#34; pulumi-lang-java=&#34;`billie`&#34; pulumi-lang-hcl=&#34;`billie`&#34;&gt;`billie`&lt;/span&gt;, this sub-hash contains details about the Billie payment method options to pass to the invoice’s PaymentIntent.
+     * 
+     */
+    private @Nullable InvoicePaymentSettingsPaymentMethodOptionsBillie billie;
     /**
      * @return If paying by &lt;span pulumi-lang-nodejs=&#34;`card`&#34; pulumi-lang-dotnet=&#34;`Card`&#34; pulumi-lang-go=&#34;`card`&#34; pulumi-lang-python=&#34;`card`&#34; pulumi-lang-yaml=&#34;`card`&#34; pulumi-lang-java=&#34;`card`&#34; pulumi-lang-hcl=&#34;`card`&#34;&gt;`card`&lt;/span&gt;, this sub-hash contains details about the Card payment method options to pass to the invoice’s PaymentIntent.
      * 
@@ -73,6 +79,13 @@ public final class InvoicePaymentSettingsPaymentMethodOptions {
      */
     public Optional<InvoicePaymentSettingsPaymentMethodOptionsBancontact> bancontact() {
         return Optional.ofNullable(this.bancontact);
+    }
+    /**
+     * @return If paying by &lt;span pulumi-lang-nodejs=&#34;`billie`&#34; pulumi-lang-dotnet=&#34;`Billie`&#34; pulumi-lang-go=&#34;`billie`&#34; pulumi-lang-python=&#34;`billie`&#34; pulumi-lang-yaml=&#34;`billie`&#34; pulumi-lang-java=&#34;`billie`&#34; pulumi-lang-hcl=&#34;`billie`&#34;&gt;`billie`&lt;/span&gt;, this sub-hash contains details about the Billie payment method options to pass to the invoice’s PaymentIntent.
+     * 
+     */
+    public Optional<InvoicePaymentSettingsPaymentMethodOptionsBillie> billie() {
+        return Optional.ofNullable(this.billie);
     }
     /**
      * @return If paying by &lt;span pulumi-lang-nodejs=&#34;`card`&#34; pulumi-lang-dotnet=&#34;`Card`&#34; pulumi-lang-go=&#34;`card`&#34; pulumi-lang-python=&#34;`card`&#34; pulumi-lang-yaml=&#34;`card`&#34; pulumi-lang-java=&#34;`card`&#34; pulumi-lang-hcl=&#34;`card`&#34;&gt;`card`&lt;/span&gt;, this sub-hash contains details about the Card payment method options to pass to the invoice’s PaymentIntent.
@@ -128,6 +141,7 @@ public final class InvoicePaymentSettingsPaymentMethodOptions {
     public static final class Builder {
         private @Nullable InvoicePaymentSettingsPaymentMethodOptionsAcssDebit acssDebit;
         private @Nullable InvoicePaymentSettingsPaymentMethodOptionsBancontact bancontact;
+        private @Nullable InvoicePaymentSettingsPaymentMethodOptionsBillie billie;
         private @Nullable InvoicePaymentSettingsPaymentMethodOptionsCard card;
         private @Nullable InvoicePaymentSettingsPaymentMethodOptionsCustomerBalance customerBalance;
         private @Nullable InvoicePaymentSettingsPaymentMethodOptionsPayto payto;
@@ -139,6 +153,7 @@ public final class InvoicePaymentSettingsPaymentMethodOptions {
     	      Objects.requireNonNull(defaults);
     	      this.acssDebit = defaults.acssDebit;
     	      this.bancontact = defaults.bancontact;
+    	      this.billie = defaults.billie;
     	      this.card = defaults.card;
     	      this.customerBalance = defaults.customerBalance;
     	      this.payto = defaults.payto;
@@ -157,6 +172,12 @@ public final class InvoicePaymentSettingsPaymentMethodOptions {
         public Builder bancontact(@Nullable InvoicePaymentSettingsPaymentMethodOptionsBancontact bancontact) {
 
             this.bancontact = bancontact;
+            return this;
+        }
+        @CustomType.Setter
+        public Builder billie(@Nullable InvoicePaymentSettingsPaymentMethodOptionsBillie billie) {
+
+            this.billie = billie;
             return this;
         }
         @CustomType.Setter
@@ -199,6 +220,7 @@ public final class InvoicePaymentSettingsPaymentMethodOptions {
             final var _resultValue = new InvoicePaymentSettingsPaymentMethodOptions();
             _resultValue.acssDebit = acssDebit;
             _resultValue.bancontact = bancontact;
+            _resultValue.billie = billie;
             _resultValue.card = card;
             _resultValue.customerBalance = customerBalance;
             _resultValue.payto = payto;

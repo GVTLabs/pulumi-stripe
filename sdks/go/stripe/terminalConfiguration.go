@@ -24,18 +24,20 @@ type TerminalConfiguration struct {
 	// String indicating the name of the Configuration object, set by the user
 	Name pulumi.StringOutput `pulumi:"name"`
 	// String representing the object's type. Objects of the same type share the same value.
-	Object        pulumi.StringOutput                      `pulumi:"object"`
-	Offline       TerminalConfigurationOfflineOutput       `pulumi:"offline"`
-	RebootWindow  TerminalConfigurationRebootWindowOutput  `pulumi:"rebootWindow"`
-	StripeS700    TerminalConfigurationStripeS700Output    `pulumi:"stripeS700"`
-	StripeS710    TerminalConfigurationStripeS710Output    `pulumi:"stripeS710"`
-	Tipping       TerminalConfigurationTippingOutput       `pulumi:"tipping"`
-	VerifoneM425  TerminalConfigurationVerifoneM425Output  `pulumi:"verifoneM425"`
-	VerifoneP400  TerminalConfigurationVerifoneP400Output  `pulumi:"verifoneP400"`
-	VerifoneP630  TerminalConfigurationVerifoneP630Output  `pulumi:"verifoneP630"`
-	VerifoneUx700 TerminalConfigurationVerifoneUx700Output `pulumi:"verifoneUx700"`
-	VerifoneV660p TerminalConfigurationVerifoneV660pOutput `pulumi:"verifoneV660p"`
-	Wifi          TerminalConfigurationWifiOutput          `pulumi:"wifi"`
+	Object         pulumi.StringOutput                       `pulumi:"object"`
+	Offline        TerminalConfigurationOfflineOutput        `pulumi:"offline"`
+	ReaderSecurity TerminalConfigurationReaderSecurityOutput `pulumi:"readerSecurity"`
+	RebootWindow   TerminalConfigurationRebootWindowOutput   `pulumi:"rebootWindow"`
+	StripeS700     TerminalConfigurationStripeS700Output     `pulumi:"stripeS700"`
+	StripeS710     TerminalConfigurationStripeS710Output     `pulumi:"stripeS710"`
+	StripeT600     TerminalConfigurationStripeT600Output     `pulumi:"stripeT600"`
+	Tipping        TerminalConfigurationTippingOutput        `pulumi:"tipping"`
+	VerifoneM425   TerminalConfigurationVerifoneM425Output   `pulumi:"verifoneM425"`
+	VerifoneP400   TerminalConfigurationVerifoneP400Output   `pulumi:"verifoneP400"`
+	VerifoneP630   TerminalConfigurationVerifoneP630Output   `pulumi:"verifoneP630"`
+	VerifoneUx700  TerminalConfigurationVerifoneUx700Output  `pulumi:"verifoneUx700"`
+	VerifoneV660p  TerminalConfigurationVerifoneV660pOutput  `pulumi:"verifoneV660p"`
+	Wifi           TerminalConfigurationWifiOutput           `pulumi:"wifi"`
 }
 
 // NewTerminalConfiguration registers a new resource with the given unique name, arguments, and options.
@@ -86,18 +88,20 @@ type terminalConfigurationState struct {
 	// String indicating the name of the Configuration object, set by the user
 	Name *string `pulumi:"name"`
 	// String representing the object's type. Objects of the same type share the same value.
-	Object        *string                             `pulumi:"object"`
-	Offline       *TerminalConfigurationOffline       `pulumi:"offline"`
-	RebootWindow  *TerminalConfigurationRebootWindow  `pulumi:"rebootWindow"`
-	StripeS700    *TerminalConfigurationStripeS700    `pulumi:"stripeS700"`
-	StripeS710    *TerminalConfigurationStripeS710    `pulumi:"stripeS710"`
-	Tipping       *TerminalConfigurationTipping       `pulumi:"tipping"`
-	VerifoneM425  *TerminalConfigurationVerifoneM425  `pulumi:"verifoneM425"`
-	VerifoneP400  *TerminalConfigurationVerifoneP400  `pulumi:"verifoneP400"`
-	VerifoneP630  *TerminalConfigurationVerifoneP630  `pulumi:"verifoneP630"`
-	VerifoneUx700 *TerminalConfigurationVerifoneUx700 `pulumi:"verifoneUx700"`
-	VerifoneV660p *TerminalConfigurationVerifoneV660p `pulumi:"verifoneV660p"`
-	Wifi          *TerminalConfigurationWifi          `pulumi:"wifi"`
+	Object         *string                              `pulumi:"object"`
+	Offline        *TerminalConfigurationOffline        `pulumi:"offline"`
+	ReaderSecurity *TerminalConfigurationReaderSecurity `pulumi:"readerSecurity"`
+	RebootWindow   *TerminalConfigurationRebootWindow   `pulumi:"rebootWindow"`
+	StripeS700     *TerminalConfigurationStripeS700     `pulumi:"stripeS700"`
+	StripeS710     *TerminalConfigurationStripeS710     `pulumi:"stripeS710"`
+	StripeT600     *TerminalConfigurationStripeT600     `pulumi:"stripeT600"`
+	Tipping        *TerminalConfigurationTipping        `pulumi:"tipping"`
+	VerifoneM425   *TerminalConfigurationVerifoneM425   `pulumi:"verifoneM425"`
+	VerifoneP400   *TerminalConfigurationVerifoneP400   `pulumi:"verifoneP400"`
+	VerifoneP630   *TerminalConfigurationVerifoneP630   `pulumi:"verifoneP630"`
+	VerifoneUx700  *TerminalConfigurationVerifoneUx700  `pulumi:"verifoneUx700"`
+	VerifoneV660p  *TerminalConfigurationVerifoneV660p  `pulumi:"verifoneV660p"`
+	Wifi           *TerminalConfigurationWifi           `pulumi:"wifi"`
 }
 
 type TerminalConfigurationState struct {
@@ -111,22 +115,36 @@ type TerminalConfigurationState struct {
 	// String indicating the name of the Configuration object, set by the user
 	Name pulumi.StringPtrInput
 	// String representing the object's type. Objects of the same type share the same value.
-	Object        pulumi.StringPtrInput
-	Offline       TerminalConfigurationOfflinePtrInput
-	RebootWindow  TerminalConfigurationRebootWindowPtrInput
-	StripeS700    TerminalConfigurationStripeS700PtrInput
-	StripeS710    TerminalConfigurationStripeS710PtrInput
-	Tipping       TerminalConfigurationTippingPtrInput
-	VerifoneM425  TerminalConfigurationVerifoneM425PtrInput
-	VerifoneP400  TerminalConfigurationVerifoneP400PtrInput
-	VerifoneP630  TerminalConfigurationVerifoneP630PtrInput
-	VerifoneUx700 TerminalConfigurationVerifoneUx700PtrInput
-	VerifoneV660p TerminalConfigurationVerifoneV660pPtrInput
-	Wifi          TerminalConfigurationWifiPtrInput
+	Object         pulumi.StringPtrInput
+	Offline        TerminalConfigurationOfflinePtrInput
+	ReaderSecurity TerminalConfigurationReaderSecurityPtrInput
+	RebootWindow   TerminalConfigurationRebootWindowPtrInput
+	StripeS700     TerminalConfigurationStripeS700PtrInput
+	StripeS710     TerminalConfigurationStripeS710PtrInput
+	StripeT600     TerminalConfigurationStripeT600PtrInput
+	Tipping        TerminalConfigurationTippingPtrInput
+	VerifoneM425   TerminalConfigurationVerifoneM425PtrInput
+	VerifoneP400   TerminalConfigurationVerifoneP400PtrInput
+	VerifoneP630   TerminalConfigurationVerifoneP630PtrInput
+	VerifoneUx700  TerminalConfigurationVerifoneUx700PtrInput
+	VerifoneV660p  TerminalConfigurationVerifoneV660pPtrInput
+	Wifi           TerminalConfigurationWifiPtrInput
 }
 
 func (TerminalConfigurationState) ElementType() reflect.Type {
 	return reflect.TypeOf((*terminalConfigurationState)(nil)).Elem()
+}
+
+// TerminalConfigurationExists checks whether an existing TerminalConfiguration resource with the given ID exists.
+func TerminalConfigurationExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *TerminalConfigurationState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	ref, err := internal.PkgGetPackageRef(ctx)
+	if err != nil {
+		return pulumi.Bool(false).ToBoolOutput().ApplyT(func(bool) (bool, error) {
+			return false, err
+		}).(pulumi.BoolOutput)
+	}
+	return ctx.ExistsResource("stripe:index/terminalConfiguration:TerminalConfiguration", id, state, ref, opts...)
 }
 
 type terminalConfigurationArgs struct {
@@ -134,18 +152,20 @@ type terminalConfigurationArgs struct {
 	BbposWiseposE *TerminalConfigurationBbposWiseposE `pulumi:"bbposWiseposE"`
 	Cellular      *TerminalConfigurationCellular      `pulumi:"cellular"`
 	// String indicating the name of the Configuration object, set by the user
-	Name          *string                             `pulumi:"name"`
-	Offline       *TerminalConfigurationOffline       `pulumi:"offline"`
-	RebootWindow  *TerminalConfigurationRebootWindow  `pulumi:"rebootWindow"`
-	StripeS700    *TerminalConfigurationStripeS700    `pulumi:"stripeS700"`
-	StripeS710    *TerminalConfigurationStripeS710    `pulumi:"stripeS710"`
-	Tipping       *TerminalConfigurationTipping       `pulumi:"tipping"`
-	VerifoneM425  *TerminalConfigurationVerifoneM425  `pulumi:"verifoneM425"`
-	VerifoneP400  *TerminalConfigurationVerifoneP400  `pulumi:"verifoneP400"`
-	VerifoneP630  *TerminalConfigurationVerifoneP630  `pulumi:"verifoneP630"`
-	VerifoneUx700 *TerminalConfigurationVerifoneUx700 `pulumi:"verifoneUx700"`
-	VerifoneV660p *TerminalConfigurationVerifoneV660p `pulumi:"verifoneV660p"`
-	Wifi          *TerminalConfigurationWifi          `pulumi:"wifi"`
+	Name           *string                              `pulumi:"name"`
+	Offline        *TerminalConfigurationOffline        `pulumi:"offline"`
+	ReaderSecurity *TerminalConfigurationReaderSecurity `pulumi:"readerSecurity"`
+	RebootWindow   *TerminalConfigurationRebootWindow   `pulumi:"rebootWindow"`
+	StripeS700     *TerminalConfigurationStripeS700     `pulumi:"stripeS700"`
+	StripeS710     *TerminalConfigurationStripeS710     `pulumi:"stripeS710"`
+	StripeT600     *TerminalConfigurationStripeT600     `pulumi:"stripeT600"`
+	Tipping        *TerminalConfigurationTipping        `pulumi:"tipping"`
+	VerifoneM425   *TerminalConfigurationVerifoneM425   `pulumi:"verifoneM425"`
+	VerifoneP400   *TerminalConfigurationVerifoneP400   `pulumi:"verifoneP400"`
+	VerifoneP630   *TerminalConfigurationVerifoneP630   `pulumi:"verifoneP630"`
+	VerifoneUx700  *TerminalConfigurationVerifoneUx700  `pulumi:"verifoneUx700"`
+	VerifoneV660p  *TerminalConfigurationVerifoneV660p  `pulumi:"verifoneV660p"`
+	Wifi           *TerminalConfigurationWifi           `pulumi:"wifi"`
 }
 
 // The set of arguments for constructing a TerminalConfiguration resource.
@@ -154,18 +174,20 @@ type TerminalConfigurationArgs struct {
 	BbposWiseposE TerminalConfigurationBbposWiseposEPtrInput
 	Cellular      TerminalConfigurationCellularPtrInput
 	// String indicating the name of the Configuration object, set by the user
-	Name          pulumi.StringPtrInput
-	Offline       TerminalConfigurationOfflinePtrInput
-	RebootWindow  TerminalConfigurationRebootWindowPtrInput
-	StripeS700    TerminalConfigurationStripeS700PtrInput
-	StripeS710    TerminalConfigurationStripeS710PtrInput
-	Tipping       TerminalConfigurationTippingPtrInput
-	VerifoneM425  TerminalConfigurationVerifoneM425PtrInput
-	VerifoneP400  TerminalConfigurationVerifoneP400PtrInput
-	VerifoneP630  TerminalConfigurationVerifoneP630PtrInput
-	VerifoneUx700 TerminalConfigurationVerifoneUx700PtrInput
-	VerifoneV660p TerminalConfigurationVerifoneV660pPtrInput
-	Wifi          TerminalConfigurationWifiPtrInput
+	Name           pulumi.StringPtrInput
+	Offline        TerminalConfigurationOfflinePtrInput
+	ReaderSecurity TerminalConfigurationReaderSecurityPtrInput
+	RebootWindow   TerminalConfigurationRebootWindowPtrInput
+	StripeS700     TerminalConfigurationStripeS700PtrInput
+	StripeS710     TerminalConfigurationStripeS710PtrInput
+	StripeT600     TerminalConfigurationStripeT600PtrInput
+	Tipping        TerminalConfigurationTippingPtrInput
+	VerifoneM425   TerminalConfigurationVerifoneM425PtrInput
+	VerifoneP400   TerminalConfigurationVerifoneP400PtrInput
+	VerifoneP630   TerminalConfigurationVerifoneP630PtrInput
+	VerifoneUx700  TerminalConfigurationVerifoneUx700PtrInput
+	VerifoneV660p  TerminalConfigurationVerifoneV660pPtrInput
+	Wifi           TerminalConfigurationWifiPtrInput
 }
 
 func (TerminalConfigurationArgs) ElementType() reflect.Type {
@@ -241,6 +263,10 @@ func (o TerminalConfigurationOutput) Offline() TerminalConfigurationOfflineOutpu
 	return o.ApplyT(func(v *TerminalConfiguration) TerminalConfigurationOfflineOutput { return v.Offline }).(TerminalConfigurationOfflineOutput)
 }
 
+func (o TerminalConfigurationOutput) ReaderSecurity() TerminalConfigurationReaderSecurityOutput {
+	return o.ApplyT(func(v *TerminalConfiguration) TerminalConfigurationReaderSecurityOutput { return v.ReaderSecurity }).(TerminalConfigurationReaderSecurityOutput)
+}
+
 func (o TerminalConfigurationOutput) RebootWindow() TerminalConfigurationRebootWindowOutput {
 	return o.ApplyT(func(v *TerminalConfiguration) TerminalConfigurationRebootWindowOutput { return v.RebootWindow }).(TerminalConfigurationRebootWindowOutput)
 }
@@ -251,6 +277,10 @@ func (o TerminalConfigurationOutput) StripeS700() TerminalConfigurationStripeS70
 
 func (o TerminalConfigurationOutput) StripeS710() TerminalConfigurationStripeS710Output {
 	return o.ApplyT(func(v *TerminalConfiguration) TerminalConfigurationStripeS710Output { return v.StripeS710 }).(TerminalConfigurationStripeS710Output)
+}
+
+func (o TerminalConfigurationOutput) StripeT600() TerminalConfigurationStripeT600Output {
+	return o.ApplyT(func(v *TerminalConfiguration) TerminalConfigurationStripeT600Output { return v.StripeT600 }).(TerminalConfigurationStripeT600Output)
 }
 
 func (o TerminalConfigurationOutput) Tipping() TerminalConfigurationTippingOutput {

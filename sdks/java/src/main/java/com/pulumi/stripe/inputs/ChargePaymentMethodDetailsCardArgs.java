@@ -132,6 +132,21 @@ public final class ChargePaymentMethodDetailsCardArgs extends com.pulumi.resourc
     }
 
     /**
+     * The Electronic Commerce Indicator (ECI) returned by the card network in the authorization response. Indicates the level of authentication used. Only populated for Visa and Mastercard transactions. This is the network&#39;s final ECI and can differ from the request value. An authenticated ECI alone doesn&#39;t determine liability shift.
+     * 
+     */
+    @Import(name="electronicCommerceIndicator")
+    private @Nullable Output<String> electronicCommerceIndicator;
+
+    /**
+     * @return The Electronic Commerce Indicator (ECI) returned by the card network in the authorization response. Indicates the level of authentication used. Only populated for Visa and Mastercard transactions. This is the network&#39;s final ECI and can differ from the request value. An authenticated ECI alone doesn&#39;t determine liability shift.
+     * 
+     */
+    public Optional<Output<String>> electronicCommerceIndicator() {
+        return Optional.ofNullable(this.electronicCommerceIndicator);
+    }
+
+    /**
      * Two-digit number representing the card&#39;s expiration month.
      * 
      */
@@ -378,6 +393,36 @@ public final class ChargePaymentMethodDetailsCardArgs extends com.pulumi.resourc
     }
 
     /**
+     * The payment_method_options.card.setup_credential_usage value that was passed when&lt;span pulumi-lang-nodejs=&#34; setupFutureUsage &#34; pulumi-lang-dotnet=&#34; SetupFutureUsage &#34; pulumi-lang-go=&#34; setupFutureUsage &#34; pulumi-lang-python=&#34; setup_future_usage &#34; pulumi-lang-yaml=&#34; setupFutureUsage &#34; pulumi-lang-java=&#34; setupFutureUsage &#34; pulumi-lang-hcl=&#34; setup_future_usage &#34;&gt; setupFutureUsage &lt;/span&gt;was present at confirmation, one of &lt;span pulumi-lang-nodejs=&#34;`recurring`&#34; pulumi-lang-dotnet=&#34;`Recurring`&#34; pulumi-lang-go=&#34;`recurring`&#34; pulumi-lang-python=&#34;`recurring`&#34; pulumi-lang-yaml=&#34;`recurring`&#34; pulumi-lang-java=&#34;`recurring`&#34; pulumi-lang-hcl=&#34;`recurring`&#34;&gt;`recurring`&lt;/span&gt;, &lt;span pulumi-lang-nodejs=&#34;`unscheduled`&#34; pulumi-lang-dotnet=&#34;`Unscheduled`&#34; pulumi-lang-go=&#34;`unscheduled`&#34; pulumi-lang-python=&#34;`unscheduled`&#34; pulumi-lang-yaml=&#34;`unscheduled`&#34; pulumi-lang-java=&#34;`unscheduled`&#34; pulumi-lang-hcl=&#34;`unscheduled`&#34;&gt;`unscheduled`&lt;/span&gt;, or &lt;span pulumi-lang-nodejs=&#34;`installment`&#34; pulumi-lang-dotnet=&#34;`Installment`&#34; pulumi-lang-go=&#34;`installment`&#34; pulumi-lang-python=&#34;`installment`&#34; pulumi-lang-yaml=&#34;`installment`&#34; pulumi-lang-java=&#34;`installment`&#34; pulumi-lang-hcl=&#34;`installment`&#34;&gt;`installment`&lt;/span&gt;
+     * 
+     */
+    @Import(name="setupCredentialUsage")
+    private @Nullable Output<String> setupCredentialUsage;
+
+    /**
+     * @return The payment_method_options.card.setup_credential_usage value that was passed when&lt;span pulumi-lang-nodejs=&#34; setupFutureUsage &#34; pulumi-lang-dotnet=&#34; SetupFutureUsage &#34; pulumi-lang-go=&#34; setupFutureUsage &#34; pulumi-lang-python=&#34; setup_future_usage &#34; pulumi-lang-yaml=&#34; setupFutureUsage &#34; pulumi-lang-java=&#34; setupFutureUsage &#34; pulumi-lang-hcl=&#34; setup_future_usage &#34;&gt; setupFutureUsage &lt;/span&gt;was present at confirmation, one of &lt;span pulumi-lang-nodejs=&#34;`recurring`&#34; pulumi-lang-dotnet=&#34;`Recurring`&#34; pulumi-lang-go=&#34;`recurring`&#34; pulumi-lang-python=&#34;`recurring`&#34; pulumi-lang-yaml=&#34;`recurring`&#34; pulumi-lang-java=&#34;`recurring`&#34; pulumi-lang-hcl=&#34;`recurring`&#34;&gt;`recurring`&lt;/span&gt;, &lt;span pulumi-lang-nodejs=&#34;`unscheduled`&#34; pulumi-lang-dotnet=&#34;`Unscheduled`&#34; pulumi-lang-go=&#34;`unscheduled`&#34; pulumi-lang-python=&#34;`unscheduled`&#34; pulumi-lang-yaml=&#34;`unscheduled`&#34; pulumi-lang-java=&#34;`unscheduled`&#34; pulumi-lang-hcl=&#34;`unscheduled`&#34;&gt;`unscheduled`&lt;/span&gt;, or &lt;span pulumi-lang-nodejs=&#34;`installment`&#34; pulumi-lang-dotnet=&#34;`Installment`&#34; pulumi-lang-go=&#34;`installment`&#34; pulumi-lang-python=&#34;`installment`&#34; pulumi-lang-yaml=&#34;`installment`&#34; pulumi-lang-java=&#34;`installment`&#34; pulumi-lang-hcl=&#34;`installment`&#34;&gt;`installment`&lt;/span&gt;
+     * 
+     */
+    public Optional<Output<String>> setupCredentialUsage() {
+        return Optional.ofNullable(this.setupCredentialUsage);
+    }
+
+    /**
+     * The payment_method_options.card.stored_credential_usage value that was passed for an off session, merchant-initiated transaction.
+     * 
+     */
+    @Import(name="storedCredentialUsage")
+    private @Nullable Output<String> storedCredentialUsage;
+
+    /**
+     * @return The payment_method_options.card.stored_credential_usage value that was passed for an off session, merchant-initiated transaction.
+     * 
+     */
+    public Optional<Output<String>> storedCredentialUsage() {
+        return Optional.ofNullable(this.storedCredentialUsage);
+    }
+
+    /**
      * Populated if this transaction used 3D Secure authentication.
      * 
      */
@@ -390,6 +435,21 @@ public final class ChargePaymentMethodDetailsCardArgs extends com.pulumi.resourc
      */
     public Optional<Output<ChargePaymentMethodDetailsCardThreeDSecureArgs>> threeDSecure() {
         return Optional.ofNullable(this.threeDSecure);
+    }
+
+    /**
+     * Transaction Link ID (TLID) is a unique identifier for a transaction. This is used by some card networks, such as Mastercard, for transaction linking, in addition to Network Transaction IDs. This value will be present if it is returned by the financial network in the authorization response, and null otherwise.
+     * 
+     */
+    @Import(name="transactionLinkId")
+    private @Nullable Output<String> transactionLinkId;
+
+    /**
+     * @return Transaction Link ID (TLID) is a unique identifier for a transaction. This is used by some card networks, such as Mastercard, for transaction linking, in addition to Network Transaction IDs. This value will be present if it is returned by the financial network in the authorization response, and null otherwise.
+     * 
+     */
+    public Optional<Output<String>> transactionLinkId() {
+        return Optional.ofNullable(this.transactionLinkId);
     }
 
     /**
@@ -417,6 +477,7 @@ public final class ChargePaymentMethodDetailsCardArgs extends com.pulumi.resourc
         this.checks = $.checks;
         this.country = $.country;
         this.description = $.description;
+        this.electronicCommerceIndicator = $.electronicCommerceIndicator;
         this.expMonth = $.expMonth;
         this.expYear = $.expYear;
         this.extendedAuthorization = $.extendedAuthorization;
@@ -435,7 +496,10 @@ public final class ChargePaymentMethodDetailsCardArgs extends com.pulumi.resourc
         this.networkTransactionId = $.networkTransactionId;
         this.overcapture = $.overcapture;
         this.regulatedStatus = $.regulatedStatus;
+        this.setupCredentialUsage = $.setupCredentialUsage;
+        this.storedCredentialUsage = $.storedCredentialUsage;
         this.threeDSecure = $.threeDSecure;
+        this.transactionLinkId = $.transactionLinkId;
         this.wallet = $.wallet;
     }
 
@@ -602,6 +666,27 @@ public final class ChargePaymentMethodDetailsCardArgs extends com.pulumi.resourc
          */
         public Builder description(String description) {
             return description(Output.of(description));
+        }
+
+        /**
+         * @param electronicCommerceIndicator The Electronic Commerce Indicator (ECI) returned by the card network in the authorization response. Indicates the level of authentication used. Only populated for Visa and Mastercard transactions. This is the network&#39;s final ECI and can differ from the request value. An authenticated ECI alone doesn&#39;t determine liability shift.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder electronicCommerceIndicator(@Nullable Output<String> electronicCommerceIndicator) {
+            $.electronicCommerceIndicator = electronicCommerceIndicator;
+            return this;
+        }
+
+        /**
+         * @param electronicCommerceIndicator The Electronic Commerce Indicator (ECI) returned by the card network in the authorization response. Indicates the level of authentication used. Only populated for Visa and Mastercard transactions. This is the network&#39;s final ECI and can differ from the request value. An authenticated ECI alone doesn&#39;t determine liability shift.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder electronicCommerceIndicator(String electronicCommerceIndicator) {
+            return electronicCommerceIndicator(Output.of(electronicCommerceIndicator));
         }
 
         /**
@@ -943,6 +1028,48 @@ public final class ChargePaymentMethodDetailsCardArgs extends com.pulumi.resourc
         }
 
         /**
+         * @param setupCredentialUsage The payment_method_options.card.setup_credential_usage value that was passed when&lt;span pulumi-lang-nodejs=&#34; setupFutureUsage &#34; pulumi-lang-dotnet=&#34; SetupFutureUsage &#34; pulumi-lang-go=&#34; setupFutureUsage &#34; pulumi-lang-python=&#34; setup_future_usage &#34; pulumi-lang-yaml=&#34; setupFutureUsage &#34; pulumi-lang-java=&#34; setupFutureUsage &#34; pulumi-lang-hcl=&#34; setup_future_usage &#34;&gt; setupFutureUsage &lt;/span&gt;was present at confirmation, one of &lt;span pulumi-lang-nodejs=&#34;`recurring`&#34; pulumi-lang-dotnet=&#34;`Recurring`&#34; pulumi-lang-go=&#34;`recurring`&#34; pulumi-lang-python=&#34;`recurring`&#34; pulumi-lang-yaml=&#34;`recurring`&#34; pulumi-lang-java=&#34;`recurring`&#34; pulumi-lang-hcl=&#34;`recurring`&#34;&gt;`recurring`&lt;/span&gt;, &lt;span pulumi-lang-nodejs=&#34;`unscheduled`&#34; pulumi-lang-dotnet=&#34;`Unscheduled`&#34; pulumi-lang-go=&#34;`unscheduled`&#34; pulumi-lang-python=&#34;`unscheduled`&#34; pulumi-lang-yaml=&#34;`unscheduled`&#34; pulumi-lang-java=&#34;`unscheduled`&#34; pulumi-lang-hcl=&#34;`unscheduled`&#34;&gt;`unscheduled`&lt;/span&gt;, or &lt;span pulumi-lang-nodejs=&#34;`installment`&#34; pulumi-lang-dotnet=&#34;`Installment`&#34; pulumi-lang-go=&#34;`installment`&#34; pulumi-lang-python=&#34;`installment`&#34; pulumi-lang-yaml=&#34;`installment`&#34; pulumi-lang-java=&#34;`installment`&#34; pulumi-lang-hcl=&#34;`installment`&#34;&gt;`installment`&lt;/span&gt;
+         * 
+         * @return builder
+         * 
+         */
+        public Builder setupCredentialUsage(@Nullable Output<String> setupCredentialUsage) {
+            $.setupCredentialUsage = setupCredentialUsage;
+            return this;
+        }
+
+        /**
+         * @param setupCredentialUsage The payment_method_options.card.setup_credential_usage value that was passed when&lt;span pulumi-lang-nodejs=&#34; setupFutureUsage &#34; pulumi-lang-dotnet=&#34; SetupFutureUsage &#34; pulumi-lang-go=&#34; setupFutureUsage &#34; pulumi-lang-python=&#34; setup_future_usage &#34; pulumi-lang-yaml=&#34; setupFutureUsage &#34; pulumi-lang-java=&#34; setupFutureUsage &#34; pulumi-lang-hcl=&#34; setup_future_usage &#34;&gt; setupFutureUsage &lt;/span&gt;was present at confirmation, one of &lt;span pulumi-lang-nodejs=&#34;`recurring`&#34; pulumi-lang-dotnet=&#34;`Recurring`&#34; pulumi-lang-go=&#34;`recurring`&#34; pulumi-lang-python=&#34;`recurring`&#34; pulumi-lang-yaml=&#34;`recurring`&#34; pulumi-lang-java=&#34;`recurring`&#34; pulumi-lang-hcl=&#34;`recurring`&#34;&gt;`recurring`&lt;/span&gt;, &lt;span pulumi-lang-nodejs=&#34;`unscheduled`&#34; pulumi-lang-dotnet=&#34;`Unscheduled`&#34; pulumi-lang-go=&#34;`unscheduled`&#34; pulumi-lang-python=&#34;`unscheduled`&#34; pulumi-lang-yaml=&#34;`unscheduled`&#34; pulumi-lang-java=&#34;`unscheduled`&#34; pulumi-lang-hcl=&#34;`unscheduled`&#34;&gt;`unscheduled`&lt;/span&gt;, or &lt;span pulumi-lang-nodejs=&#34;`installment`&#34; pulumi-lang-dotnet=&#34;`Installment`&#34; pulumi-lang-go=&#34;`installment`&#34; pulumi-lang-python=&#34;`installment`&#34; pulumi-lang-yaml=&#34;`installment`&#34; pulumi-lang-java=&#34;`installment`&#34; pulumi-lang-hcl=&#34;`installment`&#34;&gt;`installment`&lt;/span&gt;
+         * 
+         * @return builder
+         * 
+         */
+        public Builder setupCredentialUsage(String setupCredentialUsage) {
+            return setupCredentialUsage(Output.of(setupCredentialUsage));
+        }
+
+        /**
+         * @param storedCredentialUsage The payment_method_options.card.stored_credential_usage value that was passed for an off session, merchant-initiated transaction.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder storedCredentialUsage(@Nullable Output<String> storedCredentialUsage) {
+            $.storedCredentialUsage = storedCredentialUsage;
+            return this;
+        }
+
+        /**
+         * @param storedCredentialUsage The payment_method_options.card.stored_credential_usage value that was passed for an off session, merchant-initiated transaction.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder storedCredentialUsage(String storedCredentialUsage) {
+            return storedCredentialUsage(Output.of(storedCredentialUsage));
+        }
+
+        /**
          * @param threeDSecure Populated if this transaction used 3D Secure authentication.
          * 
          * @return builder
@@ -961,6 +1088,27 @@ public final class ChargePaymentMethodDetailsCardArgs extends com.pulumi.resourc
          */
         public Builder threeDSecure(ChargePaymentMethodDetailsCardThreeDSecureArgs threeDSecure) {
             return threeDSecure(Output.of(threeDSecure));
+        }
+
+        /**
+         * @param transactionLinkId Transaction Link ID (TLID) is a unique identifier for a transaction. This is used by some card networks, such as Mastercard, for transaction linking, in addition to Network Transaction IDs. This value will be present if it is returned by the financial network in the authorization response, and null otherwise.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder transactionLinkId(@Nullable Output<String> transactionLinkId) {
+            $.transactionLinkId = transactionLinkId;
+            return this;
+        }
+
+        /**
+         * @param transactionLinkId Transaction Link ID (TLID) is a unique identifier for a transaction. This is used by some card networks, such as Mastercard, for transaction linking, in addition to Network Transaction IDs. This value will be present if it is returned by the financial network in the authorization response, and null otherwise.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder transactionLinkId(String transactionLinkId) {
+            return transactionLinkId(Output.of(transactionLinkId));
         }
 
         /**

@@ -5,6 +5,7 @@ package com.pulumi.stripe.inputs;
 
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
+import java.lang.Double;
 import java.lang.String;
 import java.util.Objects;
 import java.util.Optional;
@@ -28,6 +29,21 @@ public final class PaymentIntentNextActionSwishHandleRedirectOrDisplayQrCodeQrCo
      */
     public Optional<Output<String>> data() {
         return Optional.ofNullable(this.data);
+    }
+
+    /**
+     * The timestamp at which the QR code expires.
+     * 
+     */
+    @Import(name="expiresAt")
+    private @Nullable Output<Double> expiresAt;
+
+    /**
+     * @return The timestamp at which the QR code expires.
+     * 
+     */
+    public Optional<Output<Double>> expiresAt() {
+        return Optional.ofNullable(this.expiresAt);
     }
 
     /**
@@ -64,6 +80,7 @@ public final class PaymentIntentNextActionSwishHandleRedirectOrDisplayQrCodeQrCo
 
     private PaymentIntentNextActionSwishHandleRedirectOrDisplayQrCodeQrCodeArgs(PaymentIntentNextActionSwishHandleRedirectOrDisplayQrCodeQrCodeArgs $) {
         this.data = $.data;
+        this.expiresAt = $.expiresAt;
         this.imageUrlPng = $.imageUrlPng;
         this.imageUrlSvg = $.imageUrlSvg;
     }
@@ -105,6 +122,27 @@ public final class PaymentIntentNextActionSwishHandleRedirectOrDisplayQrCodeQrCo
          */
         public Builder data(String data) {
             return data(Output.of(data));
+        }
+
+        /**
+         * @param expiresAt The timestamp at which the QR code expires.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder expiresAt(@Nullable Output<Double> expiresAt) {
+            $.expiresAt = expiresAt;
+            return this;
+        }
+
+        /**
+         * @param expiresAt The timestamp at which the QR code expires.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder expiresAt(Double expiresAt) {
+            return expiresAt(Output.of(expiresAt));
         }
 
         /**

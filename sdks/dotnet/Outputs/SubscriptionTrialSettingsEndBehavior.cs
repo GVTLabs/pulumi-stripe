@@ -14,13 +14,21 @@ namespace Pulumi.Stripe.Outputs
     public sealed class SubscriptionTrialSettingsEndBehavior
     {
         /// <summary>
+        /// Indicates how the subscription's billing cycle anchor is reset when a trial ends. If not set, the default is &lt;span pulumi-lang-nodejs="`now`" pulumi-lang-dotnet="`Now`" pulumi-lang-go="`now`" pulumi-lang-python="`now`" pulumi-lang-yaml="`now`" pulumi-lang-java="`now`" pulumi-lang-hcl="`now`"&gt;`now`&lt;/span&gt;.
+        /// </summary>
+        public readonly string? BillingCycleAnchor;
+        /// <summary>
         /// Indicates how the subscription should change when the trial ends if the user did not provide a payment method.
         /// </summary>
-        public readonly string MissingPaymentMethod;
+        public readonly string? MissingPaymentMethod;
 
         [OutputConstructor]
-        private SubscriptionTrialSettingsEndBehavior(string missingPaymentMethod)
+        private SubscriptionTrialSettingsEndBehavior(
+            string? billingCycleAnchor,
+
+            string? missingPaymentMethod)
         {
+            BillingCycleAnchor = billingCycleAnchor;
             MissingPaymentMethod = missingPaymentMethod;
         }
     }

@@ -233,6 +233,18 @@ func (IssuingCardState) ElementType() reflect.Type {
 	return reflect.TypeOf((*issuingCardState)(nil)).Elem()
 }
 
+// IssuingCardExists checks whether an existing IssuingCard resource with the given ID exists.
+func IssuingCardExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *IssuingCardState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	ref, err := internal.PkgGetPackageRef(ctx)
+	if err != nil {
+		return pulumi.Bool(false).ToBoolOutput().ApplyT(func(bool) (bool, error) {
+			return false, err
+		}).(pulumi.BoolOutput)
+	}
+	return ctx.ExistsResource("stripe:index/issuingCard:IssuingCard", id, state, ref, opts...)
+}
+
 type issuingCardArgs struct {
 	// An Issuing `Cardholder` object represents an individual or business entity who is [issued](https://docs.stripe.com/issuing) cards.
 	//

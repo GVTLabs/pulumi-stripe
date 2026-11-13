@@ -48,6 +48,7 @@ import com.pulumi.stripe.inputs.PaymentMethodConfigurationPayByBankArgs;
 import com.pulumi.stripe.inputs.PaymentMethodConfigurationPaycoArgs;
 import com.pulumi.stripe.inputs.PaymentMethodConfigurationPaynowArgs;
 import com.pulumi.stripe.inputs.PaymentMethodConfigurationPaypalArgs;
+import com.pulumi.stripe.inputs.PaymentMethodConfigurationPaypayArgs;
 import com.pulumi.stripe.inputs.PaymentMethodConfigurationPaytoArgs;
 import com.pulumi.stripe.inputs.PaymentMethodConfigurationPixArgs;
 import com.pulumi.stripe.inputs.PaymentMethodConfigurationPromptpayArgs;
@@ -56,6 +57,7 @@ import com.pulumi.stripe.inputs.PaymentMethodConfigurationSamsungPayArgs;
 import com.pulumi.stripe.inputs.PaymentMethodConfigurationSatispayArgs;
 import com.pulumi.stripe.inputs.PaymentMethodConfigurationScalapayArgs;
 import com.pulumi.stripe.inputs.PaymentMethodConfigurationSepaDebitArgs;
+import com.pulumi.stripe.inputs.PaymentMethodConfigurationSequraArgs;
 import com.pulumi.stripe.inputs.PaymentMethodConfigurationSofortArgs;
 import com.pulumi.stripe.inputs.PaymentMethodConfigurationSunbitArgs;
 import com.pulumi.stripe.inputs.PaymentMethodConfigurationSwishArgs;
@@ -491,6 +493,13 @@ public final class PaymentMethodConfigurationState extends com.pulumi.resources.
         return Optional.ofNullable(this.paypal);
     }
 
+    @Import(name="paypay")
+    private @Nullable Output<PaymentMethodConfigurationPaypayArgs> paypay;
+
+    public Optional<Output<PaymentMethodConfigurationPaypayArgs>> paypay() {
+        return Optional.ofNullable(this.paypay);
+    }
+
     @Import(name="payto")
     private @Nullable Output<PaymentMethodConfigurationPaytoArgs> payto;
 
@@ -545,6 +554,13 @@ public final class PaymentMethodConfigurationState extends com.pulumi.resources.
 
     public Optional<Output<PaymentMethodConfigurationSepaDebitArgs>> sepaDebit() {
         return Optional.ofNullable(this.sepaDebit);
+    }
+
+    @Import(name="sequra")
+    private @Nullable Output<PaymentMethodConfigurationSequraArgs> sequra;
+
+    public Optional<Output<PaymentMethodConfigurationSequraArgs>> sequra() {
+        return Optional.ofNullable(this.sequra);
     }
 
     @Import(name="sofort")
@@ -656,6 +672,7 @@ public final class PaymentMethodConfigurationState extends com.pulumi.resources.
         this.payco = $.payco;
         this.paynow = $.paynow;
         this.paypal = $.paypal;
+        this.paypay = $.paypay;
         this.payto = $.payto;
         this.pix = $.pix;
         this.promptpay = $.promptpay;
@@ -664,6 +681,7 @@ public final class PaymentMethodConfigurationState extends com.pulumi.resources.
         this.satispay = $.satispay;
         this.scalapay = $.scalapay;
         this.sepaDebit = $.sepaDebit;
+        this.sequra = $.sequra;
         this.sofort = $.sofort;
         this.sunbit = $.sunbit;
         this.swish = $.swish;
@@ -1240,6 +1258,15 @@ public final class PaymentMethodConfigurationState extends com.pulumi.resources.
             return paypal(Output.of(paypal));
         }
 
+        public Builder paypay(@Nullable Output<PaymentMethodConfigurationPaypayArgs> paypay) {
+            $.paypay = paypay;
+            return this;
+        }
+
+        public Builder paypay(PaymentMethodConfigurationPaypayArgs paypay) {
+            return paypay(Output.of(paypay));
+        }
+
         public Builder payto(@Nullable Output<PaymentMethodConfigurationPaytoArgs> payto) {
             $.payto = payto;
             return this;
@@ -1310,6 +1337,15 @@ public final class PaymentMethodConfigurationState extends com.pulumi.resources.
 
         public Builder sepaDebit(PaymentMethodConfigurationSepaDebitArgs sepaDebit) {
             return sepaDebit(Output.of(sepaDebit));
+        }
+
+        public Builder sequra(@Nullable Output<PaymentMethodConfigurationSequraArgs> sequra) {
+            $.sequra = sequra;
+            return this;
+        }
+
+        public Builder sequra(PaymentMethodConfigurationSequraArgs sequra) {
+            return sequra(Output.of(sequra));
         }
 
         public Builder sofort(@Nullable Output<PaymentMethodConfigurationSofortArgs> sofort) {

@@ -16,6 +16,21 @@ public final class ChargePaymentMethodDetailsBizumArgs extends com.pulumi.resour
     public static final ChargePaymentMethodDetailsBizumArgs Empty = new ChargePaymentMethodDetailsBizumArgs();
 
     /**
+     * A unique identifier for the buyer as determined by the local payment processor.
+     * 
+     */
+    @Import(name="buyerId")
+    private @Nullable Output<String> buyerId;
+
+    /**
+     * @return A unique identifier for the buyer as determined by the local payment processor.
+     * 
+     */
+    public Optional<Output<String>> buyerId() {
+        return Optional.ofNullable(this.buyerId);
+    }
+
+    /**
      * The Bizum transaction ID associated with this payment.
      * 
      */
@@ -33,6 +48,7 @@ public final class ChargePaymentMethodDetailsBizumArgs extends com.pulumi.resour
     private ChargePaymentMethodDetailsBizumArgs() {}
 
     private ChargePaymentMethodDetailsBizumArgs(ChargePaymentMethodDetailsBizumArgs $) {
+        this.buyerId = $.buyerId;
         this.transactionId = $.transactionId;
     }
 
@@ -52,6 +68,27 @@ public final class ChargePaymentMethodDetailsBizumArgs extends com.pulumi.resour
 
         public Builder(ChargePaymentMethodDetailsBizumArgs defaults) {
             $ = new ChargePaymentMethodDetailsBizumArgs(Objects.requireNonNull(defaults));
+        }
+
+        /**
+         * @param buyerId A unique identifier for the buyer as determined by the local payment processor.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder buyerId(@Nullable Output<String> buyerId) {
+            $.buyerId = buyerId;
+            return this;
+        }
+
+        /**
+         * @param buyerId A unique identifier for the buyer as determined by the local payment processor.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder buyerId(String buyerId) {
+            return buyerId(Output.of(buyerId));
         }
 
         /**

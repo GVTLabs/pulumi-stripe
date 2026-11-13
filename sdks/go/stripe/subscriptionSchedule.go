@@ -42,13 +42,15 @@ type SubscriptionSchedule struct {
 	Metadata pulumi.StringMapOutput `pulumi:"metadata"`
 	// String representing the object's type. Objects of the same type share the same value.
 	Object pulumi.StringOutput `pulumi:"object"`
+	// The pause schedules for this subscription schedule.
+	PauseSchedules SubscriptionSchedulePauseScheduleArrayOutput `pulumi:"pauseSchedules"`
 	// Configuration for the subscription schedule's phases.
 	Phases SubscriptionSchedulePhaseArrayOutput `pulumi:"phases"`
 	// Time at which the subscription schedule was released. Measured in seconds since the Unix epoch.
 	ReleasedAt pulumi.Float64Output `pulumi:"releasedAt"`
 	// ID of the subscription once managed by the subscription schedule (if it is released).
 	ReleasedSubscription pulumi.StringOutput `pulumi:"releasedSubscription"`
-	// When the subscription schedule starts. We recommend using <span pulumi-lang-nodejs="`now`" pulumi-lang-dotnet="`Now`" pulumi-lang-go="`now`" pulumi-lang-python="`now`" pulumi-lang-yaml="`now`" pulumi-lang-java="`now`" pulumi-lang-hcl="`now`">`now`</span> so that it starts the subscription immediately. You can also use a Unix timestamp to backdate the subscription so that it starts on a past date, or set a future date for the subscription to start on.
+	// When the subscription schedule starts. We recommend using <span pulumi-lang-nodejs="`now`" pulumi-lang-dotnet="`Now`" pulumi-lang-go="`now`" pulumi-lang-python="`now`" pulumi-lang-yaml="`now`" pulumi-lang-java="`now`" pulumi-lang-hcl="`now`">`now`</span> so that it starts the subscription immediately, and to avoid unexpected behavior due to request delays or clock skew resulting in a slightly backdated or postdated start. You can also use a Unix timestamp to backdate the subscription so that it starts on a past date, or set a future date for the subscription to start on.
 	StartDate pulumi.Float64PtrOutput `pulumi:"startDate"`
 	// The present status of the subscription schedule. Possible values are <span pulumi-lang-nodejs="`notStarted`" pulumi-lang-dotnet="`NotStarted`" pulumi-lang-go="`notStarted`" pulumi-lang-python="`not_started`" pulumi-lang-yaml="`notStarted`" pulumi-lang-java="`notStarted`" pulumi-lang-hcl="`not_started`">`notStarted`</span>, <span pulumi-lang-nodejs="`active`" pulumi-lang-dotnet="`Active`" pulumi-lang-go="`active`" pulumi-lang-python="`active`" pulumi-lang-yaml="`active`" pulumi-lang-java="`active`" pulumi-lang-hcl="`active`">`active`</span>, <span pulumi-lang-nodejs="`completed`" pulumi-lang-dotnet="`Completed`" pulumi-lang-go="`completed`" pulumi-lang-python="`completed`" pulumi-lang-yaml="`completed`" pulumi-lang-java="`completed`" pulumi-lang-hcl="`completed`">`completed`</span>, <span pulumi-lang-nodejs="`released`" pulumi-lang-dotnet="`Released`" pulumi-lang-go="`released`" pulumi-lang-python="`released`" pulumi-lang-yaml="`released`" pulumi-lang-java="`released`" pulumi-lang-hcl="`released`">`released`</span>, and <span pulumi-lang-nodejs="`canceled`" pulumi-lang-dotnet="`Canceled`" pulumi-lang-go="`canceled`" pulumi-lang-python="`canceled`" pulumi-lang-yaml="`canceled`" pulumi-lang-java="`canceled`" pulumi-lang-hcl="`canceled`">`canceled`</span>. You can read more about the different states in our [behavior guide](https://docs.stripe.com/billing/subscriptions/subscription-schedules).
 	Status pulumi.StringOutput `pulumi:"status"`
@@ -131,13 +133,15 @@ type subscriptionScheduleState struct {
 	Metadata map[string]string `pulumi:"metadata"`
 	// String representing the object's type. Objects of the same type share the same value.
 	Object *string `pulumi:"object"`
+	// The pause schedules for this subscription schedule.
+	PauseSchedules []SubscriptionSchedulePauseSchedule `pulumi:"pauseSchedules"`
 	// Configuration for the subscription schedule's phases.
 	Phases []SubscriptionSchedulePhase `pulumi:"phases"`
 	// Time at which the subscription schedule was released. Measured in seconds since the Unix epoch.
 	ReleasedAt *float64 `pulumi:"releasedAt"`
 	// ID of the subscription once managed by the subscription schedule (if it is released).
 	ReleasedSubscription *string `pulumi:"releasedSubscription"`
-	// When the subscription schedule starts. We recommend using <span pulumi-lang-nodejs="`now`" pulumi-lang-dotnet="`Now`" pulumi-lang-go="`now`" pulumi-lang-python="`now`" pulumi-lang-yaml="`now`" pulumi-lang-java="`now`" pulumi-lang-hcl="`now`">`now`</span> so that it starts the subscription immediately. You can also use a Unix timestamp to backdate the subscription so that it starts on a past date, or set a future date for the subscription to start on.
+	// When the subscription schedule starts. We recommend using <span pulumi-lang-nodejs="`now`" pulumi-lang-dotnet="`Now`" pulumi-lang-go="`now`" pulumi-lang-python="`now`" pulumi-lang-yaml="`now`" pulumi-lang-java="`now`" pulumi-lang-hcl="`now`">`now`</span> so that it starts the subscription immediately, and to avoid unexpected behavior due to request delays or clock skew resulting in a slightly backdated or postdated start. You can also use a Unix timestamp to backdate the subscription so that it starts on a past date, or set a future date for the subscription to start on.
 	StartDate *float64 `pulumi:"startDate"`
 	// The present status of the subscription schedule. Possible values are <span pulumi-lang-nodejs="`notStarted`" pulumi-lang-dotnet="`NotStarted`" pulumi-lang-go="`notStarted`" pulumi-lang-python="`not_started`" pulumi-lang-yaml="`notStarted`" pulumi-lang-java="`notStarted`" pulumi-lang-hcl="`not_started`">`notStarted`</span>, <span pulumi-lang-nodejs="`active`" pulumi-lang-dotnet="`Active`" pulumi-lang-go="`active`" pulumi-lang-python="`active`" pulumi-lang-yaml="`active`" pulumi-lang-java="`active`" pulumi-lang-hcl="`active`">`active`</span>, <span pulumi-lang-nodejs="`completed`" pulumi-lang-dotnet="`Completed`" pulumi-lang-go="`completed`" pulumi-lang-python="`completed`" pulumi-lang-yaml="`completed`" pulumi-lang-java="`completed`" pulumi-lang-hcl="`completed`">`completed`</span>, <span pulumi-lang-nodejs="`released`" pulumi-lang-dotnet="`Released`" pulumi-lang-go="`released`" pulumi-lang-python="`released`" pulumi-lang-yaml="`released`" pulumi-lang-java="`released`" pulumi-lang-hcl="`released`">`released`</span>, and <span pulumi-lang-nodejs="`canceled`" pulumi-lang-dotnet="`Canceled`" pulumi-lang-go="`canceled`" pulumi-lang-python="`canceled`" pulumi-lang-yaml="`canceled`" pulumi-lang-java="`canceled`" pulumi-lang-hcl="`canceled`">`canceled`</span>. You can read more about the different states in our [behavior guide](https://docs.stripe.com/billing/subscriptions/subscription-schedules).
 	Status *string `pulumi:"status"`
@@ -176,13 +180,15 @@ type SubscriptionScheduleState struct {
 	Metadata pulumi.StringMapInput
 	// String representing the object's type. Objects of the same type share the same value.
 	Object pulumi.StringPtrInput
+	// The pause schedules for this subscription schedule.
+	PauseSchedules SubscriptionSchedulePauseScheduleArrayInput
 	// Configuration for the subscription schedule's phases.
 	Phases SubscriptionSchedulePhaseArrayInput
 	// Time at which the subscription schedule was released. Measured in seconds since the Unix epoch.
 	ReleasedAt pulumi.Float64PtrInput
 	// ID of the subscription once managed by the subscription schedule (if it is released).
 	ReleasedSubscription pulumi.StringPtrInput
-	// When the subscription schedule starts. We recommend using <span pulumi-lang-nodejs="`now`" pulumi-lang-dotnet="`Now`" pulumi-lang-go="`now`" pulumi-lang-python="`now`" pulumi-lang-yaml="`now`" pulumi-lang-java="`now`" pulumi-lang-hcl="`now`">`now`</span> so that it starts the subscription immediately. You can also use a Unix timestamp to backdate the subscription so that it starts on a past date, or set a future date for the subscription to start on.
+	// When the subscription schedule starts. We recommend using <span pulumi-lang-nodejs="`now`" pulumi-lang-dotnet="`Now`" pulumi-lang-go="`now`" pulumi-lang-python="`now`" pulumi-lang-yaml="`now`" pulumi-lang-java="`now`" pulumi-lang-hcl="`now`">`now`</span> so that it starts the subscription immediately, and to avoid unexpected behavior due to request delays or clock skew resulting in a slightly backdated or postdated start. You can also use a Unix timestamp to backdate the subscription so that it starts on a past date, or set a future date for the subscription to start on.
 	StartDate pulumi.Float64PtrInput
 	// The present status of the subscription schedule. Possible values are <span pulumi-lang-nodejs="`notStarted`" pulumi-lang-dotnet="`NotStarted`" pulumi-lang-go="`notStarted`" pulumi-lang-python="`not_started`" pulumi-lang-yaml="`notStarted`" pulumi-lang-java="`notStarted`" pulumi-lang-hcl="`not_started`">`notStarted`</span>, <span pulumi-lang-nodejs="`active`" pulumi-lang-dotnet="`Active`" pulumi-lang-go="`active`" pulumi-lang-python="`active`" pulumi-lang-yaml="`active`" pulumi-lang-java="`active`" pulumi-lang-hcl="`active`">`active`</span>, <span pulumi-lang-nodejs="`completed`" pulumi-lang-dotnet="`Completed`" pulumi-lang-go="`completed`" pulumi-lang-python="`completed`" pulumi-lang-yaml="`completed`" pulumi-lang-java="`completed`" pulumi-lang-hcl="`completed`">`completed`</span>, <span pulumi-lang-nodejs="`released`" pulumi-lang-dotnet="`Released`" pulumi-lang-go="`released`" pulumi-lang-python="`released`" pulumi-lang-yaml="`released`" pulumi-lang-java="`released`" pulumi-lang-hcl="`released`">`released`</span>, and <span pulumi-lang-nodejs="`canceled`" pulumi-lang-dotnet="`Canceled`" pulumi-lang-go="`canceled`" pulumi-lang-python="`canceled`" pulumi-lang-yaml="`canceled`" pulumi-lang-java="`canceled`" pulumi-lang-hcl="`canceled`">`canceled`</span>. You can read more about the different states in our [behavior guide](https://docs.stripe.com/billing/subscriptions/subscription-schedules).
 	Status pulumi.StringPtrInput
@@ -194,6 +200,18 @@ type SubscriptionScheduleState struct {
 
 func (SubscriptionScheduleState) ElementType() reflect.Type {
 	return reflect.TypeOf((*subscriptionScheduleState)(nil)).Elem()
+}
+
+// SubscriptionScheduleExists checks whether an existing SubscriptionSchedule resource with the given ID exists.
+func SubscriptionScheduleExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *SubscriptionScheduleState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	ref, err := internal.PkgGetPackageRef(ctx)
+	if err != nil {
+		return pulumi.Bool(false).ToBoolOutput().ApplyT(func(bool) (bool, error) {
+			return false, err
+		}).(pulumi.BoolOutput)
+	}
+	return ctx.ExistsResource("stripe:index/subscriptionSchedule:SubscriptionSchedule", id, state, ref, opts...)
 }
 
 type subscriptionScheduleArgs struct {
@@ -211,9 +229,11 @@ type subscriptionScheduleArgs struct {
 	FromSubscription *string `pulumi:"fromSubscription"`
 	// Set of [key-value pairs](https://docs.stripe.com/api/metadata) that you can attach to an object. This can be useful for storing additional information about the object in a structured format.
 	Metadata map[string]string `pulumi:"metadata"`
+	// The pause schedules for this subscription schedule.
+	PauseSchedules []SubscriptionSchedulePauseSchedule `pulumi:"pauseSchedules"`
 	// Configuration for the subscription schedule's phases.
 	Phases []SubscriptionSchedulePhase `pulumi:"phases"`
-	// When the subscription schedule starts. We recommend using <span pulumi-lang-nodejs="`now`" pulumi-lang-dotnet="`Now`" pulumi-lang-go="`now`" pulumi-lang-python="`now`" pulumi-lang-yaml="`now`" pulumi-lang-java="`now`" pulumi-lang-hcl="`now`">`now`</span> so that it starts the subscription immediately. You can also use a Unix timestamp to backdate the subscription so that it starts on a past date, or set a future date for the subscription to start on.
+	// When the subscription schedule starts. We recommend using <span pulumi-lang-nodejs="`now`" pulumi-lang-dotnet="`Now`" pulumi-lang-go="`now`" pulumi-lang-python="`now`" pulumi-lang-yaml="`now`" pulumi-lang-java="`now`" pulumi-lang-hcl="`now`">`now`</span> so that it starts the subscription immediately, and to avoid unexpected behavior due to request delays or clock skew resulting in a slightly backdated or postdated start. You can also use a Unix timestamp to backdate the subscription so that it starts on a past date, or set a future date for the subscription to start on.
 	StartDate *float64 `pulumi:"startDate"`
 }
 
@@ -233,9 +253,11 @@ type SubscriptionScheduleArgs struct {
 	FromSubscription pulumi.StringPtrInput
 	// Set of [key-value pairs](https://docs.stripe.com/api/metadata) that you can attach to an object. This can be useful for storing additional information about the object in a structured format.
 	Metadata pulumi.StringMapInput
+	// The pause schedules for this subscription schedule.
+	PauseSchedules SubscriptionSchedulePauseScheduleArrayInput
 	// Configuration for the subscription schedule's phases.
 	Phases SubscriptionSchedulePhaseArrayInput
-	// When the subscription schedule starts. We recommend using <span pulumi-lang-nodejs="`now`" pulumi-lang-dotnet="`Now`" pulumi-lang-go="`now`" pulumi-lang-python="`now`" pulumi-lang-yaml="`now`" pulumi-lang-java="`now`" pulumi-lang-hcl="`now`">`now`</span> so that it starts the subscription immediately. You can also use a Unix timestamp to backdate the subscription so that it starts on a past date, or set a future date for the subscription to start on.
+	// When the subscription schedule starts. We recommend using <span pulumi-lang-nodejs="`now`" pulumi-lang-dotnet="`Now`" pulumi-lang-go="`now`" pulumi-lang-python="`now`" pulumi-lang-yaml="`now`" pulumi-lang-java="`now`" pulumi-lang-hcl="`now`">`now`</span> so that it starts the subscription immediately, and to avoid unexpected behavior due to request delays or clock skew resulting in a slightly backdated or postdated start. You can also use a Unix timestamp to backdate the subscription so that it starts on a past date, or set a future date for the subscription to start on.
 	StartDate pulumi.Float64PtrInput
 }
 
@@ -346,6 +368,11 @@ func (o SubscriptionScheduleOutput) Object() pulumi.StringOutput {
 	return o.ApplyT(func(v *SubscriptionSchedule) pulumi.StringOutput { return v.Object }).(pulumi.StringOutput)
 }
 
+// The pause schedules for this subscription schedule.
+func (o SubscriptionScheduleOutput) PauseSchedules() SubscriptionSchedulePauseScheduleArrayOutput {
+	return o.ApplyT(func(v *SubscriptionSchedule) SubscriptionSchedulePauseScheduleArrayOutput { return v.PauseSchedules }).(SubscriptionSchedulePauseScheduleArrayOutput)
+}
+
 // Configuration for the subscription schedule's phases.
 func (o SubscriptionScheduleOutput) Phases() SubscriptionSchedulePhaseArrayOutput {
 	return o.ApplyT(func(v *SubscriptionSchedule) SubscriptionSchedulePhaseArrayOutput { return v.Phases }).(SubscriptionSchedulePhaseArrayOutput)
@@ -361,7 +388,7 @@ func (o SubscriptionScheduleOutput) ReleasedSubscription() pulumi.StringOutput {
 	return o.ApplyT(func(v *SubscriptionSchedule) pulumi.StringOutput { return v.ReleasedSubscription }).(pulumi.StringOutput)
 }
 
-// When the subscription schedule starts. We recommend using <span pulumi-lang-nodejs="`now`" pulumi-lang-dotnet="`Now`" pulumi-lang-go="`now`" pulumi-lang-python="`now`" pulumi-lang-yaml="`now`" pulumi-lang-java="`now`" pulumi-lang-hcl="`now`">`now`</span> so that it starts the subscription immediately. You can also use a Unix timestamp to backdate the subscription so that it starts on a past date, or set a future date for the subscription to start on.
+// When the subscription schedule starts. We recommend using <span pulumi-lang-nodejs="`now`" pulumi-lang-dotnet="`Now`" pulumi-lang-go="`now`" pulumi-lang-python="`now`" pulumi-lang-yaml="`now`" pulumi-lang-java="`now`" pulumi-lang-hcl="`now`">`now`</span> so that it starts the subscription immediately, and to avoid unexpected behavior due to request delays or clock skew resulting in a slightly backdated or postdated start. You can also use a Unix timestamp to backdate the subscription so that it starts on a past date, or set a future date for the subscription to start on.
 func (o SubscriptionScheduleOutput) StartDate() pulumi.Float64PtrOutput {
 	return o.ApplyT(func(v *SubscriptionSchedule) pulumi.Float64PtrOutput { return v.StartDate }).(pulumi.Float64PtrOutput)
 }

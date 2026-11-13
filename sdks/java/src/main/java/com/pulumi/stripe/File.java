@@ -65,7 +65,7 @@ public class File extends com.pulumi.resources.CustomResource {
     }
     /**
      * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
-     * Optional parameters that automatically create a [file link](https://api.stripe.com#file_links) for the newly created file.
+     * Optional parameters that automatically create a [file link](https://docs.stripe.com/api#file_links) for the newly created file.
      * 
      */
     @Export(name="fileLinkData", refs={FileFileLinkData.class}, tree="[0]")
@@ -73,7 +73,7 @@ public class File extends com.pulumi.resources.CustomResource {
 
     /**
      * @return **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
-     * Optional parameters that automatically create a [file link](https://api.stripe.com#file_links) for the newly created file.
+     * Optional parameters that automatically create a [file link](https://docs.stripe.com/api#file_links) for the newly created file.
      * 
      */
     public Output<Optional<FileFileLinkData>> fileLinkData() {

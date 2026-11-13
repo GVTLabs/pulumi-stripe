@@ -162,7 +162,7 @@ class _ClimateOrderState:
         :param pulumi.Input[_builtins.float] delayed_at: Time at which the order's<span pulumi-lang-nodejs=" expectedDeliveryYear " pulumi-lang-dotnet=" ExpectedDeliveryYear " pulumi-lang-go=" expectedDeliveryYear " pulumi-lang-python=" expected_delivery_year " pulumi-lang-yaml=" expectedDeliveryYear " pulumi-lang-java=" expectedDeliveryYear " pulumi-lang-hcl=" expected_delivery_year "> expectedDeliveryYear </span>was delayed. Measured in seconds since the Unix epoch.
         :param pulumi.Input[_builtins.float] delivered_at: Time at which the order was delivered. Measured in seconds since the Unix epoch.
         :param pulumi.Input[Sequence[pulumi.Input['ClimateOrderDeliveryDetailArgs']]] delivery_details: Details about the delivery of carbon removal for this order.
-        :param pulumi.Input[_builtins.float] expected_delivery_year: The year this order is expected to be delivered.
+        :param pulumi.Input[_builtins.float] expected_delivery_year: The year this order is expected to be delivered. If the year is in the past, the order is a spot purchase and will be delivered within 30 days of purchase.
         :param pulumi.Input[_builtins.bool] livemode: Has the value <span pulumi-lang-nodejs="`true`" pulumi-lang-dotnet="`True`" pulumi-lang-go="`true`" pulumi-lang-python="`true`" pulumi-lang-yaml="`true`" pulumi-lang-java="`true`" pulumi-lang-hcl="`true`">`true`</span> if the object exists in live mode or the value <span pulumi-lang-nodejs="`false`" pulumi-lang-dotnet="`False`" pulumi-lang-go="`false`" pulumi-lang-python="`false`" pulumi-lang-yaml="`false`" pulumi-lang-java="`false`" pulumi-lang-hcl="`false`">`false`</span> if the object exists in test mode.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] metadata: Set of [key-value pairs](https://docs.stripe.com/api/metadata) that you can attach to an object. This can be useful for storing additional information about the object in a structured format.
         :param pulumi.Input[_builtins.float] metric_tons: Quantity of carbon removal that is included in this order.
@@ -386,7 +386,7 @@ class _ClimateOrderState:
     @pulumi.getter(name="expectedDeliveryYear")
     def expected_delivery_year(self) -> pulumi.Input[Optional[_builtins.float]]:
         """
-        The year this order is expected to be delivered.
+        The year this order is expected to be delivered. If the year is in the past, the order is a spot purchase and will be delivered within 30 days of purchase.
         """
         return pulumi.get(self, "expected_delivery_year")
 
@@ -486,7 +486,7 @@ class ClimateOrder(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  amount: pulumi.Input[Optional[_builtins.float]] = None,
-                 beneficiary: pulumi.Input[Optional[Union['ClimateOrderBeneficiaryArgs', 'ClimateOrderBeneficiaryArgsDict']]] = None,
+                 beneficiary: pulumi.Input[Optional[Union['ClimateOrderBeneficiaryArgs', 'ClimateOrderBeneficiaryArgsDict', 'outputs.ClimateOrderBeneficiary']]] = None,
                  currency: pulumi.Input[Optional[_builtins.str]] = None,
                  metadata: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
                  metric_tons: pulumi.Input[Optional[_builtins.float]] = None,
@@ -529,7 +529,7 @@ class ClimateOrder(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  amount: pulumi.Input[Optional[_builtins.float]] = None,
-                 beneficiary: pulumi.Input[Optional[Union['ClimateOrderBeneficiaryArgs', 'ClimateOrderBeneficiaryArgsDict']]] = None,
+                 beneficiary: pulumi.Input[Optional[Union['ClimateOrderBeneficiaryArgs', 'ClimateOrderBeneficiaryArgsDict', 'outputs.ClimateOrderBeneficiary']]] = None,
                  currency: pulumi.Input[Optional[_builtins.str]] = None,
                  metadata: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
                  metric_tons: pulumi.Input[Optional[_builtins.float]] = None,
@@ -584,7 +584,7 @@ class ClimateOrder(pulumi.CustomResource):
             amount_fees: pulumi.Input[Optional[_builtins.float]] = None,
             amount_subtotal: pulumi.Input[Optional[_builtins.float]] = None,
             amount_total: pulumi.Input[Optional[_builtins.float]] = None,
-            beneficiary: pulumi.Input[Optional[Union['ClimateOrderBeneficiaryArgs', 'ClimateOrderBeneficiaryArgsDict']]] = None,
+            beneficiary: pulumi.Input[Optional[Union['ClimateOrderBeneficiaryArgs', 'ClimateOrderBeneficiaryArgsDict', 'outputs.ClimateOrderBeneficiary']]] = None,
             canceled_at: pulumi.Input[Optional[_builtins.float]] = None,
             cancellation_reason: pulumi.Input[Optional[_builtins.str]] = None,
             certificate: pulumi.Input[Optional[_builtins.str]] = None,
@@ -593,7 +593,7 @@ class ClimateOrder(pulumi.CustomResource):
             currency: pulumi.Input[Optional[_builtins.str]] = None,
             delayed_at: pulumi.Input[Optional[_builtins.float]] = None,
             delivered_at: pulumi.Input[Optional[_builtins.float]] = None,
-            delivery_details: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ClimateOrderDeliveryDetailArgs', 'ClimateOrderDeliveryDetailArgsDict']]]]] = None,
+            delivery_details: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ClimateOrderDeliveryDetailArgs', 'ClimateOrderDeliveryDetailArgsDict', 'outputs.ClimateOrderDeliveryDetail']]]]] = None,
             expected_delivery_year: pulumi.Input[Optional[_builtins.float]] = None,
             livemode: pulumi.Input[Optional[_builtins.bool]] = None,
             metadata: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
@@ -622,8 +622,8 @@ class ClimateOrder(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] currency: Three-letter [ISO currency code](https://www.iso.org/iso-4217-currency-codes.html), in lowercase, representing the currency for this order.
         :param pulumi.Input[_builtins.float] delayed_at: Time at which the order's<span pulumi-lang-nodejs=" expectedDeliveryYear " pulumi-lang-dotnet=" ExpectedDeliveryYear " pulumi-lang-go=" expectedDeliveryYear " pulumi-lang-python=" expected_delivery_year " pulumi-lang-yaml=" expectedDeliveryYear " pulumi-lang-java=" expectedDeliveryYear " pulumi-lang-hcl=" expected_delivery_year "> expectedDeliveryYear </span>was delayed. Measured in seconds since the Unix epoch.
         :param pulumi.Input[_builtins.float] delivered_at: Time at which the order was delivered. Measured in seconds since the Unix epoch.
-        :param pulumi.Input[Sequence[pulumi.Input[Union['ClimateOrderDeliveryDetailArgs', 'ClimateOrderDeliveryDetailArgsDict']]]] delivery_details: Details about the delivery of carbon removal for this order.
-        :param pulumi.Input[_builtins.float] expected_delivery_year: The year this order is expected to be delivered.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['ClimateOrderDeliveryDetailArgs', 'ClimateOrderDeliveryDetailArgsDict', 'outputs.ClimateOrderDeliveryDetail']]]] delivery_details: Details about the delivery of carbon removal for this order.
+        :param pulumi.Input[_builtins.float] expected_delivery_year: The year this order is expected to be delivered. If the year is in the past, the order is a spot purchase and will be delivered within 30 days of purchase.
         :param pulumi.Input[_builtins.bool] livemode: Has the value <span pulumi-lang-nodejs="`true`" pulumi-lang-dotnet="`True`" pulumi-lang-go="`true`" pulumi-lang-python="`true`" pulumi-lang-yaml="`true`" pulumi-lang-java="`true`" pulumi-lang-hcl="`true`">`true`</span> if the object exists in live mode or the value <span pulumi-lang-nodejs="`false`" pulumi-lang-dotnet="`False`" pulumi-lang-go="`false`" pulumi-lang-python="`false`" pulumi-lang-yaml="`false`" pulumi-lang-java="`false`" pulumi-lang-hcl="`false`">`false`</span> if the object exists in test mode.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] metadata: Set of [key-value pairs](https://docs.stripe.com/api/metadata) that you can attach to an object. This can be useful for storing additional information about the object in a structured format.
         :param pulumi.Input[_builtins.float] metric_tons: Quantity of carbon removal that is included in this order.
@@ -659,6 +659,56 @@ class ClimateOrder(pulumi.CustomResource):
         __props__.__dict__["product_substituted_at"] = product_substituted_at
         __props__.__dict__["status"] = status
         return ClimateOrder(resource_name, opts=opts, __props__=__props__)
+
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            amount: pulumi.Input[Optional[_builtins.float]] = None,
+            amount_fees: pulumi.Input[Optional[_builtins.float]] = None,
+            amount_subtotal: pulumi.Input[Optional[_builtins.float]] = None,
+            amount_total: pulumi.Input[Optional[_builtins.float]] = None,
+            beneficiary: pulumi.Input[Optional[Union['ClimateOrderBeneficiaryArgs', 'ClimateOrderBeneficiaryArgsDict', 'outputs.ClimateOrderBeneficiary']]] = None,
+            canceled_at: pulumi.Input[Optional[_builtins.float]] = None,
+            cancellation_reason: pulumi.Input[Optional[_builtins.str]] = None,
+            certificate: pulumi.Input[Optional[_builtins.str]] = None,
+            confirmed_at: pulumi.Input[Optional[_builtins.float]] = None,
+            created: pulumi.Input[Optional[_builtins.float]] = None,
+            currency: pulumi.Input[Optional[_builtins.str]] = None,
+            delayed_at: pulumi.Input[Optional[_builtins.float]] = None,
+            delivered_at: pulumi.Input[Optional[_builtins.float]] = None,
+            delivery_details: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ClimateOrderDeliveryDetailArgs', 'ClimateOrderDeliveryDetailArgsDict', 'outputs.ClimateOrderDeliveryDetail']]]]] = None,
+            expected_delivery_year: pulumi.Input[Optional[_builtins.float]] = None,
+            livemode: pulumi.Input[Optional[_builtins.bool]] = None,
+            metadata: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+            metric_tons: pulumi.Input[Optional[_builtins.float]] = None,
+            object: pulumi.Input[Optional[_builtins.str]] = None,
+            product: pulumi.Input[Optional[_builtins.str]] = None,
+            product_substituted_at: pulumi.Input[Optional[_builtins.float]] = None,
+            status: pulumi.Input[Optional[_builtins.str]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["amount"] = amount
+        __props__["amountFees"] = amount_fees
+        __props__["amountSubtotal"] = amount_subtotal
+        __props__["amountTotal"] = amount_total
+        __props__["beneficiary"] = beneficiary
+        __props__["canceledAt"] = canceled_at
+        __props__["cancellationReason"] = cancellation_reason
+        __props__["certificate"] = certificate
+        __props__["confirmedAt"] = confirmed_at
+        __props__["created"] = created
+        __props__["currency"] = currency
+        __props__["delayedAt"] = delayed_at
+        __props__["deliveredAt"] = delivered_at
+        __props__["deliveryDetails"] = delivery_details
+        __props__["expectedDeliveryYear"] = expected_delivery_year
+        __props__["livemode"] = livemode
+        __props__["metadata"] = metadata
+        __props__["metricTons"] = metric_tons
+        __props__["object"] = object
+        __props__["product"] = product
+        __props__["productSubstitutedAt"] = product_substituted_at
+        __props__["status"] = status
+        return pulumi.runtime.exists_resource(None, 'stripe:index/climateOrder:ClimateOrder', id, __props__, opts or pulumi.ResourceOptions(), package_ref=_utilities.get_package())
 
     @_builtins.property
     @pulumi.getter
@@ -774,7 +824,7 @@ class ClimateOrder(pulumi.CustomResource):
     @pulumi.getter(name="expectedDeliveryYear")
     def expected_delivery_year(self) -> pulumi.Output[_builtins.float]:
         """
-        The year this order is expected to be delivered.
+        The year this order is expected to be delivered. If the year is in the past, the order is a spot purchase and will be delivered within 30 days of purchase.
         """
         return pulumi.get(self, "expected_delivery_year")
 

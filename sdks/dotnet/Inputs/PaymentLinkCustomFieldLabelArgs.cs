@@ -13,7 +13,7 @@ namespace Pulumi.Stripe.Inputs
     public sealed class PaymentLinkCustomFieldLabelArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Custom text for the label, displayed to the customer. Up to 50 characters.
+        /// Custom text for the label, displayed to the customer. Up to 100 characters.
         /// </summary>
         [Input("custom", required: true)]
         public Input<string> Custom { get; set; } = null!;

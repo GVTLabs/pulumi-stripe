@@ -20,6 +20,7 @@ import com.pulumi.stripe.inputs.InvoicePaymentSettingsArgs;
 import com.pulumi.stripe.inputs.InvoiceRenderingArgs;
 import com.pulumi.stripe.inputs.InvoiceShippingCostArgs;
 import com.pulumi.stripe.inputs.InvoiceShippingDetailsArgs;
+import com.pulumi.stripe.inputs.InvoiceStatusDetailsArgs;
 import com.pulumi.stripe.inputs.InvoiceStatusTransitionsArgs;
 import com.pulumi.stripe.inputs.InvoiceThresholdReasonArgs;
 import com.pulumi.stripe.inputs.InvoiceTotalDiscountAmountArgs;
@@ -939,14 +940,14 @@ public final class InvoiceState extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * The rendering-related settings that control how the invoice is displayed on customer-facing surfaces such as PDF and Hosted Invoice Page.
+     * The rendering-related settings that control how invoices render in customer-facing interfaces such as the PDF or hosted invoice page.
      * 
      */
     @Import(name="rendering")
     private @Nullable Output<InvoiceRenderingArgs> rendering;
 
     /**
-     * @return The rendering-related settings that control how the invoice is displayed on customer-facing surfaces such as PDF and Hosted Invoice Page.
+     * @return The rendering-related settings that control how invoices render in customer-facing interfaces such as the PDF or hosted invoice page.
      * 
      */
     public Optional<Output<InvoiceRenderingArgs>> rendering() {
@@ -1026,6 +1027,13 @@ public final class InvoiceState extends com.pulumi.resources.ResourceArgs {
      */
     public Optional<Output<String>> status() {
         return Optional.ofNullable(this.status);
+    }
+
+    @Import(name="statusDetails")
+    private @Nullable Output<InvoiceStatusDetailsArgs> statusDetails;
+
+    public Optional<Output<InvoiceStatusDetailsArgs>> statusDetails() {
+        return Optional.ofNullable(this.statusDetails);
     }
 
     @Import(name="statusTransitions")
@@ -1270,6 +1278,7 @@ public final class InvoiceState extends com.pulumi.resources.ResourceArgs {
         this.startingBalance = $.startingBalance;
         this.statementDescriptor = $.statementDescriptor;
         this.status = $.status;
+        this.statusDetails = $.statusDetails;
         this.statusTransitions = $.statusTransitions;
         this.subscription = $.subscription;
         this.subtotal = $.subtotal;
@@ -2600,7 +2609,7 @@ public final class InvoiceState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param rendering The rendering-related settings that control how the invoice is displayed on customer-facing surfaces such as PDF and Hosted Invoice Page.
+         * @param rendering The rendering-related settings that control how invoices render in customer-facing interfaces such as the PDF or hosted invoice page.
          * 
          * @return builder
          * 
@@ -2611,7 +2620,7 @@ public final class InvoiceState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param rendering The rendering-related settings that control how the invoice is displayed on customer-facing surfaces such as PDF and Hosted Invoice Page.
+         * @param rendering The rendering-related settings that control how invoices render in customer-facing interfaces such as the PDF or hosted invoice page.
          * 
          * @return builder
          * 
@@ -2723,6 +2732,15 @@ public final class InvoiceState extends com.pulumi.resources.ResourceArgs {
          */
         public Builder status(String status) {
             return status(Output.of(status));
+        }
+
+        public Builder statusDetails(@Nullable Output<InvoiceStatusDetailsArgs> statusDetails) {
+            $.statusDetails = statusDetails;
+            return this;
+        }
+
+        public Builder statusDetails(InvoiceStatusDetailsArgs statusDetails) {
+            return statusDetails(Output.of(statusDetails));
         }
 
         public Builder statusTransitions(@Nullable Output<InvoiceStatusTransitionsArgs> statusTransitions) {

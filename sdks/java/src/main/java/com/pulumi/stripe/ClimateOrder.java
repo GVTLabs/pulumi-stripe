@@ -213,14 +213,14 @@ public class ClimateOrder extends com.pulumi.resources.CustomResource {
         return this.deliveryDetails;
     }
     /**
-     * The year this order is expected to be delivered.
+     * The year this order is expected to be delivered. If the year is in the past, the order is a spot purchase and will be delivered within 30 days of purchase.
      * 
      */
     @Export(name="expectedDeliveryYear", refs={Double.class}, tree="[0]")
     private Output<Double> expectedDeliveryYear;
 
     /**
-     * @return The year this order is expected to be delivered.
+     * @return The year this order is expected to be delivered. If the year is in the past, the order is a spot purchase and will be delivered within 30 days of purchase.
      * 
      */
     public Output<Double> expectedDeliveryYear() {

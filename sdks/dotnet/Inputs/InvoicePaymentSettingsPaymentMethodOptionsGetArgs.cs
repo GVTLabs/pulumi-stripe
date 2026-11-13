@@ -25,6 +25,12 @@ namespace Pulumi.Stripe.Inputs
         public Input<Inputs.InvoicePaymentSettingsPaymentMethodOptionsBancontactGetArgs>? Bancontact { get; set; }
 
         /// <summary>
+        /// If paying by &lt;span pulumi-lang-nodejs="`billie`" pulumi-lang-dotnet="`Billie`" pulumi-lang-go="`billie`" pulumi-lang-python="`billie`" pulumi-lang-yaml="`billie`" pulumi-lang-java="`billie`" pulumi-lang-hcl="`billie`"&gt;`billie`&lt;/span&gt;, this sub-hash contains details about the Billie payment method options to pass to the invoice’s PaymentIntent.
+        /// </summary>
+        [Input("billie")]
+        public Input<Inputs.InvoicePaymentSettingsPaymentMethodOptionsBillieGetArgs>? Billie { get; set; }
+
+        /// <summary>
         /// If paying by &lt;span pulumi-lang-nodejs="`card`" pulumi-lang-dotnet="`Card`" pulumi-lang-go="`card`" pulumi-lang-python="`card`" pulumi-lang-yaml="`card`" pulumi-lang-java="`card`" pulumi-lang-hcl="`card`"&gt;`card`&lt;/span&gt;, this sub-hash contains details about the Card payment method options to pass to the invoice’s PaymentIntent.
         /// </summary>
         [Input("card")]

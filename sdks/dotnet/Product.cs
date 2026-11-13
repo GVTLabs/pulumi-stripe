@@ -85,6 +85,12 @@ namespace Pulumi.Stripe
         public Output<ImmutableArray<Outputs.ProductPackageDimension>> PackageDimensions { get; private set; } = null!;
 
         /// <summary>
+        /// Unique identifier for the object.
+        /// </summary>
+        [Output("productId")]
+        public Output<string> ProductId { get; private set; } = null!;
+
+        /// <summary>
         /// Whether this product is shipped (i.e., physical goods).
         /// </summary>
         [Output("shippable")]
@@ -101,6 +107,12 @@ namespace Pulumi.Stripe
         /// </summary>
         [Output("taxCode")]
         public Output<string> TaxCode { get; private set; } = null!;
+
+        /// <summary>
+        /// Tax details for this product, including the [tax code](https://www.terraform.io/tax/tax-codes) and an optional performance location.
+        /// </summary>
+        [Output("taxDetails")]
+        public Output<Outputs.ProductTaxDetails> TaxDetails { get; private set; } = null!;
 
         /// <summary>
         /// The type of the product. The product is either of type &lt;span pulumi-lang-nodejs="`good`" pulumi-lang-dotnet="`Good`" pulumi-lang-go="`good`" pulumi-lang-python="`good`" pulumi-lang-yaml="`good`" pulumi-lang-java="`good`" pulumi-lang-hcl="`good`"&gt;`good`&lt;/span&gt;, which is eligible for use with Orders and SKUs, or &lt;span pulumi-lang-nodejs="`service`" pulumi-lang-dotnet="`Service`" pulumi-lang-go="`service`" pulumi-lang-python="`service`" pulumi-lang-yaml="`service`" pulumi-lang-java="`service`" pulumi-lang-hcl="`service`"&gt;`service`&lt;/span&gt;, which is eligible for use with Subscriptions and Plans.
@@ -251,6 +263,12 @@ namespace Pulumi.Stripe
         }
 
         /// <summary>
+        /// Unique identifier for the object.
+        /// </summary>
+        [Input("productId")]
+        public Input<string>? ProductId { get; set; }
+
+        /// <summary>
         /// Whether this product is shipped (i.e., physical goods).
         /// </summary>
         [Input("shippable")]
@@ -267,6 +285,12 @@ namespace Pulumi.Stripe
         /// </summary>
         [Input("taxCode")]
         public Input<string>? TaxCode { get; set; }
+
+        /// <summary>
+        /// Tax details for this product, including the [tax code](https://www.terraform.io/tax/tax-codes) and an optional performance location.
+        /// </summary>
+        [Input("taxDetails")]
+        public Input<Inputs.ProductTaxDetailsArgs>? TaxDetails { get; set; }
 
         /// <summary>
         /// The type of the product. The product is either of type &lt;span pulumi-lang-nodejs="`good`" pulumi-lang-dotnet="`Good`" pulumi-lang-go="`good`" pulumi-lang-python="`good`" pulumi-lang-yaml="`good`" pulumi-lang-java="`good`" pulumi-lang-hcl="`good`"&gt;`good`&lt;/span&gt;, which is eligible for use with Orders and SKUs, or &lt;span pulumi-lang-nodejs="`service`" pulumi-lang-dotnet="`Service`" pulumi-lang-go="`service`" pulumi-lang-python="`service`" pulumi-lang-yaml="`service`" pulumi-lang-java="`service`" pulumi-lang-hcl="`service`"&gt;`service`&lt;/span&gt;, which is eligible for use with Subscriptions and Plans.
@@ -397,6 +421,12 @@ namespace Pulumi.Stripe
         }
 
         /// <summary>
+        /// Unique identifier for the object.
+        /// </summary>
+        [Input("productId")]
+        public Input<string>? ProductId { get; set; }
+
+        /// <summary>
         /// Whether this product is shipped (i.e., physical goods).
         /// </summary>
         [Input("shippable")]
@@ -413,6 +443,12 @@ namespace Pulumi.Stripe
         /// </summary>
         [Input("taxCode")]
         public Input<string>? TaxCode { get; set; }
+
+        /// <summary>
+        /// Tax details for this product, including the [tax code](https://www.terraform.io/tax/tax-codes) and an optional performance location.
+        /// </summary>
+        [Input("taxDetails")]
+        public Input<Inputs.ProductTaxDetailsGetArgs>? TaxDetails { get; set; }
 
         /// <summary>
         /// The type of the product. The product is either of type &lt;span pulumi-lang-nodejs="`good`" pulumi-lang-dotnet="`Good`" pulumi-lang-go="`good`" pulumi-lang-python="`good`" pulumi-lang-yaml="`good`" pulumi-lang-java="`good`" pulumi-lang-hcl="`good`"&gt;`good`&lt;/span&gt;, which is eligible for use with Orders and SKUs, or &lt;span pulumi-lang-nodejs="`service`" pulumi-lang-dotnet="`Service`" pulumi-lang-go="`service`" pulumi-lang-python="`service`" pulumi-lang-yaml="`service`" pulumi-lang-java="`service`" pulumi-lang-hcl="`service`"&gt;`service`&lt;/span&gt;, which is eligible for use with Subscriptions and Plans.

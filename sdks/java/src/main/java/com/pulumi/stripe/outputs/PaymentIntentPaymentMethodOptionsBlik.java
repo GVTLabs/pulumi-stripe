@@ -4,6 +4,7 @@
 package com.pulumi.stripe.outputs;
 
 import com.pulumi.core.annotations.CustomType;
+import com.pulumi.stripe.outputs.PaymentIntentPaymentMethodOptionsBlikMandateOptions;
 import java.lang.String;
 import java.util.Objects;
 import java.util.Optional;
@@ -16,6 +17,7 @@ public final class PaymentIntentPaymentMethodOptionsBlik {
      * 
      */
     private @Nullable String code;
+    private @Nullable PaymentIntentPaymentMethodOptionsBlikMandateOptions mandateOptions;
     /**
      * @return Indicates that you intend to make future payments with this PaymentIntent&#39;s payment method.
      * 
@@ -35,6 +37,9 @@ public final class PaymentIntentPaymentMethodOptionsBlik {
      */
     public Optional<String> code() {
         return Optional.ofNullable(this.code);
+    }
+    public Optional<PaymentIntentPaymentMethodOptionsBlikMandateOptions> mandateOptions() {
+        return Optional.ofNullable(this.mandateOptions);
     }
     /**
      * @return Indicates that you intend to make future payments with this PaymentIntent&#39;s payment method.
@@ -60,11 +65,13 @@ public final class PaymentIntentPaymentMethodOptionsBlik {
     @CustomType.Builder
     public static final class Builder {
         private @Nullable String code;
+        private @Nullable PaymentIntentPaymentMethodOptionsBlikMandateOptions mandateOptions;
         private @Nullable String setupFutureUsage;
         public Builder() {}
         public Builder(PaymentIntentPaymentMethodOptionsBlik defaults) {
     	      Objects.requireNonNull(defaults);
     	      this.code = defaults.code;
+    	      this.mandateOptions = defaults.mandateOptions;
     	      this.setupFutureUsage = defaults.setupFutureUsage;
         }
 
@@ -72,6 +79,12 @@ public final class PaymentIntentPaymentMethodOptionsBlik {
         public Builder code(@Nullable String code) {
 
             this.code = code;
+            return this;
+        }
+        @CustomType.Setter
+        public Builder mandateOptions(@Nullable PaymentIntentPaymentMethodOptionsBlikMandateOptions mandateOptions) {
+
+            this.mandateOptions = mandateOptions;
             return this;
         }
         @CustomType.Setter
@@ -83,6 +96,7 @@ public final class PaymentIntentPaymentMethodOptionsBlik {
         public PaymentIntentPaymentMethodOptionsBlik build() {
             final var _resultValue = new PaymentIntentPaymentMethodOptionsBlik();
             _resultValue.code = code;
+            _resultValue.mandateOptions = mandateOptions;
             _resultValue.setupFutureUsage = setupFutureUsage;
             return _resultValue;
         }

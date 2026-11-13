@@ -208,6 +208,21 @@ public final class PaymentIntentPaymentMethodOptionsCardArgs extends com.pulumi.
     }
 
     /**
+     * Set to indicate the future transaction type usage for the card being set up.
+     * 
+     */
+    @Import(name="setupCredentialUsage")
+    private @Nullable Output<String> setupCredentialUsage;
+
+    /**
+     * @return Set to indicate the future transaction type usage for the card being set up.
+     * 
+     */
+    public Optional<Output<String>> setupCredentialUsage() {
+        return Optional.ofNullable(this.setupCredentialUsage);
+    }
+
+    /**
      * Indicates that you intend to make future payments with this PaymentIntent&#39;s payment method.
      * 
      * If you provide a Customer with the PaymentIntent, you can use this parameter to [attach the payment method](https://www.terraform.io/payments/save-during-payment) to the Customer after the PaymentIntent is confirmed and the customer completes any required actions. If you don&#39;t provide a Customer, you can still [attach](https://www.terraform.io/api/payment_methods/attach) the payment method to a Customer after the transaction completes.
@@ -265,6 +280,21 @@ public final class PaymentIntentPaymentMethodOptionsCardArgs extends com.pulumi.
     }
 
     /**
+     * Selected usage to indicate the transaction type of the off-session payment.
+     * 
+     */
+    @Import(name="storedCredentialUsage")
+    private @Nullable Output<String> storedCredentialUsage;
+
+    /**
+     * @return Selected usage to indicate the transaction type of the off-session payment.
+     * 
+     */
+    public Optional<Output<String>> storedCredentialUsage() {
+        return Optional.ofNullable(this.storedCredentialUsage);
+    }
+
+    /**
      * If 3D Secure authentication was performed with a third-party provider,
      * the authentication details to use for this payment.
      * 
@@ -296,9 +326,11 @@ public final class PaymentIntentPaymentMethodOptionsCardArgs extends com.pulumi.
         this.requestOvercapture = $.requestOvercapture;
         this.requestThreeDSecure = $.requestThreeDSecure;
         this.requireCvcRecollection = $.requireCvcRecollection;
+        this.setupCredentialUsage = $.setupCredentialUsage;
         this.setupFutureUsage = $.setupFutureUsage;
         this.statementDescriptorSuffixKana = $.statementDescriptorSuffixKana;
         this.statementDescriptorSuffixKanji = $.statementDescriptorSuffixKanji;
+        this.storedCredentialUsage = $.storedCredentialUsage;
         this.threeDSecure = $.threeDSecure;
     }
 
@@ -581,6 +613,27 @@ public final class PaymentIntentPaymentMethodOptionsCardArgs extends com.pulumi.
         }
 
         /**
+         * @param setupCredentialUsage Set to indicate the future transaction type usage for the card being set up.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder setupCredentialUsage(@Nullable Output<String> setupCredentialUsage) {
+            $.setupCredentialUsage = setupCredentialUsage;
+            return this;
+        }
+
+        /**
+         * @param setupCredentialUsage Set to indicate the future transaction type usage for the card being set up.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder setupCredentialUsage(String setupCredentialUsage) {
+            return setupCredentialUsage(Output.of(setupCredentialUsage));
+        }
+
+        /**
          * @param setupFutureUsage Indicates that you intend to make future payments with this PaymentIntent&#39;s payment method.
          * 
          * If you provide a Customer with the PaymentIntent, you can use this parameter to [attach the payment method](https://www.terraform.io/payments/save-during-payment) to the Customer after the PaymentIntent is confirmed and the customer completes any required actions. If you don&#39;t provide a Customer, you can still [attach](https://www.terraform.io/api/payment_methods/attach) the payment method to a Customer after the transaction completes.
@@ -653,6 +706,27 @@ public final class PaymentIntentPaymentMethodOptionsCardArgs extends com.pulumi.
          */
         public Builder statementDescriptorSuffixKanji(String statementDescriptorSuffixKanji) {
             return statementDescriptorSuffixKanji(Output.of(statementDescriptorSuffixKanji));
+        }
+
+        /**
+         * @param storedCredentialUsage Selected usage to indicate the transaction type of the off-session payment.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder storedCredentialUsage(@Nullable Output<String> storedCredentialUsage) {
+            $.storedCredentialUsage = storedCredentialUsage;
+            return this;
+        }
+
+        /**
+         * @param storedCredentialUsage Selected usage to indicate the transaction type of the off-session payment.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder storedCredentialUsage(String storedCredentialUsage) {
+            return storedCredentialUsage(Output.of(storedCredentialUsage));
         }
 
         /**

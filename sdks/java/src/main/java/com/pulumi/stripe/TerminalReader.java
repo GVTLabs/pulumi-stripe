@@ -176,14 +176,14 @@ public class TerminalReader extends com.pulumi.resources.CustomResource {
         return this.serialNumber;
     }
     /**
-     * The networking status of the reader. We do not recommend using this field in flows that may block taking payments.
+     * The networking status of the reader. This value is &lt;span pulumi-lang-nodejs=&#34;`null`&#34; pulumi-lang-dotnet=&#34;`Null`&#34; pulumi-lang-go=&#34;`null`&#34; pulumi-lang-python=&#34;`null`&#34; pulumi-lang-yaml=&#34;`null`&#34; pulumi-lang-java=&#34;`null`&#34; pulumi-lang-hcl=&#34;`null`&#34;&gt;`null`&lt;/span&gt; for mobile readers. We do not recommend using this field in flows that may block taking payments.
      * 
      */
     @Export(name="status", refs={String.class}, tree="[0]")
     private Output<String> status;
 
     /**
-     * @return The networking status of the reader. We do not recommend using this field in flows that may block taking payments.
+     * @return The networking status of the reader. This value is &lt;span pulumi-lang-nodejs=&#34;`null`&#34; pulumi-lang-dotnet=&#34;`Null`&#34; pulumi-lang-go=&#34;`null`&#34; pulumi-lang-python=&#34;`null`&#34; pulumi-lang-yaml=&#34;`null`&#34; pulumi-lang-java=&#34;`null`&#34; pulumi-lang-hcl=&#34;`null`&#34;&gt;`null`&lt;/span&gt; for mobile readers. We do not recommend using this field in flows that may block taking payments.
      * 
      */
     public Output<String> status() {

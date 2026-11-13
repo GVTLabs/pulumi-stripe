@@ -22,6 +22,12 @@ namespace Pulumi.Stripe
         public Output<ImmutableArray<Outputs.CouponAppliesTo>> AppliesTos { get; private set; } = null!;
 
         /// <summary>
+        /// Unique identifier for the object.
+        /// </summary>
+        [Output("couponId")]
+        public Output<string> CouponId { get; private set; } = null!;
+
+        /// <summary>
         /// Time at which the object was created. Measured in seconds since the Unix epoch.
         /// </summary>
         [Output("created")]
@@ -166,6 +172,12 @@ namespace Pulumi.Stripe
         }
 
         /// <summary>
+        /// Unique identifier for the object.
+        /// </summary>
+        [Input("couponId")]
+        public Input<string>? CouponId { get; set; }
+
+        /// <summary>
         /// If &lt;span pulumi-lang-nodejs="`amountOff`" pulumi-lang-dotnet="`AmountOff`" pulumi-lang-go="`amountOff`" pulumi-lang-python="`amount_off`" pulumi-lang-yaml="`amountOff`" pulumi-lang-java="`amountOff`" pulumi-lang-hcl="`amount_off`"&gt;`amountOff`&lt;/span&gt; has been set, the three-letter [ISO code for the currency](https://stripe.com/docs/currencies) of the amount to take off.
         /// </summary>
         [Input("currency")]
@@ -252,6 +264,12 @@ namespace Pulumi.Stripe
             get => _appliesTos ?? (_appliesTos = new InputList<Inputs.CouponAppliesToGetArgs>());
             set => _appliesTos = value;
         }
+
+        /// <summary>
+        /// Unique identifier for the object.
+        /// </summary>
+        [Input("couponId")]
+        public Input<string>? CouponId { get; set; }
 
         /// <summary>
         /// Time at which the object was created. Measured in seconds since the Unix epoch.

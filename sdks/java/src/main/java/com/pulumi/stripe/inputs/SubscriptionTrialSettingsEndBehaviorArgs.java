@@ -5,9 +5,10 @@ package com.pulumi.stripe.inputs;
 
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
-import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.String;
 import java.util.Objects;
+import java.util.Optional;
+import javax.annotation.Nullable;
 
 
 public final class SubscriptionTrialSettingsEndBehaviorArgs extends com.pulumi.resources.ResourceArgs {
@@ -15,23 +16,39 @@ public final class SubscriptionTrialSettingsEndBehaviorArgs extends com.pulumi.r
     public static final SubscriptionTrialSettingsEndBehaviorArgs Empty = new SubscriptionTrialSettingsEndBehaviorArgs();
 
     /**
+     * Indicates how the subscription&#39;s billing cycle anchor is reset when a trial ends. If not set, the default is &lt;span pulumi-lang-nodejs=&#34;`now`&#34; pulumi-lang-dotnet=&#34;`Now`&#34; pulumi-lang-go=&#34;`now`&#34; pulumi-lang-python=&#34;`now`&#34; pulumi-lang-yaml=&#34;`now`&#34; pulumi-lang-java=&#34;`now`&#34; pulumi-lang-hcl=&#34;`now`&#34;&gt;`now`&lt;/span&gt;.
+     * 
+     */
+    @Import(name="billingCycleAnchor")
+    private @Nullable Output<String> billingCycleAnchor;
+
+    /**
+     * @return Indicates how the subscription&#39;s billing cycle anchor is reset when a trial ends. If not set, the default is &lt;span pulumi-lang-nodejs=&#34;`now`&#34; pulumi-lang-dotnet=&#34;`Now`&#34; pulumi-lang-go=&#34;`now`&#34; pulumi-lang-python=&#34;`now`&#34; pulumi-lang-yaml=&#34;`now`&#34; pulumi-lang-java=&#34;`now`&#34; pulumi-lang-hcl=&#34;`now`&#34;&gt;`now`&lt;/span&gt;.
+     * 
+     */
+    public Optional<Output<String>> billingCycleAnchor() {
+        return Optional.ofNullable(this.billingCycleAnchor);
+    }
+
+    /**
      * Indicates how the subscription should change when the trial ends if the user did not provide a payment method.
      * 
      */
-    @Import(name="missingPaymentMethod", required=true)
-    private Output<String> missingPaymentMethod;
+    @Import(name="missingPaymentMethod")
+    private @Nullable Output<String> missingPaymentMethod;
 
     /**
      * @return Indicates how the subscription should change when the trial ends if the user did not provide a payment method.
      * 
      */
-    public Output<String> missingPaymentMethod() {
-        return this.missingPaymentMethod;
+    public Optional<Output<String>> missingPaymentMethod() {
+        return Optional.ofNullable(this.missingPaymentMethod);
     }
 
     private SubscriptionTrialSettingsEndBehaviorArgs() {}
 
     private SubscriptionTrialSettingsEndBehaviorArgs(SubscriptionTrialSettingsEndBehaviorArgs $) {
+        this.billingCycleAnchor = $.billingCycleAnchor;
         this.missingPaymentMethod = $.missingPaymentMethod;
     }
 
@@ -54,12 +71,33 @@ public final class SubscriptionTrialSettingsEndBehaviorArgs extends com.pulumi.r
         }
 
         /**
+         * @param billingCycleAnchor Indicates how the subscription&#39;s billing cycle anchor is reset when a trial ends. If not set, the default is &lt;span pulumi-lang-nodejs=&#34;`now`&#34; pulumi-lang-dotnet=&#34;`Now`&#34; pulumi-lang-go=&#34;`now`&#34; pulumi-lang-python=&#34;`now`&#34; pulumi-lang-yaml=&#34;`now`&#34; pulumi-lang-java=&#34;`now`&#34; pulumi-lang-hcl=&#34;`now`&#34;&gt;`now`&lt;/span&gt;.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder billingCycleAnchor(@Nullable Output<String> billingCycleAnchor) {
+            $.billingCycleAnchor = billingCycleAnchor;
+            return this;
+        }
+
+        /**
+         * @param billingCycleAnchor Indicates how the subscription&#39;s billing cycle anchor is reset when a trial ends. If not set, the default is &lt;span pulumi-lang-nodejs=&#34;`now`&#34; pulumi-lang-dotnet=&#34;`Now`&#34; pulumi-lang-go=&#34;`now`&#34; pulumi-lang-python=&#34;`now`&#34; pulumi-lang-yaml=&#34;`now`&#34; pulumi-lang-java=&#34;`now`&#34; pulumi-lang-hcl=&#34;`now`&#34;&gt;`now`&lt;/span&gt;.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder billingCycleAnchor(String billingCycleAnchor) {
+            return billingCycleAnchor(Output.of(billingCycleAnchor));
+        }
+
+        /**
          * @param missingPaymentMethod Indicates how the subscription should change when the trial ends if the user did not provide a payment method.
          * 
          * @return builder
          * 
          */
-        public Builder missingPaymentMethod(Output<String> missingPaymentMethod) {
+        public Builder missingPaymentMethod(@Nullable Output<String> missingPaymentMethod) {
             $.missingPaymentMethod = missingPaymentMethod;
             return this;
         }
@@ -75,9 +113,6 @@ public final class SubscriptionTrialSettingsEndBehaviorArgs extends com.pulumi.r
         }
 
         public SubscriptionTrialSettingsEndBehaviorArgs build() {
-            if ($.missingPaymentMethod == null) {
-                throw new MissingRequiredPropertyException("SubscriptionTrialSettingsEndBehaviorArgs", "missingPaymentMethod");
-            }
             return $;
         }
     }

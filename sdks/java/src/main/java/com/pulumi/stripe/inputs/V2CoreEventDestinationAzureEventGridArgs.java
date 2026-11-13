@@ -17,14 +17,14 @@ public final class V2CoreEventDestinationAzureEventGridArgs extends com.pulumi.r
     public static final V2CoreEventDestinationAzureEventGridArgs Empty = new V2CoreEventDestinationAzureEventGridArgs();
 
     /**
-     * The name of the Azure partner topic.
+     * The name of the Stripe-created partner topic that receives events.
      * 
      */
     @Import(name="azurePartnerTopicName")
     private @Nullable Output<String> azurePartnerTopicName;
 
     /**
-     * @return The name of the Azure partner topic.
+     * @return The name of the Stripe-created partner topic that receives events.
      * 
      */
     public Optional<Output<String>> azurePartnerTopicName() {
@@ -32,14 +32,14 @@ public final class V2CoreEventDestinationAzureEventGridArgs extends com.pulumi.r
     }
 
     /**
-     * The status of the Azure partner topic.
+     * The Azure-reported lifecycle state of the partner topic.
      * 
      */
     @Import(name="azurePartnerTopicStatus")
     private @Nullable Output<String> azurePartnerTopicStatus;
 
     /**
-     * @return The status of the Azure partner topic.
+     * @return The Azure-reported lifecycle state of the partner topic.
      * 
      */
     public Optional<Output<String>> azurePartnerTopicStatus() {
@@ -47,14 +47,14 @@ public final class V2CoreEventDestinationAzureEventGridArgs extends com.pulumi.r
     }
 
     /**
-     * The Azure region.
+     * The Azure region where the partner topic is located.
      * 
      */
     @Import(name="azureRegion", required=true)
     private Output<String> azureRegion;
 
     /**
-     * @return The Azure region.
+     * @return The Azure region where the partner topic is located.
      * 
      */
     public Output<String> azureRegion() {
@@ -62,14 +62,14 @@ public final class V2CoreEventDestinationAzureEventGridArgs extends com.pulumi.r
     }
 
     /**
-     * The name of the Azure resource group.
+     * The Azure resource group containing the partner topic.
      * 
      */
     @Import(name="azureResourceGroupName", required=true)
     private Output<String> azureResourceGroupName;
 
     /**
-     * @return The name of the Azure resource group.
+     * @return The Azure resource group containing the partner topic.
      * 
      */
     public Output<String> azureResourceGroupName() {
@@ -77,14 +77,14 @@ public final class V2CoreEventDestinationAzureEventGridArgs extends com.pulumi.r
     }
 
     /**
-     * The Azure subscription ID.
+     * The Azure subscription containing the resource group and partner topic.
      * 
      */
     @Import(name="azureSubscriptionId", required=true)
     private Output<String> azureSubscriptionId;
 
     /**
-     * @return The Azure subscription ID.
+     * @return The Azure subscription containing the resource group and partner topic.
      * 
      */
     public Output<String> azureSubscriptionId() {
@@ -120,7 +120,7 @@ public final class V2CoreEventDestinationAzureEventGridArgs extends com.pulumi.r
         }
 
         /**
-         * @param azurePartnerTopicName The name of the Azure partner topic.
+         * @param azurePartnerTopicName The name of the Stripe-created partner topic that receives events.
          * 
          * @return builder
          * 
@@ -131,7 +131,7 @@ public final class V2CoreEventDestinationAzureEventGridArgs extends com.pulumi.r
         }
 
         /**
-         * @param azurePartnerTopicName The name of the Azure partner topic.
+         * @param azurePartnerTopicName The name of the Stripe-created partner topic that receives events.
          * 
          * @return builder
          * 
@@ -141,7 +141,7 @@ public final class V2CoreEventDestinationAzureEventGridArgs extends com.pulumi.r
         }
 
         /**
-         * @param azurePartnerTopicStatus The status of the Azure partner topic.
+         * @param azurePartnerTopicStatus The Azure-reported lifecycle state of the partner topic.
          * 
          * @return builder
          * 
@@ -152,7 +152,7 @@ public final class V2CoreEventDestinationAzureEventGridArgs extends com.pulumi.r
         }
 
         /**
-         * @param azurePartnerTopicStatus The status of the Azure partner topic.
+         * @param azurePartnerTopicStatus The Azure-reported lifecycle state of the partner topic.
          * 
          * @return builder
          * 
@@ -162,7 +162,7 @@ public final class V2CoreEventDestinationAzureEventGridArgs extends com.pulumi.r
         }
 
         /**
-         * @param azureRegion The Azure region.
+         * @param azureRegion The Azure region where the partner topic is located.
          * 
          * @return builder
          * 
@@ -173,7 +173,7 @@ public final class V2CoreEventDestinationAzureEventGridArgs extends com.pulumi.r
         }
 
         /**
-         * @param azureRegion The Azure region.
+         * @param azureRegion The Azure region where the partner topic is located.
          * 
          * @return builder
          * 
@@ -183,7 +183,7 @@ public final class V2CoreEventDestinationAzureEventGridArgs extends com.pulumi.r
         }
 
         /**
-         * @param azureResourceGroupName The name of the Azure resource group.
+         * @param azureResourceGroupName The Azure resource group containing the partner topic.
          * 
          * @return builder
          * 
@@ -194,7 +194,7 @@ public final class V2CoreEventDestinationAzureEventGridArgs extends com.pulumi.r
         }
 
         /**
-         * @param azureResourceGroupName The name of the Azure resource group.
+         * @param azureResourceGroupName The Azure resource group containing the partner topic.
          * 
          * @return builder
          * 
@@ -204,7 +204,7 @@ public final class V2CoreEventDestinationAzureEventGridArgs extends com.pulumi.r
         }
 
         /**
-         * @param azureSubscriptionId The Azure subscription ID.
+         * @param azureSubscriptionId The Azure subscription containing the resource group and partner topic.
          * 
          * @return builder
          * 
@@ -215,7 +215,7 @@ public final class V2CoreEventDestinationAzureEventGridArgs extends com.pulumi.r
         }
 
         /**
-         * @param azureSubscriptionId The Azure subscription ID.
+         * @param azureSubscriptionId The Azure subscription containing the resource group and partner topic.
          * 
          * @return builder
          * 

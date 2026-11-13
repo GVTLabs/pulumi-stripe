@@ -43,6 +43,21 @@ public final class CouponArgs extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
+     * Unique identifier for the object.
+     * 
+     */
+    @Import(name="couponId")
+    private @Nullable Output<String> couponId;
+
+    /**
+     * @return Unique identifier for the object.
+     * 
+     */
+    public Optional<Output<String>> couponId() {
+        return Optional.ofNullable(this.couponId);
+    }
+
+    /**
      * If &lt;span pulumi-lang-nodejs=&#34;`amountOff`&#34; pulumi-lang-dotnet=&#34;`AmountOff`&#34; pulumi-lang-go=&#34;`amountOff`&#34; pulumi-lang-python=&#34;`amount_off`&#34; pulumi-lang-yaml=&#34;`amountOff`&#34; pulumi-lang-java=&#34;`amountOff`&#34; pulumi-lang-hcl=&#34;`amount_off`&#34;&gt;`amountOff`&lt;/span&gt; has been set, the three-letter [ISO code for the currency](https://stripe.com/docs/currencies) of the amount to take off.
      * 
      */
@@ -182,6 +197,7 @@ public final class CouponArgs extends com.pulumi.resources.ResourceArgs {
     private CouponArgs(CouponArgs $) {
         this.amountOff = $.amountOff;
         this.appliesTos = $.appliesTos;
+        this.couponId = $.couponId;
         this.currency = $.currency;
         this.currencyOptions = $.currencyOptions;
         this.duration = $.duration;
@@ -243,6 +259,27 @@ public final class CouponArgs extends com.pulumi.resources.ResourceArgs {
 
         public Builder appliesTos(CouponAppliesToArgs... appliesTos) {
             return appliesTos(List.of(appliesTos));
+        }
+
+        /**
+         * @param couponId Unique identifier for the object.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder couponId(@Nullable Output<String> couponId) {
+            $.couponId = couponId;
+            return this;
+        }
+
+        /**
+         * @param couponId Unique identifier for the object.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder couponId(String couponId) {
+            return couponId(Output.of(couponId));
         }
 
         /**

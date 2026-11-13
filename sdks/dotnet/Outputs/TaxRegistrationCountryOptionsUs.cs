@@ -13,35 +13,79 @@ namespace Pulumi.Stripe.Outputs
     [OutputType]
     public sealed class TaxRegistrationCountryOptionsUs
     {
+        public readonly Outputs.TaxRegistrationCountryOptionsUsAdmissionsTax? AdmissionsTax;
+        public readonly Outputs.TaxRegistrationCountryOptionsUsAttendanceTax? AttendanceTax;
+        public readonly Outputs.TaxRegistrationCountryOptionsUsEntertainmentTax? EntertainmentTax;
+        public readonly Outputs.TaxRegistrationCountryOptionsUsGrossReceiptsTax? GrossReceiptsTax;
+        public readonly Outputs.TaxRegistrationCountryOptionsUsHospitalityTax? HospitalityTax;
         public readonly Outputs.TaxRegistrationCountryOptionsUsLocalAmusementTax? LocalAmusementTax;
         public readonly Outputs.TaxRegistrationCountryOptionsUsLocalLeaseTax? LocalLeaseTax;
+        public readonly Outputs.TaxRegistrationCountryOptionsUsLuxuryTax? LuxuryTax;
+        public readonly Outputs.TaxRegistrationCountryOptionsUsMassTransitParkingTax? MassTransitParkingTax;
+        public readonly Outputs.TaxRegistrationCountryOptionsUsParkingTax? ParkingTax;
+        public readonly Outputs.TaxRegistrationCountryOptionsUsResortTax? ResortTax;
         /// <summary>
         /// Two-letter US state code ([ISO 3166-2](https://en.wikipedia.org/wiki/ISO_3166-2)).
         /// </summary>
         public readonly string State;
         public readonly Outputs.TaxRegistrationCountryOptionsUsStateSalesTax? StateSalesTax;
+        public readonly Outputs.TaxRegistrationCountryOptionsUsTourismTax? TourismTax;
         /// <summary>
         /// Type of registration in the US.
         /// </summary>
         public readonly string Type;
+        public readonly Outputs.TaxRegistrationCountryOptionsUsUtilityUsersTax? UtilityUsersTax;
 
         [OutputConstructor]
         private TaxRegistrationCountryOptionsUs(
+            Outputs.TaxRegistrationCountryOptionsUsAdmissionsTax? admissionsTax,
+
+            Outputs.TaxRegistrationCountryOptionsUsAttendanceTax? attendanceTax,
+
+            Outputs.TaxRegistrationCountryOptionsUsEntertainmentTax? entertainmentTax,
+
+            Outputs.TaxRegistrationCountryOptionsUsGrossReceiptsTax? grossReceiptsTax,
+
+            Outputs.TaxRegistrationCountryOptionsUsHospitalityTax? hospitalityTax,
+
             Outputs.TaxRegistrationCountryOptionsUsLocalAmusementTax? localAmusementTax,
 
             Outputs.TaxRegistrationCountryOptionsUsLocalLeaseTax? localLeaseTax,
+
+            Outputs.TaxRegistrationCountryOptionsUsLuxuryTax? luxuryTax,
+
+            Outputs.TaxRegistrationCountryOptionsUsMassTransitParkingTax? massTransitParkingTax,
+
+            Outputs.TaxRegistrationCountryOptionsUsParkingTax? parkingTax,
+
+            Outputs.TaxRegistrationCountryOptionsUsResortTax? resortTax,
 
             string state,
 
             Outputs.TaxRegistrationCountryOptionsUsStateSalesTax? stateSalesTax,
 
-            string type)
+            Outputs.TaxRegistrationCountryOptionsUsTourismTax? tourismTax,
+
+            string type,
+
+            Outputs.TaxRegistrationCountryOptionsUsUtilityUsersTax? utilityUsersTax)
         {
+            AdmissionsTax = admissionsTax;
+            AttendanceTax = attendanceTax;
+            EntertainmentTax = entertainmentTax;
+            GrossReceiptsTax = grossReceiptsTax;
+            HospitalityTax = hospitalityTax;
             LocalAmusementTax = localAmusementTax;
             LocalLeaseTax = localLeaseTax;
+            LuxuryTax = luxuryTax;
+            MassTransitParkingTax = massTransitParkingTax;
+            ParkingTax = parkingTax;
+            ResortTax = resortTax;
             State = state;
             StateSalesTax = stateSalesTax;
+            TourismTax = tourismTax;
             Type = type;
+            UtilityUsersTax = utilityUsersTax;
         }
     }
 }

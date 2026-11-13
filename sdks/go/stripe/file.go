@@ -23,7 +23,7 @@ type File struct {
 	// A file to upload. Make sure that the specifications follow RFC 2388, which defines file transfers for the `multipart/form-data` protocol.
 	File pulumi.StringOutput `pulumi:"file"`
 	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
-	// Optional parameters that automatically create a [file link](https://api.stripe.com#file_links) for the newly created file.
+	// Optional parameters that automatically create a [file link](https://docs.stripe.com/api#file_links) for the newly created file.
 	FileLinkData FileFileLinkDataPtrOutput `pulumi:"fileLinkData"`
 	// The suitable name for saving the file to a filesystem.
 	Filename pulumi.StringOutput `pulumi:"filename"`
@@ -104,7 +104,7 @@ type fileState struct {
 	// A file to upload. Make sure that the specifications follow RFC 2388, which defines file transfers for the `multipart/form-data` protocol.
 	File *string `pulumi:"file"`
 	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
-	// Optional parameters that automatically create a [file link](https://api.stripe.com#file_links) for the newly created file.
+	// Optional parameters that automatically create a [file link](https://docs.stripe.com/api#file_links) for the newly created file.
 	FileLinkData *FileFileLinkData `pulumi:"fileLinkData"`
 	// The suitable name for saving the file to a filesystem.
 	Filename *string `pulumi:"filename"`
@@ -131,7 +131,7 @@ type FileState struct {
 	// A file to upload. Make sure that the specifications follow RFC 2388, which defines file transfers for the `multipart/form-data` protocol.
 	File pulumi.StringPtrInput
 	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
-	// Optional parameters that automatically create a [file link](https://api.stripe.com#file_links) for the newly created file.
+	// Optional parameters that automatically create a [file link](https://docs.stripe.com/api#file_links) for the newly created file.
 	FileLinkData FileFileLinkDataPtrInput
 	// The suitable name for saving the file to a filesystem.
 	Filename pulumi.StringPtrInput
@@ -153,12 +153,24 @@ func (FileState) ElementType() reflect.Type {
 	return reflect.TypeOf((*fileState)(nil)).Elem()
 }
 
+// FileExists checks whether an existing File resource with the given ID exists.
+func FileExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *FileState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	ref, err := internal.PkgGetPackageRef(ctx)
+	if err != nil {
+		return pulumi.Bool(false).ToBoolOutput().ApplyT(func(bool) (bool, error) {
+			return false, err
+		}).(pulumi.BoolOutput)
+	}
+	return ctx.ExistsResource("stripe:index/file:File", id, state, ref, opts...)
+}
+
 type fileArgs struct {
 	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
 	// A file to upload. Make sure that the specifications follow RFC 2388, which defines file transfers for the `multipart/form-data` protocol.
 	File string `pulumi:"file"`
 	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
-	// Optional parameters that automatically create a [file link](https://api.stripe.com#file_links) for the newly created file.
+	// Optional parameters that automatically create a [file link](https://docs.stripe.com/api#file_links) for the newly created file.
 	FileLinkData *FileFileLinkData `pulumi:"fileLinkData"`
 	// The [purpose](https://docs.stripe.com/file-upload#uploading-a-file) of the uploaded file.
 	Purpose string `pulumi:"purpose"`
@@ -170,7 +182,7 @@ type FileArgs struct {
 	// A file to upload. Make sure that the specifications follow RFC 2388, which defines file transfers for the `multipart/form-data` protocol.
 	File pulumi.StringInput
 	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
-	// Optional parameters that automatically create a [file link](https://api.stripe.com#file_links) for the newly created file.
+	// Optional parameters that automatically create a [file link](https://docs.stripe.com/api#file_links) for the newly created file.
 	FileLinkData FileFileLinkDataPtrInput
 	// The [purpose](https://docs.stripe.com/file-upload#uploading-a-file) of the uploaded file.
 	Purpose pulumi.StringInput
@@ -230,7 +242,7 @@ func (o FileOutput) File() pulumi.StringOutput {
 }
 
 // **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
-// Optional parameters that automatically create a [file link](https://api.stripe.com#file_links) for the newly created file.
+// Optional parameters that automatically create a [file link](https://docs.stripe.com/api#file_links) for the newly created file.
 func (o FileOutput) FileLinkData() FileFileLinkDataPtrOutput {
 	return o.ApplyT(func(v *File) FileFileLinkDataPtrOutput { return v.FileLinkData }).(FileFileLinkDataPtrOutput)
 }

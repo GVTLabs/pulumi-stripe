@@ -18,6 +18,12 @@ namespace Pulumi.Stripe.Inputs
         [Input("billingThresholds")]
         public Input<Inputs.SubscriptionItemBillingThresholdsArgs>? BillingThresholds { get; set; }
 
+        /// <summary>
+        /// The trial offer to apply to this subscription item.
+        /// </summary>
+        [Input("currentTrial")]
+        public Input<Inputs.SubscriptionItemCurrentTrialArgs>? CurrentTrial { get; set; }
+
         [Input("discounts")]
         private InputList<Inputs.SubscriptionItemDiscountArgs>? _discounts;
 

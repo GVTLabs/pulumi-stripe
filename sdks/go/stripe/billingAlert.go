@@ -106,6 +106,18 @@ func (BillingAlertState) ElementType() reflect.Type {
 	return reflect.TypeOf((*billingAlertState)(nil)).Elem()
 }
 
+// BillingAlertExists checks whether an existing BillingAlert resource with the given ID exists.
+func BillingAlertExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *BillingAlertState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	ref, err := internal.PkgGetPackageRef(ctx)
+	if err != nil {
+		return pulumi.Bool(false).ToBoolOutput().ApplyT(func(bool) (bool, error) {
+			return false, err
+		}).(pulumi.BoolOutput)
+	}
+	return ctx.ExistsResource("stripe:index/billingAlert:BillingAlert", id, state, ref, opts...)
+}
+
 type billingAlertArgs struct {
 	// Defines the type of the alert.
 	AlertType string `pulumi:"alertType"`

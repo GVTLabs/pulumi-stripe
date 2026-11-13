@@ -38,7 +38,7 @@ type TerminalReader struct {
 	RegistrationCode pulumi.StringOutput `pulumi:"registrationCode"`
 	// Serial number of the reader.
 	SerialNumber pulumi.StringOutput `pulumi:"serialNumber"`
-	// The networking status of the reader. We do not recommend using this field in flows that may block taking payments.
+	// The networking status of the reader. This value is <span pulumi-lang-nodejs="`null`" pulumi-lang-dotnet="`Null`" pulumi-lang-go="`null`" pulumi-lang-python="`null`" pulumi-lang-yaml="`null`" pulumi-lang-java="`null`" pulumi-lang-hcl="`null`">`null`</span> for mobile readers. We do not recommend using this field in flows that may block taking payments.
 	Status pulumi.StringOutput `pulumi:"status"`
 }
 
@@ -113,7 +113,7 @@ type terminalReaderState struct {
 	RegistrationCode *string `pulumi:"registrationCode"`
 	// Serial number of the reader.
 	SerialNumber *string `pulumi:"serialNumber"`
-	// The networking status of the reader. We do not recommend using this field in flows that may block taking payments.
+	// The networking status of the reader. This value is <span pulumi-lang-nodejs="`null`" pulumi-lang-dotnet="`Null`" pulumi-lang-go="`null`" pulumi-lang-python="`null`" pulumi-lang-yaml="`null`" pulumi-lang-java="`null`" pulumi-lang-hcl="`null`">`null`</span> for mobile readers. We do not recommend using this field in flows that may block taking payments.
 	Status *string `pulumi:"status"`
 }
 
@@ -141,12 +141,24 @@ type TerminalReaderState struct {
 	RegistrationCode pulumi.StringPtrInput
 	// Serial number of the reader.
 	SerialNumber pulumi.StringPtrInput
-	// The networking status of the reader. We do not recommend using this field in flows that may block taking payments.
+	// The networking status of the reader. This value is <span pulumi-lang-nodejs="`null`" pulumi-lang-dotnet="`Null`" pulumi-lang-go="`null`" pulumi-lang-python="`null`" pulumi-lang-yaml="`null`" pulumi-lang-java="`null`" pulumi-lang-hcl="`null`">`null`</span> for mobile readers. We do not recommend using this field in flows that may block taking payments.
 	Status pulumi.StringPtrInput
 }
 
 func (TerminalReaderState) ElementType() reflect.Type {
 	return reflect.TypeOf((*terminalReaderState)(nil)).Elem()
+}
+
+// TerminalReaderExists checks whether an existing TerminalReader resource with the given ID exists.
+func TerminalReaderExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *TerminalReaderState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	ref, err := internal.PkgGetPackageRef(ctx)
+	if err != nil {
+		return pulumi.Bool(false).ToBoolOutput().ApplyT(func(bool) (bool, error) {
+			return false, err
+		}).(pulumi.BoolOutput)
+	}
+	return ctx.ExistsResource("stripe:index/terminalReader:TerminalReader", id, state, ref, opts...)
 }
 
 type terminalReaderArgs struct {
@@ -267,7 +279,7 @@ func (o TerminalReaderOutput) SerialNumber() pulumi.StringOutput {
 	return o.ApplyT(func(v *TerminalReader) pulumi.StringOutput { return v.SerialNumber }).(pulumi.StringOutput)
 }
 
-// The networking status of the reader. We do not recommend using this field in flows that may block taking payments.
+// The networking status of the reader. This value is <span pulumi-lang-nodejs="`null`" pulumi-lang-dotnet="`Null`" pulumi-lang-go="`null`" pulumi-lang-python="`null`" pulumi-lang-yaml="`null`" pulumi-lang-java="`null`" pulumi-lang-hcl="`null`">`null`</span> for mobile readers. We do not recommend using this field in flows that may block taking payments.
 func (o TerminalReaderOutput) Status() pulumi.StringOutput {
 	return o.ApplyT(func(v *TerminalReader) pulumi.StringOutput { return v.Status }).(pulumi.StringOutput)
 }

@@ -19,6 +19,12 @@ namespace Pulumi.Stripe.Inputs
         public Input<string>? Data { get; set; }
 
         /// <summary>
+        /// The timestamp at which the QR code expires.
+        /// </summary>
+        [Input("expiresAt")]
+        public Input<double>? ExpiresAt { get; set; }
+
+        /// <summary>
         /// The&lt;span pulumi-lang-nodejs=" imageUrlPng " pulumi-lang-dotnet=" ImageUrlPng " pulumi-lang-go=" imageUrlPng " pulumi-lang-python=" image_url_png " pulumi-lang-yaml=" imageUrlPng " pulumi-lang-java=" imageUrlPng " pulumi-lang-hcl=" image_url_png "&gt; imageUrlPng &lt;/span&gt;string used to render QR code
         /// </summary>
         [Input("imageUrlPng")]

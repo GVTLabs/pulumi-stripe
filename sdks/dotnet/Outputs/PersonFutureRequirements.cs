@@ -22,7 +22,7 @@ namespace Pulumi.Stripe.Outputs
         /// </summary>
         public readonly ImmutableArray<string> CurrentlyDues;
         /// <summary>
-        /// Details about validation and verification failures for &lt;span pulumi-lang-nodejs="`due`" pulumi-lang-dotnet="`Due`" pulumi-lang-go="`due`" pulumi-lang-python="`due`" pulumi-lang-yaml="`due`" pulumi-lang-java="`due`" pulumi-lang-hcl="`due`"&gt;`due`&lt;/span&gt; requirements that must be resolved.
+        /// Fields that are &lt;span pulumi-lang-nodejs="`currentlyDue`" pulumi-lang-dotnet="`CurrentlyDue`" pulumi-lang-go="`currentlyDue`" pulumi-lang-python="`currently_due`" pulumi-lang-yaml="`currentlyDue`" pulumi-lang-java="`currentlyDue`" pulumi-lang-hcl="`currently_due`"&gt;`currentlyDue`&lt;/span&gt; and need to be collected again because validation or verification failed.
         /// </summary>
         public readonly ImmutableArray<Outputs.PersonFutureRequirementsError> Errors;
         /// <summary>

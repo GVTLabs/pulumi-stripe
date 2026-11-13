@@ -32,10 +32,26 @@ public final class ChargePaymentMethodDetailsLinkArgs extends com.pulumi.resourc
         return Optional.ofNullable(this.country);
     }
 
+    /**
+     * The [funding source group code](https://docs.stripe.com/payments/link/link-payment-methods) applied to this Link payment at confirmation time.
+     * 
+     */
+    @Import(name="fundingSourceGroup")
+    private @Nullable Output<String> fundingSourceGroup;
+
+    /**
+     * @return The [funding source group code](https://docs.stripe.com/payments/link/link-payment-methods) applied to this Link payment at confirmation time.
+     * 
+     */
+    public Optional<Output<String>> fundingSourceGroup() {
+        return Optional.ofNullable(this.fundingSourceGroup);
+    }
+
     private ChargePaymentMethodDetailsLinkArgs() {}
 
     private ChargePaymentMethodDetailsLinkArgs(ChargePaymentMethodDetailsLinkArgs $) {
         this.country = $.country;
+        this.fundingSourceGroup = $.fundingSourceGroup;
     }
 
     public static Builder builder() {
@@ -77,6 +93,27 @@ public final class ChargePaymentMethodDetailsLinkArgs extends com.pulumi.resourc
          */
         public Builder country(String country) {
             return country(Output.of(country));
+        }
+
+        /**
+         * @param fundingSourceGroup The [funding source group code](https://docs.stripe.com/payments/link/link-payment-methods) applied to this Link payment at confirmation time.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder fundingSourceGroup(@Nullable Output<String> fundingSourceGroup) {
+            $.fundingSourceGroup = fundingSourceGroup;
+            return this;
+        }
+
+        /**
+         * @param fundingSourceGroup The [funding source group code](https://docs.stripe.com/payments/link/link-payment-methods) applied to this Link payment at confirmation time.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder fundingSourceGroup(String fundingSourceGroup) {
+            return fundingSourceGroup(Output.of(fundingSourceGroup));
         }
 
         public ChargePaymentMethodDetailsLinkArgs build() {

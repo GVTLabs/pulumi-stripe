@@ -25,6 +25,8 @@ type SubscriptionItem struct {
 	CurrentPeriodEnd pulumi.Float64Output `pulumi:"currentPeriodEnd"`
 	// The start time of this subscription item's current billing period.
 	CurrentPeriodStart pulumi.Float64Output `pulumi:"currentPeriodStart"`
+	// The current trial that is applied to this subscription item.
+	CurrentTrial SubscriptionItemCurrentTrialOutput `pulumi:"currentTrial"`
 	// The discounts applied to the subscription item. Subscription item discounts are applied before subscription discounts. Use `expand[]=discounts` to expand each discount.
 	Discounts SubscriptionItemDiscountArrayOutput `pulumi:"discounts"`
 	// Set of [key-value pairs](https://docs.stripe.com/api/metadata) that you can attach to an object. This can be useful for storing additional information about the object in a structured format.
@@ -34,17 +36,17 @@ type SubscriptionItem struct {
 	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
 	// Controls how Stripe handles payment when a subscription update requires payment and `collection_method=charge_automatically`.
 	PaymentBehavior pulumi.StringPtrOutput `pulumi:"paymentBehavior"`
-	// You can now model subscriptions more flexibly using the [Prices API](https://api.stripe.com#prices). It replaces the Plans API and is backwards compatible to simplify your migration.
+	// You can now model subscriptions more flexibly using the [Prices API](https://docs.stripe.com/api#prices). It replaces the Plans API and is backwards compatible to simplify your migration.
 	//
 	// Plans define the base price, currency, and billing cycle for recurring purchases of products.
-	// [Products](https://api.stripe.com#products) help you track inventory or provisioning, and plans help you track pricing. Different physical goods or levels of service should be represented by products, and pricing options should be represented by plans. This approach lets you change prices without having to change your provisioning scheme.
+	// [Products](https://docs.stripe.com/api#products) help you track inventory or provisioning, and plans help you track pricing. Different physical goods or levels of service should be represented by products, and pricing options should be represented by plans. This approach lets you change prices without having to change your provisioning scheme.
 	//
 	// For example, you might have a single "gold" product that has plans for $10/month, $100/year, €9/month, and €90/year.
 	//
 	// Related guides: [Set up a subscription](https://docs.stripe.com/billing/subscriptions/set-up-subscription) and more about [products and prices](https://docs.stripe.com/products-prices/overview).
 	Plan pulumi.StringOutput `pulumi:"plan"`
 	// Prices define the unit cost, currency, and (optional) billing cycle for both recurring and one-time purchases of products.
-	// [Products](https://api.stripe.com#products) help you track inventory or provisioning, and prices help you track payment terms. Different physical goods or levels of service should be represented by products, and pricing options should be represented by prices. This approach lets you change prices without having to change your provisioning scheme.
+	// [Products](https://docs.stripe.com/api#products) help you track inventory or provisioning, and prices help you track payment terms. Different physical goods or levels of service should be represented by products, and pricing options should be represented by prices. This approach lets you change prices without having to change your provisioning scheme.
 	//
 	// For example, you might have a single "gold" product that has prices for $10/month, $100/year, and €9 once.
 	//
@@ -137,6 +139,8 @@ type subscriptionItemState struct {
 	CurrentPeriodEnd *float64 `pulumi:"currentPeriodEnd"`
 	// The start time of this subscription item's current billing period.
 	CurrentPeriodStart *float64 `pulumi:"currentPeriodStart"`
+	// The current trial that is applied to this subscription item.
+	CurrentTrial *SubscriptionItemCurrentTrial `pulumi:"currentTrial"`
 	// The discounts applied to the subscription item. Subscription item discounts are applied before subscription discounts. Use `expand[]=discounts` to expand each discount.
 	Discounts []SubscriptionItemDiscount `pulumi:"discounts"`
 	// Set of [key-value pairs](https://docs.stripe.com/api/metadata) that you can attach to an object. This can be useful for storing additional information about the object in a structured format.
@@ -146,17 +150,17 @@ type subscriptionItemState struct {
 	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
 	// Controls how Stripe handles payment when a subscription update requires payment and `collection_method=charge_automatically`.
 	PaymentBehavior *string `pulumi:"paymentBehavior"`
-	// You can now model subscriptions more flexibly using the [Prices API](https://api.stripe.com#prices). It replaces the Plans API and is backwards compatible to simplify your migration.
+	// You can now model subscriptions more flexibly using the [Prices API](https://docs.stripe.com/api#prices). It replaces the Plans API and is backwards compatible to simplify your migration.
 	//
 	// Plans define the base price, currency, and billing cycle for recurring purchases of products.
-	// [Products](https://api.stripe.com#products) help you track inventory or provisioning, and plans help you track pricing. Different physical goods or levels of service should be represented by products, and pricing options should be represented by plans. This approach lets you change prices without having to change your provisioning scheme.
+	// [Products](https://docs.stripe.com/api#products) help you track inventory or provisioning, and plans help you track pricing. Different physical goods or levels of service should be represented by products, and pricing options should be represented by plans. This approach lets you change prices without having to change your provisioning scheme.
 	//
 	// For example, you might have a single "gold" product that has plans for $10/month, $100/year, €9/month, and €90/year.
 	//
 	// Related guides: [Set up a subscription](https://docs.stripe.com/billing/subscriptions/set-up-subscription) and more about [products and prices](https://docs.stripe.com/products-prices/overview).
 	Plan *string `pulumi:"plan"`
 	// Prices define the unit cost, currency, and (optional) billing cycle for both recurring and one-time purchases of products.
-	// [Products](https://api.stripe.com#products) help you track inventory or provisioning, and prices help you track payment terms. Different physical goods or levels of service should be represented by products, and pricing options should be represented by prices. This approach lets you change prices without having to change your provisioning scheme.
+	// [Products](https://docs.stripe.com/api#products) help you track inventory or provisioning, and prices help you track payment terms. Different physical goods or levels of service should be represented by products, and pricing options should be represented by prices. This approach lets you change prices without having to change your provisioning scheme.
 	//
 	// For example, you might have a single "gold" product that has prices for $10/month, $100/year, and €9 once.
 	//
@@ -190,6 +194,8 @@ type SubscriptionItemState struct {
 	CurrentPeriodEnd pulumi.Float64PtrInput
 	// The start time of this subscription item's current billing period.
 	CurrentPeriodStart pulumi.Float64PtrInput
+	// The current trial that is applied to this subscription item.
+	CurrentTrial SubscriptionItemCurrentTrialPtrInput
 	// The discounts applied to the subscription item. Subscription item discounts are applied before subscription discounts. Use `expand[]=discounts` to expand each discount.
 	Discounts SubscriptionItemDiscountArrayInput
 	// Set of [key-value pairs](https://docs.stripe.com/api/metadata) that you can attach to an object. This can be useful for storing additional information about the object in a structured format.
@@ -199,17 +205,17 @@ type SubscriptionItemState struct {
 	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
 	// Controls how Stripe handles payment when a subscription update requires payment and `collection_method=charge_automatically`.
 	PaymentBehavior pulumi.StringPtrInput
-	// You can now model subscriptions more flexibly using the [Prices API](https://api.stripe.com#prices). It replaces the Plans API and is backwards compatible to simplify your migration.
+	// You can now model subscriptions more flexibly using the [Prices API](https://docs.stripe.com/api#prices). It replaces the Plans API and is backwards compatible to simplify your migration.
 	//
 	// Plans define the base price, currency, and billing cycle for recurring purchases of products.
-	// [Products](https://api.stripe.com#products) help you track inventory or provisioning, and plans help you track pricing. Different physical goods or levels of service should be represented by products, and pricing options should be represented by plans. This approach lets you change prices without having to change your provisioning scheme.
+	// [Products](https://docs.stripe.com/api#products) help you track inventory or provisioning, and plans help you track pricing. Different physical goods or levels of service should be represented by products, and pricing options should be represented by plans. This approach lets you change prices without having to change your provisioning scheme.
 	//
 	// For example, you might have a single "gold" product that has plans for $10/month, $100/year, €9/month, and €90/year.
 	//
 	// Related guides: [Set up a subscription](https://docs.stripe.com/billing/subscriptions/set-up-subscription) and more about [products and prices](https://docs.stripe.com/products-prices/overview).
 	Plan pulumi.StringPtrInput
 	// Prices define the unit cost, currency, and (optional) billing cycle for both recurring and one-time purchases of products.
-	// [Products](https://api.stripe.com#products) help you track inventory or provisioning, and prices help you track payment terms. Different physical goods or levels of service should be represented by products, and pricing options should be represented by prices. This approach lets you change prices without having to change your provisioning scheme.
+	// [Products](https://docs.stripe.com/api#products) help you track inventory or provisioning, and prices help you track payment terms. Different physical goods or levels of service should be represented by products, and pricing options should be represented by prices. This approach lets you change prices without having to change your provisioning scheme.
 	//
 	// For example, you might have a single "gold" product that has prices for $10/month, $100/year, and €9 once.
 	//
@@ -236,9 +242,23 @@ func (SubscriptionItemState) ElementType() reflect.Type {
 	return reflect.TypeOf((*subscriptionItemState)(nil)).Elem()
 }
 
+// SubscriptionItemExists checks whether an existing SubscriptionItem resource with the given ID exists.
+func SubscriptionItemExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *SubscriptionItemState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	ref, err := internal.PkgGetPackageRef(ctx)
+	if err != nil {
+		return pulumi.Bool(false).ToBoolOutput().ApplyT(func(bool) (bool, error) {
+			return false, err
+		}).(pulumi.BoolOutput)
+	}
+	return ctx.ExistsResource("stripe:index/subscriptionItem:SubscriptionItem", id, state, ref, opts...)
+}
+
 type subscriptionItemArgs struct {
 	// Define thresholds at which an invoice will be sent, and the related subscription advanced to a new billing period
 	BillingThresholds *SubscriptionItemBillingThresholds `pulumi:"billingThresholds"`
+	// The current trial that is applied to this subscription item.
+	CurrentTrial *SubscriptionItemCurrentTrial `pulumi:"currentTrial"`
 	// The discounts applied to the subscription item. Subscription item discounts are applied before subscription discounts. Use `expand[]=discounts` to expand each discount.
 	Discounts []SubscriptionItemDiscount `pulumi:"discounts"`
 	// Set of [key-value pairs](https://docs.stripe.com/api/metadata) that you can attach to an object. This can be useful for storing additional information about the object in a structured format.
@@ -246,17 +266,17 @@ type subscriptionItemArgs struct {
 	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
 	// Controls how Stripe handles payment when a subscription update requires payment and `collection_method=charge_automatically`.
 	PaymentBehavior *string `pulumi:"paymentBehavior"`
-	// You can now model subscriptions more flexibly using the [Prices API](https://api.stripe.com#prices). It replaces the Plans API and is backwards compatible to simplify your migration.
+	// You can now model subscriptions more flexibly using the [Prices API](https://docs.stripe.com/api#prices). It replaces the Plans API and is backwards compatible to simplify your migration.
 	//
 	// Plans define the base price, currency, and billing cycle for recurring purchases of products.
-	// [Products](https://api.stripe.com#products) help you track inventory or provisioning, and plans help you track pricing. Different physical goods or levels of service should be represented by products, and pricing options should be represented by plans. This approach lets you change prices without having to change your provisioning scheme.
+	// [Products](https://docs.stripe.com/api#products) help you track inventory or provisioning, and plans help you track pricing. Different physical goods or levels of service should be represented by products, and pricing options should be represented by plans. This approach lets you change prices without having to change your provisioning scheme.
 	//
 	// For example, you might have a single "gold" product that has plans for $10/month, $100/year, €9/month, and €90/year.
 	//
 	// Related guides: [Set up a subscription](https://docs.stripe.com/billing/subscriptions/set-up-subscription) and more about [products and prices](https://docs.stripe.com/products-prices/overview).
 	Plan *string `pulumi:"plan"`
 	// Prices define the unit cost, currency, and (optional) billing cycle for both recurring and one-time purchases of products.
-	// [Products](https://api.stripe.com#products) help you track inventory or provisioning, and prices help you track payment terms. Different physical goods or levels of service should be represented by products, and pricing options should be represented by prices. This approach lets you change prices without having to change your provisioning scheme.
+	// [Products](https://docs.stripe.com/api#products) help you track inventory or provisioning, and prices help you track payment terms. Different physical goods or levels of service should be represented by products, and pricing options should be represented by prices. This approach lets you change prices without having to change your provisioning scheme.
 	//
 	// For example, you might have a single "gold" product that has prices for $10/month, $100/year, and €9 once.
 	//
@@ -283,6 +303,8 @@ type subscriptionItemArgs struct {
 type SubscriptionItemArgs struct {
 	// Define thresholds at which an invoice will be sent, and the related subscription advanced to a new billing period
 	BillingThresholds SubscriptionItemBillingThresholdsPtrInput
+	// The current trial that is applied to this subscription item.
+	CurrentTrial SubscriptionItemCurrentTrialPtrInput
 	// The discounts applied to the subscription item. Subscription item discounts are applied before subscription discounts. Use `expand[]=discounts` to expand each discount.
 	Discounts SubscriptionItemDiscountArrayInput
 	// Set of [key-value pairs](https://docs.stripe.com/api/metadata) that you can attach to an object. This can be useful for storing additional information about the object in a structured format.
@@ -290,17 +312,17 @@ type SubscriptionItemArgs struct {
 	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
 	// Controls how Stripe handles payment when a subscription update requires payment and `collection_method=charge_automatically`.
 	PaymentBehavior pulumi.StringPtrInput
-	// You can now model subscriptions more flexibly using the [Prices API](https://api.stripe.com#prices). It replaces the Plans API and is backwards compatible to simplify your migration.
+	// You can now model subscriptions more flexibly using the [Prices API](https://docs.stripe.com/api#prices). It replaces the Plans API and is backwards compatible to simplify your migration.
 	//
 	// Plans define the base price, currency, and billing cycle for recurring purchases of products.
-	// [Products](https://api.stripe.com#products) help you track inventory or provisioning, and plans help you track pricing. Different physical goods or levels of service should be represented by products, and pricing options should be represented by plans. This approach lets you change prices without having to change your provisioning scheme.
+	// [Products](https://docs.stripe.com/api#products) help you track inventory or provisioning, and plans help you track pricing. Different physical goods or levels of service should be represented by products, and pricing options should be represented by plans. This approach lets you change prices without having to change your provisioning scheme.
 	//
 	// For example, you might have a single "gold" product that has plans for $10/month, $100/year, €9/month, and €90/year.
 	//
 	// Related guides: [Set up a subscription](https://docs.stripe.com/billing/subscriptions/set-up-subscription) and more about [products and prices](https://docs.stripe.com/products-prices/overview).
 	Plan pulumi.StringPtrInput
 	// Prices define the unit cost, currency, and (optional) billing cycle for both recurring and one-time purchases of products.
-	// [Products](https://api.stripe.com#products) help you track inventory or provisioning, and prices help you track payment terms. Different physical goods or levels of service should be represented by products, and pricing options should be represented by prices. This approach lets you change prices without having to change your provisioning scheme.
+	// [Products](https://docs.stripe.com/api#products) help you track inventory or provisioning, and prices help you track payment terms. Different physical goods or levels of service should be represented by products, and pricing options should be represented by prices. This approach lets you change prices without having to change your provisioning scheme.
 	//
 	// For example, you might have a single "gold" product that has prices for $10/month, $100/year, and €9 once.
 	//
@@ -385,6 +407,11 @@ func (o SubscriptionItemOutput) CurrentPeriodStart() pulumi.Float64Output {
 	return o.ApplyT(func(v *SubscriptionItem) pulumi.Float64Output { return v.CurrentPeriodStart }).(pulumi.Float64Output)
 }
 
+// The current trial that is applied to this subscription item.
+func (o SubscriptionItemOutput) CurrentTrial() SubscriptionItemCurrentTrialOutput {
+	return o.ApplyT(func(v *SubscriptionItem) SubscriptionItemCurrentTrialOutput { return v.CurrentTrial }).(SubscriptionItemCurrentTrialOutput)
+}
+
 // The discounts applied to the subscription item. Subscription item discounts are applied before subscription discounts. Use `expand[]=discounts` to expand each discount.
 func (o SubscriptionItemOutput) Discounts() SubscriptionItemDiscountArrayOutput {
 	return o.ApplyT(func(v *SubscriptionItem) SubscriptionItemDiscountArrayOutput { return v.Discounts }).(SubscriptionItemDiscountArrayOutput)
@@ -406,10 +433,10 @@ func (o SubscriptionItemOutput) PaymentBehavior() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *SubscriptionItem) pulumi.StringPtrOutput { return v.PaymentBehavior }).(pulumi.StringPtrOutput)
 }
 
-// You can now model subscriptions more flexibly using the [Prices API](https://api.stripe.com#prices). It replaces the Plans API and is backwards compatible to simplify your migration.
+// You can now model subscriptions more flexibly using the [Prices API](https://docs.stripe.com/api#prices). It replaces the Plans API and is backwards compatible to simplify your migration.
 //
 // Plans define the base price, currency, and billing cycle for recurring purchases of products.
-// [Products](https://api.stripe.com#products) help you track inventory or provisioning, and plans help you track pricing. Different physical goods or levels of service should be represented by products, and pricing options should be represented by plans. This approach lets you change prices without having to change your provisioning scheme.
+// [Products](https://docs.stripe.com/api#products) help you track inventory or provisioning, and plans help you track pricing. Different physical goods or levels of service should be represented by products, and pricing options should be represented by plans. This approach lets you change prices without having to change your provisioning scheme.
 //
 // For example, you might have a single "gold" product that has plans for $10/month, $100/year, €9/month, and €90/year.
 //
@@ -419,7 +446,7 @@ func (o SubscriptionItemOutput) Plan() pulumi.StringOutput {
 }
 
 // Prices define the unit cost, currency, and (optional) billing cycle for both recurring and one-time purchases of products.
-// [Products](https://api.stripe.com#products) help you track inventory or provisioning, and prices help you track payment terms. Different physical goods or levels of service should be represented by products, and pricing options should be represented by prices. This approach lets you change prices without having to change your provisioning scheme.
+// [Products](https://docs.stripe.com/api#products) help you track inventory or provisioning, and prices help you track payment terms. Different physical goods or levels of service should be represented by products, and pricing options should be represented by prices. This approach lets you change prices without having to change your provisioning scheme.
 //
 // For example, you might have a single "gold" product that has prices for $10/month, $100/year, and €9 once.
 //

@@ -73,6 +73,7 @@ type PaymentMethodConfiguration struct {
 	Payco         PaymentMethodConfigurationPaycoOutput         `pulumi:"payco"`
 	Paynow        PaymentMethodConfigurationPaynowOutput        `pulumi:"paynow"`
 	Paypal        PaymentMethodConfigurationPaypalOutput        `pulumi:"paypal"`
+	Paypay        PaymentMethodConfigurationPaypayOutput        `pulumi:"paypay"`
 	Payto         PaymentMethodConfigurationPaytoOutput         `pulumi:"payto"`
 	Pix           PaymentMethodConfigurationPixOutput           `pulumi:"pix"`
 	Promptpay     PaymentMethodConfigurationPromptpayOutput     `pulumi:"promptpay"`
@@ -81,6 +82,7 @@ type PaymentMethodConfiguration struct {
 	Satispay      PaymentMethodConfigurationSatispayOutput      `pulumi:"satispay"`
 	Scalapay      PaymentMethodConfigurationScalapayOutput      `pulumi:"scalapay"`
 	SepaDebit     PaymentMethodConfigurationSepaDebitOutput     `pulumi:"sepaDebit"`
+	Sequra        PaymentMethodConfigurationSequraOutput        `pulumi:"sequra"`
 	Sofort        PaymentMethodConfigurationSofortOutput        `pulumi:"sofort"`
 	Sunbit        PaymentMethodConfigurationSunbitOutput        `pulumi:"sunbit"`
 	Swish         PaymentMethodConfigurationSwishOutput         `pulumi:"swish"`
@@ -195,6 +197,7 @@ type paymentMethodConfigurationState struct {
 	Payco         *PaymentMethodConfigurationPayco         `pulumi:"payco"`
 	Paynow        *PaymentMethodConfigurationPaynow        `pulumi:"paynow"`
 	Paypal        *PaymentMethodConfigurationPaypal        `pulumi:"paypal"`
+	Paypay        *PaymentMethodConfigurationPaypay        `pulumi:"paypay"`
 	Payto         *PaymentMethodConfigurationPayto         `pulumi:"payto"`
 	Pix           *PaymentMethodConfigurationPix           `pulumi:"pix"`
 	Promptpay     *PaymentMethodConfigurationPromptpay     `pulumi:"promptpay"`
@@ -203,6 +206,7 @@ type paymentMethodConfigurationState struct {
 	Satispay      *PaymentMethodConfigurationSatispay      `pulumi:"satispay"`
 	Scalapay      *PaymentMethodConfigurationScalapay      `pulumi:"scalapay"`
 	SepaDebit     *PaymentMethodConfigurationSepaDebit     `pulumi:"sepaDebit"`
+	Sequra        *PaymentMethodConfigurationSequra        `pulumi:"sequra"`
 	Sofort        *PaymentMethodConfigurationSofort        `pulumi:"sofort"`
 	Sunbit        *PaymentMethodConfigurationSunbit        `pulumi:"sunbit"`
 	Swish         *PaymentMethodConfigurationSwish         `pulumi:"swish"`
@@ -273,6 +277,7 @@ type PaymentMethodConfigurationState struct {
 	Payco         PaymentMethodConfigurationPaycoPtrInput
 	Paynow        PaymentMethodConfigurationPaynowPtrInput
 	Paypal        PaymentMethodConfigurationPaypalPtrInput
+	Paypay        PaymentMethodConfigurationPaypayPtrInput
 	Payto         PaymentMethodConfigurationPaytoPtrInput
 	Pix           PaymentMethodConfigurationPixPtrInput
 	Promptpay     PaymentMethodConfigurationPromptpayPtrInput
@@ -281,6 +286,7 @@ type PaymentMethodConfigurationState struct {
 	Satispay      PaymentMethodConfigurationSatispayPtrInput
 	Scalapay      PaymentMethodConfigurationScalapayPtrInput
 	SepaDebit     PaymentMethodConfigurationSepaDebitPtrInput
+	Sequra        PaymentMethodConfigurationSequraPtrInput
 	Sofort        PaymentMethodConfigurationSofortPtrInput
 	Sunbit        PaymentMethodConfigurationSunbitPtrInput
 	Swish         PaymentMethodConfigurationSwishPtrInput
@@ -293,6 +299,18 @@ type PaymentMethodConfigurationState struct {
 
 func (PaymentMethodConfigurationState) ElementType() reflect.Type {
 	return reflect.TypeOf((*paymentMethodConfigurationState)(nil)).Elem()
+}
+
+// PaymentMethodConfigurationExists checks whether an existing PaymentMethodConfiguration resource with the given ID exists.
+func PaymentMethodConfigurationExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *PaymentMethodConfigurationState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	ref, err := internal.PkgGetPackageRef(ctx)
+	if err != nil {
+		return pulumi.Bool(false).ToBoolOutput().ApplyT(func(bool) (bool, error) {
+			return false, err
+		}).(pulumi.BoolOutput)
+	}
+	return ctx.ExistsResource("stripe:index/paymentMethodConfiguration:PaymentMethodConfiguration", id, state, ref, opts...)
 }
 
 type paymentMethodConfigurationArgs struct {
@@ -347,6 +365,7 @@ type paymentMethodConfigurationArgs struct {
 	Payco         *PaymentMethodConfigurationPayco         `pulumi:"payco"`
 	Paynow        *PaymentMethodConfigurationPaynow        `pulumi:"paynow"`
 	Paypal        *PaymentMethodConfigurationPaypal        `pulumi:"paypal"`
+	Paypay        *PaymentMethodConfigurationPaypay        `pulumi:"paypay"`
 	Payto         *PaymentMethodConfigurationPayto         `pulumi:"payto"`
 	Pix           *PaymentMethodConfigurationPix           `pulumi:"pix"`
 	Promptpay     *PaymentMethodConfigurationPromptpay     `pulumi:"promptpay"`
@@ -355,6 +374,7 @@ type paymentMethodConfigurationArgs struct {
 	Satispay      *PaymentMethodConfigurationSatispay      `pulumi:"satispay"`
 	Scalapay      *PaymentMethodConfigurationScalapay      `pulumi:"scalapay"`
 	SepaDebit     *PaymentMethodConfigurationSepaDebit     `pulumi:"sepaDebit"`
+	Sequra        *PaymentMethodConfigurationSequra        `pulumi:"sequra"`
 	Sofort        *PaymentMethodConfigurationSofort        `pulumi:"sofort"`
 	Sunbit        *PaymentMethodConfigurationSunbit        `pulumi:"sunbit"`
 	Swish         *PaymentMethodConfigurationSwish         `pulumi:"swish"`
@@ -418,6 +438,7 @@ type PaymentMethodConfigurationArgs struct {
 	Payco         PaymentMethodConfigurationPaycoPtrInput
 	Paynow        PaymentMethodConfigurationPaynowPtrInput
 	Paypal        PaymentMethodConfigurationPaypalPtrInput
+	Paypay        PaymentMethodConfigurationPaypayPtrInput
 	Payto         PaymentMethodConfigurationPaytoPtrInput
 	Pix           PaymentMethodConfigurationPixPtrInput
 	Promptpay     PaymentMethodConfigurationPromptpayPtrInput
@@ -426,6 +447,7 @@ type PaymentMethodConfigurationArgs struct {
 	Satispay      PaymentMethodConfigurationSatispayPtrInput
 	Scalapay      PaymentMethodConfigurationScalapayPtrInput
 	SepaDebit     PaymentMethodConfigurationSepaDebitPtrInput
+	Sequra        PaymentMethodConfigurationSequraPtrInput
 	Sofort        PaymentMethodConfigurationSofortPtrInput
 	Sunbit        PaymentMethodConfigurationSunbitPtrInput
 	Swish         PaymentMethodConfigurationSwishPtrInput
@@ -692,6 +714,10 @@ func (o PaymentMethodConfigurationOutput) Paypal() PaymentMethodConfigurationPay
 	return o.ApplyT(func(v *PaymentMethodConfiguration) PaymentMethodConfigurationPaypalOutput { return v.Paypal }).(PaymentMethodConfigurationPaypalOutput)
 }
 
+func (o PaymentMethodConfigurationOutput) Paypay() PaymentMethodConfigurationPaypayOutput {
+	return o.ApplyT(func(v *PaymentMethodConfiguration) PaymentMethodConfigurationPaypayOutput { return v.Paypay }).(PaymentMethodConfigurationPaypayOutput)
+}
+
 func (o PaymentMethodConfigurationOutput) Payto() PaymentMethodConfigurationPaytoOutput {
 	return o.ApplyT(func(v *PaymentMethodConfiguration) PaymentMethodConfigurationPaytoOutput { return v.Payto }).(PaymentMethodConfigurationPaytoOutput)
 }
@@ -722,6 +748,10 @@ func (o PaymentMethodConfigurationOutput) Scalapay() PaymentMethodConfigurationS
 
 func (o PaymentMethodConfigurationOutput) SepaDebit() PaymentMethodConfigurationSepaDebitOutput {
 	return o.ApplyT(func(v *PaymentMethodConfiguration) PaymentMethodConfigurationSepaDebitOutput { return v.SepaDebit }).(PaymentMethodConfigurationSepaDebitOutput)
+}
+
+func (o PaymentMethodConfigurationOutput) Sequra() PaymentMethodConfigurationSequraOutput {
+	return o.ApplyT(func(v *PaymentMethodConfiguration) PaymentMethodConfigurationSequraOutput { return v.Sequra }).(PaymentMethodConfigurationSequraOutput)
 }
 
 func (o PaymentMethodConfigurationOutput) Sofort() PaymentMethodConfigurationSofortOutput {

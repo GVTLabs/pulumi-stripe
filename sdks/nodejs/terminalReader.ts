@@ -20,6 +20,17 @@ export class TerminalReader extends pulumi.CustomResource {
         return new TerminalReader(name, <any>state, { ...opts, id: id });
     }
 
+    /**
+     * Check whether an existing TerminalReader resource with the given ID exists.
+     *
+     * @param id The _unique_ provider ID of the resource to check.
+     * @param state Any extra arguments used during the lookup.
+     * @param opts Optional settings to control the behavior of the CustomResource.
+     */
+    public static exists(id: pulumi.Input<string>, state?: TerminalReaderState, opts?: pulumi.CustomResourceOptions): pulumi.Output<boolean> {
+        return pulumi.runtime.existsResource("stripe:index/terminalReader:TerminalReader", id, <any>state || {}, { ...opts }, utilities.getPackage());
+    }
+
     /** @internal */
     public static readonly __pulumiType = 'stripe:index/terminalReader:TerminalReader';
 
@@ -80,7 +91,7 @@ export class TerminalReader extends pulumi.CustomResource {
      */
     declare public /*out*/ readonly serialNumber: pulumi.Output<string>;
     /**
-     * The networking status of the reader. We do not recommend using this field in flows that may block taking payments.
+     * The networking status of the reader. This value is <span pulumi-lang-nodejs="`null`" pulumi-lang-dotnet="`Null`" pulumi-lang-go="`null`" pulumi-lang-python="`null`" pulumi-lang-yaml="`null`" pulumi-lang-java="`null`" pulumi-lang-hcl="`null`">`null`</span> for mobile readers. We do not recommend using this field in flows that may block taking payments.
      */
     declare public /*out*/ readonly status: pulumi.Output<string>;
 
@@ -184,7 +195,7 @@ export interface TerminalReaderState {
      */
     serialNumber?: pulumi.Input<string | undefined>;
     /**
-     * The networking status of the reader. We do not recommend using this field in flows that may block taking payments.
+     * The networking status of the reader. This value is <span pulumi-lang-nodejs="`null`" pulumi-lang-dotnet="`Null`" pulumi-lang-go="`null`" pulumi-lang-python="`null`" pulumi-lang-yaml="`null`" pulumi-lang-java="`null`" pulumi-lang-hcl="`null`">`null`</span> for mobile readers. We do not recommend using this field in flows that may block taking payments.
      */
     status?: pulumi.Input<string | undefined>;
 }

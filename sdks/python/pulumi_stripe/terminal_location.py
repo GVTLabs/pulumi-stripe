@@ -314,8 +314,8 @@ class TerminalLocation(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 address: pulumi.Input[Optional[Union['TerminalLocationAddressArgs', 'TerminalLocationAddressArgsDict']]] = None,
-                 address_kana: pulumi.Input[Optional[Union['TerminalLocationAddressKanaArgs', 'TerminalLocationAddressKanaArgsDict']]] = None,
+                 address: pulumi.Input[Optional[Union['TerminalLocationAddressArgs', 'TerminalLocationAddressArgsDict', 'outputs.TerminalLocationAddress']]] = None,
+                 address_kana: pulumi.Input[Optional[Union['TerminalLocationAddressKanaArgs', 'TerminalLocationAddressKanaArgsDict', 'outputs.TerminalLocationAddressKana']]] = None,
                  configuration_overrides: pulumi.Input[Optional[_builtins.str]] = None,
                  display_name: pulumi.Input[Optional[_builtins.str]] = None,
                  display_name_kana: pulumi.Input[Optional[_builtins.str]] = None,
@@ -359,8 +359,8 @@ class TerminalLocation(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 address: pulumi.Input[Optional[Union['TerminalLocationAddressArgs', 'TerminalLocationAddressArgsDict']]] = None,
-                 address_kana: pulumi.Input[Optional[Union['TerminalLocationAddressKanaArgs', 'TerminalLocationAddressKanaArgsDict']]] = None,
+                 address: pulumi.Input[Optional[Union['TerminalLocationAddressArgs', 'TerminalLocationAddressArgsDict', 'outputs.TerminalLocationAddress']]] = None,
+                 address_kana: pulumi.Input[Optional[Union['TerminalLocationAddressKanaArgs', 'TerminalLocationAddressKanaArgsDict', 'outputs.TerminalLocationAddressKana']]] = None,
                  configuration_overrides: pulumi.Input[Optional[_builtins.str]] = None,
                  display_name: pulumi.Input[Optional[_builtins.str]] = None,
                  display_name_kana: pulumi.Input[Optional[_builtins.str]] = None,
@@ -397,8 +397,8 @@ class TerminalLocation(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            address: pulumi.Input[Optional[Union['TerminalLocationAddressArgs', 'TerminalLocationAddressArgsDict']]] = None,
-            address_kana: pulumi.Input[Optional[Union['TerminalLocationAddressKanaArgs', 'TerminalLocationAddressKanaArgsDict']]] = None,
+            address: pulumi.Input[Optional[Union['TerminalLocationAddressArgs', 'TerminalLocationAddressArgsDict', 'outputs.TerminalLocationAddress']]] = None,
+            address_kana: pulumi.Input[Optional[Union['TerminalLocationAddressKanaArgs', 'TerminalLocationAddressKanaArgsDict', 'outputs.TerminalLocationAddressKana']]] = None,
             configuration_overrides: pulumi.Input[Optional[_builtins.str]] = None,
             display_name: pulumi.Input[Optional[_builtins.str]] = None,
             display_name_kana: pulumi.Input[Optional[_builtins.str]] = None,
@@ -438,6 +438,32 @@ class TerminalLocation(pulumi.CustomResource):
         __props__.__dict__["object"] = object
         __props__.__dict__["phone"] = phone
         return TerminalLocation(resource_name, opts=opts, __props__=__props__)
+
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            address: pulumi.Input[Optional[Union['TerminalLocationAddressArgs', 'TerminalLocationAddressArgsDict', 'outputs.TerminalLocationAddress']]] = None,
+            address_kana: pulumi.Input[Optional[Union['TerminalLocationAddressKanaArgs', 'TerminalLocationAddressKanaArgsDict', 'outputs.TerminalLocationAddressKana']]] = None,
+            configuration_overrides: pulumi.Input[Optional[_builtins.str]] = None,
+            display_name: pulumi.Input[Optional[_builtins.str]] = None,
+            display_name_kana: pulumi.Input[Optional[_builtins.str]] = None,
+            display_name_kanji: pulumi.Input[Optional[_builtins.str]] = None,
+            livemode: pulumi.Input[Optional[_builtins.bool]] = None,
+            metadata: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+            object: pulumi.Input[Optional[_builtins.str]] = None,
+            phone: pulumi.Input[Optional[_builtins.str]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["address"] = address
+        __props__["addressKana"] = address_kana
+        __props__["configurationOverrides"] = configuration_overrides
+        __props__["displayName"] = display_name
+        __props__["displayNameKana"] = display_name_kana
+        __props__["displayNameKanji"] = display_name_kanji
+        __props__["livemode"] = livemode
+        __props__["metadata"] = metadata
+        __props__["object"] = object
+        __props__["phone"] = phone
+        return pulumi.runtime.exists_resource(None, 'stripe:index/terminalLocation:TerminalLocation', id, __props__, opts or pulumi.ResourceOptions(), package_ref=_utilities.get_package())
 
     @_builtins.property
     @pulumi.getter

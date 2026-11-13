@@ -13,6 +13,12 @@ namespace Pulumi.Stripe.Inputs
     public sealed class ChargePaymentMethodDetailsBizumArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
+        /// A unique identifier for the buyer as determined by the local payment processor.
+        /// </summary>
+        [Input("buyerId")]
+        public Input<string>? BuyerId { get; set; }
+
+        /// <summary>
         /// The Bizum transaction ID associated with this payment.
         /// </summary>
         [Input("transactionId")]

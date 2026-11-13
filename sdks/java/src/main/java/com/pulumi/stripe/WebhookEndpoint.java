@@ -21,14 +21,14 @@ import javax.annotation.Nullable;
 @ResourceType(type="stripe:index/webhookEndpoint:WebhookEndpoint")
 public class WebhookEndpoint extends com.pulumi.resources.CustomResource {
     /**
-     * The API version events are rendered as for this webhook endpoint.
+     * The API version that events are rendered as for this webhook endpoint. You can&#39;t change this value after you create the endpoint.
      * 
      */
     @Export(name="apiVersion", refs={String.class}, tree="[0]")
     private Output<String> apiVersion;
 
     /**
-     * @return The API version events are rendered as for this webhook endpoint.
+     * @return The API version that events are rendered as for this webhook endpoint. You can&#39;t change this value after you create the endpoint.
      * 
      */
     public Output<String> apiVersion() {

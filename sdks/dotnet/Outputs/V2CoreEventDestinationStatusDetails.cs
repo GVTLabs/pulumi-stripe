@@ -14,7 +14,7 @@ namespace Pulumi.Stripe.Outputs
     public sealed class V2CoreEventDestinationStatusDetails
     {
         /// <summary>
-        /// Details about why the event destination has been disabled.
+        /// Present when the destination was disabled; identifies the cause, time, and provider-side object involved when available.
         /// </summary>
         public readonly Outputs.V2CoreEventDestinationStatusDetailsDisabled? Disabled;
 

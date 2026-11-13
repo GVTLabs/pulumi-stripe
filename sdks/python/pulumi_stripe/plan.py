@@ -31,6 +31,7 @@ class PlanArgs:
                  metadata: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
                  meter: pulumi.Input[Optional[_builtins.str]] = None,
                  nickname: pulumi.Input[Optional[_builtins.str]] = None,
+                 plan_id: pulumi.Input[Optional[_builtins.str]] = None,
                  product: pulumi.Input[Optional[_builtins.str]] = None,
                  tiers: pulumi.Input[Optional[Sequence[pulumi.Input['PlanTierArgs']]]] = None,
                  tiers_mode: pulumi.Input[Optional[_builtins.str]] = None,
@@ -50,6 +51,7 @@ class PlanArgs:
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] metadata: Set of [key-value pairs](https://docs.stripe.com/api/metadata) that you can attach to an object. This can be useful for storing additional information about the object in a structured format.
         :param pulumi.Input[_builtins.str] meter: The meter tracking the usage of a metered price
         :param pulumi.Input[_builtins.str] nickname: A brief description of the plan, hidden from customers.
+        :param pulumi.Input[_builtins.str] plan_id: Unique identifier for the object.
         :param pulumi.Input[_builtins.str] product: The product whose pricing this plan determines.
         :param pulumi.Input[Sequence[pulumi.Input['PlanTierArgs']]] tiers: Each element represents a pricing tier. This parameter requires <span pulumi-lang-nodejs="`billingScheme`" pulumi-lang-dotnet="`BillingScheme`" pulumi-lang-go="`billingScheme`" pulumi-lang-python="`billing_scheme`" pulumi-lang-yaml="`billingScheme`" pulumi-lang-java="`billingScheme`" pulumi-lang-hcl="`billing_scheme`">`billingScheme`</span> to be set to <span pulumi-lang-nodejs="`tiered`" pulumi-lang-dotnet="`Tiered`" pulumi-lang-go="`tiered`" pulumi-lang-python="`tiered`" pulumi-lang-yaml="`tiered`" pulumi-lang-java="`tiered`" pulumi-lang-hcl="`tiered`">`tiered`</span>. See also the documentation for <span pulumi-lang-nodejs="`billingScheme`" pulumi-lang-dotnet="`BillingScheme`" pulumi-lang-go="`billingScheme`" pulumi-lang-python="`billing_scheme`" pulumi-lang-yaml="`billingScheme`" pulumi-lang-java="`billingScheme`" pulumi-lang-hcl="`billing_scheme`">`billingScheme`</span>.
         :param pulumi.Input[_builtins.str] tiers_mode: Defines if the tiering price should be <span pulumi-lang-nodejs="`graduated`" pulumi-lang-dotnet="`Graduated`" pulumi-lang-go="`graduated`" pulumi-lang-python="`graduated`" pulumi-lang-yaml="`graduated`" pulumi-lang-java="`graduated`" pulumi-lang-hcl="`graduated`">`graduated`</span> or <span pulumi-lang-nodejs="`volume`" pulumi-lang-dotnet="`Volume`" pulumi-lang-go="`volume`" pulumi-lang-python="`volume`" pulumi-lang-yaml="`volume`" pulumi-lang-java="`volume`" pulumi-lang-hcl="`volume`">`volume`</span> based. In <span pulumi-lang-nodejs="`volume`" pulumi-lang-dotnet="`Volume`" pulumi-lang-go="`volume`" pulumi-lang-python="`volume`" pulumi-lang-yaml="`volume`" pulumi-lang-java="`volume`" pulumi-lang-hcl="`volume`">`volume`</span>-based tiering, the maximum quantity within a period determines the per unit price. In <span pulumi-lang-nodejs="`graduated`" pulumi-lang-dotnet="`Graduated`" pulumi-lang-go="`graduated`" pulumi-lang-python="`graduated`" pulumi-lang-yaml="`graduated`" pulumi-lang-java="`graduated`" pulumi-lang-hcl="`graduated`">`graduated`</span> tiering, pricing can change as the quantity grows.
@@ -75,6 +77,8 @@ class PlanArgs:
             pulumi.set(__self__, "meter", meter)
         if nickname is not None:
             pulumi.set(__self__, "nickname", nickname)
+        if plan_id is not None:
+            pulumi.set(__self__, "plan_id", plan_id)
         if product is not None:
             pulumi.set(__self__, "product", product)
         if tiers is not None:
@@ -209,6 +213,18 @@ class PlanArgs:
         pulumi.set(self, "nickname", value)
 
     @_builtins.property
+    @pulumi.getter(name="planId")
+    def plan_id(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        Unique identifier for the object.
+        """
+        return pulumi.get(self, "plan_id")
+
+    @plan_id.setter
+    def plan_id(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "plan_id", value)
+
+    @_builtins.property
     @pulumi.getter
     def product(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
@@ -297,6 +313,7 @@ class _PlanState:
                  meter: pulumi.Input[Optional[_builtins.str]] = None,
                  nickname: pulumi.Input[Optional[_builtins.str]] = None,
                  object: pulumi.Input[Optional[_builtins.str]] = None,
+                 plan_id: pulumi.Input[Optional[_builtins.str]] = None,
                  product: pulumi.Input[Optional[_builtins.str]] = None,
                  tiers: pulumi.Input[Optional[Sequence[pulumi.Input['PlanTierArgs']]]] = None,
                  tiers_mode: pulumi.Input[Optional[_builtins.str]] = None,
@@ -319,6 +336,7 @@ class _PlanState:
         :param pulumi.Input[_builtins.str] meter: The meter tracking the usage of a metered price
         :param pulumi.Input[_builtins.str] nickname: A brief description of the plan, hidden from customers.
         :param pulumi.Input[_builtins.str] object: String representing the object's type. Objects of the same type share the same value.
+        :param pulumi.Input[_builtins.str] plan_id: Unique identifier for the object.
         :param pulumi.Input[_builtins.str] product: The product whose pricing this plan determines.
         :param pulumi.Input[Sequence[pulumi.Input['PlanTierArgs']]] tiers: Each element represents a pricing tier. This parameter requires <span pulumi-lang-nodejs="`billingScheme`" pulumi-lang-dotnet="`BillingScheme`" pulumi-lang-go="`billingScheme`" pulumi-lang-python="`billing_scheme`" pulumi-lang-yaml="`billingScheme`" pulumi-lang-java="`billingScheme`" pulumi-lang-hcl="`billing_scheme`">`billingScheme`</span> to be set to <span pulumi-lang-nodejs="`tiered`" pulumi-lang-dotnet="`Tiered`" pulumi-lang-go="`tiered`" pulumi-lang-python="`tiered`" pulumi-lang-yaml="`tiered`" pulumi-lang-java="`tiered`" pulumi-lang-hcl="`tiered`">`tiered`</span>. See also the documentation for <span pulumi-lang-nodejs="`billingScheme`" pulumi-lang-dotnet="`BillingScheme`" pulumi-lang-go="`billingScheme`" pulumi-lang-python="`billing_scheme`" pulumi-lang-yaml="`billingScheme`" pulumi-lang-java="`billingScheme`" pulumi-lang-hcl="`billing_scheme`">`billingScheme`</span>.
         :param pulumi.Input[_builtins.str] tiers_mode: Defines if the tiering price should be <span pulumi-lang-nodejs="`graduated`" pulumi-lang-dotnet="`Graduated`" pulumi-lang-go="`graduated`" pulumi-lang-python="`graduated`" pulumi-lang-yaml="`graduated`" pulumi-lang-java="`graduated`" pulumi-lang-hcl="`graduated`">`graduated`</span> or <span pulumi-lang-nodejs="`volume`" pulumi-lang-dotnet="`Volume`" pulumi-lang-go="`volume`" pulumi-lang-python="`volume`" pulumi-lang-yaml="`volume`" pulumi-lang-java="`volume`" pulumi-lang-hcl="`volume`">`volume`</span> based. In <span pulumi-lang-nodejs="`volume`" pulumi-lang-dotnet="`Volume`" pulumi-lang-go="`volume`" pulumi-lang-python="`volume`" pulumi-lang-yaml="`volume`" pulumi-lang-java="`volume`" pulumi-lang-hcl="`volume`">`volume`</span>-based tiering, the maximum quantity within a period determines the per unit price. In <span pulumi-lang-nodejs="`graduated`" pulumi-lang-dotnet="`Graduated`" pulumi-lang-go="`graduated`" pulumi-lang-python="`graduated`" pulumi-lang-yaml="`graduated`" pulumi-lang-java="`graduated`" pulumi-lang-hcl="`graduated`">`graduated`</span> tiering, pricing can change as the quantity grows.
@@ -352,6 +370,8 @@ class _PlanState:
             pulumi.set(__self__, "nickname", nickname)
         if object is not None:
             pulumi.set(__self__, "object", object)
+        if plan_id is not None:
+            pulumi.set(__self__, "plan_id", plan_id)
         if product is not None:
             pulumi.set(__self__, "product", product)
         if tiers is not None:
@@ -522,6 +542,18 @@ class _PlanState:
         pulumi.set(self, "object", value)
 
     @_builtins.property
+    @pulumi.getter(name="planId")
+    def plan_id(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        Unique identifier for the object.
+        """
+        return pulumi.get(self, "plan_id")
+
+    @plan_id.setter
+    def plan_id(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "plan_id", value)
+
+    @_builtins.property
     @pulumi.getter
     def product(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
@@ -610,10 +642,11 @@ class Plan(pulumi.CustomResource):
                  metadata: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
                  meter: pulumi.Input[Optional[_builtins.str]] = None,
                  nickname: pulumi.Input[Optional[_builtins.str]] = None,
+                 plan_id: pulumi.Input[Optional[_builtins.str]] = None,
                  product: pulumi.Input[Optional[_builtins.str]] = None,
-                 tiers: pulumi.Input[Optional[Sequence[pulumi.Input[Union['PlanTierArgs', 'PlanTierArgsDict']]]]] = None,
+                 tiers: pulumi.Input[Optional[Sequence[pulumi.Input[Union['PlanTierArgs', 'PlanTierArgsDict', 'outputs.PlanTier']]]]] = None,
                  tiers_mode: pulumi.Input[Optional[_builtins.str]] = None,
-                 transform_usage: pulumi.Input[Optional[Union['PlanTransformUsageArgs', 'PlanTransformUsageArgsDict']]] = None,
+                 transform_usage: pulumi.Input[Optional[Union['PlanTransformUsageArgs', 'PlanTransformUsageArgsDict', 'outputs.PlanTransformUsage']]] = None,
                  trial_period_days: pulumi.Input[Optional[_builtins.float]] = None,
                  usage_type: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
@@ -632,10 +665,11 @@ class Plan(pulumi.CustomResource):
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] metadata: Set of [key-value pairs](https://docs.stripe.com/api/metadata) that you can attach to an object. This can be useful for storing additional information about the object in a structured format.
         :param pulumi.Input[_builtins.str] meter: The meter tracking the usage of a metered price
         :param pulumi.Input[_builtins.str] nickname: A brief description of the plan, hidden from customers.
+        :param pulumi.Input[_builtins.str] plan_id: Unique identifier for the object.
         :param pulumi.Input[_builtins.str] product: The product whose pricing this plan determines.
-        :param pulumi.Input[Sequence[pulumi.Input[Union['PlanTierArgs', 'PlanTierArgsDict']]]] tiers: Each element represents a pricing tier. This parameter requires <span pulumi-lang-nodejs="`billingScheme`" pulumi-lang-dotnet="`BillingScheme`" pulumi-lang-go="`billingScheme`" pulumi-lang-python="`billing_scheme`" pulumi-lang-yaml="`billingScheme`" pulumi-lang-java="`billingScheme`" pulumi-lang-hcl="`billing_scheme`">`billingScheme`</span> to be set to <span pulumi-lang-nodejs="`tiered`" pulumi-lang-dotnet="`Tiered`" pulumi-lang-go="`tiered`" pulumi-lang-python="`tiered`" pulumi-lang-yaml="`tiered`" pulumi-lang-java="`tiered`" pulumi-lang-hcl="`tiered`">`tiered`</span>. See also the documentation for <span pulumi-lang-nodejs="`billingScheme`" pulumi-lang-dotnet="`BillingScheme`" pulumi-lang-go="`billingScheme`" pulumi-lang-python="`billing_scheme`" pulumi-lang-yaml="`billingScheme`" pulumi-lang-java="`billingScheme`" pulumi-lang-hcl="`billing_scheme`">`billingScheme`</span>.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['PlanTierArgs', 'PlanTierArgsDict', 'outputs.PlanTier']]]] tiers: Each element represents a pricing tier. This parameter requires <span pulumi-lang-nodejs="`billingScheme`" pulumi-lang-dotnet="`BillingScheme`" pulumi-lang-go="`billingScheme`" pulumi-lang-python="`billing_scheme`" pulumi-lang-yaml="`billingScheme`" pulumi-lang-java="`billingScheme`" pulumi-lang-hcl="`billing_scheme`">`billingScheme`</span> to be set to <span pulumi-lang-nodejs="`tiered`" pulumi-lang-dotnet="`Tiered`" pulumi-lang-go="`tiered`" pulumi-lang-python="`tiered`" pulumi-lang-yaml="`tiered`" pulumi-lang-java="`tiered`" pulumi-lang-hcl="`tiered`">`tiered`</span>. See also the documentation for <span pulumi-lang-nodejs="`billingScheme`" pulumi-lang-dotnet="`BillingScheme`" pulumi-lang-go="`billingScheme`" pulumi-lang-python="`billing_scheme`" pulumi-lang-yaml="`billingScheme`" pulumi-lang-java="`billingScheme`" pulumi-lang-hcl="`billing_scheme`">`billingScheme`</span>.
         :param pulumi.Input[_builtins.str] tiers_mode: Defines if the tiering price should be <span pulumi-lang-nodejs="`graduated`" pulumi-lang-dotnet="`Graduated`" pulumi-lang-go="`graduated`" pulumi-lang-python="`graduated`" pulumi-lang-yaml="`graduated`" pulumi-lang-java="`graduated`" pulumi-lang-hcl="`graduated`">`graduated`</span> or <span pulumi-lang-nodejs="`volume`" pulumi-lang-dotnet="`Volume`" pulumi-lang-go="`volume`" pulumi-lang-python="`volume`" pulumi-lang-yaml="`volume`" pulumi-lang-java="`volume`" pulumi-lang-hcl="`volume`">`volume`</span> based. In <span pulumi-lang-nodejs="`volume`" pulumi-lang-dotnet="`Volume`" pulumi-lang-go="`volume`" pulumi-lang-python="`volume`" pulumi-lang-yaml="`volume`" pulumi-lang-java="`volume`" pulumi-lang-hcl="`volume`">`volume`</span>-based tiering, the maximum quantity within a period determines the per unit price. In <span pulumi-lang-nodejs="`graduated`" pulumi-lang-dotnet="`Graduated`" pulumi-lang-go="`graduated`" pulumi-lang-python="`graduated`" pulumi-lang-yaml="`graduated`" pulumi-lang-java="`graduated`" pulumi-lang-hcl="`graduated`">`graduated`</span> tiering, pricing can change as the quantity grows.
-        :param pulumi.Input[Union['PlanTransformUsageArgs', 'PlanTransformUsageArgsDict']] transform_usage: Apply a transformation to the reported usage or set quantity before computing the amount billed. Cannot be combined with <span pulumi-lang-nodejs="`tiers`" pulumi-lang-dotnet="`Tiers`" pulumi-lang-go="`tiers`" pulumi-lang-python="`tiers`" pulumi-lang-yaml="`tiers`" pulumi-lang-java="`tiers`" pulumi-lang-hcl="`tiers`">`tiers`</span>.
+        :param pulumi.Input[Union['PlanTransformUsageArgs', 'PlanTransformUsageArgsDict', 'outputs.PlanTransformUsage']] transform_usage: Apply a transformation to the reported usage or set quantity before computing the amount billed. Cannot be combined with <span pulumi-lang-nodejs="`tiers`" pulumi-lang-dotnet="`Tiers`" pulumi-lang-go="`tiers`" pulumi-lang-python="`tiers`" pulumi-lang-yaml="`tiers`" pulumi-lang-java="`tiers`" pulumi-lang-hcl="`tiers`">`tiers`</span>.
         :param pulumi.Input[_builtins.float] trial_period_days: Default number of trial days when subscribing a customer to this plan using [`trial_from_plan=true`](https://docs.stripe.com/api#create_subscription-trial_from_plan).
         :param pulumi.Input[_builtins.str] usage_type: Configures how the quantity per period should be determined. Can be either <span pulumi-lang-nodejs="`metered`" pulumi-lang-dotnet="`Metered`" pulumi-lang-go="`metered`" pulumi-lang-python="`metered`" pulumi-lang-yaml="`metered`" pulumi-lang-java="`metered`" pulumi-lang-hcl="`metered`">`metered`</span> or <span pulumi-lang-nodejs="`licensed`" pulumi-lang-dotnet="`Licensed`" pulumi-lang-go="`licensed`" pulumi-lang-python="`licensed`" pulumi-lang-yaml="`licensed`" pulumi-lang-java="`licensed`" pulumi-lang-hcl="`licensed`">`licensed`</span>. <span pulumi-lang-nodejs="`licensed`" pulumi-lang-dotnet="`Licensed`" pulumi-lang-go="`licensed`" pulumi-lang-python="`licensed`" pulumi-lang-yaml="`licensed`" pulumi-lang-java="`licensed`" pulumi-lang-hcl="`licensed`">`licensed`</span> automatically bills the <span pulumi-lang-nodejs="`quantity`" pulumi-lang-dotnet="`Quantity`" pulumi-lang-go="`quantity`" pulumi-lang-python="`quantity`" pulumi-lang-yaml="`quantity`" pulumi-lang-java="`quantity`" pulumi-lang-hcl="`quantity`">`quantity`</span> set when adding it to a subscription. <span pulumi-lang-nodejs="`metered`" pulumi-lang-dotnet="`Metered`" pulumi-lang-go="`metered`" pulumi-lang-python="`metered`" pulumi-lang-yaml="`metered`" pulumi-lang-java="`metered`" pulumi-lang-hcl="`metered`">`metered`</span> aggregates the total usage based on usage records. Defaults to <span pulumi-lang-nodejs="`licensed`" pulumi-lang-dotnet="`Licensed`" pulumi-lang-go="`licensed`" pulumi-lang-python="`licensed`" pulumi-lang-yaml="`licensed`" pulumi-lang-java="`licensed`" pulumi-lang-hcl="`licensed`">`licensed`</span>.
         """
@@ -673,10 +707,11 @@ class Plan(pulumi.CustomResource):
                  metadata: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
                  meter: pulumi.Input[Optional[_builtins.str]] = None,
                  nickname: pulumi.Input[Optional[_builtins.str]] = None,
+                 plan_id: pulumi.Input[Optional[_builtins.str]] = None,
                  product: pulumi.Input[Optional[_builtins.str]] = None,
-                 tiers: pulumi.Input[Optional[Sequence[pulumi.Input[Union['PlanTierArgs', 'PlanTierArgsDict']]]]] = None,
+                 tiers: pulumi.Input[Optional[Sequence[pulumi.Input[Union['PlanTierArgs', 'PlanTierArgsDict', 'outputs.PlanTier']]]]] = None,
                  tiers_mode: pulumi.Input[Optional[_builtins.str]] = None,
-                 transform_usage: pulumi.Input[Optional[Union['PlanTransformUsageArgs', 'PlanTransformUsageArgsDict']]] = None,
+                 transform_usage: pulumi.Input[Optional[Union['PlanTransformUsageArgs', 'PlanTransformUsageArgsDict', 'outputs.PlanTransformUsage']]] = None,
                  trial_period_days: pulumi.Input[Optional[_builtins.float]] = None,
                  usage_type: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
@@ -702,6 +737,7 @@ class Plan(pulumi.CustomResource):
             __props__.__dict__["metadata"] = metadata
             __props__.__dict__["meter"] = meter
             __props__.__dict__["nickname"] = nickname
+            __props__.__dict__["plan_id"] = plan_id
             __props__.__dict__["product"] = product
             __props__.__dict__["tiers"] = tiers
             __props__.__dict__["tiers_mode"] = tiers_mode
@@ -735,10 +771,11 @@ class Plan(pulumi.CustomResource):
             meter: pulumi.Input[Optional[_builtins.str]] = None,
             nickname: pulumi.Input[Optional[_builtins.str]] = None,
             object: pulumi.Input[Optional[_builtins.str]] = None,
+            plan_id: pulumi.Input[Optional[_builtins.str]] = None,
             product: pulumi.Input[Optional[_builtins.str]] = None,
-            tiers: pulumi.Input[Optional[Sequence[pulumi.Input[Union['PlanTierArgs', 'PlanTierArgsDict']]]]] = None,
+            tiers: pulumi.Input[Optional[Sequence[pulumi.Input[Union['PlanTierArgs', 'PlanTierArgsDict', 'outputs.PlanTier']]]]] = None,
             tiers_mode: pulumi.Input[Optional[_builtins.str]] = None,
-            transform_usage: pulumi.Input[Optional[Union['PlanTransformUsageArgs', 'PlanTransformUsageArgsDict']]] = None,
+            transform_usage: pulumi.Input[Optional[Union['PlanTransformUsageArgs', 'PlanTransformUsageArgsDict', 'outputs.PlanTransformUsage']]] = None,
             trial_period_days: pulumi.Input[Optional[_builtins.float]] = None,
             usage_type: pulumi.Input[Optional[_builtins.str]] = None) -> 'Plan':
         """
@@ -761,10 +798,11 @@ class Plan(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] meter: The meter tracking the usage of a metered price
         :param pulumi.Input[_builtins.str] nickname: A brief description of the plan, hidden from customers.
         :param pulumi.Input[_builtins.str] object: String representing the object's type. Objects of the same type share the same value.
+        :param pulumi.Input[_builtins.str] plan_id: Unique identifier for the object.
         :param pulumi.Input[_builtins.str] product: The product whose pricing this plan determines.
-        :param pulumi.Input[Sequence[pulumi.Input[Union['PlanTierArgs', 'PlanTierArgsDict']]]] tiers: Each element represents a pricing tier. This parameter requires <span pulumi-lang-nodejs="`billingScheme`" pulumi-lang-dotnet="`BillingScheme`" pulumi-lang-go="`billingScheme`" pulumi-lang-python="`billing_scheme`" pulumi-lang-yaml="`billingScheme`" pulumi-lang-java="`billingScheme`" pulumi-lang-hcl="`billing_scheme`">`billingScheme`</span> to be set to <span pulumi-lang-nodejs="`tiered`" pulumi-lang-dotnet="`Tiered`" pulumi-lang-go="`tiered`" pulumi-lang-python="`tiered`" pulumi-lang-yaml="`tiered`" pulumi-lang-java="`tiered`" pulumi-lang-hcl="`tiered`">`tiered`</span>. See also the documentation for <span pulumi-lang-nodejs="`billingScheme`" pulumi-lang-dotnet="`BillingScheme`" pulumi-lang-go="`billingScheme`" pulumi-lang-python="`billing_scheme`" pulumi-lang-yaml="`billingScheme`" pulumi-lang-java="`billingScheme`" pulumi-lang-hcl="`billing_scheme`">`billingScheme`</span>.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['PlanTierArgs', 'PlanTierArgsDict', 'outputs.PlanTier']]]] tiers: Each element represents a pricing tier. This parameter requires <span pulumi-lang-nodejs="`billingScheme`" pulumi-lang-dotnet="`BillingScheme`" pulumi-lang-go="`billingScheme`" pulumi-lang-python="`billing_scheme`" pulumi-lang-yaml="`billingScheme`" pulumi-lang-java="`billingScheme`" pulumi-lang-hcl="`billing_scheme`">`billingScheme`</span> to be set to <span pulumi-lang-nodejs="`tiered`" pulumi-lang-dotnet="`Tiered`" pulumi-lang-go="`tiered`" pulumi-lang-python="`tiered`" pulumi-lang-yaml="`tiered`" pulumi-lang-java="`tiered`" pulumi-lang-hcl="`tiered`">`tiered`</span>. See also the documentation for <span pulumi-lang-nodejs="`billingScheme`" pulumi-lang-dotnet="`BillingScheme`" pulumi-lang-go="`billingScheme`" pulumi-lang-python="`billing_scheme`" pulumi-lang-yaml="`billingScheme`" pulumi-lang-java="`billingScheme`" pulumi-lang-hcl="`billing_scheme`">`billingScheme`</span>.
         :param pulumi.Input[_builtins.str] tiers_mode: Defines if the tiering price should be <span pulumi-lang-nodejs="`graduated`" pulumi-lang-dotnet="`Graduated`" pulumi-lang-go="`graduated`" pulumi-lang-python="`graduated`" pulumi-lang-yaml="`graduated`" pulumi-lang-java="`graduated`" pulumi-lang-hcl="`graduated`">`graduated`</span> or <span pulumi-lang-nodejs="`volume`" pulumi-lang-dotnet="`Volume`" pulumi-lang-go="`volume`" pulumi-lang-python="`volume`" pulumi-lang-yaml="`volume`" pulumi-lang-java="`volume`" pulumi-lang-hcl="`volume`">`volume`</span> based. In <span pulumi-lang-nodejs="`volume`" pulumi-lang-dotnet="`Volume`" pulumi-lang-go="`volume`" pulumi-lang-python="`volume`" pulumi-lang-yaml="`volume`" pulumi-lang-java="`volume`" pulumi-lang-hcl="`volume`">`volume`</span>-based tiering, the maximum quantity within a period determines the per unit price. In <span pulumi-lang-nodejs="`graduated`" pulumi-lang-dotnet="`Graduated`" pulumi-lang-go="`graduated`" pulumi-lang-python="`graduated`" pulumi-lang-yaml="`graduated`" pulumi-lang-java="`graduated`" pulumi-lang-hcl="`graduated`">`graduated`</span> tiering, pricing can change as the quantity grows.
-        :param pulumi.Input[Union['PlanTransformUsageArgs', 'PlanTransformUsageArgsDict']] transform_usage: Apply a transformation to the reported usage or set quantity before computing the amount billed. Cannot be combined with <span pulumi-lang-nodejs="`tiers`" pulumi-lang-dotnet="`Tiers`" pulumi-lang-go="`tiers`" pulumi-lang-python="`tiers`" pulumi-lang-yaml="`tiers`" pulumi-lang-java="`tiers`" pulumi-lang-hcl="`tiers`">`tiers`</span>.
+        :param pulumi.Input[Union['PlanTransformUsageArgs', 'PlanTransformUsageArgsDict', 'outputs.PlanTransformUsage']] transform_usage: Apply a transformation to the reported usage or set quantity before computing the amount billed. Cannot be combined with <span pulumi-lang-nodejs="`tiers`" pulumi-lang-dotnet="`Tiers`" pulumi-lang-go="`tiers`" pulumi-lang-python="`tiers`" pulumi-lang-yaml="`tiers`" pulumi-lang-java="`tiers`" pulumi-lang-hcl="`tiers`">`tiers`</span>.
         :param pulumi.Input[_builtins.float] trial_period_days: Default number of trial days when subscribing a customer to this plan using [`trial_from_plan=true`](https://docs.stripe.com/api#create_subscription-trial_from_plan).
         :param pulumi.Input[_builtins.str] usage_type: Configures how the quantity per period should be determined. Can be either <span pulumi-lang-nodejs="`metered`" pulumi-lang-dotnet="`Metered`" pulumi-lang-go="`metered`" pulumi-lang-python="`metered`" pulumi-lang-yaml="`metered`" pulumi-lang-java="`metered`" pulumi-lang-hcl="`metered`">`metered`</span> or <span pulumi-lang-nodejs="`licensed`" pulumi-lang-dotnet="`Licensed`" pulumi-lang-go="`licensed`" pulumi-lang-python="`licensed`" pulumi-lang-yaml="`licensed`" pulumi-lang-java="`licensed`" pulumi-lang-hcl="`licensed`">`licensed`</span>. <span pulumi-lang-nodejs="`licensed`" pulumi-lang-dotnet="`Licensed`" pulumi-lang-go="`licensed`" pulumi-lang-python="`licensed`" pulumi-lang-yaml="`licensed`" pulumi-lang-java="`licensed`" pulumi-lang-hcl="`licensed`">`licensed`</span> automatically bills the <span pulumi-lang-nodejs="`quantity`" pulumi-lang-dotnet="`Quantity`" pulumi-lang-go="`quantity`" pulumi-lang-python="`quantity`" pulumi-lang-yaml="`quantity`" pulumi-lang-java="`quantity`" pulumi-lang-hcl="`quantity`">`quantity`</span> set when adding it to a subscription. <span pulumi-lang-nodejs="`metered`" pulumi-lang-dotnet="`Metered`" pulumi-lang-go="`metered`" pulumi-lang-python="`metered`" pulumi-lang-yaml="`metered`" pulumi-lang-java="`metered`" pulumi-lang-hcl="`metered`">`metered`</span> aggregates the total usage based on usage records. Defaults to <span pulumi-lang-nodejs="`licensed`" pulumi-lang-dotnet="`Licensed`" pulumi-lang-go="`licensed`" pulumi-lang-python="`licensed`" pulumi-lang-yaml="`licensed`" pulumi-lang-java="`licensed`" pulumi-lang-hcl="`licensed`">`licensed`</span>.
         """
@@ -785,6 +823,7 @@ class Plan(pulumi.CustomResource):
         __props__.__dict__["meter"] = meter
         __props__.__dict__["nickname"] = nickname
         __props__.__dict__["object"] = object
+        __props__.__dict__["plan_id"] = plan_id
         __props__.__dict__["product"] = product
         __props__.__dict__["tiers"] = tiers
         __props__.__dict__["tiers_mode"] = tiers_mode
@@ -792,6 +831,52 @@ class Plan(pulumi.CustomResource):
         __props__.__dict__["trial_period_days"] = trial_period_days
         __props__.__dict__["usage_type"] = usage_type
         return Plan(resource_name, opts=opts, __props__=__props__)
+
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            active: pulumi.Input[Optional[_builtins.bool]] = None,
+            amount: pulumi.Input[Optional[_builtins.float]] = None,
+            amount_decimal: pulumi.Input[Optional[_builtins.float]] = None,
+            billing_scheme: pulumi.Input[Optional[_builtins.str]] = None,
+            created: pulumi.Input[Optional[_builtins.float]] = None,
+            currency: pulumi.Input[Optional[_builtins.str]] = None,
+            interval: pulumi.Input[Optional[_builtins.str]] = None,
+            interval_count: pulumi.Input[Optional[_builtins.float]] = None,
+            livemode: pulumi.Input[Optional[_builtins.bool]] = None,
+            metadata: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+            meter: pulumi.Input[Optional[_builtins.str]] = None,
+            nickname: pulumi.Input[Optional[_builtins.str]] = None,
+            object: pulumi.Input[Optional[_builtins.str]] = None,
+            plan_id: pulumi.Input[Optional[_builtins.str]] = None,
+            product: pulumi.Input[Optional[_builtins.str]] = None,
+            tiers: pulumi.Input[Optional[Sequence[pulumi.Input[Union['PlanTierArgs', 'PlanTierArgsDict', 'outputs.PlanTier']]]]] = None,
+            tiers_mode: pulumi.Input[Optional[_builtins.str]] = None,
+            transform_usage: pulumi.Input[Optional[Union['PlanTransformUsageArgs', 'PlanTransformUsageArgsDict', 'outputs.PlanTransformUsage']]] = None,
+            trial_period_days: pulumi.Input[Optional[_builtins.float]] = None,
+            usage_type: pulumi.Input[Optional[_builtins.str]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["active"] = active
+        __props__["amount"] = amount
+        __props__["amountDecimal"] = amount_decimal
+        __props__["billingScheme"] = billing_scheme
+        __props__["created"] = created
+        __props__["currency"] = currency
+        __props__["interval"] = interval
+        __props__["intervalCount"] = interval_count
+        __props__["livemode"] = livemode
+        __props__["metadata"] = metadata
+        __props__["meter"] = meter
+        __props__["nickname"] = nickname
+        __props__["object"] = object
+        __props__["planId"] = plan_id
+        __props__["product"] = product
+        __props__["tiers"] = tiers
+        __props__["tiersMode"] = tiers_mode
+        __props__["transformUsage"] = transform_usage
+        __props__["trialPeriodDays"] = trial_period_days
+        __props__["usageType"] = usage_type
+        return pulumi.runtime.exists_resource(None, 'stripe:index/plan:Plan', id, __props__, opts or pulumi.ResourceOptions(), package_ref=_utilities.get_package())
 
     @_builtins.property
     @pulumi.getter
@@ -896,6 +981,14 @@ class Plan(pulumi.CustomResource):
         String representing the object's type. Objects of the same type share the same value.
         """
         return pulumi.get(self, "object")
+
+    @_builtins.property
+    @pulumi.getter(name="planId")
+    def plan_id(self) -> pulumi.Output[_builtins.str]:
+        """
+        Unique identifier for the object.
+        """
+        return pulumi.get(self, "plan_id")
 
     @_builtins.property
     @pulumi.getter

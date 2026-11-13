@@ -23,6 +23,7 @@ class SubscriptionItemInitArgs:
     def __init__(__self__, *,
                  subscription: pulumi.Input[_builtins.str],
                  billing_thresholds: pulumi.Input[Optional['SubscriptionItemBillingThresholdsArgs']] = None,
+                 current_trial: pulumi.Input[Optional['SubscriptionItemCurrentTrialArgs']] = None,
                  discounts: pulumi.Input[Optional[Sequence[pulumi.Input['SubscriptionItemDiscountArgs']]]] = None,
                  metadata: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
                  payment_behavior: pulumi.Input[Optional[_builtins.str]] = None,
@@ -38,20 +39,21 @@ class SubscriptionItemInitArgs:
 
         :param pulumi.Input[_builtins.str] subscription: The <span pulumi-lang-nodejs="`subscription`" pulumi-lang-dotnet="`Subscription`" pulumi-lang-go="`subscription`" pulumi-lang-python="`subscription`" pulumi-lang-yaml="`subscription`" pulumi-lang-java="`subscription`" pulumi-lang-hcl="`subscription`">`subscription`</span> this <span pulumi-lang-nodejs="`subscriptionItem`" pulumi-lang-dotnet="`SubscriptionItem`" pulumi-lang-go="`subscriptionItem`" pulumi-lang-python="`subscription_item`" pulumi-lang-yaml="`subscriptionItem`" pulumi-lang-java="`subscriptionItem`" pulumi-lang-hcl="`subscription_item`">`subscriptionItem`</span> belongs to.
         :param pulumi.Input['SubscriptionItemBillingThresholdsArgs'] billing_thresholds: Define thresholds at which an invoice will be sent, and the related subscription advanced to a new billing period
+        :param pulumi.Input['SubscriptionItemCurrentTrialArgs'] current_trial: The current trial that is applied to this subscription item.
         :param pulumi.Input[Sequence[pulumi.Input['SubscriptionItemDiscountArgs']]] discounts: The discounts applied to the subscription item. Subscription item discounts are applied before subscription discounts. Use `expand[]=discounts` to expand each discount.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] metadata: Set of [key-value pairs](https://docs.stripe.com/api/metadata) that you can attach to an object. This can be useful for storing additional information about the object in a structured format.
         :param pulumi.Input[_builtins.str] payment_behavior: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
                Controls how Stripe handles payment when a subscription update requires payment and `collection_method=charge_automatically`.
-        :param pulumi.Input[_builtins.str] plan: You can now model subscriptions more flexibly using the [Prices API](https://api.stripe.com#prices). It replaces the Plans API and is backwards compatible to simplify your migration.
+        :param pulumi.Input[_builtins.str] plan: You can now model subscriptions more flexibly using the [Prices API](https://docs.stripe.com/api#prices). It replaces the Plans API and is backwards compatible to simplify your migration.
                
                Plans define the base price, currency, and billing cycle for recurring purchases of products.
-               [Products](https://api.stripe.com#products) help you track inventory or provisioning, and plans help you track pricing. Different physical goods or levels of service should be represented by products, and pricing options should be represented by plans. This approach lets you change prices without having to change your provisioning scheme.
+               [Products](https://docs.stripe.com/api#products) help you track inventory or provisioning, and plans help you track pricing. Different physical goods or levels of service should be represented by products, and pricing options should be represented by plans. This approach lets you change prices without having to change your provisioning scheme.
                
                For example, you might have a single "gold" product that has plans for $10/month, $100/year, €9/month, and €90/year.
                
                Related guides: [Set up a subscription](https://docs.stripe.com/billing/subscriptions/set-up-subscription) and more about [products and prices](https://docs.stripe.com/products-prices/overview).
         :param pulumi.Input[_builtins.str] price: Prices define the unit cost, currency, and (optional) billing cycle for both recurring and one-time purchases of products.
-               [Products](https://api.stripe.com#products) help you track inventory or provisioning, and prices help you track payment terms. Different physical goods or levels of service should be represented by products, and pricing options should be represented by prices. This approach lets you change prices without having to change your provisioning scheme.
+               [Products](https://docs.stripe.com/api#products) help you track inventory or provisioning, and prices help you track payment terms. Different physical goods or levels of service should be represented by products, and pricing options should be represented by prices. This approach lets you change prices without having to change your provisioning scheme.
                
                For example, you might have a single "gold" product that has prices for $10/month, $100/year, and €9 once.
                
@@ -68,6 +70,8 @@ class SubscriptionItemInitArgs:
         pulumi.set(__self__, "subscription", subscription)
         if billing_thresholds is not None:
             pulumi.set(__self__, "billing_thresholds", billing_thresholds)
+        if current_trial is not None:
+            pulumi.set(__self__, "current_trial", current_trial)
         if discounts is not None:
             pulumi.set(__self__, "discounts", discounts)
         if metadata is not None:
@@ -114,6 +118,18 @@ class SubscriptionItemInitArgs:
         pulumi.set(self, "billing_thresholds", value)
 
     @_builtins.property
+    @pulumi.getter(name="currentTrial")
+    def current_trial(self) -> pulumi.Input[Optional['SubscriptionItemCurrentTrialArgs']]:
+        """
+        The current trial that is applied to this subscription item.
+        """
+        return pulumi.get(self, "current_trial")
+
+    @current_trial.setter
+    def current_trial(self, value: pulumi.Input[Optional['SubscriptionItemCurrentTrialArgs']]):
+        pulumi.set(self, "current_trial", value)
+
+    @_builtins.property
     @pulumi.getter
     def discounts(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['SubscriptionItemDiscountArgs']]]]:
         """
@@ -154,10 +170,10 @@ class SubscriptionItemInitArgs:
     @pulumi.getter
     def plan(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
-        You can now model subscriptions more flexibly using the [Prices API](https://api.stripe.com#prices). It replaces the Plans API and is backwards compatible to simplify your migration.
+        You can now model subscriptions more flexibly using the [Prices API](https://docs.stripe.com/api#prices). It replaces the Plans API and is backwards compatible to simplify your migration.
 
         Plans define the base price, currency, and billing cycle for recurring purchases of products.
-        [Products](https://api.stripe.com#products) help you track inventory or provisioning, and plans help you track pricing. Different physical goods or levels of service should be represented by products, and pricing options should be represented by plans. This approach lets you change prices without having to change your provisioning scheme.
+        [Products](https://docs.stripe.com/api#products) help you track inventory or provisioning, and plans help you track pricing. Different physical goods or levels of service should be represented by products, and pricing options should be represented by plans. This approach lets you change prices without having to change your provisioning scheme.
 
         For example, you might have a single "gold" product that has plans for $10/month, $100/year, €9/month, and €90/year.
 
@@ -174,7 +190,7 @@ class SubscriptionItemInitArgs:
     def price(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Prices define the unit cost, currency, and (optional) billing cycle for both recurring and one-time purchases of products.
-        [Products](https://api.stripe.com#products) help you track inventory or provisioning, and prices help you track payment terms. Different physical goods or levels of service should be represented by products, and pricing options should be represented by prices. This approach lets you change prices without having to change your provisioning scheme.
+        [Products](https://docs.stripe.com/api#products) help you track inventory or provisioning, and prices help you track payment terms. Different physical goods or levels of service should be represented by products, and pricing options should be represented by prices. This approach lets you change prices without having to change your provisioning scheme.
 
         For example, you might have a single "gold" product that has prices for $10/month, $100/year, and €9 once.
 
@@ -258,6 +274,7 @@ class _SubscriptionItemState:
                  created: pulumi.Input[Optional[_builtins.float]] = None,
                  current_period_end: pulumi.Input[Optional[_builtins.float]] = None,
                  current_period_start: pulumi.Input[Optional[_builtins.float]] = None,
+                 current_trial: pulumi.Input[Optional['SubscriptionItemCurrentTrialArgs']] = None,
                  discounts: pulumi.Input[Optional[Sequence[pulumi.Input['SubscriptionItemDiscountArgs']]]] = None,
                  metadata: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
                  object: pulumi.Input[Optional[_builtins.str]] = None,
@@ -278,21 +295,22 @@ class _SubscriptionItemState:
         :param pulumi.Input[_builtins.float] created: Time at which the object was created. Measured in seconds since the Unix epoch.
         :param pulumi.Input[_builtins.float] current_period_end: The end time of this subscription item's current billing period.
         :param pulumi.Input[_builtins.float] current_period_start: The start time of this subscription item's current billing period.
+        :param pulumi.Input['SubscriptionItemCurrentTrialArgs'] current_trial: The current trial that is applied to this subscription item.
         :param pulumi.Input[Sequence[pulumi.Input['SubscriptionItemDiscountArgs']]] discounts: The discounts applied to the subscription item. Subscription item discounts are applied before subscription discounts. Use `expand[]=discounts` to expand each discount.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] metadata: Set of [key-value pairs](https://docs.stripe.com/api/metadata) that you can attach to an object. This can be useful for storing additional information about the object in a structured format.
         :param pulumi.Input[_builtins.str] object: String representing the object's type. Objects of the same type share the same value.
         :param pulumi.Input[_builtins.str] payment_behavior: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
                Controls how Stripe handles payment when a subscription update requires payment and `collection_method=charge_automatically`.
-        :param pulumi.Input[_builtins.str] plan: You can now model subscriptions more flexibly using the [Prices API](https://api.stripe.com#prices). It replaces the Plans API and is backwards compatible to simplify your migration.
+        :param pulumi.Input[_builtins.str] plan: You can now model subscriptions more flexibly using the [Prices API](https://docs.stripe.com/api#prices). It replaces the Plans API and is backwards compatible to simplify your migration.
                
                Plans define the base price, currency, and billing cycle for recurring purchases of products.
-               [Products](https://api.stripe.com#products) help you track inventory or provisioning, and plans help you track pricing. Different physical goods or levels of service should be represented by products, and pricing options should be represented by plans. This approach lets you change prices without having to change your provisioning scheme.
+               [Products](https://docs.stripe.com/api#products) help you track inventory or provisioning, and plans help you track pricing. Different physical goods or levels of service should be represented by products, and pricing options should be represented by plans. This approach lets you change prices without having to change your provisioning scheme.
                
                For example, you might have a single "gold" product that has plans for $10/month, $100/year, €9/month, and €90/year.
                
                Related guides: [Set up a subscription](https://docs.stripe.com/billing/subscriptions/set-up-subscription) and more about [products and prices](https://docs.stripe.com/products-prices/overview).
         :param pulumi.Input[_builtins.str] price: Prices define the unit cost, currency, and (optional) billing cycle for both recurring and one-time purchases of products.
-               [Products](https://api.stripe.com#products) help you track inventory or provisioning, and prices help you track payment terms. Different physical goods or levels of service should be represented by products, and pricing options should be represented by prices. This approach lets you change prices without having to change your provisioning scheme.
+               [Products](https://docs.stripe.com/api#products) help you track inventory or provisioning, and prices help you track payment terms. Different physical goods or levels of service should be represented by products, and pricing options should be represented by prices. This approach lets you change prices without having to change your provisioning scheme.
                
                For example, you might have a single "gold" product that has prices for $10/month, $100/year, and €9 once.
                
@@ -317,6 +335,8 @@ class _SubscriptionItemState:
             pulumi.set(__self__, "current_period_end", current_period_end)
         if current_period_start is not None:
             pulumi.set(__self__, "current_period_start", current_period_start)
+        if current_trial is not None:
+            pulumi.set(__self__, "current_trial", current_trial)
         if discounts is not None:
             pulumi.set(__self__, "discounts", discounts)
         if metadata is not None:
@@ -403,6 +423,18 @@ class _SubscriptionItemState:
         pulumi.set(self, "current_period_start", value)
 
     @_builtins.property
+    @pulumi.getter(name="currentTrial")
+    def current_trial(self) -> pulumi.Input[Optional['SubscriptionItemCurrentTrialArgs']]:
+        """
+        The current trial that is applied to this subscription item.
+        """
+        return pulumi.get(self, "current_trial")
+
+    @current_trial.setter
+    def current_trial(self, value: pulumi.Input[Optional['SubscriptionItemCurrentTrialArgs']]):
+        pulumi.set(self, "current_trial", value)
+
+    @_builtins.property
     @pulumi.getter
     def discounts(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['SubscriptionItemDiscountArgs']]]]:
         """
@@ -455,10 +487,10 @@ class _SubscriptionItemState:
     @pulumi.getter
     def plan(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
-        You can now model subscriptions more flexibly using the [Prices API](https://api.stripe.com#prices). It replaces the Plans API and is backwards compatible to simplify your migration.
+        You can now model subscriptions more flexibly using the [Prices API](https://docs.stripe.com/api#prices). It replaces the Plans API and is backwards compatible to simplify your migration.
 
         Plans define the base price, currency, and billing cycle for recurring purchases of products.
-        [Products](https://api.stripe.com#products) help you track inventory or provisioning, and plans help you track pricing. Different physical goods or levels of service should be represented by products, and pricing options should be represented by plans. This approach lets you change prices without having to change your provisioning scheme.
+        [Products](https://docs.stripe.com/api#products) help you track inventory or provisioning, and plans help you track pricing. Different physical goods or levels of service should be represented by products, and pricing options should be represented by plans. This approach lets you change prices without having to change your provisioning scheme.
 
         For example, you might have a single "gold" product that has plans for $10/month, $100/year, €9/month, and €90/year.
 
@@ -475,7 +507,7 @@ class _SubscriptionItemState:
     def price(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Prices define the unit cost, currency, and (optional) billing cycle for both recurring and one-time purchases of products.
-        [Products](https://api.stripe.com#products) help you track inventory or provisioning, and prices help you track payment terms. Different physical goods or levels of service should be represented by products, and pricing options should be represented by prices. This approach lets you change prices without having to change your provisioning scheme.
+        [Products](https://docs.stripe.com/api#products) help you track inventory or provisioning, and prices help you track payment terms. Different physical goods or levels of service should be represented by products, and pricing options should be represented by prices. This approach lets you change prices without having to change your provisioning scheme.
 
         For example, you might have a single "gold" product that has prices for $10/month, $100/year, and €9 once.
 
@@ -569,13 +601,14 @@ class SubscriptionItem(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 billing_thresholds: pulumi.Input[Optional[Union['SubscriptionItemBillingThresholdsArgs', 'SubscriptionItemBillingThresholdsArgsDict']]] = None,
-                 discounts: pulumi.Input[Optional[Sequence[pulumi.Input[Union['SubscriptionItemDiscountArgs', 'SubscriptionItemDiscountArgsDict']]]]] = None,
+                 billing_thresholds: pulumi.Input[Optional[Union['SubscriptionItemBillingThresholdsArgs', 'SubscriptionItemBillingThresholdsArgsDict', 'outputs.SubscriptionItemBillingThresholds']]] = None,
+                 current_trial: pulumi.Input[Optional[Union['SubscriptionItemCurrentTrialArgs', 'SubscriptionItemCurrentTrialArgsDict', 'outputs.SubscriptionItemCurrentTrial']]] = None,
+                 discounts: pulumi.Input[Optional[Sequence[pulumi.Input[Union['SubscriptionItemDiscountArgs', 'SubscriptionItemDiscountArgsDict', 'outputs.SubscriptionItemDiscount']]]]] = None,
                  metadata: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
                  payment_behavior: pulumi.Input[Optional[_builtins.str]] = None,
                  plan: pulumi.Input[Optional[_builtins.str]] = None,
                  price: pulumi.Input[Optional[_builtins.str]] = None,
-                 price_data: pulumi.Input[Optional[Union['SubscriptionItemPriceDataArgs', 'SubscriptionItemPriceDataArgsDict']]] = None,
+                 price_data: pulumi.Input[Optional[Union['SubscriptionItemPriceDataArgs', 'SubscriptionItemPriceDataArgsDict', 'outputs.SubscriptionItemPriceData']]] = None,
                  proration_behavior: pulumi.Input[Optional[_builtins.str]] = None,
                  proration_date: pulumi.Input[Optional[_builtins.float]] = None,
                  quantity: pulumi.Input[Optional[_builtins.float]] = None,
@@ -587,26 +620,27 @@ class SubscriptionItem(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[Union['SubscriptionItemBillingThresholdsArgs', 'SubscriptionItemBillingThresholdsArgsDict']] billing_thresholds: Define thresholds at which an invoice will be sent, and the related subscription advanced to a new billing period
-        :param pulumi.Input[Sequence[pulumi.Input[Union['SubscriptionItemDiscountArgs', 'SubscriptionItemDiscountArgsDict']]]] discounts: The discounts applied to the subscription item. Subscription item discounts are applied before subscription discounts. Use `expand[]=discounts` to expand each discount.
+        :param pulumi.Input[Union['SubscriptionItemBillingThresholdsArgs', 'SubscriptionItemBillingThresholdsArgsDict', 'outputs.SubscriptionItemBillingThresholds']] billing_thresholds: Define thresholds at which an invoice will be sent, and the related subscription advanced to a new billing period
+        :param pulumi.Input[Union['SubscriptionItemCurrentTrialArgs', 'SubscriptionItemCurrentTrialArgsDict', 'outputs.SubscriptionItemCurrentTrial']] current_trial: The current trial that is applied to this subscription item.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['SubscriptionItemDiscountArgs', 'SubscriptionItemDiscountArgsDict', 'outputs.SubscriptionItemDiscount']]]] discounts: The discounts applied to the subscription item. Subscription item discounts are applied before subscription discounts. Use `expand[]=discounts` to expand each discount.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] metadata: Set of [key-value pairs](https://docs.stripe.com/api/metadata) that you can attach to an object. This can be useful for storing additional information about the object in a structured format.
         :param pulumi.Input[_builtins.str] payment_behavior: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
                Controls how Stripe handles payment when a subscription update requires payment and `collection_method=charge_automatically`.
-        :param pulumi.Input[_builtins.str] plan: You can now model subscriptions more flexibly using the [Prices API](https://api.stripe.com#prices). It replaces the Plans API and is backwards compatible to simplify your migration.
+        :param pulumi.Input[_builtins.str] plan: You can now model subscriptions more flexibly using the [Prices API](https://docs.stripe.com/api#prices). It replaces the Plans API and is backwards compatible to simplify your migration.
                
                Plans define the base price, currency, and billing cycle for recurring purchases of products.
-               [Products](https://api.stripe.com#products) help you track inventory or provisioning, and plans help you track pricing. Different physical goods or levels of service should be represented by products, and pricing options should be represented by plans. This approach lets you change prices without having to change your provisioning scheme.
+               [Products](https://docs.stripe.com/api#products) help you track inventory or provisioning, and plans help you track pricing. Different physical goods or levels of service should be represented by products, and pricing options should be represented by plans. This approach lets you change prices without having to change your provisioning scheme.
                
                For example, you might have a single "gold" product that has plans for $10/month, $100/year, €9/month, and €90/year.
                
                Related guides: [Set up a subscription](https://docs.stripe.com/billing/subscriptions/set-up-subscription) and more about [products and prices](https://docs.stripe.com/products-prices/overview).
         :param pulumi.Input[_builtins.str] price: Prices define the unit cost, currency, and (optional) billing cycle for both recurring and one-time purchases of products.
-               [Products](https://api.stripe.com#products) help you track inventory or provisioning, and prices help you track payment terms. Different physical goods or levels of service should be represented by products, and pricing options should be represented by prices. This approach lets you change prices without having to change your provisioning scheme.
+               [Products](https://docs.stripe.com/api#products) help you track inventory or provisioning, and prices help you track payment terms. Different physical goods or levels of service should be represented by products, and pricing options should be represented by prices. This approach lets you change prices without having to change your provisioning scheme.
                
                For example, you might have a single "gold" product that has prices for $10/month, $100/year, and €9 once.
                
                Related guides: [Set up a subscription](https://docs.stripe.com/billing/subscriptions/set-up-subscription), [create an invoice](https://docs.stripe.com/billing/invoices/create), and more about [products and prices](https://docs.stripe.com/products-prices/overview).
-        :param pulumi.Input[Union['SubscriptionItemPriceDataArgs', 'SubscriptionItemPriceDataArgsDict']] price_data: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        :param pulumi.Input[Union['SubscriptionItemPriceDataArgs', 'SubscriptionItemPriceDataArgsDict', 'outputs.SubscriptionItemPriceData']] price_data: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
                Data used to generate a new [Price](https://docs.stripe.com/api/prices) object inline.
         :param pulumi.Input[_builtins.str] proration_behavior: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
                Determines how to handle [prorations](https://docs.stripe.com/billing/subscriptions/prorations) when the billing cycle changes (e.g., when switching plans, resetting `billing_cycle_anchor=now`, or starting a trial), or if an item's <span pulumi-lang-nodejs="`quantity`" pulumi-lang-dotnet="`Quantity`" pulumi-lang-go="`quantity`" pulumi-lang-python="`quantity`" pulumi-lang-yaml="`quantity`" pulumi-lang-java="`quantity`" pulumi-lang-hcl="`quantity`">`quantity`</span> changes. The default value is <span pulumi-lang-nodejs="`createProrations`" pulumi-lang-dotnet="`CreateProrations`" pulumi-lang-go="`createProrations`" pulumi-lang-python="`create_prorations`" pulumi-lang-yaml="`createProrations`" pulumi-lang-java="`createProrations`" pulumi-lang-hcl="`create_prorations`">`createProrations`</span>.
@@ -640,13 +674,14 @@ class SubscriptionItem(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 billing_thresholds: pulumi.Input[Optional[Union['SubscriptionItemBillingThresholdsArgs', 'SubscriptionItemBillingThresholdsArgsDict']]] = None,
-                 discounts: pulumi.Input[Optional[Sequence[pulumi.Input[Union['SubscriptionItemDiscountArgs', 'SubscriptionItemDiscountArgsDict']]]]] = None,
+                 billing_thresholds: pulumi.Input[Optional[Union['SubscriptionItemBillingThresholdsArgs', 'SubscriptionItemBillingThresholdsArgsDict', 'outputs.SubscriptionItemBillingThresholds']]] = None,
+                 current_trial: pulumi.Input[Optional[Union['SubscriptionItemCurrentTrialArgs', 'SubscriptionItemCurrentTrialArgsDict', 'outputs.SubscriptionItemCurrentTrial']]] = None,
+                 discounts: pulumi.Input[Optional[Sequence[pulumi.Input[Union['SubscriptionItemDiscountArgs', 'SubscriptionItemDiscountArgsDict', 'outputs.SubscriptionItemDiscount']]]]] = None,
                  metadata: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
                  payment_behavior: pulumi.Input[Optional[_builtins.str]] = None,
                  plan: pulumi.Input[Optional[_builtins.str]] = None,
                  price: pulumi.Input[Optional[_builtins.str]] = None,
-                 price_data: pulumi.Input[Optional[Union['SubscriptionItemPriceDataArgs', 'SubscriptionItemPriceDataArgsDict']]] = None,
+                 price_data: pulumi.Input[Optional[Union['SubscriptionItemPriceDataArgs', 'SubscriptionItemPriceDataArgsDict', 'outputs.SubscriptionItemPriceData']]] = None,
                  proration_behavior: pulumi.Input[Optional[_builtins.str]] = None,
                  proration_date: pulumi.Input[Optional[_builtins.float]] = None,
                  quantity: pulumi.Input[Optional[_builtins.float]] = None,
@@ -662,6 +697,7 @@ class SubscriptionItem(pulumi.CustomResource):
             __props__ = SubscriptionItemInitArgs.__new__(SubscriptionItemInitArgs)
 
             __props__.__dict__["billing_thresholds"] = billing_thresholds
+            __props__.__dict__["current_trial"] = current_trial
             __props__.__dict__["discounts"] = discounts
             __props__.__dict__["metadata"] = metadata
             __props__.__dict__["payment_behavior"] = None if payment_behavior is None else pulumi.Output.secret(payment_behavior)
@@ -694,17 +730,18 @@ class SubscriptionItem(pulumi.CustomResource):
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
             billed_until: pulumi.Input[Optional[_builtins.float]] = None,
-            billing_thresholds: pulumi.Input[Optional[Union['SubscriptionItemBillingThresholdsArgs', 'SubscriptionItemBillingThresholdsArgsDict']]] = None,
+            billing_thresholds: pulumi.Input[Optional[Union['SubscriptionItemBillingThresholdsArgs', 'SubscriptionItemBillingThresholdsArgsDict', 'outputs.SubscriptionItemBillingThresholds']]] = None,
             created: pulumi.Input[Optional[_builtins.float]] = None,
             current_period_end: pulumi.Input[Optional[_builtins.float]] = None,
             current_period_start: pulumi.Input[Optional[_builtins.float]] = None,
-            discounts: pulumi.Input[Optional[Sequence[pulumi.Input[Union['SubscriptionItemDiscountArgs', 'SubscriptionItemDiscountArgsDict']]]]] = None,
+            current_trial: pulumi.Input[Optional[Union['SubscriptionItemCurrentTrialArgs', 'SubscriptionItemCurrentTrialArgsDict', 'outputs.SubscriptionItemCurrentTrial']]] = None,
+            discounts: pulumi.Input[Optional[Sequence[pulumi.Input[Union['SubscriptionItemDiscountArgs', 'SubscriptionItemDiscountArgsDict', 'outputs.SubscriptionItemDiscount']]]]] = None,
             metadata: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
             object: pulumi.Input[Optional[_builtins.str]] = None,
             payment_behavior: pulumi.Input[Optional[_builtins.str]] = None,
             plan: pulumi.Input[Optional[_builtins.str]] = None,
             price: pulumi.Input[Optional[_builtins.str]] = None,
-            price_data: pulumi.Input[Optional[Union['SubscriptionItemPriceDataArgs', 'SubscriptionItemPriceDataArgsDict']]] = None,
+            price_data: pulumi.Input[Optional[Union['SubscriptionItemPriceDataArgs', 'SubscriptionItemPriceDataArgsDict', 'outputs.SubscriptionItemPriceData']]] = None,
             proration_behavior: pulumi.Input[Optional[_builtins.str]] = None,
             proration_date: pulumi.Input[Optional[_builtins.float]] = None,
             quantity: pulumi.Input[Optional[_builtins.float]] = None,
@@ -718,30 +755,31 @@ class SubscriptionItem(pulumi.CustomResource):
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.float] billed_until: The time period the subscription item has been billed for.
-        :param pulumi.Input[Union['SubscriptionItemBillingThresholdsArgs', 'SubscriptionItemBillingThresholdsArgsDict']] billing_thresholds: Define thresholds at which an invoice will be sent, and the related subscription advanced to a new billing period
+        :param pulumi.Input[Union['SubscriptionItemBillingThresholdsArgs', 'SubscriptionItemBillingThresholdsArgsDict', 'outputs.SubscriptionItemBillingThresholds']] billing_thresholds: Define thresholds at which an invoice will be sent, and the related subscription advanced to a new billing period
         :param pulumi.Input[_builtins.float] created: Time at which the object was created. Measured in seconds since the Unix epoch.
         :param pulumi.Input[_builtins.float] current_period_end: The end time of this subscription item's current billing period.
         :param pulumi.Input[_builtins.float] current_period_start: The start time of this subscription item's current billing period.
-        :param pulumi.Input[Sequence[pulumi.Input[Union['SubscriptionItemDiscountArgs', 'SubscriptionItemDiscountArgsDict']]]] discounts: The discounts applied to the subscription item. Subscription item discounts are applied before subscription discounts. Use `expand[]=discounts` to expand each discount.
+        :param pulumi.Input[Union['SubscriptionItemCurrentTrialArgs', 'SubscriptionItemCurrentTrialArgsDict', 'outputs.SubscriptionItemCurrentTrial']] current_trial: The current trial that is applied to this subscription item.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['SubscriptionItemDiscountArgs', 'SubscriptionItemDiscountArgsDict', 'outputs.SubscriptionItemDiscount']]]] discounts: The discounts applied to the subscription item. Subscription item discounts are applied before subscription discounts. Use `expand[]=discounts` to expand each discount.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] metadata: Set of [key-value pairs](https://docs.stripe.com/api/metadata) that you can attach to an object. This can be useful for storing additional information about the object in a structured format.
         :param pulumi.Input[_builtins.str] object: String representing the object's type. Objects of the same type share the same value.
         :param pulumi.Input[_builtins.str] payment_behavior: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
                Controls how Stripe handles payment when a subscription update requires payment and `collection_method=charge_automatically`.
-        :param pulumi.Input[_builtins.str] plan: You can now model subscriptions more flexibly using the [Prices API](https://api.stripe.com#prices). It replaces the Plans API and is backwards compatible to simplify your migration.
+        :param pulumi.Input[_builtins.str] plan: You can now model subscriptions more flexibly using the [Prices API](https://docs.stripe.com/api#prices). It replaces the Plans API and is backwards compatible to simplify your migration.
                
                Plans define the base price, currency, and billing cycle for recurring purchases of products.
-               [Products](https://api.stripe.com#products) help you track inventory or provisioning, and plans help you track pricing. Different physical goods or levels of service should be represented by products, and pricing options should be represented by plans. This approach lets you change prices without having to change your provisioning scheme.
+               [Products](https://docs.stripe.com/api#products) help you track inventory or provisioning, and plans help you track pricing. Different physical goods or levels of service should be represented by products, and pricing options should be represented by plans. This approach lets you change prices without having to change your provisioning scheme.
                
                For example, you might have a single "gold" product that has plans for $10/month, $100/year, €9/month, and €90/year.
                
                Related guides: [Set up a subscription](https://docs.stripe.com/billing/subscriptions/set-up-subscription) and more about [products and prices](https://docs.stripe.com/products-prices/overview).
         :param pulumi.Input[_builtins.str] price: Prices define the unit cost, currency, and (optional) billing cycle for both recurring and one-time purchases of products.
-               [Products](https://api.stripe.com#products) help you track inventory or provisioning, and prices help you track payment terms. Different physical goods or levels of service should be represented by products, and pricing options should be represented by prices. This approach lets you change prices without having to change your provisioning scheme.
+               [Products](https://docs.stripe.com/api#products) help you track inventory or provisioning, and prices help you track payment terms. Different physical goods or levels of service should be represented by products, and pricing options should be represented by prices. This approach lets you change prices without having to change your provisioning scheme.
                
                For example, you might have a single "gold" product that has prices for $10/month, $100/year, and €9 once.
                
                Related guides: [Set up a subscription](https://docs.stripe.com/billing/subscriptions/set-up-subscription), [create an invoice](https://docs.stripe.com/billing/invoices/create), and more about [products and prices](https://docs.stripe.com/products-prices/overview).
-        :param pulumi.Input[Union['SubscriptionItemPriceDataArgs', 'SubscriptionItemPriceDataArgsDict']] price_data: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        :param pulumi.Input[Union['SubscriptionItemPriceDataArgs', 'SubscriptionItemPriceDataArgsDict', 'outputs.SubscriptionItemPriceData']] price_data: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
                Data used to generate a new [Price](https://docs.stripe.com/api/prices) object inline.
         :param pulumi.Input[_builtins.str] proration_behavior: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
                Determines how to handle [prorations](https://docs.stripe.com/billing/subscriptions/prorations) when the billing cycle changes (e.g., when switching plans, resetting `billing_cycle_anchor=now`, or starting a trial), or if an item's <span pulumi-lang-nodejs="`quantity`" pulumi-lang-dotnet="`Quantity`" pulumi-lang-go="`quantity`" pulumi-lang-python="`quantity`" pulumi-lang-yaml="`quantity`" pulumi-lang-java="`quantity`" pulumi-lang-hcl="`quantity`">`quantity`</span> changes. The default value is <span pulumi-lang-nodejs="`createProrations`" pulumi-lang-dotnet="`CreateProrations`" pulumi-lang-go="`createProrations`" pulumi-lang-python="`create_prorations`" pulumi-lang-yaml="`createProrations`" pulumi-lang-java="`createProrations`" pulumi-lang-hcl="`create_prorations`">`createProrations`</span>.
@@ -760,6 +798,7 @@ class SubscriptionItem(pulumi.CustomResource):
         __props__.__dict__["created"] = created
         __props__.__dict__["current_period_end"] = current_period_end
         __props__.__dict__["current_period_start"] = current_period_start
+        __props__.__dict__["current_trial"] = current_trial
         __props__.__dict__["discounts"] = discounts
         __props__.__dict__["metadata"] = metadata
         __props__.__dict__["object"] = object
@@ -773,6 +812,48 @@ class SubscriptionItem(pulumi.CustomResource):
         __props__.__dict__["subscription"] = subscription
         __props__.__dict__["tax_rates"] = tax_rates
         return SubscriptionItem(resource_name, opts=opts, __props__=__props__)
+
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            billed_until: pulumi.Input[Optional[_builtins.float]] = None,
+            billing_thresholds: pulumi.Input[Optional[Union['SubscriptionItemBillingThresholdsArgs', 'SubscriptionItemBillingThresholdsArgsDict', 'outputs.SubscriptionItemBillingThresholds']]] = None,
+            created: pulumi.Input[Optional[_builtins.float]] = None,
+            current_period_end: pulumi.Input[Optional[_builtins.float]] = None,
+            current_period_start: pulumi.Input[Optional[_builtins.float]] = None,
+            current_trial: pulumi.Input[Optional[Union['SubscriptionItemCurrentTrialArgs', 'SubscriptionItemCurrentTrialArgsDict', 'outputs.SubscriptionItemCurrentTrial']]] = None,
+            discounts: pulumi.Input[Optional[Sequence[pulumi.Input[Union['SubscriptionItemDiscountArgs', 'SubscriptionItemDiscountArgsDict', 'outputs.SubscriptionItemDiscount']]]]] = None,
+            metadata: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+            object: pulumi.Input[Optional[_builtins.str]] = None,
+            payment_behavior: pulumi.Input[Optional[_builtins.str]] = None,
+            plan: pulumi.Input[Optional[_builtins.str]] = None,
+            price: pulumi.Input[Optional[_builtins.str]] = None,
+            price_data: pulumi.Input[Optional[Union['SubscriptionItemPriceDataArgs', 'SubscriptionItemPriceDataArgsDict', 'outputs.SubscriptionItemPriceData']]] = None,
+            proration_behavior: pulumi.Input[Optional[_builtins.str]] = None,
+            proration_date: pulumi.Input[Optional[_builtins.float]] = None,
+            quantity: pulumi.Input[Optional[_builtins.float]] = None,
+            subscription: pulumi.Input[Optional[_builtins.str]] = None,
+            tax_rates: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["billedUntil"] = billed_until
+        __props__["billingThresholds"] = billing_thresholds
+        __props__["created"] = created
+        __props__["currentPeriodEnd"] = current_period_end
+        __props__["currentPeriodStart"] = current_period_start
+        __props__["currentTrial"] = current_trial
+        __props__["discounts"] = discounts
+        __props__["metadata"] = metadata
+        __props__["object"] = object
+        __props__["paymentBehavior"] = payment_behavior
+        __props__["plan"] = plan
+        __props__["price"] = price
+        __props__["priceData"] = price_data
+        __props__["prorationBehavior"] = proration_behavior
+        __props__["prorationDate"] = proration_date
+        __props__["quantity"] = quantity
+        __props__["subscription"] = subscription
+        __props__["taxRates"] = tax_rates
+        return pulumi.runtime.exists_resource(None, 'stripe:index/subscriptionItem:SubscriptionItem', id, __props__, opts or pulumi.ResourceOptions(), package_ref=_utilities.get_package())
 
     @_builtins.property
     @pulumi.getter(name="billedUntil")
@@ -815,6 +896,14 @@ class SubscriptionItem(pulumi.CustomResource):
         return pulumi.get(self, "current_period_start")
 
     @_builtins.property
+    @pulumi.getter(name="currentTrial")
+    def current_trial(self) -> pulumi.Output['outputs.SubscriptionItemCurrentTrial']:
+        """
+        The current trial that is applied to this subscription item.
+        """
+        return pulumi.get(self, "current_trial")
+
+    @_builtins.property
     @pulumi.getter
     def discounts(self) -> pulumi.Output[Sequence['outputs.SubscriptionItemDiscount']]:
         """
@@ -851,10 +940,10 @@ class SubscriptionItem(pulumi.CustomResource):
     @pulumi.getter
     def plan(self) -> pulumi.Output[_builtins.str]:
         """
-        You can now model subscriptions more flexibly using the [Prices API](https://api.stripe.com#prices). It replaces the Plans API and is backwards compatible to simplify your migration.
+        You can now model subscriptions more flexibly using the [Prices API](https://docs.stripe.com/api#prices). It replaces the Plans API and is backwards compatible to simplify your migration.
 
         Plans define the base price, currency, and billing cycle for recurring purchases of products.
-        [Products](https://api.stripe.com#products) help you track inventory or provisioning, and plans help you track pricing. Different physical goods or levels of service should be represented by products, and pricing options should be represented by plans. This approach lets you change prices without having to change your provisioning scheme.
+        [Products](https://docs.stripe.com/api#products) help you track inventory or provisioning, and plans help you track pricing. Different physical goods or levels of service should be represented by products, and pricing options should be represented by plans. This approach lets you change prices without having to change your provisioning scheme.
 
         For example, you might have a single "gold" product that has plans for $10/month, $100/year, €9/month, and €90/year.
 
@@ -867,7 +956,7 @@ class SubscriptionItem(pulumi.CustomResource):
     def price(self) -> pulumi.Output[_builtins.str]:
         """
         Prices define the unit cost, currency, and (optional) billing cycle for both recurring and one-time purchases of products.
-        [Products](https://api.stripe.com#products) help you track inventory or provisioning, and prices help you track payment terms. Different physical goods or levels of service should be represented by products, and pricing options should be represented by prices. This approach lets you change prices without having to change your provisioning scheme.
+        [Products](https://docs.stripe.com/api#products) help you track inventory or provisioning, and prices help you track payment terms. Different physical goods or levels of service should be represented by products, and pricing options should be represented by prices. This approach lets you change prices without having to change your provisioning scheme.
 
         For example, you might have a single "gold" product that has prices for $10/month, $100/year, and €9 once.
 

@@ -7,6 +7,7 @@ import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
 import com.pulumi.stripe.inputs.SubscriptionScheduleBillingModeArgs;
 import com.pulumi.stripe.inputs.SubscriptionScheduleDefaultSettingsArgs;
+import com.pulumi.stripe.inputs.SubscriptionSchedulePauseScheduleArgs;
 import com.pulumi.stripe.inputs.SubscriptionSchedulePhaseArgs;
 import java.lang.Double;
 import java.lang.String;
@@ -121,6 +122,21 @@ public final class SubscriptionScheduleArgs extends com.pulumi.resources.Resourc
     }
 
     /**
+     * The pause schedules for this subscription schedule.
+     * 
+     */
+    @Import(name="pauseSchedules")
+    private @Nullable Output<List<SubscriptionSchedulePauseScheduleArgs>> pauseSchedules;
+
+    /**
+     * @return The pause schedules for this subscription schedule.
+     * 
+     */
+    public Optional<Output<List<SubscriptionSchedulePauseScheduleArgs>>> pauseSchedules() {
+        return Optional.ofNullable(this.pauseSchedules);
+    }
+
+    /**
      * Configuration for the subscription schedule&#39;s phases.
      * 
      */
@@ -136,14 +152,14 @@ public final class SubscriptionScheduleArgs extends com.pulumi.resources.Resourc
     }
 
     /**
-     * When the subscription schedule starts. We recommend using &lt;span pulumi-lang-nodejs=&#34;`now`&#34; pulumi-lang-dotnet=&#34;`Now`&#34; pulumi-lang-go=&#34;`now`&#34; pulumi-lang-python=&#34;`now`&#34; pulumi-lang-yaml=&#34;`now`&#34; pulumi-lang-java=&#34;`now`&#34; pulumi-lang-hcl=&#34;`now`&#34;&gt;`now`&lt;/span&gt; so that it starts the subscription immediately. You can also use a Unix timestamp to backdate the subscription so that it starts on a past date, or set a future date for the subscription to start on.
+     * When the subscription schedule starts. We recommend using &lt;span pulumi-lang-nodejs=&#34;`now`&#34; pulumi-lang-dotnet=&#34;`Now`&#34; pulumi-lang-go=&#34;`now`&#34; pulumi-lang-python=&#34;`now`&#34; pulumi-lang-yaml=&#34;`now`&#34; pulumi-lang-java=&#34;`now`&#34; pulumi-lang-hcl=&#34;`now`&#34;&gt;`now`&lt;/span&gt; so that it starts the subscription immediately, and to avoid unexpected behavior due to request delays or clock skew resulting in a slightly backdated or postdated start. You can also use a Unix timestamp to backdate the subscription so that it starts on a past date, or set a future date for the subscription to start on.
      * 
      */
     @Import(name="startDate")
     private @Nullable Output<Double> startDate;
 
     /**
-     * @return When the subscription schedule starts. We recommend using &lt;span pulumi-lang-nodejs=&#34;`now`&#34; pulumi-lang-dotnet=&#34;`Now`&#34; pulumi-lang-go=&#34;`now`&#34; pulumi-lang-python=&#34;`now`&#34; pulumi-lang-yaml=&#34;`now`&#34; pulumi-lang-java=&#34;`now`&#34; pulumi-lang-hcl=&#34;`now`&#34;&gt;`now`&lt;/span&gt; so that it starts the subscription immediately. You can also use a Unix timestamp to backdate the subscription so that it starts on a past date, or set a future date for the subscription to start on.
+     * @return When the subscription schedule starts. We recommend using &lt;span pulumi-lang-nodejs=&#34;`now`&#34; pulumi-lang-dotnet=&#34;`Now`&#34; pulumi-lang-go=&#34;`now`&#34; pulumi-lang-python=&#34;`now`&#34; pulumi-lang-yaml=&#34;`now`&#34; pulumi-lang-java=&#34;`now`&#34; pulumi-lang-hcl=&#34;`now`&#34;&gt;`now`&lt;/span&gt; so that it starts the subscription immediately, and to avoid unexpected behavior due to request delays or clock skew resulting in a slightly backdated or postdated start. You can also use a Unix timestamp to backdate the subscription so that it starts on a past date, or set a future date for the subscription to start on.
      * 
      */
     public Optional<Output<Double>> startDate() {
@@ -160,6 +176,7 @@ public final class SubscriptionScheduleArgs extends com.pulumi.resources.Resourc
         this.endBehavior = $.endBehavior;
         this.fromSubscription = $.fromSubscription;
         this.metadata = $.metadata;
+        this.pauseSchedules = $.pauseSchedules;
         this.phases = $.phases;
         this.startDate = $.startDate;
     }
@@ -320,6 +337,37 @@ public final class SubscriptionScheduleArgs extends com.pulumi.resources.Resourc
         }
 
         /**
+         * @param pauseSchedules The pause schedules for this subscription schedule.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder pauseSchedules(@Nullable Output<List<SubscriptionSchedulePauseScheduleArgs>> pauseSchedules) {
+            $.pauseSchedules = pauseSchedules;
+            return this;
+        }
+
+        /**
+         * @param pauseSchedules The pause schedules for this subscription schedule.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder pauseSchedules(List<SubscriptionSchedulePauseScheduleArgs> pauseSchedules) {
+            return pauseSchedules(Output.of(pauseSchedules));
+        }
+
+        /**
+         * @param pauseSchedules The pause schedules for this subscription schedule.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder pauseSchedules(SubscriptionSchedulePauseScheduleArgs... pauseSchedules) {
+            return pauseSchedules(List.of(pauseSchedules));
+        }
+
+        /**
          * @param phases Configuration for the subscription schedule&#39;s phases.
          * 
          * @return builder
@@ -351,7 +399,7 @@ public final class SubscriptionScheduleArgs extends com.pulumi.resources.Resourc
         }
 
         /**
-         * @param startDate When the subscription schedule starts. We recommend using &lt;span pulumi-lang-nodejs=&#34;`now`&#34; pulumi-lang-dotnet=&#34;`Now`&#34; pulumi-lang-go=&#34;`now`&#34; pulumi-lang-python=&#34;`now`&#34; pulumi-lang-yaml=&#34;`now`&#34; pulumi-lang-java=&#34;`now`&#34; pulumi-lang-hcl=&#34;`now`&#34;&gt;`now`&lt;/span&gt; so that it starts the subscription immediately. You can also use a Unix timestamp to backdate the subscription so that it starts on a past date, or set a future date for the subscription to start on.
+         * @param startDate When the subscription schedule starts. We recommend using &lt;span pulumi-lang-nodejs=&#34;`now`&#34; pulumi-lang-dotnet=&#34;`Now`&#34; pulumi-lang-go=&#34;`now`&#34; pulumi-lang-python=&#34;`now`&#34; pulumi-lang-yaml=&#34;`now`&#34; pulumi-lang-java=&#34;`now`&#34; pulumi-lang-hcl=&#34;`now`&#34;&gt;`now`&lt;/span&gt; so that it starts the subscription immediately, and to avoid unexpected behavior due to request delays or clock skew resulting in a slightly backdated or postdated start. You can also use a Unix timestamp to backdate the subscription so that it starts on a past date, or set a future date for the subscription to start on.
          * 
          * @return builder
          * 
@@ -362,7 +410,7 @@ public final class SubscriptionScheduleArgs extends com.pulumi.resources.Resourc
         }
 
         /**
-         * @param startDate When the subscription schedule starts. We recommend using &lt;span pulumi-lang-nodejs=&#34;`now`&#34; pulumi-lang-dotnet=&#34;`Now`&#34; pulumi-lang-go=&#34;`now`&#34; pulumi-lang-python=&#34;`now`&#34; pulumi-lang-yaml=&#34;`now`&#34; pulumi-lang-java=&#34;`now`&#34; pulumi-lang-hcl=&#34;`now`&#34;&gt;`now`&lt;/span&gt; so that it starts the subscription immediately. You can also use a Unix timestamp to backdate the subscription so that it starts on a past date, or set a future date for the subscription to start on.
+         * @param startDate When the subscription schedule starts. We recommend using &lt;span pulumi-lang-nodejs=&#34;`now`&#34; pulumi-lang-dotnet=&#34;`Now`&#34; pulumi-lang-go=&#34;`now`&#34; pulumi-lang-python=&#34;`now`&#34; pulumi-lang-yaml=&#34;`now`&#34; pulumi-lang-java=&#34;`now`&#34; pulumi-lang-hcl=&#34;`now`&#34;&gt;`now`&lt;/span&gt; so that it starts the subscription immediately, and to avoid unexpected behavior due to request delays or clock skew resulting in a slightly backdated or postdated start. You can also use a Unix timestamp to backdate the subscription so that it starts on a past date, or set a future date for the subscription to start on.
          * 
          * @return builder
          * 

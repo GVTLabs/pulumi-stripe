@@ -103,6 +103,18 @@ func (EntitlementsFeatureState) ElementType() reflect.Type {
 	return reflect.TypeOf((*entitlementsFeatureState)(nil)).Elem()
 }
 
+// EntitlementsFeatureExists checks whether an existing EntitlementsFeature resource with the given ID exists.
+func EntitlementsFeatureExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *EntitlementsFeatureState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	ref, err := internal.PkgGetPackageRef(ctx)
+	if err != nil {
+		return pulumi.Bool(false).ToBoolOutput().ApplyT(func(bool) (bool, error) {
+			return false, err
+		}).(pulumi.BoolOutput)
+	}
+	return ctx.ExistsResource("stripe:index/entitlementsFeature:EntitlementsFeature", id, state, ref, opts...)
+}
+
 type entitlementsFeatureArgs struct {
 	// A unique key you provide as your own system identifier. This may be up to 80 characters.
 	LookupKey string `pulumi:"lookupKey"`

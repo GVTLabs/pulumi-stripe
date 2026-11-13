@@ -98,10 +98,10 @@ export async function callAsync<T>(
 export async function getPackage(): Promise<string | undefined> {
 	return runtime.registerPackage({
 		baseProviderName: "terraform-provider",
-		baseProviderVersion: "1.3.0",
+		baseProviderVersion: "1.5.1",
 		baseProviderDownloadUrl: "",
 		packageName: "stripe",
-		packageVersion: "0.3.0",
-		base64Parameter: "eyJyZW1vdGUiOnsidXJsIjoicmVnaXN0cnkub3BlbnRvZnUub3JnL3N0cmlwZS9zdHJpcGUiLCJ2ZXJzaW9uIjoiMC4zLjAifX0=",
+		packageVersion: "0.3.1",
+		base64Parameter: "eyJyZW1vdGUiOnsidXJsIjoicmVnaXN0cnkub3BlbnRvZnUub3JnL3N0cmlwZS9zdHJpcGUiLCJ2ZXJzaW9uIjoiMC4zLjEifX0=",
 	});
 }

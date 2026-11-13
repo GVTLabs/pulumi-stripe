@@ -52,6 +52,7 @@ import com.pulumi.stripe.outputs.ChargePaymentMethodDetailsSatispay;
 import com.pulumi.stripe.outputs.ChargePaymentMethodDetailsScalapay;
 import com.pulumi.stripe.outputs.ChargePaymentMethodDetailsSepaCreditTransfer;
 import com.pulumi.stripe.outputs.ChargePaymentMethodDetailsSepaDebit;
+import com.pulumi.stripe.outputs.ChargePaymentMethodDetailsSequra;
 import com.pulumi.stripe.outputs.ChargePaymentMethodDetailsSofort;
 import com.pulumi.stripe.outputs.ChargePaymentMethodDetailsSunbit;
 import com.pulumi.stripe.outputs.ChargePaymentMethodDetailsSwish;
@@ -114,6 +115,7 @@ public final class ChargePaymentMethodDetails {
     private @Nullable ChargePaymentMethodDetailsScalapay scalapay;
     private @Nullable ChargePaymentMethodDetailsSepaCreditTransfer sepaCreditTransfer;
     private @Nullable ChargePaymentMethodDetailsSepaDebit sepaDebit;
+    private @Nullable ChargePaymentMethodDetailsSequra sequra;
     private @Nullable ChargePaymentMethodDetailsSofort sofort;
     private @Nullable ChargePaymentMethodDetailsSunbit sunbit;
     private @Nullable ChargePaymentMethodDetailsSwish swish;
@@ -274,6 +276,9 @@ public final class ChargePaymentMethodDetails {
     public Optional<ChargePaymentMethodDetailsSepaDebit> sepaDebit() {
         return Optional.ofNullable(this.sepaDebit);
     }
+    public Optional<ChargePaymentMethodDetailsSequra> sequra() {
+        return Optional.ofNullable(this.sequra);
+    }
     public Optional<ChargePaymentMethodDetailsSofort> sofort() {
         return Optional.ofNullable(this.sofort);
     }
@@ -362,6 +367,7 @@ public final class ChargePaymentMethodDetails {
         private @Nullable ChargePaymentMethodDetailsScalapay scalapay;
         private @Nullable ChargePaymentMethodDetailsSepaCreditTransfer sepaCreditTransfer;
         private @Nullable ChargePaymentMethodDetailsSepaDebit sepaDebit;
+        private @Nullable ChargePaymentMethodDetailsSequra sequra;
         private @Nullable ChargePaymentMethodDetailsSofort sofort;
         private @Nullable ChargePaymentMethodDetailsSunbit sunbit;
         private @Nullable ChargePaymentMethodDetailsSwish swish;
@@ -421,6 +427,7 @@ public final class ChargePaymentMethodDetails {
     	      this.scalapay = defaults.scalapay;
     	      this.sepaCreditTransfer = defaults.sepaCreditTransfer;
     	      this.sepaDebit = defaults.sepaDebit;
+    	      this.sequra = defaults.sequra;
     	      this.sofort = defaults.sofort;
     	      this.sunbit = defaults.sunbit;
     	      this.swish = defaults.swish;
@@ -720,6 +727,12 @@ public final class ChargePaymentMethodDetails {
             return this;
         }
         @CustomType.Setter
+        public Builder sequra(@Nullable ChargePaymentMethodDetailsSequra sequra) {
+
+            this.sequra = sequra;
+            return this;
+        }
+        @CustomType.Setter
         public Builder sofort(@Nullable ChargePaymentMethodDetailsSofort sofort) {
 
             this.sofort = sofort;
@@ -817,6 +830,7 @@ public final class ChargePaymentMethodDetails {
             _resultValue.scalapay = scalapay;
             _resultValue.sepaCreditTransfer = sepaCreditTransfer;
             _resultValue.sepaDebit = sepaDebit;
+            _resultValue.sequra = sequra;
             _resultValue.sofort = sofort;
             _resultValue.sunbit = sunbit;
             _resultValue.swish = swish;

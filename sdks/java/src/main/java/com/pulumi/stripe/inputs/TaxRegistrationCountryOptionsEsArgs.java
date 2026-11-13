@@ -25,14 +25,14 @@ public final class TaxRegistrationCountryOptionsEsArgs extends com.pulumi.resour
     }
 
     /**
-     * Type of registration in an EU country.
+     * Type of registration in ES.
      * 
      */
     @Import(name="type", required=true)
     private Output<String> type;
 
     /**
-     * @return Type of registration in an EU country.
+     * @return Type of registration in ES.
      * 
      */
     public Output<String> type() {
@@ -74,7 +74,7 @@ public final class TaxRegistrationCountryOptionsEsArgs extends com.pulumi.resour
         }
 
         /**
-         * @param type Type of registration in an EU country.
+         * @param type Type of registration in ES.
          * 
          * @return builder
          * 
@@ -85,7 +85,7 @@ public final class TaxRegistrationCountryOptionsEsArgs extends com.pulumi.resour
         }
 
         /**
-         * @param type Type of registration in an EU country.
+         * @param type Type of registration in ES.
          * 
          * @return builder
          * 

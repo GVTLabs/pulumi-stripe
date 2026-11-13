@@ -17,14 +17,14 @@ public final class SubscriptionPaymentSettingsPaymentMethodOptionsPixArgs extend
     public static final SubscriptionPaymentSettingsPaymentMethodOptionsPixArgs Empty = new SubscriptionPaymentSettingsPaymentMethodOptionsPixArgs();
 
     /**
-     * The number of seconds (between 10 and 1209600) after which Pix payment will expire. Defaults to 86400 seconds.
+     * The number of seconds after PaymentIntent confirmation when the Pix expires (between 60 and 1209600, inclusive). If unspecified, defaults to 14400 seconds (4 hours).
      * 
      */
     @Import(name="expiresAfterSeconds")
     private @Nullable Output<Double> expiresAfterSeconds;
 
     /**
-     * @return The number of seconds (between 10 and 1209600) after which Pix payment will expire. Defaults to 86400 seconds.
+     * @return The number of seconds after PaymentIntent confirmation when the Pix expires (between 60 and 1209600, inclusive). If unspecified, defaults to 14400 seconds (4 hours).
      * 
      */
     public Optional<Output<Double>> expiresAfterSeconds() {
@@ -64,7 +64,7 @@ public final class SubscriptionPaymentSettingsPaymentMethodOptionsPixArgs extend
         }
 
         /**
-         * @param expiresAfterSeconds The number of seconds (between 10 and 1209600) after which Pix payment will expire. Defaults to 86400 seconds.
+         * @param expiresAfterSeconds The number of seconds after PaymentIntent confirmation when the Pix expires (between 60 and 1209600, inclusive). If unspecified, defaults to 14400 seconds (4 hours).
          * 
          * @return builder
          * 
@@ -75,7 +75,7 @@ public final class SubscriptionPaymentSettingsPaymentMethodOptionsPixArgs extend
         }
 
         /**
-         * @param expiresAfterSeconds The number of seconds (between 10 and 1209600) after which Pix payment will expire. Defaults to 86400 seconds.
+         * @param expiresAfterSeconds The number of seconds after PaymentIntent confirmation when the Pix expires (between 60 and 1209600, inclusive). If unspecified, defaults to 14400 seconds (4 hours).
          * 
          * @return builder
          * 

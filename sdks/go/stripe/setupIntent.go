@@ -14,6 +14,8 @@ import (
 type SetupIntent struct {
 	pulumi.CustomResourceState
 
+	// The list of payment method types to allow for this SetupIntent. Stripe will only use methods in this list when determining the payment methods to offer.
+	AllowedPaymentMethodTypes pulumi.StringArrayOutput `pulumi:"allowedPaymentMethodTypes"`
 	// ID of the Connect application that created the SetupIntent.
 	Application pulumi.StringOutput `pulumi:"application"`
 	// If present, the SetupIntent's payment method will be attached to the in-context Stripe Account.
@@ -184,6 +186,8 @@ func GetSetupIntent(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering SetupIntent resources.
 type setupIntentState struct {
+	// The list of payment method types to allow for this SetupIntent. Stripe will only use methods in this list when determining the payment methods to offer.
+	AllowedPaymentMethodTypes []string `pulumi:"allowedPaymentMethodTypes"`
 	// ID of the Connect application that created the SetupIntent.
 	Application *string `pulumi:"application"`
 	// If present, the SetupIntent's payment method will be attached to the in-context Stripe Account.
@@ -281,6 +285,8 @@ type setupIntentState struct {
 }
 
 type SetupIntentState struct {
+	// The list of payment method types to allow for this SetupIntent. Stripe will only use methods in this list when determining the payment methods to offer.
+	AllowedPaymentMethodTypes pulumi.StringArrayInput
 	// ID of the Connect application that created the SetupIntent.
 	Application pulumi.StringPtrInput
 	// If present, the SetupIntent's payment method will be attached to the in-context Stripe Account.
@@ -381,7 +387,21 @@ func (SetupIntentState) ElementType() reflect.Type {
 	return reflect.TypeOf((*setupIntentState)(nil)).Elem()
 }
 
+// SetupIntentExists checks whether an existing SetupIntent resource with the given ID exists.
+func SetupIntentExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *SetupIntentState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	ref, err := internal.PkgGetPackageRef(ctx)
+	if err != nil {
+		return pulumi.Bool(false).ToBoolOutput().ApplyT(func(bool) (bool, error) {
+			return false, err
+		}).(pulumi.BoolOutput)
+	}
+	return ctx.ExistsResource("stripe:index/setupIntent:SetupIntent", id, state, ref, opts...)
+}
+
 type setupIntentArgs struct {
+	// The list of payment method types to allow for this SetupIntent. Stripe will only use methods in this list when determining the payment methods to offer.
+	AllowedPaymentMethodTypes []string `pulumi:"allowedPaymentMethodTypes"`
 	// If present, the SetupIntent's payment method will be attached to the in-context Stripe Account.
 	//
 	// It can only be used for this Stripe Account’s own money movement flows like InboundTransfer and OutboundTransfers. It cannot be set to true when setting up a PaymentMethod for a Customer, and defaults to false when attaching a PaymentMethod to a Customer.
@@ -430,8 +450,6 @@ type setupIntentArgs struct {
 	PaymentMethodData *SetupIntentPaymentMethodData `pulumi:"paymentMethodData"`
 	// Payment method-specific configuration for this SetupIntent.
 	PaymentMethodOptions *SetupIntentPaymentMethodOptions `pulumi:"paymentMethodOptions"`
-	// The list of payment method types (e.g. card) that this SetupIntent is allowed to set up. A list of valid payment method types can be found [here](https://docs.stripe.com/api/payment_methods/object#payment_method_object-type).
-	PaymentMethodTypes []string `pulumi:"paymentMethodTypes"`
 	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
 	// The URL to redirect your customer back to after they authenticate or cancel their payment on the payment method's app or site. To redirect to a mobile application, you can alternatively supply an application URI scheme. This parameter can only be used with [`confirm=true`](https://docs.stripe.com/api/setup_intents/create#create_setup_intent-confirm).
 	ReturnUrl *string `pulumi:"returnUrl"`
@@ -451,6 +469,8 @@ type setupIntentArgs struct {
 
 // The set of arguments for constructing a SetupIntent resource.
 type SetupIntentArgs struct {
+	// The list of payment method types to allow for this SetupIntent. Stripe will only use methods in this list when determining the payment methods to offer.
+	AllowedPaymentMethodTypes pulumi.StringArrayInput
 	// If present, the SetupIntent's payment method will be attached to the in-context Stripe Account.
 	//
 	// It can only be used for this Stripe Account’s own money movement flows like InboundTransfer and OutboundTransfers. It cannot be set to true when setting up a PaymentMethod for a Customer, and defaults to false when attaching a PaymentMethod to a Customer.
@@ -499,8 +519,6 @@ type SetupIntentArgs struct {
 	PaymentMethodData SetupIntentPaymentMethodDataPtrInput
 	// Payment method-specific configuration for this SetupIntent.
 	PaymentMethodOptions SetupIntentPaymentMethodOptionsPtrInput
-	// The list of payment method types (e.g. card) that this SetupIntent is allowed to set up. A list of valid payment method types can be found [here](https://docs.stripe.com/api/payment_methods/object#payment_method_object-type).
-	PaymentMethodTypes pulumi.StringArrayInput
 	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
 	// The URL to redirect your customer back to after they authenticate or cancel their payment on the payment method's app or site. To redirect to a mobile application, you can alternatively supply an application URI scheme. This parameter can only be used with [`confirm=true`](https://docs.stripe.com/api/setup_intents/create#create_setup_intent-confirm).
 	ReturnUrl pulumi.StringPtrInput
@@ -553,6 +571,11 @@ func (o SetupIntentOutput) ToSetupIntentOutput() SetupIntentOutput {
 
 func (o SetupIntentOutput) ToSetupIntentOutputWithContext(ctx context.Context) SetupIntentOutput {
 	return o
+}
+
+// The list of payment method types to allow for this SetupIntent. Stripe will only use methods in this list when determining the payment methods to offer.
+func (o SetupIntentOutput) AllowedPaymentMethodTypes() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *SetupIntent) pulumi.StringArrayOutput { return v.AllowedPaymentMethodTypes }).(pulumi.StringArrayOutput)
 }
 
 // ID of the Connect application that created the SetupIntent.

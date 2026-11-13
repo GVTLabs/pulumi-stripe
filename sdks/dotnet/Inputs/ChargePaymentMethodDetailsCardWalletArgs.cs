@@ -18,6 +18,9 @@ namespace Pulumi.Stripe.Inputs
         [Input("dynamicLast4")]
         public Input<string>? DynamicLast4 { get; set; }
 
+        [Input("link")]
+        public Input<Inputs.ChargePaymentMethodDetailsCardWalletLinkArgs>? Link { get; set; }
+
         [Input("masterpass")]
         public Input<Inputs.ChargePaymentMethodDetailsCardWalletMasterpassArgs>? Masterpass { get; set; }
 

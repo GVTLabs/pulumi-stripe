@@ -16,7 +16,7 @@ namespace Pulumi.Stripe.Inputs
         public Input<Inputs.TaxRegistrationCountryOptionsEsStandardGetArgs>? Standard { get; set; }
 
         /// <summary>
-        /// Type of registration in an EU country.
+        /// Type of registration in ES.
         /// </summary>
         [Input("type", required: true)]
         public Input<string> Type { get; set; } = null!;

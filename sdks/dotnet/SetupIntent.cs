@@ -13,6 +13,12 @@ namespace Pulumi.Stripe
     public partial class SetupIntent : global::Pulumi.CustomResource
     {
         /// <summary>
+        /// The list of payment method types to allow for this SetupIntent. Stripe will only use methods in this list when determining the payment methods to offer.
+        /// </summary>
+        [Output("allowedPaymentMethodTypes")]
+        public Output<ImmutableArray<string>> AllowedPaymentMethodTypes { get; private set; } = null!;
+
+        /// <summary>
         /// ID of the Connect application that created the SetupIntent.
         /// </summary>
         [Output("application")]
@@ -302,6 +308,18 @@ namespace Pulumi.Stripe
 
     public sealed class SetupIntentArgs : global::Pulumi.ResourceArgs
     {
+        [Input("allowedPaymentMethodTypes")]
+        private InputList<string>? _allowedPaymentMethodTypes;
+
+        /// <summary>
+        /// The list of payment method types to allow for this SetupIntent. Stripe will only use methods in this list when determining the payment methods to offer.
+        /// </summary>
+        public InputList<string> AllowedPaymentMethodTypes
+        {
+            get => _allowedPaymentMethodTypes ?? (_allowedPaymentMethodTypes = new InputList<string>());
+            set => _allowedPaymentMethodTypes = value;
+        }
+
         /// <summary>
         /// If present, the SetupIntent's payment method will be attached to the in-context Stripe Account.
         /// 
@@ -482,18 +500,6 @@ namespace Pulumi.Stripe
         [Input("paymentMethodOptions")]
         public Input<Inputs.SetupIntentPaymentMethodOptionsArgs>? PaymentMethodOptions { get; set; }
 
-        [Input("paymentMethodTypes")]
-        private InputList<string>? _paymentMethodTypes;
-
-        /// <summary>
-        /// The list of payment method types (e.g. card) that this SetupIntent is allowed to set up. A list of valid payment method types can be found [here](https://docs.stripe.com/api/payment_methods/object#payment_method_object-type).
-        /// </summary>
-        public InputList<string> PaymentMethodTypes
-        {
-            get => _paymentMethodTypes ?? (_paymentMethodTypes = new InputList<string>());
-            set => _paymentMethodTypes = value;
-        }
-
         [Input("returnUrl")]
         private Input<string>? _returnUrl;
 
@@ -563,6 +569,18 @@ namespace Pulumi.Stripe
 
     public sealed class SetupIntentState : global::Pulumi.ResourceArgs
     {
+        [Input("allowedPaymentMethodTypes")]
+        private InputList<string>? _allowedPaymentMethodTypes;
+
+        /// <summary>
+        /// The list of payment method types to allow for this SetupIntent. Stripe will only use methods in this list when determining the payment methods to offer.
+        /// </summary>
+        public InputList<string> AllowedPaymentMethodTypes
+        {
+            get => _allowedPaymentMethodTypes ?? (_allowedPaymentMethodTypes = new InputList<string>());
+            set => _allowedPaymentMethodTypes = value;
+        }
+
         /// <summary>
         /// ID of the Connect application that created the SetupIntent.
         /// </summary>

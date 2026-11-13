@@ -67,6 +67,7 @@ class PaymentMethodConfigurationArgs:
                  payco: pulumi.Input[Optional['PaymentMethodConfigurationPaycoArgs']] = None,
                  paynow: pulumi.Input[Optional['PaymentMethodConfigurationPaynowArgs']] = None,
                  paypal: pulumi.Input[Optional['PaymentMethodConfigurationPaypalArgs']] = None,
+                 paypay: pulumi.Input[Optional['PaymentMethodConfigurationPaypayArgs']] = None,
                  payto: pulumi.Input[Optional['PaymentMethodConfigurationPaytoArgs']] = None,
                  pix: pulumi.Input[Optional['PaymentMethodConfigurationPixArgs']] = None,
                  promptpay: pulumi.Input[Optional['PaymentMethodConfigurationPromptpayArgs']] = None,
@@ -75,6 +76,7 @@ class PaymentMethodConfigurationArgs:
                  satispay: pulumi.Input[Optional['PaymentMethodConfigurationSatispayArgs']] = None,
                  scalapay: pulumi.Input[Optional['PaymentMethodConfigurationScalapayArgs']] = None,
                  sepa_debit: pulumi.Input[Optional['PaymentMethodConfigurationSepaDebitArgs']] = None,
+                 sequra: pulumi.Input[Optional['PaymentMethodConfigurationSequraArgs']] = None,
                  sofort: pulumi.Input[Optional['PaymentMethodConfigurationSofortArgs']] = None,
                  sunbit: pulumi.Input[Optional['PaymentMethodConfigurationSunbitArgs']] = None,
                  swish: pulumi.Input[Optional['PaymentMethodConfigurationSwishArgs']] = None,
@@ -184,6 +186,8 @@ class PaymentMethodConfigurationArgs:
             pulumi.set(__self__, "paynow", paynow)
         if paypal is not None:
             pulumi.set(__self__, "paypal", paypal)
+        if paypay is not None:
+            pulumi.set(__self__, "paypay", paypay)
         if payto is not None:
             pulumi.set(__self__, "payto", payto)
         if pix is not None:
@@ -200,6 +204,8 @@ class PaymentMethodConfigurationArgs:
             pulumi.set(__self__, "scalapay", scalapay)
         if sepa_debit is not None:
             pulumi.set(__self__, "sepa_debit", sepa_debit)
+        if sequra is not None:
+            pulumi.set(__self__, "sequra", sequra)
         if sofort is not None:
             pulumi.set(__self__, "sofort", sofort)
         if sunbit is not None:
@@ -646,6 +652,15 @@ class PaymentMethodConfigurationArgs:
 
     @_builtins.property
     @pulumi.getter
+    def paypay(self) -> pulumi.Input[Optional['PaymentMethodConfigurationPaypayArgs']]:
+        return pulumi.get(self, "paypay")
+
+    @paypay.setter
+    def paypay(self, value: pulumi.Input[Optional['PaymentMethodConfigurationPaypayArgs']]):
+        pulumi.set(self, "paypay", value)
+
+    @_builtins.property
+    @pulumi.getter
     def payto(self) -> pulumi.Input[Optional['PaymentMethodConfigurationPaytoArgs']]:
         return pulumi.get(self, "payto")
 
@@ -715,6 +730,15 @@ class PaymentMethodConfigurationArgs:
     @sepa_debit.setter
     def sepa_debit(self, value: pulumi.Input[Optional['PaymentMethodConfigurationSepaDebitArgs']]):
         pulumi.set(self, "sepa_debit", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def sequra(self) -> pulumi.Input[Optional['PaymentMethodConfigurationSequraArgs']]:
+        return pulumi.get(self, "sequra")
+
+    @sequra.setter
+    def sequra(self, value: pulumi.Input[Optional['PaymentMethodConfigurationSequraArgs']]):
+        pulumi.set(self, "sequra", value)
 
     @_builtins.property
     @pulumi.getter
@@ -842,6 +866,7 @@ class _PaymentMethodConfigurationState:
                  payco: pulumi.Input[Optional['PaymentMethodConfigurationPaycoArgs']] = None,
                  paynow: pulumi.Input[Optional['PaymentMethodConfigurationPaynowArgs']] = None,
                  paypal: pulumi.Input[Optional['PaymentMethodConfigurationPaypalArgs']] = None,
+                 paypay: pulumi.Input[Optional['PaymentMethodConfigurationPaypayArgs']] = None,
                  payto: pulumi.Input[Optional['PaymentMethodConfigurationPaytoArgs']] = None,
                  pix: pulumi.Input[Optional['PaymentMethodConfigurationPixArgs']] = None,
                  promptpay: pulumi.Input[Optional['PaymentMethodConfigurationPromptpayArgs']] = None,
@@ -850,6 +875,7 @@ class _PaymentMethodConfigurationState:
                  satispay: pulumi.Input[Optional['PaymentMethodConfigurationSatispayArgs']] = None,
                  scalapay: pulumi.Input[Optional['PaymentMethodConfigurationScalapayArgs']] = None,
                  sepa_debit: pulumi.Input[Optional['PaymentMethodConfigurationSepaDebitArgs']] = None,
+                 sequra: pulumi.Input[Optional['PaymentMethodConfigurationSequraArgs']] = None,
                  sofort: pulumi.Input[Optional['PaymentMethodConfigurationSofortArgs']] = None,
                  sunbit: pulumi.Input[Optional['PaymentMethodConfigurationSunbitArgs']] = None,
                  swish: pulumi.Input[Optional['PaymentMethodConfigurationSwishArgs']] = None,
@@ -971,6 +997,8 @@ class _PaymentMethodConfigurationState:
             pulumi.set(__self__, "paynow", paynow)
         if paypal is not None:
             pulumi.set(__self__, "paypal", paypal)
+        if paypay is not None:
+            pulumi.set(__self__, "paypay", paypay)
         if payto is not None:
             pulumi.set(__self__, "payto", payto)
         if pix is not None:
@@ -987,6 +1015,8 @@ class _PaymentMethodConfigurationState:
             pulumi.set(__self__, "scalapay", scalapay)
         if sepa_debit is not None:
             pulumi.set(__self__, "sepa_debit", sepa_debit)
+        if sequra is not None:
+            pulumi.set(__self__, "sequra", sequra)
         if sofort is not None:
             pulumi.set(__self__, "sofort", sofort)
         if sunbit is not None:
@@ -1481,6 +1511,15 @@ class _PaymentMethodConfigurationState:
 
     @_builtins.property
     @pulumi.getter
+    def paypay(self) -> pulumi.Input[Optional['PaymentMethodConfigurationPaypayArgs']]:
+        return pulumi.get(self, "paypay")
+
+    @paypay.setter
+    def paypay(self, value: pulumi.Input[Optional['PaymentMethodConfigurationPaypayArgs']]):
+        pulumi.set(self, "paypay", value)
+
+    @_builtins.property
+    @pulumi.getter
     def payto(self) -> pulumi.Input[Optional['PaymentMethodConfigurationPaytoArgs']]:
         return pulumi.get(self, "payto")
 
@@ -1550,6 +1589,15 @@ class _PaymentMethodConfigurationState:
     @sepa_debit.setter
     def sepa_debit(self, value: pulumi.Input[Optional['PaymentMethodConfigurationSepaDebitArgs']]):
         pulumi.set(self, "sepa_debit", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def sequra(self) -> pulumi.Input[Optional['PaymentMethodConfigurationSequraArgs']]:
+        return pulumi.get(self, "sequra")
+
+    @sequra.setter
+    def sequra(self, value: pulumi.Input[Optional['PaymentMethodConfigurationSequraArgs']]):
+        pulumi.set(self, "sequra", value)
 
     @_builtins.property
     @pulumi.getter
@@ -1630,68 +1678,70 @@ class PaymentMethodConfiguration(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 acss_debit: pulumi.Input[Optional[Union['PaymentMethodConfigurationAcssDebitArgs', 'PaymentMethodConfigurationAcssDebitArgsDict']]] = None,
+                 acss_debit: pulumi.Input[Optional[Union['PaymentMethodConfigurationAcssDebitArgs', 'PaymentMethodConfigurationAcssDebitArgsDict', 'outputs.PaymentMethodConfigurationAcssDebit']]] = None,
                  active: pulumi.Input[Optional[_builtins.bool]] = None,
-                 affirm: pulumi.Input[Optional[Union['PaymentMethodConfigurationAffirmArgs', 'PaymentMethodConfigurationAffirmArgsDict']]] = None,
-                 afterpay_clearpay: pulumi.Input[Optional[Union['PaymentMethodConfigurationAfterpayClearpayArgs', 'PaymentMethodConfigurationAfterpayClearpayArgsDict']]] = None,
-                 alipay: pulumi.Input[Optional[Union['PaymentMethodConfigurationAlipayArgs', 'PaymentMethodConfigurationAlipayArgsDict']]] = None,
-                 alma: pulumi.Input[Optional[Union['PaymentMethodConfigurationAlmaArgs', 'PaymentMethodConfigurationAlmaArgsDict']]] = None,
-                 amazon_pay: pulumi.Input[Optional[Union['PaymentMethodConfigurationAmazonPayArgs', 'PaymentMethodConfigurationAmazonPayArgsDict']]] = None,
-                 apple_pay: pulumi.Input[Optional[Union['PaymentMethodConfigurationApplePayArgs', 'PaymentMethodConfigurationApplePayArgsDict']]] = None,
-                 apple_pay_later: pulumi.Input[Optional[Union['PaymentMethodConfigurationApplePayLaterArgs', 'PaymentMethodConfigurationApplePayLaterArgsDict']]] = None,
-                 au_becs_debit: pulumi.Input[Optional[Union['PaymentMethodConfigurationAuBecsDebitArgs', 'PaymentMethodConfigurationAuBecsDebitArgsDict']]] = None,
-                 bacs_debit: pulumi.Input[Optional[Union['PaymentMethodConfigurationBacsDebitArgs', 'PaymentMethodConfigurationBacsDebitArgsDict']]] = None,
-                 bancontact: pulumi.Input[Optional[Union['PaymentMethodConfigurationBancontactArgs', 'PaymentMethodConfigurationBancontactArgsDict']]] = None,
-                 billie: pulumi.Input[Optional[Union['PaymentMethodConfigurationBillieArgs', 'PaymentMethodConfigurationBillieArgsDict']]] = None,
-                 bizum: pulumi.Input[Optional[Union['PaymentMethodConfigurationBizumArgs', 'PaymentMethodConfigurationBizumArgsDict']]] = None,
-                 blik: pulumi.Input[Optional[Union['PaymentMethodConfigurationBlikArgs', 'PaymentMethodConfigurationBlikArgsDict']]] = None,
-                 boleto: pulumi.Input[Optional[Union['PaymentMethodConfigurationBoletoArgs', 'PaymentMethodConfigurationBoletoArgsDict']]] = None,
-                 card: pulumi.Input[Optional[Union['PaymentMethodConfigurationCardArgs', 'PaymentMethodConfigurationCardArgsDict']]] = None,
-                 cartes_bancaires: pulumi.Input[Optional[Union['PaymentMethodConfigurationCartesBancairesArgs', 'PaymentMethodConfigurationCartesBancairesArgsDict']]] = None,
-                 cashapp: pulumi.Input[Optional[Union['PaymentMethodConfigurationCashappArgs', 'PaymentMethodConfigurationCashappArgsDict']]] = None,
-                 crypto: pulumi.Input[Optional[Union['PaymentMethodConfigurationCryptoArgs', 'PaymentMethodConfigurationCryptoArgsDict']]] = None,
-                 customer_balance: pulumi.Input[Optional[Union['PaymentMethodConfigurationCustomerBalanceArgs', 'PaymentMethodConfigurationCustomerBalanceArgsDict']]] = None,
-                 eps: pulumi.Input[Optional[Union['PaymentMethodConfigurationEpsArgs', 'PaymentMethodConfigurationEpsArgsDict']]] = None,
-                 fpx: pulumi.Input[Optional[Union['PaymentMethodConfigurationFpxArgs', 'PaymentMethodConfigurationFpxArgsDict']]] = None,
-                 giropay: pulumi.Input[Optional[Union['PaymentMethodConfigurationGiropayArgs', 'PaymentMethodConfigurationGiropayArgsDict']]] = None,
-                 google_pay: pulumi.Input[Optional[Union['PaymentMethodConfigurationGooglePayArgs', 'PaymentMethodConfigurationGooglePayArgsDict']]] = None,
-                 grabpay: pulumi.Input[Optional[Union['PaymentMethodConfigurationGrabpayArgs', 'PaymentMethodConfigurationGrabpayArgsDict']]] = None,
-                 ideal: pulumi.Input[Optional[Union['PaymentMethodConfigurationIdealArgs', 'PaymentMethodConfigurationIdealArgsDict']]] = None,
-                 jcb: pulumi.Input[Optional[Union['PaymentMethodConfigurationJcbArgs', 'PaymentMethodConfigurationJcbArgsDict']]] = None,
-                 kakao_pay: pulumi.Input[Optional[Union['PaymentMethodConfigurationKakaoPayArgs', 'PaymentMethodConfigurationKakaoPayArgsDict']]] = None,
-                 klarna: pulumi.Input[Optional[Union['PaymentMethodConfigurationKlarnaArgs', 'PaymentMethodConfigurationKlarnaArgsDict']]] = None,
-                 konbini: pulumi.Input[Optional[Union['PaymentMethodConfigurationKonbiniArgs', 'PaymentMethodConfigurationKonbiniArgsDict']]] = None,
-                 kr_card: pulumi.Input[Optional[Union['PaymentMethodConfigurationKrCardArgs', 'PaymentMethodConfigurationKrCardArgsDict']]] = None,
-                 link: pulumi.Input[Optional[Union['PaymentMethodConfigurationLinkArgs', 'PaymentMethodConfigurationLinkArgsDict']]] = None,
-                 mb_way: pulumi.Input[Optional[Union['PaymentMethodConfigurationMbWayArgs', 'PaymentMethodConfigurationMbWayArgsDict']]] = None,
-                 mobilepay: pulumi.Input[Optional[Union['PaymentMethodConfigurationMobilepayArgs', 'PaymentMethodConfigurationMobilepayArgsDict']]] = None,
-                 multibanco: pulumi.Input[Optional[Union['PaymentMethodConfigurationMultibancoArgs', 'PaymentMethodConfigurationMultibancoArgsDict']]] = None,
+                 affirm: pulumi.Input[Optional[Union['PaymentMethodConfigurationAffirmArgs', 'PaymentMethodConfigurationAffirmArgsDict', 'outputs.PaymentMethodConfigurationAffirm']]] = None,
+                 afterpay_clearpay: pulumi.Input[Optional[Union['PaymentMethodConfigurationAfterpayClearpayArgs', 'PaymentMethodConfigurationAfterpayClearpayArgsDict', 'outputs.PaymentMethodConfigurationAfterpayClearpay']]] = None,
+                 alipay: pulumi.Input[Optional[Union['PaymentMethodConfigurationAlipayArgs', 'PaymentMethodConfigurationAlipayArgsDict', 'outputs.PaymentMethodConfigurationAlipay']]] = None,
+                 alma: pulumi.Input[Optional[Union['PaymentMethodConfigurationAlmaArgs', 'PaymentMethodConfigurationAlmaArgsDict', 'outputs.PaymentMethodConfigurationAlma']]] = None,
+                 amazon_pay: pulumi.Input[Optional[Union['PaymentMethodConfigurationAmazonPayArgs', 'PaymentMethodConfigurationAmazonPayArgsDict', 'outputs.PaymentMethodConfigurationAmazonPay']]] = None,
+                 apple_pay: pulumi.Input[Optional[Union['PaymentMethodConfigurationApplePayArgs', 'PaymentMethodConfigurationApplePayArgsDict', 'outputs.PaymentMethodConfigurationApplePay']]] = None,
+                 apple_pay_later: pulumi.Input[Optional[Union['PaymentMethodConfigurationApplePayLaterArgs', 'PaymentMethodConfigurationApplePayLaterArgsDict', 'outputs.PaymentMethodConfigurationApplePayLater']]] = None,
+                 au_becs_debit: pulumi.Input[Optional[Union['PaymentMethodConfigurationAuBecsDebitArgs', 'PaymentMethodConfigurationAuBecsDebitArgsDict', 'outputs.PaymentMethodConfigurationAuBecsDebit']]] = None,
+                 bacs_debit: pulumi.Input[Optional[Union['PaymentMethodConfigurationBacsDebitArgs', 'PaymentMethodConfigurationBacsDebitArgsDict', 'outputs.PaymentMethodConfigurationBacsDebit']]] = None,
+                 bancontact: pulumi.Input[Optional[Union['PaymentMethodConfigurationBancontactArgs', 'PaymentMethodConfigurationBancontactArgsDict', 'outputs.PaymentMethodConfigurationBancontact']]] = None,
+                 billie: pulumi.Input[Optional[Union['PaymentMethodConfigurationBillieArgs', 'PaymentMethodConfigurationBillieArgsDict', 'outputs.PaymentMethodConfigurationBillie']]] = None,
+                 bizum: pulumi.Input[Optional[Union['PaymentMethodConfigurationBizumArgs', 'PaymentMethodConfigurationBizumArgsDict', 'outputs.PaymentMethodConfigurationBizum']]] = None,
+                 blik: pulumi.Input[Optional[Union['PaymentMethodConfigurationBlikArgs', 'PaymentMethodConfigurationBlikArgsDict', 'outputs.PaymentMethodConfigurationBlik']]] = None,
+                 boleto: pulumi.Input[Optional[Union['PaymentMethodConfigurationBoletoArgs', 'PaymentMethodConfigurationBoletoArgsDict', 'outputs.PaymentMethodConfigurationBoleto']]] = None,
+                 card: pulumi.Input[Optional[Union['PaymentMethodConfigurationCardArgs', 'PaymentMethodConfigurationCardArgsDict', 'outputs.PaymentMethodConfigurationCard']]] = None,
+                 cartes_bancaires: pulumi.Input[Optional[Union['PaymentMethodConfigurationCartesBancairesArgs', 'PaymentMethodConfigurationCartesBancairesArgsDict', 'outputs.PaymentMethodConfigurationCartesBancaires']]] = None,
+                 cashapp: pulumi.Input[Optional[Union['PaymentMethodConfigurationCashappArgs', 'PaymentMethodConfigurationCashappArgsDict', 'outputs.PaymentMethodConfigurationCashapp']]] = None,
+                 crypto: pulumi.Input[Optional[Union['PaymentMethodConfigurationCryptoArgs', 'PaymentMethodConfigurationCryptoArgsDict', 'outputs.PaymentMethodConfigurationCrypto']]] = None,
+                 customer_balance: pulumi.Input[Optional[Union['PaymentMethodConfigurationCustomerBalanceArgs', 'PaymentMethodConfigurationCustomerBalanceArgsDict', 'outputs.PaymentMethodConfigurationCustomerBalance']]] = None,
+                 eps: pulumi.Input[Optional[Union['PaymentMethodConfigurationEpsArgs', 'PaymentMethodConfigurationEpsArgsDict', 'outputs.PaymentMethodConfigurationEps']]] = None,
+                 fpx: pulumi.Input[Optional[Union['PaymentMethodConfigurationFpxArgs', 'PaymentMethodConfigurationFpxArgsDict', 'outputs.PaymentMethodConfigurationFpx']]] = None,
+                 giropay: pulumi.Input[Optional[Union['PaymentMethodConfigurationGiropayArgs', 'PaymentMethodConfigurationGiropayArgsDict', 'outputs.PaymentMethodConfigurationGiropay']]] = None,
+                 google_pay: pulumi.Input[Optional[Union['PaymentMethodConfigurationGooglePayArgs', 'PaymentMethodConfigurationGooglePayArgsDict', 'outputs.PaymentMethodConfigurationGooglePay']]] = None,
+                 grabpay: pulumi.Input[Optional[Union['PaymentMethodConfigurationGrabpayArgs', 'PaymentMethodConfigurationGrabpayArgsDict', 'outputs.PaymentMethodConfigurationGrabpay']]] = None,
+                 ideal: pulumi.Input[Optional[Union['PaymentMethodConfigurationIdealArgs', 'PaymentMethodConfigurationIdealArgsDict', 'outputs.PaymentMethodConfigurationIdeal']]] = None,
+                 jcb: pulumi.Input[Optional[Union['PaymentMethodConfigurationJcbArgs', 'PaymentMethodConfigurationJcbArgsDict', 'outputs.PaymentMethodConfigurationJcb']]] = None,
+                 kakao_pay: pulumi.Input[Optional[Union['PaymentMethodConfigurationKakaoPayArgs', 'PaymentMethodConfigurationKakaoPayArgsDict', 'outputs.PaymentMethodConfigurationKakaoPay']]] = None,
+                 klarna: pulumi.Input[Optional[Union['PaymentMethodConfigurationKlarnaArgs', 'PaymentMethodConfigurationKlarnaArgsDict', 'outputs.PaymentMethodConfigurationKlarna']]] = None,
+                 konbini: pulumi.Input[Optional[Union['PaymentMethodConfigurationKonbiniArgs', 'PaymentMethodConfigurationKonbiniArgsDict', 'outputs.PaymentMethodConfigurationKonbini']]] = None,
+                 kr_card: pulumi.Input[Optional[Union['PaymentMethodConfigurationKrCardArgs', 'PaymentMethodConfigurationKrCardArgsDict', 'outputs.PaymentMethodConfigurationKrCard']]] = None,
+                 link: pulumi.Input[Optional[Union['PaymentMethodConfigurationLinkArgs', 'PaymentMethodConfigurationLinkArgsDict', 'outputs.PaymentMethodConfigurationLink']]] = None,
+                 mb_way: pulumi.Input[Optional[Union['PaymentMethodConfigurationMbWayArgs', 'PaymentMethodConfigurationMbWayArgsDict', 'outputs.PaymentMethodConfigurationMbWay']]] = None,
+                 mobilepay: pulumi.Input[Optional[Union['PaymentMethodConfigurationMobilepayArgs', 'PaymentMethodConfigurationMobilepayArgsDict', 'outputs.PaymentMethodConfigurationMobilepay']]] = None,
+                 multibanco: pulumi.Input[Optional[Union['PaymentMethodConfigurationMultibancoArgs', 'PaymentMethodConfigurationMultibancoArgsDict', 'outputs.PaymentMethodConfigurationMultibanco']]] = None,
                  name: pulumi.Input[Optional[_builtins.str]] = None,
-                 naver_pay: pulumi.Input[Optional[Union['PaymentMethodConfigurationNaverPayArgs', 'PaymentMethodConfigurationNaverPayArgsDict']]] = None,
-                 nz_bank_account: pulumi.Input[Optional[Union['PaymentMethodConfigurationNzBankAccountArgs', 'PaymentMethodConfigurationNzBankAccountArgsDict']]] = None,
-                 oxxo: pulumi.Input[Optional[Union['PaymentMethodConfigurationOxxoArgs', 'PaymentMethodConfigurationOxxoArgsDict']]] = None,
-                 p24: pulumi.Input[Optional[Union['PaymentMethodConfigurationP24Args', 'PaymentMethodConfigurationP24ArgsDict']]] = None,
+                 naver_pay: pulumi.Input[Optional[Union['PaymentMethodConfigurationNaverPayArgs', 'PaymentMethodConfigurationNaverPayArgsDict', 'outputs.PaymentMethodConfigurationNaverPay']]] = None,
+                 nz_bank_account: pulumi.Input[Optional[Union['PaymentMethodConfigurationNzBankAccountArgs', 'PaymentMethodConfigurationNzBankAccountArgsDict', 'outputs.PaymentMethodConfigurationNzBankAccount']]] = None,
+                 oxxo: pulumi.Input[Optional[Union['PaymentMethodConfigurationOxxoArgs', 'PaymentMethodConfigurationOxxoArgsDict', 'outputs.PaymentMethodConfigurationOxxo']]] = None,
+                 p24: pulumi.Input[Optional[Union['PaymentMethodConfigurationP24Args', 'PaymentMethodConfigurationP24ArgsDict', 'outputs.PaymentMethodConfigurationP24']]] = None,
                  parent: pulumi.Input[Optional[_builtins.str]] = None,
-                 pay_by_bank: pulumi.Input[Optional[Union['PaymentMethodConfigurationPayByBankArgs', 'PaymentMethodConfigurationPayByBankArgsDict']]] = None,
-                 payco: pulumi.Input[Optional[Union['PaymentMethodConfigurationPaycoArgs', 'PaymentMethodConfigurationPaycoArgsDict']]] = None,
-                 paynow: pulumi.Input[Optional[Union['PaymentMethodConfigurationPaynowArgs', 'PaymentMethodConfigurationPaynowArgsDict']]] = None,
-                 paypal: pulumi.Input[Optional[Union['PaymentMethodConfigurationPaypalArgs', 'PaymentMethodConfigurationPaypalArgsDict']]] = None,
-                 payto: pulumi.Input[Optional[Union['PaymentMethodConfigurationPaytoArgs', 'PaymentMethodConfigurationPaytoArgsDict']]] = None,
-                 pix: pulumi.Input[Optional[Union['PaymentMethodConfigurationPixArgs', 'PaymentMethodConfigurationPixArgsDict']]] = None,
-                 promptpay: pulumi.Input[Optional[Union['PaymentMethodConfigurationPromptpayArgs', 'PaymentMethodConfigurationPromptpayArgsDict']]] = None,
-                 revolut_pay: pulumi.Input[Optional[Union['PaymentMethodConfigurationRevolutPayArgs', 'PaymentMethodConfigurationRevolutPayArgsDict']]] = None,
-                 samsung_pay: pulumi.Input[Optional[Union['PaymentMethodConfigurationSamsungPayArgs', 'PaymentMethodConfigurationSamsungPayArgsDict']]] = None,
-                 satispay: pulumi.Input[Optional[Union['PaymentMethodConfigurationSatispayArgs', 'PaymentMethodConfigurationSatispayArgsDict']]] = None,
-                 scalapay: pulumi.Input[Optional[Union['PaymentMethodConfigurationScalapayArgs', 'PaymentMethodConfigurationScalapayArgsDict']]] = None,
-                 sepa_debit: pulumi.Input[Optional[Union['PaymentMethodConfigurationSepaDebitArgs', 'PaymentMethodConfigurationSepaDebitArgsDict']]] = None,
-                 sofort: pulumi.Input[Optional[Union['PaymentMethodConfigurationSofortArgs', 'PaymentMethodConfigurationSofortArgsDict']]] = None,
-                 sunbit: pulumi.Input[Optional[Union['PaymentMethodConfigurationSunbitArgs', 'PaymentMethodConfigurationSunbitArgsDict']]] = None,
-                 swish: pulumi.Input[Optional[Union['PaymentMethodConfigurationSwishArgs', 'PaymentMethodConfigurationSwishArgsDict']]] = None,
-                 twint: pulumi.Input[Optional[Union['PaymentMethodConfigurationTwintArgs', 'PaymentMethodConfigurationTwintArgsDict']]] = None,
-                 upi: pulumi.Input[Optional[Union['PaymentMethodConfigurationUpiArgs', 'PaymentMethodConfigurationUpiArgsDict']]] = None,
-                 us_bank_account: pulumi.Input[Optional[Union['PaymentMethodConfigurationUsBankAccountArgs', 'PaymentMethodConfigurationUsBankAccountArgsDict']]] = None,
-                 wechat_pay: pulumi.Input[Optional[Union['PaymentMethodConfigurationWechatPayArgs', 'PaymentMethodConfigurationWechatPayArgsDict']]] = None,
-                 zip: pulumi.Input[Optional[Union['PaymentMethodConfigurationZipArgs', 'PaymentMethodConfigurationZipArgsDict']]] = None,
+                 pay_by_bank: pulumi.Input[Optional[Union['PaymentMethodConfigurationPayByBankArgs', 'PaymentMethodConfigurationPayByBankArgsDict', 'outputs.PaymentMethodConfigurationPayByBank']]] = None,
+                 payco: pulumi.Input[Optional[Union['PaymentMethodConfigurationPaycoArgs', 'PaymentMethodConfigurationPaycoArgsDict', 'outputs.PaymentMethodConfigurationPayco']]] = None,
+                 paynow: pulumi.Input[Optional[Union['PaymentMethodConfigurationPaynowArgs', 'PaymentMethodConfigurationPaynowArgsDict', 'outputs.PaymentMethodConfigurationPaynow']]] = None,
+                 paypal: pulumi.Input[Optional[Union['PaymentMethodConfigurationPaypalArgs', 'PaymentMethodConfigurationPaypalArgsDict', 'outputs.PaymentMethodConfigurationPaypal']]] = None,
+                 paypay: pulumi.Input[Optional[Union['PaymentMethodConfigurationPaypayArgs', 'PaymentMethodConfigurationPaypayArgsDict', 'outputs.PaymentMethodConfigurationPaypay']]] = None,
+                 payto: pulumi.Input[Optional[Union['PaymentMethodConfigurationPaytoArgs', 'PaymentMethodConfigurationPaytoArgsDict', 'outputs.PaymentMethodConfigurationPayto']]] = None,
+                 pix: pulumi.Input[Optional[Union['PaymentMethodConfigurationPixArgs', 'PaymentMethodConfigurationPixArgsDict', 'outputs.PaymentMethodConfigurationPix']]] = None,
+                 promptpay: pulumi.Input[Optional[Union['PaymentMethodConfigurationPromptpayArgs', 'PaymentMethodConfigurationPromptpayArgsDict', 'outputs.PaymentMethodConfigurationPromptpay']]] = None,
+                 revolut_pay: pulumi.Input[Optional[Union['PaymentMethodConfigurationRevolutPayArgs', 'PaymentMethodConfigurationRevolutPayArgsDict', 'outputs.PaymentMethodConfigurationRevolutPay']]] = None,
+                 samsung_pay: pulumi.Input[Optional[Union['PaymentMethodConfigurationSamsungPayArgs', 'PaymentMethodConfigurationSamsungPayArgsDict', 'outputs.PaymentMethodConfigurationSamsungPay']]] = None,
+                 satispay: pulumi.Input[Optional[Union['PaymentMethodConfigurationSatispayArgs', 'PaymentMethodConfigurationSatispayArgsDict', 'outputs.PaymentMethodConfigurationSatispay']]] = None,
+                 scalapay: pulumi.Input[Optional[Union['PaymentMethodConfigurationScalapayArgs', 'PaymentMethodConfigurationScalapayArgsDict', 'outputs.PaymentMethodConfigurationScalapay']]] = None,
+                 sepa_debit: pulumi.Input[Optional[Union['PaymentMethodConfigurationSepaDebitArgs', 'PaymentMethodConfigurationSepaDebitArgsDict', 'outputs.PaymentMethodConfigurationSepaDebit']]] = None,
+                 sequra: pulumi.Input[Optional[Union['PaymentMethodConfigurationSequraArgs', 'PaymentMethodConfigurationSequraArgsDict', 'outputs.PaymentMethodConfigurationSequra']]] = None,
+                 sofort: pulumi.Input[Optional[Union['PaymentMethodConfigurationSofortArgs', 'PaymentMethodConfigurationSofortArgsDict', 'outputs.PaymentMethodConfigurationSofort']]] = None,
+                 sunbit: pulumi.Input[Optional[Union['PaymentMethodConfigurationSunbitArgs', 'PaymentMethodConfigurationSunbitArgsDict', 'outputs.PaymentMethodConfigurationSunbit']]] = None,
+                 swish: pulumi.Input[Optional[Union['PaymentMethodConfigurationSwishArgs', 'PaymentMethodConfigurationSwishArgsDict', 'outputs.PaymentMethodConfigurationSwish']]] = None,
+                 twint: pulumi.Input[Optional[Union['PaymentMethodConfigurationTwintArgs', 'PaymentMethodConfigurationTwintArgsDict', 'outputs.PaymentMethodConfigurationTwint']]] = None,
+                 upi: pulumi.Input[Optional[Union['PaymentMethodConfigurationUpiArgs', 'PaymentMethodConfigurationUpiArgsDict', 'outputs.PaymentMethodConfigurationUpi']]] = None,
+                 us_bank_account: pulumi.Input[Optional[Union['PaymentMethodConfigurationUsBankAccountArgs', 'PaymentMethodConfigurationUsBankAccountArgsDict', 'outputs.PaymentMethodConfigurationUsBankAccount']]] = None,
+                 wechat_pay: pulumi.Input[Optional[Union['PaymentMethodConfigurationWechatPayArgs', 'PaymentMethodConfigurationWechatPayArgsDict', 'outputs.PaymentMethodConfigurationWechatPay']]] = None,
+                 zip: pulumi.Input[Optional[Union['PaymentMethodConfigurationZipArgs', 'PaymentMethodConfigurationZipArgsDict', 'outputs.PaymentMethodConfigurationZip']]] = None,
                  __props__=None):
         """
         Create a PaymentMethodConfiguration resource with the given unique name, props, and options.
@@ -1699,7 +1749,7 @@ class PaymentMethodConfiguration(pulumi.CustomResource):
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.bool] active: Whether the configuration can be used for new payments.
-        :param pulumi.Input[Union['PaymentMethodConfigurationApplePayLaterArgs', 'PaymentMethodConfigurationApplePayLaterArgsDict']] apple_pay_later: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        :param pulumi.Input[Union['PaymentMethodConfigurationApplePayLaterArgs', 'PaymentMethodConfigurationApplePayLaterArgsDict', 'outputs.PaymentMethodConfigurationApplePayLater']] apple_pay_later: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
                Apple Pay Later, a payment method for customers to buy now and pay later, gives your customers a way to split purchases into four installments across six weeks.
         :param pulumi.Input[_builtins.str] name: The configuration's name.
         :param pulumi.Input[_builtins.str] parent: For child configs, the configuration's parent configuration.
@@ -1728,68 +1778,70 @@ class PaymentMethodConfiguration(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 acss_debit: pulumi.Input[Optional[Union['PaymentMethodConfigurationAcssDebitArgs', 'PaymentMethodConfigurationAcssDebitArgsDict']]] = None,
+                 acss_debit: pulumi.Input[Optional[Union['PaymentMethodConfigurationAcssDebitArgs', 'PaymentMethodConfigurationAcssDebitArgsDict', 'outputs.PaymentMethodConfigurationAcssDebit']]] = None,
                  active: pulumi.Input[Optional[_builtins.bool]] = None,
-                 affirm: pulumi.Input[Optional[Union['PaymentMethodConfigurationAffirmArgs', 'PaymentMethodConfigurationAffirmArgsDict']]] = None,
-                 afterpay_clearpay: pulumi.Input[Optional[Union['PaymentMethodConfigurationAfterpayClearpayArgs', 'PaymentMethodConfigurationAfterpayClearpayArgsDict']]] = None,
-                 alipay: pulumi.Input[Optional[Union['PaymentMethodConfigurationAlipayArgs', 'PaymentMethodConfigurationAlipayArgsDict']]] = None,
-                 alma: pulumi.Input[Optional[Union['PaymentMethodConfigurationAlmaArgs', 'PaymentMethodConfigurationAlmaArgsDict']]] = None,
-                 amazon_pay: pulumi.Input[Optional[Union['PaymentMethodConfigurationAmazonPayArgs', 'PaymentMethodConfigurationAmazonPayArgsDict']]] = None,
-                 apple_pay: pulumi.Input[Optional[Union['PaymentMethodConfigurationApplePayArgs', 'PaymentMethodConfigurationApplePayArgsDict']]] = None,
-                 apple_pay_later: pulumi.Input[Optional[Union['PaymentMethodConfigurationApplePayLaterArgs', 'PaymentMethodConfigurationApplePayLaterArgsDict']]] = None,
-                 au_becs_debit: pulumi.Input[Optional[Union['PaymentMethodConfigurationAuBecsDebitArgs', 'PaymentMethodConfigurationAuBecsDebitArgsDict']]] = None,
-                 bacs_debit: pulumi.Input[Optional[Union['PaymentMethodConfigurationBacsDebitArgs', 'PaymentMethodConfigurationBacsDebitArgsDict']]] = None,
-                 bancontact: pulumi.Input[Optional[Union['PaymentMethodConfigurationBancontactArgs', 'PaymentMethodConfigurationBancontactArgsDict']]] = None,
-                 billie: pulumi.Input[Optional[Union['PaymentMethodConfigurationBillieArgs', 'PaymentMethodConfigurationBillieArgsDict']]] = None,
-                 bizum: pulumi.Input[Optional[Union['PaymentMethodConfigurationBizumArgs', 'PaymentMethodConfigurationBizumArgsDict']]] = None,
-                 blik: pulumi.Input[Optional[Union['PaymentMethodConfigurationBlikArgs', 'PaymentMethodConfigurationBlikArgsDict']]] = None,
-                 boleto: pulumi.Input[Optional[Union['PaymentMethodConfigurationBoletoArgs', 'PaymentMethodConfigurationBoletoArgsDict']]] = None,
-                 card: pulumi.Input[Optional[Union['PaymentMethodConfigurationCardArgs', 'PaymentMethodConfigurationCardArgsDict']]] = None,
-                 cartes_bancaires: pulumi.Input[Optional[Union['PaymentMethodConfigurationCartesBancairesArgs', 'PaymentMethodConfigurationCartesBancairesArgsDict']]] = None,
-                 cashapp: pulumi.Input[Optional[Union['PaymentMethodConfigurationCashappArgs', 'PaymentMethodConfigurationCashappArgsDict']]] = None,
-                 crypto: pulumi.Input[Optional[Union['PaymentMethodConfigurationCryptoArgs', 'PaymentMethodConfigurationCryptoArgsDict']]] = None,
-                 customer_balance: pulumi.Input[Optional[Union['PaymentMethodConfigurationCustomerBalanceArgs', 'PaymentMethodConfigurationCustomerBalanceArgsDict']]] = None,
-                 eps: pulumi.Input[Optional[Union['PaymentMethodConfigurationEpsArgs', 'PaymentMethodConfigurationEpsArgsDict']]] = None,
-                 fpx: pulumi.Input[Optional[Union['PaymentMethodConfigurationFpxArgs', 'PaymentMethodConfigurationFpxArgsDict']]] = None,
-                 giropay: pulumi.Input[Optional[Union['PaymentMethodConfigurationGiropayArgs', 'PaymentMethodConfigurationGiropayArgsDict']]] = None,
-                 google_pay: pulumi.Input[Optional[Union['PaymentMethodConfigurationGooglePayArgs', 'PaymentMethodConfigurationGooglePayArgsDict']]] = None,
-                 grabpay: pulumi.Input[Optional[Union['PaymentMethodConfigurationGrabpayArgs', 'PaymentMethodConfigurationGrabpayArgsDict']]] = None,
-                 ideal: pulumi.Input[Optional[Union['PaymentMethodConfigurationIdealArgs', 'PaymentMethodConfigurationIdealArgsDict']]] = None,
-                 jcb: pulumi.Input[Optional[Union['PaymentMethodConfigurationJcbArgs', 'PaymentMethodConfigurationJcbArgsDict']]] = None,
-                 kakao_pay: pulumi.Input[Optional[Union['PaymentMethodConfigurationKakaoPayArgs', 'PaymentMethodConfigurationKakaoPayArgsDict']]] = None,
-                 klarna: pulumi.Input[Optional[Union['PaymentMethodConfigurationKlarnaArgs', 'PaymentMethodConfigurationKlarnaArgsDict']]] = None,
-                 konbini: pulumi.Input[Optional[Union['PaymentMethodConfigurationKonbiniArgs', 'PaymentMethodConfigurationKonbiniArgsDict']]] = None,
-                 kr_card: pulumi.Input[Optional[Union['PaymentMethodConfigurationKrCardArgs', 'PaymentMethodConfigurationKrCardArgsDict']]] = None,
-                 link: pulumi.Input[Optional[Union['PaymentMethodConfigurationLinkArgs', 'PaymentMethodConfigurationLinkArgsDict']]] = None,
-                 mb_way: pulumi.Input[Optional[Union['PaymentMethodConfigurationMbWayArgs', 'PaymentMethodConfigurationMbWayArgsDict']]] = None,
-                 mobilepay: pulumi.Input[Optional[Union['PaymentMethodConfigurationMobilepayArgs', 'PaymentMethodConfigurationMobilepayArgsDict']]] = None,
-                 multibanco: pulumi.Input[Optional[Union['PaymentMethodConfigurationMultibancoArgs', 'PaymentMethodConfigurationMultibancoArgsDict']]] = None,
+                 affirm: pulumi.Input[Optional[Union['PaymentMethodConfigurationAffirmArgs', 'PaymentMethodConfigurationAffirmArgsDict', 'outputs.PaymentMethodConfigurationAffirm']]] = None,
+                 afterpay_clearpay: pulumi.Input[Optional[Union['PaymentMethodConfigurationAfterpayClearpayArgs', 'PaymentMethodConfigurationAfterpayClearpayArgsDict', 'outputs.PaymentMethodConfigurationAfterpayClearpay']]] = None,
+                 alipay: pulumi.Input[Optional[Union['PaymentMethodConfigurationAlipayArgs', 'PaymentMethodConfigurationAlipayArgsDict', 'outputs.PaymentMethodConfigurationAlipay']]] = None,
+                 alma: pulumi.Input[Optional[Union['PaymentMethodConfigurationAlmaArgs', 'PaymentMethodConfigurationAlmaArgsDict', 'outputs.PaymentMethodConfigurationAlma']]] = None,
+                 amazon_pay: pulumi.Input[Optional[Union['PaymentMethodConfigurationAmazonPayArgs', 'PaymentMethodConfigurationAmazonPayArgsDict', 'outputs.PaymentMethodConfigurationAmazonPay']]] = None,
+                 apple_pay: pulumi.Input[Optional[Union['PaymentMethodConfigurationApplePayArgs', 'PaymentMethodConfigurationApplePayArgsDict', 'outputs.PaymentMethodConfigurationApplePay']]] = None,
+                 apple_pay_later: pulumi.Input[Optional[Union['PaymentMethodConfigurationApplePayLaterArgs', 'PaymentMethodConfigurationApplePayLaterArgsDict', 'outputs.PaymentMethodConfigurationApplePayLater']]] = None,
+                 au_becs_debit: pulumi.Input[Optional[Union['PaymentMethodConfigurationAuBecsDebitArgs', 'PaymentMethodConfigurationAuBecsDebitArgsDict', 'outputs.PaymentMethodConfigurationAuBecsDebit']]] = None,
+                 bacs_debit: pulumi.Input[Optional[Union['PaymentMethodConfigurationBacsDebitArgs', 'PaymentMethodConfigurationBacsDebitArgsDict', 'outputs.PaymentMethodConfigurationBacsDebit']]] = None,
+                 bancontact: pulumi.Input[Optional[Union['PaymentMethodConfigurationBancontactArgs', 'PaymentMethodConfigurationBancontactArgsDict', 'outputs.PaymentMethodConfigurationBancontact']]] = None,
+                 billie: pulumi.Input[Optional[Union['PaymentMethodConfigurationBillieArgs', 'PaymentMethodConfigurationBillieArgsDict', 'outputs.PaymentMethodConfigurationBillie']]] = None,
+                 bizum: pulumi.Input[Optional[Union['PaymentMethodConfigurationBizumArgs', 'PaymentMethodConfigurationBizumArgsDict', 'outputs.PaymentMethodConfigurationBizum']]] = None,
+                 blik: pulumi.Input[Optional[Union['PaymentMethodConfigurationBlikArgs', 'PaymentMethodConfigurationBlikArgsDict', 'outputs.PaymentMethodConfigurationBlik']]] = None,
+                 boleto: pulumi.Input[Optional[Union['PaymentMethodConfigurationBoletoArgs', 'PaymentMethodConfigurationBoletoArgsDict', 'outputs.PaymentMethodConfigurationBoleto']]] = None,
+                 card: pulumi.Input[Optional[Union['PaymentMethodConfigurationCardArgs', 'PaymentMethodConfigurationCardArgsDict', 'outputs.PaymentMethodConfigurationCard']]] = None,
+                 cartes_bancaires: pulumi.Input[Optional[Union['PaymentMethodConfigurationCartesBancairesArgs', 'PaymentMethodConfigurationCartesBancairesArgsDict', 'outputs.PaymentMethodConfigurationCartesBancaires']]] = None,
+                 cashapp: pulumi.Input[Optional[Union['PaymentMethodConfigurationCashappArgs', 'PaymentMethodConfigurationCashappArgsDict', 'outputs.PaymentMethodConfigurationCashapp']]] = None,
+                 crypto: pulumi.Input[Optional[Union['PaymentMethodConfigurationCryptoArgs', 'PaymentMethodConfigurationCryptoArgsDict', 'outputs.PaymentMethodConfigurationCrypto']]] = None,
+                 customer_balance: pulumi.Input[Optional[Union['PaymentMethodConfigurationCustomerBalanceArgs', 'PaymentMethodConfigurationCustomerBalanceArgsDict', 'outputs.PaymentMethodConfigurationCustomerBalance']]] = None,
+                 eps: pulumi.Input[Optional[Union['PaymentMethodConfigurationEpsArgs', 'PaymentMethodConfigurationEpsArgsDict', 'outputs.PaymentMethodConfigurationEps']]] = None,
+                 fpx: pulumi.Input[Optional[Union['PaymentMethodConfigurationFpxArgs', 'PaymentMethodConfigurationFpxArgsDict', 'outputs.PaymentMethodConfigurationFpx']]] = None,
+                 giropay: pulumi.Input[Optional[Union['PaymentMethodConfigurationGiropayArgs', 'PaymentMethodConfigurationGiropayArgsDict', 'outputs.PaymentMethodConfigurationGiropay']]] = None,
+                 google_pay: pulumi.Input[Optional[Union['PaymentMethodConfigurationGooglePayArgs', 'PaymentMethodConfigurationGooglePayArgsDict', 'outputs.PaymentMethodConfigurationGooglePay']]] = None,
+                 grabpay: pulumi.Input[Optional[Union['PaymentMethodConfigurationGrabpayArgs', 'PaymentMethodConfigurationGrabpayArgsDict', 'outputs.PaymentMethodConfigurationGrabpay']]] = None,
+                 ideal: pulumi.Input[Optional[Union['PaymentMethodConfigurationIdealArgs', 'PaymentMethodConfigurationIdealArgsDict', 'outputs.PaymentMethodConfigurationIdeal']]] = None,
+                 jcb: pulumi.Input[Optional[Union['PaymentMethodConfigurationJcbArgs', 'PaymentMethodConfigurationJcbArgsDict', 'outputs.PaymentMethodConfigurationJcb']]] = None,
+                 kakao_pay: pulumi.Input[Optional[Union['PaymentMethodConfigurationKakaoPayArgs', 'PaymentMethodConfigurationKakaoPayArgsDict', 'outputs.PaymentMethodConfigurationKakaoPay']]] = None,
+                 klarna: pulumi.Input[Optional[Union['PaymentMethodConfigurationKlarnaArgs', 'PaymentMethodConfigurationKlarnaArgsDict', 'outputs.PaymentMethodConfigurationKlarna']]] = None,
+                 konbini: pulumi.Input[Optional[Union['PaymentMethodConfigurationKonbiniArgs', 'PaymentMethodConfigurationKonbiniArgsDict', 'outputs.PaymentMethodConfigurationKonbini']]] = None,
+                 kr_card: pulumi.Input[Optional[Union['PaymentMethodConfigurationKrCardArgs', 'PaymentMethodConfigurationKrCardArgsDict', 'outputs.PaymentMethodConfigurationKrCard']]] = None,
+                 link: pulumi.Input[Optional[Union['PaymentMethodConfigurationLinkArgs', 'PaymentMethodConfigurationLinkArgsDict', 'outputs.PaymentMethodConfigurationLink']]] = None,
+                 mb_way: pulumi.Input[Optional[Union['PaymentMethodConfigurationMbWayArgs', 'PaymentMethodConfigurationMbWayArgsDict', 'outputs.PaymentMethodConfigurationMbWay']]] = None,
+                 mobilepay: pulumi.Input[Optional[Union['PaymentMethodConfigurationMobilepayArgs', 'PaymentMethodConfigurationMobilepayArgsDict', 'outputs.PaymentMethodConfigurationMobilepay']]] = None,
+                 multibanco: pulumi.Input[Optional[Union['PaymentMethodConfigurationMultibancoArgs', 'PaymentMethodConfigurationMultibancoArgsDict', 'outputs.PaymentMethodConfigurationMultibanco']]] = None,
                  name: pulumi.Input[Optional[_builtins.str]] = None,
-                 naver_pay: pulumi.Input[Optional[Union['PaymentMethodConfigurationNaverPayArgs', 'PaymentMethodConfigurationNaverPayArgsDict']]] = None,
-                 nz_bank_account: pulumi.Input[Optional[Union['PaymentMethodConfigurationNzBankAccountArgs', 'PaymentMethodConfigurationNzBankAccountArgsDict']]] = None,
-                 oxxo: pulumi.Input[Optional[Union['PaymentMethodConfigurationOxxoArgs', 'PaymentMethodConfigurationOxxoArgsDict']]] = None,
-                 p24: pulumi.Input[Optional[Union['PaymentMethodConfigurationP24Args', 'PaymentMethodConfigurationP24ArgsDict']]] = None,
+                 naver_pay: pulumi.Input[Optional[Union['PaymentMethodConfigurationNaverPayArgs', 'PaymentMethodConfigurationNaverPayArgsDict', 'outputs.PaymentMethodConfigurationNaverPay']]] = None,
+                 nz_bank_account: pulumi.Input[Optional[Union['PaymentMethodConfigurationNzBankAccountArgs', 'PaymentMethodConfigurationNzBankAccountArgsDict', 'outputs.PaymentMethodConfigurationNzBankAccount']]] = None,
+                 oxxo: pulumi.Input[Optional[Union['PaymentMethodConfigurationOxxoArgs', 'PaymentMethodConfigurationOxxoArgsDict', 'outputs.PaymentMethodConfigurationOxxo']]] = None,
+                 p24: pulumi.Input[Optional[Union['PaymentMethodConfigurationP24Args', 'PaymentMethodConfigurationP24ArgsDict', 'outputs.PaymentMethodConfigurationP24']]] = None,
                  parent: pulumi.Input[Optional[_builtins.str]] = None,
-                 pay_by_bank: pulumi.Input[Optional[Union['PaymentMethodConfigurationPayByBankArgs', 'PaymentMethodConfigurationPayByBankArgsDict']]] = None,
-                 payco: pulumi.Input[Optional[Union['PaymentMethodConfigurationPaycoArgs', 'PaymentMethodConfigurationPaycoArgsDict']]] = None,
-                 paynow: pulumi.Input[Optional[Union['PaymentMethodConfigurationPaynowArgs', 'PaymentMethodConfigurationPaynowArgsDict']]] = None,
-                 paypal: pulumi.Input[Optional[Union['PaymentMethodConfigurationPaypalArgs', 'PaymentMethodConfigurationPaypalArgsDict']]] = None,
-                 payto: pulumi.Input[Optional[Union['PaymentMethodConfigurationPaytoArgs', 'PaymentMethodConfigurationPaytoArgsDict']]] = None,
-                 pix: pulumi.Input[Optional[Union['PaymentMethodConfigurationPixArgs', 'PaymentMethodConfigurationPixArgsDict']]] = None,
-                 promptpay: pulumi.Input[Optional[Union['PaymentMethodConfigurationPromptpayArgs', 'PaymentMethodConfigurationPromptpayArgsDict']]] = None,
-                 revolut_pay: pulumi.Input[Optional[Union['PaymentMethodConfigurationRevolutPayArgs', 'PaymentMethodConfigurationRevolutPayArgsDict']]] = None,
-                 samsung_pay: pulumi.Input[Optional[Union['PaymentMethodConfigurationSamsungPayArgs', 'PaymentMethodConfigurationSamsungPayArgsDict']]] = None,
-                 satispay: pulumi.Input[Optional[Union['PaymentMethodConfigurationSatispayArgs', 'PaymentMethodConfigurationSatispayArgsDict']]] = None,
-                 scalapay: pulumi.Input[Optional[Union['PaymentMethodConfigurationScalapayArgs', 'PaymentMethodConfigurationScalapayArgsDict']]] = None,
-                 sepa_debit: pulumi.Input[Optional[Union['PaymentMethodConfigurationSepaDebitArgs', 'PaymentMethodConfigurationSepaDebitArgsDict']]] = None,
-                 sofort: pulumi.Input[Optional[Union['PaymentMethodConfigurationSofortArgs', 'PaymentMethodConfigurationSofortArgsDict']]] = None,
-                 sunbit: pulumi.Input[Optional[Union['PaymentMethodConfigurationSunbitArgs', 'PaymentMethodConfigurationSunbitArgsDict']]] = None,
-                 swish: pulumi.Input[Optional[Union['PaymentMethodConfigurationSwishArgs', 'PaymentMethodConfigurationSwishArgsDict']]] = None,
-                 twint: pulumi.Input[Optional[Union['PaymentMethodConfigurationTwintArgs', 'PaymentMethodConfigurationTwintArgsDict']]] = None,
-                 upi: pulumi.Input[Optional[Union['PaymentMethodConfigurationUpiArgs', 'PaymentMethodConfigurationUpiArgsDict']]] = None,
-                 us_bank_account: pulumi.Input[Optional[Union['PaymentMethodConfigurationUsBankAccountArgs', 'PaymentMethodConfigurationUsBankAccountArgsDict']]] = None,
-                 wechat_pay: pulumi.Input[Optional[Union['PaymentMethodConfigurationWechatPayArgs', 'PaymentMethodConfigurationWechatPayArgsDict']]] = None,
-                 zip: pulumi.Input[Optional[Union['PaymentMethodConfigurationZipArgs', 'PaymentMethodConfigurationZipArgsDict']]] = None,
+                 pay_by_bank: pulumi.Input[Optional[Union['PaymentMethodConfigurationPayByBankArgs', 'PaymentMethodConfigurationPayByBankArgsDict', 'outputs.PaymentMethodConfigurationPayByBank']]] = None,
+                 payco: pulumi.Input[Optional[Union['PaymentMethodConfigurationPaycoArgs', 'PaymentMethodConfigurationPaycoArgsDict', 'outputs.PaymentMethodConfigurationPayco']]] = None,
+                 paynow: pulumi.Input[Optional[Union['PaymentMethodConfigurationPaynowArgs', 'PaymentMethodConfigurationPaynowArgsDict', 'outputs.PaymentMethodConfigurationPaynow']]] = None,
+                 paypal: pulumi.Input[Optional[Union['PaymentMethodConfigurationPaypalArgs', 'PaymentMethodConfigurationPaypalArgsDict', 'outputs.PaymentMethodConfigurationPaypal']]] = None,
+                 paypay: pulumi.Input[Optional[Union['PaymentMethodConfigurationPaypayArgs', 'PaymentMethodConfigurationPaypayArgsDict', 'outputs.PaymentMethodConfigurationPaypay']]] = None,
+                 payto: pulumi.Input[Optional[Union['PaymentMethodConfigurationPaytoArgs', 'PaymentMethodConfigurationPaytoArgsDict', 'outputs.PaymentMethodConfigurationPayto']]] = None,
+                 pix: pulumi.Input[Optional[Union['PaymentMethodConfigurationPixArgs', 'PaymentMethodConfigurationPixArgsDict', 'outputs.PaymentMethodConfigurationPix']]] = None,
+                 promptpay: pulumi.Input[Optional[Union['PaymentMethodConfigurationPromptpayArgs', 'PaymentMethodConfigurationPromptpayArgsDict', 'outputs.PaymentMethodConfigurationPromptpay']]] = None,
+                 revolut_pay: pulumi.Input[Optional[Union['PaymentMethodConfigurationRevolutPayArgs', 'PaymentMethodConfigurationRevolutPayArgsDict', 'outputs.PaymentMethodConfigurationRevolutPay']]] = None,
+                 samsung_pay: pulumi.Input[Optional[Union['PaymentMethodConfigurationSamsungPayArgs', 'PaymentMethodConfigurationSamsungPayArgsDict', 'outputs.PaymentMethodConfigurationSamsungPay']]] = None,
+                 satispay: pulumi.Input[Optional[Union['PaymentMethodConfigurationSatispayArgs', 'PaymentMethodConfigurationSatispayArgsDict', 'outputs.PaymentMethodConfigurationSatispay']]] = None,
+                 scalapay: pulumi.Input[Optional[Union['PaymentMethodConfigurationScalapayArgs', 'PaymentMethodConfigurationScalapayArgsDict', 'outputs.PaymentMethodConfigurationScalapay']]] = None,
+                 sepa_debit: pulumi.Input[Optional[Union['PaymentMethodConfigurationSepaDebitArgs', 'PaymentMethodConfigurationSepaDebitArgsDict', 'outputs.PaymentMethodConfigurationSepaDebit']]] = None,
+                 sequra: pulumi.Input[Optional[Union['PaymentMethodConfigurationSequraArgs', 'PaymentMethodConfigurationSequraArgsDict', 'outputs.PaymentMethodConfigurationSequra']]] = None,
+                 sofort: pulumi.Input[Optional[Union['PaymentMethodConfigurationSofortArgs', 'PaymentMethodConfigurationSofortArgsDict', 'outputs.PaymentMethodConfigurationSofort']]] = None,
+                 sunbit: pulumi.Input[Optional[Union['PaymentMethodConfigurationSunbitArgs', 'PaymentMethodConfigurationSunbitArgsDict', 'outputs.PaymentMethodConfigurationSunbit']]] = None,
+                 swish: pulumi.Input[Optional[Union['PaymentMethodConfigurationSwishArgs', 'PaymentMethodConfigurationSwishArgsDict', 'outputs.PaymentMethodConfigurationSwish']]] = None,
+                 twint: pulumi.Input[Optional[Union['PaymentMethodConfigurationTwintArgs', 'PaymentMethodConfigurationTwintArgsDict', 'outputs.PaymentMethodConfigurationTwint']]] = None,
+                 upi: pulumi.Input[Optional[Union['PaymentMethodConfigurationUpiArgs', 'PaymentMethodConfigurationUpiArgsDict', 'outputs.PaymentMethodConfigurationUpi']]] = None,
+                 us_bank_account: pulumi.Input[Optional[Union['PaymentMethodConfigurationUsBankAccountArgs', 'PaymentMethodConfigurationUsBankAccountArgsDict', 'outputs.PaymentMethodConfigurationUsBankAccount']]] = None,
+                 wechat_pay: pulumi.Input[Optional[Union['PaymentMethodConfigurationWechatPayArgs', 'PaymentMethodConfigurationWechatPayArgsDict', 'outputs.PaymentMethodConfigurationWechatPay']]] = None,
+                 zip: pulumi.Input[Optional[Union['PaymentMethodConfigurationZipArgs', 'PaymentMethodConfigurationZipArgsDict', 'outputs.PaymentMethodConfigurationZip']]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -1845,6 +1897,7 @@ class PaymentMethodConfiguration(pulumi.CustomResource):
             __props__.__dict__["payco"] = payco
             __props__.__dict__["paynow"] = paynow
             __props__.__dict__["paypal"] = paypal
+            __props__.__dict__["paypay"] = paypay
             __props__.__dict__["payto"] = payto
             __props__.__dict__["pix"] = pix
             __props__.__dict__["promptpay"] = promptpay
@@ -1853,6 +1906,7 @@ class PaymentMethodConfiguration(pulumi.CustomResource):
             __props__.__dict__["satispay"] = satispay
             __props__.__dict__["scalapay"] = scalapay
             __props__.__dict__["sepa_debit"] = sepa_debit
+            __props__.__dict__["sequra"] = sequra
             __props__.__dict__["sofort"] = sofort
             __props__.__dict__["sunbit"] = sunbit
             __props__.__dict__["swish"] = swish
@@ -1878,72 +1932,74 @@ class PaymentMethodConfiguration(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            acss_debit: pulumi.Input[Optional[Union['PaymentMethodConfigurationAcssDebitArgs', 'PaymentMethodConfigurationAcssDebitArgsDict']]] = None,
+            acss_debit: pulumi.Input[Optional[Union['PaymentMethodConfigurationAcssDebitArgs', 'PaymentMethodConfigurationAcssDebitArgsDict', 'outputs.PaymentMethodConfigurationAcssDebit']]] = None,
             active: pulumi.Input[Optional[_builtins.bool]] = None,
-            affirm: pulumi.Input[Optional[Union['PaymentMethodConfigurationAffirmArgs', 'PaymentMethodConfigurationAffirmArgsDict']]] = None,
-            afterpay_clearpay: pulumi.Input[Optional[Union['PaymentMethodConfigurationAfterpayClearpayArgs', 'PaymentMethodConfigurationAfterpayClearpayArgsDict']]] = None,
-            alipay: pulumi.Input[Optional[Union['PaymentMethodConfigurationAlipayArgs', 'PaymentMethodConfigurationAlipayArgsDict']]] = None,
-            alma: pulumi.Input[Optional[Union['PaymentMethodConfigurationAlmaArgs', 'PaymentMethodConfigurationAlmaArgsDict']]] = None,
-            amazon_pay: pulumi.Input[Optional[Union['PaymentMethodConfigurationAmazonPayArgs', 'PaymentMethodConfigurationAmazonPayArgsDict']]] = None,
-            apple_pay: pulumi.Input[Optional[Union['PaymentMethodConfigurationApplePayArgs', 'PaymentMethodConfigurationApplePayArgsDict']]] = None,
-            apple_pay_later: pulumi.Input[Optional[Union['PaymentMethodConfigurationApplePayLaterArgs', 'PaymentMethodConfigurationApplePayLaterArgsDict']]] = None,
+            affirm: pulumi.Input[Optional[Union['PaymentMethodConfigurationAffirmArgs', 'PaymentMethodConfigurationAffirmArgsDict', 'outputs.PaymentMethodConfigurationAffirm']]] = None,
+            afterpay_clearpay: pulumi.Input[Optional[Union['PaymentMethodConfigurationAfterpayClearpayArgs', 'PaymentMethodConfigurationAfterpayClearpayArgsDict', 'outputs.PaymentMethodConfigurationAfterpayClearpay']]] = None,
+            alipay: pulumi.Input[Optional[Union['PaymentMethodConfigurationAlipayArgs', 'PaymentMethodConfigurationAlipayArgsDict', 'outputs.PaymentMethodConfigurationAlipay']]] = None,
+            alma: pulumi.Input[Optional[Union['PaymentMethodConfigurationAlmaArgs', 'PaymentMethodConfigurationAlmaArgsDict', 'outputs.PaymentMethodConfigurationAlma']]] = None,
+            amazon_pay: pulumi.Input[Optional[Union['PaymentMethodConfigurationAmazonPayArgs', 'PaymentMethodConfigurationAmazonPayArgsDict', 'outputs.PaymentMethodConfigurationAmazonPay']]] = None,
+            apple_pay: pulumi.Input[Optional[Union['PaymentMethodConfigurationApplePayArgs', 'PaymentMethodConfigurationApplePayArgsDict', 'outputs.PaymentMethodConfigurationApplePay']]] = None,
+            apple_pay_later: pulumi.Input[Optional[Union['PaymentMethodConfigurationApplePayLaterArgs', 'PaymentMethodConfigurationApplePayLaterArgsDict', 'outputs.PaymentMethodConfigurationApplePayLater']]] = None,
             application: pulumi.Input[Optional[_builtins.str]] = None,
-            au_becs_debit: pulumi.Input[Optional[Union['PaymentMethodConfigurationAuBecsDebitArgs', 'PaymentMethodConfigurationAuBecsDebitArgsDict']]] = None,
-            bacs_debit: pulumi.Input[Optional[Union['PaymentMethodConfigurationBacsDebitArgs', 'PaymentMethodConfigurationBacsDebitArgsDict']]] = None,
-            bancontact: pulumi.Input[Optional[Union['PaymentMethodConfigurationBancontactArgs', 'PaymentMethodConfigurationBancontactArgsDict']]] = None,
-            billie: pulumi.Input[Optional[Union['PaymentMethodConfigurationBillieArgs', 'PaymentMethodConfigurationBillieArgsDict']]] = None,
-            bizum: pulumi.Input[Optional[Union['PaymentMethodConfigurationBizumArgs', 'PaymentMethodConfigurationBizumArgsDict']]] = None,
-            blik: pulumi.Input[Optional[Union['PaymentMethodConfigurationBlikArgs', 'PaymentMethodConfigurationBlikArgsDict']]] = None,
-            boleto: pulumi.Input[Optional[Union['PaymentMethodConfigurationBoletoArgs', 'PaymentMethodConfigurationBoletoArgsDict']]] = None,
-            card: pulumi.Input[Optional[Union['PaymentMethodConfigurationCardArgs', 'PaymentMethodConfigurationCardArgsDict']]] = None,
-            cartes_bancaires: pulumi.Input[Optional[Union['PaymentMethodConfigurationCartesBancairesArgs', 'PaymentMethodConfigurationCartesBancairesArgsDict']]] = None,
-            cashapp: pulumi.Input[Optional[Union['PaymentMethodConfigurationCashappArgs', 'PaymentMethodConfigurationCashappArgsDict']]] = None,
-            crypto: pulumi.Input[Optional[Union['PaymentMethodConfigurationCryptoArgs', 'PaymentMethodConfigurationCryptoArgsDict']]] = None,
-            customer_balance: pulumi.Input[Optional[Union['PaymentMethodConfigurationCustomerBalanceArgs', 'PaymentMethodConfigurationCustomerBalanceArgsDict']]] = None,
-            eps: pulumi.Input[Optional[Union['PaymentMethodConfigurationEpsArgs', 'PaymentMethodConfigurationEpsArgsDict']]] = None,
-            fpx: pulumi.Input[Optional[Union['PaymentMethodConfigurationFpxArgs', 'PaymentMethodConfigurationFpxArgsDict']]] = None,
-            giropay: pulumi.Input[Optional[Union['PaymentMethodConfigurationGiropayArgs', 'PaymentMethodConfigurationGiropayArgsDict']]] = None,
-            google_pay: pulumi.Input[Optional[Union['PaymentMethodConfigurationGooglePayArgs', 'PaymentMethodConfigurationGooglePayArgsDict']]] = None,
-            grabpay: pulumi.Input[Optional[Union['PaymentMethodConfigurationGrabpayArgs', 'PaymentMethodConfigurationGrabpayArgsDict']]] = None,
-            ideal: pulumi.Input[Optional[Union['PaymentMethodConfigurationIdealArgs', 'PaymentMethodConfigurationIdealArgsDict']]] = None,
+            au_becs_debit: pulumi.Input[Optional[Union['PaymentMethodConfigurationAuBecsDebitArgs', 'PaymentMethodConfigurationAuBecsDebitArgsDict', 'outputs.PaymentMethodConfigurationAuBecsDebit']]] = None,
+            bacs_debit: pulumi.Input[Optional[Union['PaymentMethodConfigurationBacsDebitArgs', 'PaymentMethodConfigurationBacsDebitArgsDict', 'outputs.PaymentMethodConfigurationBacsDebit']]] = None,
+            bancontact: pulumi.Input[Optional[Union['PaymentMethodConfigurationBancontactArgs', 'PaymentMethodConfigurationBancontactArgsDict', 'outputs.PaymentMethodConfigurationBancontact']]] = None,
+            billie: pulumi.Input[Optional[Union['PaymentMethodConfigurationBillieArgs', 'PaymentMethodConfigurationBillieArgsDict', 'outputs.PaymentMethodConfigurationBillie']]] = None,
+            bizum: pulumi.Input[Optional[Union['PaymentMethodConfigurationBizumArgs', 'PaymentMethodConfigurationBizumArgsDict', 'outputs.PaymentMethodConfigurationBizum']]] = None,
+            blik: pulumi.Input[Optional[Union['PaymentMethodConfigurationBlikArgs', 'PaymentMethodConfigurationBlikArgsDict', 'outputs.PaymentMethodConfigurationBlik']]] = None,
+            boleto: pulumi.Input[Optional[Union['PaymentMethodConfigurationBoletoArgs', 'PaymentMethodConfigurationBoletoArgsDict', 'outputs.PaymentMethodConfigurationBoleto']]] = None,
+            card: pulumi.Input[Optional[Union['PaymentMethodConfigurationCardArgs', 'PaymentMethodConfigurationCardArgsDict', 'outputs.PaymentMethodConfigurationCard']]] = None,
+            cartes_bancaires: pulumi.Input[Optional[Union['PaymentMethodConfigurationCartesBancairesArgs', 'PaymentMethodConfigurationCartesBancairesArgsDict', 'outputs.PaymentMethodConfigurationCartesBancaires']]] = None,
+            cashapp: pulumi.Input[Optional[Union['PaymentMethodConfigurationCashappArgs', 'PaymentMethodConfigurationCashappArgsDict', 'outputs.PaymentMethodConfigurationCashapp']]] = None,
+            crypto: pulumi.Input[Optional[Union['PaymentMethodConfigurationCryptoArgs', 'PaymentMethodConfigurationCryptoArgsDict', 'outputs.PaymentMethodConfigurationCrypto']]] = None,
+            customer_balance: pulumi.Input[Optional[Union['PaymentMethodConfigurationCustomerBalanceArgs', 'PaymentMethodConfigurationCustomerBalanceArgsDict', 'outputs.PaymentMethodConfigurationCustomerBalance']]] = None,
+            eps: pulumi.Input[Optional[Union['PaymentMethodConfigurationEpsArgs', 'PaymentMethodConfigurationEpsArgsDict', 'outputs.PaymentMethodConfigurationEps']]] = None,
+            fpx: pulumi.Input[Optional[Union['PaymentMethodConfigurationFpxArgs', 'PaymentMethodConfigurationFpxArgsDict', 'outputs.PaymentMethodConfigurationFpx']]] = None,
+            giropay: pulumi.Input[Optional[Union['PaymentMethodConfigurationGiropayArgs', 'PaymentMethodConfigurationGiropayArgsDict', 'outputs.PaymentMethodConfigurationGiropay']]] = None,
+            google_pay: pulumi.Input[Optional[Union['PaymentMethodConfigurationGooglePayArgs', 'PaymentMethodConfigurationGooglePayArgsDict', 'outputs.PaymentMethodConfigurationGooglePay']]] = None,
+            grabpay: pulumi.Input[Optional[Union['PaymentMethodConfigurationGrabpayArgs', 'PaymentMethodConfigurationGrabpayArgsDict', 'outputs.PaymentMethodConfigurationGrabpay']]] = None,
+            ideal: pulumi.Input[Optional[Union['PaymentMethodConfigurationIdealArgs', 'PaymentMethodConfigurationIdealArgsDict', 'outputs.PaymentMethodConfigurationIdeal']]] = None,
             is_default: pulumi.Input[Optional[_builtins.bool]] = None,
-            jcb: pulumi.Input[Optional[Union['PaymentMethodConfigurationJcbArgs', 'PaymentMethodConfigurationJcbArgsDict']]] = None,
-            kakao_pay: pulumi.Input[Optional[Union['PaymentMethodConfigurationKakaoPayArgs', 'PaymentMethodConfigurationKakaoPayArgsDict']]] = None,
-            klarna: pulumi.Input[Optional[Union['PaymentMethodConfigurationKlarnaArgs', 'PaymentMethodConfigurationKlarnaArgsDict']]] = None,
-            konbini: pulumi.Input[Optional[Union['PaymentMethodConfigurationKonbiniArgs', 'PaymentMethodConfigurationKonbiniArgsDict']]] = None,
-            kr_card: pulumi.Input[Optional[Union['PaymentMethodConfigurationKrCardArgs', 'PaymentMethodConfigurationKrCardArgsDict']]] = None,
-            link: pulumi.Input[Optional[Union['PaymentMethodConfigurationLinkArgs', 'PaymentMethodConfigurationLinkArgsDict']]] = None,
+            jcb: pulumi.Input[Optional[Union['PaymentMethodConfigurationJcbArgs', 'PaymentMethodConfigurationJcbArgsDict', 'outputs.PaymentMethodConfigurationJcb']]] = None,
+            kakao_pay: pulumi.Input[Optional[Union['PaymentMethodConfigurationKakaoPayArgs', 'PaymentMethodConfigurationKakaoPayArgsDict', 'outputs.PaymentMethodConfigurationKakaoPay']]] = None,
+            klarna: pulumi.Input[Optional[Union['PaymentMethodConfigurationKlarnaArgs', 'PaymentMethodConfigurationKlarnaArgsDict', 'outputs.PaymentMethodConfigurationKlarna']]] = None,
+            konbini: pulumi.Input[Optional[Union['PaymentMethodConfigurationKonbiniArgs', 'PaymentMethodConfigurationKonbiniArgsDict', 'outputs.PaymentMethodConfigurationKonbini']]] = None,
+            kr_card: pulumi.Input[Optional[Union['PaymentMethodConfigurationKrCardArgs', 'PaymentMethodConfigurationKrCardArgsDict', 'outputs.PaymentMethodConfigurationKrCard']]] = None,
+            link: pulumi.Input[Optional[Union['PaymentMethodConfigurationLinkArgs', 'PaymentMethodConfigurationLinkArgsDict', 'outputs.PaymentMethodConfigurationLink']]] = None,
             livemode: pulumi.Input[Optional[_builtins.bool]] = None,
-            mb_way: pulumi.Input[Optional[Union['PaymentMethodConfigurationMbWayArgs', 'PaymentMethodConfigurationMbWayArgsDict']]] = None,
-            mobilepay: pulumi.Input[Optional[Union['PaymentMethodConfigurationMobilepayArgs', 'PaymentMethodConfigurationMobilepayArgsDict']]] = None,
-            multibanco: pulumi.Input[Optional[Union['PaymentMethodConfigurationMultibancoArgs', 'PaymentMethodConfigurationMultibancoArgsDict']]] = None,
+            mb_way: pulumi.Input[Optional[Union['PaymentMethodConfigurationMbWayArgs', 'PaymentMethodConfigurationMbWayArgsDict', 'outputs.PaymentMethodConfigurationMbWay']]] = None,
+            mobilepay: pulumi.Input[Optional[Union['PaymentMethodConfigurationMobilepayArgs', 'PaymentMethodConfigurationMobilepayArgsDict', 'outputs.PaymentMethodConfigurationMobilepay']]] = None,
+            multibanco: pulumi.Input[Optional[Union['PaymentMethodConfigurationMultibancoArgs', 'PaymentMethodConfigurationMultibancoArgsDict', 'outputs.PaymentMethodConfigurationMultibanco']]] = None,
             name: pulumi.Input[Optional[_builtins.str]] = None,
-            naver_pay: pulumi.Input[Optional[Union['PaymentMethodConfigurationNaverPayArgs', 'PaymentMethodConfigurationNaverPayArgsDict']]] = None,
-            nz_bank_account: pulumi.Input[Optional[Union['PaymentMethodConfigurationNzBankAccountArgs', 'PaymentMethodConfigurationNzBankAccountArgsDict']]] = None,
+            naver_pay: pulumi.Input[Optional[Union['PaymentMethodConfigurationNaverPayArgs', 'PaymentMethodConfigurationNaverPayArgsDict', 'outputs.PaymentMethodConfigurationNaverPay']]] = None,
+            nz_bank_account: pulumi.Input[Optional[Union['PaymentMethodConfigurationNzBankAccountArgs', 'PaymentMethodConfigurationNzBankAccountArgsDict', 'outputs.PaymentMethodConfigurationNzBankAccount']]] = None,
             object: pulumi.Input[Optional[_builtins.str]] = None,
-            oxxo: pulumi.Input[Optional[Union['PaymentMethodConfigurationOxxoArgs', 'PaymentMethodConfigurationOxxoArgsDict']]] = None,
-            p24: pulumi.Input[Optional[Union['PaymentMethodConfigurationP24Args', 'PaymentMethodConfigurationP24ArgsDict']]] = None,
+            oxxo: pulumi.Input[Optional[Union['PaymentMethodConfigurationOxxoArgs', 'PaymentMethodConfigurationOxxoArgsDict', 'outputs.PaymentMethodConfigurationOxxo']]] = None,
+            p24: pulumi.Input[Optional[Union['PaymentMethodConfigurationP24Args', 'PaymentMethodConfigurationP24ArgsDict', 'outputs.PaymentMethodConfigurationP24']]] = None,
             parent: pulumi.Input[Optional[_builtins.str]] = None,
-            pay_by_bank: pulumi.Input[Optional[Union['PaymentMethodConfigurationPayByBankArgs', 'PaymentMethodConfigurationPayByBankArgsDict']]] = None,
-            payco: pulumi.Input[Optional[Union['PaymentMethodConfigurationPaycoArgs', 'PaymentMethodConfigurationPaycoArgsDict']]] = None,
-            paynow: pulumi.Input[Optional[Union['PaymentMethodConfigurationPaynowArgs', 'PaymentMethodConfigurationPaynowArgsDict']]] = None,
-            paypal: pulumi.Input[Optional[Union['PaymentMethodConfigurationPaypalArgs', 'PaymentMethodConfigurationPaypalArgsDict']]] = None,
-            payto: pulumi.Input[Optional[Union['PaymentMethodConfigurationPaytoArgs', 'PaymentMethodConfigurationPaytoArgsDict']]] = None,
-            pix: pulumi.Input[Optional[Union['PaymentMethodConfigurationPixArgs', 'PaymentMethodConfigurationPixArgsDict']]] = None,
-            promptpay: pulumi.Input[Optional[Union['PaymentMethodConfigurationPromptpayArgs', 'PaymentMethodConfigurationPromptpayArgsDict']]] = None,
-            revolut_pay: pulumi.Input[Optional[Union['PaymentMethodConfigurationRevolutPayArgs', 'PaymentMethodConfigurationRevolutPayArgsDict']]] = None,
-            samsung_pay: pulumi.Input[Optional[Union['PaymentMethodConfigurationSamsungPayArgs', 'PaymentMethodConfigurationSamsungPayArgsDict']]] = None,
-            satispay: pulumi.Input[Optional[Union['PaymentMethodConfigurationSatispayArgs', 'PaymentMethodConfigurationSatispayArgsDict']]] = None,
-            scalapay: pulumi.Input[Optional[Union['PaymentMethodConfigurationScalapayArgs', 'PaymentMethodConfigurationScalapayArgsDict']]] = None,
-            sepa_debit: pulumi.Input[Optional[Union['PaymentMethodConfigurationSepaDebitArgs', 'PaymentMethodConfigurationSepaDebitArgsDict']]] = None,
-            sofort: pulumi.Input[Optional[Union['PaymentMethodConfigurationSofortArgs', 'PaymentMethodConfigurationSofortArgsDict']]] = None,
-            sunbit: pulumi.Input[Optional[Union['PaymentMethodConfigurationSunbitArgs', 'PaymentMethodConfigurationSunbitArgsDict']]] = None,
-            swish: pulumi.Input[Optional[Union['PaymentMethodConfigurationSwishArgs', 'PaymentMethodConfigurationSwishArgsDict']]] = None,
-            twint: pulumi.Input[Optional[Union['PaymentMethodConfigurationTwintArgs', 'PaymentMethodConfigurationTwintArgsDict']]] = None,
-            upi: pulumi.Input[Optional[Union['PaymentMethodConfigurationUpiArgs', 'PaymentMethodConfigurationUpiArgsDict']]] = None,
-            us_bank_account: pulumi.Input[Optional[Union['PaymentMethodConfigurationUsBankAccountArgs', 'PaymentMethodConfigurationUsBankAccountArgsDict']]] = None,
-            wechat_pay: pulumi.Input[Optional[Union['PaymentMethodConfigurationWechatPayArgs', 'PaymentMethodConfigurationWechatPayArgsDict']]] = None,
-            zip: pulumi.Input[Optional[Union['PaymentMethodConfigurationZipArgs', 'PaymentMethodConfigurationZipArgsDict']]] = None) -> 'PaymentMethodConfiguration':
+            pay_by_bank: pulumi.Input[Optional[Union['PaymentMethodConfigurationPayByBankArgs', 'PaymentMethodConfigurationPayByBankArgsDict', 'outputs.PaymentMethodConfigurationPayByBank']]] = None,
+            payco: pulumi.Input[Optional[Union['PaymentMethodConfigurationPaycoArgs', 'PaymentMethodConfigurationPaycoArgsDict', 'outputs.PaymentMethodConfigurationPayco']]] = None,
+            paynow: pulumi.Input[Optional[Union['PaymentMethodConfigurationPaynowArgs', 'PaymentMethodConfigurationPaynowArgsDict', 'outputs.PaymentMethodConfigurationPaynow']]] = None,
+            paypal: pulumi.Input[Optional[Union['PaymentMethodConfigurationPaypalArgs', 'PaymentMethodConfigurationPaypalArgsDict', 'outputs.PaymentMethodConfigurationPaypal']]] = None,
+            paypay: pulumi.Input[Optional[Union['PaymentMethodConfigurationPaypayArgs', 'PaymentMethodConfigurationPaypayArgsDict', 'outputs.PaymentMethodConfigurationPaypay']]] = None,
+            payto: pulumi.Input[Optional[Union['PaymentMethodConfigurationPaytoArgs', 'PaymentMethodConfigurationPaytoArgsDict', 'outputs.PaymentMethodConfigurationPayto']]] = None,
+            pix: pulumi.Input[Optional[Union['PaymentMethodConfigurationPixArgs', 'PaymentMethodConfigurationPixArgsDict', 'outputs.PaymentMethodConfigurationPix']]] = None,
+            promptpay: pulumi.Input[Optional[Union['PaymentMethodConfigurationPromptpayArgs', 'PaymentMethodConfigurationPromptpayArgsDict', 'outputs.PaymentMethodConfigurationPromptpay']]] = None,
+            revolut_pay: pulumi.Input[Optional[Union['PaymentMethodConfigurationRevolutPayArgs', 'PaymentMethodConfigurationRevolutPayArgsDict', 'outputs.PaymentMethodConfigurationRevolutPay']]] = None,
+            samsung_pay: pulumi.Input[Optional[Union['PaymentMethodConfigurationSamsungPayArgs', 'PaymentMethodConfigurationSamsungPayArgsDict', 'outputs.PaymentMethodConfigurationSamsungPay']]] = None,
+            satispay: pulumi.Input[Optional[Union['PaymentMethodConfigurationSatispayArgs', 'PaymentMethodConfigurationSatispayArgsDict', 'outputs.PaymentMethodConfigurationSatispay']]] = None,
+            scalapay: pulumi.Input[Optional[Union['PaymentMethodConfigurationScalapayArgs', 'PaymentMethodConfigurationScalapayArgsDict', 'outputs.PaymentMethodConfigurationScalapay']]] = None,
+            sepa_debit: pulumi.Input[Optional[Union['PaymentMethodConfigurationSepaDebitArgs', 'PaymentMethodConfigurationSepaDebitArgsDict', 'outputs.PaymentMethodConfigurationSepaDebit']]] = None,
+            sequra: pulumi.Input[Optional[Union['PaymentMethodConfigurationSequraArgs', 'PaymentMethodConfigurationSequraArgsDict', 'outputs.PaymentMethodConfigurationSequra']]] = None,
+            sofort: pulumi.Input[Optional[Union['PaymentMethodConfigurationSofortArgs', 'PaymentMethodConfigurationSofortArgsDict', 'outputs.PaymentMethodConfigurationSofort']]] = None,
+            sunbit: pulumi.Input[Optional[Union['PaymentMethodConfigurationSunbitArgs', 'PaymentMethodConfigurationSunbitArgsDict', 'outputs.PaymentMethodConfigurationSunbit']]] = None,
+            swish: pulumi.Input[Optional[Union['PaymentMethodConfigurationSwishArgs', 'PaymentMethodConfigurationSwishArgsDict', 'outputs.PaymentMethodConfigurationSwish']]] = None,
+            twint: pulumi.Input[Optional[Union['PaymentMethodConfigurationTwintArgs', 'PaymentMethodConfigurationTwintArgsDict', 'outputs.PaymentMethodConfigurationTwint']]] = None,
+            upi: pulumi.Input[Optional[Union['PaymentMethodConfigurationUpiArgs', 'PaymentMethodConfigurationUpiArgsDict', 'outputs.PaymentMethodConfigurationUpi']]] = None,
+            us_bank_account: pulumi.Input[Optional[Union['PaymentMethodConfigurationUsBankAccountArgs', 'PaymentMethodConfigurationUsBankAccountArgsDict', 'outputs.PaymentMethodConfigurationUsBankAccount']]] = None,
+            wechat_pay: pulumi.Input[Optional[Union['PaymentMethodConfigurationWechatPayArgs', 'PaymentMethodConfigurationWechatPayArgsDict', 'outputs.PaymentMethodConfigurationWechatPay']]] = None,
+            zip: pulumi.Input[Optional[Union['PaymentMethodConfigurationZipArgs', 'PaymentMethodConfigurationZipArgsDict', 'outputs.PaymentMethodConfigurationZip']]] = None) -> 'PaymentMethodConfiguration':
         """
         Get an existing PaymentMethodConfiguration resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -1952,7 +2008,7 @@ class PaymentMethodConfiguration(pulumi.CustomResource):
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.bool] active: Whether the configuration can be used for new payments.
-        :param pulumi.Input[Union['PaymentMethodConfigurationApplePayLaterArgs', 'PaymentMethodConfigurationApplePayLaterArgsDict']] apple_pay_later: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        :param pulumi.Input[Union['PaymentMethodConfigurationApplePayLaterArgs', 'PaymentMethodConfigurationApplePayLaterArgsDict', 'outputs.PaymentMethodConfigurationApplePayLater']] apple_pay_later: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
                Apple Pay Later, a payment method for customers to buy now and pay later, gives your customers a way to split purchases into four installments across six weeks.
         :param pulumi.Input[_builtins.str] application: For child configs, the Connect application associated with the configuration.
         :param pulumi.Input[_builtins.bool] is_default: The default configuration is used whenever a payment method configuration is not specified.
@@ -2015,6 +2071,7 @@ class PaymentMethodConfiguration(pulumi.CustomResource):
         __props__.__dict__["payco"] = payco
         __props__.__dict__["paynow"] = paynow
         __props__.__dict__["paypal"] = paypal
+        __props__.__dict__["paypay"] = paypay
         __props__.__dict__["payto"] = payto
         __props__.__dict__["pix"] = pix
         __props__.__dict__["promptpay"] = promptpay
@@ -2023,6 +2080,7 @@ class PaymentMethodConfiguration(pulumi.CustomResource):
         __props__.__dict__["satispay"] = satispay
         __props__.__dict__["scalapay"] = scalapay
         __props__.__dict__["sepa_debit"] = sepa_debit
+        __props__.__dict__["sequra"] = sequra
         __props__.__dict__["sofort"] = sofort
         __props__.__dict__["sunbit"] = sunbit
         __props__.__dict__["swish"] = swish
@@ -2032,6 +2090,148 @@ class PaymentMethodConfiguration(pulumi.CustomResource):
         __props__.__dict__["wechat_pay"] = wechat_pay
         __props__.__dict__["zip"] = zip
         return PaymentMethodConfiguration(resource_name, opts=opts, __props__=__props__)
+
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            acss_debit: pulumi.Input[Optional[Union['PaymentMethodConfigurationAcssDebitArgs', 'PaymentMethodConfigurationAcssDebitArgsDict', 'outputs.PaymentMethodConfigurationAcssDebit']]] = None,
+            active: pulumi.Input[Optional[_builtins.bool]] = None,
+            affirm: pulumi.Input[Optional[Union['PaymentMethodConfigurationAffirmArgs', 'PaymentMethodConfigurationAffirmArgsDict', 'outputs.PaymentMethodConfigurationAffirm']]] = None,
+            afterpay_clearpay: pulumi.Input[Optional[Union['PaymentMethodConfigurationAfterpayClearpayArgs', 'PaymentMethodConfigurationAfterpayClearpayArgsDict', 'outputs.PaymentMethodConfigurationAfterpayClearpay']]] = None,
+            alipay: pulumi.Input[Optional[Union['PaymentMethodConfigurationAlipayArgs', 'PaymentMethodConfigurationAlipayArgsDict', 'outputs.PaymentMethodConfigurationAlipay']]] = None,
+            alma: pulumi.Input[Optional[Union['PaymentMethodConfigurationAlmaArgs', 'PaymentMethodConfigurationAlmaArgsDict', 'outputs.PaymentMethodConfigurationAlma']]] = None,
+            amazon_pay: pulumi.Input[Optional[Union['PaymentMethodConfigurationAmazonPayArgs', 'PaymentMethodConfigurationAmazonPayArgsDict', 'outputs.PaymentMethodConfigurationAmazonPay']]] = None,
+            apple_pay: pulumi.Input[Optional[Union['PaymentMethodConfigurationApplePayArgs', 'PaymentMethodConfigurationApplePayArgsDict', 'outputs.PaymentMethodConfigurationApplePay']]] = None,
+            apple_pay_later: pulumi.Input[Optional[Union['PaymentMethodConfigurationApplePayLaterArgs', 'PaymentMethodConfigurationApplePayLaterArgsDict', 'outputs.PaymentMethodConfigurationApplePayLater']]] = None,
+            application: pulumi.Input[Optional[_builtins.str]] = None,
+            au_becs_debit: pulumi.Input[Optional[Union['PaymentMethodConfigurationAuBecsDebitArgs', 'PaymentMethodConfigurationAuBecsDebitArgsDict', 'outputs.PaymentMethodConfigurationAuBecsDebit']]] = None,
+            bacs_debit: pulumi.Input[Optional[Union['PaymentMethodConfigurationBacsDebitArgs', 'PaymentMethodConfigurationBacsDebitArgsDict', 'outputs.PaymentMethodConfigurationBacsDebit']]] = None,
+            bancontact: pulumi.Input[Optional[Union['PaymentMethodConfigurationBancontactArgs', 'PaymentMethodConfigurationBancontactArgsDict', 'outputs.PaymentMethodConfigurationBancontact']]] = None,
+            billie: pulumi.Input[Optional[Union['PaymentMethodConfigurationBillieArgs', 'PaymentMethodConfigurationBillieArgsDict', 'outputs.PaymentMethodConfigurationBillie']]] = None,
+            bizum: pulumi.Input[Optional[Union['PaymentMethodConfigurationBizumArgs', 'PaymentMethodConfigurationBizumArgsDict', 'outputs.PaymentMethodConfigurationBizum']]] = None,
+            blik: pulumi.Input[Optional[Union['PaymentMethodConfigurationBlikArgs', 'PaymentMethodConfigurationBlikArgsDict', 'outputs.PaymentMethodConfigurationBlik']]] = None,
+            boleto: pulumi.Input[Optional[Union['PaymentMethodConfigurationBoletoArgs', 'PaymentMethodConfigurationBoletoArgsDict', 'outputs.PaymentMethodConfigurationBoleto']]] = None,
+            card: pulumi.Input[Optional[Union['PaymentMethodConfigurationCardArgs', 'PaymentMethodConfigurationCardArgsDict', 'outputs.PaymentMethodConfigurationCard']]] = None,
+            cartes_bancaires: pulumi.Input[Optional[Union['PaymentMethodConfigurationCartesBancairesArgs', 'PaymentMethodConfigurationCartesBancairesArgsDict', 'outputs.PaymentMethodConfigurationCartesBancaires']]] = None,
+            cashapp: pulumi.Input[Optional[Union['PaymentMethodConfigurationCashappArgs', 'PaymentMethodConfigurationCashappArgsDict', 'outputs.PaymentMethodConfigurationCashapp']]] = None,
+            crypto: pulumi.Input[Optional[Union['PaymentMethodConfigurationCryptoArgs', 'PaymentMethodConfigurationCryptoArgsDict', 'outputs.PaymentMethodConfigurationCrypto']]] = None,
+            customer_balance: pulumi.Input[Optional[Union['PaymentMethodConfigurationCustomerBalanceArgs', 'PaymentMethodConfigurationCustomerBalanceArgsDict', 'outputs.PaymentMethodConfigurationCustomerBalance']]] = None,
+            eps: pulumi.Input[Optional[Union['PaymentMethodConfigurationEpsArgs', 'PaymentMethodConfigurationEpsArgsDict', 'outputs.PaymentMethodConfigurationEps']]] = None,
+            fpx: pulumi.Input[Optional[Union['PaymentMethodConfigurationFpxArgs', 'PaymentMethodConfigurationFpxArgsDict', 'outputs.PaymentMethodConfigurationFpx']]] = None,
+            giropay: pulumi.Input[Optional[Union['PaymentMethodConfigurationGiropayArgs', 'PaymentMethodConfigurationGiropayArgsDict', 'outputs.PaymentMethodConfigurationGiropay']]] = None,
+            google_pay: pulumi.Input[Optional[Union['PaymentMethodConfigurationGooglePayArgs', 'PaymentMethodConfigurationGooglePayArgsDict', 'outputs.PaymentMethodConfigurationGooglePay']]] = None,
+            grabpay: pulumi.Input[Optional[Union['PaymentMethodConfigurationGrabpayArgs', 'PaymentMethodConfigurationGrabpayArgsDict', 'outputs.PaymentMethodConfigurationGrabpay']]] = None,
+            ideal: pulumi.Input[Optional[Union['PaymentMethodConfigurationIdealArgs', 'PaymentMethodConfigurationIdealArgsDict', 'outputs.PaymentMethodConfigurationIdeal']]] = None,
+            is_default: pulumi.Input[Optional[_builtins.bool]] = None,
+            jcb: pulumi.Input[Optional[Union['PaymentMethodConfigurationJcbArgs', 'PaymentMethodConfigurationJcbArgsDict', 'outputs.PaymentMethodConfigurationJcb']]] = None,
+            kakao_pay: pulumi.Input[Optional[Union['PaymentMethodConfigurationKakaoPayArgs', 'PaymentMethodConfigurationKakaoPayArgsDict', 'outputs.PaymentMethodConfigurationKakaoPay']]] = None,
+            klarna: pulumi.Input[Optional[Union['PaymentMethodConfigurationKlarnaArgs', 'PaymentMethodConfigurationKlarnaArgsDict', 'outputs.PaymentMethodConfigurationKlarna']]] = None,
+            konbini: pulumi.Input[Optional[Union['PaymentMethodConfigurationKonbiniArgs', 'PaymentMethodConfigurationKonbiniArgsDict', 'outputs.PaymentMethodConfigurationKonbini']]] = None,
+            kr_card: pulumi.Input[Optional[Union['PaymentMethodConfigurationKrCardArgs', 'PaymentMethodConfigurationKrCardArgsDict', 'outputs.PaymentMethodConfigurationKrCard']]] = None,
+            link: pulumi.Input[Optional[Union['PaymentMethodConfigurationLinkArgs', 'PaymentMethodConfigurationLinkArgsDict', 'outputs.PaymentMethodConfigurationLink']]] = None,
+            livemode: pulumi.Input[Optional[_builtins.bool]] = None,
+            mb_way: pulumi.Input[Optional[Union['PaymentMethodConfigurationMbWayArgs', 'PaymentMethodConfigurationMbWayArgsDict', 'outputs.PaymentMethodConfigurationMbWay']]] = None,
+            mobilepay: pulumi.Input[Optional[Union['PaymentMethodConfigurationMobilepayArgs', 'PaymentMethodConfigurationMobilepayArgsDict', 'outputs.PaymentMethodConfigurationMobilepay']]] = None,
+            multibanco: pulumi.Input[Optional[Union['PaymentMethodConfigurationMultibancoArgs', 'PaymentMethodConfigurationMultibancoArgsDict', 'outputs.PaymentMethodConfigurationMultibanco']]] = None,
+            name: pulumi.Input[Optional[_builtins.str]] = None,
+            naver_pay: pulumi.Input[Optional[Union['PaymentMethodConfigurationNaverPayArgs', 'PaymentMethodConfigurationNaverPayArgsDict', 'outputs.PaymentMethodConfigurationNaverPay']]] = None,
+            nz_bank_account: pulumi.Input[Optional[Union['PaymentMethodConfigurationNzBankAccountArgs', 'PaymentMethodConfigurationNzBankAccountArgsDict', 'outputs.PaymentMethodConfigurationNzBankAccount']]] = None,
+            object: pulumi.Input[Optional[_builtins.str]] = None,
+            oxxo: pulumi.Input[Optional[Union['PaymentMethodConfigurationOxxoArgs', 'PaymentMethodConfigurationOxxoArgsDict', 'outputs.PaymentMethodConfigurationOxxo']]] = None,
+            p24: pulumi.Input[Optional[Union['PaymentMethodConfigurationP24Args', 'PaymentMethodConfigurationP24ArgsDict', 'outputs.PaymentMethodConfigurationP24']]] = None,
+            parent: pulumi.Input[Optional[_builtins.str]] = None,
+            pay_by_bank: pulumi.Input[Optional[Union['PaymentMethodConfigurationPayByBankArgs', 'PaymentMethodConfigurationPayByBankArgsDict', 'outputs.PaymentMethodConfigurationPayByBank']]] = None,
+            payco: pulumi.Input[Optional[Union['PaymentMethodConfigurationPaycoArgs', 'PaymentMethodConfigurationPaycoArgsDict', 'outputs.PaymentMethodConfigurationPayco']]] = None,
+            paynow: pulumi.Input[Optional[Union['PaymentMethodConfigurationPaynowArgs', 'PaymentMethodConfigurationPaynowArgsDict', 'outputs.PaymentMethodConfigurationPaynow']]] = None,
+            paypal: pulumi.Input[Optional[Union['PaymentMethodConfigurationPaypalArgs', 'PaymentMethodConfigurationPaypalArgsDict', 'outputs.PaymentMethodConfigurationPaypal']]] = None,
+            paypay: pulumi.Input[Optional[Union['PaymentMethodConfigurationPaypayArgs', 'PaymentMethodConfigurationPaypayArgsDict', 'outputs.PaymentMethodConfigurationPaypay']]] = None,
+            payto: pulumi.Input[Optional[Union['PaymentMethodConfigurationPaytoArgs', 'PaymentMethodConfigurationPaytoArgsDict', 'outputs.PaymentMethodConfigurationPayto']]] = None,
+            pix: pulumi.Input[Optional[Union['PaymentMethodConfigurationPixArgs', 'PaymentMethodConfigurationPixArgsDict', 'outputs.PaymentMethodConfigurationPix']]] = None,
+            promptpay: pulumi.Input[Optional[Union['PaymentMethodConfigurationPromptpayArgs', 'PaymentMethodConfigurationPromptpayArgsDict', 'outputs.PaymentMethodConfigurationPromptpay']]] = None,
+            revolut_pay: pulumi.Input[Optional[Union['PaymentMethodConfigurationRevolutPayArgs', 'PaymentMethodConfigurationRevolutPayArgsDict', 'outputs.PaymentMethodConfigurationRevolutPay']]] = None,
+            samsung_pay: pulumi.Input[Optional[Union['PaymentMethodConfigurationSamsungPayArgs', 'PaymentMethodConfigurationSamsungPayArgsDict', 'outputs.PaymentMethodConfigurationSamsungPay']]] = None,
+            satispay: pulumi.Input[Optional[Union['PaymentMethodConfigurationSatispayArgs', 'PaymentMethodConfigurationSatispayArgsDict', 'outputs.PaymentMethodConfigurationSatispay']]] = None,
+            scalapay: pulumi.Input[Optional[Union['PaymentMethodConfigurationScalapayArgs', 'PaymentMethodConfigurationScalapayArgsDict', 'outputs.PaymentMethodConfigurationScalapay']]] = None,
+            sepa_debit: pulumi.Input[Optional[Union['PaymentMethodConfigurationSepaDebitArgs', 'PaymentMethodConfigurationSepaDebitArgsDict', 'outputs.PaymentMethodConfigurationSepaDebit']]] = None,
+            sequra: pulumi.Input[Optional[Union['PaymentMethodConfigurationSequraArgs', 'PaymentMethodConfigurationSequraArgsDict', 'outputs.PaymentMethodConfigurationSequra']]] = None,
+            sofort: pulumi.Input[Optional[Union['PaymentMethodConfigurationSofortArgs', 'PaymentMethodConfigurationSofortArgsDict', 'outputs.PaymentMethodConfigurationSofort']]] = None,
+            sunbit: pulumi.Input[Optional[Union['PaymentMethodConfigurationSunbitArgs', 'PaymentMethodConfigurationSunbitArgsDict', 'outputs.PaymentMethodConfigurationSunbit']]] = None,
+            swish: pulumi.Input[Optional[Union['PaymentMethodConfigurationSwishArgs', 'PaymentMethodConfigurationSwishArgsDict', 'outputs.PaymentMethodConfigurationSwish']]] = None,
+            twint: pulumi.Input[Optional[Union['PaymentMethodConfigurationTwintArgs', 'PaymentMethodConfigurationTwintArgsDict', 'outputs.PaymentMethodConfigurationTwint']]] = None,
+            upi: pulumi.Input[Optional[Union['PaymentMethodConfigurationUpiArgs', 'PaymentMethodConfigurationUpiArgsDict', 'outputs.PaymentMethodConfigurationUpi']]] = None,
+            us_bank_account: pulumi.Input[Optional[Union['PaymentMethodConfigurationUsBankAccountArgs', 'PaymentMethodConfigurationUsBankAccountArgsDict', 'outputs.PaymentMethodConfigurationUsBankAccount']]] = None,
+            wechat_pay: pulumi.Input[Optional[Union['PaymentMethodConfigurationWechatPayArgs', 'PaymentMethodConfigurationWechatPayArgsDict', 'outputs.PaymentMethodConfigurationWechatPay']]] = None,
+            zip: pulumi.Input[Optional[Union['PaymentMethodConfigurationZipArgs', 'PaymentMethodConfigurationZipArgsDict', 'outputs.PaymentMethodConfigurationZip']]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["acssDebit"] = acss_debit
+        __props__["active"] = active
+        __props__["affirm"] = affirm
+        __props__["afterpayClearpay"] = afterpay_clearpay
+        __props__["alipay"] = alipay
+        __props__["alma"] = alma
+        __props__["amazonPay"] = amazon_pay
+        __props__["applePay"] = apple_pay
+        __props__["applePayLater"] = apple_pay_later
+        __props__["application"] = application
+        __props__["auBecsDebit"] = au_becs_debit
+        __props__["bacsDebit"] = bacs_debit
+        __props__["bancontact"] = bancontact
+        __props__["billie"] = billie
+        __props__["bizum"] = bizum
+        __props__["blik"] = blik
+        __props__["boleto"] = boleto
+        __props__["card"] = card
+        __props__["cartesBancaires"] = cartes_bancaires
+        __props__["cashapp"] = cashapp
+        __props__["crypto"] = crypto
+        __props__["customerBalance"] = customer_balance
+        __props__["eps"] = eps
+        __props__["fpx"] = fpx
+        __props__["giropay"] = giropay
+        __props__["googlePay"] = google_pay
+        __props__["grabpay"] = grabpay
+        __props__["ideal"] = ideal
+        __props__["isDefault"] = is_default
+        __props__["jcb"] = jcb
+        __props__["kakaoPay"] = kakao_pay
+        __props__["klarna"] = klarna
+        __props__["konbini"] = konbini
+        __props__["krCard"] = kr_card
+        __props__["link"] = link
+        __props__["livemode"] = livemode
+        __props__["mbWay"] = mb_way
+        __props__["mobilepay"] = mobilepay
+        __props__["multibanco"] = multibanco
+        __props__["name"] = name
+        __props__["naverPay"] = naver_pay
+        __props__["nzBankAccount"] = nz_bank_account
+        __props__["object"] = object
+        __props__["oxxo"] = oxxo
+        __props__["p24"] = p24
+        __props__["parent"] = parent
+        __props__["payByBank"] = pay_by_bank
+        __props__["payco"] = payco
+        __props__["paynow"] = paynow
+        __props__["paypal"] = paypal
+        __props__["paypay"] = paypay
+        __props__["payto"] = payto
+        __props__["pix"] = pix
+        __props__["promptpay"] = promptpay
+        __props__["revolutPay"] = revolut_pay
+        __props__["samsungPay"] = samsung_pay
+        __props__["satispay"] = satispay
+        __props__["scalapay"] = scalapay
+        __props__["sepaDebit"] = sepa_debit
+        __props__["sequra"] = sequra
+        __props__["sofort"] = sofort
+        __props__["sunbit"] = sunbit
+        __props__["swish"] = swish
+        __props__["twint"] = twint
+        __props__["upi"] = upi
+        __props__["usBankAccount"] = us_bank_account
+        __props__["wechatPay"] = wechat_pay
+        __props__["zip"] = zip
+        return pulumi.runtime.exists_resource(None, 'stripe:index/paymentMethodConfiguration:PaymentMethodConfiguration', id, __props__, opts or pulumi.ResourceOptions(), package_ref=_utilities.get_package())
 
     @_builtins.property
     @pulumi.getter(name="acssDebit")
@@ -2310,6 +2510,11 @@ class PaymentMethodConfiguration(pulumi.CustomResource):
 
     @_builtins.property
     @pulumi.getter
+    def paypay(self) -> pulumi.Output['outputs.PaymentMethodConfigurationPaypay']:
+        return pulumi.get(self, "paypay")
+
+    @_builtins.property
+    @pulumi.getter
     def payto(self) -> pulumi.Output['outputs.PaymentMethodConfigurationPayto']:
         return pulumi.get(self, "payto")
 
@@ -2347,6 +2552,11 @@ class PaymentMethodConfiguration(pulumi.CustomResource):
     @pulumi.getter(name="sepaDebit")
     def sepa_debit(self) -> pulumi.Output['outputs.PaymentMethodConfigurationSepaDebit']:
         return pulumi.get(self, "sepa_debit")
+
+    @_builtins.property
+    @pulumi.getter
+    def sequra(self) -> pulumi.Output['outputs.PaymentMethodConfigurationSequra']:
+        return pulumi.get(self, "sequra")
 
     @_builtins.property
     @pulumi.getter

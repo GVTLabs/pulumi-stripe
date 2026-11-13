@@ -36,23 +36,23 @@ class V2CoreEventDestinationArgs:
         """
         The set of arguments for constructing a V2CoreEventDestination resource.
 
-        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] enabled_events: The list of events to enable for this endpoint.
-        :param pulumi.Input[_builtins.str] event_payload: Payload type of events being subscribed to.
-        :param pulumi.Input[_builtins.str] type: Event destination type.
-        :param pulumi.Input[Sequence[pulumi.Input['V2CoreEventDestinationAmazonEventbridgeArgs']]] amazon_eventbridges: Amazon EventBridge configuration.
-        :param pulumi.Input['V2CoreEventDestinationAzureEventGridArgs'] azure_event_grid: Azure Event Grid configuration.
-        :param pulumi.Input[_builtins.str] description: An optional description of what the event destination is used for.
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] enabled_events: The list of event types enabled for delivery to this destination.
+        :param pulumi.Input[_builtins.str] event_payload: Whether to deliver as snapshot or thin events.
+        :param pulumi.Input[_builtins.str] type: The delivery transport. Chosen when the destination is created and cannot be changed by update.
+        :param pulumi.Input[Sequence[pulumi.Input['V2CoreEventDestinationAmazonEventbridgeArgs']]] amazon_eventbridges: Configuration for delivering events through an Amazon EventBridge partner event source.
+        :param pulumi.Input['V2CoreEventDestinationAzureEventGridArgs'] azure_event_grid: Configuration for delivering events through an Azure Event Grid partner topic.
+        :param pulumi.Input[_builtins.str] description: An optional user-defined description of the destination's purpose.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] events_froms: Specifies which accounts' events route to this destination.
                `@self`: Receive events from the account that owns the event destination.
                `@accounts`: Receive events emitted from other accounts you manage which includes your v1 and v2 accounts.
                `@organization_members`: Receive events from accounts directly linked to the organization.
                `@organization_members/@accounts`: Receive events from all accounts connected to any platform accounts in the organization.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] includes: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
-               Additional fields to include in the response.
-        :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] metadata: Metadata.
-        :param pulumi.Input[_builtins.str] name: Event destination name.
-        :param pulumi.Input[_builtins.str] snapshot_api_version: If using the snapshot event payload, the API version events are rendered as.
-        :param pulumi.Input[Sequence[pulumi.Input['V2CoreEventDestinationWebhookEndpointArgs']]] webhook_endpoints: Webhook endpoint configuration.
+               Include normally redacted webhook fields in the create response. Public API clients must include `webhook_endpoint.signing_secret` to receive the signing secret.
+        :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] metadata: User-defined key/value data for the destination; it has no effect on event matching or delivery.
+        :param pulumi.Input[_builtins.str] name: A user-defined label for identifying the destination in Stripe.
+        :param pulumi.Input[_builtins.str] snapshot_api_version: For snapshot events only, the Stripe API version used to render event objects. You can't change this value after you create the event destination. Thin events are not pinned to an API version.
+        :param pulumi.Input[Sequence[pulumi.Input['V2CoreEventDestinationWebhookEndpointArgs']]] webhook_endpoints: Configuration for delivering events to a webhook endpoint. Live mode requires HTTPS; sandbox mode also supports HTTP.
         """
         pulumi.set(__self__, "enabled_events", enabled_events)
         pulumi.set(__self__, "event_payload", event_payload)
@@ -80,7 +80,7 @@ class V2CoreEventDestinationArgs:
     @pulumi.getter(name="enabledEvents")
     def enabled_events(self) -> pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]:
         """
-        The list of events to enable for this endpoint.
+        The list of event types enabled for delivery to this destination.
         """
         return pulumi.get(self, "enabled_events")
 
@@ -92,7 +92,7 @@ class V2CoreEventDestinationArgs:
     @pulumi.getter(name="eventPayload")
     def event_payload(self) -> pulumi.Input[_builtins.str]:
         """
-        Payload type of events being subscribed to.
+        Whether to deliver as snapshot or thin events.
         """
         return pulumi.get(self, "event_payload")
 
@@ -104,7 +104,7 @@ class V2CoreEventDestinationArgs:
     @pulumi.getter
     def type(self) -> pulumi.Input[_builtins.str]:
         """
-        Event destination type.
+        The delivery transport. Chosen when the destination is created and cannot be changed by update.
         """
         return pulumi.get(self, "type")
 
@@ -116,7 +116,7 @@ class V2CoreEventDestinationArgs:
     @pulumi.getter(name="amazonEventbridges")
     def amazon_eventbridges(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['V2CoreEventDestinationAmazonEventbridgeArgs']]]]:
         """
-        Amazon EventBridge configuration.
+        Configuration for delivering events through an Amazon EventBridge partner event source.
         """
         return pulumi.get(self, "amazon_eventbridges")
 
@@ -128,7 +128,7 @@ class V2CoreEventDestinationArgs:
     @pulumi.getter(name="azureEventGrid")
     def azure_event_grid(self) -> pulumi.Input[Optional['V2CoreEventDestinationAzureEventGridArgs']]:
         """
-        Azure Event Grid configuration.
+        Configuration for delivering events through an Azure Event Grid partner topic.
         """
         return pulumi.get(self, "azure_event_grid")
 
@@ -140,7 +140,7 @@ class V2CoreEventDestinationArgs:
     @pulumi.getter
     def description(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
-        An optional description of what the event destination is used for.
+        An optional user-defined description of the destination's purpose.
         """
         return pulumi.get(self, "description")
 
@@ -169,7 +169,7 @@ class V2CoreEventDestinationArgs:
     def includes(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
-        Additional fields to include in the response.
+        Include normally redacted webhook fields in the create response. Public API clients must include `webhook_endpoint.signing_secret` to receive the signing secret.
         """
         return pulumi.get(self, "includes")
 
@@ -181,7 +181,7 @@ class V2CoreEventDestinationArgs:
     @pulumi.getter
     def metadata(self) -> pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]:
         """
-        Metadata.
+        User-defined key/value data for the destination; it has no effect on event matching or delivery.
         """
         return pulumi.get(self, "metadata")
 
@@ -193,7 +193,7 @@ class V2CoreEventDestinationArgs:
     @pulumi.getter
     def name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
-        Event destination name.
+        A user-defined label for identifying the destination in Stripe.
         """
         return pulumi.get(self, "name")
 
@@ -205,7 +205,7 @@ class V2CoreEventDestinationArgs:
     @pulumi.getter(name="snapshotApiVersion")
     def snapshot_api_version(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
-        If using the snapshot event payload, the API version events are rendered as.
+        For snapshot events only, the Stripe API version used to render event objects. You can't change this value after you create the event destination. Thin events are not pinned to an API version.
         """
         return pulumi.get(self, "snapshot_api_version")
 
@@ -217,7 +217,7 @@ class V2CoreEventDestinationArgs:
     @pulumi.getter(name="webhookEndpoints")
     def webhook_endpoints(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['V2CoreEventDestinationWebhookEndpointArgs']]]]:
         """
-        Webhook endpoint configuration.
+        Configuration for delivering events to a webhook endpoint. Live mode requires HTTPS; sandbox mode also supports HTTP.
         """
         return pulumi.get(self, "webhook_endpoints")
 
@@ -250,29 +250,29 @@ class _V2CoreEventDestinationState:
         """
         Input properties used for looking up and filtering V2CoreEventDestination resources.
 
-        :param pulumi.Input[Sequence[pulumi.Input['V2CoreEventDestinationAmazonEventbridgeArgs']]] amazon_eventbridges: Amazon EventBridge configuration.
-        :param pulumi.Input['V2CoreEventDestinationAzureEventGridArgs'] azure_event_grid: Azure Event Grid configuration.
-        :param pulumi.Input[_builtins.str] created: Time at which the object was created.
-        :param pulumi.Input[_builtins.str] description: An optional description of what the event destination is used for.
-        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] enabled_events: The list of events to enable for this endpoint.
-        :param pulumi.Input[_builtins.str] event_payload: Payload type of events being subscribed to.
+        :param pulumi.Input[Sequence[pulumi.Input['V2CoreEventDestinationAmazonEventbridgeArgs']]] amazon_eventbridges: Configuration for delivering events through an Amazon EventBridge partner event source.
+        :param pulumi.Input['V2CoreEventDestinationAzureEventGridArgs'] azure_event_grid: Configuration for delivering events through an Azure Event Grid partner topic.
+        :param pulumi.Input[_builtins.str] created: The time when the destination was created.
+        :param pulumi.Input[_builtins.str] description: An optional user-defined description of the destination's purpose.
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] enabled_events: The list of event types enabled for delivery to this destination.
+        :param pulumi.Input[_builtins.str] event_payload: Whether to deliver as snapshot or thin events.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] events_froms: Specifies which accounts' events route to this destination.
                `@self`: Receive events from the account that owns the event destination.
                `@accounts`: Receive events emitted from other accounts you manage which includes your v1 and v2 accounts.
                `@organization_members`: Receive events from accounts directly linked to the organization.
                `@organization_members/@accounts`: Receive events from all accounts connected to any platform accounts in the organization.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] includes: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
-               Additional fields to include in the response.
+               Include normally redacted webhook fields in the create response. Public API clients must include `webhook_endpoint.signing_secret` to receive the signing secret.
         :param pulumi.Input[_builtins.bool] livemode: Has the value <span pulumi-lang-nodejs="`true`" pulumi-lang-dotnet="`True`" pulumi-lang-go="`true`" pulumi-lang-python="`true`" pulumi-lang-yaml="`true`" pulumi-lang-java="`true`" pulumi-lang-hcl="`true`">`true`</span> if the object exists in live mode or the value <span pulumi-lang-nodejs="`false`" pulumi-lang-dotnet="`False`" pulumi-lang-go="`false`" pulumi-lang-python="`false`" pulumi-lang-yaml="`false`" pulumi-lang-java="`false`" pulumi-lang-hcl="`false`">`false`</span> if the object exists in test mode.
-        :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] metadata: Metadata.
-        :param pulumi.Input[_builtins.str] name: Event destination name.
+        :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] metadata: User-defined key/value data for the destination; it has no effect on event matching or delivery.
+        :param pulumi.Input[_builtins.str] name: A user-defined label for identifying the destination in Stripe.
         :param pulumi.Input[_builtins.str] object: String representing the object's type. Objects of the same type share the same value of the object field.
-        :param pulumi.Input[_builtins.str] snapshot_api_version: If using the snapshot event payload, the API version events are rendered as.
-        :param pulumi.Input[_builtins.str] status: Status. It can be set to either enabled or disabled.
-        :param pulumi.Input['V2CoreEventDestinationStatusDetailsArgs'] status_details: Additional information about event destination status.
-        :param pulumi.Input[_builtins.str] type: Event destination type.
-        :param pulumi.Input[_builtins.str] updated: Time at which the object was last updated.
-        :param pulumi.Input[Sequence[pulumi.Input['V2CoreEventDestinationWebhookEndpointArgs']]] webhook_endpoints: Webhook endpoint configuration.
+        :param pulumi.Input[_builtins.str] snapshot_api_version: For snapshot events only, the Stripe API version used to render event objects. You can't change this value after you create the event destination. Thin events are not pinned to an API version.
+        :param pulumi.Input[_builtins.str] status: Whether Stripe currently attempts delivery. Stripe attempts delivery to enabled destinations when their provider configuration is active; disabled destinations do not receive delivery attempts.
+        :param pulumi.Input['V2CoreEventDestinationStatusDetailsArgs'] status_details: Additional lifecycle context for the destination status, when available.
+        :param pulumi.Input[_builtins.str] type: The delivery transport. Chosen when the destination is created and cannot be changed by update.
+        :param pulumi.Input[_builtins.str] updated: The time when the destination object was last updated.
+        :param pulumi.Input[Sequence[pulumi.Input['V2CoreEventDestinationWebhookEndpointArgs']]] webhook_endpoints: Configuration for delivering events to a webhook endpoint. Live mode requires HTTPS; sandbox mode also supports HTTP.
         """
         if amazon_eventbridges is not None:
             pulumi.set(__self__, "amazon_eventbridges", amazon_eventbridges)
@@ -315,7 +315,7 @@ class _V2CoreEventDestinationState:
     @pulumi.getter(name="amazonEventbridges")
     def amazon_eventbridges(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['V2CoreEventDestinationAmazonEventbridgeArgs']]]]:
         """
-        Amazon EventBridge configuration.
+        Configuration for delivering events through an Amazon EventBridge partner event source.
         """
         return pulumi.get(self, "amazon_eventbridges")
 
@@ -327,7 +327,7 @@ class _V2CoreEventDestinationState:
     @pulumi.getter(name="azureEventGrid")
     def azure_event_grid(self) -> pulumi.Input[Optional['V2CoreEventDestinationAzureEventGridArgs']]:
         """
-        Azure Event Grid configuration.
+        Configuration for delivering events through an Azure Event Grid partner topic.
         """
         return pulumi.get(self, "azure_event_grid")
 
@@ -339,7 +339,7 @@ class _V2CoreEventDestinationState:
     @pulumi.getter
     def created(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
-        Time at which the object was created.
+        The time when the destination was created.
         """
         return pulumi.get(self, "created")
 
@@ -351,7 +351,7 @@ class _V2CoreEventDestinationState:
     @pulumi.getter
     def description(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
-        An optional description of what the event destination is used for.
+        An optional user-defined description of the destination's purpose.
         """
         return pulumi.get(self, "description")
 
@@ -363,7 +363,7 @@ class _V2CoreEventDestinationState:
     @pulumi.getter(name="enabledEvents")
     def enabled_events(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
-        The list of events to enable for this endpoint.
+        The list of event types enabled for delivery to this destination.
         """
         return pulumi.get(self, "enabled_events")
 
@@ -375,7 +375,7 @@ class _V2CoreEventDestinationState:
     @pulumi.getter(name="eventPayload")
     def event_payload(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
-        Payload type of events being subscribed to.
+        Whether to deliver as snapshot or thin events.
         """
         return pulumi.get(self, "event_payload")
 
@@ -404,7 +404,7 @@ class _V2CoreEventDestinationState:
     def includes(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
-        Additional fields to include in the response.
+        Include normally redacted webhook fields in the create response. Public API clients must include `webhook_endpoint.signing_secret` to receive the signing secret.
         """
         return pulumi.get(self, "includes")
 
@@ -428,7 +428,7 @@ class _V2CoreEventDestinationState:
     @pulumi.getter
     def metadata(self) -> pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]:
         """
-        Metadata.
+        User-defined key/value data for the destination; it has no effect on event matching or delivery.
         """
         return pulumi.get(self, "metadata")
 
@@ -440,7 +440,7 @@ class _V2CoreEventDestinationState:
     @pulumi.getter
     def name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
-        Event destination name.
+        A user-defined label for identifying the destination in Stripe.
         """
         return pulumi.get(self, "name")
 
@@ -464,7 +464,7 @@ class _V2CoreEventDestinationState:
     @pulumi.getter(name="snapshotApiVersion")
     def snapshot_api_version(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
-        If using the snapshot event payload, the API version events are rendered as.
+        For snapshot events only, the Stripe API version used to render event objects. You can't change this value after you create the event destination. Thin events are not pinned to an API version.
         """
         return pulumi.get(self, "snapshot_api_version")
 
@@ -476,7 +476,7 @@ class _V2CoreEventDestinationState:
     @pulumi.getter
     def status(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
-        Status. It can be set to either enabled or disabled.
+        Whether Stripe currently attempts delivery. Stripe attempts delivery to enabled destinations when their provider configuration is active; disabled destinations do not receive delivery attempts.
         """
         return pulumi.get(self, "status")
 
@@ -488,7 +488,7 @@ class _V2CoreEventDestinationState:
     @pulumi.getter(name="statusDetails")
     def status_details(self) -> pulumi.Input[Optional['V2CoreEventDestinationStatusDetailsArgs']]:
         """
-        Additional information about event destination status.
+        Additional lifecycle context for the destination status, when available.
         """
         return pulumi.get(self, "status_details")
 
@@ -500,7 +500,7 @@ class _V2CoreEventDestinationState:
     @pulumi.getter
     def type(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
-        Event destination type.
+        The delivery transport. Chosen when the destination is created and cannot be changed by update.
         """
         return pulumi.get(self, "type")
 
@@ -512,7 +512,7 @@ class _V2CoreEventDestinationState:
     @pulumi.getter
     def updated(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
-        Time at which the object was last updated.
+        The time when the destination object was last updated.
         """
         return pulumi.get(self, "updated")
 
@@ -524,7 +524,7 @@ class _V2CoreEventDestinationState:
     @pulumi.getter(name="webhookEndpoints")
     def webhook_endpoints(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['V2CoreEventDestinationWebhookEndpointArgs']]]]:
         """
-        Webhook endpoint configuration.
+        Configuration for delivering events to a webhook endpoint. Live mode requires HTTPS; sandbox mode also supports HTTP.
         """
         return pulumi.get(self, "webhook_endpoints")
 
@@ -539,8 +539,8 @@ class V2CoreEventDestination(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 amazon_eventbridges: pulumi.Input[Optional[Sequence[pulumi.Input[Union['V2CoreEventDestinationAmazonEventbridgeArgs', 'V2CoreEventDestinationAmazonEventbridgeArgsDict']]]]] = None,
-                 azure_event_grid: pulumi.Input[Optional[Union['V2CoreEventDestinationAzureEventGridArgs', 'V2CoreEventDestinationAzureEventGridArgsDict']]] = None,
+                 amazon_eventbridges: pulumi.Input[Optional[Sequence[pulumi.Input[Union['V2CoreEventDestinationAmazonEventbridgeArgs', 'V2CoreEventDestinationAmazonEventbridgeArgsDict', 'outputs.V2CoreEventDestinationAmazonEventbridge']]]]] = None,
+                 azure_event_grid: pulumi.Input[Optional[Union['V2CoreEventDestinationAzureEventGridArgs', 'V2CoreEventDestinationAzureEventGridArgsDict', 'outputs.V2CoreEventDestinationAzureEventGrid']]] = None,
                  description: pulumi.Input[Optional[_builtins.str]] = None,
                  enabled_events: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  event_payload: pulumi.Input[Optional[_builtins.str]] = None,
@@ -550,30 +550,30 @@ class V2CoreEventDestination(pulumi.CustomResource):
                  name: pulumi.Input[Optional[_builtins.str]] = None,
                  snapshot_api_version: pulumi.Input[Optional[_builtins.str]] = None,
                  type: pulumi.Input[Optional[_builtins.str]] = None,
-                 webhook_endpoints: pulumi.Input[Optional[Sequence[pulumi.Input[Union['V2CoreEventDestinationWebhookEndpointArgs', 'V2CoreEventDestinationWebhookEndpointArgsDict']]]]] = None,
+                 webhook_endpoints: pulumi.Input[Optional[Sequence[pulumi.Input[Union['V2CoreEventDestinationWebhookEndpointArgs', 'V2CoreEventDestinationWebhookEndpointArgsDict', 'outputs.V2CoreEventDestinationWebhookEndpoint']]]]] = None,
                  __props__=None):
         """
         Create a V2CoreEventDestination resource with the given unique name, props, and options.
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[Sequence[pulumi.Input[Union['V2CoreEventDestinationAmazonEventbridgeArgs', 'V2CoreEventDestinationAmazonEventbridgeArgsDict']]]] amazon_eventbridges: Amazon EventBridge configuration.
-        :param pulumi.Input[Union['V2CoreEventDestinationAzureEventGridArgs', 'V2CoreEventDestinationAzureEventGridArgsDict']] azure_event_grid: Azure Event Grid configuration.
-        :param pulumi.Input[_builtins.str] description: An optional description of what the event destination is used for.
-        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] enabled_events: The list of events to enable for this endpoint.
-        :param pulumi.Input[_builtins.str] event_payload: Payload type of events being subscribed to.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['V2CoreEventDestinationAmazonEventbridgeArgs', 'V2CoreEventDestinationAmazonEventbridgeArgsDict', 'outputs.V2CoreEventDestinationAmazonEventbridge']]]] amazon_eventbridges: Configuration for delivering events through an Amazon EventBridge partner event source.
+        :param pulumi.Input[Union['V2CoreEventDestinationAzureEventGridArgs', 'V2CoreEventDestinationAzureEventGridArgsDict', 'outputs.V2CoreEventDestinationAzureEventGrid']] azure_event_grid: Configuration for delivering events through an Azure Event Grid partner topic.
+        :param pulumi.Input[_builtins.str] description: An optional user-defined description of the destination's purpose.
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] enabled_events: The list of event types enabled for delivery to this destination.
+        :param pulumi.Input[_builtins.str] event_payload: Whether to deliver as snapshot or thin events.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] events_froms: Specifies which accounts' events route to this destination.
                `@self`: Receive events from the account that owns the event destination.
                `@accounts`: Receive events emitted from other accounts you manage which includes your v1 and v2 accounts.
                `@organization_members`: Receive events from accounts directly linked to the organization.
                `@organization_members/@accounts`: Receive events from all accounts connected to any platform accounts in the organization.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] includes: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
-               Additional fields to include in the response.
-        :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] metadata: Metadata.
-        :param pulumi.Input[_builtins.str] name: Event destination name.
-        :param pulumi.Input[_builtins.str] snapshot_api_version: If using the snapshot event payload, the API version events are rendered as.
-        :param pulumi.Input[_builtins.str] type: Event destination type.
-        :param pulumi.Input[Sequence[pulumi.Input[Union['V2CoreEventDestinationWebhookEndpointArgs', 'V2CoreEventDestinationWebhookEndpointArgsDict']]]] webhook_endpoints: Webhook endpoint configuration.
+               Include normally redacted webhook fields in the create response. Public API clients must include `webhook_endpoint.signing_secret` to receive the signing secret.
+        :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] metadata: User-defined key/value data for the destination; it has no effect on event matching or delivery.
+        :param pulumi.Input[_builtins.str] name: A user-defined label for identifying the destination in Stripe.
+        :param pulumi.Input[_builtins.str] snapshot_api_version: For snapshot events only, the Stripe API version used to render event objects. You can't change this value after you create the event destination. Thin events are not pinned to an API version.
+        :param pulumi.Input[_builtins.str] type: The delivery transport. Chosen when the destination is created and cannot be changed by update.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['V2CoreEventDestinationWebhookEndpointArgs', 'V2CoreEventDestinationWebhookEndpointArgsDict', 'outputs.V2CoreEventDestinationWebhookEndpoint']]]] webhook_endpoints: Configuration for delivering events to a webhook endpoint. Live mode requires HTTPS; sandbox mode also supports HTTP.
         """
         ...
     @overload
@@ -599,8 +599,8 @@ class V2CoreEventDestination(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 amazon_eventbridges: pulumi.Input[Optional[Sequence[pulumi.Input[Union['V2CoreEventDestinationAmazonEventbridgeArgs', 'V2CoreEventDestinationAmazonEventbridgeArgsDict']]]]] = None,
-                 azure_event_grid: pulumi.Input[Optional[Union['V2CoreEventDestinationAzureEventGridArgs', 'V2CoreEventDestinationAzureEventGridArgsDict']]] = None,
+                 amazon_eventbridges: pulumi.Input[Optional[Sequence[pulumi.Input[Union['V2CoreEventDestinationAmazonEventbridgeArgs', 'V2CoreEventDestinationAmazonEventbridgeArgsDict', 'outputs.V2CoreEventDestinationAmazonEventbridge']]]]] = None,
+                 azure_event_grid: pulumi.Input[Optional[Union['V2CoreEventDestinationAzureEventGridArgs', 'V2CoreEventDestinationAzureEventGridArgsDict', 'outputs.V2CoreEventDestinationAzureEventGrid']]] = None,
                  description: pulumi.Input[Optional[_builtins.str]] = None,
                  enabled_events: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  event_payload: pulumi.Input[Optional[_builtins.str]] = None,
@@ -610,7 +610,7 @@ class V2CoreEventDestination(pulumi.CustomResource):
                  name: pulumi.Input[Optional[_builtins.str]] = None,
                  snapshot_api_version: pulumi.Input[Optional[_builtins.str]] = None,
                  type: pulumi.Input[Optional[_builtins.str]] = None,
-                 webhook_endpoints: pulumi.Input[Optional[Sequence[pulumi.Input[Union['V2CoreEventDestinationWebhookEndpointArgs', 'V2CoreEventDestinationWebhookEndpointArgsDict']]]]] = None,
+                 webhook_endpoints: pulumi.Input[Optional[Sequence[pulumi.Input[Union['V2CoreEventDestinationWebhookEndpointArgs', 'V2CoreEventDestinationWebhookEndpointArgsDict', 'outputs.V2CoreEventDestinationWebhookEndpoint']]]]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -657,8 +657,8 @@ class V2CoreEventDestination(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            amazon_eventbridges: pulumi.Input[Optional[Sequence[pulumi.Input[Union['V2CoreEventDestinationAmazonEventbridgeArgs', 'V2CoreEventDestinationAmazonEventbridgeArgsDict']]]]] = None,
-            azure_event_grid: pulumi.Input[Optional[Union['V2CoreEventDestinationAzureEventGridArgs', 'V2CoreEventDestinationAzureEventGridArgsDict']]] = None,
+            amazon_eventbridges: pulumi.Input[Optional[Sequence[pulumi.Input[Union['V2CoreEventDestinationAmazonEventbridgeArgs', 'V2CoreEventDestinationAmazonEventbridgeArgsDict', 'outputs.V2CoreEventDestinationAmazonEventbridge']]]]] = None,
+            azure_event_grid: pulumi.Input[Optional[Union['V2CoreEventDestinationAzureEventGridArgs', 'V2CoreEventDestinationAzureEventGridArgsDict', 'outputs.V2CoreEventDestinationAzureEventGrid']]] = None,
             created: pulumi.Input[Optional[_builtins.str]] = None,
             description: pulumi.Input[Optional[_builtins.str]] = None,
             enabled_events: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
@@ -671,10 +671,10 @@ class V2CoreEventDestination(pulumi.CustomResource):
             object: pulumi.Input[Optional[_builtins.str]] = None,
             snapshot_api_version: pulumi.Input[Optional[_builtins.str]] = None,
             status: pulumi.Input[Optional[_builtins.str]] = None,
-            status_details: pulumi.Input[Optional[Union['V2CoreEventDestinationStatusDetailsArgs', 'V2CoreEventDestinationStatusDetailsArgsDict']]] = None,
+            status_details: pulumi.Input[Optional[Union['V2CoreEventDestinationStatusDetailsArgs', 'V2CoreEventDestinationStatusDetailsArgsDict', 'outputs.V2CoreEventDestinationStatusDetails']]] = None,
             type: pulumi.Input[Optional[_builtins.str]] = None,
             updated: pulumi.Input[Optional[_builtins.str]] = None,
-            webhook_endpoints: pulumi.Input[Optional[Sequence[pulumi.Input[Union['V2CoreEventDestinationWebhookEndpointArgs', 'V2CoreEventDestinationWebhookEndpointArgsDict']]]]] = None) -> 'V2CoreEventDestination':
+            webhook_endpoints: pulumi.Input[Optional[Sequence[pulumi.Input[Union['V2CoreEventDestinationWebhookEndpointArgs', 'V2CoreEventDestinationWebhookEndpointArgsDict', 'outputs.V2CoreEventDestinationWebhookEndpoint']]]]] = None) -> 'V2CoreEventDestination':
         """
         Get an existing V2CoreEventDestination resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -682,29 +682,29 @@ class V2CoreEventDestination(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[Sequence[pulumi.Input[Union['V2CoreEventDestinationAmazonEventbridgeArgs', 'V2CoreEventDestinationAmazonEventbridgeArgsDict']]]] amazon_eventbridges: Amazon EventBridge configuration.
-        :param pulumi.Input[Union['V2CoreEventDestinationAzureEventGridArgs', 'V2CoreEventDestinationAzureEventGridArgsDict']] azure_event_grid: Azure Event Grid configuration.
-        :param pulumi.Input[_builtins.str] created: Time at which the object was created.
-        :param pulumi.Input[_builtins.str] description: An optional description of what the event destination is used for.
-        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] enabled_events: The list of events to enable for this endpoint.
-        :param pulumi.Input[_builtins.str] event_payload: Payload type of events being subscribed to.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['V2CoreEventDestinationAmazonEventbridgeArgs', 'V2CoreEventDestinationAmazonEventbridgeArgsDict', 'outputs.V2CoreEventDestinationAmazonEventbridge']]]] amazon_eventbridges: Configuration for delivering events through an Amazon EventBridge partner event source.
+        :param pulumi.Input[Union['V2CoreEventDestinationAzureEventGridArgs', 'V2CoreEventDestinationAzureEventGridArgsDict', 'outputs.V2CoreEventDestinationAzureEventGrid']] azure_event_grid: Configuration for delivering events through an Azure Event Grid partner topic.
+        :param pulumi.Input[_builtins.str] created: The time when the destination was created.
+        :param pulumi.Input[_builtins.str] description: An optional user-defined description of the destination's purpose.
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] enabled_events: The list of event types enabled for delivery to this destination.
+        :param pulumi.Input[_builtins.str] event_payload: Whether to deliver as snapshot or thin events.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] events_froms: Specifies which accounts' events route to this destination.
                `@self`: Receive events from the account that owns the event destination.
                `@accounts`: Receive events emitted from other accounts you manage which includes your v1 and v2 accounts.
                `@organization_members`: Receive events from accounts directly linked to the organization.
                `@organization_members/@accounts`: Receive events from all accounts connected to any platform accounts in the organization.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] includes: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
-               Additional fields to include in the response.
+               Include normally redacted webhook fields in the create response. Public API clients must include `webhook_endpoint.signing_secret` to receive the signing secret.
         :param pulumi.Input[_builtins.bool] livemode: Has the value <span pulumi-lang-nodejs="`true`" pulumi-lang-dotnet="`True`" pulumi-lang-go="`true`" pulumi-lang-python="`true`" pulumi-lang-yaml="`true`" pulumi-lang-java="`true`" pulumi-lang-hcl="`true`">`true`</span> if the object exists in live mode or the value <span pulumi-lang-nodejs="`false`" pulumi-lang-dotnet="`False`" pulumi-lang-go="`false`" pulumi-lang-python="`false`" pulumi-lang-yaml="`false`" pulumi-lang-java="`false`" pulumi-lang-hcl="`false`">`false`</span> if the object exists in test mode.
-        :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] metadata: Metadata.
-        :param pulumi.Input[_builtins.str] name: Event destination name.
+        :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] metadata: User-defined key/value data for the destination; it has no effect on event matching or delivery.
+        :param pulumi.Input[_builtins.str] name: A user-defined label for identifying the destination in Stripe.
         :param pulumi.Input[_builtins.str] object: String representing the object's type. Objects of the same type share the same value of the object field.
-        :param pulumi.Input[_builtins.str] snapshot_api_version: If using the snapshot event payload, the API version events are rendered as.
-        :param pulumi.Input[_builtins.str] status: Status. It can be set to either enabled or disabled.
-        :param pulumi.Input[Union['V2CoreEventDestinationStatusDetailsArgs', 'V2CoreEventDestinationStatusDetailsArgsDict']] status_details: Additional information about event destination status.
-        :param pulumi.Input[_builtins.str] type: Event destination type.
-        :param pulumi.Input[_builtins.str] updated: Time at which the object was last updated.
-        :param pulumi.Input[Sequence[pulumi.Input[Union['V2CoreEventDestinationWebhookEndpointArgs', 'V2CoreEventDestinationWebhookEndpointArgsDict']]]] webhook_endpoints: Webhook endpoint configuration.
+        :param pulumi.Input[_builtins.str] snapshot_api_version: For snapshot events only, the Stripe API version used to render event objects. You can't change this value after you create the event destination. Thin events are not pinned to an API version.
+        :param pulumi.Input[_builtins.str] status: Whether Stripe currently attempts delivery. Stripe attempts delivery to enabled destinations when their provider configuration is active; disabled destinations do not receive delivery attempts.
+        :param pulumi.Input[Union['V2CoreEventDestinationStatusDetailsArgs', 'V2CoreEventDestinationStatusDetailsArgsDict', 'outputs.V2CoreEventDestinationStatusDetails']] status_details: Additional lifecycle context for the destination status, when available.
+        :param pulumi.Input[_builtins.str] type: The delivery transport. Chosen when the destination is created and cannot be changed by update.
+        :param pulumi.Input[_builtins.str] updated: The time when the destination object was last updated.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['V2CoreEventDestinationWebhookEndpointArgs', 'V2CoreEventDestinationWebhookEndpointArgsDict', 'outputs.V2CoreEventDestinationWebhookEndpoint']]]] webhook_endpoints: Configuration for delivering events to a webhook endpoint. Live mode requires HTTPS; sandbox mode also supports HTTP.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -730,11 +730,53 @@ class V2CoreEventDestination(pulumi.CustomResource):
         __props__.__dict__["webhook_endpoints"] = webhook_endpoints
         return V2CoreEventDestination(resource_name, opts=opts, __props__=__props__)
 
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            amazon_eventbridges: pulumi.Input[Optional[Sequence[pulumi.Input[Union['V2CoreEventDestinationAmazonEventbridgeArgs', 'V2CoreEventDestinationAmazonEventbridgeArgsDict', 'outputs.V2CoreEventDestinationAmazonEventbridge']]]]] = None,
+            azure_event_grid: pulumi.Input[Optional[Union['V2CoreEventDestinationAzureEventGridArgs', 'V2CoreEventDestinationAzureEventGridArgsDict', 'outputs.V2CoreEventDestinationAzureEventGrid']]] = None,
+            created: pulumi.Input[Optional[_builtins.str]] = None,
+            description: pulumi.Input[Optional[_builtins.str]] = None,
+            enabled_events: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            event_payload: pulumi.Input[Optional[_builtins.str]] = None,
+            events_froms: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            includes: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            livemode: pulumi.Input[Optional[_builtins.bool]] = None,
+            metadata: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+            name: pulumi.Input[Optional[_builtins.str]] = None,
+            object: pulumi.Input[Optional[_builtins.str]] = None,
+            snapshot_api_version: pulumi.Input[Optional[_builtins.str]] = None,
+            status: pulumi.Input[Optional[_builtins.str]] = None,
+            status_details: pulumi.Input[Optional[Union['V2CoreEventDestinationStatusDetailsArgs', 'V2CoreEventDestinationStatusDetailsArgsDict', 'outputs.V2CoreEventDestinationStatusDetails']]] = None,
+            type: pulumi.Input[Optional[_builtins.str]] = None,
+            updated: pulumi.Input[Optional[_builtins.str]] = None,
+            webhook_endpoints: pulumi.Input[Optional[Sequence[pulumi.Input[Union['V2CoreEventDestinationWebhookEndpointArgs', 'V2CoreEventDestinationWebhookEndpointArgsDict', 'outputs.V2CoreEventDestinationWebhookEndpoint']]]]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["amazonEventbridges"] = amazon_eventbridges
+        __props__["azureEventGrid"] = azure_event_grid
+        __props__["created"] = created
+        __props__["description"] = description
+        __props__["enabledEvents"] = enabled_events
+        __props__["eventPayload"] = event_payload
+        __props__["eventsFroms"] = events_froms
+        __props__["includes"] = includes
+        __props__["livemode"] = livemode
+        __props__["metadata"] = metadata
+        __props__["name"] = name
+        __props__["object"] = object
+        __props__["snapshotApiVersion"] = snapshot_api_version
+        __props__["status"] = status
+        __props__["statusDetails"] = status_details
+        __props__["type"] = type
+        __props__["updated"] = updated
+        __props__["webhookEndpoints"] = webhook_endpoints
+        return pulumi.runtime.exists_resource(None, 'stripe:index/v2CoreEventDestination:V2CoreEventDestination', id, __props__, opts or pulumi.ResourceOptions(), package_ref=_utilities.get_package())
+
     @_builtins.property
     @pulumi.getter(name="amazonEventbridges")
     def amazon_eventbridges(self) -> pulumi.Output[Optional[Sequence['outputs.V2CoreEventDestinationAmazonEventbridge']]]:
         """
-        Amazon EventBridge configuration.
+        Configuration for delivering events through an Amazon EventBridge partner event source.
         """
         return pulumi.get(self, "amazon_eventbridges")
 
@@ -742,7 +784,7 @@ class V2CoreEventDestination(pulumi.CustomResource):
     @pulumi.getter(name="azureEventGrid")
     def azure_event_grid(self) -> pulumi.Output['outputs.V2CoreEventDestinationAzureEventGrid']:
         """
-        Azure Event Grid configuration.
+        Configuration for delivering events through an Azure Event Grid partner topic.
         """
         return pulumi.get(self, "azure_event_grid")
 
@@ -750,7 +792,7 @@ class V2CoreEventDestination(pulumi.CustomResource):
     @pulumi.getter
     def created(self) -> pulumi.Output[_builtins.str]:
         """
-        Time at which the object was created.
+        The time when the destination was created.
         """
         return pulumi.get(self, "created")
 
@@ -758,7 +800,7 @@ class V2CoreEventDestination(pulumi.CustomResource):
     @pulumi.getter
     def description(self) -> pulumi.Output[_builtins.str]:
         """
-        An optional description of what the event destination is used for.
+        An optional user-defined description of the destination's purpose.
         """
         return pulumi.get(self, "description")
 
@@ -766,7 +808,7 @@ class V2CoreEventDestination(pulumi.CustomResource):
     @pulumi.getter(name="enabledEvents")
     def enabled_events(self) -> pulumi.Output[Sequence[_builtins.str]]:
         """
-        The list of events to enable for this endpoint.
+        The list of event types enabled for delivery to this destination.
         """
         return pulumi.get(self, "enabled_events")
 
@@ -774,7 +816,7 @@ class V2CoreEventDestination(pulumi.CustomResource):
     @pulumi.getter(name="eventPayload")
     def event_payload(self) -> pulumi.Output[_builtins.str]:
         """
-        Payload type of events being subscribed to.
+        Whether to deliver as snapshot or thin events.
         """
         return pulumi.get(self, "event_payload")
 
@@ -795,7 +837,7 @@ class V2CoreEventDestination(pulumi.CustomResource):
     def includes(self) -> pulumi.Output[Optional[Sequence[_builtins.str]]]:
         """
         **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
-        Additional fields to include in the response.
+        Include normally redacted webhook fields in the create response. Public API clients must include `webhook_endpoint.signing_secret` to receive the signing secret.
         """
         return pulumi.get(self, "includes")
 
@@ -811,7 +853,7 @@ class V2CoreEventDestination(pulumi.CustomResource):
     @pulumi.getter
     def metadata(self) -> pulumi.Output[Mapping[str, _builtins.str]]:
         """
-        Metadata.
+        User-defined key/value data for the destination; it has no effect on event matching or delivery.
         """
         return pulumi.get(self, "metadata")
 
@@ -819,7 +861,7 @@ class V2CoreEventDestination(pulumi.CustomResource):
     @pulumi.getter
     def name(self) -> pulumi.Output[_builtins.str]:
         """
-        Event destination name.
+        A user-defined label for identifying the destination in Stripe.
         """
         return pulumi.get(self, "name")
 
@@ -835,7 +877,7 @@ class V2CoreEventDestination(pulumi.CustomResource):
     @pulumi.getter(name="snapshotApiVersion")
     def snapshot_api_version(self) -> pulumi.Output[_builtins.str]:
         """
-        If using the snapshot event payload, the API version events are rendered as.
+        For snapshot events only, the Stripe API version used to render event objects. You can't change this value after you create the event destination. Thin events are not pinned to an API version.
         """
         return pulumi.get(self, "snapshot_api_version")
 
@@ -843,7 +885,7 @@ class V2CoreEventDestination(pulumi.CustomResource):
     @pulumi.getter
     def status(self) -> pulumi.Output[_builtins.str]:
         """
-        Status. It can be set to either enabled or disabled.
+        Whether Stripe currently attempts delivery. Stripe attempts delivery to enabled destinations when their provider configuration is active; disabled destinations do not receive delivery attempts.
         """
         return pulumi.get(self, "status")
 
@@ -851,7 +893,7 @@ class V2CoreEventDestination(pulumi.CustomResource):
     @pulumi.getter(name="statusDetails")
     def status_details(self) -> pulumi.Output['outputs.V2CoreEventDestinationStatusDetails']:
         """
-        Additional information about event destination status.
+        Additional lifecycle context for the destination status, when available.
         """
         return pulumi.get(self, "status_details")
 
@@ -859,7 +901,7 @@ class V2CoreEventDestination(pulumi.CustomResource):
     @pulumi.getter
     def type(self) -> pulumi.Output[_builtins.str]:
         """
-        Event destination type.
+        The delivery transport. Chosen when the destination is created and cannot be changed by update.
         """
         return pulumi.get(self, "type")
 
@@ -867,7 +909,7 @@ class V2CoreEventDestination(pulumi.CustomResource):
     @pulumi.getter
     def updated(self) -> pulumi.Output[_builtins.str]:
         """
-        Time at which the object was last updated.
+        The time when the destination object was last updated.
         """
         return pulumi.get(self, "updated")
 
@@ -875,7 +917,7 @@ class V2CoreEventDestination(pulumi.CustomResource):
     @pulumi.getter(name="webhookEndpoints")
     def webhook_endpoints(self) -> pulumi.Output[Optional[Sequence['outputs.V2CoreEventDestinationWebhookEndpoint']]]:
         """
-        Webhook endpoint configuration.
+        Configuration for delivering events to a webhook endpoint. Live mode requires HTTPS; sandbox mode also supports HTTP.
         """
         return pulumi.get(self, "webhook_endpoints")
 

@@ -43,7 +43,7 @@ type ClimateOrder struct {
 	DeliveredAt pulumi.Float64Output `pulumi:"deliveredAt"`
 	// Details about the delivery of carbon removal for this order.
 	DeliveryDetails ClimateOrderDeliveryDetailArrayOutput `pulumi:"deliveryDetails"`
-	// The year this order is expected to be delivered.
+	// The year this order is expected to be delivered. If the year is in the past, the order is a spot purchase and will be delivered within 30 days of purchase.
 	ExpectedDeliveryYear pulumi.Float64Output `pulumi:"expectedDeliveryYear"`
 	// Has the value <span pulumi-lang-nodejs="`true`" pulumi-lang-dotnet="`True`" pulumi-lang-go="`true`" pulumi-lang-python="`true`" pulumi-lang-yaml="`true`" pulumi-lang-java="`true`" pulumi-lang-hcl="`true`">`true`</span> if the object exists in live mode or the value <span pulumi-lang-nodejs="`false`" pulumi-lang-dotnet="`False`" pulumi-lang-go="`false`" pulumi-lang-python="`false`" pulumi-lang-yaml="`false`" pulumi-lang-java="`false`" pulumi-lang-hcl="`false`">`false`</span> if the object exists in test mode.
 	Livemode pulumi.BoolOutput `pulumi:"livemode"`
@@ -137,7 +137,7 @@ type climateOrderState struct {
 	DeliveredAt *float64 `pulumi:"deliveredAt"`
 	// Details about the delivery of carbon removal for this order.
 	DeliveryDetails []ClimateOrderDeliveryDetail `pulumi:"deliveryDetails"`
-	// The year this order is expected to be delivered.
+	// The year this order is expected to be delivered. If the year is in the past, the order is a spot purchase and will be delivered within 30 days of purchase.
 	ExpectedDeliveryYear *float64 `pulumi:"expectedDeliveryYear"`
 	// Has the value <span pulumi-lang-nodejs="`true`" pulumi-lang-dotnet="`True`" pulumi-lang-go="`true`" pulumi-lang-python="`true`" pulumi-lang-yaml="`true`" pulumi-lang-java="`true`" pulumi-lang-hcl="`true`">`true`</span> if the object exists in live mode or the value <span pulumi-lang-nodejs="`false`" pulumi-lang-dotnet="`False`" pulumi-lang-go="`false`" pulumi-lang-python="`false`" pulumi-lang-yaml="`false`" pulumi-lang-java="`false`" pulumi-lang-hcl="`false`">`false`</span> if the object exists in test mode.
 	Livemode *bool `pulumi:"livemode"`
@@ -184,7 +184,7 @@ type ClimateOrderState struct {
 	DeliveredAt pulumi.Float64PtrInput
 	// Details about the delivery of carbon removal for this order.
 	DeliveryDetails ClimateOrderDeliveryDetailArrayInput
-	// The year this order is expected to be delivered.
+	// The year this order is expected to be delivered. If the year is in the past, the order is a spot purchase and will be delivered within 30 days of purchase.
 	ExpectedDeliveryYear pulumi.Float64PtrInput
 	// Has the value <span pulumi-lang-nodejs="`true`" pulumi-lang-dotnet="`True`" pulumi-lang-go="`true`" pulumi-lang-python="`true`" pulumi-lang-yaml="`true`" pulumi-lang-java="`true`" pulumi-lang-hcl="`true`">`true`</span> if the object exists in live mode or the value <span pulumi-lang-nodejs="`false`" pulumi-lang-dotnet="`False`" pulumi-lang-go="`false`" pulumi-lang-python="`false`" pulumi-lang-yaml="`false`" pulumi-lang-java="`false`" pulumi-lang-hcl="`false`">`false`</span> if the object exists in test mode.
 	Livemode pulumi.BoolPtrInput
@@ -204,6 +204,18 @@ type ClimateOrderState struct {
 
 func (ClimateOrderState) ElementType() reflect.Type {
 	return reflect.TypeOf((*climateOrderState)(nil)).Elem()
+}
+
+// ClimateOrderExists checks whether an existing ClimateOrder resource with the given ID exists.
+func ClimateOrderExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *ClimateOrderState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	ref, err := internal.PkgGetPackageRef(ctx)
+	if err != nil {
+		return pulumi.Bool(false).ToBoolOutput().ApplyT(func(bool) (bool, error) {
+			return false, err
+		}).(pulumi.BoolOutput)
+	}
+	return ctx.ExistsResource("stripe:index/climateOrder:ClimateOrder", id, state, ref, opts...)
 }
 
 type climateOrderArgs struct {
@@ -344,7 +356,7 @@ func (o ClimateOrderOutput) DeliveryDetails() ClimateOrderDeliveryDetailArrayOut
 	return o.ApplyT(func(v *ClimateOrder) ClimateOrderDeliveryDetailArrayOutput { return v.DeliveryDetails }).(ClimateOrderDeliveryDetailArrayOutput)
 }
 
-// The year this order is expected to be delivered.
+// The year this order is expected to be delivered. If the year is in the past, the order is a spot purchase and will be delivered within 30 days of purchase.
 func (o ClimateOrderOutput) ExpectedDeliveryYear() pulumi.Float64Output {
 	return o.ApplyT(func(v *ClimateOrder) pulumi.Float64Output { return v.ExpectedDeliveryYear }).(pulumi.Float64Output)
 }

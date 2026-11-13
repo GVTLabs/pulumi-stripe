@@ -19,6 +19,12 @@ namespace Pulumi.Stripe.Inputs
         public Input<double>? BillingCycleAnchor { get; set; }
 
         /// <summary>
+        /// Indicates whether this subscription should cancel at the end of the current period if the update is applied.
+        /// </summary>
+        [Input("cancelAtPeriodEnd")]
+        public Input<bool>? CancelAtPeriodEnd { get; set; }
+
+        /// <summary>
         /// The pending subscription-level discount that will be applied when the pending update is applied.
         /// </summary>
         [Input("discount")]
@@ -49,7 +55,7 @@ namespace Pulumi.Stripe.Inputs
         public Input<double>? TrialEnd { get; set; }
 
         /// <summary>
-        /// Indicates if a plan's &lt;span pulumi-lang-nodejs="`trialPeriodDays`" pulumi-lang-dotnet="`TrialPeriodDays`" pulumi-lang-go="`trialPeriodDays`" pulumi-lang-python="`trial_period_days`" pulumi-lang-yaml="`trialPeriodDays`" pulumi-lang-java="`trialPeriodDays`" pulumi-lang-hcl="`trial_period_days`"&gt;`trialPeriodDays`&lt;/span&gt; should be applied to the subscription. Setting &lt;span pulumi-lang-nodejs="`trialEnd`" pulumi-lang-dotnet="`TrialEnd`" pulumi-lang-go="`trialEnd`" pulumi-lang-python="`trial_end`" pulumi-lang-yaml="`trialEnd`" pulumi-lang-java="`trialEnd`" pulumi-lang-hcl="`trial_end`"&gt;`trialEnd`&lt;/span&gt; per subscription is preferred, and this defaults to &lt;span pulumi-lang-nodejs="`false`" pulumi-lang-dotnet="`False`" pulumi-lang-go="`false`" pulumi-lang-python="`false`" pulumi-lang-yaml="`false`" pulumi-lang-java="`false`" pulumi-lang-hcl="`false`"&gt;`false`&lt;/span&gt;. Setting this flag to &lt;span pulumi-lang-nodejs="`true`" pulumi-lang-dotnet="`True`" pulumi-lang-go="`true`" pulumi-lang-python="`true`" pulumi-lang-yaml="`true`" pulumi-lang-java="`true`" pulumi-lang-hcl="`true`"&gt;`true`&lt;/span&gt; together with &lt;span pulumi-lang-nodejs="`trialEnd`" pulumi-lang-dotnet="`TrialEnd`" pulumi-lang-go="`trialEnd`" pulumi-lang-python="`trial_end`" pulumi-lang-yaml="`trialEnd`" pulumi-lang-java="`trialEnd`" pulumi-lang-hcl="`trial_end`"&gt;`trialEnd`&lt;/span&gt; is not allowed. See [Using trial periods on subscriptions](https://docs.stripe.com/billing/subscriptions/trials) to learn more.
+        /// Indicates if a plan's &lt;span pulumi-lang-nodejs="`trialPeriodDays`" pulumi-lang-dotnet="`TrialPeriodDays`" pulumi-lang-go="`trialPeriodDays`" pulumi-lang-python="`trial_period_days`" pulumi-lang-yaml="`trialPeriodDays`" pulumi-lang-java="`trialPeriodDays`" pulumi-lang-hcl="`trial_period_days`"&gt;`trialPeriodDays`&lt;/span&gt; should be applied to the subscription. Setting &lt;span pulumi-lang-nodejs="`trialEnd`" pulumi-lang-dotnet="`TrialEnd`" pulumi-lang-go="`trialEnd`" pulumi-lang-python="`trial_end`" pulumi-lang-yaml="`trialEnd`" pulumi-lang-java="`trialEnd`" pulumi-lang-hcl="`trial_end`"&gt;`trialEnd`&lt;/span&gt; per subscription is preferred, and this defaults to &lt;span pulumi-lang-nodejs="`false`" pulumi-lang-dotnet="`False`" pulumi-lang-go="`false`" pulumi-lang-python="`false`" pulumi-lang-yaml="`false`" pulumi-lang-java="`false`" pulumi-lang-hcl="`false`"&gt;`false`&lt;/span&gt;. Setting this flag to &lt;span pulumi-lang-nodejs="`true`" pulumi-lang-dotnet="`True`" pulumi-lang-go="`true`" pulumi-lang-python="`true`" pulumi-lang-yaml="`true`" pulumi-lang-java="`true`" pulumi-lang-hcl="`true`"&gt;`true`&lt;/span&gt; together with &lt;span pulumi-lang-nodejs="`trialEnd`" pulumi-lang-dotnet="`TrialEnd`" pulumi-lang-go="`trialEnd`" pulumi-lang-python="`trial_end`" pulumi-lang-yaml="`trialEnd`" pulumi-lang-java="`trialEnd`" pulumi-lang-hcl="`trial_end`"&gt;`trialEnd`&lt;/span&gt; is not allowed. See [Using trial periods on subscriptions](https://docs.stripe.com/billing/subscriptions/trials/free-trials) to learn more.
         /// </summary>
         [Input("trialFromPlan")]
         public Input<bool>? TrialFromPlan { get; set; }

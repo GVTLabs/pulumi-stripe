@@ -118,6 +118,18 @@ func (TaxRegistrationState) ElementType() reflect.Type {
 	return reflect.TypeOf((*taxRegistrationState)(nil)).Elem()
 }
 
+// TaxRegistrationExists checks whether an existing TaxRegistration resource with the given ID exists.
+func TaxRegistrationExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *TaxRegistrationState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	ref, err := internal.PkgGetPackageRef(ctx)
+	if err != nil {
+		return pulumi.Bool(false).ToBoolOutput().ApplyT(func(bool) (bool, error) {
+			return false, err
+		}).(pulumi.BoolOutput)
+	}
+	return ctx.ExistsResource("stripe:index/taxRegistration:TaxRegistration", id, state, ref, opts...)
+}
+
 type taxRegistrationArgs struct {
 	// Time at which the registration becomes active. Measured in seconds since the Unix epoch.
 	ActiveFrom float64 `pulumi:"activeFrom"`

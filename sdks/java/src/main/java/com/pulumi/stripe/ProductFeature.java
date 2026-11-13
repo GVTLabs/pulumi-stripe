@@ -60,9 +60,17 @@ public class ProductFeature extends com.pulumi.resources.CustomResource {
     public Output<String> object() {
         return this.object;
     }
+    /**
+     * Unique identifier for the object.
+     * 
+     */
     @Export(name="product", refs={String.class}, tree="[0]")
     private Output<String> product;
 
+    /**
+     * @return Unique identifier for the object.
+     * 
+     */
     public Output<String> product() {
         return this.product;
     }

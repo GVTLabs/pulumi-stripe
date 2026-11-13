@@ -16,14 +16,14 @@ public final class PaymentIntentLastPaymentErrorArgs extends com.pulumi.resource
     public static final PaymentIntentLastPaymentErrorArgs Empty = new PaymentIntentLastPaymentErrorArgs();
 
     /**
-     * For card errors resulting from a card issuer decline, a short string indicating [how to proceed with an error](https://docs.stripe.com/declines#retrying-issuer-declines) if they provide one.
+     * For card errors resulting from a card issuer decline, a short string indicating [how to proceed with an error](https://docs.stripe.com/declines/card#retrying-issuer-declines) if they provide one.
      * 
      */
     @Import(name="adviceCode")
     private @Nullable Output<String> adviceCode;
 
     /**
-     * @return For card errors resulting from a card issuer decline, a short string indicating [how to proceed with an error](https://docs.stripe.com/declines#retrying-issuer-declines) if they provide one.
+     * @return For card errors resulting from a card issuer decline, a short string indicating [how to proceed with an error](https://docs.stripe.com/declines/card#retrying-issuer-declines) if they provide one.
      * 
      */
     public Optional<Output<String>> adviceCode() {
@@ -241,7 +241,7 @@ public final class PaymentIntentLastPaymentErrorArgs extends com.pulumi.resource
     /**
      * A SetupIntent guides you through the process of setting up and saving a customer&#39;s payment credentials for future payments.
      * For example, you can use a SetupIntent to set up and save your customer&#39;s card without immediately collecting a payment.
-     * Later, you can use [PaymentIntents](https://api.stripe.com#payment_intents) to drive the payment flow.
+     * Later, you can use [PaymentIntents](https://docs.stripe.com/api#payment_intents) to drive the payment flow.
      * 
      * Create a SetupIntent when you&#39;re ready to collect your customer&#39;s payment credentials.
      * Don&#39;t maintain long-lived, unconfirmed SetupIntents because they might not be valid.
@@ -252,9 +252,9 @@ public final class PaymentIntentLastPaymentErrorArgs extends com.pulumi.resource
      * For example, cardholders in [certain regions](https://stripe.com/guides/strong-customer-authentication) might need to be run through
      * [Strong Customer Authentication](https://docs.stripe.com/strong-customer-authentication) during payment method collection
      * to streamline later [off-session payments](https://docs.stripe.com/payments/setup-intents).
-     * If you use the SetupIntent with a [Customer](https://api.stripe.com#setup_intent_object-customer),
+     * If you use the SetupIntent with a [Customer](https://docs.stripe.com/api#setup_intent_object-customer),
      * it automatically attaches the resulting payment method to that Customer after successful setup.
-     * We recommend using SetupIntents or &lt;span pulumi-lang-nodejs=&#34;[setupFutureUsage]&#34; pulumi-lang-dotnet=&#34;[SetupFutureUsage]&#34; pulumi-lang-go=&#34;[setupFutureUsage]&#34; pulumi-lang-python=&#34;[setup_future_usage]&#34; pulumi-lang-yaml=&#34;[setupFutureUsage]&#34; pulumi-lang-java=&#34;[setupFutureUsage]&#34; pulumi-lang-hcl=&#34;[setup_future_usage]&#34;&gt;[setupFutureUsage]&lt;/span&gt;(https://api.stripe.com#payment_intent_object-setup_future_usage) on
+     * We recommend using SetupIntents or &lt;span pulumi-lang-nodejs=&#34;[setupFutureUsage]&#34; pulumi-lang-dotnet=&#34;[SetupFutureUsage]&#34; pulumi-lang-go=&#34;[setupFutureUsage]&#34; pulumi-lang-python=&#34;[setup_future_usage]&#34; pulumi-lang-yaml=&#34;[setupFutureUsage]&#34; pulumi-lang-java=&#34;[setupFutureUsage]&#34; pulumi-lang-hcl=&#34;[setup_future_usage]&#34;&gt;[setupFutureUsage]&lt;/span&gt;(https://docs.stripe.com/api#payment_intent_object-setup_future_usage) on
      * PaymentIntents to save payment methods to prevent saving invalid or unoptimized payment methods.
      * 
      * By using SetupIntents, you can reduce friction for your customers, even as regulations change over time.
@@ -268,7 +268,7 @@ public final class PaymentIntentLastPaymentErrorArgs extends com.pulumi.resource
     /**
      * @return A SetupIntent guides you through the process of setting up and saving a customer&#39;s payment credentials for future payments.
      * For example, you can use a SetupIntent to set up and save your customer&#39;s card without immediately collecting a payment.
-     * Later, you can use [PaymentIntents](https://api.stripe.com#payment_intents) to drive the payment flow.
+     * Later, you can use [PaymentIntents](https://docs.stripe.com/api#payment_intents) to drive the payment flow.
      * 
      * Create a SetupIntent when you&#39;re ready to collect your customer&#39;s payment credentials.
      * Don&#39;t maintain long-lived, unconfirmed SetupIntents because they might not be valid.
@@ -279,9 +279,9 @@ public final class PaymentIntentLastPaymentErrorArgs extends com.pulumi.resource
      * For example, cardholders in [certain regions](https://stripe.com/guides/strong-customer-authentication) might need to be run through
      * [Strong Customer Authentication](https://docs.stripe.com/strong-customer-authentication) during payment method collection
      * to streamline later [off-session payments](https://docs.stripe.com/payments/setup-intents).
-     * If you use the SetupIntent with a [Customer](https://api.stripe.com#setup_intent_object-customer),
+     * If you use the SetupIntent with a [Customer](https://docs.stripe.com/api#setup_intent_object-customer),
      * it automatically attaches the resulting payment method to that Customer after successful setup.
-     * We recommend using SetupIntents or &lt;span pulumi-lang-nodejs=&#34;[setupFutureUsage]&#34; pulumi-lang-dotnet=&#34;[SetupFutureUsage]&#34; pulumi-lang-go=&#34;[setupFutureUsage]&#34; pulumi-lang-python=&#34;[setup_future_usage]&#34; pulumi-lang-yaml=&#34;[setupFutureUsage]&#34; pulumi-lang-java=&#34;[setupFutureUsage]&#34; pulumi-lang-hcl=&#34;[setup_future_usage]&#34;&gt;[setupFutureUsage]&lt;/span&gt;(https://api.stripe.com#payment_intent_object-setup_future_usage) on
+     * We recommend using SetupIntents or &lt;span pulumi-lang-nodejs=&#34;[setupFutureUsage]&#34; pulumi-lang-dotnet=&#34;[SetupFutureUsage]&#34; pulumi-lang-go=&#34;[setupFutureUsage]&#34; pulumi-lang-python=&#34;[setup_future_usage]&#34; pulumi-lang-yaml=&#34;[setupFutureUsage]&#34; pulumi-lang-java=&#34;[setupFutureUsage]&#34; pulumi-lang-hcl=&#34;[setup_future_usage]&#34;&gt;[setupFutureUsage]&lt;/span&gt;(https://docs.stripe.com/api#payment_intent_object-setup_future_usage) on
      * PaymentIntents to save payment methods to prevent saving invalid or unoptimized payment methods.
      * 
      * By using SetupIntents, you can reduce friction for your customers, even as regulations change over time.
@@ -355,7 +355,7 @@ public final class PaymentIntentLastPaymentErrorArgs extends com.pulumi.resource
         }
 
         /**
-         * @param adviceCode For card errors resulting from a card issuer decline, a short string indicating [how to proceed with an error](https://docs.stripe.com/declines#retrying-issuer-declines) if they provide one.
+         * @param adviceCode For card errors resulting from a card issuer decline, a short string indicating [how to proceed with an error](https://docs.stripe.com/declines/card#retrying-issuer-declines) if they provide one.
          * 
          * @return builder
          * 
@@ -366,7 +366,7 @@ public final class PaymentIntentLastPaymentErrorArgs extends com.pulumi.resource
         }
 
         /**
-         * @param adviceCode For card errors resulting from a card issuer decline, a short string indicating [how to proceed with an error](https://docs.stripe.com/declines#retrying-issuer-declines) if they provide one.
+         * @param adviceCode For card errors resulting from a card issuer decline, a short string indicating [how to proceed with an error](https://docs.stripe.com/declines/card#retrying-issuer-declines) if they provide one.
          * 
          * @return builder
          * 
@@ -658,7 +658,7 @@ public final class PaymentIntentLastPaymentErrorArgs extends com.pulumi.resource
         /**
          * @param setupIntent A SetupIntent guides you through the process of setting up and saving a customer&#39;s payment credentials for future payments.
          * For example, you can use a SetupIntent to set up and save your customer&#39;s card without immediately collecting a payment.
-         * Later, you can use [PaymentIntents](https://api.stripe.com#payment_intents) to drive the payment flow.
+         * Later, you can use [PaymentIntents](https://docs.stripe.com/api#payment_intents) to drive the payment flow.
          * 
          * Create a SetupIntent when you&#39;re ready to collect your customer&#39;s payment credentials.
          * Don&#39;t maintain long-lived, unconfirmed SetupIntents because they might not be valid.
@@ -669,9 +669,9 @@ public final class PaymentIntentLastPaymentErrorArgs extends com.pulumi.resource
          * For example, cardholders in [certain regions](https://stripe.com/guides/strong-customer-authentication) might need to be run through
          * [Strong Customer Authentication](https://docs.stripe.com/strong-customer-authentication) during payment method collection
          * to streamline later [off-session payments](https://docs.stripe.com/payments/setup-intents).
-         * If you use the SetupIntent with a [Customer](https://api.stripe.com#setup_intent_object-customer),
+         * If you use the SetupIntent with a [Customer](https://docs.stripe.com/api#setup_intent_object-customer),
          * it automatically attaches the resulting payment method to that Customer after successful setup.
-         * We recommend using SetupIntents or &lt;span pulumi-lang-nodejs=&#34;[setupFutureUsage]&#34; pulumi-lang-dotnet=&#34;[SetupFutureUsage]&#34; pulumi-lang-go=&#34;[setupFutureUsage]&#34; pulumi-lang-python=&#34;[setup_future_usage]&#34; pulumi-lang-yaml=&#34;[setupFutureUsage]&#34; pulumi-lang-java=&#34;[setupFutureUsage]&#34; pulumi-lang-hcl=&#34;[setup_future_usage]&#34;&gt;[setupFutureUsage]&lt;/span&gt;(https://api.stripe.com#payment_intent_object-setup_future_usage) on
+         * We recommend using SetupIntents or &lt;span pulumi-lang-nodejs=&#34;[setupFutureUsage]&#34; pulumi-lang-dotnet=&#34;[SetupFutureUsage]&#34; pulumi-lang-go=&#34;[setupFutureUsage]&#34; pulumi-lang-python=&#34;[setup_future_usage]&#34; pulumi-lang-yaml=&#34;[setupFutureUsage]&#34; pulumi-lang-java=&#34;[setupFutureUsage]&#34; pulumi-lang-hcl=&#34;[setup_future_usage]&#34;&gt;[setupFutureUsage]&lt;/span&gt;(https://docs.stripe.com/api#payment_intent_object-setup_future_usage) on
          * PaymentIntents to save payment methods to prevent saving invalid or unoptimized payment methods.
          * 
          * By using SetupIntents, you can reduce friction for your customers, even as regulations change over time.
@@ -689,7 +689,7 @@ public final class PaymentIntentLastPaymentErrorArgs extends com.pulumi.resource
         /**
          * @param setupIntent A SetupIntent guides you through the process of setting up and saving a customer&#39;s payment credentials for future payments.
          * For example, you can use a SetupIntent to set up and save your customer&#39;s card without immediately collecting a payment.
-         * Later, you can use [PaymentIntents](https://api.stripe.com#payment_intents) to drive the payment flow.
+         * Later, you can use [PaymentIntents](https://docs.stripe.com/api#payment_intents) to drive the payment flow.
          * 
          * Create a SetupIntent when you&#39;re ready to collect your customer&#39;s payment credentials.
          * Don&#39;t maintain long-lived, unconfirmed SetupIntents because they might not be valid.
@@ -700,9 +700,9 @@ public final class PaymentIntentLastPaymentErrorArgs extends com.pulumi.resource
          * For example, cardholders in [certain regions](https://stripe.com/guides/strong-customer-authentication) might need to be run through
          * [Strong Customer Authentication](https://docs.stripe.com/strong-customer-authentication) during payment method collection
          * to streamline later [off-session payments](https://docs.stripe.com/payments/setup-intents).
-         * If you use the SetupIntent with a [Customer](https://api.stripe.com#setup_intent_object-customer),
+         * If you use the SetupIntent with a [Customer](https://docs.stripe.com/api#setup_intent_object-customer),
          * it automatically attaches the resulting payment method to that Customer after successful setup.
-         * We recommend using SetupIntents or &lt;span pulumi-lang-nodejs=&#34;[setupFutureUsage]&#34; pulumi-lang-dotnet=&#34;[SetupFutureUsage]&#34; pulumi-lang-go=&#34;[setupFutureUsage]&#34; pulumi-lang-python=&#34;[setup_future_usage]&#34; pulumi-lang-yaml=&#34;[setupFutureUsage]&#34; pulumi-lang-java=&#34;[setupFutureUsage]&#34; pulumi-lang-hcl=&#34;[setup_future_usage]&#34;&gt;[setupFutureUsage]&lt;/span&gt;(https://api.stripe.com#payment_intent_object-setup_future_usage) on
+         * We recommend using SetupIntents or &lt;span pulumi-lang-nodejs=&#34;[setupFutureUsage]&#34; pulumi-lang-dotnet=&#34;[SetupFutureUsage]&#34; pulumi-lang-go=&#34;[setupFutureUsage]&#34; pulumi-lang-python=&#34;[setup_future_usage]&#34; pulumi-lang-yaml=&#34;[setupFutureUsage]&#34; pulumi-lang-java=&#34;[setupFutureUsage]&#34; pulumi-lang-hcl=&#34;[setup_future_usage]&#34;&gt;[setupFutureUsage]&lt;/span&gt;(https://docs.stripe.com/api#payment_intent_object-setup_future_usage) on
          * PaymentIntents to save payment methods to prevent saving invalid or unoptimized payment methods.
          * 
          * By using SetupIntents, you can reduce friction for your customers, even as regulations change over time.

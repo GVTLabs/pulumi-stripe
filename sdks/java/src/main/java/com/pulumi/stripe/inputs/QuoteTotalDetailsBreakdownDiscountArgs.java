@@ -32,7 +32,7 @@ public final class QuoteTotalDetailsBreakdownDiscountArgs extends com.pulumi.res
     }
 
     /**
-     * A discount represents the actual application of a [coupon](https://api.stripe.com#coupons) or [promotion code](https://api.stripe.com#promotion_codes).
+     * A discount represents the actual application of a [coupon](https://docs.stripe.com/api#coupons) or [promotion code](https://docs.stripe.com/api#promotion_codes).
      * It contains information about when the discount began, when it will end, and what it is applied to.
      * 
      * Related guide: [Applying discounts to subscriptions](https://docs.stripe.com/billing/subscriptions/discounts)
@@ -42,7 +42,7 @@ public final class QuoteTotalDetailsBreakdownDiscountArgs extends com.pulumi.res
     private @Nullable Output<String> discount;
 
     /**
-     * @return A discount represents the actual application of a [coupon](https://api.stripe.com#coupons) or [promotion code](https://api.stripe.com#promotion_codes).
+     * @return A discount represents the actual application of a [coupon](https://docs.stripe.com/api#coupons) or [promotion code](https://docs.stripe.com/api#promotion_codes).
      * It contains information about when the discount began, when it will end, and what it is applied to.
      * 
      * Related guide: [Applying discounts to subscriptions](https://docs.stripe.com/billing/subscriptions/discounts)
@@ -99,7 +99,7 @@ public final class QuoteTotalDetailsBreakdownDiscountArgs extends com.pulumi.res
         }
 
         /**
-         * @param discount A discount represents the actual application of a [coupon](https://api.stripe.com#coupons) or [promotion code](https://api.stripe.com#promotion_codes).
+         * @param discount A discount represents the actual application of a [coupon](https://docs.stripe.com/api#coupons) or [promotion code](https://docs.stripe.com/api#promotion_codes).
          * It contains information about when the discount began, when it will end, and what it is applied to.
          * 
          * Related guide: [Applying discounts to subscriptions](https://docs.stripe.com/billing/subscriptions/discounts)
@@ -113,7 +113,7 @@ public final class QuoteTotalDetailsBreakdownDiscountArgs extends com.pulumi.res
         }
 
         /**
-         * @param discount A discount represents the actual application of a [coupon](https://api.stripe.com#coupons) or [promotion code](https://api.stripe.com#promotion_codes).
+         * @param discount A discount represents the actual application of a [coupon](https://docs.stripe.com/api#coupons) or [promotion code](https://docs.stripe.com/api#promotion_codes).
          * It contains information about when the discount began, when it will end, and what it is applied to.
          * 
          * Related guide: [Applying discounts to subscriptions](https://docs.stripe.com/billing/subscriptions/discounts)

@@ -63,9 +63,17 @@ public final class ProductFeatureState extends com.pulumi.resources.ResourceArgs
         return Optional.ofNullable(this.object);
     }
 
+    /**
+     * Unique identifier for the object.
+     * 
+     */
     @Import(name="product")
     private @Nullable Output<String> product;
 
+    /**
+     * @return Unique identifier for the object.
+     * 
+     */
     public Optional<Output<String>> product() {
         return Optional.ofNullable(this.product);
     }
@@ -162,11 +170,23 @@ public final class ProductFeatureState extends com.pulumi.resources.ResourceArgs
             return object(Output.of(object));
         }
 
+        /**
+         * @param product Unique identifier for the object.
+         * 
+         * @return builder
+         * 
+         */
         public Builder product(@Nullable Output<String> product) {
             $.product = product;
             return this;
         }
 
+        /**
+         * @param product Unique identifier for the object.
+         * 
+         * @return builder
+         * 
+         */
         public Builder product(String product) {
             return product(Output.of(product));
         }

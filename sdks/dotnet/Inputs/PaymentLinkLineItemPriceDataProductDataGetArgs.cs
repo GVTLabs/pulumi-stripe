@@ -55,6 +55,12 @@ namespace Pulumi.Stripe.Inputs
         public Input<string>? TaxCode { get; set; }
 
         /// <summary>
+        /// Tax details for this product, including the [tax code](https://www.terraform.io/tax/tax-codes) and an optional performance location.
+        /// </summary>
+        [Input("taxDetails")]
+        public Input<Inputs.PaymentLinkLineItemPriceDataProductDataTaxDetailsGetArgs>? TaxDetails { get; set; }
+
+        /// <summary>
         /// A label that represents units of this product. When set, this will be included in customers' receipts, invoices, Checkout, and the customer portal.
         /// </summary>
         [Input("unitLabel")]

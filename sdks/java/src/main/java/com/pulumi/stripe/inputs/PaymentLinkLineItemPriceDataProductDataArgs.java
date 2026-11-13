@@ -6,6 +6,7 @@ package com.pulumi.stripe.inputs;
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
 import com.pulumi.exceptions.MissingRequiredPropertyException;
+import com.pulumi.stripe.inputs.PaymentLinkLineItemPriceDataProductDataTaxDetailsArgs;
 import java.lang.String;
 import java.util.List;
 import java.util.Map;
@@ -94,6 +95,21 @@ public final class PaymentLinkLineItemPriceDataProductDataArgs extends com.pulum
     }
 
     /**
+     * Tax details for this product, including the [tax code](https://www.terraform.io/tax/tax-codes) and an optional performance location.
+     * 
+     */
+    @Import(name="taxDetails")
+    private @Nullable Output<PaymentLinkLineItemPriceDataProductDataTaxDetailsArgs> taxDetails;
+
+    /**
+     * @return Tax details for this product, including the [tax code](https://www.terraform.io/tax/tax-codes) and an optional performance location.
+     * 
+     */
+    public Optional<Output<PaymentLinkLineItemPriceDataProductDataTaxDetailsArgs>> taxDetails() {
+        return Optional.ofNullable(this.taxDetails);
+    }
+
+    /**
      * A label that represents units of this product. When set, this will be included in customers&#39; receipts, invoices, Checkout, and the customer portal.
      * 
      */
@@ -116,6 +132,7 @@ public final class PaymentLinkLineItemPriceDataProductDataArgs extends com.pulum
         this.metadata = $.metadata;
         this.name = $.name;
         this.taxCode = $.taxCode;
+        this.taxDetails = $.taxDetails;
         this.unitLabel = $.unitLabel;
     }
 
@@ -250,6 +267,27 @@ public final class PaymentLinkLineItemPriceDataProductDataArgs extends com.pulum
          */
         public Builder taxCode(String taxCode) {
             return taxCode(Output.of(taxCode));
+        }
+
+        /**
+         * @param taxDetails Tax details for this product, including the [tax code](https://www.terraform.io/tax/tax-codes) and an optional performance location.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder taxDetails(@Nullable Output<PaymentLinkLineItemPriceDataProductDataTaxDetailsArgs> taxDetails) {
+            $.taxDetails = taxDetails;
+            return this;
+        }
+
+        /**
+         * @param taxDetails Tax details for this product, including the [tax code](https://www.terraform.io/tax/tax-codes) and an optional performance location.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder taxDetails(PaymentLinkLineItemPriceDataProductDataTaxDetailsArgs taxDetails) {
+            return taxDetails(Output.of(taxDetails));
         }
 
         /**

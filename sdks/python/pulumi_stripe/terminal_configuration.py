@@ -26,9 +26,11 @@ class TerminalConfigurationArgs:
                  cellular: pulumi.Input[Optional['TerminalConfigurationCellularArgs']] = None,
                  name: pulumi.Input[Optional[_builtins.str]] = None,
                  offline: pulumi.Input[Optional['TerminalConfigurationOfflineArgs']] = None,
+                 reader_security: pulumi.Input[Optional['TerminalConfigurationReaderSecurityArgs']] = None,
                  reboot_window: pulumi.Input[Optional['TerminalConfigurationRebootWindowArgs']] = None,
                  stripe_s700: pulumi.Input[Optional['TerminalConfigurationStripeS700Args']] = None,
                  stripe_s710: pulumi.Input[Optional['TerminalConfigurationStripeS710Args']] = None,
+                 stripe_t600: pulumi.Input[Optional['TerminalConfigurationStripeT600Args']] = None,
                  tipping: pulumi.Input[Optional['TerminalConfigurationTippingArgs']] = None,
                  verifone_m425: pulumi.Input[Optional['TerminalConfigurationVerifoneM425Args']] = None,
                  verifone_p400: pulumi.Input[Optional['TerminalConfigurationVerifoneP400Args']] = None,
@@ -51,12 +53,16 @@ class TerminalConfigurationArgs:
             pulumi.set(__self__, "name", name)
         if offline is not None:
             pulumi.set(__self__, "offline", offline)
+        if reader_security is not None:
+            pulumi.set(__self__, "reader_security", reader_security)
         if reboot_window is not None:
             pulumi.set(__self__, "reboot_window", reboot_window)
         if stripe_s700 is not None:
             pulumi.set(__self__, "stripe_s700", stripe_s700)
         if stripe_s710 is not None:
             pulumi.set(__self__, "stripe_s710", stripe_s710)
+        if stripe_t600 is not None:
+            pulumi.set(__self__, "stripe_t600", stripe_t600)
         if tipping is not None:
             pulumi.set(__self__, "tipping", tipping)
         if verifone_m425 is not None:
@@ -121,6 +127,15 @@ class TerminalConfigurationArgs:
         pulumi.set(self, "offline", value)
 
     @_builtins.property
+    @pulumi.getter(name="readerSecurity")
+    def reader_security(self) -> pulumi.Input[Optional['TerminalConfigurationReaderSecurityArgs']]:
+        return pulumi.get(self, "reader_security")
+
+    @reader_security.setter
+    def reader_security(self, value: pulumi.Input[Optional['TerminalConfigurationReaderSecurityArgs']]):
+        pulumi.set(self, "reader_security", value)
+
+    @_builtins.property
     @pulumi.getter(name="rebootWindow")
     def reboot_window(self) -> pulumi.Input[Optional['TerminalConfigurationRebootWindowArgs']]:
         return pulumi.get(self, "reboot_window")
@@ -146,6 +161,15 @@ class TerminalConfigurationArgs:
     @stripe_s710.setter
     def stripe_s710(self, value: pulumi.Input[Optional['TerminalConfigurationStripeS710Args']]):
         pulumi.set(self, "stripe_s710", value)
+
+    @_builtins.property
+    @pulumi.getter(name="stripeT600")
+    def stripe_t600(self) -> pulumi.Input[Optional['TerminalConfigurationStripeT600Args']]:
+        return pulumi.get(self, "stripe_t600")
+
+    @stripe_t600.setter
+    def stripe_t600(self, value: pulumi.Input[Optional['TerminalConfigurationStripeT600Args']]):
+        pulumi.set(self, "stripe_t600", value)
 
     @_builtins.property
     @pulumi.getter
@@ -222,9 +246,11 @@ class _TerminalConfigurationState:
                  name: pulumi.Input[Optional[_builtins.str]] = None,
                  object: pulumi.Input[Optional[_builtins.str]] = None,
                  offline: pulumi.Input[Optional['TerminalConfigurationOfflineArgs']] = None,
+                 reader_security: pulumi.Input[Optional['TerminalConfigurationReaderSecurityArgs']] = None,
                  reboot_window: pulumi.Input[Optional['TerminalConfigurationRebootWindowArgs']] = None,
                  stripe_s700: pulumi.Input[Optional['TerminalConfigurationStripeS700Args']] = None,
                  stripe_s710: pulumi.Input[Optional['TerminalConfigurationStripeS710Args']] = None,
+                 stripe_t600: pulumi.Input[Optional['TerminalConfigurationStripeT600Args']] = None,
                  tipping: pulumi.Input[Optional['TerminalConfigurationTippingArgs']] = None,
                  verifone_m425: pulumi.Input[Optional['TerminalConfigurationVerifoneM425Args']] = None,
                  verifone_p400: pulumi.Input[Optional['TerminalConfigurationVerifoneP400Args']] = None,
@@ -256,12 +282,16 @@ class _TerminalConfigurationState:
             pulumi.set(__self__, "object", object)
         if offline is not None:
             pulumi.set(__self__, "offline", offline)
+        if reader_security is not None:
+            pulumi.set(__self__, "reader_security", reader_security)
         if reboot_window is not None:
             pulumi.set(__self__, "reboot_window", reboot_window)
         if stripe_s700 is not None:
             pulumi.set(__self__, "stripe_s700", stripe_s700)
         if stripe_s710 is not None:
             pulumi.set(__self__, "stripe_s710", stripe_s710)
+        if stripe_t600 is not None:
+            pulumi.set(__self__, "stripe_t600", stripe_t600)
         if tipping is not None:
             pulumi.set(__self__, "tipping", tipping)
         if verifone_m425 is not None:
@@ -362,6 +392,15 @@ class _TerminalConfigurationState:
         pulumi.set(self, "offline", value)
 
     @_builtins.property
+    @pulumi.getter(name="readerSecurity")
+    def reader_security(self) -> pulumi.Input[Optional['TerminalConfigurationReaderSecurityArgs']]:
+        return pulumi.get(self, "reader_security")
+
+    @reader_security.setter
+    def reader_security(self, value: pulumi.Input[Optional['TerminalConfigurationReaderSecurityArgs']]):
+        pulumi.set(self, "reader_security", value)
+
+    @_builtins.property
     @pulumi.getter(name="rebootWindow")
     def reboot_window(self) -> pulumi.Input[Optional['TerminalConfigurationRebootWindowArgs']]:
         return pulumi.get(self, "reboot_window")
@@ -387,6 +426,15 @@ class _TerminalConfigurationState:
     @stripe_s710.setter
     def stripe_s710(self, value: pulumi.Input[Optional['TerminalConfigurationStripeS710Args']]):
         pulumi.set(self, "stripe_s710", value)
+
+    @_builtins.property
+    @pulumi.getter(name="stripeT600")
+    def stripe_t600(self) -> pulumi.Input[Optional['TerminalConfigurationStripeT600Args']]:
+        return pulumi.get(self, "stripe_t600")
+
+    @stripe_t600.setter
+    def stripe_t600(self, value: pulumi.Input[Optional['TerminalConfigurationStripeT600Args']]):
+        pulumi.set(self, "stripe_t600", value)
 
     @_builtins.property
     @pulumi.getter
@@ -458,21 +506,23 @@ class TerminalConfiguration(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 bbpos_wisepad3: pulumi.Input[Optional[Union['TerminalConfigurationBbposWisepad3Args', 'TerminalConfigurationBbposWisepad3ArgsDict']]] = None,
-                 bbpos_wisepos_e: pulumi.Input[Optional[Union['TerminalConfigurationBbposWiseposEArgs', 'TerminalConfigurationBbposWiseposEArgsDict']]] = None,
-                 cellular: pulumi.Input[Optional[Union['TerminalConfigurationCellularArgs', 'TerminalConfigurationCellularArgsDict']]] = None,
+                 bbpos_wisepad3: pulumi.Input[Optional[Union['TerminalConfigurationBbposWisepad3Args', 'TerminalConfigurationBbposWisepad3ArgsDict', 'outputs.TerminalConfigurationBbposWisepad3']]] = None,
+                 bbpos_wisepos_e: pulumi.Input[Optional[Union['TerminalConfigurationBbposWiseposEArgs', 'TerminalConfigurationBbposWiseposEArgsDict', 'outputs.TerminalConfigurationBbposWiseposE']]] = None,
+                 cellular: pulumi.Input[Optional[Union['TerminalConfigurationCellularArgs', 'TerminalConfigurationCellularArgsDict', 'outputs.TerminalConfigurationCellular']]] = None,
                  name: pulumi.Input[Optional[_builtins.str]] = None,
-                 offline: pulumi.Input[Optional[Union['TerminalConfigurationOfflineArgs', 'TerminalConfigurationOfflineArgsDict']]] = None,
-                 reboot_window: pulumi.Input[Optional[Union['TerminalConfigurationRebootWindowArgs', 'TerminalConfigurationRebootWindowArgsDict']]] = None,
-                 stripe_s700: pulumi.Input[Optional[Union['TerminalConfigurationStripeS700Args', 'TerminalConfigurationStripeS700ArgsDict']]] = None,
-                 stripe_s710: pulumi.Input[Optional[Union['TerminalConfigurationStripeS710Args', 'TerminalConfigurationStripeS710ArgsDict']]] = None,
-                 tipping: pulumi.Input[Optional[Union['TerminalConfigurationTippingArgs', 'TerminalConfigurationTippingArgsDict']]] = None,
-                 verifone_m425: pulumi.Input[Optional[Union['TerminalConfigurationVerifoneM425Args', 'TerminalConfigurationVerifoneM425ArgsDict']]] = None,
-                 verifone_p400: pulumi.Input[Optional[Union['TerminalConfigurationVerifoneP400Args', 'TerminalConfigurationVerifoneP400ArgsDict']]] = None,
-                 verifone_p630: pulumi.Input[Optional[Union['TerminalConfigurationVerifoneP630Args', 'TerminalConfigurationVerifoneP630ArgsDict']]] = None,
-                 verifone_ux700: pulumi.Input[Optional[Union['TerminalConfigurationVerifoneUx700Args', 'TerminalConfigurationVerifoneUx700ArgsDict']]] = None,
-                 verifone_v660p: pulumi.Input[Optional[Union['TerminalConfigurationVerifoneV660pArgs', 'TerminalConfigurationVerifoneV660pArgsDict']]] = None,
-                 wifi: pulumi.Input[Optional[Union['TerminalConfigurationWifiArgs', 'TerminalConfigurationWifiArgsDict']]] = None,
+                 offline: pulumi.Input[Optional[Union['TerminalConfigurationOfflineArgs', 'TerminalConfigurationOfflineArgsDict', 'outputs.TerminalConfigurationOffline']]] = None,
+                 reader_security: pulumi.Input[Optional[Union['TerminalConfigurationReaderSecurityArgs', 'TerminalConfigurationReaderSecurityArgsDict', 'outputs.TerminalConfigurationReaderSecurity']]] = None,
+                 reboot_window: pulumi.Input[Optional[Union['TerminalConfigurationRebootWindowArgs', 'TerminalConfigurationRebootWindowArgsDict', 'outputs.TerminalConfigurationRebootWindow']]] = None,
+                 stripe_s700: pulumi.Input[Optional[Union['TerminalConfigurationStripeS700Args', 'TerminalConfigurationStripeS700ArgsDict', 'outputs.TerminalConfigurationStripeS700']]] = None,
+                 stripe_s710: pulumi.Input[Optional[Union['TerminalConfigurationStripeS710Args', 'TerminalConfigurationStripeS710ArgsDict', 'outputs.TerminalConfigurationStripeS710']]] = None,
+                 stripe_t600: pulumi.Input[Optional[Union['TerminalConfigurationStripeT600Args', 'TerminalConfigurationStripeT600ArgsDict', 'outputs.TerminalConfigurationStripeT600']]] = None,
+                 tipping: pulumi.Input[Optional[Union['TerminalConfigurationTippingArgs', 'TerminalConfigurationTippingArgsDict', 'outputs.TerminalConfigurationTipping']]] = None,
+                 verifone_m425: pulumi.Input[Optional[Union['TerminalConfigurationVerifoneM425Args', 'TerminalConfigurationVerifoneM425ArgsDict', 'outputs.TerminalConfigurationVerifoneM425']]] = None,
+                 verifone_p400: pulumi.Input[Optional[Union['TerminalConfigurationVerifoneP400Args', 'TerminalConfigurationVerifoneP400ArgsDict', 'outputs.TerminalConfigurationVerifoneP400']]] = None,
+                 verifone_p630: pulumi.Input[Optional[Union['TerminalConfigurationVerifoneP630Args', 'TerminalConfigurationVerifoneP630ArgsDict', 'outputs.TerminalConfigurationVerifoneP630']]] = None,
+                 verifone_ux700: pulumi.Input[Optional[Union['TerminalConfigurationVerifoneUx700Args', 'TerminalConfigurationVerifoneUx700ArgsDict', 'outputs.TerminalConfigurationVerifoneUx700']]] = None,
+                 verifone_v660p: pulumi.Input[Optional[Union['TerminalConfigurationVerifoneV660pArgs', 'TerminalConfigurationVerifoneV660pArgsDict', 'outputs.TerminalConfigurationVerifoneV660p']]] = None,
+                 wifi: pulumi.Input[Optional[Union['TerminalConfigurationWifiArgs', 'TerminalConfigurationWifiArgsDict', 'outputs.TerminalConfigurationWifi']]] = None,
                  __props__=None):
         """
         Create a TerminalConfiguration resource with the given unique name, props, and options.
@@ -505,21 +555,23 @@ class TerminalConfiguration(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 bbpos_wisepad3: pulumi.Input[Optional[Union['TerminalConfigurationBbposWisepad3Args', 'TerminalConfigurationBbposWisepad3ArgsDict']]] = None,
-                 bbpos_wisepos_e: pulumi.Input[Optional[Union['TerminalConfigurationBbposWiseposEArgs', 'TerminalConfigurationBbposWiseposEArgsDict']]] = None,
-                 cellular: pulumi.Input[Optional[Union['TerminalConfigurationCellularArgs', 'TerminalConfigurationCellularArgsDict']]] = None,
+                 bbpos_wisepad3: pulumi.Input[Optional[Union['TerminalConfigurationBbposWisepad3Args', 'TerminalConfigurationBbposWisepad3ArgsDict', 'outputs.TerminalConfigurationBbposWisepad3']]] = None,
+                 bbpos_wisepos_e: pulumi.Input[Optional[Union['TerminalConfigurationBbposWiseposEArgs', 'TerminalConfigurationBbposWiseposEArgsDict', 'outputs.TerminalConfigurationBbposWiseposE']]] = None,
+                 cellular: pulumi.Input[Optional[Union['TerminalConfigurationCellularArgs', 'TerminalConfigurationCellularArgsDict', 'outputs.TerminalConfigurationCellular']]] = None,
                  name: pulumi.Input[Optional[_builtins.str]] = None,
-                 offline: pulumi.Input[Optional[Union['TerminalConfigurationOfflineArgs', 'TerminalConfigurationOfflineArgsDict']]] = None,
-                 reboot_window: pulumi.Input[Optional[Union['TerminalConfigurationRebootWindowArgs', 'TerminalConfigurationRebootWindowArgsDict']]] = None,
-                 stripe_s700: pulumi.Input[Optional[Union['TerminalConfigurationStripeS700Args', 'TerminalConfigurationStripeS700ArgsDict']]] = None,
-                 stripe_s710: pulumi.Input[Optional[Union['TerminalConfigurationStripeS710Args', 'TerminalConfigurationStripeS710ArgsDict']]] = None,
-                 tipping: pulumi.Input[Optional[Union['TerminalConfigurationTippingArgs', 'TerminalConfigurationTippingArgsDict']]] = None,
-                 verifone_m425: pulumi.Input[Optional[Union['TerminalConfigurationVerifoneM425Args', 'TerminalConfigurationVerifoneM425ArgsDict']]] = None,
-                 verifone_p400: pulumi.Input[Optional[Union['TerminalConfigurationVerifoneP400Args', 'TerminalConfigurationVerifoneP400ArgsDict']]] = None,
-                 verifone_p630: pulumi.Input[Optional[Union['TerminalConfigurationVerifoneP630Args', 'TerminalConfigurationVerifoneP630ArgsDict']]] = None,
-                 verifone_ux700: pulumi.Input[Optional[Union['TerminalConfigurationVerifoneUx700Args', 'TerminalConfigurationVerifoneUx700ArgsDict']]] = None,
-                 verifone_v660p: pulumi.Input[Optional[Union['TerminalConfigurationVerifoneV660pArgs', 'TerminalConfigurationVerifoneV660pArgsDict']]] = None,
-                 wifi: pulumi.Input[Optional[Union['TerminalConfigurationWifiArgs', 'TerminalConfigurationWifiArgsDict']]] = None,
+                 offline: pulumi.Input[Optional[Union['TerminalConfigurationOfflineArgs', 'TerminalConfigurationOfflineArgsDict', 'outputs.TerminalConfigurationOffline']]] = None,
+                 reader_security: pulumi.Input[Optional[Union['TerminalConfigurationReaderSecurityArgs', 'TerminalConfigurationReaderSecurityArgsDict', 'outputs.TerminalConfigurationReaderSecurity']]] = None,
+                 reboot_window: pulumi.Input[Optional[Union['TerminalConfigurationRebootWindowArgs', 'TerminalConfigurationRebootWindowArgsDict', 'outputs.TerminalConfigurationRebootWindow']]] = None,
+                 stripe_s700: pulumi.Input[Optional[Union['TerminalConfigurationStripeS700Args', 'TerminalConfigurationStripeS700ArgsDict', 'outputs.TerminalConfigurationStripeS700']]] = None,
+                 stripe_s710: pulumi.Input[Optional[Union['TerminalConfigurationStripeS710Args', 'TerminalConfigurationStripeS710ArgsDict', 'outputs.TerminalConfigurationStripeS710']]] = None,
+                 stripe_t600: pulumi.Input[Optional[Union['TerminalConfigurationStripeT600Args', 'TerminalConfigurationStripeT600ArgsDict', 'outputs.TerminalConfigurationStripeT600']]] = None,
+                 tipping: pulumi.Input[Optional[Union['TerminalConfigurationTippingArgs', 'TerminalConfigurationTippingArgsDict', 'outputs.TerminalConfigurationTipping']]] = None,
+                 verifone_m425: pulumi.Input[Optional[Union['TerminalConfigurationVerifoneM425Args', 'TerminalConfigurationVerifoneM425ArgsDict', 'outputs.TerminalConfigurationVerifoneM425']]] = None,
+                 verifone_p400: pulumi.Input[Optional[Union['TerminalConfigurationVerifoneP400Args', 'TerminalConfigurationVerifoneP400ArgsDict', 'outputs.TerminalConfigurationVerifoneP400']]] = None,
+                 verifone_p630: pulumi.Input[Optional[Union['TerminalConfigurationVerifoneP630Args', 'TerminalConfigurationVerifoneP630ArgsDict', 'outputs.TerminalConfigurationVerifoneP630']]] = None,
+                 verifone_ux700: pulumi.Input[Optional[Union['TerminalConfigurationVerifoneUx700Args', 'TerminalConfigurationVerifoneUx700ArgsDict', 'outputs.TerminalConfigurationVerifoneUx700']]] = None,
+                 verifone_v660p: pulumi.Input[Optional[Union['TerminalConfigurationVerifoneV660pArgs', 'TerminalConfigurationVerifoneV660pArgsDict', 'outputs.TerminalConfigurationVerifoneV660p']]] = None,
+                 wifi: pulumi.Input[Optional[Union['TerminalConfigurationWifiArgs', 'TerminalConfigurationWifiArgsDict', 'outputs.TerminalConfigurationWifi']]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -534,9 +586,11 @@ class TerminalConfiguration(pulumi.CustomResource):
             __props__.__dict__["cellular"] = cellular
             __props__.__dict__["name"] = name
             __props__.__dict__["offline"] = offline
+            __props__.__dict__["reader_security"] = reader_security
             __props__.__dict__["reboot_window"] = reboot_window
             __props__.__dict__["stripe_s700"] = stripe_s700
             __props__.__dict__["stripe_s710"] = stripe_s710
+            __props__.__dict__["stripe_t600"] = stripe_t600
             __props__.__dict__["tipping"] = tipping
             __props__.__dict__["verifone_m425"] = verifone_m425
             __props__.__dict__["verifone_p400"] = verifone_p400
@@ -558,24 +612,26 @@ class TerminalConfiguration(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            bbpos_wisepad3: pulumi.Input[Optional[Union['TerminalConfigurationBbposWisepad3Args', 'TerminalConfigurationBbposWisepad3ArgsDict']]] = None,
-            bbpos_wisepos_e: pulumi.Input[Optional[Union['TerminalConfigurationBbposWiseposEArgs', 'TerminalConfigurationBbposWiseposEArgsDict']]] = None,
-            cellular: pulumi.Input[Optional[Union['TerminalConfigurationCellularArgs', 'TerminalConfigurationCellularArgsDict']]] = None,
+            bbpos_wisepad3: pulumi.Input[Optional[Union['TerminalConfigurationBbposWisepad3Args', 'TerminalConfigurationBbposWisepad3ArgsDict', 'outputs.TerminalConfigurationBbposWisepad3']]] = None,
+            bbpos_wisepos_e: pulumi.Input[Optional[Union['TerminalConfigurationBbposWiseposEArgs', 'TerminalConfigurationBbposWiseposEArgsDict', 'outputs.TerminalConfigurationBbposWiseposE']]] = None,
+            cellular: pulumi.Input[Optional[Union['TerminalConfigurationCellularArgs', 'TerminalConfigurationCellularArgsDict', 'outputs.TerminalConfigurationCellular']]] = None,
             is_account_default: pulumi.Input[Optional[_builtins.bool]] = None,
             livemode: pulumi.Input[Optional[_builtins.bool]] = None,
             name: pulumi.Input[Optional[_builtins.str]] = None,
             object: pulumi.Input[Optional[_builtins.str]] = None,
-            offline: pulumi.Input[Optional[Union['TerminalConfigurationOfflineArgs', 'TerminalConfigurationOfflineArgsDict']]] = None,
-            reboot_window: pulumi.Input[Optional[Union['TerminalConfigurationRebootWindowArgs', 'TerminalConfigurationRebootWindowArgsDict']]] = None,
-            stripe_s700: pulumi.Input[Optional[Union['TerminalConfigurationStripeS700Args', 'TerminalConfigurationStripeS700ArgsDict']]] = None,
-            stripe_s710: pulumi.Input[Optional[Union['TerminalConfigurationStripeS710Args', 'TerminalConfigurationStripeS710ArgsDict']]] = None,
-            tipping: pulumi.Input[Optional[Union['TerminalConfigurationTippingArgs', 'TerminalConfigurationTippingArgsDict']]] = None,
-            verifone_m425: pulumi.Input[Optional[Union['TerminalConfigurationVerifoneM425Args', 'TerminalConfigurationVerifoneM425ArgsDict']]] = None,
-            verifone_p400: pulumi.Input[Optional[Union['TerminalConfigurationVerifoneP400Args', 'TerminalConfigurationVerifoneP400ArgsDict']]] = None,
-            verifone_p630: pulumi.Input[Optional[Union['TerminalConfigurationVerifoneP630Args', 'TerminalConfigurationVerifoneP630ArgsDict']]] = None,
-            verifone_ux700: pulumi.Input[Optional[Union['TerminalConfigurationVerifoneUx700Args', 'TerminalConfigurationVerifoneUx700ArgsDict']]] = None,
-            verifone_v660p: pulumi.Input[Optional[Union['TerminalConfigurationVerifoneV660pArgs', 'TerminalConfigurationVerifoneV660pArgsDict']]] = None,
-            wifi: pulumi.Input[Optional[Union['TerminalConfigurationWifiArgs', 'TerminalConfigurationWifiArgsDict']]] = None) -> 'TerminalConfiguration':
+            offline: pulumi.Input[Optional[Union['TerminalConfigurationOfflineArgs', 'TerminalConfigurationOfflineArgsDict', 'outputs.TerminalConfigurationOffline']]] = None,
+            reader_security: pulumi.Input[Optional[Union['TerminalConfigurationReaderSecurityArgs', 'TerminalConfigurationReaderSecurityArgsDict', 'outputs.TerminalConfigurationReaderSecurity']]] = None,
+            reboot_window: pulumi.Input[Optional[Union['TerminalConfigurationRebootWindowArgs', 'TerminalConfigurationRebootWindowArgsDict', 'outputs.TerminalConfigurationRebootWindow']]] = None,
+            stripe_s700: pulumi.Input[Optional[Union['TerminalConfigurationStripeS700Args', 'TerminalConfigurationStripeS700ArgsDict', 'outputs.TerminalConfigurationStripeS700']]] = None,
+            stripe_s710: pulumi.Input[Optional[Union['TerminalConfigurationStripeS710Args', 'TerminalConfigurationStripeS710ArgsDict', 'outputs.TerminalConfigurationStripeS710']]] = None,
+            stripe_t600: pulumi.Input[Optional[Union['TerminalConfigurationStripeT600Args', 'TerminalConfigurationStripeT600ArgsDict', 'outputs.TerminalConfigurationStripeT600']]] = None,
+            tipping: pulumi.Input[Optional[Union['TerminalConfigurationTippingArgs', 'TerminalConfigurationTippingArgsDict', 'outputs.TerminalConfigurationTipping']]] = None,
+            verifone_m425: pulumi.Input[Optional[Union['TerminalConfigurationVerifoneM425Args', 'TerminalConfigurationVerifoneM425ArgsDict', 'outputs.TerminalConfigurationVerifoneM425']]] = None,
+            verifone_p400: pulumi.Input[Optional[Union['TerminalConfigurationVerifoneP400Args', 'TerminalConfigurationVerifoneP400ArgsDict', 'outputs.TerminalConfigurationVerifoneP400']]] = None,
+            verifone_p630: pulumi.Input[Optional[Union['TerminalConfigurationVerifoneP630Args', 'TerminalConfigurationVerifoneP630ArgsDict', 'outputs.TerminalConfigurationVerifoneP630']]] = None,
+            verifone_ux700: pulumi.Input[Optional[Union['TerminalConfigurationVerifoneUx700Args', 'TerminalConfigurationVerifoneUx700ArgsDict', 'outputs.TerminalConfigurationVerifoneUx700']]] = None,
+            verifone_v660p: pulumi.Input[Optional[Union['TerminalConfigurationVerifoneV660pArgs', 'TerminalConfigurationVerifoneV660pArgsDict', 'outputs.TerminalConfigurationVerifoneV660p']]] = None,
+            wifi: pulumi.Input[Optional[Union['TerminalConfigurationWifiArgs', 'TerminalConfigurationWifiArgsDict', 'outputs.TerminalConfigurationWifi']]] = None) -> 'TerminalConfiguration':
         """
         Get an existing TerminalConfiguration resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -600,9 +656,11 @@ class TerminalConfiguration(pulumi.CustomResource):
         __props__.__dict__["name"] = name
         __props__.__dict__["object"] = object
         __props__.__dict__["offline"] = offline
+        __props__.__dict__["reader_security"] = reader_security
         __props__.__dict__["reboot_window"] = reboot_window
         __props__.__dict__["stripe_s700"] = stripe_s700
         __props__.__dict__["stripe_s710"] = stripe_s710
+        __props__.__dict__["stripe_t600"] = stripe_t600
         __props__.__dict__["tipping"] = tipping
         __props__.__dict__["verifone_m425"] = verifone_m425
         __props__.__dict__["verifone_p400"] = verifone_p400
@@ -611,6 +669,52 @@ class TerminalConfiguration(pulumi.CustomResource):
         __props__.__dict__["verifone_v660p"] = verifone_v660p
         __props__.__dict__["wifi"] = wifi
         return TerminalConfiguration(resource_name, opts=opts, __props__=__props__)
+
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            bbpos_wisepad3: pulumi.Input[Optional[Union['TerminalConfigurationBbposWisepad3Args', 'TerminalConfigurationBbposWisepad3ArgsDict', 'outputs.TerminalConfigurationBbposWisepad3']]] = None,
+            bbpos_wisepos_e: pulumi.Input[Optional[Union['TerminalConfigurationBbposWiseposEArgs', 'TerminalConfigurationBbposWiseposEArgsDict', 'outputs.TerminalConfigurationBbposWiseposE']]] = None,
+            cellular: pulumi.Input[Optional[Union['TerminalConfigurationCellularArgs', 'TerminalConfigurationCellularArgsDict', 'outputs.TerminalConfigurationCellular']]] = None,
+            is_account_default: pulumi.Input[Optional[_builtins.bool]] = None,
+            livemode: pulumi.Input[Optional[_builtins.bool]] = None,
+            name: pulumi.Input[Optional[_builtins.str]] = None,
+            object: pulumi.Input[Optional[_builtins.str]] = None,
+            offline: pulumi.Input[Optional[Union['TerminalConfigurationOfflineArgs', 'TerminalConfigurationOfflineArgsDict', 'outputs.TerminalConfigurationOffline']]] = None,
+            reader_security: pulumi.Input[Optional[Union['TerminalConfigurationReaderSecurityArgs', 'TerminalConfigurationReaderSecurityArgsDict', 'outputs.TerminalConfigurationReaderSecurity']]] = None,
+            reboot_window: pulumi.Input[Optional[Union['TerminalConfigurationRebootWindowArgs', 'TerminalConfigurationRebootWindowArgsDict', 'outputs.TerminalConfigurationRebootWindow']]] = None,
+            stripe_s700: pulumi.Input[Optional[Union['TerminalConfigurationStripeS700Args', 'TerminalConfigurationStripeS700ArgsDict', 'outputs.TerminalConfigurationStripeS700']]] = None,
+            stripe_s710: pulumi.Input[Optional[Union['TerminalConfigurationStripeS710Args', 'TerminalConfigurationStripeS710ArgsDict', 'outputs.TerminalConfigurationStripeS710']]] = None,
+            stripe_t600: pulumi.Input[Optional[Union['TerminalConfigurationStripeT600Args', 'TerminalConfigurationStripeT600ArgsDict', 'outputs.TerminalConfigurationStripeT600']]] = None,
+            tipping: pulumi.Input[Optional[Union['TerminalConfigurationTippingArgs', 'TerminalConfigurationTippingArgsDict', 'outputs.TerminalConfigurationTipping']]] = None,
+            verifone_m425: pulumi.Input[Optional[Union['TerminalConfigurationVerifoneM425Args', 'TerminalConfigurationVerifoneM425ArgsDict', 'outputs.TerminalConfigurationVerifoneM425']]] = None,
+            verifone_p400: pulumi.Input[Optional[Union['TerminalConfigurationVerifoneP400Args', 'TerminalConfigurationVerifoneP400ArgsDict', 'outputs.TerminalConfigurationVerifoneP400']]] = None,
+            verifone_p630: pulumi.Input[Optional[Union['TerminalConfigurationVerifoneP630Args', 'TerminalConfigurationVerifoneP630ArgsDict', 'outputs.TerminalConfigurationVerifoneP630']]] = None,
+            verifone_ux700: pulumi.Input[Optional[Union['TerminalConfigurationVerifoneUx700Args', 'TerminalConfigurationVerifoneUx700ArgsDict', 'outputs.TerminalConfigurationVerifoneUx700']]] = None,
+            verifone_v660p: pulumi.Input[Optional[Union['TerminalConfigurationVerifoneV660pArgs', 'TerminalConfigurationVerifoneV660pArgsDict', 'outputs.TerminalConfigurationVerifoneV660p']]] = None,
+            wifi: pulumi.Input[Optional[Union['TerminalConfigurationWifiArgs', 'TerminalConfigurationWifiArgsDict', 'outputs.TerminalConfigurationWifi']]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["bbposWisepad3"] = bbpos_wisepad3
+        __props__["bbposWiseposE"] = bbpos_wisepos_e
+        __props__["cellular"] = cellular
+        __props__["isAccountDefault"] = is_account_default
+        __props__["livemode"] = livemode
+        __props__["name"] = name
+        __props__["object"] = object
+        __props__["offline"] = offline
+        __props__["readerSecurity"] = reader_security
+        __props__["rebootWindow"] = reboot_window
+        __props__["stripeS700"] = stripe_s700
+        __props__["stripeS710"] = stripe_s710
+        __props__["stripeT600"] = stripe_t600
+        __props__["tipping"] = tipping
+        __props__["verifoneM425"] = verifone_m425
+        __props__["verifoneP400"] = verifone_p400
+        __props__["verifoneP630"] = verifone_p630
+        __props__["verifoneUx700"] = verifone_ux700
+        __props__["verifoneV660p"] = verifone_v660p
+        __props__["wifi"] = wifi
+        return pulumi.runtime.exists_resource(None, 'stripe:index/terminalConfiguration:TerminalConfiguration', id, __props__, opts or pulumi.ResourceOptions(), package_ref=_utilities.get_package())
 
     @_builtins.property
     @pulumi.getter(name="bbposWisepad3")
@@ -665,6 +769,11 @@ class TerminalConfiguration(pulumi.CustomResource):
         return pulumi.get(self, "offline")
 
     @_builtins.property
+    @pulumi.getter(name="readerSecurity")
+    def reader_security(self) -> pulumi.Output['outputs.TerminalConfigurationReaderSecurity']:
+        return pulumi.get(self, "reader_security")
+
+    @_builtins.property
     @pulumi.getter(name="rebootWindow")
     def reboot_window(self) -> pulumi.Output['outputs.TerminalConfigurationRebootWindow']:
         return pulumi.get(self, "reboot_window")
@@ -678,6 +787,11 @@ class TerminalConfiguration(pulumi.CustomResource):
     @pulumi.getter(name="stripeS710")
     def stripe_s710(self) -> pulumi.Output['outputs.TerminalConfigurationStripeS710']:
         return pulumi.get(self, "stripe_s710")
+
+    @_builtins.property
+    @pulumi.getter(name="stripeT600")
+    def stripe_t600(self) -> pulumi.Output['outputs.TerminalConfigurationStripeT600']:
+        return pulumi.get(self, "stripe_t600")
 
     @_builtins.property
     @pulumi.getter

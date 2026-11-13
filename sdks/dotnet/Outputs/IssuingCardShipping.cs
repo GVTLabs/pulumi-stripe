@@ -19,6 +19,10 @@ namespace Pulumi.Stripe.Outputs
         /// </summary>
         public readonly Outputs.IssuingCardShippingAddressValidation? AddressValidation;
         /// <summary>
+        /// The name of the business at the shipping address, used on the shipping label to ensure delivery when the card is shipped to a cardholder's workplace.
+        /// </summary>
+        public readonly string? BusinessName;
+        /// <summary>
         /// The delivery company that shipped a card.
         /// </summary>
         public readonly string? Carrier;
@@ -26,6 +30,10 @@ namespace Pulumi.Stripe.Outputs
         /// Additional information that may be required for clearing customs.
         /// </summary>
         public readonly Outputs.IssuingCardShippingCustoms? Customs;
+        /// <summary>
+        /// The time the card was reported as delivered. Null for undelivered or untracked shipments, or if Stripe has not recorded a delivery time.
+        /// </summary>
+        public readonly double? DeliveredAt;
         /// <summary>
         /// A unix timestamp representing a best estimate of when the card will be delivered.
         /// </summary>
@@ -46,6 +54,10 @@ namespace Pulumi.Stripe.Outputs
         /// Shipment service, such as &lt;span pulumi-lang-nodejs="`standard`" pulumi-lang-dotnet="`Standard`" pulumi-lang-go="`standard`" pulumi-lang-python="`standard`" pulumi-lang-yaml="`standard`" pulumi-lang-java="`standard`" pulumi-lang-hcl="`standard`"&gt;`standard`&lt;/span&gt; or &lt;span pulumi-lang-nodejs="`express`" pulumi-lang-dotnet="`Express`" pulumi-lang-go="`express`" pulumi-lang-python="`express`" pulumi-lang-yaml="`express`" pulumi-lang-java="`express`" pulumi-lang-hcl="`express`"&gt;`express`&lt;/span&gt;.
         /// </summary>
         public readonly string? Service;
+        /// <summary>
+        /// The time the card was reported as shipped. Null if Stripe has not recorded a shipment time.
+        /// </summary>
+        public readonly double? ShippedAt;
         /// <summary>
         /// The delivery status of the card.
         /// </summary>
@@ -69,9 +81,13 @@ namespace Pulumi.Stripe.Outputs
 
             Outputs.IssuingCardShippingAddressValidation? addressValidation,
 
+            string? businessName,
+
             string? carrier,
 
             Outputs.IssuingCardShippingCustoms? customs,
+
+            double? deliveredAt,
 
             double? eta,
 
@@ -83,6 +99,8 @@ namespace Pulumi.Stripe.Outputs
 
             string? service,
 
+            double? shippedAt,
+
             string? status,
 
             string? trackingNumber,
@@ -93,13 +111,16 @@ namespace Pulumi.Stripe.Outputs
         {
             Address = address;
             AddressValidation = addressValidation;
+            BusinessName = businessName;
             Carrier = carrier;
             Customs = customs;
+            DeliveredAt = deliveredAt;
             Eta = eta;
             Name = name;
             PhoneNumber = phoneNumber;
             RequireSignature = requireSignature;
             Service = service;
+            ShippedAt = shippedAt;
             Status = status;
             TrackingNumber = trackingNumber;
             TrackingUrl = trackingUrl;

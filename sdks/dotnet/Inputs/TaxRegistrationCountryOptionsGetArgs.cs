@@ -63,6 +63,9 @@ namespace Pulumi.Stripe.Inputs
         [Input("bs")]
         public Input<Inputs.TaxRegistrationCountryOptionsBsGetArgs>? Bs { get; set; }
 
+        [Input("bw")]
+        public Input<Inputs.TaxRegistrationCountryOptionsBwGetArgs>? Bw { get; set; }
+
         [Input("by")]
         public Input<Inputs.TaxRegistrationCountryOptionsByGetArgs>? By { get; set; }
 
@@ -74,6 +77,9 @@ namespace Pulumi.Stripe.Inputs
 
         [Input("ch")]
         public Input<Inputs.TaxRegistrationCountryOptionsChGetArgs>? Ch { get; set; }
+
+        [Input("ci")]
+        public Input<Inputs.TaxRegistrationCountryOptionsCiGetArgs>? Ci { get; set; }
 
         [Input("cl")]
         public Input<Inputs.TaxRegistrationCountryOptionsClGetArgs>? Cl { get; set; }
@@ -128,6 +134,9 @@ namespace Pulumi.Stripe.Inputs
 
         [Input("ge")]
         public Input<Inputs.TaxRegistrationCountryOptionsGeGetArgs>? Ge { get; set; }
+
+        [Input("gh")]
+        public Input<Inputs.TaxRegistrationCountryOptionsGhGetArgs>? Gh { get; set; }
 
         [Input("gn")]
         public Input<Inputs.TaxRegistrationCountryOptionsGnGetArgs>? Gn { get; set; }
@@ -206,6 +215,9 @@ namespace Pulumi.Stripe.Inputs
 
         [Input("mt")]
         public Input<Inputs.TaxRegistrationCountryOptionsMtGetArgs>? Mt { get; set; }
+
+        [Input("mu")]
+        public Input<Inputs.TaxRegistrationCountryOptionsMuGetArgs>? Mu { get; set; }
 
         [Input("mx")]
         public Input<Inputs.TaxRegistrationCountryOptionsMxGetArgs>? Mx { get; set; }

@@ -6,9 +6,20 @@ package com.pulumi.stripe.inputs;
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
 import com.pulumi.exceptions.MissingRequiredPropertyException;
+import com.pulumi.stripe.inputs.TaxRegistrationCountryOptionsUsAdmissionsTaxArgs;
+import com.pulumi.stripe.inputs.TaxRegistrationCountryOptionsUsAttendanceTaxArgs;
+import com.pulumi.stripe.inputs.TaxRegistrationCountryOptionsUsEntertainmentTaxArgs;
+import com.pulumi.stripe.inputs.TaxRegistrationCountryOptionsUsGrossReceiptsTaxArgs;
+import com.pulumi.stripe.inputs.TaxRegistrationCountryOptionsUsHospitalityTaxArgs;
 import com.pulumi.stripe.inputs.TaxRegistrationCountryOptionsUsLocalAmusementTaxArgs;
 import com.pulumi.stripe.inputs.TaxRegistrationCountryOptionsUsLocalLeaseTaxArgs;
+import com.pulumi.stripe.inputs.TaxRegistrationCountryOptionsUsLuxuryTaxArgs;
+import com.pulumi.stripe.inputs.TaxRegistrationCountryOptionsUsMassTransitParkingTaxArgs;
+import com.pulumi.stripe.inputs.TaxRegistrationCountryOptionsUsParkingTaxArgs;
+import com.pulumi.stripe.inputs.TaxRegistrationCountryOptionsUsResortTaxArgs;
 import com.pulumi.stripe.inputs.TaxRegistrationCountryOptionsUsStateSalesTaxArgs;
+import com.pulumi.stripe.inputs.TaxRegistrationCountryOptionsUsTourismTaxArgs;
+import com.pulumi.stripe.inputs.TaxRegistrationCountryOptionsUsUtilityUsersTaxArgs;
 import java.lang.String;
 import java.util.Objects;
 import java.util.Optional;
@@ -18,6 +29,41 @@ import javax.annotation.Nullable;
 public final class TaxRegistrationCountryOptionsUsArgs extends com.pulumi.resources.ResourceArgs {
 
     public static final TaxRegistrationCountryOptionsUsArgs Empty = new TaxRegistrationCountryOptionsUsArgs();
+
+    @Import(name="admissionsTax")
+    private @Nullable Output<TaxRegistrationCountryOptionsUsAdmissionsTaxArgs> admissionsTax;
+
+    public Optional<Output<TaxRegistrationCountryOptionsUsAdmissionsTaxArgs>> admissionsTax() {
+        return Optional.ofNullable(this.admissionsTax);
+    }
+
+    @Import(name="attendanceTax")
+    private @Nullable Output<TaxRegistrationCountryOptionsUsAttendanceTaxArgs> attendanceTax;
+
+    public Optional<Output<TaxRegistrationCountryOptionsUsAttendanceTaxArgs>> attendanceTax() {
+        return Optional.ofNullable(this.attendanceTax);
+    }
+
+    @Import(name="entertainmentTax")
+    private @Nullable Output<TaxRegistrationCountryOptionsUsEntertainmentTaxArgs> entertainmentTax;
+
+    public Optional<Output<TaxRegistrationCountryOptionsUsEntertainmentTaxArgs>> entertainmentTax() {
+        return Optional.ofNullable(this.entertainmentTax);
+    }
+
+    @Import(name="grossReceiptsTax")
+    private @Nullable Output<TaxRegistrationCountryOptionsUsGrossReceiptsTaxArgs> grossReceiptsTax;
+
+    public Optional<Output<TaxRegistrationCountryOptionsUsGrossReceiptsTaxArgs>> grossReceiptsTax() {
+        return Optional.ofNullable(this.grossReceiptsTax);
+    }
+
+    @Import(name="hospitalityTax")
+    private @Nullable Output<TaxRegistrationCountryOptionsUsHospitalityTaxArgs> hospitalityTax;
+
+    public Optional<Output<TaxRegistrationCountryOptionsUsHospitalityTaxArgs>> hospitalityTax() {
+        return Optional.ofNullable(this.hospitalityTax);
+    }
 
     @Import(name="localAmusementTax")
     private @Nullable Output<TaxRegistrationCountryOptionsUsLocalAmusementTaxArgs> localAmusementTax;
@@ -31,6 +77,34 @@ public final class TaxRegistrationCountryOptionsUsArgs extends com.pulumi.resour
 
     public Optional<Output<TaxRegistrationCountryOptionsUsLocalLeaseTaxArgs>> localLeaseTax() {
         return Optional.ofNullable(this.localLeaseTax);
+    }
+
+    @Import(name="luxuryTax")
+    private @Nullable Output<TaxRegistrationCountryOptionsUsLuxuryTaxArgs> luxuryTax;
+
+    public Optional<Output<TaxRegistrationCountryOptionsUsLuxuryTaxArgs>> luxuryTax() {
+        return Optional.ofNullable(this.luxuryTax);
+    }
+
+    @Import(name="massTransitParkingTax")
+    private @Nullable Output<TaxRegistrationCountryOptionsUsMassTransitParkingTaxArgs> massTransitParkingTax;
+
+    public Optional<Output<TaxRegistrationCountryOptionsUsMassTransitParkingTaxArgs>> massTransitParkingTax() {
+        return Optional.ofNullable(this.massTransitParkingTax);
+    }
+
+    @Import(name="parkingTax")
+    private @Nullable Output<TaxRegistrationCountryOptionsUsParkingTaxArgs> parkingTax;
+
+    public Optional<Output<TaxRegistrationCountryOptionsUsParkingTaxArgs>> parkingTax() {
+        return Optional.ofNullable(this.parkingTax);
+    }
+
+    @Import(name="resortTax")
+    private @Nullable Output<TaxRegistrationCountryOptionsUsResortTaxArgs> resortTax;
+
+    public Optional<Output<TaxRegistrationCountryOptionsUsResortTaxArgs>> resortTax() {
+        return Optional.ofNullable(this.resortTax);
     }
 
     /**
@@ -55,6 +129,13 @@ public final class TaxRegistrationCountryOptionsUsArgs extends com.pulumi.resour
         return Optional.ofNullable(this.stateSalesTax);
     }
 
+    @Import(name="tourismTax")
+    private @Nullable Output<TaxRegistrationCountryOptionsUsTourismTaxArgs> tourismTax;
+
+    public Optional<Output<TaxRegistrationCountryOptionsUsTourismTaxArgs>> tourismTax() {
+        return Optional.ofNullable(this.tourismTax);
+    }
+
     /**
      * Type of registration in the US.
      * 
@@ -70,14 +151,32 @@ public final class TaxRegistrationCountryOptionsUsArgs extends com.pulumi.resour
         return this.type;
     }
 
+    @Import(name="utilityUsersTax")
+    private @Nullable Output<TaxRegistrationCountryOptionsUsUtilityUsersTaxArgs> utilityUsersTax;
+
+    public Optional<Output<TaxRegistrationCountryOptionsUsUtilityUsersTaxArgs>> utilityUsersTax() {
+        return Optional.ofNullable(this.utilityUsersTax);
+    }
+
     private TaxRegistrationCountryOptionsUsArgs() {}
 
     private TaxRegistrationCountryOptionsUsArgs(TaxRegistrationCountryOptionsUsArgs $) {
+        this.admissionsTax = $.admissionsTax;
+        this.attendanceTax = $.attendanceTax;
+        this.entertainmentTax = $.entertainmentTax;
+        this.grossReceiptsTax = $.grossReceiptsTax;
+        this.hospitalityTax = $.hospitalityTax;
         this.localAmusementTax = $.localAmusementTax;
         this.localLeaseTax = $.localLeaseTax;
+        this.luxuryTax = $.luxuryTax;
+        this.massTransitParkingTax = $.massTransitParkingTax;
+        this.parkingTax = $.parkingTax;
+        this.resortTax = $.resortTax;
         this.state = $.state;
         this.stateSalesTax = $.stateSalesTax;
+        this.tourismTax = $.tourismTax;
         this.type = $.type;
+        this.utilityUsersTax = $.utilityUsersTax;
     }
 
     public static Builder builder() {
@@ -98,6 +197,51 @@ public final class TaxRegistrationCountryOptionsUsArgs extends com.pulumi.resour
             $ = new TaxRegistrationCountryOptionsUsArgs(Objects.requireNonNull(defaults));
         }
 
+        public Builder admissionsTax(@Nullable Output<TaxRegistrationCountryOptionsUsAdmissionsTaxArgs> admissionsTax) {
+            $.admissionsTax = admissionsTax;
+            return this;
+        }
+
+        public Builder admissionsTax(TaxRegistrationCountryOptionsUsAdmissionsTaxArgs admissionsTax) {
+            return admissionsTax(Output.of(admissionsTax));
+        }
+
+        public Builder attendanceTax(@Nullable Output<TaxRegistrationCountryOptionsUsAttendanceTaxArgs> attendanceTax) {
+            $.attendanceTax = attendanceTax;
+            return this;
+        }
+
+        public Builder attendanceTax(TaxRegistrationCountryOptionsUsAttendanceTaxArgs attendanceTax) {
+            return attendanceTax(Output.of(attendanceTax));
+        }
+
+        public Builder entertainmentTax(@Nullable Output<TaxRegistrationCountryOptionsUsEntertainmentTaxArgs> entertainmentTax) {
+            $.entertainmentTax = entertainmentTax;
+            return this;
+        }
+
+        public Builder entertainmentTax(TaxRegistrationCountryOptionsUsEntertainmentTaxArgs entertainmentTax) {
+            return entertainmentTax(Output.of(entertainmentTax));
+        }
+
+        public Builder grossReceiptsTax(@Nullable Output<TaxRegistrationCountryOptionsUsGrossReceiptsTaxArgs> grossReceiptsTax) {
+            $.grossReceiptsTax = grossReceiptsTax;
+            return this;
+        }
+
+        public Builder grossReceiptsTax(TaxRegistrationCountryOptionsUsGrossReceiptsTaxArgs grossReceiptsTax) {
+            return grossReceiptsTax(Output.of(grossReceiptsTax));
+        }
+
+        public Builder hospitalityTax(@Nullable Output<TaxRegistrationCountryOptionsUsHospitalityTaxArgs> hospitalityTax) {
+            $.hospitalityTax = hospitalityTax;
+            return this;
+        }
+
+        public Builder hospitalityTax(TaxRegistrationCountryOptionsUsHospitalityTaxArgs hospitalityTax) {
+            return hospitalityTax(Output.of(hospitalityTax));
+        }
+
         public Builder localAmusementTax(@Nullable Output<TaxRegistrationCountryOptionsUsLocalAmusementTaxArgs> localAmusementTax) {
             $.localAmusementTax = localAmusementTax;
             return this;
@@ -114,6 +258,42 @@ public final class TaxRegistrationCountryOptionsUsArgs extends com.pulumi.resour
 
         public Builder localLeaseTax(TaxRegistrationCountryOptionsUsLocalLeaseTaxArgs localLeaseTax) {
             return localLeaseTax(Output.of(localLeaseTax));
+        }
+
+        public Builder luxuryTax(@Nullable Output<TaxRegistrationCountryOptionsUsLuxuryTaxArgs> luxuryTax) {
+            $.luxuryTax = luxuryTax;
+            return this;
+        }
+
+        public Builder luxuryTax(TaxRegistrationCountryOptionsUsLuxuryTaxArgs luxuryTax) {
+            return luxuryTax(Output.of(luxuryTax));
+        }
+
+        public Builder massTransitParkingTax(@Nullable Output<TaxRegistrationCountryOptionsUsMassTransitParkingTaxArgs> massTransitParkingTax) {
+            $.massTransitParkingTax = massTransitParkingTax;
+            return this;
+        }
+
+        public Builder massTransitParkingTax(TaxRegistrationCountryOptionsUsMassTransitParkingTaxArgs massTransitParkingTax) {
+            return massTransitParkingTax(Output.of(massTransitParkingTax));
+        }
+
+        public Builder parkingTax(@Nullable Output<TaxRegistrationCountryOptionsUsParkingTaxArgs> parkingTax) {
+            $.parkingTax = parkingTax;
+            return this;
+        }
+
+        public Builder parkingTax(TaxRegistrationCountryOptionsUsParkingTaxArgs parkingTax) {
+            return parkingTax(Output.of(parkingTax));
+        }
+
+        public Builder resortTax(@Nullable Output<TaxRegistrationCountryOptionsUsResortTaxArgs> resortTax) {
+            $.resortTax = resortTax;
+            return this;
+        }
+
+        public Builder resortTax(TaxRegistrationCountryOptionsUsResortTaxArgs resortTax) {
+            return resortTax(Output.of(resortTax));
         }
 
         /**
@@ -146,6 +326,15 @@ public final class TaxRegistrationCountryOptionsUsArgs extends com.pulumi.resour
             return stateSalesTax(Output.of(stateSalesTax));
         }
 
+        public Builder tourismTax(@Nullable Output<TaxRegistrationCountryOptionsUsTourismTaxArgs> tourismTax) {
+            $.tourismTax = tourismTax;
+            return this;
+        }
+
+        public Builder tourismTax(TaxRegistrationCountryOptionsUsTourismTaxArgs tourismTax) {
+            return tourismTax(Output.of(tourismTax));
+        }
+
         /**
          * @param type Type of registration in the US.
          * 
@@ -165,6 +354,15 @@ public final class TaxRegistrationCountryOptionsUsArgs extends com.pulumi.resour
          */
         public Builder type(String type) {
             return type(Output.of(type));
+        }
+
+        public Builder utilityUsersTax(@Nullable Output<TaxRegistrationCountryOptionsUsUtilityUsersTaxArgs> utilityUsersTax) {
+            $.utilityUsersTax = utilityUsersTax;
+            return this;
+        }
+
+        public Builder utilityUsersTax(TaxRegistrationCountryOptionsUsUtilityUsersTaxArgs utilityUsersTax) {
+            return utilityUsersTax(Output.of(utilityUsersTax));
         }
 
         public TaxRegistrationCountryOptionsUsArgs build() {

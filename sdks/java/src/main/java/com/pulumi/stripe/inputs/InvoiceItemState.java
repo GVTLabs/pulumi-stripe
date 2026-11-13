@@ -6,6 +6,7 @@ package com.pulumi.stripe.inputs;
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
 import com.pulumi.stripe.inputs.InvoiceItemDiscountArgs;
+import com.pulumi.stripe.inputs.InvoiceItemInvoicingRuleArgs;
 import com.pulumi.stripe.inputs.InvoiceItemParentArgs;
 import com.pulumi.stripe.inputs.InvoiceItemPeriodArgs;
 import com.pulumi.stripe.inputs.InvoiceItemPriceDataArgs;
@@ -133,6 +134,21 @@ public final class InvoiceItemState extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
+     * Array of field names that can&#39;t be modified. Attempting to update a frozen field returns an error.
+     * 
+     */
+    @Import(name="frozenFields")
+    private @Nullable Output<List<String>> frozenFields;
+
+    /**
+     * @return Array of field names that can&#39;t be modified. Attempting to update a frozen field returns an error.
+     * 
+     */
+    public Optional<Output<List<String>>> frozenFields() {
+        return Optional.ofNullable(this.frozenFields);
+    }
+
+    /**
      * The ID of the invoice this invoice item belongs to.
      * 
      */
@@ -145,6 +161,21 @@ public final class InvoiceItemState extends com.pulumi.resources.ResourceArgs {
      */
     public Optional<Output<String>> invoice() {
         return Optional.ofNullable(this.invoice);
+    }
+
+    /**
+     * The rules that control when this invoice item is eligible for invoicing. All rules must be satisfied for the item to be invoiced.
+     * 
+     */
+    @Import(name="invoicingRules")
+    private @Nullable Output<List<InvoiceItemInvoicingRuleArgs>> invoicingRules;
+
+    /**
+     * @return The rules that control when this invoice item is eligible for invoicing. All rules must be satisfied for the item to be invoiced.
+     * 
+     */
+    public Optional<Output<List<InvoiceItemInvoicingRuleArgs>>> invoicingRules() {
+        return Optional.ofNullable(this.invoicingRules);
     }
 
     /**
@@ -410,7 +441,9 @@ public final class InvoiceItemState extends com.pulumi.resources.ResourceArgs {
         this.description = $.description;
         this.discountable = $.discountable;
         this.discounts = $.discounts;
+        this.frozenFields = $.frozenFields;
         this.invoice = $.invoice;
+        this.invoicingRules = $.invoicingRules;
         this.livemode = $.livemode;
         this.metadata = $.metadata;
         this.object = $.object;
@@ -608,6 +641,37 @@ public final class InvoiceItemState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
+         * @param frozenFields Array of field names that can&#39;t be modified. Attempting to update a frozen field returns an error.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder frozenFields(@Nullable Output<List<String>> frozenFields) {
+            $.frozenFields = frozenFields;
+            return this;
+        }
+
+        /**
+         * @param frozenFields Array of field names that can&#39;t be modified. Attempting to update a frozen field returns an error.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder frozenFields(List<String> frozenFields) {
+            return frozenFields(Output.of(frozenFields));
+        }
+
+        /**
+         * @param frozenFields Array of field names that can&#39;t be modified. Attempting to update a frozen field returns an error.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder frozenFields(String... frozenFields) {
+            return frozenFields(List.of(frozenFields));
+        }
+
+        /**
          * @param invoice The ID of the invoice this invoice item belongs to.
          * 
          * @return builder
@@ -626,6 +690,37 @@ public final class InvoiceItemState extends com.pulumi.resources.ResourceArgs {
          */
         public Builder invoice(String invoice) {
             return invoice(Output.of(invoice));
+        }
+
+        /**
+         * @param invoicingRules The rules that control when this invoice item is eligible for invoicing. All rules must be satisfied for the item to be invoiced.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder invoicingRules(@Nullable Output<List<InvoiceItemInvoicingRuleArgs>> invoicingRules) {
+            $.invoicingRules = invoicingRules;
+            return this;
+        }
+
+        /**
+         * @param invoicingRules The rules that control when this invoice item is eligible for invoicing. All rules must be satisfied for the item to be invoiced.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder invoicingRules(List<InvoiceItemInvoicingRuleArgs> invoicingRules) {
+            return invoicingRules(Output.of(invoicingRules));
+        }
+
+        /**
+         * @param invoicingRules The rules that control when this invoice item is eligible for invoicing. All rules must be satisfied for the item to be invoiced.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder invoicingRules(InvoiceItemInvoicingRuleArgs... invoicingRules) {
+            return invoicingRules(List.of(invoicingRules));
         }
 
         /**

@@ -38,12 +38,16 @@ type Product struct {
 	Object pulumi.StringOutput `pulumi:"object"`
 	// The dimensions of this product for shipping purposes.
 	PackageDimensions ProductPackageDimensionArrayOutput `pulumi:"packageDimensions"`
+	// Unique identifier for the object.
+	ProductId pulumi.StringOutput `pulumi:"productId"`
 	// Whether this product is shipped (i.e., physical goods).
 	Shippable pulumi.BoolOutput `pulumi:"shippable"`
 	// Extra information about a product which will appear on your customer's credit card statement. In the case that multiple products are billed at once, the first statement descriptor will be used. Only used for subscription payments.
 	StatementDescriptor pulumi.StringOutput `pulumi:"statementDescriptor"`
 	// A [tax code](https://docs.stripe.com/tax/tax-categories) ID.
 	TaxCode pulumi.StringOutput `pulumi:"taxCode"`
+	// Tax details for this product, including the [tax code](https://www.terraform.io/tax/tax-codes) and an optional performance location.
+	TaxDetails ProductTaxDetailsOutput `pulumi:"taxDetails"`
 	// The type of the product. The product is either of type <span pulumi-lang-nodejs="`good`" pulumi-lang-dotnet="`Good`" pulumi-lang-go="`good`" pulumi-lang-python="`good`" pulumi-lang-yaml="`good`" pulumi-lang-java="`good`" pulumi-lang-hcl="`good`">`good`</span>, which is eligible for use with Orders and SKUs, or <span pulumi-lang-nodejs="`service`" pulumi-lang-dotnet="`Service`" pulumi-lang-go="`service`" pulumi-lang-python="`service`" pulumi-lang-yaml="`service`" pulumi-lang-java="`service`" pulumi-lang-hcl="`service`">`service`</span>, which is eligible for use with Subscriptions and Plans.
 	Type pulumi.StringOutput `pulumi:"type"`
 	// A label that represents units of this product. When set, this will be included in customers' receipts, invoices, Checkout, and the customer portal.
@@ -116,12 +120,16 @@ type productState struct {
 	Object *string `pulumi:"object"`
 	// The dimensions of this product for shipping purposes.
 	PackageDimensions []ProductPackageDimension `pulumi:"packageDimensions"`
+	// Unique identifier for the object.
+	ProductId *string `pulumi:"productId"`
 	// Whether this product is shipped (i.e., physical goods).
 	Shippable *bool `pulumi:"shippable"`
 	// Extra information about a product which will appear on your customer's credit card statement. In the case that multiple products are billed at once, the first statement descriptor will be used. Only used for subscription payments.
 	StatementDescriptor *string `pulumi:"statementDescriptor"`
 	// A [tax code](https://docs.stripe.com/tax/tax-categories) ID.
 	TaxCode *string `pulumi:"taxCode"`
+	// Tax details for this product, including the [tax code](https://www.terraform.io/tax/tax-codes) and an optional performance location.
+	TaxDetails *ProductTaxDetails `pulumi:"taxDetails"`
 	// The type of the product. The product is either of type <span pulumi-lang-nodejs="`good`" pulumi-lang-dotnet="`Good`" pulumi-lang-go="`good`" pulumi-lang-python="`good`" pulumi-lang-yaml="`good`" pulumi-lang-java="`good`" pulumi-lang-hcl="`good`">`good`</span>, which is eligible for use with Orders and SKUs, or <span pulumi-lang-nodejs="`service`" pulumi-lang-dotnet="`Service`" pulumi-lang-go="`service`" pulumi-lang-python="`service`" pulumi-lang-yaml="`service`" pulumi-lang-java="`service`" pulumi-lang-hcl="`service`">`service`</span>, which is eligible for use with Subscriptions and Plans.
 	Type *string `pulumi:"type"`
 	// A label that represents units of this product. When set, this will be included in customers' receipts, invoices, Checkout, and the customer portal.
@@ -157,12 +165,16 @@ type ProductState struct {
 	Object pulumi.StringPtrInput
 	// The dimensions of this product for shipping purposes.
 	PackageDimensions ProductPackageDimensionArrayInput
+	// Unique identifier for the object.
+	ProductId pulumi.StringPtrInput
 	// Whether this product is shipped (i.e., physical goods).
 	Shippable pulumi.BoolPtrInput
 	// Extra information about a product which will appear on your customer's credit card statement. In the case that multiple products are billed at once, the first statement descriptor will be used. Only used for subscription payments.
 	StatementDescriptor pulumi.StringPtrInput
 	// A [tax code](https://docs.stripe.com/tax/tax-categories) ID.
 	TaxCode pulumi.StringPtrInput
+	// Tax details for this product, including the [tax code](https://www.terraform.io/tax/tax-codes) and an optional performance location.
+	TaxDetails ProductTaxDetailsPtrInput
 	// The type of the product. The product is either of type <span pulumi-lang-nodejs="`good`" pulumi-lang-dotnet="`Good`" pulumi-lang-go="`good`" pulumi-lang-python="`good`" pulumi-lang-yaml="`good`" pulumi-lang-java="`good`" pulumi-lang-hcl="`good`">`good`</span>, which is eligible for use with Orders and SKUs, or <span pulumi-lang-nodejs="`service`" pulumi-lang-dotnet="`Service`" pulumi-lang-go="`service`" pulumi-lang-python="`service`" pulumi-lang-yaml="`service`" pulumi-lang-java="`service`" pulumi-lang-hcl="`service`">`service`</span>, which is eligible for use with Subscriptions and Plans.
 	Type pulumi.StringPtrInput
 	// A label that represents units of this product. When set, this will be included in customers' receipts, invoices, Checkout, and the customer portal.
@@ -175,6 +187,18 @@ type ProductState struct {
 
 func (ProductState) ElementType() reflect.Type {
 	return reflect.TypeOf((*productState)(nil)).Elem()
+}
+
+// ProductExists checks whether an existing Product resource with the given ID exists.
+func ProductExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *ProductState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	ref, err := internal.PkgGetPackageRef(ctx)
+	if err != nil {
+		return pulumi.Bool(false).ToBoolOutput().ApplyT(func(bool) (bool, error) {
+			return false, err
+		}).(pulumi.BoolOutput)
+	}
+	return ctx.ExistsResource("stripe:index/product:Product", id, state, ref, opts...)
 }
 
 type productArgs struct {
@@ -194,12 +218,16 @@ type productArgs struct {
 	Name *string `pulumi:"name"`
 	// The dimensions of this product for shipping purposes.
 	PackageDimensions []ProductPackageDimension `pulumi:"packageDimensions"`
+	// Unique identifier for the object.
+	ProductId *string `pulumi:"productId"`
 	// Whether this product is shipped (i.e., physical goods).
 	Shippable *bool `pulumi:"shippable"`
 	// Extra information about a product which will appear on your customer's credit card statement. In the case that multiple products are billed at once, the first statement descriptor will be used. Only used for subscription payments.
 	StatementDescriptor *string `pulumi:"statementDescriptor"`
 	// A [tax code](https://docs.stripe.com/tax/tax-categories) ID.
 	TaxCode *string `pulumi:"taxCode"`
+	// Tax details for this product, including the [tax code](https://www.terraform.io/tax/tax-codes) and an optional performance location.
+	TaxDetails *ProductTaxDetails `pulumi:"taxDetails"`
 	// The type of the product. The product is either of type <span pulumi-lang-nodejs="`good`" pulumi-lang-dotnet="`Good`" pulumi-lang-go="`good`" pulumi-lang-python="`good`" pulumi-lang-yaml="`good`" pulumi-lang-java="`good`" pulumi-lang-hcl="`good`">`good`</span>, which is eligible for use with Orders and SKUs, or <span pulumi-lang-nodejs="`service`" pulumi-lang-dotnet="`Service`" pulumi-lang-go="`service`" pulumi-lang-python="`service`" pulumi-lang-yaml="`service`" pulumi-lang-java="`service`" pulumi-lang-hcl="`service`">`service`</span>, which is eligible for use with Subscriptions and Plans.
 	Type *string `pulumi:"type"`
 	// A label that represents units of this product. When set, this will be included in customers' receipts, invoices, Checkout, and the customer portal.
@@ -226,12 +254,16 @@ type ProductArgs struct {
 	Name pulumi.StringPtrInput
 	// The dimensions of this product for shipping purposes.
 	PackageDimensions ProductPackageDimensionArrayInput
+	// Unique identifier for the object.
+	ProductId pulumi.StringPtrInput
 	// Whether this product is shipped (i.e., physical goods).
 	Shippable pulumi.BoolPtrInput
 	// Extra information about a product which will appear on your customer's credit card statement. In the case that multiple products are billed at once, the first statement descriptor will be used. Only used for subscription payments.
 	StatementDescriptor pulumi.StringPtrInput
 	// A [tax code](https://docs.stripe.com/tax/tax-categories) ID.
 	TaxCode pulumi.StringPtrInput
+	// Tax details for this product, including the [tax code](https://www.terraform.io/tax/tax-codes) and an optional performance location.
+	TaxDetails ProductTaxDetailsPtrInput
 	// The type of the product. The product is either of type <span pulumi-lang-nodejs="`good`" pulumi-lang-dotnet="`Good`" pulumi-lang-go="`good`" pulumi-lang-python="`good`" pulumi-lang-yaml="`good`" pulumi-lang-java="`good`" pulumi-lang-hcl="`good`">`good`</span>, which is eligible for use with Orders and SKUs, or <span pulumi-lang-nodejs="`service`" pulumi-lang-dotnet="`Service`" pulumi-lang-go="`service`" pulumi-lang-python="`service`" pulumi-lang-yaml="`service`" pulumi-lang-java="`service`" pulumi-lang-hcl="`service`">`service`</span>, which is eligible for use with Subscriptions and Plans.
 	Type pulumi.StringPtrInput
 	// A label that represents units of this product. When set, this will be included in customers' receipts, invoices, Checkout, and the customer portal.
@@ -337,6 +369,11 @@ func (o ProductOutput) PackageDimensions() ProductPackageDimensionArrayOutput {
 	return o.ApplyT(func(v *Product) ProductPackageDimensionArrayOutput { return v.PackageDimensions }).(ProductPackageDimensionArrayOutput)
 }
 
+// Unique identifier for the object.
+func (o ProductOutput) ProductId() pulumi.StringOutput {
+	return o.ApplyT(func(v *Product) pulumi.StringOutput { return v.ProductId }).(pulumi.StringOutput)
+}
+
 // Whether this product is shipped (i.e., physical goods).
 func (o ProductOutput) Shippable() pulumi.BoolOutput {
 	return o.ApplyT(func(v *Product) pulumi.BoolOutput { return v.Shippable }).(pulumi.BoolOutput)
@@ -350,6 +387,11 @@ func (o ProductOutput) StatementDescriptor() pulumi.StringOutput {
 // A [tax code](https://docs.stripe.com/tax/tax-categories) ID.
 func (o ProductOutput) TaxCode() pulumi.StringOutput {
 	return o.ApplyT(func(v *Product) pulumi.StringOutput { return v.TaxCode }).(pulumi.StringOutput)
+}
+
+// Tax details for this product, including the [tax code](https://www.terraform.io/tax/tax-codes) and an optional performance location.
+func (o ProductOutput) TaxDetails() ProductTaxDetailsOutput {
+	return o.ApplyT(func(v *Product) ProductTaxDetailsOutput { return v.TaxDetails }).(ProductTaxDetailsOutput)
 }
 
 // The type of the product. The product is either of type <span pulumi-lang-nodejs="`good`" pulumi-lang-dotnet="`Good`" pulumi-lang-go="`good`" pulumi-lang-python="`good`" pulumi-lang-yaml="`good`" pulumi-lang-java="`good`" pulumi-lang-hcl="`good`">`good`</span>, which is eligible for use with Orders and SKUs, or <span pulumi-lang-nodejs="`service`" pulumi-lang-dotnet="`Service`" pulumi-lang-go="`service`" pulumi-lang-python="`service`" pulumi-lang-yaml="`service`" pulumi-lang-java="`service`" pulumi-lang-hcl="`service`">`service`</span>, which is eligible for use with Subscriptions and Plans.

@@ -205,6 +205,8 @@ public final class PersonArgs extends com.pulumi.resources.ResourceArgs {
      * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
      * The person&#39;s ID number, as appropriate for their country. For example, a social security number in the U.S., social insurance number in Canada, etc. Instead of the number itself, you can also provide a [PII token provided by Stripe.js](https://docs.stripe.com/js/tokens/create_token?type=pii).
      * 
+     * Changing this value for the account&#39;s representative requires that the account re-accept the [terms of service](https://www.terraform.io/api/accounts/object#account_object-tos_acceptance).
+     * 
      */
     @Import(name="idNumber")
     private @Nullable Output<String> idNumber;
@@ -212,6 +214,8 @@ public final class PersonArgs extends com.pulumi.resources.ResourceArgs {
     /**
      * @return **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
      * The person&#39;s ID number, as appropriate for their country. For example, a social security number in the U.S., social insurance number in Canada, etc. Instead of the number itself, you can also provide a [PII token provided by Stripe.js](https://docs.stripe.com/js/tokens/create_token?type=pii).
+     * 
+     * Changing this value for the account&#39;s representative requires that the account re-accept the [terms of service](https://www.terraform.io/api/accounts/object#account_object-tos_acceptance).
      * 
      */
     public Optional<Output<String>> idNumber() {
@@ -222,6 +226,8 @@ public final class PersonArgs extends com.pulumi.resources.ResourceArgs {
      * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
      * The person&#39;s secondary ID number, as appropriate for their country, will be used for enhanced verification checks. In Thailand, this would be the laser code found on the back of an ID card. Instead of the number itself, you can also provide a [PII token provided by Stripe.js](https://docs.stripe.com/js/tokens/create_token?type=pii).
      * 
+     * Changing this value for the account&#39;s representative requires that the account re-accept the [terms of service](https://www.terraform.io/api/accounts/object#account_object-tos_acceptance).
+     * 
      */
     @Import(name="idNumberSecondary")
     private @Nullable Output<String> idNumberSecondary;
@@ -229,6 +235,8 @@ public final class PersonArgs extends com.pulumi.resources.ResourceArgs {
     /**
      * @return **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
      * The person&#39;s secondary ID number, as appropriate for their country, will be used for enhanced verification checks. In Thailand, this would be the laser code found on the back of an ID card. Instead of the number itself, you can also provide a [PII token provided by Stripe.js](https://docs.stripe.com/js/tokens/create_token?type=pii).
+     * 
+     * Changing this value for the account&#39;s representative requires that the account re-accept the [terms of service](https://www.terraform.io/api/accounts/object#account_object-tos_acceptance).
      * 
      */
     public Optional<Output<String>> idNumberSecondary() {
@@ -390,6 +398,8 @@ public final class PersonArgs extends com.pulumi.resources.ResourceArgs {
      * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
      * The last four digits of the person&#39;s Social Security number (U.S. only).
      * 
+     * Changing this value for the account&#39;s representative requires that the account re-accept the [terms of service](https://www.terraform.io/api/accounts/object#account_object-tos_acceptance).
+     * 
      */
     @Import(name="ssnLast4")
     private @Nullable Output<String> ssnLast4;
@@ -397,6 +407,8 @@ public final class PersonArgs extends com.pulumi.resources.ResourceArgs {
     /**
      * @return **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
      * The last four digits of the person&#39;s Social Security number (U.S. only).
+     * 
+     * Changing this value for the account&#39;s representative requires that the account re-accept the [terms of service](https://www.terraform.io/api/accounts/object#account_object-tos_acceptance).
      * 
      */
     public Optional<Output<String>> ssnLast4() {
@@ -730,6 +742,8 @@ public final class PersonArgs extends com.pulumi.resources.ResourceArgs {
          * @param idNumber **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
          * The person&#39;s ID number, as appropriate for their country. For example, a social security number in the U.S., social insurance number in Canada, etc. Instead of the number itself, you can also provide a [PII token provided by Stripe.js](https://docs.stripe.com/js/tokens/create_token?type=pii).
          * 
+         * Changing this value for the account&#39;s representative requires that the account re-accept the [terms of service](https://www.terraform.io/api/accounts/object#account_object-tos_acceptance).
+         * 
          * @return builder
          * 
          */
@@ -742,6 +756,8 @@ public final class PersonArgs extends com.pulumi.resources.ResourceArgs {
          * @param idNumber **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
          * The person&#39;s ID number, as appropriate for their country. For example, a social security number in the U.S., social insurance number in Canada, etc. Instead of the number itself, you can also provide a [PII token provided by Stripe.js](https://docs.stripe.com/js/tokens/create_token?type=pii).
          * 
+         * Changing this value for the account&#39;s representative requires that the account re-accept the [terms of service](https://www.terraform.io/api/accounts/object#account_object-tos_acceptance).
+         * 
          * @return builder
          * 
          */
@@ -752,6 +768,8 @@ public final class PersonArgs extends com.pulumi.resources.ResourceArgs {
         /**
          * @param idNumberSecondary **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
          * The person&#39;s secondary ID number, as appropriate for their country, will be used for enhanced verification checks. In Thailand, this would be the laser code found on the back of an ID card. Instead of the number itself, you can also provide a [PII token provided by Stripe.js](https://docs.stripe.com/js/tokens/create_token?type=pii).
+         * 
+         * Changing this value for the account&#39;s representative requires that the account re-accept the [terms of service](https://www.terraform.io/api/accounts/object#account_object-tos_acceptance).
          * 
          * @return builder
          * 
@@ -764,6 +782,8 @@ public final class PersonArgs extends com.pulumi.resources.ResourceArgs {
         /**
          * @param idNumberSecondary **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
          * The person&#39;s secondary ID number, as appropriate for their country, will be used for enhanced verification checks. In Thailand, this would be the laser code found on the back of an ID card. Instead of the number itself, you can also provide a [PII token provided by Stripe.js](https://docs.stripe.com/js/tokens/create_token?type=pii).
+         * 
+         * Changing this value for the account&#39;s representative requires that the account re-accept the [terms of service](https://www.terraform.io/api/accounts/object#account_object-tos_acceptance).
          * 
          * @return builder
          * 
@@ -985,6 +1005,8 @@ public final class PersonArgs extends com.pulumi.resources.ResourceArgs {
          * @param ssnLast4 **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
          * The last four digits of the person&#39;s Social Security number (U.S. only).
          * 
+         * Changing this value for the account&#39;s representative requires that the account re-accept the [terms of service](https://www.terraform.io/api/accounts/object#account_object-tos_acceptance).
+         * 
          * @return builder
          * 
          */
@@ -996,6 +1018,8 @@ public final class PersonArgs extends com.pulumi.resources.ResourceArgs {
         /**
          * @param ssnLast4 **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
          * The last four digits of the person&#39;s Social Security number (U.S. only).
+         * 
+         * Changing this value for the account&#39;s representative requires that the account re-accept the [terms of service](https://www.terraform.io/api/accounts/object#account_object-tos_acceptance).
          * 
          * @return builder
          * 

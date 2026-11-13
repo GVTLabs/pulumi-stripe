@@ -46,6 +46,21 @@ public final class SubscriptionCancellationDetailsArgs extends com.pulumi.resour
     }
 
     /**
+     * Customized feedback options that provide deeper insight into why the subscription was canceled, if the subscription was canceled explicitly by the user.
+     * 
+     */
+    @Import(name="feedbackOption")
+    private @Nullable Output<String> feedbackOption;
+
+    /**
+     * @return Customized feedback options that provide deeper insight into why the subscription was canceled, if the subscription was canceled explicitly by the user.
+     * 
+     */
+    public Optional<Output<String>> feedbackOption() {
+        return Optional.ofNullable(this.feedbackOption);
+    }
+
+    /**
      * Why this subscription was canceled.
      * 
      */
@@ -65,6 +80,7 @@ public final class SubscriptionCancellationDetailsArgs extends com.pulumi.resour
     private SubscriptionCancellationDetailsArgs(SubscriptionCancellationDetailsArgs $) {
         this.comment = $.comment;
         this.feedback = $.feedback;
+        this.feedbackOption = $.feedbackOption;
         this.reason = $.reason;
     }
 
@@ -126,6 +142,27 @@ public final class SubscriptionCancellationDetailsArgs extends com.pulumi.resour
          */
         public Builder feedback(String feedback) {
             return feedback(Output.of(feedback));
+        }
+
+        /**
+         * @param feedbackOption Customized feedback options that provide deeper insight into why the subscription was canceled, if the subscription was canceled explicitly by the user.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder feedbackOption(@Nullable Output<String> feedbackOption) {
+            $.feedbackOption = feedbackOption;
+            return this;
+        }
+
+        /**
+         * @param feedbackOption Customized feedback options that provide deeper insight into why the subscription was canceled, if the subscription was canceled explicitly by the user.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder feedbackOption(String feedbackOption) {
+            return feedbackOption(Output.of(feedbackOption));
         }
 
         /**

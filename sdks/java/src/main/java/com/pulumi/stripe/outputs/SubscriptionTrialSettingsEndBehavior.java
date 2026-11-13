@@ -4,25 +4,38 @@
 package com.pulumi.stripe.outputs;
 
 import com.pulumi.core.annotations.CustomType;
-import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.String;
 import java.util.Objects;
+import java.util.Optional;
+import javax.annotation.Nullable;
 
 @CustomType
 public final class SubscriptionTrialSettingsEndBehavior {
     /**
-     * @return Indicates how the subscription should change when the trial ends if the user did not provide a payment method.
+     * @return Indicates how the subscription&#39;s billing cycle anchor is reset when a trial ends. If not set, the default is &lt;span pulumi-lang-nodejs=&#34;`now`&#34; pulumi-lang-dotnet=&#34;`Now`&#34; pulumi-lang-go=&#34;`now`&#34; pulumi-lang-python=&#34;`now`&#34; pulumi-lang-yaml=&#34;`now`&#34; pulumi-lang-java=&#34;`now`&#34; pulumi-lang-hcl=&#34;`now`&#34;&gt;`now`&lt;/span&gt;.
      * 
      */
-    private String missingPaymentMethod;
-
-    private SubscriptionTrialSettingsEndBehavior() {}
+    private @Nullable String billingCycleAnchor;
     /**
      * @return Indicates how the subscription should change when the trial ends if the user did not provide a payment method.
      * 
      */
-    public String missingPaymentMethod() {
-        return this.missingPaymentMethod;
+    private @Nullable String missingPaymentMethod;
+
+    private SubscriptionTrialSettingsEndBehavior() {}
+    /**
+     * @return Indicates how the subscription&#39;s billing cycle anchor is reset when a trial ends. If not set, the default is &lt;span pulumi-lang-nodejs=&#34;`now`&#34; pulumi-lang-dotnet=&#34;`Now`&#34; pulumi-lang-go=&#34;`now`&#34; pulumi-lang-python=&#34;`now`&#34; pulumi-lang-yaml=&#34;`now`&#34; pulumi-lang-java=&#34;`now`&#34; pulumi-lang-hcl=&#34;`now`&#34;&gt;`now`&lt;/span&gt;.
+     * 
+     */
+    public Optional<String> billingCycleAnchor() {
+        return Optional.ofNullable(this.billingCycleAnchor);
+    }
+    /**
+     * @return Indicates how the subscription should change when the trial ends if the user did not provide a payment method.
+     * 
+     */
+    public Optional<String> missingPaymentMethod() {
+        return Optional.ofNullable(this.missingPaymentMethod);
     }
 
     public static Builder builder() {
@@ -34,23 +47,30 @@ public final class SubscriptionTrialSettingsEndBehavior {
     }
     @CustomType.Builder
     public static final class Builder {
-        private String missingPaymentMethod;
+        private @Nullable String billingCycleAnchor;
+        private @Nullable String missingPaymentMethod;
         public Builder() {}
         public Builder(SubscriptionTrialSettingsEndBehavior defaults) {
     	      Objects.requireNonNull(defaults);
+    	      this.billingCycleAnchor = defaults.billingCycleAnchor;
     	      this.missingPaymentMethod = defaults.missingPaymentMethod;
         }
 
         @CustomType.Setter
-        public Builder missingPaymentMethod(String missingPaymentMethod) {
-            if (missingPaymentMethod == null) {
-              throw new MissingRequiredPropertyException("SubscriptionTrialSettingsEndBehavior", "missingPaymentMethod");
-            }
+        public Builder billingCycleAnchor(@Nullable String billingCycleAnchor) {
+
+            this.billingCycleAnchor = billingCycleAnchor;
+            return this;
+        }
+        @CustomType.Setter
+        public Builder missingPaymentMethod(@Nullable String missingPaymentMethod) {
+
             this.missingPaymentMethod = missingPaymentMethod;
             return this;
         }
         public SubscriptionTrialSettingsEndBehavior build() {
             final var _resultValue = new SubscriptionTrialSettingsEndBehavior();
+            _resultValue.billingCycleAnchor = billingCycleAnchor;
             _resultValue.missingPaymentMethod = missingPaymentMethod;
             return _resultValue;
         }

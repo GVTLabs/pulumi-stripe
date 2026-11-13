@@ -181,6 +181,18 @@ func (TaxRateState) ElementType() reflect.Type {
 	return reflect.TypeOf((*taxRateState)(nil)).Elem()
 }
 
+// TaxRateExists checks whether an existing TaxRate resource with the given ID exists.
+func TaxRateExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *TaxRateState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	ref, err := internal.PkgGetPackageRef(ctx)
+	if err != nil {
+		return pulumi.Bool(false).ToBoolOutput().ApplyT(func(bool) (bool, error) {
+			return false, err
+		}).(pulumi.BoolOutput)
+	}
+	return ctx.ExistsResource("stripe:index/taxRate:TaxRate", id, state, ref, opts...)
+}
+
 type taxRateArgs struct {
 	// Defaults to <span pulumi-lang-nodejs="`true`" pulumi-lang-dotnet="`True`" pulumi-lang-go="`true`" pulumi-lang-python="`true`" pulumi-lang-yaml="`true`" pulumi-lang-java="`true`" pulumi-lang-hcl="`true`">`true`</span>. When set to <span pulumi-lang-nodejs="`false`" pulumi-lang-dotnet="`False`" pulumi-lang-go="`false`" pulumi-lang-python="`false`" pulumi-lang-yaml="`false`" pulumi-lang-java="`false`" pulumi-lang-hcl="`false`">`false`</span>, this tax rate cannot be used with new applications or Checkout Sessions, but will still work for subscriptions and invoices that already have it set.
 	Active *bool `pulumi:"active"`

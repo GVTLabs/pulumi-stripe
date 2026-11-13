@@ -24,6 +24,11 @@ public final class IssuingCardShipping {
      */
     private @Nullable IssuingCardShippingAddressValidation addressValidation;
     /**
+     * @return The name of the business at the shipping address, used on the shipping label to ensure delivery when the card is shipped to a cardholder&#39;s workplace.
+     * 
+     */
+    private @Nullable String businessName;
+    /**
      * @return The delivery company that shipped a card.
      * 
      */
@@ -33,6 +38,11 @@ public final class IssuingCardShipping {
      * 
      */
     private @Nullable IssuingCardShippingCustoms customs;
+    /**
+     * @return The time the card was reported as delivered. Null for undelivered or untracked shipments, or if Stripe has not recorded a delivery time.
+     * 
+     */
+    private @Nullable Double deliveredAt;
     /**
      * @return A unix timestamp representing a best estimate of when the card will be delivered.
      * 
@@ -58,6 +68,11 @@ public final class IssuingCardShipping {
      * 
      */
     private @Nullable String service;
+    /**
+     * @return The time the card was reported as shipped. Null if Stripe has not recorded a shipment time.
+     * 
+     */
+    private @Nullable Double shippedAt;
     /**
      * @return The delivery status of the card.
      * 
@@ -91,6 +106,13 @@ public final class IssuingCardShipping {
         return Optional.ofNullable(this.addressValidation);
     }
     /**
+     * @return The name of the business at the shipping address, used on the shipping label to ensure delivery when the card is shipped to a cardholder&#39;s workplace.
+     * 
+     */
+    public Optional<String> businessName() {
+        return Optional.ofNullable(this.businessName);
+    }
+    /**
      * @return The delivery company that shipped a card.
      * 
      */
@@ -103,6 +125,13 @@ public final class IssuingCardShipping {
      */
     public Optional<IssuingCardShippingCustoms> customs() {
         return Optional.ofNullable(this.customs);
+    }
+    /**
+     * @return The time the card was reported as delivered. Null for undelivered or untracked shipments, or if Stripe has not recorded a delivery time.
+     * 
+     */
+    public Optional<Double> deliveredAt() {
+        return Optional.ofNullable(this.deliveredAt);
     }
     /**
      * @return A unix timestamp representing a best estimate of when the card will be delivered.
@@ -138,6 +167,13 @@ public final class IssuingCardShipping {
      */
     public Optional<String> service() {
         return Optional.ofNullable(this.service);
+    }
+    /**
+     * @return The time the card was reported as shipped. Null if Stripe has not recorded a shipment time.
+     * 
+     */
+    public Optional<Double> shippedAt() {
+        return Optional.ofNullable(this.shippedAt);
     }
     /**
      * @return The delivery status of the card.
@@ -179,13 +215,16 @@ public final class IssuingCardShipping {
     public static final class Builder {
         private IssuingCardShippingAddress address;
         private @Nullable IssuingCardShippingAddressValidation addressValidation;
+        private @Nullable String businessName;
         private @Nullable String carrier;
         private @Nullable IssuingCardShippingCustoms customs;
+        private @Nullable Double deliveredAt;
         private @Nullable Double eta;
         private String name;
         private @Nullable String phoneNumber;
         private @Nullable Boolean requireSignature;
         private @Nullable String service;
+        private @Nullable Double shippedAt;
         private @Nullable String status;
         private @Nullable String trackingNumber;
         private @Nullable String trackingUrl;
@@ -195,13 +234,16 @@ public final class IssuingCardShipping {
     	      Objects.requireNonNull(defaults);
     	      this.address = defaults.address;
     	      this.addressValidation = defaults.addressValidation;
+    	      this.businessName = defaults.businessName;
     	      this.carrier = defaults.carrier;
     	      this.customs = defaults.customs;
+    	      this.deliveredAt = defaults.deliveredAt;
     	      this.eta = defaults.eta;
     	      this.name = defaults.name;
     	      this.phoneNumber = defaults.phoneNumber;
     	      this.requireSignature = defaults.requireSignature;
     	      this.service = defaults.service;
+    	      this.shippedAt = defaults.shippedAt;
     	      this.status = defaults.status;
     	      this.trackingNumber = defaults.trackingNumber;
     	      this.trackingUrl = defaults.trackingUrl;
@@ -223,6 +265,12 @@ public final class IssuingCardShipping {
             return this;
         }
         @CustomType.Setter
+        public Builder businessName(@Nullable String businessName) {
+
+            this.businessName = businessName;
+            return this;
+        }
+        @CustomType.Setter
         public Builder carrier(@Nullable String carrier) {
 
             this.carrier = carrier;
@@ -232,6 +280,12 @@ public final class IssuingCardShipping {
         public Builder customs(@Nullable IssuingCardShippingCustoms customs) {
 
             this.customs = customs;
+            return this;
+        }
+        @CustomType.Setter
+        public Builder deliveredAt(@Nullable Double deliveredAt) {
+
+            this.deliveredAt = deliveredAt;
             return this;
         }
         @CustomType.Setter
@@ -267,6 +321,12 @@ public final class IssuingCardShipping {
             return this;
         }
         @CustomType.Setter
+        public Builder shippedAt(@Nullable Double shippedAt) {
+
+            this.shippedAt = shippedAt;
+            return this;
+        }
+        @CustomType.Setter
         public Builder status(@Nullable String status) {
 
             this.status = status;
@@ -294,13 +354,16 @@ public final class IssuingCardShipping {
             final var _resultValue = new IssuingCardShipping();
             _resultValue.address = address;
             _resultValue.addressValidation = addressValidation;
+            _resultValue.businessName = businessName;
             _resultValue.carrier = carrier;
             _resultValue.customs = customs;
+            _resultValue.deliveredAt = deliveredAt;
             _resultValue.eta = eta;
             _resultValue.name = name;
             _resultValue.phoneNumber = phoneNumber;
             _resultValue.requireSignature = requireSignature;
             _resultValue.service = service;
+            _resultValue.shippedAt = shippedAt;
             _resultValue.status = status;
             _resultValue.trackingNumber = trackingNumber;
             _resultValue.trackingUrl = trackingUrl;

@@ -844,24 +844,24 @@ class Quote(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  application_fee_amount: pulumi.Input[Optional[_builtins.float]] = None,
                  application_fee_percent: pulumi.Input[Optional[_builtins.float]] = None,
-                 automatic_tax: pulumi.Input[Optional[Union['QuoteAutomaticTaxArgs', 'QuoteAutomaticTaxArgsDict']]] = None,
+                 automatic_tax: pulumi.Input[Optional[Union['QuoteAutomaticTaxArgs', 'QuoteAutomaticTaxArgsDict', 'outputs.QuoteAutomaticTax']]] = None,
                  collection_method: pulumi.Input[Optional[_builtins.str]] = None,
                  customer: pulumi.Input[Optional[_builtins.str]] = None,
                  customer_account: pulumi.Input[Optional[_builtins.str]] = None,
                  default_tax_rates: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  description: pulumi.Input[Optional[_builtins.str]] = None,
-                 discounts: pulumi.Input[Optional[Sequence[pulumi.Input[Union['QuoteDiscountArgs', 'QuoteDiscountArgsDict']]]]] = None,
+                 discounts: pulumi.Input[Optional[Sequence[pulumi.Input[Union['QuoteDiscountArgs', 'QuoteDiscountArgsDict', 'outputs.QuoteDiscount']]]]] = None,
                  expires_at: pulumi.Input[Optional[_builtins.float]] = None,
                  footer: pulumi.Input[Optional[_builtins.str]] = None,
-                 from_quote: pulumi.Input[Optional[Union['QuoteFromQuoteArgs', 'QuoteFromQuoteArgsDict']]] = None,
+                 from_quote: pulumi.Input[Optional[Union['QuoteFromQuoteArgs', 'QuoteFromQuoteArgsDict', 'outputs.QuoteFromQuote']]] = None,
                  header: pulumi.Input[Optional[_builtins.str]] = None,
-                 invoice_settings: pulumi.Input[Optional[Union['QuoteInvoiceSettingsArgs', 'QuoteInvoiceSettingsArgsDict']]] = None,
-                 line_items: pulumi.Input[Optional[Sequence[pulumi.Input[Union['QuoteLineItemArgs', 'QuoteLineItemArgsDict']]]]] = None,
+                 invoice_settings: pulumi.Input[Optional[Union['QuoteInvoiceSettingsArgs', 'QuoteInvoiceSettingsArgsDict', 'outputs.QuoteInvoiceSettings']]] = None,
+                 line_items: pulumi.Input[Optional[Sequence[pulumi.Input[Union['QuoteLineItemArgs', 'QuoteLineItemArgsDict', 'outputs.QuoteLineItem']]]]] = None,
                  metadata: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
                  on_behalf_of: pulumi.Input[Optional[_builtins.str]] = None,
-                 subscription_data: pulumi.Input[Optional[Union['QuoteSubscriptionDataArgs', 'QuoteSubscriptionDataArgsDict']]] = None,
+                 subscription_data: pulumi.Input[Optional[Union['QuoteSubscriptionDataArgs', 'QuoteSubscriptionDataArgsDict', 'outputs.QuoteSubscriptionData']]] = None,
                  test_clock: pulumi.Input[Optional[_builtins.str]] = None,
-                 transfer_data: pulumi.Input[Optional[Union['QuoteTransferDataArgs', 'QuoteTransferDataArgsDict']]] = None,
+                 transfer_data: pulumi.Input[Optional[Union['QuoteTransferDataArgs', 'QuoteTransferDataArgsDict', 'outputs.QuoteTransferData']]] = None,
                  __props__=None):
         """
         Create a Quote resource with the given unique name, props, and options.
@@ -875,16 +875,16 @@ class Quote(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] customer_account: The account representing the customer who received this quote. A customer or account is required to finalize the quote. Once specified, you can't change it.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] default_tax_rates: The tax rates applied to this quote.
         :param pulumi.Input[_builtins.str] description: A description that will be displayed on the quote PDF.
-        :param pulumi.Input[Sequence[pulumi.Input[Union['QuoteDiscountArgs', 'QuoteDiscountArgsDict']]]] discounts: The discounts applied to this quote.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['QuoteDiscountArgs', 'QuoteDiscountArgsDict', 'outputs.QuoteDiscount']]]] discounts: The discounts applied to this quote.
         :param pulumi.Input[_builtins.float] expires_at: The date on which the quote will be canceled if in <span pulumi-lang-nodejs="`open`" pulumi-lang-dotnet="`Open`" pulumi-lang-go="`open`" pulumi-lang-python="`open`" pulumi-lang-yaml="`open`" pulumi-lang-java="`open`" pulumi-lang-hcl="`open`">`open`</span> or <span pulumi-lang-nodejs="`draft`" pulumi-lang-dotnet="`Draft`" pulumi-lang-go="`draft`" pulumi-lang-python="`draft`" pulumi-lang-yaml="`draft`" pulumi-lang-java="`draft`" pulumi-lang-hcl="`draft`">`draft`</span> status. Measured in seconds since the Unix epoch.
         :param pulumi.Input[_builtins.str] footer: A footer that will be displayed on the quote PDF.
-        :param pulumi.Input[Union['QuoteFromQuoteArgs', 'QuoteFromQuoteArgsDict']] from_quote: Details of the quote that was cloned. See the [cloning documentation](https://docs.stripe.com/quotes/clone) for more details.
+        :param pulumi.Input[Union['QuoteFromQuoteArgs', 'QuoteFromQuoteArgsDict', 'outputs.QuoteFromQuote']] from_quote: Details of the quote that was cloned. See the [cloning documentation](https://docs.stripe.com/quotes/clone) for more details.
         :param pulumi.Input[_builtins.str] header: A header that will be displayed on the quote PDF.
-        :param pulumi.Input[Sequence[pulumi.Input[Union['QuoteLineItemArgs', 'QuoteLineItemArgsDict']]]] line_items: A list of items the customer is being quoted for.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['QuoteLineItemArgs', 'QuoteLineItemArgsDict', 'outputs.QuoteLineItem']]]] line_items: A list of items the customer is being quoted for.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] metadata: Set of [key-value pairs](https://docs.stripe.com/api/metadata) that you can attach to an object. This can be useful for storing additional information about the object in a structured format.
         :param pulumi.Input[_builtins.str] on_behalf_of: The account on behalf of which to charge. See the [Connect documentation](https://support.stripe.com/questions/sending-invoices-on-behalf-of-connected-accounts) for details.
         :param pulumi.Input[_builtins.str] test_clock: ID of the test clock this quote belongs to.
-        :param pulumi.Input[Union['QuoteTransferDataArgs', 'QuoteTransferDataArgsDict']] transfer_data: The account (if any) the payments will be attributed to for tax reporting, and where funds from each payment will be transferred to for each of the invoices.
+        :param pulumi.Input[Union['QuoteTransferDataArgs', 'QuoteTransferDataArgsDict', 'outputs.QuoteTransferData']] transfer_data: The account (if any) the payments will be attributed to for tax reporting, and where funds from each payment will be transferred to for each of the invoices.
         """
         ...
     @overload
@@ -912,24 +912,24 @@ class Quote(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  application_fee_amount: pulumi.Input[Optional[_builtins.float]] = None,
                  application_fee_percent: pulumi.Input[Optional[_builtins.float]] = None,
-                 automatic_tax: pulumi.Input[Optional[Union['QuoteAutomaticTaxArgs', 'QuoteAutomaticTaxArgsDict']]] = None,
+                 automatic_tax: pulumi.Input[Optional[Union['QuoteAutomaticTaxArgs', 'QuoteAutomaticTaxArgsDict', 'outputs.QuoteAutomaticTax']]] = None,
                  collection_method: pulumi.Input[Optional[_builtins.str]] = None,
                  customer: pulumi.Input[Optional[_builtins.str]] = None,
                  customer_account: pulumi.Input[Optional[_builtins.str]] = None,
                  default_tax_rates: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  description: pulumi.Input[Optional[_builtins.str]] = None,
-                 discounts: pulumi.Input[Optional[Sequence[pulumi.Input[Union['QuoteDiscountArgs', 'QuoteDiscountArgsDict']]]]] = None,
+                 discounts: pulumi.Input[Optional[Sequence[pulumi.Input[Union['QuoteDiscountArgs', 'QuoteDiscountArgsDict', 'outputs.QuoteDiscount']]]]] = None,
                  expires_at: pulumi.Input[Optional[_builtins.float]] = None,
                  footer: pulumi.Input[Optional[_builtins.str]] = None,
-                 from_quote: pulumi.Input[Optional[Union['QuoteFromQuoteArgs', 'QuoteFromQuoteArgsDict']]] = None,
+                 from_quote: pulumi.Input[Optional[Union['QuoteFromQuoteArgs', 'QuoteFromQuoteArgsDict', 'outputs.QuoteFromQuote']]] = None,
                  header: pulumi.Input[Optional[_builtins.str]] = None,
-                 invoice_settings: pulumi.Input[Optional[Union['QuoteInvoiceSettingsArgs', 'QuoteInvoiceSettingsArgsDict']]] = None,
-                 line_items: pulumi.Input[Optional[Sequence[pulumi.Input[Union['QuoteLineItemArgs', 'QuoteLineItemArgsDict']]]]] = None,
+                 invoice_settings: pulumi.Input[Optional[Union['QuoteInvoiceSettingsArgs', 'QuoteInvoiceSettingsArgsDict', 'outputs.QuoteInvoiceSettings']]] = None,
+                 line_items: pulumi.Input[Optional[Sequence[pulumi.Input[Union['QuoteLineItemArgs', 'QuoteLineItemArgsDict', 'outputs.QuoteLineItem']]]]] = None,
                  metadata: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
                  on_behalf_of: pulumi.Input[Optional[_builtins.str]] = None,
-                 subscription_data: pulumi.Input[Optional[Union['QuoteSubscriptionDataArgs', 'QuoteSubscriptionDataArgsDict']]] = None,
+                 subscription_data: pulumi.Input[Optional[Union['QuoteSubscriptionDataArgs', 'QuoteSubscriptionDataArgsDict', 'outputs.QuoteSubscriptionData']]] = None,
                  test_clock: pulumi.Input[Optional[_builtins.str]] = None,
-                 transfer_data: pulumi.Input[Optional[Union['QuoteTransferDataArgs', 'QuoteTransferDataArgsDict']]] = None,
+                 transfer_data: pulumi.Input[Optional[Union['QuoteTransferDataArgs', 'QuoteTransferDataArgsDict', 'outputs.QuoteTransferData']]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -985,7 +985,7 @@ class Quote(pulumi.CustomResource):
             application: pulumi.Input[Optional[_builtins.str]] = None,
             application_fee_amount: pulumi.Input[Optional[_builtins.float]] = None,
             application_fee_percent: pulumi.Input[Optional[_builtins.float]] = None,
-            automatic_tax: pulumi.Input[Optional[Union['QuoteAutomaticTaxArgs', 'QuoteAutomaticTaxArgsDict']]] = None,
+            automatic_tax: pulumi.Input[Optional[Union['QuoteAutomaticTaxArgs', 'QuoteAutomaticTaxArgsDict', 'outputs.QuoteAutomaticTax']]] = None,
             collection_method: pulumi.Input[Optional[_builtins.str]] = None,
             created: pulumi.Input[Optional[_builtins.float]] = None,
             currency: pulumi.Input[Optional[_builtins.str]] = None,
@@ -993,27 +993,27 @@ class Quote(pulumi.CustomResource):
             customer_account: pulumi.Input[Optional[_builtins.str]] = None,
             default_tax_rates: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
             description: pulumi.Input[Optional[_builtins.str]] = None,
-            discounts: pulumi.Input[Optional[Sequence[pulumi.Input[Union['QuoteDiscountArgs', 'QuoteDiscountArgsDict']]]]] = None,
+            discounts: pulumi.Input[Optional[Sequence[pulumi.Input[Union['QuoteDiscountArgs', 'QuoteDiscountArgsDict', 'outputs.QuoteDiscount']]]]] = None,
             expires_at: pulumi.Input[Optional[_builtins.float]] = None,
             footer: pulumi.Input[Optional[_builtins.str]] = None,
-            from_quote: pulumi.Input[Optional[Union['QuoteFromQuoteArgs', 'QuoteFromQuoteArgsDict']]] = None,
+            from_quote: pulumi.Input[Optional[Union['QuoteFromQuoteArgs', 'QuoteFromQuoteArgsDict', 'outputs.QuoteFromQuote']]] = None,
             header: pulumi.Input[Optional[_builtins.str]] = None,
             invoice: pulumi.Input[Optional[_builtins.str]] = None,
-            invoice_settings: pulumi.Input[Optional[Union['QuoteInvoiceSettingsArgs', 'QuoteInvoiceSettingsArgsDict']]] = None,
-            line_items: pulumi.Input[Optional[Sequence[pulumi.Input[Union['QuoteLineItemArgs', 'QuoteLineItemArgsDict']]]]] = None,
+            invoice_settings: pulumi.Input[Optional[Union['QuoteInvoiceSettingsArgs', 'QuoteInvoiceSettingsArgsDict', 'outputs.QuoteInvoiceSettings']]] = None,
+            line_items: pulumi.Input[Optional[Sequence[pulumi.Input[Union['QuoteLineItemArgs', 'QuoteLineItemArgsDict', 'outputs.QuoteLineItem']]]]] = None,
             livemode: pulumi.Input[Optional[_builtins.bool]] = None,
             metadata: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
             number: pulumi.Input[Optional[_builtins.str]] = None,
             object: pulumi.Input[Optional[_builtins.str]] = None,
             on_behalf_of: pulumi.Input[Optional[_builtins.str]] = None,
             status: pulumi.Input[Optional[_builtins.str]] = None,
-            status_transitions: pulumi.Input[Optional[Union['QuoteStatusTransitionsArgs', 'QuoteStatusTransitionsArgsDict']]] = None,
+            status_transitions: pulumi.Input[Optional[Union['QuoteStatusTransitionsArgs', 'QuoteStatusTransitionsArgsDict', 'outputs.QuoteStatusTransitions']]] = None,
             subscription: pulumi.Input[Optional[_builtins.str]] = None,
-            subscription_data: pulumi.Input[Optional[Union['QuoteSubscriptionDataArgs', 'QuoteSubscriptionDataArgsDict']]] = None,
+            subscription_data: pulumi.Input[Optional[Union['QuoteSubscriptionDataArgs', 'QuoteSubscriptionDataArgsDict', 'outputs.QuoteSubscriptionData']]] = None,
             subscription_schedule: pulumi.Input[Optional[_builtins.str]] = None,
             test_clock: pulumi.Input[Optional[_builtins.str]] = None,
-            total_details: pulumi.Input[Optional[Union['QuoteTotalDetailsArgs', 'QuoteTotalDetailsArgsDict']]] = None,
-            transfer_data: pulumi.Input[Optional[Union['QuoteTransferDataArgs', 'QuoteTransferDataArgsDict']]] = None) -> 'Quote':
+            total_details: pulumi.Input[Optional[Union['QuoteTotalDetailsArgs', 'QuoteTotalDetailsArgsDict', 'outputs.QuoteTotalDetails']]] = None,
+            transfer_data: pulumi.Input[Optional[Union['QuoteTransferDataArgs', 'QuoteTransferDataArgsDict', 'outputs.QuoteTransferData']]] = None) -> 'Quote':
         """
         Get an existing Quote resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -1031,13 +1031,13 @@ class Quote(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] customer_account: The account representing the customer who received this quote. A customer or account is required to finalize the quote. Once specified, you can't change it.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] default_tax_rates: The tax rates applied to this quote.
         :param pulumi.Input[_builtins.str] description: A description that will be displayed on the quote PDF.
-        :param pulumi.Input[Sequence[pulumi.Input[Union['QuoteDiscountArgs', 'QuoteDiscountArgsDict']]]] discounts: The discounts applied to this quote.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['QuoteDiscountArgs', 'QuoteDiscountArgsDict', 'outputs.QuoteDiscount']]]] discounts: The discounts applied to this quote.
         :param pulumi.Input[_builtins.float] expires_at: The date on which the quote will be canceled if in <span pulumi-lang-nodejs="`open`" pulumi-lang-dotnet="`Open`" pulumi-lang-go="`open`" pulumi-lang-python="`open`" pulumi-lang-yaml="`open`" pulumi-lang-java="`open`" pulumi-lang-hcl="`open`">`open`</span> or <span pulumi-lang-nodejs="`draft`" pulumi-lang-dotnet="`Draft`" pulumi-lang-go="`draft`" pulumi-lang-python="`draft`" pulumi-lang-yaml="`draft`" pulumi-lang-java="`draft`" pulumi-lang-hcl="`draft`">`draft`</span> status. Measured in seconds since the Unix epoch.
         :param pulumi.Input[_builtins.str] footer: A footer that will be displayed on the quote PDF.
-        :param pulumi.Input[Union['QuoteFromQuoteArgs', 'QuoteFromQuoteArgsDict']] from_quote: Details of the quote that was cloned. See the [cloning documentation](https://docs.stripe.com/quotes/clone) for more details.
+        :param pulumi.Input[Union['QuoteFromQuoteArgs', 'QuoteFromQuoteArgsDict', 'outputs.QuoteFromQuote']] from_quote: Details of the quote that was cloned. See the [cloning documentation](https://docs.stripe.com/quotes/clone) for more details.
         :param pulumi.Input[_builtins.str] header: A header that will be displayed on the quote PDF.
         :param pulumi.Input[_builtins.str] invoice: The invoice that was created from this quote.
-        :param pulumi.Input[Sequence[pulumi.Input[Union['QuoteLineItemArgs', 'QuoteLineItemArgsDict']]]] line_items: A list of items the customer is being quoted for.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['QuoteLineItemArgs', 'QuoteLineItemArgsDict', 'outputs.QuoteLineItem']]]] line_items: A list of items the customer is being quoted for.
         :param pulumi.Input[_builtins.bool] livemode: If the object exists in live mode, the value is <span pulumi-lang-nodejs="`true`" pulumi-lang-dotnet="`True`" pulumi-lang-go="`true`" pulumi-lang-python="`true`" pulumi-lang-yaml="`true`" pulumi-lang-java="`true`" pulumi-lang-hcl="`true`">`true`</span>. If the object exists in test mode, the value is <span pulumi-lang-nodejs="`false`" pulumi-lang-dotnet="`False`" pulumi-lang-go="`false`" pulumi-lang-python="`false`" pulumi-lang-yaml="`false`" pulumi-lang-java="`false`" pulumi-lang-hcl="`false`">`false`</span>.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] metadata: Set of [key-value pairs](https://docs.stripe.com/api/metadata) that you can attach to an object. This can be useful for storing additional information about the object in a structured format.
         :param pulumi.Input[_builtins.str] number: A unique number that identifies this particular quote. This number is assigned once the quote is [finalized](https://docs.stripe.com/quotes/overview#finalize).
@@ -1047,7 +1047,7 @@ class Quote(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] subscription: The subscription that was created or updated from this quote.
         :param pulumi.Input[_builtins.str] subscription_schedule: The subscription schedule that was created or updated from this quote.
         :param pulumi.Input[_builtins.str] test_clock: ID of the test clock this quote belongs to.
-        :param pulumi.Input[Union['QuoteTransferDataArgs', 'QuoteTransferDataArgsDict']] transfer_data: The account (if any) the payments will be attributed to for tax reporting, and where funds from each payment will be transferred to for each of the invoices.
+        :param pulumi.Input[Union['QuoteTransferDataArgs', 'QuoteTransferDataArgsDict', 'outputs.QuoteTransferData']] transfer_data: The account (if any) the payments will be attributed to for tax reporting, and where funds from each payment will be transferred to for each of the invoices.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -1086,6 +1086,76 @@ class Quote(pulumi.CustomResource):
         __props__.__dict__["total_details"] = total_details
         __props__.__dict__["transfer_data"] = transfer_data
         return Quote(resource_name, opts=opts, __props__=__props__)
+
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            application: pulumi.Input[Optional[_builtins.str]] = None,
+            application_fee_amount: pulumi.Input[Optional[_builtins.float]] = None,
+            application_fee_percent: pulumi.Input[Optional[_builtins.float]] = None,
+            automatic_tax: pulumi.Input[Optional[Union['QuoteAutomaticTaxArgs', 'QuoteAutomaticTaxArgsDict', 'outputs.QuoteAutomaticTax']]] = None,
+            collection_method: pulumi.Input[Optional[_builtins.str]] = None,
+            created: pulumi.Input[Optional[_builtins.float]] = None,
+            currency: pulumi.Input[Optional[_builtins.str]] = None,
+            customer: pulumi.Input[Optional[_builtins.str]] = None,
+            customer_account: pulumi.Input[Optional[_builtins.str]] = None,
+            default_tax_rates: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            description: pulumi.Input[Optional[_builtins.str]] = None,
+            discounts: pulumi.Input[Optional[Sequence[pulumi.Input[Union['QuoteDiscountArgs', 'QuoteDiscountArgsDict', 'outputs.QuoteDiscount']]]]] = None,
+            expires_at: pulumi.Input[Optional[_builtins.float]] = None,
+            footer: pulumi.Input[Optional[_builtins.str]] = None,
+            from_quote: pulumi.Input[Optional[Union['QuoteFromQuoteArgs', 'QuoteFromQuoteArgsDict', 'outputs.QuoteFromQuote']]] = None,
+            header: pulumi.Input[Optional[_builtins.str]] = None,
+            invoice: pulumi.Input[Optional[_builtins.str]] = None,
+            invoice_settings: pulumi.Input[Optional[Union['QuoteInvoiceSettingsArgs', 'QuoteInvoiceSettingsArgsDict', 'outputs.QuoteInvoiceSettings']]] = None,
+            line_items: pulumi.Input[Optional[Sequence[pulumi.Input[Union['QuoteLineItemArgs', 'QuoteLineItemArgsDict', 'outputs.QuoteLineItem']]]]] = None,
+            livemode: pulumi.Input[Optional[_builtins.bool]] = None,
+            metadata: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+            number: pulumi.Input[Optional[_builtins.str]] = None,
+            object: pulumi.Input[Optional[_builtins.str]] = None,
+            on_behalf_of: pulumi.Input[Optional[_builtins.str]] = None,
+            status: pulumi.Input[Optional[_builtins.str]] = None,
+            status_transitions: pulumi.Input[Optional[Union['QuoteStatusTransitionsArgs', 'QuoteStatusTransitionsArgsDict', 'outputs.QuoteStatusTransitions']]] = None,
+            subscription: pulumi.Input[Optional[_builtins.str]] = None,
+            subscription_data: pulumi.Input[Optional[Union['QuoteSubscriptionDataArgs', 'QuoteSubscriptionDataArgsDict', 'outputs.QuoteSubscriptionData']]] = None,
+            subscription_schedule: pulumi.Input[Optional[_builtins.str]] = None,
+            test_clock: pulumi.Input[Optional[_builtins.str]] = None,
+            total_details: pulumi.Input[Optional[Union['QuoteTotalDetailsArgs', 'QuoteTotalDetailsArgsDict', 'outputs.QuoteTotalDetails']]] = None,
+            transfer_data: pulumi.Input[Optional[Union['QuoteTransferDataArgs', 'QuoteTransferDataArgsDict', 'outputs.QuoteTransferData']]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["application"] = application
+        __props__["applicationFeeAmount"] = application_fee_amount
+        __props__["applicationFeePercent"] = application_fee_percent
+        __props__["automaticTax"] = automatic_tax
+        __props__["collectionMethod"] = collection_method
+        __props__["created"] = created
+        __props__["currency"] = currency
+        __props__["customer"] = customer
+        __props__["customerAccount"] = customer_account
+        __props__["defaultTaxRates"] = default_tax_rates
+        __props__["description"] = description
+        __props__["discounts"] = discounts
+        __props__["expiresAt"] = expires_at
+        __props__["footer"] = footer
+        __props__["fromQuote"] = from_quote
+        __props__["header"] = header
+        __props__["invoice"] = invoice
+        __props__["invoiceSettings"] = invoice_settings
+        __props__["lineItems"] = line_items
+        __props__["livemode"] = livemode
+        __props__["metadata"] = metadata
+        __props__["number"] = number
+        __props__["object"] = object
+        __props__["onBehalfOf"] = on_behalf_of
+        __props__["status"] = status
+        __props__["statusTransitions"] = status_transitions
+        __props__["subscription"] = subscription
+        __props__["subscriptionData"] = subscription_data
+        __props__["subscriptionSchedule"] = subscription_schedule
+        __props__["testClock"] = test_clock
+        __props__["totalDetails"] = total_details
+        __props__["transferData"] = transfer_data
+        return pulumi.runtime.exists_resource(None, 'stripe:index/quote:Quote', id, __props__, opts or pulumi.ResourceOptions(), package_ref=_utilities.get_package())
 
     @_builtins.property
     @pulumi.getter

@@ -20,6 +20,17 @@ export class Product extends pulumi.CustomResource {
         return new Product(name, <any>state, { ...opts, id: id });
     }
 
+    /**
+     * Check whether an existing Product resource with the given ID exists.
+     *
+     * @param id The _unique_ provider ID of the resource to check.
+     * @param state Any extra arguments used during the lookup.
+     * @param opts Optional settings to control the behavior of the CustomResource.
+     */
+    public static exists(id: pulumi.Input<string>, state?: ProductState, opts?: pulumi.CustomResourceOptions): pulumi.Output<boolean> {
+        return pulumi.runtime.existsResource("stripe:index/product:Product", id, <any>state || {}, { ...opts }, utilities.getPackage());
+    }
+
     /** @internal */
     public static readonly __pulumiType = 'stripe:index/product:Product';
 
@@ -83,6 +94,10 @@ export class Product extends pulumi.CustomResource {
      */
     declare public readonly packageDimensions: pulumi.Output<outputs.ProductPackageDimension[] | undefined>;
     /**
+     * Unique identifier for the object.
+     */
+    declare public readonly productId: pulumi.Output<string>;
+    /**
      * Whether this product is shipped (i.e., physical goods).
      */
     declare public readonly shippable: pulumi.Output<boolean>;
@@ -94,6 +109,10 @@ export class Product extends pulumi.CustomResource {
      * A [tax code](https://docs.stripe.com/tax/tax-categories) ID.
      */
     declare public readonly taxCode: pulumi.Output<string>;
+    /**
+     * Tax details for this product, including the [tax code](https://www.terraform.io/tax/tax-codes) and an optional performance location.
+     */
+    declare public readonly taxDetails: pulumi.Output<outputs.ProductTaxDetails>;
     /**
      * The type of the product. The product is either of type <span pulumi-lang-nodejs="`good`" pulumi-lang-dotnet="`Good`" pulumi-lang-go="`good`" pulumi-lang-python="`good`" pulumi-lang-yaml="`good`" pulumi-lang-java="`good`" pulumi-lang-hcl="`good`">`good`</span>, which is eligible for use with Orders and SKUs, or <span pulumi-lang-nodejs="`service`" pulumi-lang-dotnet="`Service`" pulumi-lang-go="`service`" pulumi-lang-python="`service`" pulumi-lang-yaml="`service`" pulumi-lang-java="`service`" pulumi-lang-hcl="`service`">`service`</span>, which is eligible for use with Subscriptions and Plans.
      */
@@ -136,9 +155,11 @@ export class Product extends pulumi.CustomResource {
             resourceInputs["name"] = state?.name;
             resourceInputs["object"] = state?.object;
             resourceInputs["packageDimensions"] = state?.packageDimensions;
+            resourceInputs["productId"] = state?.productId;
             resourceInputs["shippable"] = state?.shippable;
             resourceInputs["statementDescriptor"] = state?.statementDescriptor;
             resourceInputs["taxCode"] = state?.taxCode;
+            resourceInputs["taxDetails"] = state?.taxDetails;
             resourceInputs["type"] = state?.type;
             resourceInputs["unitLabel"] = state?.unitLabel;
             resourceInputs["updated"] = state?.updated;
@@ -153,9 +174,11 @@ export class Product extends pulumi.CustomResource {
             resourceInputs["metadata"] = args?.metadata;
             resourceInputs["name"] = args?.name;
             resourceInputs["packageDimensions"] = args?.packageDimensions;
+            resourceInputs["productId"] = args?.productId;
             resourceInputs["shippable"] = args?.shippable;
             resourceInputs["statementDescriptor"] = args?.statementDescriptor;
             resourceInputs["taxCode"] = args?.taxCode;
+            resourceInputs["taxDetails"] = args?.taxDetails;
             resourceInputs["type"] = args?.type;
             resourceInputs["unitLabel"] = args?.unitLabel;
             resourceInputs["url"] = args?.url;
@@ -223,6 +246,10 @@ export interface ProductState {
      */
     packageDimensions?: pulumi.Input<pulumi.Input<inputs.ProductPackageDimension>[] | undefined>;
     /**
+     * Unique identifier for the object.
+     */
+    productId?: pulumi.Input<string | undefined>;
+    /**
      * Whether this product is shipped (i.e., physical goods).
      */
     shippable?: pulumi.Input<boolean | undefined>;
@@ -234,6 +261,10 @@ export interface ProductState {
      * A [tax code](https://docs.stripe.com/tax/tax-categories) ID.
      */
     taxCode?: pulumi.Input<string | undefined>;
+    /**
+     * Tax details for this product, including the [tax code](https://www.terraform.io/tax/tax-codes) and an optional performance location.
+     */
+    taxDetails?: pulumi.Input<inputs.ProductTaxDetails | undefined>;
     /**
      * The type of the product. The product is either of type <span pulumi-lang-nodejs="`good`" pulumi-lang-dotnet="`Good`" pulumi-lang-go="`good`" pulumi-lang-python="`good`" pulumi-lang-yaml="`good`" pulumi-lang-java="`good`" pulumi-lang-hcl="`good`">`good`</span>, which is eligible for use with Orders and SKUs, or <span pulumi-lang-nodejs="`service`" pulumi-lang-dotnet="`Service`" pulumi-lang-go="`service`" pulumi-lang-python="`service`" pulumi-lang-yaml="`service`" pulumi-lang-java="`service`" pulumi-lang-hcl="`service`">`service`</span>, which is eligible for use with Subscriptions and Plans.
      */
@@ -289,6 +320,10 @@ export interface ProductArgs {
      */
     packageDimensions?: pulumi.Input<pulumi.Input<inputs.ProductPackageDimension>[] | undefined>;
     /**
+     * Unique identifier for the object.
+     */
+    productId?: pulumi.Input<string | undefined>;
+    /**
      * Whether this product is shipped (i.e., physical goods).
      */
     shippable?: pulumi.Input<boolean | undefined>;
@@ -300,6 +335,10 @@ export interface ProductArgs {
      * A [tax code](https://docs.stripe.com/tax/tax-categories) ID.
      */
     taxCode?: pulumi.Input<string | undefined>;
+    /**
+     * Tax details for this product, including the [tax code](https://www.terraform.io/tax/tax-codes) and an optional performance location.
+     */
+    taxDetails?: pulumi.Input<inputs.ProductTaxDetails | undefined>;
     /**
      * The type of the product. The product is either of type <span pulumi-lang-nodejs="`good`" pulumi-lang-dotnet="`Good`" pulumi-lang-go="`good`" pulumi-lang-python="`good`" pulumi-lang-yaml="`good`" pulumi-lang-java="`good`" pulumi-lang-hcl="`good`">`good`</span>, which is eligible for use with Orders and SKUs, or <span pulumi-lang-nodejs="`service`" pulumi-lang-dotnet="`Service`" pulumi-lang-go="`service`" pulumi-lang-python="`service`" pulumi-lang-yaml="`service`" pulumi-lang-java="`service`" pulumi-lang-hcl="`service`">`service`</span>, which is eligible for use with Subscriptions and Plans.
      */

@@ -31,6 +31,9 @@ namespace Pulumi.Stripe
         [Output("object")]
         public Output<string> Object { get; private set; } = null!;
 
+        /// <summary>
+        /// Unique identifier for the object.
+        /// </summary>
         [Output("product")]
         public Output<string> Product { get; private set; } = null!;
 
@@ -87,6 +90,9 @@ namespace Pulumi.Stripe
         [Input("entitlementFeature", required: true)]
         public Input<string> EntitlementFeature { get; set; } = null!;
 
+        /// <summary>
+        /// Unique identifier for the object.
+        /// </summary>
         [Input("product", required: true)]
         public Input<string> Product { get; set; } = null!;
 
@@ -117,6 +123,9 @@ namespace Pulumi.Stripe
         [Input("object")]
         public Input<string>? Object { get; set; }
 
+        /// <summary>
+        /// Unique identifier for the object.
+        /// </summary>
         [Input("product")]
         public Input<string>? Product { get; set; }
 

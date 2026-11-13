@@ -17,14 +17,14 @@ public final class V2CoreEventDestinationAmazonEventbridgeArgs extends com.pulum
     public static final V2CoreEventDestinationAmazonEventbridgeArgs Empty = new V2CoreEventDestinationAmazonEventbridgeArgs();
 
     /**
-     * The AWS account ID.
+     * The AWS account ID that owns the event bus receiving events.
      * 
      */
     @Import(name="awsAccountId", required=true)
     private Output<String> awsAccountId;
 
     /**
-     * @return The AWS account ID.
+     * @return The AWS account ID that owns the event bus receiving events.
      * 
      */
     public Output<String> awsAccountId() {
@@ -32,14 +32,14 @@ public final class V2CoreEventDestinationAmazonEventbridgeArgs extends com.pulum
     }
 
     /**
-     * The ARN of the AWS event source.
+     * The ARN of the Stripe-created partner event source in your AWS account.
      * 
      */
     @Import(name="awsEventSourceArn")
     private @Nullable Output<String> awsEventSourceArn;
 
     /**
-     * @return The ARN of the AWS event source.
+     * @return The ARN of the Stripe-created partner event source in your AWS account.
      * 
      */
     public Optional<Output<String>> awsEventSourceArn() {
@@ -47,14 +47,14 @@ public final class V2CoreEventDestinationAmazonEventbridgeArgs extends com.pulum
     }
 
     /**
-     * The state of the AWS event source.
+     * The AWS-reported lifecycle state of the partner event source.
      * 
      */
     @Import(name="awsEventSourceStatus")
     private @Nullable Output<String> awsEventSourceStatus;
 
     /**
-     * @return The state of the AWS event source.
+     * @return The AWS-reported lifecycle state of the partner event source.
      * 
      */
     public Optional<Output<String>> awsEventSourceStatus() {
@@ -62,14 +62,14 @@ public final class V2CoreEventDestinationAmazonEventbridgeArgs extends com.pulum
     }
 
     /**
-     * The region of the AWS event source.
+     * The AWS region where Stripe creates the partner event source.
      * 
      */
     @Import(name="awsRegion", required=true)
     private Output<String> awsRegion;
 
     /**
-     * @return The region of the AWS event source.
+     * @return The AWS region where Stripe creates the partner event source.
      * 
      */
     public Output<String> awsRegion() {
@@ -104,7 +104,7 @@ public final class V2CoreEventDestinationAmazonEventbridgeArgs extends com.pulum
         }
 
         /**
-         * @param awsAccountId The AWS account ID.
+         * @param awsAccountId The AWS account ID that owns the event bus receiving events.
          * 
          * @return builder
          * 
@@ -115,7 +115,7 @@ public final class V2CoreEventDestinationAmazonEventbridgeArgs extends com.pulum
         }
 
         /**
-         * @param awsAccountId The AWS account ID.
+         * @param awsAccountId The AWS account ID that owns the event bus receiving events.
          * 
          * @return builder
          * 
@@ -125,7 +125,7 @@ public final class V2CoreEventDestinationAmazonEventbridgeArgs extends com.pulum
         }
 
         /**
-         * @param awsEventSourceArn The ARN of the AWS event source.
+         * @param awsEventSourceArn The ARN of the Stripe-created partner event source in your AWS account.
          * 
          * @return builder
          * 
@@ -136,7 +136,7 @@ public final class V2CoreEventDestinationAmazonEventbridgeArgs extends com.pulum
         }
 
         /**
-         * @param awsEventSourceArn The ARN of the AWS event source.
+         * @param awsEventSourceArn The ARN of the Stripe-created partner event source in your AWS account.
          * 
          * @return builder
          * 
@@ -146,7 +146,7 @@ public final class V2CoreEventDestinationAmazonEventbridgeArgs extends com.pulum
         }
 
         /**
-         * @param awsEventSourceStatus The state of the AWS event source.
+         * @param awsEventSourceStatus The AWS-reported lifecycle state of the partner event source.
          * 
          * @return builder
          * 
@@ -157,7 +157,7 @@ public final class V2CoreEventDestinationAmazonEventbridgeArgs extends com.pulum
         }
 
         /**
-         * @param awsEventSourceStatus The state of the AWS event source.
+         * @param awsEventSourceStatus The AWS-reported lifecycle state of the partner event source.
          * 
          * @return builder
          * 
@@ -167,7 +167,7 @@ public final class V2CoreEventDestinationAmazonEventbridgeArgs extends com.pulum
         }
 
         /**
-         * @param awsRegion The region of the AWS event source.
+         * @param awsRegion The AWS region where Stripe creates the partner event source.
          * 
          * @return builder
          * 
@@ -178,7 +178,7 @@ public final class V2CoreEventDestinationAmazonEventbridgeArgs extends com.pulum
         }
 
         /**
-         * @param awsRegion The region of the AWS event source.
+         * @param awsRegion The AWS region where Stripe creates the partner event source.
          * 
          * @return builder
          * 

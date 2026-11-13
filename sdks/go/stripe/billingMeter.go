@@ -130,6 +130,18 @@ func (BillingMeterState) ElementType() reflect.Type {
 	return reflect.TypeOf((*billingMeterState)(nil)).Elem()
 }
 
+// BillingMeterExists checks whether an existing BillingMeter resource with the given ID exists.
+func BillingMeterExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *BillingMeterState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	ref, err := internal.PkgGetPackageRef(ctx)
+	if err != nil {
+		return pulumi.Bool(false).ToBoolOutput().ApplyT(func(bool) (bool, error) {
+			return false, err
+		}).(pulumi.BoolOutput)
+	}
+	return ctx.ExistsResource("stripe:index/billingMeter:BillingMeter", id, state, ref, opts...)
+}
+
 type billingMeterArgs struct {
 	CustomerMappings    []BillingMeterCustomerMapping    `pulumi:"customerMappings"`
 	DefaultAggregations []BillingMeterDefaultAggregation `pulumi:"defaultAggregations"`

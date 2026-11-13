@@ -13,26 +13,26 @@ import javax.annotation.Nullable;
 @CustomType
 public final class V2CoreEventDestinationWebhookEndpoint {
     /**
-     * @return The signing secret of the webhook endpoint, only includable on creation.
+     * @return The secret used to verify Stripe signatures on delivered events. Returned only in the create response when explicitly included; public API clients cannot retrieve it later.
      * 
      */
     private @Nullable String signingSecret;
     /**
-     * @return The URL of the webhook endpoint, includable.
+     * @return The URL where Stripe sends matching events. Live mode requires HTTPS; sandbox mode also supports HTTP. Returned only when explicitly included.
      * 
      */
     private String url;
 
     private V2CoreEventDestinationWebhookEndpoint() {}
     /**
-     * @return The signing secret of the webhook endpoint, only includable on creation.
+     * @return The secret used to verify Stripe signatures on delivered events. Returned only in the create response when explicitly included; public API clients cannot retrieve it later.
      * 
      */
     public Optional<String> signingSecret() {
         return Optional.ofNullable(this.signingSecret);
     }
     /**
-     * @return The URL of the webhook endpoint, includable.
+     * @return The URL where Stripe sends matching events. Live mode requires HTTPS; sandbox mode also supports HTTP. Returned only when explicitly included.
      * 
      */
     public String url() {

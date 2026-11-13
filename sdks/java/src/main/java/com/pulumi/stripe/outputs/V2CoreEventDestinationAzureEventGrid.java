@@ -13,62 +13,62 @@ import javax.annotation.Nullable;
 @CustomType
 public final class V2CoreEventDestinationAzureEventGrid {
     /**
-     * @return The name of the Azure partner topic.
+     * @return The name of the Stripe-created partner topic that receives events.
      * 
      */
     private @Nullable String azurePartnerTopicName;
     /**
-     * @return The status of the Azure partner topic.
+     * @return The Azure-reported lifecycle state of the partner topic.
      * 
      */
     private @Nullable String azurePartnerTopicStatus;
     /**
-     * @return The Azure region.
+     * @return The Azure region where the partner topic is located.
      * 
      */
     private String azureRegion;
     /**
-     * @return The name of the Azure resource group.
+     * @return The Azure resource group containing the partner topic.
      * 
      */
     private String azureResourceGroupName;
     /**
-     * @return The Azure subscription ID.
+     * @return The Azure subscription containing the resource group and partner topic.
      * 
      */
     private String azureSubscriptionId;
 
     private V2CoreEventDestinationAzureEventGrid() {}
     /**
-     * @return The name of the Azure partner topic.
+     * @return The name of the Stripe-created partner topic that receives events.
      * 
      */
     public Optional<String> azurePartnerTopicName() {
         return Optional.ofNullable(this.azurePartnerTopicName);
     }
     /**
-     * @return The status of the Azure partner topic.
+     * @return The Azure-reported lifecycle state of the partner topic.
      * 
      */
     public Optional<String> azurePartnerTopicStatus() {
         return Optional.ofNullable(this.azurePartnerTopicStatus);
     }
     /**
-     * @return The Azure region.
+     * @return The Azure region where the partner topic is located.
      * 
      */
     public String azureRegion() {
         return this.azureRegion;
     }
     /**
-     * @return The name of the Azure resource group.
+     * @return The Azure resource group containing the partner topic.
      * 
      */
     public String azureResourceGroupName() {
         return this.azureResourceGroupName;
     }
     /**
-     * @return The Azure subscription ID.
+     * @return The Azure subscription containing the resource group and partner topic.
      * 
      */
     public String azureSubscriptionId() {

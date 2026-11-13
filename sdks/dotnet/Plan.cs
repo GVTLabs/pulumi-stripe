@@ -91,6 +91,12 @@ namespace Pulumi.Stripe
         public Output<string> Object { get; private set; } = null!;
 
         /// <summary>
+        /// Unique identifier for the object.
+        /// </summary>
+        [Output("planId")]
+        public Output<string> PlanId { get; private set; } = null!;
+
+        /// <summary>
         /// The product whose pricing this plan determines.
         /// </summary>
         [Output("product")]
@@ -239,6 +245,12 @@ namespace Pulumi.Stripe
         public Input<string>? Nickname { get; set; }
 
         /// <summary>
+        /// Unique identifier for the object.
+        /// </summary>
+        [Input("planId")]
+        public Input<string>? PlanId { get; set; }
+
+        /// <summary>
         /// The product whose pricing this plan determines.
         /// </summary>
         [Input("product")]
@@ -371,6 +383,12 @@ namespace Pulumi.Stripe
         /// </summary>
         [Input("object")]
         public Input<string>? Object { get; set; }
+
+        /// <summary>
+        /// Unique identifier for the object.
+        /// </summary>
+        [Input("planId")]
+        public Input<string>? PlanId { get; set; }
 
         /// <summary>
         /// The product whose pricing this plan determines.

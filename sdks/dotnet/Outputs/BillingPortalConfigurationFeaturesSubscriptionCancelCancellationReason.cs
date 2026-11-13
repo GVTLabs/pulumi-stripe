@@ -18,6 +18,10 @@ namespace Pulumi.Stripe.Outputs
         /// </summary>
         public readonly bool Enabled;
         /// <summary>
+        /// The IDs of custom feedback options configured for this cancellation reason.
+        /// </summary>
+        public readonly ImmutableArray<string> FeedbackOptions;
+        /// <summary>
         /// Which cancellation reasons will be given as options to the customer.
         /// </summary>
         public readonly ImmutableArray<string> Options;
@@ -26,9 +30,12 @@ namespace Pulumi.Stripe.Outputs
         private BillingPortalConfigurationFeaturesSubscriptionCancelCancellationReason(
             bool enabled,
 
+            ImmutableArray<string> feedbackOptions,
+
             ImmutableArray<string> options)
         {
             Enabled = enabled;
+            FeedbackOptions = feedbackOptions;
             Options = options;
         }
     }

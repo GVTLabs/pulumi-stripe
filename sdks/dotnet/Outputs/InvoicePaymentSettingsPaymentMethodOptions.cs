@@ -22,6 +22,10 @@ namespace Pulumi.Stripe.Outputs
         /// </summary>
         public readonly Outputs.InvoicePaymentSettingsPaymentMethodOptionsBancontact? Bancontact;
         /// <summary>
+        /// If paying by &lt;span pulumi-lang-nodejs="`billie`" pulumi-lang-dotnet="`Billie`" pulumi-lang-go="`billie`" pulumi-lang-python="`billie`" pulumi-lang-yaml="`billie`" pulumi-lang-java="`billie`" pulumi-lang-hcl="`billie`"&gt;`billie`&lt;/span&gt;, this sub-hash contains details about the Billie payment method options to pass to the invoice’s PaymentIntent.
+        /// </summary>
+        public readonly Outputs.InvoicePaymentSettingsPaymentMethodOptionsBillie? Billie;
+        /// <summary>
         /// If paying by &lt;span pulumi-lang-nodejs="`card`" pulumi-lang-dotnet="`Card`" pulumi-lang-go="`card`" pulumi-lang-python="`card`" pulumi-lang-yaml="`card`" pulumi-lang-java="`card`" pulumi-lang-hcl="`card`"&gt;`card`&lt;/span&gt;, this sub-hash contains details about the Card payment method options to pass to the invoice’s PaymentIntent.
         /// </summary>
         public readonly Outputs.InvoicePaymentSettingsPaymentMethodOptionsCard? Card;
@@ -52,6 +56,8 @@ namespace Pulumi.Stripe.Outputs
 
             Outputs.InvoicePaymentSettingsPaymentMethodOptionsBancontact? bancontact,
 
+            Outputs.InvoicePaymentSettingsPaymentMethodOptionsBillie? billie,
+
             Outputs.InvoicePaymentSettingsPaymentMethodOptionsCard? card,
 
             Outputs.InvoicePaymentSettingsPaymentMethodOptionsCustomerBalance? customerBalance,
@@ -66,6 +72,7 @@ namespace Pulumi.Stripe.Outputs
         {
             AcssDebit = acssDebit;
             Bancontact = bancontact;
+            Billie = billie;
             Card = card;
             CustomerBalance = customerBalance;
             Payto = payto;

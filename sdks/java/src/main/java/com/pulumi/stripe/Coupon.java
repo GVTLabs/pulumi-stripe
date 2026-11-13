@@ -43,6 +43,20 @@ public class Coupon extends com.pulumi.resources.CustomResource {
         return Codegen.optional(this.appliesTos);
     }
     /**
+     * Unique identifier for the object.
+     * 
+     */
+    @Export(name="couponId", refs={String.class}, tree="[0]")
+    private Output<String> couponId;
+
+    /**
+     * @return Unique identifier for the object.
+     * 
+     */
+    public Output<String> couponId() {
+        return this.couponId;
+    }
+    /**
      * Time at which the object was created. Measured in seconds since the Unix epoch.
      * 
      */

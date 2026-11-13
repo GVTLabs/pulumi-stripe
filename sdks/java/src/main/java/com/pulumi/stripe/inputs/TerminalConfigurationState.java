@@ -9,9 +9,11 @@ import com.pulumi.stripe.inputs.TerminalConfigurationBbposWisepad3Args;
 import com.pulumi.stripe.inputs.TerminalConfigurationBbposWiseposEArgs;
 import com.pulumi.stripe.inputs.TerminalConfigurationCellularArgs;
 import com.pulumi.stripe.inputs.TerminalConfigurationOfflineArgs;
+import com.pulumi.stripe.inputs.TerminalConfigurationReaderSecurityArgs;
 import com.pulumi.stripe.inputs.TerminalConfigurationRebootWindowArgs;
 import com.pulumi.stripe.inputs.TerminalConfigurationStripeS700Args;
 import com.pulumi.stripe.inputs.TerminalConfigurationStripeS710Args;
+import com.pulumi.stripe.inputs.TerminalConfigurationStripeT600Args;
 import com.pulumi.stripe.inputs.TerminalConfigurationTippingArgs;
 import com.pulumi.stripe.inputs.TerminalConfigurationVerifoneM425Args;
 import com.pulumi.stripe.inputs.TerminalConfigurationVerifoneP400Args;
@@ -118,6 +120,13 @@ public final class TerminalConfigurationState extends com.pulumi.resources.Resou
         return Optional.ofNullable(this.offline);
     }
 
+    @Import(name="readerSecurity")
+    private @Nullable Output<TerminalConfigurationReaderSecurityArgs> readerSecurity;
+
+    public Optional<Output<TerminalConfigurationReaderSecurityArgs>> readerSecurity() {
+        return Optional.ofNullable(this.readerSecurity);
+    }
+
     @Import(name="rebootWindow")
     private @Nullable Output<TerminalConfigurationRebootWindowArgs> rebootWindow;
 
@@ -137,6 +146,13 @@ public final class TerminalConfigurationState extends com.pulumi.resources.Resou
 
     public Optional<Output<TerminalConfigurationStripeS710Args>> stripeS710() {
         return Optional.ofNullable(this.stripeS710);
+    }
+
+    @Import(name="stripeT600")
+    private @Nullable Output<TerminalConfigurationStripeT600Args> stripeT600;
+
+    public Optional<Output<TerminalConfigurationStripeT600Args>> stripeT600() {
+        return Optional.ofNullable(this.stripeT600);
     }
 
     @Import(name="tipping")
@@ -199,9 +215,11 @@ public final class TerminalConfigurationState extends com.pulumi.resources.Resou
         this.name = $.name;
         this.object = $.object;
         this.offline = $.offline;
+        this.readerSecurity = $.readerSecurity;
         this.rebootWindow = $.rebootWindow;
         this.stripeS700 = $.stripeS700;
         this.stripeS710 = $.stripeS710;
+        this.stripeT600 = $.stripeT600;
         this.tipping = $.tipping;
         this.verifoneM425 = $.verifoneM425;
         this.verifoneP400 = $.verifoneP400;
@@ -349,6 +367,15 @@ public final class TerminalConfigurationState extends com.pulumi.resources.Resou
             return offline(Output.of(offline));
         }
 
+        public Builder readerSecurity(@Nullable Output<TerminalConfigurationReaderSecurityArgs> readerSecurity) {
+            $.readerSecurity = readerSecurity;
+            return this;
+        }
+
+        public Builder readerSecurity(TerminalConfigurationReaderSecurityArgs readerSecurity) {
+            return readerSecurity(Output.of(readerSecurity));
+        }
+
         public Builder rebootWindow(@Nullable Output<TerminalConfigurationRebootWindowArgs> rebootWindow) {
             $.rebootWindow = rebootWindow;
             return this;
@@ -374,6 +401,15 @@ public final class TerminalConfigurationState extends com.pulumi.resources.Resou
 
         public Builder stripeS710(TerminalConfigurationStripeS710Args stripeS710) {
             return stripeS710(Output.of(stripeS710));
+        }
+
+        public Builder stripeT600(@Nullable Output<TerminalConfigurationStripeT600Args> stripeT600) {
+            $.stripeT600 = stripeT600;
+            return this;
+        }
+
+        public Builder stripeT600(TerminalConfigurationStripeT600Args stripeT600) {
+            return stripeT600(Output.of(stripeT600));
         }
 
         public Builder tipping(@Nullable Output<TerminalConfigurationTippingArgs> tipping) {

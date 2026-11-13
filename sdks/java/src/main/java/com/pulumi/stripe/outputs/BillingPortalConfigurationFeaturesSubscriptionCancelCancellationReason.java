@@ -9,6 +9,7 @@ import java.lang.Boolean;
 import java.lang.String;
 import java.util.List;
 import java.util.Objects;
+import javax.annotation.Nullable;
 
 @CustomType
 public final class BillingPortalConfigurationFeaturesSubscriptionCancelCancellationReason {
@@ -17,6 +18,11 @@ public final class BillingPortalConfigurationFeaturesSubscriptionCancelCancellat
      * 
      */
     private Boolean enabled;
+    /**
+     * @return The IDs of custom feedback options configured for this cancellation reason.
+     * 
+     */
+    private @Nullable List<String> feedbackOptions;
     /**
      * @return Which cancellation reasons will be given as options to the customer.
      * 
@@ -30,6 +36,13 @@ public final class BillingPortalConfigurationFeaturesSubscriptionCancelCancellat
      */
     public Boolean enabled() {
         return this.enabled;
+    }
+    /**
+     * @return The IDs of custom feedback options configured for this cancellation reason.
+     * 
+     */
+    public List<String> feedbackOptions() {
+        return this.feedbackOptions == null ? List.of() : this.feedbackOptions;
     }
     /**
      * @return Which cancellation reasons will be given as options to the customer.
@@ -49,11 +62,13 @@ public final class BillingPortalConfigurationFeaturesSubscriptionCancelCancellat
     @CustomType.Builder
     public static final class Builder {
         private Boolean enabled;
+        private @Nullable List<String> feedbackOptions;
         private List<String> options;
         public Builder() {}
         public Builder(BillingPortalConfigurationFeaturesSubscriptionCancelCancellationReason defaults) {
     	      Objects.requireNonNull(defaults);
     	      this.enabled = defaults.enabled;
+    	      this.feedbackOptions = defaults.feedbackOptions;
     	      this.options = defaults.options;
         }
 
@@ -64,6 +79,15 @@ public final class BillingPortalConfigurationFeaturesSubscriptionCancelCancellat
             }
             this.enabled = enabled;
             return this;
+        }
+        @CustomType.Setter
+        public Builder feedbackOptions(@Nullable List<String> feedbackOptions) {
+
+            this.feedbackOptions = feedbackOptions;
+            return this;
+        }
+        public Builder feedbackOptions(String... feedbackOptions) {
+            return feedbackOptions(List.of(feedbackOptions));
         }
         @CustomType.Setter
         public Builder options(List<String> options) {
@@ -79,6 +103,7 @@ public final class BillingPortalConfigurationFeaturesSubscriptionCancelCancellat
         public BillingPortalConfigurationFeaturesSubscriptionCancelCancellationReason build() {
             final var _resultValue = new BillingPortalConfigurationFeaturesSubscriptionCancelCancellationReason();
             _resultValue.enabled = enabled;
+            _resultValue.feedbackOptions = feedbackOptions;
             _resultValue.options = options;
             return _resultValue;
         }

@@ -14,6 +14,8 @@ import com.pulumi.stripe.outputs.PaymentMethodAcssDebit;
 import com.pulumi.stripe.outputs.PaymentMethodAuBecsDebit;
 import com.pulumi.stripe.outputs.PaymentMethodBacsDebit;
 import com.pulumi.stripe.outputs.PaymentMethodBillingDetails;
+import com.pulumi.stripe.outputs.PaymentMethodBizum;
+import com.pulumi.stripe.outputs.PaymentMethodBlik;
 import com.pulumi.stripe.outputs.PaymentMethodBoleto;
 import com.pulumi.stripe.outputs.PaymentMethodCard;
 import com.pulumi.stripe.outputs.PaymentMethodCardPresent;
@@ -30,6 +32,7 @@ import com.pulumi.stripe.outputs.PaymentMethodNzBankAccount;
 import com.pulumi.stripe.outputs.PaymentMethodP24;
 import com.pulumi.stripe.outputs.PaymentMethodPaypal;
 import com.pulumi.stripe.outputs.PaymentMethodPayto;
+import com.pulumi.stripe.outputs.PaymentMethodPix;
 import com.pulumi.stripe.outputs.PaymentMethodRadarOptions;
 import com.pulumi.stripe.outputs.PaymentMethodSepaDebit;
 import com.pulumi.stripe.outputs.PaymentMethodSofort;
@@ -82,6 +85,18 @@ public class PaymentMethod extends com.pulumi.resources.CustomResource {
 
     public Output<PaymentMethodBillingDetails> billingDetails() {
         return this.billingDetails;
+    }
+    @Export(name="bizum", refs={PaymentMethodBizum.class}, tree="[0]")
+    private Output<PaymentMethodBizum> bizum;
+
+    public Output<PaymentMethodBizum> bizum() {
+        return this.bizum;
+    }
+    @Export(name="blik", refs={PaymentMethodBlik.class}, tree="[0]")
+    private Output<PaymentMethodBlik> blik;
+
+    public Output<PaymentMethodBlik> blik() {
+        return this.blik;
     }
     @Export(name="boleto", refs={PaymentMethodBoleto.class}, tree="[0]")
     private Output<PaymentMethodBoleto> boleto;
@@ -264,6 +279,12 @@ public class PaymentMethod extends com.pulumi.resources.CustomResource {
 
     public Output<PaymentMethodPayto> payto() {
         return this.payto;
+    }
+    @Export(name="pix", refs={PaymentMethodPix.class}, tree="[0]")
+    private Output<PaymentMethodPix> pix;
+
+    public Output<PaymentMethodPix> pix() {
+        return this.pix;
     }
     /**
      * Options to configure Radar. See [Radar Session](https://docs.stripe.com/radar/radar-session) for more information.

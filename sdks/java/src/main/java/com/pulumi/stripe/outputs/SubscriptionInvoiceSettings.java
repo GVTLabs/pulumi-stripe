@@ -4,6 +4,7 @@
 package com.pulumi.stripe.outputs;
 
 import com.pulumi.core.annotations.CustomType;
+import com.pulumi.stripe.outputs.SubscriptionInvoiceSettingsCustomField;
 import com.pulumi.stripe.outputs.SubscriptionInvoiceSettingsIssuer;
 import java.lang.String;
 import java.util.List;
@@ -18,6 +19,21 @@ public final class SubscriptionInvoiceSettings {
      * 
      */
     private @Nullable List<String> accountTaxIds;
+    /**
+     * @return A list of up to 4 custom fields to be displayed on the invoice.
+     * 
+     */
+    private @Nullable List<SubscriptionInvoiceSettingsCustomField> customFields;
+    /**
+     * @return An arbitrary string attached to the object. Often useful for displaying to users.
+     * 
+     */
+    private @Nullable String description;
+    /**
+     * @return Footer to be displayed on the invoice.
+     * 
+     */
+    private @Nullable String footer;
     private @Nullable SubscriptionInvoiceSettingsIssuer issuer;
 
     private SubscriptionInvoiceSettings() {}
@@ -27,6 +43,27 @@ public final class SubscriptionInvoiceSettings {
      */
     public List<String> accountTaxIds() {
         return this.accountTaxIds == null ? List.of() : this.accountTaxIds;
+    }
+    /**
+     * @return A list of up to 4 custom fields to be displayed on the invoice.
+     * 
+     */
+    public List<SubscriptionInvoiceSettingsCustomField> customFields() {
+        return this.customFields == null ? List.of() : this.customFields;
+    }
+    /**
+     * @return An arbitrary string attached to the object. Often useful for displaying to users.
+     * 
+     */
+    public Optional<String> description() {
+        return Optional.ofNullable(this.description);
+    }
+    /**
+     * @return Footer to be displayed on the invoice.
+     * 
+     */
+    public Optional<String> footer() {
+        return Optional.ofNullable(this.footer);
     }
     public Optional<SubscriptionInvoiceSettingsIssuer> issuer() {
         return Optional.ofNullable(this.issuer);
@@ -42,11 +79,17 @@ public final class SubscriptionInvoiceSettings {
     @CustomType.Builder
     public static final class Builder {
         private @Nullable List<String> accountTaxIds;
+        private @Nullable List<SubscriptionInvoiceSettingsCustomField> customFields;
+        private @Nullable String description;
+        private @Nullable String footer;
         private @Nullable SubscriptionInvoiceSettingsIssuer issuer;
         public Builder() {}
         public Builder(SubscriptionInvoiceSettings defaults) {
     	      Objects.requireNonNull(defaults);
     	      this.accountTaxIds = defaults.accountTaxIds;
+    	      this.customFields = defaults.customFields;
+    	      this.description = defaults.description;
+    	      this.footer = defaults.footer;
     	      this.issuer = defaults.issuer;
         }
 
@@ -60,6 +103,27 @@ public final class SubscriptionInvoiceSettings {
             return accountTaxIds(List.of(accountTaxIds));
         }
         @CustomType.Setter
+        public Builder customFields(@Nullable List<SubscriptionInvoiceSettingsCustomField> customFields) {
+
+            this.customFields = customFields;
+            return this;
+        }
+        public Builder customFields(SubscriptionInvoiceSettingsCustomField... customFields) {
+            return customFields(List.of(customFields));
+        }
+        @CustomType.Setter
+        public Builder description(@Nullable String description) {
+
+            this.description = description;
+            return this;
+        }
+        @CustomType.Setter
+        public Builder footer(@Nullable String footer) {
+
+            this.footer = footer;
+            return this;
+        }
+        @CustomType.Setter
         public Builder issuer(@Nullable SubscriptionInvoiceSettingsIssuer issuer) {
 
             this.issuer = issuer;
@@ -68,6 +132,9 @@ public final class SubscriptionInvoiceSettings {
         public SubscriptionInvoiceSettings build() {
             final var _resultValue = new SubscriptionInvoiceSettings();
             _resultValue.accountTaxIds = accountTaxIds;
+            _resultValue.customFields = customFields;
+            _resultValue.description = description;
+            _resultValue.footer = footer;
             _resultValue.issuer = issuer;
             return _resultValue;
         }

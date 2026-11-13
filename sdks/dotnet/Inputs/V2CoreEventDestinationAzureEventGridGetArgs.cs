@@ -13,31 +13,31 @@ namespace Pulumi.Stripe.Inputs
     public sealed class V2CoreEventDestinationAzureEventGridGetArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The name of the Azure partner topic.
+        /// The name of the Stripe-created partner topic that receives events.
         /// </summary>
         [Input("azurePartnerTopicName")]
         public Input<string>? AzurePartnerTopicName { get; set; }
 
         /// <summary>
-        /// The status of the Azure partner topic.
+        /// The Azure-reported lifecycle state of the partner topic.
         /// </summary>
         [Input("azurePartnerTopicStatus")]
         public Input<string>? AzurePartnerTopicStatus { get; set; }
 
         /// <summary>
-        /// The Azure region.
+        /// The Azure region where the partner topic is located.
         /// </summary>
         [Input("azureRegion", required: true)]
         public Input<string> AzureRegion { get; set; } = null!;
 
         /// <summary>
-        /// The name of the Azure resource group.
+        /// The Azure resource group containing the partner topic.
         /// </summary>
         [Input("azureResourceGroupName", required: true)]
         public Input<string> AzureResourceGroupName { get; set; } = null!;
 
         /// <summary>
-        /// The Azure subscription ID.
+        /// The Azure subscription containing the resource group and partner topic.
         /// </summary>
         [Input("azureSubscriptionId", required: true)]
         public Input<string> AzureSubscriptionId { get; set; } = null!;

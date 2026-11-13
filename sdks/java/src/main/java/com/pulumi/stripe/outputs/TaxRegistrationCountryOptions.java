@@ -21,10 +21,12 @@ import com.pulumi.stripe.outputs.TaxRegistrationCountryOptionsBg;
 import com.pulumi.stripe.outputs.TaxRegistrationCountryOptionsBh;
 import com.pulumi.stripe.outputs.TaxRegistrationCountryOptionsBj;
 import com.pulumi.stripe.outputs.TaxRegistrationCountryOptionsBs;
+import com.pulumi.stripe.outputs.TaxRegistrationCountryOptionsBw;
 import com.pulumi.stripe.outputs.TaxRegistrationCountryOptionsBy;
 import com.pulumi.stripe.outputs.TaxRegistrationCountryOptionsCa;
 import com.pulumi.stripe.outputs.TaxRegistrationCountryOptionsCd;
 import com.pulumi.stripe.outputs.TaxRegistrationCountryOptionsCh;
+import com.pulumi.stripe.outputs.TaxRegistrationCountryOptionsCi;
 import com.pulumi.stripe.outputs.TaxRegistrationCountryOptionsCl;
 import com.pulumi.stripe.outputs.TaxRegistrationCountryOptionsCm;
 import com.pulumi.stripe.outputs.TaxRegistrationCountryOptionsCo;
@@ -43,6 +45,7 @@ import com.pulumi.stripe.outputs.TaxRegistrationCountryOptionsFi;
 import com.pulumi.stripe.outputs.TaxRegistrationCountryOptionsFr;
 import com.pulumi.stripe.outputs.TaxRegistrationCountryOptionsGb;
 import com.pulumi.stripe.outputs.TaxRegistrationCountryOptionsGe;
+import com.pulumi.stripe.outputs.TaxRegistrationCountryOptionsGh;
 import com.pulumi.stripe.outputs.TaxRegistrationCountryOptionsGn;
 import com.pulumi.stripe.outputs.TaxRegistrationCountryOptionsGr;
 import com.pulumi.stripe.outputs.TaxRegistrationCountryOptionsHr;
@@ -69,6 +72,7 @@ import com.pulumi.stripe.outputs.TaxRegistrationCountryOptionsMe;
 import com.pulumi.stripe.outputs.TaxRegistrationCountryOptionsMk;
 import com.pulumi.stripe.outputs.TaxRegistrationCountryOptionsMr;
 import com.pulumi.stripe.outputs.TaxRegistrationCountryOptionsMt;
+import com.pulumi.stripe.outputs.TaxRegistrationCountryOptionsMu;
 import com.pulumi.stripe.outputs.TaxRegistrationCountryOptionsMx;
 import com.pulumi.stripe.outputs.TaxRegistrationCountryOptionsMy;
 import com.pulumi.stripe.outputs.TaxRegistrationCountryOptionsNg;
@@ -128,10 +132,12 @@ public final class TaxRegistrationCountryOptions {
     private @Nullable TaxRegistrationCountryOptionsBh bh;
     private @Nullable TaxRegistrationCountryOptionsBj bj;
     private @Nullable TaxRegistrationCountryOptionsBs bs;
+    private @Nullable TaxRegistrationCountryOptionsBw bw;
     private @Nullable TaxRegistrationCountryOptionsBy by;
     private @Nullable TaxRegistrationCountryOptionsCa ca;
     private @Nullable TaxRegistrationCountryOptionsCd cd;
     private @Nullable TaxRegistrationCountryOptionsCh ch;
+    private @Nullable TaxRegistrationCountryOptionsCi ci;
     private @Nullable TaxRegistrationCountryOptionsCl cl;
     private @Nullable TaxRegistrationCountryOptionsCm cm;
     private @Nullable TaxRegistrationCountryOptionsCo co;
@@ -150,6 +156,7 @@ public final class TaxRegistrationCountryOptions {
     private @Nullable TaxRegistrationCountryOptionsFr fr;
     private @Nullable TaxRegistrationCountryOptionsGb gb;
     private @Nullable TaxRegistrationCountryOptionsGe ge;
+    private @Nullable TaxRegistrationCountryOptionsGh gh;
     private @Nullable TaxRegistrationCountryOptionsGn gn;
     private @Nullable TaxRegistrationCountryOptionsGr gr;
     private @Nullable TaxRegistrationCountryOptionsHr hr;
@@ -176,6 +183,7 @@ public final class TaxRegistrationCountryOptions {
     private @Nullable TaxRegistrationCountryOptionsMk mk;
     private @Nullable TaxRegistrationCountryOptionsMr mr;
     private @Nullable TaxRegistrationCountryOptionsMt mt;
+    private @Nullable TaxRegistrationCountryOptionsMu mu;
     private @Nullable TaxRegistrationCountryOptionsMx mx;
     private @Nullable TaxRegistrationCountryOptionsMy my;
     private @Nullable TaxRegistrationCountryOptionsNg ng;
@@ -265,6 +273,9 @@ public final class TaxRegistrationCountryOptions {
     public Optional<TaxRegistrationCountryOptionsBs> bs() {
         return Optional.ofNullable(this.bs);
     }
+    public Optional<TaxRegistrationCountryOptionsBw> bw() {
+        return Optional.ofNullable(this.bw);
+    }
     public Optional<TaxRegistrationCountryOptionsBy> by() {
         return Optional.ofNullable(this.by);
     }
@@ -276,6 +287,9 @@ public final class TaxRegistrationCountryOptions {
     }
     public Optional<TaxRegistrationCountryOptionsCh> ch() {
         return Optional.ofNullable(this.ch);
+    }
+    public Optional<TaxRegistrationCountryOptionsCi> ci() {
+        return Optional.ofNullable(this.ci);
     }
     public Optional<TaxRegistrationCountryOptionsCl> cl() {
         return Optional.ofNullable(this.cl);
@@ -330,6 +344,9 @@ public final class TaxRegistrationCountryOptions {
     }
     public Optional<TaxRegistrationCountryOptionsGe> ge() {
         return Optional.ofNullable(this.ge);
+    }
+    public Optional<TaxRegistrationCountryOptionsGh> gh() {
+        return Optional.ofNullable(this.gh);
     }
     public Optional<TaxRegistrationCountryOptionsGn> gn() {
         return Optional.ofNullable(this.gn);
@@ -408,6 +425,9 @@ public final class TaxRegistrationCountryOptions {
     }
     public Optional<TaxRegistrationCountryOptionsMt> mt() {
         return Optional.ofNullable(this.mt);
+    }
+    public Optional<TaxRegistrationCountryOptionsMu> mu() {
+        return Optional.ofNullable(this.mu);
     }
     public Optional<TaxRegistrationCountryOptionsMx> mx() {
         return Optional.ofNullable(this.mx);
@@ -544,10 +564,12 @@ public final class TaxRegistrationCountryOptions {
         private @Nullable TaxRegistrationCountryOptionsBh bh;
         private @Nullable TaxRegistrationCountryOptionsBj bj;
         private @Nullable TaxRegistrationCountryOptionsBs bs;
+        private @Nullable TaxRegistrationCountryOptionsBw bw;
         private @Nullable TaxRegistrationCountryOptionsBy by;
         private @Nullable TaxRegistrationCountryOptionsCa ca;
         private @Nullable TaxRegistrationCountryOptionsCd cd;
         private @Nullable TaxRegistrationCountryOptionsCh ch;
+        private @Nullable TaxRegistrationCountryOptionsCi ci;
         private @Nullable TaxRegistrationCountryOptionsCl cl;
         private @Nullable TaxRegistrationCountryOptionsCm cm;
         private @Nullable TaxRegistrationCountryOptionsCo co;
@@ -566,6 +588,7 @@ public final class TaxRegistrationCountryOptions {
         private @Nullable TaxRegistrationCountryOptionsFr fr;
         private @Nullable TaxRegistrationCountryOptionsGb gb;
         private @Nullable TaxRegistrationCountryOptionsGe ge;
+        private @Nullable TaxRegistrationCountryOptionsGh gh;
         private @Nullable TaxRegistrationCountryOptionsGn gn;
         private @Nullable TaxRegistrationCountryOptionsGr gr;
         private @Nullable TaxRegistrationCountryOptionsHr hr;
@@ -592,6 +615,7 @@ public final class TaxRegistrationCountryOptions {
         private @Nullable TaxRegistrationCountryOptionsMk mk;
         private @Nullable TaxRegistrationCountryOptionsMr mr;
         private @Nullable TaxRegistrationCountryOptionsMt mt;
+        private @Nullable TaxRegistrationCountryOptionsMu mu;
         private @Nullable TaxRegistrationCountryOptionsMx mx;
         private @Nullable TaxRegistrationCountryOptionsMy my;
         private @Nullable TaxRegistrationCountryOptionsNg ng;
@@ -648,10 +672,12 @@ public final class TaxRegistrationCountryOptions {
     	      this.bh = defaults.bh;
     	      this.bj = defaults.bj;
     	      this.bs = defaults.bs;
+    	      this.bw = defaults.bw;
     	      this.by = defaults.by;
     	      this.ca = defaults.ca;
     	      this.cd = defaults.cd;
     	      this.ch = defaults.ch;
+    	      this.ci = defaults.ci;
     	      this.cl = defaults.cl;
     	      this.cm = defaults.cm;
     	      this.co = defaults.co;
@@ -670,6 +696,7 @@ public final class TaxRegistrationCountryOptions {
     	      this.fr = defaults.fr;
     	      this.gb = defaults.gb;
     	      this.ge = defaults.ge;
+    	      this.gh = defaults.gh;
     	      this.gn = defaults.gn;
     	      this.gr = defaults.gr;
     	      this.hr = defaults.hr;
@@ -696,6 +723,7 @@ public final class TaxRegistrationCountryOptions {
     	      this.mk = defaults.mk;
     	      this.mr = defaults.mr;
     	      this.mt = defaults.mt;
+    	      this.mu = defaults.mu;
     	      this.mx = defaults.mx;
     	      this.my = defaults.my;
     	      this.ng = defaults.ng;
@@ -837,6 +865,12 @@ public final class TaxRegistrationCountryOptions {
             return this;
         }
         @CustomType.Setter
+        public Builder bw(@Nullable TaxRegistrationCountryOptionsBw bw) {
+
+            this.bw = bw;
+            return this;
+        }
+        @CustomType.Setter
         public Builder by(@Nullable TaxRegistrationCountryOptionsBy by) {
 
             this.by = by;
@@ -858,6 +892,12 @@ public final class TaxRegistrationCountryOptions {
         public Builder ch(@Nullable TaxRegistrationCountryOptionsCh ch) {
 
             this.ch = ch;
+            return this;
+        }
+        @CustomType.Setter
+        public Builder ci(@Nullable TaxRegistrationCountryOptionsCi ci) {
+
+            this.ci = ci;
             return this;
         }
         @CustomType.Setter
@@ -966,6 +1006,12 @@ public final class TaxRegistrationCountryOptions {
         public Builder ge(@Nullable TaxRegistrationCountryOptionsGe ge) {
 
             this.ge = ge;
+            return this;
+        }
+        @CustomType.Setter
+        public Builder gh(@Nullable TaxRegistrationCountryOptionsGh gh) {
+
+            this.gh = gh;
             return this;
         }
         @CustomType.Setter
@@ -1122,6 +1168,12 @@ public final class TaxRegistrationCountryOptions {
         public Builder mt(@Nullable TaxRegistrationCountryOptionsMt mt) {
 
             this.mt = mt;
+            return this;
+        }
+        @CustomType.Setter
+        public Builder mu(@Nullable TaxRegistrationCountryOptionsMu mu) {
+
+            this.mu = mu;
             return this;
         }
         @CustomType.Setter
@@ -1359,10 +1411,12 @@ public final class TaxRegistrationCountryOptions {
             _resultValue.bh = bh;
             _resultValue.bj = bj;
             _resultValue.bs = bs;
+            _resultValue.bw = bw;
             _resultValue.by = by;
             _resultValue.ca = ca;
             _resultValue.cd = cd;
             _resultValue.ch = ch;
+            _resultValue.ci = ci;
             _resultValue.cl = cl;
             _resultValue.cm = cm;
             _resultValue.co = co;
@@ -1381,6 +1435,7 @@ public final class TaxRegistrationCountryOptions {
             _resultValue.fr = fr;
             _resultValue.gb = gb;
             _resultValue.ge = ge;
+            _resultValue.gh = gh;
             _resultValue.gn = gn;
             _resultValue.gr = gr;
             _resultValue.hr = hr;
@@ -1407,6 +1462,7 @@ public final class TaxRegistrationCountryOptions {
             _resultValue.mk = mk;
             _resultValue.mr = mr;
             _resultValue.mt = mt;
+            _resultValue.mu = mu;
             _resultValue.mx = mx;
             _resultValue.my = my;
             _resultValue.ng = ng;

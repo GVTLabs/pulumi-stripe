@@ -18,14 +18,14 @@ public final class InvoiceItemProrationDetailsArgs extends com.pulumi.resources.
     public static final InvoiceItemProrationDetailsArgs Empty = new InvoiceItemProrationDetailsArgs();
 
     /**
-     * For a credit proration, links to the debit invoice line items or invoice item that the credit applies to.
+     * For a credit proration, links to the debit that the credit applies to. The reference is to an invoice item if the debit was pending when the credit was created, and to invoice line items if the debit was already invoiced.
      * 
      */
     @Import(name="creditedItems")
     private @Nullable Output<InvoiceItemProrationDetailsCreditedItemsArgs> creditedItems;
 
     /**
-     * @return For a credit proration, links to the debit invoice line items or invoice item that the credit applies to.
+     * @return For a credit proration, links to the debit that the credit applies to. The reference is to an invoice item if the debit was pending when the credit was created, and to invoice line items if the debit was already invoiced.
      * 
      */
     public Optional<Output<InvoiceItemProrationDetailsCreditedItemsArgs>> creditedItems() {
@@ -33,14 +33,14 @@ public final class InvoiceItemProrationDetailsArgs extends com.pulumi.resources.
     }
 
     /**
-     * Discount amounts applied when the proration was created.
+     * Discount amounts applied when the proration was created. This field is only populated for prorations created from subscriptions with `billing_mode=flexible`.
      * 
      */
     @Import(name="discountAmounts")
     private @Nullable Output<List<InvoiceItemProrationDetailsDiscountAmountArgs>> discountAmounts;
 
     /**
-     * @return Discount amounts applied when the proration was created.
+     * @return Discount amounts applied when the proration was created. This field is only populated for prorations created from subscriptions with `billing_mode=flexible`.
      * 
      */
     public Optional<Output<List<InvoiceItemProrationDetailsDiscountAmountArgs>>> discountAmounts() {
@@ -73,7 +73,7 @@ public final class InvoiceItemProrationDetailsArgs extends com.pulumi.resources.
         }
 
         /**
-         * @param creditedItems For a credit proration, links to the debit invoice line items or invoice item that the credit applies to.
+         * @param creditedItems For a credit proration, links to the debit that the credit applies to. The reference is to an invoice item if the debit was pending when the credit was created, and to invoice line items if the debit was already invoiced.
          * 
          * @return builder
          * 
@@ -84,7 +84,7 @@ public final class InvoiceItemProrationDetailsArgs extends com.pulumi.resources.
         }
 
         /**
-         * @param creditedItems For a credit proration, links to the debit invoice line items or invoice item that the credit applies to.
+         * @param creditedItems For a credit proration, links to the debit that the credit applies to. The reference is to an invoice item if the debit was pending when the credit was created, and to invoice line items if the debit was already invoiced.
          * 
          * @return builder
          * 
@@ -94,7 +94,7 @@ public final class InvoiceItemProrationDetailsArgs extends com.pulumi.resources.
         }
 
         /**
-         * @param discountAmounts Discount amounts applied when the proration was created.
+         * @param discountAmounts Discount amounts applied when the proration was created. This field is only populated for prorations created from subscriptions with `billing_mode=flexible`.
          * 
          * @return builder
          * 
@@ -105,7 +105,7 @@ public final class InvoiceItemProrationDetailsArgs extends com.pulumi.resources.
         }
 
         /**
-         * @param discountAmounts Discount amounts applied when the proration was created.
+         * @param discountAmounts Discount amounts applied when the proration was created. This field is only populated for prorations created from subscriptions with `billing_mode=flexible`.
          * 
          * @return builder
          * 
@@ -115,7 +115,7 @@ public final class InvoiceItemProrationDetailsArgs extends com.pulumi.resources.
         }
 
         /**
-         * @param discountAmounts Discount amounts applied when the proration was created.
+         * @param discountAmounts Discount amounts applied when the proration was created. This field is only populated for prorations created from subscriptions with `billing_mode=flexible`.
          * 
          * @return builder
          * 

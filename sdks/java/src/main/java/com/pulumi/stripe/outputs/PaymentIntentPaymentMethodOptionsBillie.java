@@ -4,6 +4,7 @@
 package com.pulumi.stripe.outputs;
 
 import com.pulumi.core.annotations.CustomType;
+import com.pulumi.stripe.outputs.PaymentIntentPaymentMethodOptionsBillieCompanyDetails;
 import java.lang.String;
 import java.util.Objects;
 import java.util.Optional;
@@ -16,6 +17,12 @@ public final class PaymentIntentPaymentMethodOptionsBillie {
      * 
      */
     private @Nullable String captureMethod;
+    private @Nullable PaymentIntentPaymentMethodOptionsBillieCompanyDetails companyDetails;
+    /**
+     * @return An identifier or reference that this payment corresponds to.
+     * 
+     */
+    private @Nullable String reference;
 
     private PaymentIntentPaymentMethodOptionsBillie() {}
     /**
@@ -24,6 +31,16 @@ public final class PaymentIntentPaymentMethodOptionsBillie {
      */
     public Optional<String> captureMethod() {
         return Optional.ofNullable(this.captureMethod);
+    }
+    public Optional<PaymentIntentPaymentMethodOptionsBillieCompanyDetails> companyDetails() {
+        return Optional.ofNullable(this.companyDetails);
+    }
+    /**
+     * @return An identifier or reference that this payment corresponds to.
+     * 
+     */
+    public Optional<String> reference() {
+        return Optional.ofNullable(this.reference);
     }
 
     public static Builder builder() {
@@ -36,10 +53,14 @@ public final class PaymentIntentPaymentMethodOptionsBillie {
     @CustomType.Builder
     public static final class Builder {
         private @Nullable String captureMethod;
+        private @Nullable PaymentIntentPaymentMethodOptionsBillieCompanyDetails companyDetails;
+        private @Nullable String reference;
         public Builder() {}
         public Builder(PaymentIntentPaymentMethodOptionsBillie defaults) {
     	      Objects.requireNonNull(defaults);
     	      this.captureMethod = defaults.captureMethod;
+    	      this.companyDetails = defaults.companyDetails;
+    	      this.reference = defaults.reference;
         }
 
         @CustomType.Setter
@@ -48,9 +69,23 @@ public final class PaymentIntentPaymentMethodOptionsBillie {
             this.captureMethod = captureMethod;
             return this;
         }
+        @CustomType.Setter
+        public Builder companyDetails(@Nullable PaymentIntentPaymentMethodOptionsBillieCompanyDetails companyDetails) {
+
+            this.companyDetails = companyDetails;
+            return this;
+        }
+        @CustomType.Setter
+        public Builder reference(@Nullable String reference) {
+
+            this.reference = reference;
+            return this;
+        }
         public PaymentIntentPaymentMethodOptionsBillie build() {
             final var _resultValue = new PaymentIntentPaymentMethodOptionsBillie();
             _resultValue.captureMethod = captureMethod;
+            _resultValue.companyDetails = companyDetails;
+            _resultValue.reference = reference;
             return _resultValue;
         }
     }

@@ -115,6 +115,18 @@ func (FileLinkState) ElementType() reflect.Type {
 	return reflect.TypeOf((*fileLinkState)(nil)).Elem()
 }
 
+// FileLinkExists checks whether an existing FileLink resource with the given ID exists.
+func FileLinkExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *FileLinkState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	ref, err := internal.PkgGetPackageRef(ctx)
+	if err != nil {
+		return pulumi.Bool(false).ToBoolOutput().ApplyT(func(bool) (bool, error) {
+			return false, err
+		}).(pulumi.BoolOutput)
+	}
+	return ctx.ExistsResource("stripe:index/fileLink:FileLink", id, state, ref, opts...)
+}
+
 type fileLinkArgs struct {
 	// Time that the link expires.
 	ExpiresAt *float64 `pulumi:"expiresAt"`

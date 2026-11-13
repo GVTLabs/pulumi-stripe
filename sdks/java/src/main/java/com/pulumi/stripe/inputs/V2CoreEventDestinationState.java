@@ -23,14 +23,14 @@ public final class V2CoreEventDestinationState extends com.pulumi.resources.Reso
     public static final V2CoreEventDestinationState Empty = new V2CoreEventDestinationState();
 
     /**
-     * Amazon EventBridge configuration.
+     * Configuration for delivering events through an Amazon EventBridge partner event source.
      * 
      */
     @Import(name="amazonEventbridges")
     private @Nullable Output<List<V2CoreEventDestinationAmazonEventbridgeArgs>> amazonEventbridges;
 
     /**
-     * @return Amazon EventBridge configuration.
+     * @return Configuration for delivering events through an Amazon EventBridge partner event source.
      * 
      */
     public Optional<Output<List<V2CoreEventDestinationAmazonEventbridgeArgs>>> amazonEventbridges() {
@@ -38,14 +38,14 @@ public final class V2CoreEventDestinationState extends com.pulumi.resources.Reso
     }
 
     /**
-     * Azure Event Grid configuration.
+     * Configuration for delivering events through an Azure Event Grid partner topic.
      * 
      */
     @Import(name="azureEventGrid")
     private @Nullable Output<V2CoreEventDestinationAzureEventGridArgs> azureEventGrid;
 
     /**
-     * @return Azure Event Grid configuration.
+     * @return Configuration for delivering events through an Azure Event Grid partner topic.
      * 
      */
     public Optional<Output<V2CoreEventDestinationAzureEventGridArgs>> azureEventGrid() {
@@ -53,14 +53,14 @@ public final class V2CoreEventDestinationState extends com.pulumi.resources.Reso
     }
 
     /**
-     * Time at which the object was created.
+     * The time when the destination was created.
      * 
      */
     @Import(name="created")
     private @Nullable Output<String> created;
 
     /**
-     * @return Time at which the object was created.
+     * @return The time when the destination was created.
      * 
      */
     public Optional<Output<String>> created() {
@@ -68,14 +68,14 @@ public final class V2CoreEventDestinationState extends com.pulumi.resources.Reso
     }
 
     /**
-     * An optional description of what the event destination is used for.
+     * An optional user-defined description of the destination&#39;s purpose.
      * 
      */
     @Import(name="description")
     private @Nullable Output<String> description;
 
     /**
-     * @return An optional description of what the event destination is used for.
+     * @return An optional user-defined description of the destination&#39;s purpose.
      * 
      */
     public Optional<Output<String>> description() {
@@ -83,14 +83,14 @@ public final class V2CoreEventDestinationState extends com.pulumi.resources.Reso
     }
 
     /**
-     * The list of events to enable for this endpoint.
+     * The list of event types enabled for delivery to this destination.
      * 
      */
     @Import(name="enabledEvents")
     private @Nullable Output<List<String>> enabledEvents;
 
     /**
-     * @return The list of events to enable for this endpoint.
+     * @return The list of event types enabled for delivery to this destination.
      * 
      */
     public Optional<Output<List<String>>> enabledEvents() {
@@ -98,14 +98,14 @@ public final class V2CoreEventDestinationState extends com.pulumi.resources.Reso
     }
 
     /**
-     * Payload type of events being subscribed to.
+     * Whether to deliver as snapshot or thin events.
      * 
      */
     @Import(name="eventPayload")
     private @Nullable Output<String> eventPayload;
 
     /**
-     * @return Payload type of events being subscribed to.
+     * @return Whether to deliver as snapshot or thin events.
      * 
      */
     public Optional<Output<String>> eventPayload() {
@@ -137,7 +137,7 @@ public final class V2CoreEventDestinationState extends com.pulumi.resources.Reso
 
     /**
      * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
-     * Additional fields to include in the response.
+     * Include normally redacted webhook fields in the create response. Public API clients must include `webhook_endpoint.signing_secret` to receive the signing secret.
      * 
      */
     @Import(name="includes")
@@ -145,7 +145,7 @@ public final class V2CoreEventDestinationState extends com.pulumi.resources.Reso
 
     /**
      * @return **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
-     * Additional fields to include in the response.
+     * Include normally redacted webhook fields in the create response. Public API clients must include `webhook_endpoint.signing_secret` to receive the signing secret.
      * 
      */
     public Optional<Output<List<String>>> includes() {
@@ -168,14 +168,14 @@ public final class V2CoreEventDestinationState extends com.pulumi.resources.Reso
     }
 
     /**
-     * Metadata.
+     * User-defined key/value data for the destination; it has no effect on event matching or delivery.
      * 
      */
     @Import(name="metadata")
     private @Nullable Output<Map<String,String>> metadata;
 
     /**
-     * @return Metadata.
+     * @return User-defined key/value data for the destination; it has no effect on event matching or delivery.
      * 
      */
     public Optional<Output<Map<String,String>>> metadata() {
@@ -183,14 +183,14 @@ public final class V2CoreEventDestinationState extends com.pulumi.resources.Reso
     }
 
     /**
-     * Event destination name.
+     * A user-defined label for identifying the destination in Stripe.
      * 
      */
     @Import(name="name")
     private @Nullable Output<String> name;
 
     /**
-     * @return Event destination name.
+     * @return A user-defined label for identifying the destination in Stripe.
      * 
      */
     public Optional<Output<String>> name() {
@@ -213,14 +213,14 @@ public final class V2CoreEventDestinationState extends com.pulumi.resources.Reso
     }
 
     /**
-     * If using the snapshot event payload, the API version events are rendered as.
+     * For snapshot events only, the Stripe API version used to render event objects. You can&#39;t change this value after you create the event destination. Thin events are not pinned to an API version.
      * 
      */
     @Import(name="snapshotApiVersion")
     private @Nullable Output<String> snapshotApiVersion;
 
     /**
-     * @return If using the snapshot event payload, the API version events are rendered as.
+     * @return For snapshot events only, the Stripe API version used to render event objects. You can&#39;t change this value after you create the event destination. Thin events are not pinned to an API version.
      * 
      */
     public Optional<Output<String>> snapshotApiVersion() {
@@ -228,14 +228,14 @@ public final class V2CoreEventDestinationState extends com.pulumi.resources.Reso
     }
 
     /**
-     * Status. It can be set to either enabled or disabled.
+     * Whether Stripe currently attempts delivery. Stripe attempts delivery to enabled destinations when their provider configuration is active; disabled destinations do not receive delivery attempts.
      * 
      */
     @Import(name="status")
     private @Nullable Output<String> status;
 
     /**
-     * @return Status. It can be set to either enabled or disabled.
+     * @return Whether Stripe currently attempts delivery. Stripe attempts delivery to enabled destinations when their provider configuration is active; disabled destinations do not receive delivery attempts.
      * 
      */
     public Optional<Output<String>> status() {
@@ -243,14 +243,14 @@ public final class V2CoreEventDestinationState extends com.pulumi.resources.Reso
     }
 
     /**
-     * Additional information about event destination status.
+     * Additional lifecycle context for the destination status, when available.
      * 
      */
     @Import(name="statusDetails")
     private @Nullable Output<V2CoreEventDestinationStatusDetailsArgs> statusDetails;
 
     /**
-     * @return Additional information about event destination status.
+     * @return Additional lifecycle context for the destination status, when available.
      * 
      */
     public Optional<Output<V2CoreEventDestinationStatusDetailsArgs>> statusDetails() {
@@ -258,14 +258,14 @@ public final class V2CoreEventDestinationState extends com.pulumi.resources.Reso
     }
 
     /**
-     * Event destination type.
+     * The delivery transport. Chosen when the destination is created and cannot be changed by update.
      * 
      */
     @Import(name="type")
     private @Nullable Output<String> type;
 
     /**
-     * @return Event destination type.
+     * @return The delivery transport. Chosen when the destination is created and cannot be changed by update.
      * 
      */
     public Optional<Output<String>> type() {
@@ -273,14 +273,14 @@ public final class V2CoreEventDestinationState extends com.pulumi.resources.Reso
     }
 
     /**
-     * Time at which the object was last updated.
+     * The time when the destination object was last updated.
      * 
      */
     @Import(name="updated")
     private @Nullable Output<String> updated;
 
     /**
-     * @return Time at which the object was last updated.
+     * @return The time when the destination object was last updated.
      * 
      */
     public Optional<Output<String>> updated() {
@@ -288,14 +288,14 @@ public final class V2CoreEventDestinationState extends com.pulumi.resources.Reso
     }
 
     /**
-     * Webhook endpoint configuration.
+     * Configuration for delivering events to a webhook endpoint. Live mode requires HTTPS; sandbox mode also supports HTTP.
      * 
      */
     @Import(name="webhookEndpoints")
     private @Nullable Output<List<V2CoreEventDestinationWebhookEndpointArgs>> webhookEndpoints;
 
     /**
-     * @return Webhook endpoint configuration.
+     * @return Configuration for delivering events to a webhook endpoint. Live mode requires HTTPS; sandbox mode also supports HTTP.
      * 
      */
     public Optional<Output<List<V2CoreEventDestinationWebhookEndpointArgs>>> webhookEndpoints() {
@@ -344,7 +344,7 @@ public final class V2CoreEventDestinationState extends com.pulumi.resources.Reso
         }
 
         /**
-         * @param amazonEventbridges Amazon EventBridge configuration.
+         * @param amazonEventbridges Configuration for delivering events through an Amazon EventBridge partner event source.
          * 
          * @return builder
          * 
@@ -355,7 +355,7 @@ public final class V2CoreEventDestinationState extends com.pulumi.resources.Reso
         }
 
         /**
-         * @param amazonEventbridges Amazon EventBridge configuration.
+         * @param amazonEventbridges Configuration for delivering events through an Amazon EventBridge partner event source.
          * 
          * @return builder
          * 
@@ -365,7 +365,7 @@ public final class V2CoreEventDestinationState extends com.pulumi.resources.Reso
         }
 
         /**
-         * @param amazonEventbridges Amazon EventBridge configuration.
+         * @param amazonEventbridges Configuration for delivering events through an Amazon EventBridge partner event source.
          * 
          * @return builder
          * 
@@ -375,7 +375,7 @@ public final class V2CoreEventDestinationState extends com.pulumi.resources.Reso
         }
 
         /**
-         * @param azureEventGrid Azure Event Grid configuration.
+         * @param azureEventGrid Configuration for delivering events through an Azure Event Grid partner topic.
          * 
          * @return builder
          * 
@@ -386,7 +386,7 @@ public final class V2CoreEventDestinationState extends com.pulumi.resources.Reso
         }
 
         /**
-         * @param azureEventGrid Azure Event Grid configuration.
+         * @param azureEventGrid Configuration for delivering events through an Azure Event Grid partner topic.
          * 
          * @return builder
          * 
@@ -396,7 +396,7 @@ public final class V2CoreEventDestinationState extends com.pulumi.resources.Reso
         }
 
         /**
-         * @param created Time at which the object was created.
+         * @param created The time when the destination was created.
          * 
          * @return builder
          * 
@@ -407,7 +407,7 @@ public final class V2CoreEventDestinationState extends com.pulumi.resources.Reso
         }
 
         /**
-         * @param created Time at which the object was created.
+         * @param created The time when the destination was created.
          * 
          * @return builder
          * 
@@ -417,7 +417,7 @@ public final class V2CoreEventDestinationState extends com.pulumi.resources.Reso
         }
 
         /**
-         * @param description An optional description of what the event destination is used for.
+         * @param description An optional user-defined description of the destination&#39;s purpose.
          * 
          * @return builder
          * 
@@ -428,7 +428,7 @@ public final class V2CoreEventDestinationState extends com.pulumi.resources.Reso
         }
 
         /**
-         * @param description An optional description of what the event destination is used for.
+         * @param description An optional user-defined description of the destination&#39;s purpose.
          * 
          * @return builder
          * 
@@ -438,7 +438,7 @@ public final class V2CoreEventDestinationState extends com.pulumi.resources.Reso
         }
 
         /**
-         * @param enabledEvents The list of events to enable for this endpoint.
+         * @param enabledEvents The list of event types enabled for delivery to this destination.
          * 
          * @return builder
          * 
@@ -449,7 +449,7 @@ public final class V2CoreEventDestinationState extends com.pulumi.resources.Reso
         }
 
         /**
-         * @param enabledEvents The list of events to enable for this endpoint.
+         * @param enabledEvents The list of event types enabled for delivery to this destination.
          * 
          * @return builder
          * 
@@ -459,7 +459,7 @@ public final class V2CoreEventDestinationState extends com.pulumi.resources.Reso
         }
 
         /**
-         * @param enabledEvents The list of events to enable for this endpoint.
+         * @param enabledEvents The list of event types enabled for delivery to this destination.
          * 
          * @return builder
          * 
@@ -469,7 +469,7 @@ public final class V2CoreEventDestinationState extends com.pulumi.resources.Reso
         }
 
         /**
-         * @param eventPayload Payload type of events being subscribed to.
+         * @param eventPayload Whether to deliver as snapshot or thin events.
          * 
          * @return builder
          * 
@@ -480,7 +480,7 @@ public final class V2CoreEventDestinationState extends com.pulumi.resources.Reso
         }
 
         /**
-         * @param eventPayload Payload type of events being subscribed to.
+         * @param eventPayload Whether to deliver as snapshot or thin events.
          * 
          * @return builder
          * 
@@ -534,7 +534,7 @@ public final class V2CoreEventDestinationState extends com.pulumi.resources.Reso
 
         /**
          * @param includes **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
-         * Additional fields to include in the response.
+         * Include normally redacted webhook fields in the create response. Public API clients must include `webhook_endpoint.signing_secret` to receive the signing secret.
          * 
          * @return builder
          * 
@@ -546,7 +546,7 @@ public final class V2CoreEventDestinationState extends com.pulumi.resources.Reso
 
         /**
          * @param includes **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
-         * Additional fields to include in the response.
+         * Include normally redacted webhook fields in the create response. Public API clients must include `webhook_endpoint.signing_secret` to receive the signing secret.
          * 
          * @return builder
          * 
@@ -557,7 +557,7 @@ public final class V2CoreEventDestinationState extends com.pulumi.resources.Reso
 
         /**
          * @param includes **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
-         * Additional fields to include in the response.
+         * Include normally redacted webhook fields in the create response. Public API clients must include `webhook_endpoint.signing_secret` to receive the signing secret.
          * 
          * @return builder
          * 
@@ -588,7 +588,7 @@ public final class V2CoreEventDestinationState extends com.pulumi.resources.Reso
         }
 
         /**
-         * @param metadata Metadata.
+         * @param metadata User-defined key/value data for the destination; it has no effect on event matching or delivery.
          * 
          * @return builder
          * 
@@ -599,7 +599,7 @@ public final class V2CoreEventDestinationState extends com.pulumi.resources.Reso
         }
 
         /**
-         * @param metadata Metadata.
+         * @param metadata User-defined key/value data for the destination; it has no effect on event matching or delivery.
          * 
          * @return builder
          * 
@@ -609,7 +609,7 @@ public final class V2CoreEventDestinationState extends com.pulumi.resources.Reso
         }
 
         /**
-         * @param name Event destination name.
+         * @param name A user-defined label for identifying the destination in Stripe.
          * 
          * @return builder
          * 
@@ -620,7 +620,7 @@ public final class V2CoreEventDestinationState extends com.pulumi.resources.Reso
         }
 
         /**
-         * @param name Event destination name.
+         * @param name A user-defined label for identifying the destination in Stripe.
          * 
          * @return builder
          * 
@@ -651,7 +651,7 @@ public final class V2CoreEventDestinationState extends com.pulumi.resources.Reso
         }
 
         /**
-         * @param snapshotApiVersion If using the snapshot event payload, the API version events are rendered as.
+         * @param snapshotApiVersion For snapshot events only, the Stripe API version used to render event objects. You can&#39;t change this value after you create the event destination. Thin events are not pinned to an API version.
          * 
          * @return builder
          * 
@@ -662,7 +662,7 @@ public final class V2CoreEventDestinationState extends com.pulumi.resources.Reso
         }
 
         /**
-         * @param snapshotApiVersion If using the snapshot event payload, the API version events are rendered as.
+         * @param snapshotApiVersion For snapshot events only, the Stripe API version used to render event objects. You can&#39;t change this value after you create the event destination. Thin events are not pinned to an API version.
          * 
          * @return builder
          * 
@@ -672,7 +672,7 @@ public final class V2CoreEventDestinationState extends com.pulumi.resources.Reso
         }
 
         /**
-         * @param status Status. It can be set to either enabled or disabled.
+         * @param status Whether Stripe currently attempts delivery. Stripe attempts delivery to enabled destinations when their provider configuration is active; disabled destinations do not receive delivery attempts.
          * 
          * @return builder
          * 
@@ -683,7 +683,7 @@ public final class V2CoreEventDestinationState extends com.pulumi.resources.Reso
         }
 
         /**
-         * @param status Status. It can be set to either enabled or disabled.
+         * @param status Whether Stripe currently attempts delivery. Stripe attempts delivery to enabled destinations when their provider configuration is active; disabled destinations do not receive delivery attempts.
          * 
          * @return builder
          * 
@@ -693,7 +693,7 @@ public final class V2CoreEventDestinationState extends com.pulumi.resources.Reso
         }
 
         /**
-         * @param statusDetails Additional information about event destination status.
+         * @param statusDetails Additional lifecycle context for the destination status, when available.
          * 
          * @return builder
          * 
@@ -704,7 +704,7 @@ public final class V2CoreEventDestinationState extends com.pulumi.resources.Reso
         }
 
         /**
-         * @param statusDetails Additional information about event destination status.
+         * @param statusDetails Additional lifecycle context for the destination status, when available.
          * 
          * @return builder
          * 
@@ -714,7 +714,7 @@ public final class V2CoreEventDestinationState extends com.pulumi.resources.Reso
         }
 
         /**
-         * @param type Event destination type.
+         * @param type The delivery transport. Chosen when the destination is created and cannot be changed by update.
          * 
          * @return builder
          * 
@@ -725,7 +725,7 @@ public final class V2CoreEventDestinationState extends com.pulumi.resources.Reso
         }
 
         /**
-         * @param type Event destination type.
+         * @param type The delivery transport. Chosen when the destination is created and cannot be changed by update.
          * 
          * @return builder
          * 
@@ -735,7 +735,7 @@ public final class V2CoreEventDestinationState extends com.pulumi.resources.Reso
         }
 
         /**
-         * @param updated Time at which the object was last updated.
+         * @param updated The time when the destination object was last updated.
          * 
          * @return builder
          * 
@@ -746,7 +746,7 @@ public final class V2CoreEventDestinationState extends com.pulumi.resources.Reso
         }
 
         /**
-         * @param updated Time at which the object was last updated.
+         * @param updated The time when the destination object was last updated.
          * 
          * @return builder
          * 
@@ -756,7 +756,7 @@ public final class V2CoreEventDestinationState extends com.pulumi.resources.Reso
         }
 
         /**
-         * @param webhookEndpoints Webhook endpoint configuration.
+         * @param webhookEndpoints Configuration for delivering events to a webhook endpoint. Live mode requires HTTPS; sandbox mode also supports HTTP.
          * 
          * @return builder
          * 
@@ -767,7 +767,7 @@ public final class V2CoreEventDestinationState extends com.pulumi.resources.Reso
         }
 
         /**
-         * @param webhookEndpoints Webhook endpoint configuration.
+         * @param webhookEndpoints Configuration for delivering events to a webhook endpoint. Live mode requires HTTPS; sandbox mode also supports HTTP.
          * 
          * @return builder
          * 
@@ -777,7 +777,7 @@ public final class V2CoreEventDestinationState extends com.pulumi.resources.Reso
         }
 
         /**
-         * @param webhookEndpoints Webhook endpoint configuration.
+         * @param webhookEndpoints Configuration for delivering events to a webhook endpoint. Live mode requires HTTPS; sandbox mode also supports HTTP.
          * 
          * @return builder
          * 

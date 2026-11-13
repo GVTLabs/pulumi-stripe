@@ -33,7 +33,7 @@ type PaymentLink struct {
 	ConsentCollection PaymentLinkConsentCollectionOutput `pulumi:"consentCollection"`
 	// Three-letter [ISO currency code](https://www.iso.org/iso-4217-currency-codes.html), in lowercase. Must be a [supported currency](https://stripe.com/docs/currencies).
 	Currency pulumi.StringOutput `pulumi:"currency"`
-	// Collect additional information from your customer using custom fields. Up to 3 fields are supported. You can't set this parameter if <span pulumi-lang-nodejs="`uiMode`" pulumi-lang-dotnet="`UiMode`" pulumi-lang-go="`uiMode`" pulumi-lang-python="`ui_mode`" pulumi-lang-yaml="`uiMode`" pulumi-lang-java="`uiMode`" pulumi-lang-hcl="`ui_mode`">`uiMode`</span> is <span pulumi-lang-nodejs="`custom`" pulumi-lang-dotnet="`Custom`" pulumi-lang-go="`custom`" pulumi-lang-python="`custom`" pulumi-lang-yaml="`custom`" pulumi-lang-java="`custom`" pulumi-lang-hcl="`custom`">`custom`</span>.
+	// Collect additional information from your customer using custom fields. Up to 3 fields are supported. You can't set this parameter if <span pulumi-lang-nodejs="`uiMode`" pulumi-lang-dotnet="`UiMode`" pulumi-lang-go="`uiMode`" pulumi-lang-python="`ui_mode`" pulumi-lang-yaml="`uiMode`" pulumi-lang-java="`uiMode`" pulumi-lang-hcl="`ui_mode`">`uiMode`</span> is <span pulumi-lang-nodejs="`elements`" pulumi-lang-dotnet="`Elements`" pulumi-lang-go="`elements`" pulumi-lang-python="`elements`" pulumi-lang-yaml="`elements`" pulumi-lang-java="`elements`" pulumi-lang-hcl="`elements`">`elements`</span>.
 	CustomFields PaymentLinkCustomFieldArrayOutput `pulumi:"customFields"`
 	CustomText   PaymentLinkCustomTextOutput       `pulumi:"customText"`
 	// Configuration for Customer creation during checkout.
@@ -142,7 +142,7 @@ type paymentLinkState struct {
 	ConsentCollection *PaymentLinkConsentCollection `pulumi:"consentCollection"`
 	// Three-letter [ISO currency code](https://www.iso.org/iso-4217-currency-codes.html), in lowercase. Must be a [supported currency](https://stripe.com/docs/currencies).
 	Currency *string `pulumi:"currency"`
-	// Collect additional information from your customer using custom fields. Up to 3 fields are supported. You can't set this parameter if <span pulumi-lang-nodejs="`uiMode`" pulumi-lang-dotnet="`UiMode`" pulumi-lang-go="`uiMode`" pulumi-lang-python="`ui_mode`" pulumi-lang-yaml="`uiMode`" pulumi-lang-java="`uiMode`" pulumi-lang-hcl="`ui_mode`">`uiMode`</span> is <span pulumi-lang-nodejs="`custom`" pulumi-lang-dotnet="`Custom`" pulumi-lang-go="`custom`" pulumi-lang-python="`custom`" pulumi-lang-yaml="`custom`" pulumi-lang-java="`custom`" pulumi-lang-hcl="`custom`">`custom`</span>.
+	// Collect additional information from your customer using custom fields. Up to 3 fields are supported. You can't set this parameter if <span pulumi-lang-nodejs="`uiMode`" pulumi-lang-dotnet="`UiMode`" pulumi-lang-go="`uiMode`" pulumi-lang-python="`ui_mode`" pulumi-lang-yaml="`uiMode`" pulumi-lang-java="`uiMode`" pulumi-lang-hcl="`ui_mode`">`uiMode`</span> is <span pulumi-lang-nodejs="`elements`" pulumi-lang-dotnet="`Elements`" pulumi-lang-go="`elements`" pulumi-lang-python="`elements`" pulumi-lang-yaml="`elements`" pulumi-lang-java="`elements`" pulumi-lang-hcl="`elements`">`elements`</span>.
 	CustomFields []PaymentLinkCustomField `pulumi:"customFields"`
 	CustomText   *PaymentLinkCustomText   `pulumi:"customText"`
 	// Configuration for Customer creation during checkout.
@@ -211,7 +211,7 @@ type PaymentLinkState struct {
 	ConsentCollection PaymentLinkConsentCollectionPtrInput
 	// Three-letter [ISO currency code](https://www.iso.org/iso-4217-currency-codes.html), in lowercase. Must be a [supported currency](https://stripe.com/docs/currencies).
 	Currency pulumi.StringPtrInput
-	// Collect additional information from your customer using custom fields. Up to 3 fields are supported. You can't set this parameter if <span pulumi-lang-nodejs="`uiMode`" pulumi-lang-dotnet="`UiMode`" pulumi-lang-go="`uiMode`" pulumi-lang-python="`ui_mode`" pulumi-lang-yaml="`uiMode`" pulumi-lang-java="`uiMode`" pulumi-lang-hcl="`ui_mode`">`uiMode`</span> is <span pulumi-lang-nodejs="`custom`" pulumi-lang-dotnet="`Custom`" pulumi-lang-go="`custom`" pulumi-lang-python="`custom`" pulumi-lang-yaml="`custom`" pulumi-lang-java="`custom`" pulumi-lang-hcl="`custom`">`custom`</span>.
+	// Collect additional information from your customer using custom fields. Up to 3 fields are supported. You can't set this parameter if <span pulumi-lang-nodejs="`uiMode`" pulumi-lang-dotnet="`UiMode`" pulumi-lang-go="`uiMode`" pulumi-lang-python="`ui_mode`" pulumi-lang-yaml="`uiMode`" pulumi-lang-java="`uiMode`" pulumi-lang-hcl="`ui_mode`">`uiMode`</span> is <span pulumi-lang-nodejs="`elements`" pulumi-lang-dotnet="`Elements`" pulumi-lang-go="`elements`" pulumi-lang-python="`elements`" pulumi-lang-yaml="`elements`" pulumi-lang-java="`elements`" pulumi-lang-hcl="`elements`">`elements`</span>.
 	CustomFields PaymentLinkCustomFieldArrayInput
 	CustomText   PaymentLinkCustomTextPtrInput
 	// Configuration for Customer creation during checkout.
@@ -265,6 +265,18 @@ func (PaymentLinkState) ElementType() reflect.Type {
 	return reflect.TypeOf((*paymentLinkState)(nil)).Elem()
 }
 
+// PaymentLinkExists checks whether an existing PaymentLink resource with the given ID exists.
+func PaymentLinkExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *PaymentLinkState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	ref, err := internal.PkgGetPackageRef(ctx)
+	if err != nil {
+		return pulumi.Bool(false).ToBoolOutput().ApplyT(func(bool) (bool, error) {
+			return false, err
+		}).(pulumi.BoolOutput)
+	}
+	return ctx.ExistsResource("stripe:index/paymentLink:PaymentLink", id, state, ref, opts...)
+}
+
 type paymentLinkArgs struct {
 	// Whether the payment link's <span pulumi-lang-nodejs="`url`" pulumi-lang-dotnet="`Url`" pulumi-lang-go="`url`" pulumi-lang-python="`url`" pulumi-lang-yaml="`url`" pulumi-lang-java="`url`" pulumi-lang-hcl="`url`">`url`</span> is active. If <span pulumi-lang-nodejs="`false`" pulumi-lang-dotnet="`False`" pulumi-lang-go="`false`" pulumi-lang-python="`false`" pulumi-lang-yaml="`false`" pulumi-lang-java="`false`" pulumi-lang-hcl="`false`">`false`</span>, customers visiting the URL will be shown a page saying that the link has been deactivated.
 	Active          *bool                       `pulumi:"active"`
@@ -282,7 +294,7 @@ type paymentLinkArgs struct {
 	ConsentCollection *PaymentLinkConsentCollection `pulumi:"consentCollection"`
 	// Three-letter [ISO currency code](https://www.iso.org/iso-4217-currency-codes.html), in lowercase. Must be a [supported currency](https://stripe.com/docs/currencies).
 	Currency *string `pulumi:"currency"`
-	// Collect additional information from your customer using custom fields. Up to 3 fields are supported. You can't set this parameter if <span pulumi-lang-nodejs="`uiMode`" pulumi-lang-dotnet="`UiMode`" pulumi-lang-go="`uiMode`" pulumi-lang-python="`ui_mode`" pulumi-lang-yaml="`uiMode`" pulumi-lang-java="`uiMode`" pulumi-lang-hcl="`ui_mode`">`uiMode`</span> is <span pulumi-lang-nodejs="`custom`" pulumi-lang-dotnet="`Custom`" pulumi-lang-go="`custom`" pulumi-lang-python="`custom`" pulumi-lang-yaml="`custom`" pulumi-lang-java="`custom`" pulumi-lang-hcl="`custom`">`custom`</span>.
+	// Collect additional information from your customer using custom fields. Up to 3 fields are supported. You can't set this parameter if <span pulumi-lang-nodejs="`uiMode`" pulumi-lang-dotnet="`UiMode`" pulumi-lang-go="`uiMode`" pulumi-lang-python="`ui_mode`" pulumi-lang-yaml="`uiMode`" pulumi-lang-java="`uiMode`" pulumi-lang-hcl="`ui_mode`">`uiMode`</span> is <span pulumi-lang-nodejs="`elements`" pulumi-lang-dotnet="`Elements`" pulumi-lang-go="`elements`" pulumi-lang-python="`elements`" pulumi-lang-yaml="`elements`" pulumi-lang-java="`elements`" pulumi-lang-hcl="`elements`">`elements`</span>.
 	CustomFields []PaymentLinkCustomField `pulumi:"customFields"`
 	CustomText   *PaymentLinkCustomText   `pulumi:"customText"`
 	// Configuration for Customer creation during checkout.
@@ -344,7 +356,7 @@ type PaymentLinkArgs struct {
 	ConsentCollection PaymentLinkConsentCollectionPtrInput
 	// Three-letter [ISO currency code](https://www.iso.org/iso-4217-currency-codes.html), in lowercase. Must be a [supported currency](https://stripe.com/docs/currencies).
 	Currency pulumi.StringPtrInput
-	// Collect additional information from your customer using custom fields. Up to 3 fields are supported. You can't set this parameter if <span pulumi-lang-nodejs="`uiMode`" pulumi-lang-dotnet="`UiMode`" pulumi-lang-go="`uiMode`" pulumi-lang-python="`ui_mode`" pulumi-lang-yaml="`uiMode`" pulumi-lang-java="`uiMode`" pulumi-lang-hcl="`ui_mode`">`uiMode`</span> is <span pulumi-lang-nodejs="`custom`" pulumi-lang-dotnet="`Custom`" pulumi-lang-go="`custom`" pulumi-lang-python="`custom`" pulumi-lang-yaml="`custom`" pulumi-lang-java="`custom`" pulumi-lang-hcl="`custom`">`custom`</span>.
+	// Collect additional information from your customer using custom fields. Up to 3 fields are supported. You can't set this parameter if <span pulumi-lang-nodejs="`uiMode`" pulumi-lang-dotnet="`UiMode`" pulumi-lang-go="`uiMode`" pulumi-lang-python="`ui_mode`" pulumi-lang-yaml="`uiMode`" pulumi-lang-java="`uiMode`" pulumi-lang-hcl="`ui_mode`">`uiMode`</span> is <span pulumi-lang-nodejs="`elements`" pulumi-lang-dotnet="`Elements`" pulumi-lang-go="`elements`" pulumi-lang-python="`elements`" pulumi-lang-yaml="`elements`" pulumi-lang-java="`elements`" pulumi-lang-hcl="`elements`">`elements`</span>.
 	CustomFields PaymentLinkCustomFieldArrayInput
 	CustomText   PaymentLinkCustomTextPtrInput
 	// Configuration for Customer creation during checkout.
@@ -473,7 +485,7 @@ func (o PaymentLinkOutput) Currency() pulumi.StringOutput {
 	return o.ApplyT(func(v *PaymentLink) pulumi.StringOutput { return v.Currency }).(pulumi.StringOutput)
 }
 
-// Collect additional information from your customer using custom fields. Up to 3 fields are supported. You can't set this parameter if <span pulumi-lang-nodejs="`uiMode`" pulumi-lang-dotnet="`UiMode`" pulumi-lang-go="`uiMode`" pulumi-lang-python="`ui_mode`" pulumi-lang-yaml="`uiMode`" pulumi-lang-java="`uiMode`" pulumi-lang-hcl="`ui_mode`">`uiMode`</span> is <span pulumi-lang-nodejs="`custom`" pulumi-lang-dotnet="`Custom`" pulumi-lang-go="`custom`" pulumi-lang-python="`custom`" pulumi-lang-yaml="`custom`" pulumi-lang-java="`custom`" pulumi-lang-hcl="`custom`">`custom`</span>.
+// Collect additional information from your customer using custom fields. Up to 3 fields are supported. You can't set this parameter if <span pulumi-lang-nodejs="`uiMode`" pulumi-lang-dotnet="`UiMode`" pulumi-lang-go="`uiMode`" pulumi-lang-python="`ui_mode`" pulumi-lang-yaml="`uiMode`" pulumi-lang-java="`uiMode`" pulumi-lang-hcl="`ui_mode`">`uiMode`</span> is <span pulumi-lang-nodejs="`elements`" pulumi-lang-dotnet="`Elements`" pulumi-lang-go="`elements`" pulumi-lang-python="`elements`" pulumi-lang-yaml="`elements`" pulumi-lang-java="`elements`" pulumi-lang-hcl="`elements`">`elements`</span>.
 func (o PaymentLinkOutput) CustomFields() PaymentLinkCustomFieldArrayOutput {
 	return o.ApplyT(func(v *PaymentLink) PaymentLinkCustomFieldArrayOutput { return v.CustomFields }).(PaymentLinkCustomFieldArrayOutput)
 }

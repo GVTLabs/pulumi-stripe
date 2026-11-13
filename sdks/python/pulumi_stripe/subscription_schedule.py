@@ -28,6 +28,7 @@ class SubscriptionScheduleArgs:
                  end_behavior: pulumi.Input[Optional[_builtins.str]] = None,
                  from_subscription: pulumi.Input[Optional[_builtins.str]] = None,
                  metadata: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+                 pause_schedules: pulumi.Input[Optional[Sequence[pulumi.Input['SubscriptionSchedulePauseScheduleArgs']]]] = None,
                  phases: pulumi.Input[Optional[Sequence[pulumi.Input['SubscriptionSchedulePhaseArgs']]]] = None,
                  start_date: pulumi.Input[Optional[_builtins.float]] = None):
         """
@@ -40,8 +41,9 @@ class SubscriptionScheduleArgs:
         :param pulumi.Input[_builtins.str] from_subscription: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
                Migrate an existing subscription to be managed by a subscription schedule. If this parameter is set, a subscription schedule will be created using the subscription's item(s), set to auto-renew using the subscription's interval. When using this parameter, other parameters (such as phase values) cannot be set. To create a subscription schedule with other modifications, we recommend making two separate API calls.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] metadata: Set of [key-value pairs](https://docs.stripe.com/api/metadata) that you can attach to an object. This can be useful for storing additional information about the object in a structured format.
+        :param pulumi.Input[Sequence[pulumi.Input['SubscriptionSchedulePauseScheduleArgs']]] pause_schedules: The pause schedules for this subscription schedule.
         :param pulumi.Input[Sequence[pulumi.Input['SubscriptionSchedulePhaseArgs']]] phases: Configuration for the subscription schedule's phases.
-        :param pulumi.Input[_builtins.float] start_date: When the subscription schedule starts. We recommend using <span pulumi-lang-nodejs="`now`" pulumi-lang-dotnet="`Now`" pulumi-lang-go="`now`" pulumi-lang-python="`now`" pulumi-lang-yaml="`now`" pulumi-lang-java="`now`" pulumi-lang-hcl="`now`">`now`</span> so that it starts the subscription immediately. You can also use a Unix timestamp to backdate the subscription so that it starts on a past date, or set a future date for the subscription to start on.
+        :param pulumi.Input[_builtins.float] start_date: When the subscription schedule starts. We recommend using <span pulumi-lang-nodejs="`now`" pulumi-lang-dotnet="`Now`" pulumi-lang-go="`now`" pulumi-lang-python="`now`" pulumi-lang-yaml="`now`" pulumi-lang-java="`now`" pulumi-lang-hcl="`now`">`now`</span> so that it starts the subscription immediately, and to avoid unexpected behavior due to request delays or clock skew resulting in a slightly backdated or postdated start. You can also use a Unix timestamp to backdate the subscription so that it starts on a past date, or set a future date for the subscription to start on.
         """
         if billing_mode is not None:
             pulumi.set(__self__, "billing_mode", billing_mode)
@@ -57,6 +59,8 @@ class SubscriptionScheduleArgs:
             pulumi.set(__self__, "from_subscription", from_subscription)
         if metadata is not None:
             pulumi.set(__self__, "metadata", metadata)
+        if pause_schedules is not None:
+            pulumi.set(__self__, "pause_schedules", pause_schedules)
         if phases is not None:
             pulumi.set(__self__, "phases", phases)
         if start_date is not None:
@@ -145,6 +149,18 @@ class SubscriptionScheduleArgs:
         pulumi.set(self, "metadata", value)
 
     @_builtins.property
+    @pulumi.getter(name="pauseSchedules")
+    def pause_schedules(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['SubscriptionSchedulePauseScheduleArgs']]]]:
+        """
+        The pause schedules for this subscription schedule.
+        """
+        return pulumi.get(self, "pause_schedules")
+
+    @pause_schedules.setter
+    def pause_schedules(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['SubscriptionSchedulePauseScheduleArgs']]]]):
+        pulumi.set(self, "pause_schedules", value)
+
+    @_builtins.property
     @pulumi.getter
     def phases(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['SubscriptionSchedulePhaseArgs']]]]:
         """
@@ -160,7 +176,7 @@ class SubscriptionScheduleArgs:
     @pulumi.getter(name="startDate")
     def start_date(self) -> pulumi.Input[Optional[_builtins.float]]:
         """
-        When the subscription schedule starts. We recommend using <span pulumi-lang-nodejs="`now`" pulumi-lang-dotnet="`Now`" pulumi-lang-go="`now`" pulumi-lang-python="`now`" pulumi-lang-yaml="`now`" pulumi-lang-java="`now`" pulumi-lang-hcl="`now`">`now`</span> so that it starts the subscription immediately. You can also use a Unix timestamp to backdate the subscription so that it starts on a past date, or set a future date for the subscription to start on.
+        When the subscription schedule starts. We recommend using <span pulumi-lang-nodejs="`now`" pulumi-lang-dotnet="`Now`" pulumi-lang-go="`now`" pulumi-lang-python="`now`" pulumi-lang-yaml="`now`" pulumi-lang-java="`now`" pulumi-lang-hcl="`now`">`now`</span> so that it starts the subscription immediately, and to avoid unexpected behavior due to request delays or clock skew resulting in a slightly backdated or postdated start. You can also use a Unix timestamp to backdate the subscription so that it starts on a past date, or set a future date for the subscription to start on.
         """
         return pulumi.get(self, "start_date")
 
@@ -186,6 +202,7 @@ class _SubscriptionScheduleState:
                  livemode: pulumi.Input[Optional[_builtins.bool]] = None,
                  metadata: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
                  object: pulumi.Input[Optional[_builtins.str]] = None,
+                 pause_schedules: pulumi.Input[Optional[Sequence[pulumi.Input['SubscriptionSchedulePauseScheduleArgs']]]] = None,
                  phases: pulumi.Input[Optional[Sequence[pulumi.Input['SubscriptionSchedulePhaseArgs']]]] = None,
                  released_at: pulumi.Input[Optional[_builtins.float]] = None,
                  released_subscription: pulumi.Input[Optional[_builtins.str]] = None,
@@ -210,10 +227,11 @@ class _SubscriptionScheduleState:
         :param pulumi.Input[_builtins.bool] livemode: If the object exists in live mode, the value is <span pulumi-lang-nodejs="`true`" pulumi-lang-dotnet="`True`" pulumi-lang-go="`true`" pulumi-lang-python="`true`" pulumi-lang-yaml="`true`" pulumi-lang-java="`true`" pulumi-lang-hcl="`true`">`true`</span>. If the object exists in test mode, the value is <span pulumi-lang-nodejs="`false`" pulumi-lang-dotnet="`False`" pulumi-lang-go="`false`" pulumi-lang-python="`false`" pulumi-lang-yaml="`false`" pulumi-lang-java="`false`" pulumi-lang-hcl="`false`">`false`</span>.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] metadata: Set of [key-value pairs](https://docs.stripe.com/api/metadata) that you can attach to an object. This can be useful for storing additional information about the object in a structured format.
         :param pulumi.Input[_builtins.str] object: String representing the object's type. Objects of the same type share the same value.
+        :param pulumi.Input[Sequence[pulumi.Input['SubscriptionSchedulePauseScheduleArgs']]] pause_schedules: The pause schedules for this subscription schedule.
         :param pulumi.Input[Sequence[pulumi.Input['SubscriptionSchedulePhaseArgs']]] phases: Configuration for the subscription schedule's phases.
         :param pulumi.Input[_builtins.float] released_at: Time at which the subscription schedule was released. Measured in seconds since the Unix epoch.
         :param pulumi.Input[_builtins.str] released_subscription: ID of the subscription once managed by the subscription schedule (if it is released).
-        :param pulumi.Input[_builtins.float] start_date: When the subscription schedule starts. We recommend using <span pulumi-lang-nodejs="`now`" pulumi-lang-dotnet="`Now`" pulumi-lang-go="`now`" pulumi-lang-python="`now`" pulumi-lang-yaml="`now`" pulumi-lang-java="`now`" pulumi-lang-hcl="`now`">`now`</span> so that it starts the subscription immediately. You can also use a Unix timestamp to backdate the subscription so that it starts on a past date, or set a future date for the subscription to start on.
+        :param pulumi.Input[_builtins.float] start_date: When the subscription schedule starts. We recommend using <span pulumi-lang-nodejs="`now`" pulumi-lang-dotnet="`Now`" pulumi-lang-go="`now`" pulumi-lang-python="`now`" pulumi-lang-yaml="`now`" pulumi-lang-java="`now`" pulumi-lang-hcl="`now`">`now`</span> so that it starts the subscription immediately, and to avoid unexpected behavior due to request delays or clock skew resulting in a slightly backdated or postdated start. You can also use a Unix timestamp to backdate the subscription so that it starts on a past date, or set a future date for the subscription to start on.
         :param pulumi.Input[_builtins.str] status: The present status of the subscription schedule. Possible values are <span pulumi-lang-nodejs="`notStarted`" pulumi-lang-dotnet="`NotStarted`" pulumi-lang-go="`notStarted`" pulumi-lang-python="`not_started`" pulumi-lang-yaml="`notStarted`" pulumi-lang-java="`notStarted`" pulumi-lang-hcl="`not_started`">`notStarted`</span>, <span pulumi-lang-nodejs="`active`" pulumi-lang-dotnet="`Active`" pulumi-lang-go="`active`" pulumi-lang-python="`active`" pulumi-lang-yaml="`active`" pulumi-lang-java="`active`" pulumi-lang-hcl="`active`">`active`</span>, <span pulumi-lang-nodejs="`completed`" pulumi-lang-dotnet="`Completed`" pulumi-lang-go="`completed`" pulumi-lang-python="`completed`" pulumi-lang-yaml="`completed`" pulumi-lang-java="`completed`" pulumi-lang-hcl="`completed`">`completed`</span>, <span pulumi-lang-nodejs="`released`" pulumi-lang-dotnet="`Released`" pulumi-lang-go="`released`" pulumi-lang-python="`released`" pulumi-lang-yaml="`released`" pulumi-lang-java="`released`" pulumi-lang-hcl="`released`">`released`</span>, and <span pulumi-lang-nodejs="`canceled`" pulumi-lang-dotnet="`Canceled`" pulumi-lang-go="`canceled`" pulumi-lang-python="`canceled`" pulumi-lang-yaml="`canceled`" pulumi-lang-java="`canceled`" pulumi-lang-hcl="`canceled`">`canceled`</span>. You can read more about the different states in our [behavior guide](https://docs.stripe.com/billing/subscriptions/subscription-schedules).
         :param pulumi.Input[_builtins.str] subscription: ID of the subscription managed by the subscription schedule.
         :param pulumi.Input[_builtins.str] test_clock: ID of the test clock this subscription schedule belongs to.
@@ -246,6 +264,8 @@ class _SubscriptionScheduleState:
             pulumi.set(__self__, "metadata", metadata)
         if object is not None:
             pulumi.set(__self__, "object", object)
+        if pause_schedules is not None:
+            pulumi.set(__self__, "pause_schedules", pause_schedules)
         if phases is not None:
             pulumi.set(__self__, "phases", phases)
         if released_at is not None:
@@ -428,6 +448,18 @@ class _SubscriptionScheduleState:
         pulumi.set(self, "object", value)
 
     @_builtins.property
+    @pulumi.getter(name="pauseSchedules")
+    def pause_schedules(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['SubscriptionSchedulePauseScheduleArgs']]]]:
+        """
+        The pause schedules for this subscription schedule.
+        """
+        return pulumi.get(self, "pause_schedules")
+
+    @pause_schedules.setter
+    def pause_schedules(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['SubscriptionSchedulePauseScheduleArgs']]]]):
+        pulumi.set(self, "pause_schedules", value)
+
+    @_builtins.property
     @pulumi.getter
     def phases(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['SubscriptionSchedulePhaseArgs']]]]:
         """
@@ -467,7 +499,7 @@ class _SubscriptionScheduleState:
     @pulumi.getter(name="startDate")
     def start_date(self) -> pulumi.Input[Optional[_builtins.float]]:
         """
-        When the subscription schedule starts. We recommend using <span pulumi-lang-nodejs="`now`" pulumi-lang-dotnet="`Now`" pulumi-lang-go="`now`" pulumi-lang-python="`now`" pulumi-lang-yaml="`now`" pulumi-lang-java="`now`" pulumi-lang-hcl="`now`">`now`</span> so that it starts the subscription immediately. You can also use a Unix timestamp to backdate the subscription so that it starts on a past date, or set a future date for the subscription to start on.
+        When the subscription schedule starts. We recommend using <span pulumi-lang-nodejs="`now`" pulumi-lang-dotnet="`Now`" pulumi-lang-go="`now`" pulumi-lang-python="`now`" pulumi-lang-yaml="`now`" pulumi-lang-java="`now`" pulumi-lang-hcl="`now`">`now`</span> so that it starts the subscription immediately, and to avoid unexpected behavior due to request delays or clock skew resulting in a slightly backdated or postdated start. You can also use a Unix timestamp to backdate the subscription so that it starts on a past date, or set a future date for the subscription to start on.
         """
         return pulumi.get(self, "start_date")
 
@@ -518,14 +550,15 @@ class SubscriptionSchedule(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 billing_mode: pulumi.Input[Optional[Union['SubscriptionScheduleBillingModeArgs', 'SubscriptionScheduleBillingModeArgsDict']]] = None,
+                 billing_mode: pulumi.Input[Optional[Union['SubscriptionScheduleBillingModeArgs', 'SubscriptionScheduleBillingModeArgsDict', 'outputs.SubscriptionScheduleBillingMode']]] = None,
                  customer: pulumi.Input[Optional[_builtins.str]] = None,
                  customer_account: pulumi.Input[Optional[_builtins.str]] = None,
-                 default_settings: pulumi.Input[Optional[Union['SubscriptionScheduleDefaultSettingsArgs', 'SubscriptionScheduleDefaultSettingsArgsDict']]] = None,
+                 default_settings: pulumi.Input[Optional[Union['SubscriptionScheduleDefaultSettingsArgs', 'SubscriptionScheduleDefaultSettingsArgsDict', 'outputs.SubscriptionScheduleDefaultSettings']]] = None,
                  end_behavior: pulumi.Input[Optional[_builtins.str]] = None,
                  from_subscription: pulumi.Input[Optional[_builtins.str]] = None,
                  metadata: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-                 phases: pulumi.Input[Optional[Sequence[pulumi.Input[Union['SubscriptionSchedulePhaseArgs', 'SubscriptionSchedulePhaseArgsDict']]]]] = None,
+                 pause_schedules: pulumi.Input[Optional[Sequence[pulumi.Input[Union['SubscriptionSchedulePauseScheduleArgs', 'SubscriptionSchedulePauseScheduleArgsDict', 'outputs.SubscriptionSchedulePauseSchedule']]]]] = None,
+                 phases: pulumi.Input[Optional[Sequence[pulumi.Input[Union['SubscriptionSchedulePhaseArgs', 'SubscriptionSchedulePhaseArgsDict', 'outputs.SubscriptionSchedulePhase']]]]] = None,
                  start_date: pulumi.Input[Optional[_builtins.float]] = None,
                  __props__=None):
         """
@@ -533,15 +566,16 @@ class SubscriptionSchedule(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[Union['SubscriptionScheduleBillingModeArgs', 'SubscriptionScheduleBillingModeArgsDict']] billing_mode: The billing mode of the subscription.
+        :param pulumi.Input[Union['SubscriptionScheduleBillingModeArgs', 'SubscriptionScheduleBillingModeArgsDict', 'outputs.SubscriptionScheduleBillingMode']] billing_mode: The billing mode of the subscription.
         :param pulumi.Input[_builtins.str] customer: ID of the customer who owns the subscription schedule.
         :param pulumi.Input[_builtins.str] customer_account: ID of the account who owns the subscription schedule.
         :param pulumi.Input[_builtins.str] end_behavior: Behavior of the subscription schedule and underlying subscription when it ends. Possible values are <span pulumi-lang-nodejs="`release`" pulumi-lang-dotnet="`Release`" pulumi-lang-go="`release`" pulumi-lang-python="`release`" pulumi-lang-yaml="`release`" pulumi-lang-java="`release`" pulumi-lang-hcl="`release`">`release`</span> or <span pulumi-lang-nodejs="`cancel`" pulumi-lang-dotnet="`Cancel`" pulumi-lang-go="`cancel`" pulumi-lang-python="`cancel`" pulumi-lang-yaml="`cancel`" pulumi-lang-java="`cancel`" pulumi-lang-hcl="`cancel`">`cancel`</span> with the default being <span pulumi-lang-nodejs="`release`" pulumi-lang-dotnet="`Release`" pulumi-lang-go="`release`" pulumi-lang-python="`release`" pulumi-lang-yaml="`release`" pulumi-lang-java="`release`" pulumi-lang-hcl="`release`">`release`</span>. <span pulumi-lang-nodejs="`release`" pulumi-lang-dotnet="`Release`" pulumi-lang-go="`release`" pulumi-lang-python="`release`" pulumi-lang-yaml="`release`" pulumi-lang-java="`release`" pulumi-lang-hcl="`release`">`release`</span> will end the subscription schedule and keep the underlying subscription running. <span pulumi-lang-nodejs="`cancel`" pulumi-lang-dotnet="`Cancel`" pulumi-lang-go="`cancel`" pulumi-lang-python="`cancel`" pulumi-lang-yaml="`cancel`" pulumi-lang-java="`cancel`" pulumi-lang-hcl="`cancel`">`cancel`</span> will end the subscription schedule and cancel the underlying subscription.
         :param pulumi.Input[_builtins.str] from_subscription: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
                Migrate an existing subscription to be managed by a subscription schedule. If this parameter is set, a subscription schedule will be created using the subscription's item(s), set to auto-renew using the subscription's interval. When using this parameter, other parameters (such as phase values) cannot be set. To create a subscription schedule with other modifications, we recommend making two separate API calls.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] metadata: Set of [key-value pairs](https://docs.stripe.com/api/metadata) that you can attach to an object. This can be useful for storing additional information about the object in a structured format.
-        :param pulumi.Input[Sequence[pulumi.Input[Union['SubscriptionSchedulePhaseArgs', 'SubscriptionSchedulePhaseArgsDict']]]] phases: Configuration for the subscription schedule's phases.
-        :param pulumi.Input[_builtins.float] start_date: When the subscription schedule starts. We recommend using <span pulumi-lang-nodejs="`now`" pulumi-lang-dotnet="`Now`" pulumi-lang-go="`now`" pulumi-lang-python="`now`" pulumi-lang-yaml="`now`" pulumi-lang-java="`now`" pulumi-lang-hcl="`now`">`now`</span> so that it starts the subscription immediately. You can also use a Unix timestamp to backdate the subscription so that it starts on a past date, or set a future date for the subscription to start on.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['SubscriptionSchedulePauseScheduleArgs', 'SubscriptionSchedulePauseScheduleArgsDict', 'outputs.SubscriptionSchedulePauseSchedule']]]] pause_schedules: The pause schedules for this subscription schedule.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['SubscriptionSchedulePhaseArgs', 'SubscriptionSchedulePhaseArgsDict', 'outputs.SubscriptionSchedulePhase']]]] phases: Configuration for the subscription schedule's phases.
+        :param pulumi.Input[_builtins.float] start_date: When the subscription schedule starts. We recommend using <span pulumi-lang-nodejs="`now`" pulumi-lang-dotnet="`Now`" pulumi-lang-go="`now`" pulumi-lang-python="`now`" pulumi-lang-yaml="`now`" pulumi-lang-java="`now`" pulumi-lang-hcl="`now`">`now`</span> so that it starts the subscription immediately, and to avoid unexpected behavior due to request delays or clock skew resulting in a slightly backdated or postdated start. You can also use a Unix timestamp to backdate the subscription so that it starts on a past date, or set a future date for the subscription to start on.
         """
         ...
     @overload
@@ -567,14 +601,15 @@ class SubscriptionSchedule(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 billing_mode: pulumi.Input[Optional[Union['SubscriptionScheduleBillingModeArgs', 'SubscriptionScheduleBillingModeArgsDict']]] = None,
+                 billing_mode: pulumi.Input[Optional[Union['SubscriptionScheduleBillingModeArgs', 'SubscriptionScheduleBillingModeArgsDict', 'outputs.SubscriptionScheduleBillingMode']]] = None,
                  customer: pulumi.Input[Optional[_builtins.str]] = None,
                  customer_account: pulumi.Input[Optional[_builtins.str]] = None,
-                 default_settings: pulumi.Input[Optional[Union['SubscriptionScheduleDefaultSettingsArgs', 'SubscriptionScheduleDefaultSettingsArgsDict']]] = None,
+                 default_settings: pulumi.Input[Optional[Union['SubscriptionScheduleDefaultSettingsArgs', 'SubscriptionScheduleDefaultSettingsArgsDict', 'outputs.SubscriptionScheduleDefaultSettings']]] = None,
                  end_behavior: pulumi.Input[Optional[_builtins.str]] = None,
                  from_subscription: pulumi.Input[Optional[_builtins.str]] = None,
                  metadata: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-                 phases: pulumi.Input[Optional[Sequence[pulumi.Input[Union['SubscriptionSchedulePhaseArgs', 'SubscriptionSchedulePhaseArgsDict']]]]] = None,
+                 pause_schedules: pulumi.Input[Optional[Sequence[pulumi.Input[Union['SubscriptionSchedulePauseScheduleArgs', 'SubscriptionSchedulePauseScheduleArgsDict', 'outputs.SubscriptionSchedulePauseSchedule']]]]] = None,
+                 phases: pulumi.Input[Optional[Sequence[pulumi.Input[Union['SubscriptionSchedulePhaseArgs', 'SubscriptionSchedulePhaseArgsDict', 'outputs.SubscriptionSchedulePhase']]]]] = None,
                  start_date: pulumi.Input[Optional[_builtins.float]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
@@ -592,6 +627,7 @@ class SubscriptionSchedule(pulumi.CustomResource):
             __props__.__dict__["end_behavior"] = end_behavior
             __props__.__dict__["from_subscription"] = None if from_subscription is None else pulumi.Output.secret(from_subscription)
             __props__.__dict__["metadata"] = metadata
+            __props__.__dict__["pause_schedules"] = pause_schedules
             __props__.__dict__["phases"] = phases
             __props__.__dict__["start_date"] = start_date
             __props__.__dict__["application"] = None
@@ -620,20 +656,21 @@ class SubscriptionSchedule(pulumi.CustomResource):
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
             application: pulumi.Input[Optional[_builtins.str]] = None,
-            billing_mode: pulumi.Input[Optional[Union['SubscriptionScheduleBillingModeArgs', 'SubscriptionScheduleBillingModeArgsDict']]] = None,
+            billing_mode: pulumi.Input[Optional[Union['SubscriptionScheduleBillingModeArgs', 'SubscriptionScheduleBillingModeArgsDict', 'outputs.SubscriptionScheduleBillingMode']]] = None,
             canceled_at: pulumi.Input[Optional[_builtins.float]] = None,
             completed_at: pulumi.Input[Optional[_builtins.float]] = None,
             created: pulumi.Input[Optional[_builtins.float]] = None,
-            current_phase: pulumi.Input[Optional[Union['SubscriptionScheduleCurrentPhaseArgs', 'SubscriptionScheduleCurrentPhaseArgsDict']]] = None,
+            current_phase: pulumi.Input[Optional[Union['SubscriptionScheduleCurrentPhaseArgs', 'SubscriptionScheduleCurrentPhaseArgsDict', 'outputs.SubscriptionScheduleCurrentPhase']]] = None,
             customer: pulumi.Input[Optional[_builtins.str]] = None,
             customer_account: pulumi.Input[Optional[_builtins.str]] = None,
-            default_settings: pulumi.Input[Optional[Union['SubscriptionScheduleDefaultSettingsArgs', 'SubscriptionScheduleDefaultSettingsArgsDict']]] = None,
+            default_settings: pulumi.Input[Optional[Union['SubscriptionScheduleDefaultSettingsArgs', 'SubscriptionScheduleDefaultSettingsArgsDict', 'outputs.SubscriptionScheduleDefaultSettings']]] = None,
             end_behavior: pulumi.Input[Optional[_builtins.str]] = None,
             from_subscription: pulumi.Input[Optional[_builtins.str]] = None,
             livemode: pulumi.Input[Optional[_builtins.bool]] = None,
             metadata: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
             object: pulumi.Input[Optional[_builtins.str]] = None,
-            phases: pulumi.Input[Optional[Sequence[pulumi.Input[Union['SubscriptionSchedulePhaseArgs', 'SubscriptionSchedulePhaseArgsDict']]]]] = None,
+            pause_schedules: pulumi.Input[Optional[Sequence[pulumi.Input[Union['SubscriptionSchedulePauseScheduleArgs', 'SubscriptionSchedulePauseScheduleArgsDict', 'outputs.SubscriptionSchedulePauseSchedule']]]]] = None,
+            phases: pulumi.Input[Optional[Sequence[pulumi.Input[Union['SubscriptionSchedulePhaseArgs', 'SubscriptionSchedulePhaseArgsDict', 'outputs.SubscriptionSchedulePhase']]]]] = None,
             released_at: pulumi.Input[Optional[_builtins.float]] = None,
             released_subscription: pulumi.Input[Optional[_builtins.str]] = None,
             start_date: pulumi.Input[Optional[_builtins.float]] = None,
@@ -648,11 +685,11 @@ class SubscriptionSchedule(pulumi.CustomResource):
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] application: ID of the Connect Application that created the schedule.
-        :param pulumi.Input[Union['SubscriptionScheduleBillingModeArgs', 'SubscriptionScheduleBillingModeArgsDict']] billing_mode: The billing mode of the subscription.
+        :param pulumi.Input[Union['SubscriptionScheduleBillingModeArgs', 'SubscriptionScheduleBillingModeArgsDict', 'outputs.SubscriptionScheduleBillingMode']] billing_mode: The billing mode of the subscription.
         :param pulumi.Input[_builtins.float] canceled_at: Time at which the subscription schedule was canceled. Measured in seconds since the Unix epoch.
         :param pulumi.Input[_builtins.float] completed_at: Time at which the subscription schedule was completed. Measured in seconds since the Unix epoch.
         :param pulumi.Input[_builtins.float] created: Time at which the object was created. Measured in seconds since the Unix epoch.
-        :param pulumi.Input[Union['SubscriptionScheduleCurrentPhaseArgs', 'SubscriptionScheduleCurrentPhaseArgsDict']] current_phase: Object representing the start and end dates for the current phase of the subscription schedule, if it is <span pulumi-lang-nodejs="`active`" pulumi-lang-dotnet="`Active`" pulumi-lang-go="`active`" pulumi-lang-python="`active`" pulumi-lang-yaml="`active`" pulumi-lang-java="`active`" pulumi-lang-hcl="`active`">`active`</span>.
+        :param pulumi.Input[Union['SubscriptionScheduleCurrentPhaseArgs', 'SubscriptionScheduleCurrentPhaseArgsDict', 'outputs.SubscriptionScheduleCurrentPhase']] current_phase: Object representing the start and end dates for the current phase of the subscription schedule, if it is <span pulumi-lang-nodejs="`active`" pulumi-lang-dotnet="`Active`" pulumi-lang-go="`active`" pulumi-lang-python="`active`" pulumi-lang-yaml="`active`" pulumi-lang-java="`active`" pulumi-lang-hcl="`active`">`active`</span>.
         :param pulumi.Input[_builtins.str] customer: ID of the customer who owns the subscription schedule.
         :param pulumi.Input[_builtins.str] customer_account: ID of the account who owns the subscription schedule.
         :param pulumi.Input[_builtins.str] end_behavior: Behavior of the subscription schedule and underlying subscription when it ends. Possible values are <span pulumi-lang-nodejs="`release`" pulumi-lang-dotnet="`Release`" pulumi-lang-go="`release`" pulumi-lang-python="`release`" pulumi-lang-yaml="`release`" pulumi-lang-java="`release`" pulumi-lang-hcl="`release`">`release`</span> or <span pulumi-lang-nodejs="`cancel`" pulumi-lang-dotnet="`Cancel`" pulumi-lang-go="`cancel`" pulumi-lang-python="`cancel`" pulumi-lang-yaml="`cancel`" pulumi-lang-java="`cancel`" pulumi-lang-hcl="`cancel`">`cancel`</span> with the default being <span pulumi-lang-nodejs="`release`" pulumi-lang-dotnet="`Release`" pulumi-lang-go="`release`" pulumi-lang-python="`release`" pulumi-lang-yaml="`release`" pulumi-lang-java="`release`" pulumi-lang-hcl="`release`">`release`</span>. <span pulumi-lang-nodejs="`release`" pulumi-lang-dotnet="`Release`" pulumi-lang-go="`release`" pulumi-lang-python="`release`" pulumi-lang-yaml="`release`" pulumi-lang-java="`release`" pulumi-lang-hcl="`release`">`release`</span> will end the subscription schedule and keep the underlying subscription running. <span pulumi-lang-nodejs="`cancel`" pulumi-lang-dotnet="`Cancel`" pulumi-lang-go="`cancel`" pulumi-lang-python="`cancel`" pulumi-lang-yaml="`cancel`" pulumi-lang-java="`cancel`" pulumi-lang-hcl="`cancel`">`cancel`</span> will end the subscription schedule and cancel the underlying subscription.
@@ -661,10 +698,11 @@ class SubscriptionSchedule(pulumi.CustomResource):
         :param pulumi.Input[_builtins.bool] livemode: If the object exists in live mode, the value is <span pulumi-lang-nodejs="`true`" pulumi-lang-dotnet="`True`" pulumi-lang-go="`true`" pulumi-lang-python="`true`" pulumi-lang-yaml="`true`" pulumi-lang-java="`true`" pulumi-lang-hcl="`true`">`true`</span>. If the object exists in test mode, the value is <span pulumi-lang-nodejs="`false`" pulumi-lang-dotnet="`False`" pulumi-lang-go="`false`" pulumi-lang-python="`false`" pulumi-lang-yaml="`false`" pulumi-lang-java="`false`" pulumi-lang-hcl="`false`">`false`</span>.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] metadata: Set of [key-value pairs](https://docs.stripe.com/api/metadata) that you can attach to an object. This can be useful for storing additional information about the object in a structured format.
         :param pulumi.Input[_builtins.str] object: String representing the object's type. Objects of the same type share the same value.
-        :param pulumi.Input[Sequence[pulumi.Input[Union['SubscriptionSchedulePhaseArgs', 'SubscriptionSchedulePhaseArgsDict']]]] phases: Configuration for the subscription schedule's phases.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['SubscriptionSchedulePauseScheduleArgs', 'SubscriptionSchedulePauseScheduleArgsDict', 'outputs.SubscriptionSchedulePauseSchedule']]]] pause_schedules: The pause schedules for this subscription schedule.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['SubscriptionSchedulePhaseArgs', 'SubscriptionSchedulePhaseArgsDict', 'outputs.SubscriptionSchedulePhase']]]] phases: Configuration for the subscription schedule's phases.
         :param pulumi.Input[_builtins.float] released_at: Time at which the subscription schedule was released. Measured in seconds since the Unix epoch.
         :param pulumi.Input[_builtins.str] released_subscription: ID of the subscription once managed by the subscription schedule (if it is released).
-        :param pulumi.Input[_builtins.float] start_date: When the subscription schedule starts. We recommend using <span pulumi-lang-nodejs="`now`" pulumi-lang-dotnet="`Now`" pulumi-lang-go="`now`" pulumi-lang-python="`now`" pulumi-lang-yaml="`now`" pulumi-lang-java="`now`" pulumi-lang-hcl="`now`">`now`</span> so that it starts the subscription immediately. You can also use a Unix timestamp to backdate the subscription so that it starts on a past date, or set a future date for the subscription to start on.
+        :param pulumi.Input[_builtins.float] start_date: When the subscription schedule starts. We recommend using <span pulumi-lang-nodejs="`now`" pulumi-lang-dotnet="`Now`" pulumi-lang-go="`now`" pulumi-lang-python="`now`" pulumi-lang-yaml="`now`" pulumi-lang-java="`now`" pulumi-lang-hcl="`now`">`now`</span> so that it starts the subscription immediately, and to avoid unexpected behavior due to request delays or clock skew resulting in a slightly backdated or postdated start. You can also use a Unix timestamp to backdate the subscription so that it starts on a past date, or set a future date for the subscription to start on.
         :param pulumi.Input[_builtins.str] status: The present status of the subscription schedule. Possible values are <span pulumi-lang-nodejs="`notStarted`" pulumi-lang-dotnet="`NotStarted`" pulumi-lang-go="`notStarted`" pulumi-lang-python="`not_started`" pulumi-lang-yaml="`notStarted`" pulumi-lang-java="`notStarted`" pulumi-lang-hcl="`not_started`">`notStarted`</span>, <span pulumi-lang-nodejs="`active`" pulumi-lang-dotnet="`Active`" pulumi-lang-go="`active`" pulumi-lang-python="`active`" pulumi-lang-yaml="`active`" pulumi-lang-java="`active`" pulumi-lang-hcl="`active`">`active`</span>, <span pulumi-lang-nodejs="`completed`" pulumi-lang-dotnet="`Completed`" pulumi-lang-go="`completed`" pulumi-lang-python="`completed`" pulumi-lang-yaml="`completed`" pulumi-lang-java="`completed`" pulumi-lang-hcl="`completed`">`completed`</span>, <span pulumi-lang-nodejs="`released`" pulumi-lang-dotnet="`Released`" pulumi-lang-go="`released`" pulumi-lang-python="`released`" pulumi-lang-yaml="`released`" pulumi-lang-java="`released`" pulumi-lang-hcl="`released`">`released`</span>, and <span pulumi-lang-nodejs="`canceled`" pulumi-lang-dotnet="`Canceled`" pulumi-lang-go="`canceled`" pulumi-lang-python="`canceled`" pulumi-lang-yaml="`canceled`" pulumi-lang-java="`canceled`" pulumi-lang-hcl="`canceled`">`canceled`</span>. You can read more about the different states in our [behavior guide](https://docs.stripe.com/billing/subscriptions/subscription-schedules).
         :param pulumi.Input[_builtins.str] subscription: ID of the subscription managed by the subscription schedule.
         :param pulumi.Input[_builtins.str] test_clock: ID of the test clock this subscription schedule belongs to.
@@ -687,6 +725,7 @@ class SubscriptionSchedule(pulumi.CustomResource):
         __props__.__dict__["livemode"] = livemode
         __props__.__dict__["metadata"] = metadata
         __props__.__dict__["object"] = object
+        __props__.__dict__["pause_schedules"] = pause_schedules
         __props__.__dict__["phases"] = phases
         __props__.__dict__["released_at"] = released_at
         __props__.__dict__["released_subscription"] = released_subscription
@@ -695,6 +734,56 @@ class SubscriptionSchedule(pulumi.CustomResource):
         __props__.__dict__["subscription"] = subscription
         __props__.__dict__["test_clock"] = test_clock
         return SubscriptionSchedule(resource_name, opts=opts, __props__=__props__)
+
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            application: pulumi.Input[Optional[_builtins.str]] = None,
+            billing_mode: pulumi.Input[Optional[Union['SubscriptionScheduleBillingModeArgs', 'SubscriptionScheduleBillingModeArgsDict', 'outputs.SubscriptionScheduleBillingMode']]] = None,
+            canceled_at: pulumi.Input[Optional[_builtins.float]] = None,
+            completed_at: pulumi.Input[Optional[_builtins.float]] = None,
+            created: pulumi.Input[Optional[_builtins.float]] = None,
+            current_phase: pulumi.Input[Optional[Union['SubscriptionScheduleCurrentPhaseArgs', 'SubscriptionScheduleCurrentPhaseArgsDict', 'outputs.SubscriptionScheduleCurrentPhase']]] = None,
+            customer: pulumi.Input[Optional[_builtins.str]] = None,
+            customer_account: pulumi.Input[Optional[_builtins.str]] = None,
+            default_settings: pulumi.Input[Optional[Union['SubscriptionScheduleDefaultSettingsArgs', 'SubscriptionScheduleDefaultSettingsArgsDict', 'outputs.SubscriptionScheduleDefaultSettings']]] = None,
+            end_behavior: pulumi.Input[Optional[_builtins.str]] = None,
+            from_subscription: pulumi.Input[Optional[_builtins.str]] = None,
+            livemode: pulumi.Input[Optional[_builtins.bool]] = None,
+            metadata: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+            object: pulumi.Input[Optional[_builtins.str]] = None,
+            pause_schedules: pulumi.Input[Optional[Sequence[pulumi.Input[Union['SubscriptionSchedulePauseScheduleArgs', 'SubscriptionSchedulePauseScheduleArgsDict', 'outputs.SubscriptionSchedulePauseSchedule']]]]] = None,
+            phases: pulumi.Input[Optional[Sequence[pulumi.Input[Union['SubscriptionSchedulePhaseArgs', 'SubscriptionSchedulePhaseArgsDict', 'outputs.SubscriptionSchedulePhase']]]]] = None,
+            released_at: pulumi.Input[Optional[_builtins.float]] = None,
+            released_subscription: pulumi.Input[Optional[_builtins.str]] = None,
+            start_date: pulumi.Input[Optional[_builtins.float]] = None,
+            status: pulumi.Input[Optional[_builtins.str]] = None,
+            subscription: pulumi.Input[Optional[_builtins.str]] = None,
+            test_clock: pulumi.Input[Optional[_builtins.str]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["application"] = application
+        __props__["billingMode"] = billing_mode
+        __props__["canceledAt"] = canceled_at
+        __props__["completedAt"] = completed_at
+        __props__["created"] = created
+        __props__["currentPhase"] = current_phase
+        __props__["customer"] = customer
+        __props__["customerAccount"] = customer_account
+        __props__["defaultSettings"] = default_settings
+        __props__["endBehavior"] = end_behavior
+        __props__["fromSubscription"] = from_subscription
+        __props__["livemode"] = livemode
+        __props__["metadata"] = metadata
+        __props__["object"] = object
+        __props__["pauseSchedules"] = pause_schedules
+        __props__["phases"] = phases
+        __props__["releasedAt"] = released_at
+        __props__["releasedSubscription"] = released_subscription
+        __props__["startDate"] = start_date
+        __props__["status"] = status
+        __props__["subscription"] = subscription
+        __props__["testClock"] = test_clock
+        return pulumi.runtime.exists_resource(None, 'stripe:index/subscriptionSchedule:SubscriptionSchedule', id, __props__, opts or pulumi.ResourceOptions(), package_ref=_utilities.get_package())
 
     @_builtins.property
     @pulumi.getter
@@ -807,6 +896,14 @@ class SubscriptionSchedule(pulumi.CustomResource):
         return pulumi.get(self, "object")
 
     @_builtins.property
+    @pulumi.getter(name="pauseSchedules")
+    def pause_schedules(self) -> pulumi.Output[Sequence['outputs.SubscriptionSchedulePauseSchedule']]:
+        """
+        The pause schedules for this subscription schedule.
+        """
+        return pulumi.get(self, "pause_schedules")
+
+    @_builtins.property
     @pulumi.getter
     def phases(self) -> pulumi.Output[Sequence['outputs.SubscriptionSchedulePhase']]:
         """
@@ -834,7 +931,7 @@ class SubscriptionSchedule(pulumi.CustomResource):
     @pulumi.getter(name="startDate")
     def start_date(self) -> pulumi.Output[Optional[_builtins.float]]:
         """
-        When the subscription schedule starts. We recommend using <span pulumi-lang-nodejs="`now`" pulumi-lang-dotnet="`Now`" pulumi-lang-go="`now`" pulumi-lang-python="`now`" pulumi-lang-yaml="`now`" pulumi-lang-java="`now`" pulumi-lang-hcl="`now`">`now`</span> so that it starts the subscription immediately. You can also use a Unix timestamp to backdate the subscription so that it starts on a past date, or set a future date for the subscription to start on.
+        When the subscription schedule starts. We recommend using <span pulumi-lang-nodejs="`now`" pulumi-lang-dotnet="`Now`" pulumi-lang-go="`now`" pulumi-lang-python="`now`" pulumi-lang-yaml="`now`" pulumi-lang-java="`now`" pulumi-lang-hcl="`now`">`now`</span> so that it starts the subscription immediately, and to avoid unexpected behavior due to request delays or clock skew resulting in a slightly backdated or postdated start. You can also use a Unix timestamp to backdate the subscription so that it starts on a past date, or set a future date for the subscription to start on.
         """
         return pulumi.get(self, "start_date")
 

@@ -27,14 +27,14 @@ import javax.annotation.Nullable;
 @ResourceType(type="stripe:index/customer:Customer")
 public class Customer extends com.pulumi.resources.CustomResource {
     /**
-     * The customer&#39;s address.
+     * The customer&#39;s billing address.
      * 
      */
     @Export(name="addresses", refs={List.class,CustomerAddress.class}, tree="[0,1]")
     private Output</* @Nullable */ List<CustomerAddress>> addresses;
 
     /**
-     * @return The customer&#39;s address.
+     * @return The customer&#39;s billing address.
      * 
      */
     public Output<Optional<List<CustomerAddress>>> addresses() {

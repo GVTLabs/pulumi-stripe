@@ -385,8 +385,8 @@ class PromotionCode(pulumi.CustomResource):
                  expires_at: pulumi.Input[Optional[_builtins.float]] = None,
                  max_redemptions: pulumi.Input[Optional[_builtins.float]] = None,
                  metadata: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-                 promotions: pulumi.Input[Optional[Sequence[pulumi.Input[Union['PromotionCodePromotionArgs', 'PromotionCodePromotionArgsDict']]]]] = None,
-                 restrictions: pulumi.Input[Optional[Sequence[pulumi.Input[Union['PromotionCodeRestrictionArgs', 'PromotionCodeRestrictionArgsDict']]]]] = None,
+                 promotions: pulumi.Input[Optional[Sequence[pulumi.Input[Union['PromotionCodePromotionArgs', 'PromotionCodePromotionArgsDict', 'outputs.PromotionCodePromotion']]]]] = None,
+                 restrictions: pulumi.Input[Optional[Sequence[pulumi.Input[Union['PromotionCodeRestrictionArgs', 'PromotionCodeRestrictionArgsDict', 'outputs.PromotionCodeRestriction']]]]] = None,
                  __props__=None):
         """
         Create a PromotionCode resource with the given unique name, props, and options.
@@ -432,8 +432,8 @@ class PromotionCode(pulumi.CustomResource):
                  expires_at: pulumi.Input[Optional[_builtins.float]] = None,
                  max_redemptions: pulumi.Input[Optional[_builtins.float]] = None,
                  metadata: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-                 promotions: pulumi.Input[Optional[Sequence[pulumi.Input[Union['PromotionCodePromotionArgs', 'PromotionCodePromotionArgsDict']]]]] = None,
-                 restrictions: pulumi.Input[Optional[Sequence[pulumi.Input[Union['PromotionCodeRestrictionArgs', 'PromotionCodeRestrictionArgsDict']]]]] = None,
+                 promotions: pulumi.Input[Optional[Sequence[pulumi.Input[Union['PromotionCodePromotionArgs', 'PromotionCodePromotionArgsDict', 'outputs.PromotionCodePromotion']]]]] = None,
+                 restrictions: pulumi.Input[Optional[Sequence[pulumi.Input[Union['PromotionCodeRestrictionArgs', 'PromotionCodeRestrictionArgsDict', 'outputs.PromotionCodeRestriction']]]]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -477,8 +477,8 @@ class PromotionCode(pulumi.CustomResource):
             max_redemptions: pulumi.Input[Optional[_builtins.float]] = None,
             metadata: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
             object: pulumi.Input[Optional[_builtins.str]] = None,
-            promotions: pulumi.Input[Optional[Sequence[pulumi.Input[Union['PromotionCodePromotionArgs', 'PromotionCodePromotionArgsDict']]]]] = None,
-            restrictions: pulumi.Input[Optional[Sequence[pulumi.Input[Union['PromotionCodeRestrictionArgs', 'PromotionCodeRestrictionArgsDict']]]]] = None,
+            promotions: pulumi.Input[Optional[Sequence[pulumi.Input[Union['PromotionCodePromotionArgs', 'PromotionCodePromotionArgsDict', 'outputs.PromotionCodePromotion']]]]] = None,
+            restrictions: pulumi.Input[Optional[Sequence[pulumi.Input[Union['PromotionCodeRestrictionArgs', 'PromotionCodeRestrictionArgsDict', 'outputs.PromotionCodeRestriction']]]]] = None,
             times_redeemed: pulumi.Input[Optional[_builtins.float]] = None) -> 'PromotionCode':
         """
         Get an existing PromotionCode resource's state with the given name, id, and optional extra
@@ -517,6 +517,38 @@ class PromotionCode(pulumi.CustomResource):
         __props__.__dict__["restrictions"] = restrictions
         __props__.__dict__["times_redeemed"] = times_redeemed
         return PromotionCode(resource_name, opts=opts, __props__=__props__)
+
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            active: pulumi.Input[Optional[_builtins.bool]] = None,
+            code: pulumi.Input[Optional[_builtins.str]] = None,
+            created: pulumi.Input[Optional[_builtins.float]] = None,
+            customer: pulumi.Input[Optional[_builtins.str]] = None,
+            customer_account: pulumi.Input[Optional[_builtins.str]] = None,
+            expires_at: pulumi.Input[Optional[_builtins.float]] = None,
+            livemode: pulumi.Input[Optional[_builtins.bool]] = None,
+            max_redemptions: pulumi.Input[Optional[_builtins.float]] = None,
+            metadata: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+            object: pulumi.Input[Optional[_builtins.str]] = None,
+            promotions: pulumi.Input[Optional[Sequence[pulumi.Input[Union['PromotionCodePromotionArgs', 'PromotionCodePromotionArgsDict', 'outputs.PromotionCodePromotion']]]]] = None,
+            restrictions: pulumi.Input[Optional[Sequence[pulumi.Input[Union['PromotionCodeRestrictionArgs', 'PromotionCodeRestrictionArgsDict', 'outputs.PromotionCodeRestriction']]]]] = None,
+            times_redeemed: pulumi.Input[Optional[_builtins.float]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["active"] = active
+        __props__["code"] = code
+        __props__["created"] = created
+        __props__["customer"] = customer
+        __props__["customerAccount"] = customer_account
+        __props__["expiresAt"] = expires_at
+        __props__["livemode"] = livemode
+        __props__["maxRedemptions"] = max_redemptions
+        __props__["metadata"] = metadata
+        __props__["object"] = object
+        __props__["promotions"] = promotions
+        __props__["restrictions"] = restrictions
+        __props__["timesRedeemed"] = times_redeemed
+        return pulumi.runtime.exists_resource(None, 'stripe:index/promotionCode:PromotionCode', id, __props__, opts or pulumi.ResourceOptions(), package_ref=_utilities.get_package())
 
     @_builtins.property
     @pulumi.getter

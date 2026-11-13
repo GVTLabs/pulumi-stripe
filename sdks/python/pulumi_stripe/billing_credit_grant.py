@@ -440,8 +440,8 @@ class BillingCreditGrant(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 amount: pulumi.Input[Optional[Union['BillingCreditGrantAmountArgs', 'BillingCreditGrantAmountArgsDict']]] = None,
-                 applicability_config: pulumi.Input[Optional[Union['BillingCreditGrantApplicabilityConfigArgs', 'BillingCreditGrantApplicabilityConfigArgsDict']]] = None,
+                 amount: pulumi.Input[Optional[Union['BillingCreditGrantAmountArgs', 'BillingCreditGrantAmountArgsDict', 'outputs.BillingCreditGrantAmount']]] = None,
+                 applicability_config: pulumi.Input[Optional[Union['BillingCreditGrantApplicabilityConfigArgs', 'BillingCreditGrantApplicabilityConfigArgsDict', 'outputs.BillingCreditGrantApplicabilityConfig']]] = None,
                  category: pulumi.Input[Optional[_builtins.str]] = None,
                  customer: pulumi.Input[Optional[_builtins.str]] = None,
                  customer_account: pulumi.Input[Optional[_builtins.str]] = None,
@@ -489,8 +489,8 @@ class BillingCreditGrant(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 amount: pulumi.Input[Optional[Union['BillingCreditGrantAmountArgs', 'BillingCreditGrantAmountArgsDict']]] = None,
-                 applicability_config: pulumi.Input[Optional[Union['BillingCreditGrantApplicabilityConfigArgs', 'BillingCreditGrantApplicabilityConfigArgsDict']]] = None,
+                 amount: pulumi.Input[Optional[Union['BillingCreditGrantAmountArgs', 'BillingCreditGrantAmountArgsDict', 'outputs.BillingCreditGrantAmount']]] = None,
+                 applicability_config: pulumi.Input[Optional[Union['BillingCreditGrantApplicabilityConfigArgs', 'BillingCreditGrantApplicabilityConfigArgsDict', 'outputs.BillingCreditGrantApplicabilityConfig']]] = None,
                  category: pulumi.Input[Optional[_builtins.str]] = None,
                  customer: pulumi.Input[Optional[_builtins.str]] = None,
                  customer_account: pulumi.Input[Optional[_builtins.str]] = None,
@@ -539,8 +539,8 @@ class BillingCreditGrant(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            amount: pulumi.Input[Optional[Union['BillingCreditGrantAmountArgs', 'BillingCreditGrantAmountArgsDict']]] = None,
-            applicability_config: pulumi.Input[Optional[Union['BillingCreditGrantApplicabilityConfigArgs', 'BillingCreditGrantApplicabilityConfigArgsDict']]] = None,
+            amount: pulumi.Input[Optional[Union['BillingCreditGrantAmountArgs', 'BillingCreditGrantAmountArgsDict', 'outputs.BillingCreditGrantAmount']]] = None,
+            applicability_config: pulumi.Input[Optional[Union['BillingCreditGrantApplicabilityConfigArgs', 'BillingCreditGrantApplicabilityConfigArgsDict', 'outputs.BillingCreditGrantApplicabilityConfig']]] = None,
             category: pulumi.Input[Optional[_builtins.str]] = None,
             created: pulumi.Input[Optional[_builtins.float]] = None,
             customer: pulumi.Input[Optional[_builtins.str]] = None,
@@ -598,6 +598,44 @@ class BillingCreditGrant(pulumi.CustomResource):
         __props__.__dict__["updated"] = updated
         __props__.__dict__["voided_at"] = voided_at
         return BillingCreditGrant(resource_name, opts=opts, __props__=__props__)
+
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            amount: pulumi.Input[Optional[Union['BillingCreditGrantAmountArgs', 'BillingCreditGrantAmountArgsDict', 'outputs.BillingCreditGrantAmount']]] = None,
+            applicability_config: pulumi.Input[Optional[Union['BillingCreditGrantApplicabilityConfigArgs', 'BillingCreditGrantApplicabilityConfigArgsDict', 'outputs.BillingCreditGrantApplicabilityConfig']]] = None,
+            category: pulumi.Input[Optional[_builtins.str]] = None,
+            created: pulumi.Input[Optional[_builtins.float]] = None,
+            customer: pulumi.Input[Optional[_builtins.str]] = None,
+            customer_account: pulumi.Input[Optional[_builtins.str]] = None,
+            effective_at: pulumi.Input[Optional[_builtins.float]] = None,
+            expires_at: pulumi.Input[Optional[_builtins.float]] = None,
+            livemode: pulumi.Input[Optional[_builtins.bool]] = None,
+            metadata: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+            name: pulumi.Input[Optional[_builtins.str]] = None,
+            object: pulumi.Input[Optional[_builtins.str]] = None,
+            priority: pulumi.Input[Optional[_builtins.float]] = None,
+            test_clock: pulumi.Input[Optional[_builtins.str]] = None,
+            updated: pulumi.Input[Optional[_builtins.float]] = None,
+            voided_at: pulumi.Input[Optional[_builtins.float]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["amount"] = amount
+        __props__["applicabilityConfig"] = applicability_config
+        __props__["category"] = category
+        __props__["created"] = created
+        __props__["customer"] = customer
+        __props__["customerAccount"] = customer_account
+        __props__["effectiveAt"] = effective_at
+        __props__["expiresAt"] = expires_at
+        __props__["livemode"] = livemode
+        __props__["metadata"] = metadata
+        __props__["name"] = name
+        __props__["object"] = object
+        __props__["priority"] = priority
+        __props__["testClock"] = test_clock
+        __props__["updated"] = updated
+        __props__["voidedAt"] = voided_at
+        return pulumi.runtime.exists_resource(None, 'stripe:index/billingCreditGrant:BillingCreditGrant', id, __props__, opts or pulumi.ResourceOptions(), package_ref=_utilities.get_package())
 
     @_builtins.property
     @pulumi.getter

@@ -31,7 +31,7 @@ class FileArgs:
                A file to upload. Make sure that the specifications follow RFC 2388, which defines file transfers for the `multipart/form-data` protocol.
         :param pulumi.Input[_builtins.str] purpose: The [purpose](https://docs.stripe.com/file-upload#uploading-a-file) of the uploaded file.
         :param pulumi.Input['FileFileLinkDataArgs'] file_link_data: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
-               Optional parameters that automatically create a [file link](https://api.stripe.com#file_links) for the newly created file.
+               Optional parameters that automatically create a [file link](https://docs.stripe.com/api#file_links) for the newly created file.
         """
         pulumi.set(__self__, "file", file)
         pulumi.set(__self__, "purpose", purpose)
@@ -68,7 +68,7 @@ class FileArgs:
     def file_link_data(self) -> pulumi.Input[Optional['FileFileLinkDataArgs']]:
         """
         **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
-        Optional parameters that automatically create a [file link](https://api.stripe.com#file_links) for the newly created file.
+        Optional parameters that automatically create a [file link](https://docs.stripe.com/api#file_links) for the newly created file.
         """
         return pulumi.get(self, "file_link_data")
 
@@ -99,7 +99,7 @@ class _FileState:
         :param pulumi.Input[_builtins.str] file: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
                A file to upload. Make sure that the specifications follow RFC 2388, which defines file transfers for the `multipart/form-data` protocol.
         :param pulumi.Input['FileFileLinkDataArgs'] file_link_data: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
-               Optional parameters that automatically create a [file link](https://api.stripe.com#file_links) for the newly created file.
+               Optional parameters that automatically create a [file link](https://docs.stripe.com/api#file_links) for the newly created file.
         :param pulumi.Input[_builtins.str] filename: The suitable name for saving the file to a filesystem.
         :param pulumi.Input[_builtins.str] object: String representing the object's type. Objects of the same type share the same value.
         :param pulumi.Input[_builtins.str] purpose: The [purpose](https://docs.stripe.com/file-upload#uploading-a-file) of the uploaded file.
@@ -173,7 +173,7 @@ class _FileState:
     def file_link_data(self) -> pulumi.Input[Optional['FileFileLinkDataArgs']]:
         """
         **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
-        Optional parameters that automatically create a [file link](https://api.stripe.com#file_links) for the newly created file.
+        Optional parameters that automatically create a [file link](https://docs.stripe.com/api#file_links) for the newly created file.
         """
         return pulumi.get(self, "file_link_data")
 
@@ -273,7 +273,7 @@ class File(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  file: pulumi.Input[Optional[_builtins.str]] = None,
-                 file_link_data: pulumi.Input[Optional[Union['FileFileLinkDataArgs', 'FileFileLinkDataArgsDict']]] = None,
+                 file_link_data: pulumi.Input[Optional[Union['FileFileLinkDataArgs', 'FileFileLinkDataArgsDict', 'outputs.FileFileLinkData']]] = None,
                  purpose: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         """
@@ -283,8 +283,8 @@ class File(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] file: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
                A file to upload. Make sure that the specifications follow RFC 2388, which defines file transfers for the `multipart/form-data` protocol.
-        :param pulumi.Input[Union['FileFileLinkDataArgs', 'FileFileLinkDataArgsDict']] file_link_data: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
-               Optional parameters that automatically create a [file link](https://api.stripe.com#file_links) for the newly created file.
+        :param pulumi.Input[Union['FileFileLinkDataArgs', 'FileFileLinkDataArgsDict', 'outputs.FileFileLinkData']] file_link_data: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+               Optional parameters that automatically create a [file link](https://docs.stripe.com/api#file_links) for the newly created file.
         :param pulumi.Input[_builtins.str] purpose: The [purpose](https://docs.stripe.com/file-upload#uploading-a-file) of the uploaded file.
         """
         ...
@@ -312,7 +312,7 @@ class File(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  file: pulumi.Input[Optional[_builtins.str]] = None,
-                 file_link_data: pulumi.Input[Optional[Union['FileFileLinkDataArgs', 'FileFileLinkDataArgsDict']]] = None,
+                 file_link_data: pulumi.Input[Optional[Union['FileFileLinkDataArgs', 'FileFileLinkDataArgsDict', 'outputs.FileFileLinkData']]] = None,
                  purpose: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
@@ -354,7 +354,7 @@ class File(pulumi.CustomResource):
             created: pulumi.Input[Optional[_builtins.float]] = None,
             expires_at: pulumi.Input[Optional[_builtins.float]] = None,
             file: pulumi.Input[Optional[_builtins.str]] = None,
-            file_link_data: pulumi.Input[Optional[Union['FileFileLinkDataArgs', 'FileFileLinkDataArgsDict']]] = None,
+            file_link_data: pulumi.Input[Optional[Union['FileFileLinkDataArgs', 'FileFileLinkDataArgsDict', 'outputs.FileFileLinkData']]] = None,
             filename: pulumi.Input[Optional[_builtins.str]] = None,
             object: pulumi.Input[Optional[_builtins.str]] = None,
             purpose: pulumi.Input[Optional[_builtins.str]] = None,
@@ -373,8 +373,8 @@ class File(pulumi.CustomResource):
         :param pulumi.Input[_builtins.float] expires_at: The file expires and isn't available at this time in epoch seconds.
         :param pulumi.Input[_builtins.str] file: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
                A file to upload. Make sure that the specifications follow RFC 2388, which defines file transfers for the `multipart/form-data` protocol.
-        :param pulumi.Input[Union['FileFileLinkDataArgs', 'FileFileLinkDataArgsDict']] file_link_data: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
-               Optional parameters that automatically create a [file link](https://api.stripe.com#file_links) for the newly created file.
+        :param pulumi.Input[Union['FileFileLinkDataArgs', 'FileFileLinkDataArgsDict', 'outputs.FileFileLinkData']] file_link_data: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+               Optional parameters that automatically create a [file link](https://docs.stripe.com/api#file_links) for the newly created file.
         :param pulumi.Input[_builtins.str] filename: The suitable name for saving the file to a filesystem.
         :param pulumi.Input[_builtins.str] object: String representing the object's type. Objects of the same type share the same value.
         :param pulumi.Input[_builtins.str] purpose: The [purpose](https://docs.stripe.com/file-upload#uploading-a-file) of the uploaded file.
@@ -399,6 +399,34 @@ class File(pulumi.CustomResource):
         __props__.__dict__["type"] = type
         __props__.__dict__["url"] = url
         return File(resource_name, opts=opts, __props__=__props__)
+
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            created: pulumi.Input[Optional[_builtins.float]] = None,
+            expires_at: pulumi.Input[Optional[_builtins.float]] = None,
+            file: pulumi.Input[Optional[_builtins.str]] = None,
+            file_link_data: pulumi.Input[Optional[Union['FileFileLinkDataArgs', 'FileFileLinkDataArgsDict', 'outputs.FileFileLinkData']]] = None,
+            filename: pulumi.Input[Optional[_builtins.str]] = None,
+            object: pulumi.Input[Optional[_builtins.str]] = None,
+            purpose: pulumi.Input[Optional[_builtins.str]] = None,
+            size: pulumi.Input[Optional[_builtins.float]] = None,
+            title: pulumi.Input[Optional[_builtins.str]] = None,
+            type: pulumi.Input[Optional[_builtins.str]] = None,
+            url: pulumi.Input[Optional[_builtins.str]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["created"] = created
+        __props__["expiresAt"] = expires_at
+        __props__["file"] = file
+        __props__["fileLinkData"] = file_link_data
+        __props__["filename"] = filename
+        __props__["object"] = object
+        __props__["purpose"] = purpose
+        __props__["size"] = size
+        __props__["title"] = title
+        __props__["type"] = type
+        __props__["url"] = url
+        return pulumi.runtime.exists_resource(None, 'stripe:index/file:File', id, __props__, opts or pulumi.ResourceOptions(), package_ref=_utilities.get_package())
 
     @_builtins.property
     @pulumi.getter
@@ -430,7 +458,7 @@ class File(pulumi.CustomResource):
     def file_link_data(self) -> pulumi.Output[Optional['outputs.FileFileLinkData']]:
         """
         **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
-        Optional parameters that automatically create a [file link](https://api.stripe.com#file_links) for the newly created file.
+        Optional parameters that automatically create a [file link](https://docs.stripe.com/api#file_links) for the newly created file.
         """
         return pulumi.get(self, "file_link_data")
 

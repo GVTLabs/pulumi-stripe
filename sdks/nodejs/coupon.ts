@@ -20,6 +20,17 @@ export class Coupon extends pulumi.CustomResource {
         return new Coupon(name, <any>state, { ...opts, id: id });
     }
 
+    /**
+     * Check whether an existing Coupon resource with the given ID exists.
+     *
+     * @param id The _unique_ provider ID of the resource to check.
+     * @param state Any extra arguments used during the lookup.
+     * @param opts Optional settings to control the behavior of the CustomResource.
+     */
+    public static exists(id: pulumi.Input<string>, state?: CouponState, opts?: pulumi.CustomResourceOptions): pulumi.Output<boolean> {
+        return pulumi.runtime.existsResource("stripe:index/coupon:Coupon", id, <any>state || {}, { ...opts }, utilities.getPackage());
+    }
+
     /** @internal */
     public static readonly __pulumiType = 'stripe:index/coupon:Coupon';
 
@@ -39,6 +50,10 @@ export class Coupon extends pulumi.CustomResource {
      */
     declare public readonly amountOff: pulumi.Output<number>;
     declare public readonly appliesTos: pulumi.Output<outputs.CouponAppliesTo[] | undefined>;
+    /**
+     * Unique identifier for the object.
+     */
+    declare public readonly couponId: pulumi.Output<string>;
     /**
      * Time at which the object was created. Measured in seconds since the Unix epoch.
      */
@@ -111,6 +126,7 @@ export class Coupon extends pulumi.CustomResource {
             const state = argsOrState as CouponState | undefined;
             resourceInputs["amountOff"] = state?.amountOff;
             resourceInputs["appliesTos"] = state?.appliesTos;
+            resourceInputs["couponId"] = state?.couponId;
             resourceInputs["created"] = state?.created;
             resourceInputs["currency"] = state?.currency;
             resourceInputs["currencyOptions"] = state?.currencyOptions;
@@ -129,6 +145,7 @@ export class Coupon extends pulumi.CustomResource {
             const args = argsOrState as CouponArgs | undefined;
             resourceInputs["amountOff"] = args?.amountOff;
             resourceInputs["appliesTos"] = args?.appliesTos;
+            resourceInputs["couponId"] = args?.couponId;
             resourceInputs["currency"] = args?.currency;
             resourceInputs["currencyOptions"] = args?.currencyOptions;
             resourceInputs["duration"] = args?.duration;
@@ -158,6 +175,10 @@ export interface CouponState {
      */
     amountOff?: pulumi.Input<number | undefined>;
     appliesTos?: pulumi.Input<pulumi.Input<inputs.CouponAppliesTo>[] | undefined>;
+    /**
+     * Unique identifier for the object.
+     */
+    couponId?: pulumi.Input<string | undefined>;
     /**
      * Time at which the object was created. Measured in seconds since the Unix epoch.
      */
@@ -225,6 +246,10 @@ export interface CouponArgs {
      */
     amountOff?: pulumi.Input<number | undefined>;
     appliesTos?: pulumi.Input<pulumi.Input<inputs.CouponAppliesTo>[] | undefined>;
+    /**
+     * Unique identifier for the object.
+     */
+    couponId?: pulumi.Input<string | undefined>;
     /**
      * If <span pulumi-lang-nodejs="`amountOff`" pulumi-lang-dotnet="`AmountOff`" pulumi-lang-go="`amountOff`" pulumi-lang-python="`amount_off`" pulumi-lang-yaml="`amountOff`" pulumi-lang-java="`amountOff`" pulumi-lang-hcl="`amount_off`">`amountOff`</span> has been set, the three-letter [ISO code for the currency](https://stripe.com/docs/currencies) of the amount to take off.
      */

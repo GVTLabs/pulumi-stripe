@@ -17,6 +17,7 @@ namespace Pulumi.Stripe.Outputs
         /// (For tokenized numbers only.) The last four digits of the device account number.
         /// </summary>
         public readonly string? DynamicLast4;
+        public readonly Outputs.ChargePaymentMethodDetailsCardWalletLink? Link;
         public readonly Outputs.ChargePaymentMethodDetailsCardWalletMasterpass? Masterpass;
         /// <summary>
         /// The type of the card wallet, one of &lt;span pulumi-lang-nodejs="`amexExpressCheckout`" pulumi-lang-dotnet="`AmexExpressCheckout`" pulumi-lang-go="`amexExpressCheckout`" pulumi-lang-python="`amex_express_checkout`" pulumi-lang-yaml="`amexExpressCheckout`" pulumi-lang-java="`amexExpressCheckout`" pulumi-lang-hcl="`amex_express_checkout`"&gt;`amexExpressCheckout`&lt;/span&gt;, &lt;span pulumi-lang-nodejs="`applePay`" pulumi-lang-dotnet="`ApplePay`" pulumi-lang-go="`applePay`" pulumi-lang-python="`apple_pay`" pulumi-lang-yaml="`applePay`" pulumi-lang-java="`applePay`" pulumi-lang-hcl="`apple_pay`"&gt;`applePay`&lt;/span&gt;, &lt;span pulumi-lang-nodejs="`googlePay`" pulumi-lang-dotnet="`GooglePay`" pulumi-lang-go="`googlePay`" pulumi-lang-python="`google_pay`" pulumi-lang-yaml="`googlePay`" pulumi-lang-java="`googlePay`" pulumi-lang-hcl="`google_pay`"&gt;`googlePay`&lt;/span&gt;, &lt;span pulumi-lang-nodejs="`masterpass`" pulumi-lang-dotnet="`Masterpass`" pulumi-lang-go="`masterpass`" pulumi-lang-python="`masterpass`" pulumi-lang-yaml="`masterpass`" pulumi-lang-java="`masterpass`" pulumi-lang-hcl="`masterpass`"&gt;`masterpass`&lt;/span&gt;, &lt;span pulumi-lang-nodejs="`samsungPay`" pulumi-lang-dotnet="`SamsungPay`" pulumi-lang-go="`samsungPay`" pulumi-lang-python="`samsung_pay`" pulumi-lang-yaml="`samsungPay`" pulumi-lang-java="`samsungPay`" pulumi-lang-hcl="`samsung_pay`"&gt;`samsungPay`&lt;/span&gt;, &lt;span pulumi-lang-nodejs="`visaCheckout`" pulumi-lang-dotnet="`VisaCheckout`" pulumi-lang-go="`visaCheckout`" pulumi-lang-python="`visa_checkout`" pulumi-lang-yaml="`visaCheckout`" pulumi-lang-java="`visaCheckout`" pulumi-lang-hcl="`visa_checkout`"&gt;`visaCheckout`&lt;/span&gt;, or &lt;span pulumi-lang-nodejs="`link`" pulumi-lang-dotnet="`Link`" pulumi-lang-go="`link`" pulumi-lang-python="`link`" pulumi-lang-yaml="`link`" pulumi-lang-java="`link`" pulumi-lang-hcl="`link`"&gt;`link`&lt;/span&gt;. An additional hash is included on the Wallet subhash with a name matching this value. It contains additional information specific to the card wallet type.
@@ -28,6 +29,8 @@ namespace Pulumi.Stripe.Outputs
         private ChargePaymentMethodDetailsCardWallet(
             string? dynamicLast4,
 
+            Outputs.ChargePaymentMethodDetailsCardWalletLink? link,
+
             Outputs.ChargePaymentMethodDetailsCardWalletMasterpass? masterpass,
 
             string? type,
@@ -35,6 +38,7 @@ namespace Pulumi.Stripe.Outputs
             Outputs.ChargePaymentMethodDetailsCardWalletVisaCheckout? visaCheckout)
         {
             DynamicLast4 = dynamicLast4;
+            Link = link;
             Masterpass = masterpass;
             Type = type;
             VisaCheckout = visaCheckout;

@@ -22,6 +22,10 @@ namespace Pulumi.Stripe.Outputs
         /// </summary>
         public readonly string? Feedback;
         /// <summary>
+        /// Customized feedback options that provide deeper insight into why the subscription was canceled, if the subscription was canceled explicitly by the user.
+        /// </summary>
+        public readonly string? FeedbackOption;
+        /// <summary>
         /// Why this subscription was canceled.
         /// </summary>
         public readonly string? Reason;
@@ -32,10 +36,13 @@ namespace Pulumi.Stripe.Outputs
 
             string? feedback,
 
+            string? feedbackOption,
+
             string? reason)
         {
             Comment = comment;
             Feedback = feedback;
+            FeedbackOption = feedbackOption;
             Reason = reason;
         }
     }

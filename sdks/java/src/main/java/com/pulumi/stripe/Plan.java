@@ -204,6 +204,20 @@ public class Plan extends com.pulumi.resources.CustomResource {
         return this.object;
     }
     /**
+     * Unique identifier for the object.
+     * 
+     */
+    @Export(name="planId", refs={String.class}, tree="[0]")
+    private Output<String> planId;
+
+    /**
+     * @return Unique identifier for the object.
+     * 
+     */
+    public Output<String> planId() {
+        return this.planId;
+    }
+    /**
      * The product whose pricing this plan determines.
      * 
      */

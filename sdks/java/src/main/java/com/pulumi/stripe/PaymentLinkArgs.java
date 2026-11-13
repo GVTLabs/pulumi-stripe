@@ -159,14 +159,14 @@ public final class PaymentLinkArgs extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * Collect additional information from your customer using custom fields. Up to 3 fields are supported. You can&#39;t set this parameter if &lt;span pulumi-lang-nodejs=&#34;`uiMode`&#34; pulumi-lang-dotnet=&#34;`UiMode`&#34; pulumi-lang-go=&#34;`uiMode`&#34; pulumi-lang-python=&#34;`ui_mode`&#34; pulumi-lang-yaml=&#34;`uiMode`&#34; pulumi-lang-java=&#34;`uiMode`&#34; pulumi-lang-hcl=&#34;`ui_mode`&#34;&gt;`uiMode`&lt;/span&gt; is &lt;span pulumi-lang-nodejs=&#34;`custom`&#34; pulumi-lang-dotnet=&#34;`Custom`&#34; pulumi-lang-go=&#34;`custom`&#34; pulumi-lang-python=&#34;`custom`&#34; pulumi-lang-yaml=&#34;`custom`&#34; pulumi-lang-java=&#34;`custom`&#34; pulumi-lang-hcl=&#34;`custom`&#34;&gt;`custom`&lt;/span&gt;.
+     * Collect additional information from your customer using custom fields. Up to 3 fields are supported. You can&#39;t set this parameter if &lt;span pulumi-lang-nodejs=&#34;`uiMode`&#34; pulumi-lang-dotnet=&#34;`UiMode`&#34; pulumi-lang-go=&#34;`uiMode`&#34; pulumi-lang-python=&#34;`ui_mode`&#34; pulumi-lang-yaml=&#34;`uiMode`&#34; pulumi-lang-java=&#34;`uiMode`&#34; pulumi-lang-hcl=&#34;`ui_mode`&#34;&gt;`uiMode`&lt;/span&gt; is &lt;span pulumi-lang-nodejs=&#34;`elements`&#34; pulumi-lang-dotnet=&#34;`Elements`&#34; pulumi-lang-go=&#34;`elements`&#34; pulumi-lang-python=&#34;`elements`&#34; pulumi-lang-yaml=&#34;`elements`&#34; pulumi-lang-java=&#34;`elements`&#34; pulumi-lang-hcl=&#34;`elements`&#34;&gt;`elements`&lt;/span&gt;.
      * 
      */
     @Import(name="customFields")
     private @Nullable Output<List<PaymentLinkCustomFieldArgs>> customFields;
 
     /**
-     * @return Collect additional information from your customer using custom fields. Up to 3 fields are supported. You can&#39;t set this parameter if &lt;span pulumi-lang-nodejs=&#34;`uiMode`&#34; pulumi-lang-dotnet=&#34;`UiMode`&#34; pulumi-lang-go=&#34;`uiMode`&#34; pulumi-lang-python=&#34;`ui_mode`&#34; pulumi-lang-yaml=&#34;`uiMode`&#34; pulumi-lang-java=&#34;`uiMode`&#34; pulumi-lang-hcl=&#34;`ui_mode`&#34;&gt;`uiMode`&lt;/span&gt; is &lt;span pulumi-lang-nodejs=&#34;`custom`&#34; pulumi-lang-dotnet=&#34;`Custom`&#34; pulumi-lang-go=&#34;`custom`&#34; pulumi-lang-python=&#34;`custom`&#34; pulumi-lang-yaml=&#34;`custom`&#34; pulumi-lang-java=&#34;`custom`&#34; pulumi-lang-hcl=&#34;`custom`&#34;&gt;`custom`&lt;/span&gt;.
+     * @return Collect additional information from your customer using custom fields. Up to 3 fields are supported. You can&#39;t set this parameter if &lt;span pulumi-lang-nodejs=&#34;`uiMode`&#34; pulumi-lang-dotnet=&#34;`UiMode`&#34; pulumi-lang-go=&#34;`uiMode`&#34; pulumi-lang-python=&#34;`ui_mode`&#34; pulumi-lang-yaml=&#34;`uiMode`&#34; pulumi-lang-java=&#34;`uiMode`&#34; pulumi-lang-hcl=&#34;`ui_mode`&#34;&gt;`uiMode`&lt;/span&gt; is &lt;span pulumi-lang-nodejs=&#34;`elements`&#34; pulumi-lang-dotnet=&#34;`Elements`&#34; pulumi-lang-go=&#34;`elements`&#34; pulumi-lang-python=&#34;`elements`&#34; pulumi-lang-yaml=&#34;`elements`&#34; pulumi-lang-java=&#34;`elements`&#34; pulumi-lang-hcl=&#34;`elements`&#34;&gt;`elements`&lt;/span&gt;.
      * 
      */
     public Optional<Output<List<PaymentLinkCustomFieldArgs>>> customFields() {
@@ -692,7 +692,7 @@ public final class PaymentLinkArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param customFields Collect additional information from your customer using custom fields. Up to 3 fields are supported. You can&#39;t set this parameter if &lt;span pulumi-lang-nodejs=&#34;`uiMode`&#34; pulumi-lang-dotnet=&#34;`UiMode`&#34; pulumi-lang-go=&#34;`uiMode`&#34; pulumi-lang-python=&#34;`ui_mode`&#34; pulumi-lang-yaml=&#34;`uiMode`&#34; pulumi-lang-java=&#34;`uiMode`&#34; pulumi-lang-hcl=&#34;`ui_mode`&#34;&gt;`uiMode`&lt;/span&gt; is &lt;span pulumi-lang-nodejs=&#34;`custom`&#34; pulumi-lang-dotnet=&#34;`Custom`&#34; pulumi-lang-go=&#34;`custom`&#34; pulumi-lang-python=&#34;`custom`&#34; pulumi-lang-yaml=&#34;`custom`&#34; pulumi-lang-java=&#34;`custom`&#34; pulumi-lang-hcl=&#34;`custom`&#34;&gt;`custom`&lt;/span&gt;.
+         * @param customFields Collect additional information from your customer using custom fields. Up to 3 fields are supported. You can&#39;t set this parameter if &lt;span pulumi-lang-nodejs=&#34;`uiMode`&#34; pulumi-lang-dotnet=&#34;`UiMode`&#34; pulumi-lang-go=&#34;`uiMode`&#34; pulumi-lang-python=&#34;`ui_mode`&#34; pulumi-lang-yaml=&#34;`uiMode`&#34; pulumi-lang-java=&#34;`uiMode`&#34; pulumi-lang-hcl=&#34;`ui_mode`&#34;&gt;`uiMode`&lt;/span&gt; is &lt;span pulumi-lang-nodejs=&#34;`elements`&#34; pulumi-lang-dotnet=&#34;`Elements`&#34; pulumi-lang-go=&#34;`elements`&#34; pulumi-lang-python=&#34;`elements`&#34; pulumi-lang-yaml=&#34;`elements`&#34; pulumi-lang-java=&#34;`elements`&#34; pulumi-lang-hcl=&#34;`elements`&#34;&gt;`elements`&lt;/span&gt;.
          * 
          * @return builder
          * 
@@ -703,7 +703,7 @@ public final class PaymentLinkArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param customFields Collect additional information from your customer using custom fields. Up to 3 fields are supported. You can&#39;t set this parameter if &lt;span pulumi-lang-nodejs=&#34;`uiMode`&#34; pulumi-lang-dotnet=&#34;`UiMode`&#34; pulumi-lang-go=&#34;`uiMode`&#34; pulumi-lang-python=&#34;`ui_mode`&#34; pulumi-lang-yaml=&#34;`uiMode`&#34; pulumi-lang-java=&#34;`uiMode`&#34; pulumi-lang-hcl=&#34;`ui_mode`&#34;&gt;`uiMode`&lt;/span&gt; is &lt;span pulumi-lang-nodejs=&#34;`custom`&#34; pulumi-lang-dotnet=&#34;`Custom`&#34; pulumi-lang-go=&#34;`custom`&#34; pulumi-lang-python=&#34;`custom`&#34; pulumi-lang-yaml=&#34;`custom`&#34; pulumi-lang-java=&#34;`custom`&#34; pulumi-lang-hcl=&#34;`custom`&#34;&gt;`custom`&lt;/span&gt;.
+         * @param customFields Collect additional information from your customer using custom fields. Up to 3 fields are supported. You can&#39;t set this parameter if &lt;span pulumi-lang-nodejs=&#34;`uiMode`&#34; pulumi-lang-dotnet=&#34;`UiMode`&#34; pulumi-lang-go=&#34;`uiMode`&#34; pulumi-lang-python=&#34;`ui_mode`&#34; pulumi-lang-yaml=&#34;`uiMode`&#34; pulumi-lang-java=&#34;`uiMode`&#34; pulumi-lang-hcl=&#34;`ui_mode`&#34;&gt;`uiMode`&lt;/span&gt; is &lt;span pulumi-lang-nodejs=&#34;`elements`&#34; pulumi-lang-dotnet=&#34;`Elements`&#34; pulumi-lang-go=&#34;`elements`&#34; pulumi-lang-python=&#34;`elements`&#34; pulumi-lang-yaml=&#34;`elements`&#34; pulumi-lang-java=&#34;`elements`&#34; pulumi-lang-hcl=&#34;`elements`&#34;&gt;`elements`&lt;/span&gt;.
          * 
          * @return builder
          * 
@@ -713,7 +713,7 @@ public final class PaymentLinkArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param customFields Collect additional information from your customer using custom fields. Up to 3 fields are supported. You can&#39;t set this parameter if &lt;span pulumi-lang-nodejs=&#34;`uiMode`&#34; pulumi-lang-dotnet=&#34;`UiMode`&#34; pulumi-lang-go=&#34;`uiMode`&#34; pulumi-lang-python=&#34;`ui_mode`&#34; pulumi-lang-yaml=&#34;`uiMode`&#34; pulumi-lang-java=&#34;`uiMode`&#34; pulumi-lang-hcl=&#34;`ui_mode`&#34;&gt;`uiMode`&lt;/span&gt; is &lt;span pulumi-lang-nodejs=&#34;`custom`&#34; pulumi-lang-dotnet=&#34;`Custom`&#34; pulumi-lang-go=&#34;`custom`&#34; pulumi-lang-python=&#34;`custom`&#34; pulumi-lang-yaml=&#34;`custom`&#34; pulumi-lang-java=&#34;`custom`&#34; pulumi-lang-hcl=&#34;`custom`&#34;&gt;`custom`&lt;/span&gt;.
+         * @param customFields Collect additional information from your customer using custom fields. Up to 3 fields are supported. You can&#39;t set this parameter if &lt;span pulumi-lang-nodejs=&#34;`uiMode`&#34; pulumi-lang-dotnet=&#34;`UiMode`&#34; pulumi-lang-go=&#34;`uiMode`&#34; pulumi-lang-python=&#34;`ui_mode`&#34; pulumi-lang-yaml=&#34;`uiMode`&#34; pulumi-lang-java=&#34;`uiMode`&#34; pulumi-lang-hcl=&#34;`ui_mode`&#34;&gt;`uiMode`&lt;/span&gt; is &lt;span pulumi-lang-nodejs=&#34;`elements`&#34; pulumi-lang-dotnet=&#34;`Elements`&#34; pulumi-lang-go=&#34;`elements`&#34; pulumi-lang-python=&#34;`elements`&#34; pulumi-lang-yaml=&#34;`elements`&#34; pulumi-lang-java=&#34;`elements`&#34; pulumi-lang-hcl=&#34;`elements`&#34;&gt;`elements`&lt;/span&gt;.
          * 
          * @return builder
          * 

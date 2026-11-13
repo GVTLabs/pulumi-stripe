@@ -6,6 +6,7 @@ package com.pulumi.stripe.inputs;
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
 import com.pulumi.exceptions.MissingRequiredPropertyException;
+import com.pulumi.stripe.inputs.PriceProductDataTaxDetailsArgs;
 import java.lang.Boolean;
 import java.lang.String;
 import java.util.Map;
@@ -81,7 +82,7 @@ public final class PriceProductDataArgs extends com.pulumi.resources.ResourceArg
     /**
      * An arbitrary string to be displayed on your customer&#39;s credit card or bank statement. While most banks display this information consistently, some may display it incorrectly or not at all.
      * 
-     * This may be up to 22 characters. The statement description may not include `&lt;`, `&gt;`, `\`, `&#34;`, `&#39;` characters, and will appear on your customer&#39;s statement in capital letters. Non-ASCII characters are automatically stripped.
+     * This may be up to 22 characters. The statement description may not include `&lt;`, `&gt;`, `&#92;`, `&#34;`, `&#39;` characters, and will appear on your customer&#39;s statement in capital letters. Non-ASCII characters are automatically stripped.
      * 
      */
     @Import(name="statementDescriptor")
@@ -90,7 +91,7 @@ public final class PriceProductDataArgs extends com.pulumi.resources.ResourceArg
     /**
      * @return An arbitrary string to be displayed on your customer&#39;s credit card or bank statement. While most banks display this information consistently, some may display it incorrectly or not at all.
      * 
-     * This may be up to 22 characters. The statement description may not include `&lt;`, `&gt;`, `\`, `&#34;`, `&#39;` characters, and will appear on your customer&#39;s statement in capital letters. Non-ASCII characters are automatically stripped.
+     * This may be up to 22 characters. The statement description may not include `&lt;`, `&gt;`, `&#92;`, `&#34;`, `&#39;` characters, and will appear on your customer&#39;s statement in capital letters. Non-ASCII characters are automatically stripped.
      * 
      */
     public Optional<Output<String>> statementDescriptor() {
@@ -110,6 +111,21 @@ public final class PriceProductDataArgs extends com.pulumi.resources.ResourceArg
      */
     public Optional<Output<String>> taxCode() {
         return Optional.ofNullable(this.taxCode);
+    }
+
+    /**
+     * Tax details for this product, including the [tax code](https://www.terraform.io/tax/tax-codes) and an optional performance location.
+     * 
+     */
+    @Import(name="taxDetails")
+    private @Nullable Output<PriceProductDataTaxDetailsArgs> taxDetails;
+
+    /**
+     * @return Tax details for this product, including the [tax code](https://www.terraform.io/tax/tax-codes) and an optional performance location.
+     * 
+     */
+    public Optional<Output<PriceProductDataTaxDetailsArgs>> taxDetails() {
+        return Optional.ofNullable(this.taxDetails);
     }
 
     /**
@@ -136,6 +152,7 @@ public final class PriceProductDataArgs extends com.pulumi.resources.ResourceArg
         this.name = $.name;
         this.statementDescriptor = $.statementDescriptor;
         this.taxCode = $.taxCode;
+        this.taxDetails = $.taxDetails;
         this.unitLabel = $.unitLabel;
     }
 
@@ -244,7 +261,7 @@ public final class PriceProductDataArgs extends com.pulumi.resources.ResourceArg
         /**
          * @param statementDescriptor An arbitrary string to be displayed on your customer&#39;s credit card or bank statement. While most banks display this information consistently, some may display it incorrectly or not at all.
          * 
-         * This may be up to 22 characters. The statement description may not include `&lt;`, `&gt;`, `\`, `&#34;`, `&#39;` characters, and will appear on your customer&#39;s statement in capital letters. Non-ASCII characters are automatically stripped.
+         * This may be up to 22 characters. The statement description may not include `&lt;`, `&gt;`, `&#92;`, `&#34;`, `&#39;` characters, and will appear on your customer&#39;s statement in capital letters. Non-ASCII characters are automatically stripped.
          * 
          * @return builder
          * 
@@ -257,7 +274,7 @@ public final class PriceProductDataArgs extends com.pulumi.resources.ResourceArg
         /**
          * @param statementDescriptor An arbitrary string to be displayed on your customer&#39;s credit card or bank statement. While most banks display this information consistently, some may display it incorrectly or not at all.
          * 
-         * This may be up to 22 characters. The statement description may not include `&lt;`, `&gt;`, `\`, `&#34;`, `&#39;` characters, and will appear on your customer&#39;s statement in capital letters. Non-ASCII characters are automatically stripped.
+         * This may be up to 22 characters. The statement description may not include `&lt;`, `&gt;`, `&#92;`, `&#34;`, `&#39;` characters, and will appear on your customer&#39;s statement in capital letters. Non-ASCII characters are automatically stripped.
          * 
          * @return builder
          * 
@@ -285,6 +302,27 @@ public final class PriceProductDataArgs extends com.pulumi.resources.ResourceArg
          */
         public Builder taxCode(String taxCode) {
             return taxCode(Output.of(taxCode));
+        }
+
+        /**
+         * @param taxDetails Tax details for this product, including the [tax code](https://www.terraform.io/tax/tax-codes) and an optional performance location.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder taxDetails(@Nullable Output<PriceProductDataTaxDetailsArgs> taxDetails) {
+            $.taxDetails = taxDetails;
+            return this;
+        }
+
+        /**
+         * @param taxDetails Tax details for this product, including the [tax code](https://www.terraform.io/tax/tax-codes) and an optional performance location.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder taxDetails(PriceProductDataTaxDetailsArgs taxDetails) {
+            return taxDetails(Output.of(taxDetails));
         }
 
         /**

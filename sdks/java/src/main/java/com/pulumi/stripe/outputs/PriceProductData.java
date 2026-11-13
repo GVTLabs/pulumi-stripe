@@ -5,6 +5,7 @@ package com.pulumi.stripe.outputs;
 
 import com.pulumi.core.annotations.CustomType;
 import com.pulumi.exceptions.MissingRequiredPropertyException;
+import com.pulumi.stripe.outputs.PriceProductDataTaxDetails;
 import java.lang.Boolean;
 import java.lang.String;
 import java.util.Map;
@@ -37,7 +38,7 @@ public final class PriceProductData {
     /**
      * @return An arbitrary string to be displayed on your customer&#39;s credit card or bank statement. While most banks display this information consistently, some may display it incorrectly or not at all.
      * 
-     * This may be up to 22 characters. The statement description may not include `&lt;`, `&gt;`, `\`, `&#34;`, `&#39;` characters, and will appear on your customer&#39;s statement in capital letters. Non-ASCII characters are automatically stripped.
+     * This may be up to 22 characters. The statement description may not include `&lt;`, `&gt;`, `&#92;`, `&#34;`, `&#39;` characters, and will appear on your customer&#39;s statement in capital letters. Non-ASCII characters are automatically stripped.
      * 
      */
     private @Nullable String statementDescriptor;
@@ -46,6 +47,11 @@ public final class PriceProductData {
      * 
      */
     private @Nullable String taxCode;
+    /**
+     * @return Tax details for this product, including the [tax code](https://www.terraform.io/tax/tax-codes) and an optional performance location.
+     * 
+     */
+    private @Nullable PriceProductDataTaxDetails taxDetails;
     /**
      * @return A label that represents units of this product. When set, this will be included in customers&#39; receipts, invoices, Checkout, and the customer portal.
      * 
@@ -84,7 +90,7 @@ public final class PriceProductData {
     /**
      * @return An arbitrary string to be displayed on your customer&#39;s credit card or bank statement. While most banks display this information consistently, some may display it incorrectly or not at all.
      * 
-     * This may be up to 22 characters. The statement description may not include `&lt;`, `&gt;`, `\`, `&#34;`, `&#39;` characters, and will appear on your customer&#39;s statement in capital letters. Non-ASCII characters are automatically stripped.
+     * This may be up to 22 characters. The statement description may not include `&lt;`, `&gt;`, `&#92;`, `&#34;`, `&#39;` characters, and will appear on your customer&#39;s statement in capital letters. Non-ASCII characters are automatically stripped.
      * 
      */
     public Optional<String> statementDescriptor() {
@@ -96,6 +102,13 @@ public final class PriceProductData {
      */
     public Optional<String> taxCode() {
         return Optional.ofNullable(this.taxCode);
+    }
+    /**
+     * @return Tax details for this product, including the [tax code](https://www.terraform.io/tax/tax-codes) and an optional performance location.
+     * 
+     */
+    public Optional<PriceProductDataTaxDetails> taxDetails() {
+        return Optional.ofNullable(this.taxDetails);
     }
     /**
      * @return A label that represents units of this product. When set, this will be included in customers&#39; receipts, invoices, Checkout, and the customer portal.
@@ -120,6 +133,7 @@ public final class PriceProductData {
         private String name;
         private @Nullable String statementDescriptor;
         private @Nullable String taxCode;
+        private @Nullable PriceProductDataTaxDetails taxDetails;
         private @Nullable String unitLabel;
         public Builder() {}
         public Builder(PriceProductData defaults) {
@@ -130,6 +144,7 @@ public final class PriceProductData {
     	      this.name = defaults.name;
     	      this.statementDescriptor = defaults.statementDescriptor;
     	      this.taxCode = defaults.taxCode;
+    	      this.taxDetails = defaults.taxDetails;
     	      this.unitLabel = defaults.unitLabel;
         }
 
@@ -172,6 +187,12 @@ public final class PriceProductData {
             return this;
         }
         @CustomType.Setter
+        public Builder taxDetails(@Nullable PriceProductDataTaxDetails taxDetails) {
+
+            this.taxDetails = taxDetails;
+            return this;
+        }
+        @CustomType.Setter
         public Builder unitLabel(@Nullable String unitLabel) {
 
             this.unitLabel = unitLabel;
@@ -185,6 +206,7 @@ public final class PriceProductData {
             _resultValue.name = name;
             _resultValue.statementDescriptor = statementDescriptor;
             _resultValue.taxCode = taxCode;
+            _resultValue.taxDetails = taxDetails;
             _resultValue.unitLabel = unitLabel;
             return _resultValue;
         }

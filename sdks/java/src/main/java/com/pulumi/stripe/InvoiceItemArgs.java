@@ -6,6 +6,7 @@ package com.pulumi.stripe;
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
 import com.pulumi.stripe.inputs.InvoiceItemDiscountArgs;
+import com.pulumi.stripe.inputs.InvoiceItemInvoicingRuleArgs;
 import com.pulumi.stripe.inputs.InvoiceItemPeriodArgs;
 import com.pulumi.stripe.inputs.InvoiceItemPriceDataArgs;
 import com.pulumi.stripe.inputs.InvoiceItemPricingArgs;
@@ -128,6 +129,21 @@ public final class InvoiceItemArgs extends com.pulumi.resources.ResourceArgs {
      */
     public Optional<Output<String>> invoice() {
         return Optional.ofNullable(this.invoice);
+    }
+
+    /**
+     * The rules that control when this invoice item is eligible for invoicing. All rules must be satisfied for the item to be invoiced.
+     * 
+     */
+    @Import(name="invoicingRules")
+    private @Nullable Output<List<InvoiceItemInvoicingRuleArgs>> invoicingRules;
+
+    /**
+     * @return The rules that control when this invoice item is eligible for invoicing. All rules must be satisfied for the item to be invoiced.
+     * 
+     */
+    public Optional<Output<List<InvoiceItemInvoicingRuleArgs>>> invoicingRules() {
+        return Optional.ofNullable(this.invoicingRules);
     }
 
     /**
@@ -311,6 +327,7 @@ public final class InvoiceItemArgs extends com.pulumi.resources.ResourceArgs {
         this.discountable = $.discountable;
         this.discounts = $.discounts;
         this.invoice = $.invoice;
+        this.invoicingRules = $.invoicingRules;
         this.metadata = $.metadata;
         this.period = $.period;
         this.priceData = $.priceData;
@@ -499,6 +516,37 @@ public final class InvoiceItemArgs extends com.pulumi.resources.ResourceArgs {
          */
         public Builder invoice(String invoice) {
             return invoice(Output.of(invoice));
+        }
+
+        /**
+         * @param invoicingRules The rules that control when this invoice item is eligible for invoicing. All rules must be satisfied for the item to be invoiced.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder invoicingRules(@Nullable Output<List<InvoiceItemInvoicingRuleArgs>> invoicingRules) {
+            $.invoicingRules = invoicingRules;
+            return this;
+        }
+
+        /**
+         * @param invoicingRules The rules that control when this invoice item is eligible for invoicing. All rules must be satisfied for the item to be invoiced.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder invoicingRules(List<InvoiceItemInvoicingRuleArgs> invoicingRules) {
+            return invoicingRules(Output.of(invoicingRules));
+        }
+
+        /**
+         * @param invoicingRules The rules that control when this invoice item is eligible for invoicing. All rules must be satisfied for the item to be invoiced.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder invoicingRules(InvoiceItemInvoicingRuleArgs... invoicingRules) {
+            return invoicingRules(List.of(invoicingRules));
         }
 
         /**

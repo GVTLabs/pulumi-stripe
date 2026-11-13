@@ -28,6 +28,7 @@ class InvoiceItemArgs:
                  discountable: pulumi.Input[Optional[_builtins.bool]] = None,
                  discounts: pulumi.Input[Optional[Sequence[pulumi.Input['InvoiceItemDiscountArgs']]]] = None,
                  invoice: pulumi.Input[Optional[_builtins.str]] = None,
+                 invoicing_rules: pulumi.Input[Optional[Sequence[pulumi.Input['InvoiceItemInvoicingRuleArgs']]]] = None,
                  metadata: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
                  period: pulumi.Input[Optional['InvoiceItemPeriodArgs']] = None,
                  price_data: pulumi.Input[Optional['InvoiceItemPriceDataArgs']] = None,
@@ -50,6 +51,7 @@ class InvoiceItemArgs:
         :param pulumi.Input[_builtins.bool] discountable: If true, discounts will apply to this invoice item. Always false for prorations.
         :param pulumi.Input[Sequence[pulumi.Input['InvoiceItemDiscountArgs']]] discounts: The discounts which apply to the invoice item. Item discounts are applied before invoice discounts. Use `expand[]=discounts` to expand each discount.
         :param pulumi.Input[_builtins.str] invoice: The ID of the invoice this invoice item belongs to.
+        :param pulumi.Input[Sequence[pulumi.Input['InvoiceItemInvoicingRuleArgs']]] invoicing_rules: The rules that control when this invoice item is eligible for invoicing. All rules must be satisfied for the item to be invoiced.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] metadata: Set of [key-value pairs](https://docs.stripe.com/api/metadata) that you can attach to an object. This can be useful for storing additional information about the object in a structured format.
         :param pulumi.Input['InvoiceItemPriceDataArgs'] price_data: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
                Data used to generate a new [Price](https://docs.stripe.com/api/prices) object inline.
@@ -82,6 +84,8 @@ class InvoiceItemArgs:
             pulumi.set(__self__, "discounts", discounts)
         if invoice is not None:
             pulumi.set(__self__, "invoice", invoice)
+        if invoicing_rules is not None:
+            pulumi.set(__self__, "invoicing_rules", invoicing_rules)
         if metadata is not None:
             pulumi.set(__self__, "metadata", metadata)
         if period is not None:
@@ -189,6 +193,18 @@ class InvoiceItemArgs:
     @invoice.setter
     def invoice(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "invoice", value)
+
+    @_builtins.property
+    @pulumi.getter(name="invoicingRules")
+    def invoicing_rules(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['InvoiceItemInvoicingRuleArgs']]]]:
+        """
+        The rules that control when this invoice item is eligible for invoicing. All rules must be satisfied for the item to be invoiced.
+        """
+        return pulumi.get(self, "invoicing_rules")
+
+    @invoicing_rules.setter
+    def invoicing_rules(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['InvoiceItemInvoicingRuleArgs']]]]):
+        pulumi.set(self, "invoicing_rules", value)
 
     @_builtins.property
     @pulumi.getter
@@ -337,7 +353,9 @@ class _InvoiceItemState:
                  description: pulumi.Input[Optional[_builtins.str]] = None,
                  discountable: pulumi.Input[Optional[_builtins.bool]] = None,
                  discounts: pulumi.Input[Optional[Sequence[pulumi.Input['InvoiceItemDiscountArgs']]]] = None,
+                 frozen_fields: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  invoice: pulumi.Input[Optional[_builtins.str]] = None,
+                 invoicing_rules: pulumi.Input[Optional[Sequence[pulumi.Input['InvoiceItemInvoicingRuleArgs']]]] = None,
                  livemode: pulumi.Input[Optional[_builtins.bool]] = None,
                  metadata: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
                  object: pulumi.Input[Optional[_builtins.str]] = None,
@@ -366,7 +384,9 @@ class _InvoiceItemState:
         :param pulumi.Input[_builtins.str] description: An arbitrary string attached to the object. Often useful for displaying to users.
         :param pulumi.Input[_builtins.bool] discountable: If true, discounts will apply to this invoice item. Always false for prorations.
         :param pulumi.Input[Sequence[pulumi.Input['InvoiceItemDiscountArgs']]] discounts: The discounts which apply to the invoice item. Item discounts are applied before invoice discounts. Use `expand[]=discounts` to expand each discount.
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] frozen_fields: Array of field names that can't be modified. Attempting to update a frozen field returns an error.
         :param pulumi.Input[_builtins.str] invoice: The ID of the invoice this invoice item belongs to.
+        :param pulumi.Input[Sequence[pulumi.Input['InvoiceItemInvoicingRuleArgs']]] invoicing_rules: The rules that control when this invoice item is eligible for invoicing. All rules must be satisfied for the item to be invoiced.
         :param pulumi.Input[_builtins.bool] livemode: If the object exists in live mode, the value is <span pulumi-lang-nodejs="`true`" pulumi-lang-dotnet="`True`" pulumi-lang-go="`true`" pulumi-lang-python="`true`" pulumi-lang-yaml="`true`" pulumi-lang-java="`true`" pulumi-lang-hcl="`true`">`true`</span>. If the object exists in test mode, the value is <span pulumi-lang-nodejs="`false`" pulumi-lang-dotnet="`False`" pulumi-lang-go="`false`" pulumi-lang-python="`false`" pulumi-lang-yaml="`false`" pulumi-lang-java="`false`" pulumi-lang-hcl="`false`">`false`</span>.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] metadata: Set of [key-value pairs](https://docs.stripe.com/api/metadata) that you can attach to an object. This can be useful for storing additional information about the object in a structured format.
         :param pulumi.Input[_builtins.str] object: String representing the object's type. Objects of the same type share the same value.
@@ -404,8 +424,12 @@ class _InvoiceItemState:
             pulumi.set(__self__, "discountable", discountable)
         if discounts is not None:
             pulumi.set(__self__, "discounts", discounts)
+        if frozen_fields is not None:
+            pulumi.set(__self__, "frozen_fields", frozen_fields)
         if invoice is not None:
             pulumi.set(__self__, "invoice", invoice)
+        if invoicing_rules is not None:
+            pulumi.set(__self__, "invoicing_rules", invoicing_rules)
         if livemode is not None:
             pulumi.set(__self__, "livemode", livemode)
         if metadata is not None:
@@ -527,6 +551,18 @@ class _InvoiceItemState:
         pulumi.set(self, "discounts", value)
 
     @_builtins.property
+    @pulumi.getter(name="frozenFields")
+    def frozen_fields(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
+        """
+        Array of field names that can't be modified. Attempting to update a frozen field returns an error.
+        """
+        return pulumi.get(self, "frozen_fields")
+
+    @frozen_fields.setter
+    def frozen_fields(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
+        pulumi.set(self, "frozen_fields", value)
+
+    @_builtins.property
     @pulumi.getter
     def invoice(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
@@ -537,6 +573,18 @@ class _InvoiceItemState:
     @invoice.setter
     def invoice(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "invoice", value)
+
+    @_builtins.property
+    @pulumi.getter(name="invoicingRules")
+    def invoicing_rules(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['InvoiceItemInvoicingRuleArgs']]]]:
+        """
+        The rules that control when this invoice item is eligible for invoicing. All rules must be satisfied for the item to be invoiced.
+        """
+        return pulumi.get(self, "invoicing_rules")
+
+    @invoicing_rules.setter
+    def invoicing_rules(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['InvoiceItemInvoicingRuleArgs']]]]):
+        pulumi.set(self, "invoicing_rules", value)
 
     @_builtins.property
     @pulumi.getter
@@ -755,12 +803,13 @@ class InvoiceItem(pulumi.CustomResource):
                  customer: pulumi.Input[Optional[_builtins.str]] = None,
                  description: pulumi.Input[Optional[_builtins.str]] = None,
                  discountable: pulumi.Input[Optional[_builtins.bool]] = None,
-                 discounts: pulumi.Input[Optional[Sequence[pulumi.Input[Union['InvoiceItemDiscountArgs', 'InvoiceItemDiscountArgsDict']]]]] = None,
+                 discounts: pulumi.Input[Optional[Sequence[pulumi.Input[Union['InvoiceItemDiscountArgs', 'InvoiceItemDiscountArgsDict', 'outputs.InvoiceItemDiscount']]]]] = None,
                  invoice: pulumi.Input[Optional[_builtins.str]] = None,
+                 invoicing_rules: pulumi.Input[Optional[Sequence[pulumi.Input[Union['InvoiceItemInvoicingRuleArgs', 'InvoiceItemInvoicingRuleArgsDict', 'outputs.InvoiceItemInvoicingRule']]]]] = None,
                  metadata: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-                 period: pulumi.Input[Optional[Union['InvoiceItemPeriodArgs', 'InvoiceItemPeriodArgsDict']]] = None,
-                 price_data: pulumi.Input[Optional[Union['InvoiceItemPriceDataArgs', 'InvoiceItemPriceDataArgsDict']]] = None,
-                 pricing: pulumi.Input[Optional[Union['InvoiceItemPricingArgs', 'InvoiceItemPricingArgsDict']]] = None,
+                 period: pulumi.Input[Optional[Union['InvoiceItemPeriodArgs', 'InvoiceItemPeriodArgsDict', 'outputs.InvoiceItemPeriod']]] = None,
+                 price_data: pulumi.Input[Optional[Union['InvoiceItemPriceDataArgs', 'InvoiceItemPriceDataArgsDict', 'outputs.InvoiceItemPriceData']]] = None,
+                 pricing: pulumi.Input[Optional[Union['InvoiceItemPricingArgs', 'InvoiceItemPricingArgsDict', 'outputs.InvoiceItemPricing']]] = None,
                  quantity: pulumi.Input[Optional[_builtins.float]] = None,
                  quantity_decimal: pulumi.Input[Optional[_builtins.float]] = None,
                  subscription: pulumi.Input[Optional[_builtins.str]] = None,
@@ -780,12 +829,13 @@ class InvoiceItem(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] customer: The ID of the customer to bill for this invoice item.
         :param pulumi.Input[_builtins.str] description: An arbitrary string attached to the object. Often useful for displaying to users.
         :param pulumi.Input[_builtins.bool] discountable: If true, discounts will apply to this invoice item. Always false for prorations.
-        :param pulumi.Input[Sequence[pulumi.Input[Union['InvoiceItemDiscountArgs', 'InvoiceItemDiscountArgsDict']]]] discounts: The discounts which apply to the invoice item. Item discounts are applied before invoice discounts. Use `expand[]=discounts` to expand each discount.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['InvoiceItemDiscountArgs', 'InvoiceItemDiscountArgsDict', 'outputs.InvoiceItemDiscount']]]] discounts: The discounts which apply to the invoice item. Item discounts are applied before invoice discounts. Use `expand[]=discounts` to expand each discount.
         :param pulumi.Input[_builtins.str] invoice: The ID of the invoice this invoice item belongs to.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['InvoiceItemInvoicingRuleArgs', 'InvoiceItemInvoicingRuleArgsDict', 'outputs.InvoiceItemInvoicingRule']]]] invoicing_rules: The rules that control when this invoice item is eligible for invoicing. All rules must be satisfied for the item to be invoiced.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] metadata: Set of [key-value pairs](https://docs.stripe.com/api/metadata) that you can attach to an object. This can be useful for storing additional information about the object in a structured format.
-        :param pulumi.Input[Union['InvoiceItemPriceDataArgs', 'InvoiceItemPriceDataArgsDict']] price_data: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        :param pulumi.Input[Union['InvoiceItemPriceDataArgs', 'InvoiceItemPriceDataArgsDict', 'outputs.InvoiceItemPriceData']] price_data: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
                Data used to generate a new [Price](https://docs.stripe.com/api/prices) object inline.
-        :param pulumi.Input[Union['InvoiceItemPricingArgs', 'InvoiceItemPricingArgsDict']] pricing: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        :param pulumi.Input[Union['InvoiceItemPricingArgs', 'InvoiceItemPricingArgsDict', 'outputs.InvoiceItemPricing']] pricing: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
                The pricing information of the invoice item.
         :param pulumi.Input[_builtins.float] quantity: Quantity of units for the invoice item in integer format, with any decimal precision truncated. For the item's full-precision decimal quantity, use <span pulumi-lang-nodejs="`quantityDecimal`" pulumi-lang-dotnet="`QuantityDecimal`" pulumi-lang-go="`quantityDecimal`" pulumi-lang-python="`quantity_decimal`" pulumi-lang-yaml="`quantityDecimal`" pulumi-lang-java="`quantityDecimal`" pulumi-lang-hcl="`quantity_decimal`">`quantityDecimal`</span>. This field will be deprecated in favor of <span pulumi-lang-nodejs="`quantityDecimal`" pulumi-lang-dotnet="`QuantityDecimal`" pulumi-lang-go="`quantityDecimal`" pulumi-lang-python="`quantity_decimal`" pulumi-lang-yaml="`quantityDecimal`" pulumi-lang-java="`quantityDecimal`" pulumi-lang-hcl="`quantity_decimal`">`quantityDecimal`</span> in a future version. If the invoice item is a proration, the quantity of the subscription that the proration was computed for.
         :param pulumi.Input[_builtins.float] quantity_decimal: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
@@ -829,12 +879,13 @@ class InvoiceItem(pulumi.CustomResource):
                  customer: pulumi.Input[Optional[_builtins.str]] = None,
                  description: pulumi.Input[Optional[_builtins.str]] = None,
                  discountable: pulumi.Input[Optional[_builtins.bool]] = None,
-                 discounts: pulumi.Input[Optional[Sequence[pulumi.Input[Union['InvoiceItemDiscountArgs', 'InvoiceItemDiscountArgsDict']]]]] = None,
+                 discounts: pulumi.Input[Optional[Sequence[pulumi.Input[Union['InvoiceItemDiscountArgs', 'InvoiceItemDiscountArgsDict', 'outputs.InvoiceItemDiscount']]]]] = None,
                  invoice: pulumi.Input[Optional[_builtins.str]] = None,
+                 invoicing_rules: pulumi.Input[Optional[Sequence[pulumi.Input[Union['InvoiceItemInvoicingRuleArgs', 'InvoiceItemInvoicingRuleArgsDict', 'outputs.InvoiceItemInvoicingRule']]]]] = None,
                  metadata: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-                 period: pulumi.Input[Optional[Union['InvoiceItemPeriodArgs', 'InvoiceItemPeriodArgsDict']]] = None,
-                 price_data: pulumi.Input[Optional[Union['InvoiceItemPriceDataArgs', 'InvoiceItemPriceDataArgsDict']]] = None,
-                 pricing: pulumi.Input[Optional[Union['InvoiceItemPricingArgs', 'InvoiceItemPricingArgsDict']]] = None,
+                 period: pulumi.Input[Optional[Union['InvoiceItemPeriodArgs', 'InvoiceItemPeriodArgsDict', 'outputs.InvoiceItemPeriod']]] = None,
+                 price_data: pulumi.Input[Optional[Union['InvoiceItemPriceDataArgs', 'InvoiceItemPriceDataArgsDict', 'outputs.InvoiceItemPriceData']]] = None,
+                 pricing: pulumi.Input[Optional[Union['InvoiceItemPricingArgs', 'InvoiceItemPricingArgsDict', 'outputs.InvoiceItemPricing']]] = None,
                  quantity: pulumi.Input[Optional[_builtins.float]] = None,
                  quantity_decimal: pulumi.Input[Optional[_builtins.float]] = None,
                  subscription: pulumi.Input[Optional[_builtins.str]] = None,
@@ -858,6 +909,7 @@ class InvoiceItem(pulumi.CustomResource):
             __props__.__dict__["discountable"] = discountable
             __props__.__dict__["discounts"] = discounts
             __props__.__dict__["invoice"] = invoice
+            __props__.__dict__["invoicing_rules"] = invoicing_rules
             __props__.__dict__["metadata"] = metadata
             __props__.__dict__["period"] = period
             __props__.__dict__["price_data"] = None if price_data is None else pulumi.Output.secret(price_data)
@@ -870,6 +922,7 @@ class InvoiceItem(pulumi.CustomResource):
             __props__.__dict__["tax_rates"] = tax_rates
             __props__.__dict__["unit_amount_decimal"] = None if unit_amount_decimal is None else pulumi.Output.secret(unit_amount_decimal)
             __props__.__dict__["date"] = None
+            __props__.__dict__["frozen_fields"] = None
             __props__.__dict__["livemode"] = None
             __props__.__dict__["object"] = None
             __props__.__dict__["parent"] = None
@@ -895,17 +948,19 @@ class InvoiceItem(pulumi.CustomResource):
             date: pulumi.Input[Optional[_builtins.float]] = None,
             description: pulumi.Input[Optional[_builtins.str]] = None,
             discountable: pulumi.Input[Optional[_builtins.bool]] = None,
-            discounts: pulumi.Input[Optional[Sequence[pulumi.Input[Union['InvoiceItemDiscountArgs', 'InvoiceItemDiscountArgsDict']]]]] = None,
+            discounts: pulumi.Input[Optional[Sequence[pulumi.Input[Union['InvoiceItemDiscountArgs', 'InvoiceItemDiscountArgsDict', 'outputs.InvoiceItemDiscount']]]]] = None,
+            frozen_fields: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
             invoice: pulumi.Input[Optional[_builtins.str]] = None,
+            invoicing_rules: pulumi.Input[Optional[Sequence[pulumi.Input[Union['InvoiceItemInvoicingRuleArgs', 'InvoiceItemInvoicingRuleArgsDict', 'outputs.InvoiceItemInvoicingRule']]]]] = None,
             livemode: pulumi.Input[Optional[_builtins.bool]] = None,
             metadata: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
             object: pulumi.Input[Optional[_builtins.str]] = None,
-            parent: pulumi.Input[Optional[Union['InvoiceItemParentArgs', 'InvoiceItemParentArgsDict']]] = None,
-            period: pulumi.Input[Optional[Union['InvoiceItemPeriodArgs', 'InvoiceItemPeriodArgsDict']]] = None,
-            price_data: pulumi.Input[Optional[Union['InvoiceItemPriceDataArgs', 'InvoiceItemPriceDataArgsDict']]] = None,
-            pricing: pulumi.Input[Optional[Union['InvoiceItemPricingArgs', 'InvoiceItemPricingArgsDict']]] = None,
+            parent: pulumi.Input[Optional[Union['InvoiceItemParentArgs', 'InvoiceItemParentArgsDict', 'outputs.InvoiceItemParent']]] = None,
+            period: pulumi.Input[Optional[Union['InvoiceItemPeriodArgs', 'InvoiceItemPeriodArgsDict', 'outputs.InvoiceItemPeriod']]] = None,
+            price_data: pulumi.Input[Optional[Union['InvoiceItemPriceDataArgs', 'InvoiceItemPriceDataArgsDict', 'outputs.InvoiceItemPriceData']]] = None,
+            pricing: pulumi.Input[Optional[Union['InvoiceItemPricingArgs', 'InvoiceItemPricingArgsDict', 'outputs.InvoiceItemPricing']]] = None,
             proration: pulumi.Input[Optional[_builtins.bool]] = None,
-            proration_details: pulumi.Input[Optional[Union['InvoiceItemProrationDetailsArgs', 'InvoiceItemProrationDetailsArgsDict']]] = None,
+            proration_details: pulumi.Input[Optional[Union['InvoiceItemProrationDetailsArgs', 'InvoiceItemProrationDetailsArgsDict', 'outputs.InvoiceItemProrationDetails']]] = None,
             quantity: pulumi.Input[Optional[_builtins.float]] = None,
             quantity_decimal: pulumi.Input[Optional[_builtins.float]] = None,
             subscription: pulumi.Input[Optional[_builtins.str]] = None,
@@ -928,15 +983,17 @@ class InvoiceItem(pulumi.CustomResource):
         :param pulumi.Input[_builtins.float] date: Time at which the object was created. Measured in seconds since the Unix epoch.
         :param pulumi.Input[_builtins.str] description: An arbitrary string attached to the object. Often useful for displaying to users.
         :param pulumi.Input[_builtins.bool] discountable: If true, discounts will apply to this invoice item. Always false for prorations.
-        :param pulumi.Input[Sequence[pulumi.Input[Union['InvoiceItemDiscountArgs', 'InvoiceItemDiscountArgsDict']]]] discounts: The discounts which apply to the invoice item. Item discounts are applied before invoice discounts. Use `expand[]=discounts` to expand each discount.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['InvoiceItemDiscountArgs', 'InvoiceItemDiscountArgsDict', 'outputs.InvoiceItemDiscount']]]] discounts: The discounts which apply to the invoice item. Item discounts are applied before invoice discounts. Use `expand[]=discounts` to expand each discount.
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] frozen_fields: Array of field names that can't be modified. Attempting to update a frozen field returns an error.
         :param pulumi.Input[_builtins.str] invoice: The ID of the invoice this invoice item belongs to.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['InvoiceItemInvoicingRuleArgs', 'InvoiceItemInvoicingRuleArgsDict', 'outputs.InvoiceItemInvoicingRule']]]] invoicing_rules: The rules that control when this invoice item is eligible for invoicing. All rules must be satisfied for the item to be invoiced.
         :param pulumi.Input[_builtins.bool] livemode: If the object exists in live mode, the value is <span pulumi-lang-nodejs="`true`" pulumi-lang-dotnet="`True`" pulumi-lang-go="`true`" pulumi-lang-python="`true`" pulumi-lang-yaml="`true`" pulumi-lang-java="`true`" pulumi-lang-hcl="`true`">`true`</span>. If the object exists in test mode, the value is <span pulumi-lang-nodejs="`false`" pulumi-lang-dotnet="`False`" pulumi-lang-go="`false`" pulumi-lang-python="`false`" pulumi-lang-yaml="`false`" pulumi-lang-java="`false`" pulumi-lang-hcl="`false`">`false`</span>.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] metadata: Set of [key-value pairs](https://docs.stripe.com/api/metadata) that you can attach to an object. This can be useful for storing additional information about the object in a structured format.
         :param pulumi.Input[_builtins.str] object: String representing the object's type. Objects of the same type share the same value.
-        :param pulumi.Input[Union['InvoiceItemParentArgs', 'InvoiceItemParentArgsDict']] parent: The parent that generated this invoice item.
-        :param pulumi.Input[Union['InvoiceItemPriceDataArgs', 'InvoiceItemPriceDataArgsDict']] price_data: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        :param pulumi.Input[Union['InvoiceItemParentArgs', 'InvoiceItemParentArgsDict', 'outputs.InvoiceItemParent']] parent: The parent that generated this invoice item.
+        :param pulumi.Input[Union['InvoiceItemPriceDataArgs', 'InvoiceItemPriceDataArgsDict', 'outputs.InvoiceItemPriceData']] price_data: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
                Data used to generate a new [Price](https://docs.stripe.com/api/prices) object inline.
-        :param pulumi.Input[Union['InvoiceItemPricingArgs', 'InvoiceItemPricingArgsDict']] pricing: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        :param pulumi.Input[Union['InvoiceItemPricingArgs', 'InvoiceItemPricingArgsDict', 'outputs.InvoiceItemPricing']] pricing: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
                The pricing information of the invoice item.
         :param pulumi.Input[_builtins.bool] proration: Whether the invoice item was created automatically as a proration adjustment when the customer switched plans.
         :param pulumi.Input[_builtins.float] quantity: Quantity of units for the invoice item in integer format, with any decimal precision truncated. For the item's full-precision decimal quantity, use <span pulumi-lang-nodejs="`quantityDecimal`" pulumi-lang-dotnet="`QuantityDecimal`" pulumi-lang-go="`quantityDecimal`" pulumi-lang-python="`quantity_decimal`" pulumi-lang-yaml="`quantityDecimal`" pulumi-lang-java="`quantityDecimal`" pulumi-lang-hcl="`quantity_decimal`">`quantityDecimal`</span>. This field will be deprecated in favor of <span pulumi-lang-nodejs="`quantityDecimal`" pulumi-lang-dotnet="`QuantityDecimal`" pulumi-lang-go="`quantityDecimal`" pulumi-lang-python="`quantity_decimal`" pulumi-lang-yaml="`quantityDecimal`" pulumi-lang-java="`quantityDecimal`" pulumi-lang-hcl="`quantity_decimal`">`quantityDecimal`</span> in a future version. If the invoice item is a proration, the quantity of the subscription that the proration was computed for.
@@ -964,7 +1021,9 @@ class InvoiceItem(pulumi.CustomResource):
         __props__.__dict__["description"] = description
         __props__.__dict__["discountable"] = discountable
         __props__.__dict__["discounts"] = discounts
+        __props__.__dict__["frozen_fields"] = frozen_fields
         __props__.__dict__["invoice"] = invoice
+        __props__.__dict__["invoicing_rules"] = invoicing_rules
         __props__.__dict__["livemode"] = livemode
         __props__.__dict__["metadata"] = metadata
         __props__.__dict__["object"] = object
@@ -983,6 +1042,66 @@ class InvoiceItem(pulumi.CustomResource):
         __props__.__dict__["test_clock"] = test_clock
         __props__.__dict__["unit_amount_decimal"] = unit_amount_decimal
         return InvoiceItem(resource_name, opts=opts, __props__=__props__)
+
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            amount: pulumi.Input[Optional[_builtins.float]] = None,
+            currency: pulumi.Input[Optional[_builtins.str]] = None,
+            customer: pulumi.Input[Optional[_builtins.str]] = None,
+            date: pulumi.Input[Optional[_builtins.float]] = None,
+            description: pulumi.Input[Optional[_builtins.str]] = None,
+            discountable: pulumi.Input[Optional[_builtins.bool]] = None,
+            discounts: pulumi.Input[Optional[Sequence[pulumi.Input[Union['InvoiceItemDiscountArgs', 'InvoiceItemDiscountArgsDict', 'outputs.InvoiceItemDiscount']]]]] = None,
+            frozen_fields: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            invoice: pulumi.Input[Optional[_builtins.str]] = None,
+            invoicing_rules: pulumi.Input[Optional[Sequence[pulumi.Input[Union['InvoiceItemInvoicingRuleArgs', 'InvoiceItemInvoicingRuleArgsDict', 'outputs.InvoiceItemInvoicingRule']]]]] = None,
+            livemode: pulumi.Input[Optional[_builtins.bool]] = None,
+            metadata: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+            object: pulumi.Input[Optional[_builtins.str]] = None,
+            parent: pulumi.Input[Optional[Union['InvoiceItemParentArgs', 'InvoiceItemParentArgsDict', 'outputs.InvoiceItemParent']]] = None,
+            period: pulumi.Input[Optional[Union['InvoiceItemPeriodArgs', 'InvoiceItemPeriodArgsDict', 'outputs.InvoiceItemPeriod']]] = None,
+            price_data: pulumi.Input[Optional[Union['InvoiceItemPriceDataArgs', 'InvoiceItemPriceDataArgsDict', 'outputs.InvoiceItemPriceData']]] = None,
+            pricing: pulumi.Input[Optional[Union['InvoiceItemPricingArgs', 'InvoiceItemPricingArgsDict', 'outputs.InvoiceItemPricing']]] = None,
+            proration: pulumi.Input[Optional[_builtins.bool]] = None,
+            proration_details: pulumi.Input[Optional[Union['InvoiceItemProrationDetailsArgs', 'InvoiceItemProrationDetailsArgsDict', 'outputs.InvoiceItemProrationDetails']]] = None,
+            quantity: pulumi.Input[Optional[_builtins.float]] = None,
+            quantity_decimal: pulumi.Input[Optional[_builtins.float]] = None,
+            subscription: pulumi.Input[Optional[_builtins.str]] = None,
+            tax_behavior: pulumi.Input[Optional[_builtins.str]] = None,
+            tax_code: pulumi.Input[Optional[_builtins.str]] = None,
+            tax_rates: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            test_clock: pulumi.Input[Optional[_builtins.str]] = None,
+            unit_amount_decimal: pulumi.Input[Optional[_builtins.float]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["amount"] = amount
+        __props__["currency"] = currency
+        __props__["customer"] = customer
+        __props__["date"] = date
+        __props__["description"] = description
+        __props__["discountable"] = discountable
+        __props__["discounts"] = discounts
+        __props__["frozenFields"] = frozen_fields
+        __props__["invoice"] = invoice
+        __props__["invoicingRules"] = invoicing_rules
+        __props__["livemode"] = livemode
+        __props__["metadata"] = metadata
+        __props__["object"] = object
+        __props__["parent"] = parent
+        __props__["period"] = period
+        __props__["priceData"] = price_data
+        __props__["pricing"] = pricing
+        __props__["proration"] = proration
+        __props__["prorationDetails"] = proration_details
+        __props__["quantity"] = quantity
+        __props__["quantityDecimal"] = quantity_decimal
+        __props__["subscription"] = subscription
+        __props__["taxBehavior"] = tax_behavior
+        __props__["taxCode"] = tax_code
+        __props__["taxRates"] = tax_rates
+        __props__["testClock"] = test_clock
+        __props__["unitAmountDecimal"] = unit_amount_decimal
+        return pulumi.runtime.exists_resource(None, 'stripe:index/invoiceItem:InvoiceItem', id, __props__, opts or pulumi.ResourceOptions(), package_ref=_utilities.get_package())
 
     @_builtins.property
     @pulumi.getter
@@ -1042,12 +1161,28 @@ class InvoiceItem(pulumi.CustomResource):
         return pulumi.get(self, "discounts")
 
     @_builtins.property
+    @pulumi.getter(name="frozenFields")
+    def frozen_fields(self) -> pulumi.Output[Sequence[_builtins.str]]:
+        """
+        Array of field names that can't be modified. Attempting to update a frozen field returns an error.
+        """
+        return pulumi.get(self, "frozen_fields")
+
+    @_builtins.property
     @pulumi.getter
     def invoice(self) -> pulumi.Output[_builtins.str]:
         """
         The ID of the invoice this invoice item belongs to.
         """
         return pulumi.get(self, "invoice")
+
+    @_builtins.property
+    @pulumi.getter(name="invoicingRules")
+    def invoicing_rules(self) -> pulumi.Output[Sequence['outputs.InvoiceItemInvoicingRule']]:
+        """
+        The rules that control when this invoice item is eligible for invoicing. All rules must be satisfied for the item to be invoiced.
+        """
+        return pulumi.get(self, "invoicing_rules")
 
     @_builtins.property
     @pulumi.getter

@@ -25,6 +25,18 @@ namespace Pulumi.Stripe.Inputs
         public Input<Inputs.SubscriptionPaymentSettingsPaymentMethodOptionsBancontactArgs>? Bancontact { get; set; }
 
         /// <summary>
+        /// This sub-hash contains details about the Billie payment method options to pass to invoices created by the subscription.
+        /// </summary>
+        [Input("billie")]
+        public Input<Inputs.SubscriptionPaymentSettingsPaymentMethodOptionsBillieArgs>? Billie { get; set; }
+
+        /// <summary>
+        /// This sub-hash contains details about the Blik payment method options to pass to invoices created by the subscription.
+        /// </summary>
+        [Input("blik")]
+        public Input<Inputs.SubscriptionPaymentSettingsPaymentMethodOptionsBlikArgs>? Blik { get; set; }
+
+        /// <summary>
         /// This sub-hash contains details about the Card payment method options to pass to invoices created by the subscription.
         /// </summary>
         [Input("card")]

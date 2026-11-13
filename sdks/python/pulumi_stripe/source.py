@@ -850,13 +850,13 @@ class Source(pulumi.CustomResource):
                  currency: pulumi.Input[Optional[_builtins.str]] = None,
                  customer: pulumi.Input[Optional[_builtins.str]] = None,
                  flow: pulumi.Input[Optional[_builtins.str]] = None,
-                 mandate: pulumi.Input[Optional[Union['SourceMandateArgs', 'SourceMandateArgsDict']]] = None,
+                 mandate: pulumi.Input[Optional[Union['SourceMandateArgs', 'SourceMandateArgsDict', 'outputs.SourceMandate']]] = None,
                  metadata: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
                  original_source: pulumi.Input[Optional[_builtins.str]] = None,
-                 owner: pulumi.Input[Optional[Union['SourceOwnerArgs', 'SourceOwnerArgsDict']]] = None,
-                 receiver: pulumi.Input[Optional[Union['SourceReceiverArgs', 'SourceReceiverArgsDict']]] = None,
-                 redirect: pulumi.Input[Optional[Union['SourceRedirectArgs', 'SourceRedirectArgsDict']]] = None,
-                 source_order: pulumi.Input[Optional[Union['SourceSourceOrderArgs', 'SourceSourceOrderArgsDict']]] = None,
+                 owner: pulumi.Input[Optional[Union['SourceOwnerArgs', 'SourceOwnerArgsDict', 'outputs.SourceOwner']]] = None,
+                 receiver: pulumi.Input[Optional[Union['SourceReceiverArgs', 'SourceReceiverArgsDict', 'outputs.SourceReceiver']]] = None,
+                 redirect: pulumi.Input[Optional[Union['SourceRedirectArgs', 'SourceRedirectArgsDict', 'outputs.SourceRedirect']]] = None,
+                 source_order: pulumi.Input[Optional[Union['SourceSourceOrderArgs', 'SourceSourceOrderArgsDict', 'outputs.SourceSourceOrder']]] = None,
                  statement_descriptor: pulumi.Input[Optional[_builtins.str]] = None,
                  token: pulumi.Input[Optional[_builtins.str]] = None,
                  type: pulumi.Input[Optional[_builtins.str]] = None,
@@ -871,12 +871,12 @@ class Source(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] currency: Three-letter [ISO code for the currency](https://stripe.com/docs/currencies) associated with the source. This is the currency for which the source will be chargeable once ready. Required for <span pulumi-lang-nodejs="`singleUse`" pulumi-lang-dotnet="`SingleUse`" pulumi-lang-go="`singleUse`" pulumi-lang-python="`single_use`" pulumi-lang-yaml="`singleUse`" pulumi-lang-java="`singleUse`" pulumi-lang-hcl="`single_use`">`singleUse`</span> sources.
         :param pulumi.Input[_builtins.str] customer: The ID of the customer to which this source is attached. This will not be present when the source has not been attached to a customer.
         :param pulumi.Input[_builtins.str] flow: The authentication <span pulumi-lang-nodejs="`flow`" pulumi-lang-dotnet="`Flow`" pulumi-lang-go="`flow`" pulumi-lang-python="`flow`" pulumi-lang-yaml="`flow`" pulumi-lang-java="`flow`" pulumi-lang-hcl="`flow`">`flow`</span> of the source. <span pulumi-lang-nodejs="`flow`" pulumi-lang-dotnet="`Flow`" pulumi-lang-go="`flow`" pulumi-lang-python="`flow`" pulumi-lang-yaml="`flow`" pulumi-lang-java="`flow`" pulumi-lang-hcl="`flow`">`flow`</span> is one of <span pulumi-lang-nodejs="`redirect`" pulumi-lang-dotnet="`Redirect`" pulumi-lang-go="`redirect`" pulumi-lang-python="`redirect`" pulumi-lang-yaml="`redirect`" pulumi-lang-java="`redirect`" pulumi-lang-hcl="`redirect`">`redirect`</span>, <span pulumi-lang-nodejs="`receiver`" pulumi-lang-dotnet="`Receiver`" pulumi-lang-go="`receiver`" pulumi-lang-python="`receiver`" pulumi-lang-yaml="`receiver`" pulumi-lang-java="`receiver`" pulumi-lang-hcl="`receiver`">`receiver`</span>, <span pulumi-lang-nodejs="`codeVerification`" pulumi-lang-dotnet="`CodeVerification`" pulumi-lang-go="`codeVerification`" pulumi-lang-python="`code_verification`" pulumi-lang-yaml="`codeVerification`" pulumi-lang-java="`codeVerification`" pulumi-lang-hcl="`code_verification`">`codeVerification`</span>, <span pulumi-lang-nodejs="`none`" pulumi-lang-dotnet="`None`" pulumi-lang-go="`none`" pulumi-lang-python="`none`" pulumi-lang-yaml="`none`" pulumi-lang-java="`none`" pulumi-lang-hcl="`none`">`none`</span>.
-        :param pulumi.Input[Union['SourceMandateArgs', 'SourceMandateArgsDict']] mandate: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        :param pulumi.Input[Union['SourceMandateArgs', 'SourceMandateArgsDict', 'outputs.SourceMandate']] mandate: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
                Information about a mandate possibility attached to a source object (generally for bank debits) as well as its acceptance status.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] metadata: Set of [key-value pairs](https://docs.stripe.com/api/metadata) that you can attach to an object. This can be useful for storing additional information about the object in a structured format.
         :param pulumi.Input[_builtins.str] original_source: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
                The source to share.
-        :param pulumi.Input[Union['SourceOwnerArgs', 'SourceOwnerArgsDict']] owner: Information about the owner of the payment instrument that may be used or required by particular source types.
+        :param pulumi.Input[Union['SourceOwnerArgs', 'SourceOwnerArgsDict', 'outputs.SourceOwner']] owner: Information about the owner of the payment instrument that may be used or required by particular source types.
         :param pulumi.Input[_builtins.str] statement_descriptor: Extra information about a source. This will appear on your customer's statement every time you charge the source.
         :param pulumi.Input[_builtins.str] token: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
                An optional token used to create the source. When passed, token properties will override source parameters.
@@ -911,13 +911,13 @@ class Source(pulumi.CustomResource):
                  currency: pulumi.Input[Optional[_builtins.str]] = None,
                  customer: pulumi.Input[Optional[_builtins.str]] = None,
                  flow: pulumi.Input[Optional[_builtins.str]] = None,
-                 mandate: pulumi.Input[Optional[Union['SourceMandateArgs', 'SourceMandateArgsDict']]] = None,
+                 mandate: pulumi.Input[Optional[Union['SourceMandateArgs', 'SourceMandateArgsDict', 'outputs.SourceMandate']]] = None,
                  metadata: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
                  original_source: pulumi.Input[Optional[_builtins.str]] = None,
-                 owner: pulumi.Input[Optional[Union['SourceOwnerArgs', 'SourceOwnerArgsDict']]] = None,
-                 receiver: pulumi.Input[Optional[Union['SourceReceiverArgs', 'SourceReceiverArgsDict']]] = None,
-                 redirect: pulumi.Input[Optional[Union['SourceRedirectArgs', 'SourceRedirectArgsDict']]] = None,
-                 source_order: pulumi.Input[Optional[Union['SourceSourceOrderArgs', 'SourceSourceOrderArgsDict']]] = None,
+                 owner: pulumi.Input[Optional[Union['SourceOwnerArgs', 'SourceOwnerArgsDict', 'outputs.SourceOwner']]] = None,
+                 receiver: pulumi.Input[Optional[Union['SourceReceiverArgs', 'SourceReceiverArgsDict', 'outputs.SourceReceiver']]] = None,
+                 redirect: pulumi.Input[Optional[Union['SourceRedirectArgs', 'SourceRedirectArgsDict', 'outputs.SourceRedirect']]] = None,
+                 source_order: pulumi.Input[Optional[Union['SourceSourceOrderArgs', 'SourceSourceOrderArgsDict', 'outputs.SourceSourceOrder']]] = None,
                  statement_descriptor: pulumi.Input[Optional[_builtins.str]] = None,
                  token: pulumi.Input[Optional[_builtins.str]] = None,
                  type: pulumi.Input[Optional[_builtins.str]] = None,
@@ -985,47 +985,47 @@ class Source(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            ach_credit_transfer: pulumi.Input[Optional[Union['SourceAchCreditTransferArgs', 'SourceAchCreditTransferArgsDict']]] = None,
-            ach_debit: pulumi.Input[Optional[Union['SourceAchDebitArgs', 'SourceAchDebitArgsDict']]] = None,
-            acss_debit: pulumi.Input[Optional[Union['SourceAcssDebitArgs', 'SourceAcssDebitArgsDict']]] = None,
-            alipay: pulumi.Input[Optional[Union['SourceAlipayArgs', 'SourceAlipayArgsDict']]] = None,
+            ach_credit_transfer: pulumi.Input[Optional[Union['SourceAchCreditTransferArgs', 'SourceAchCreditTransferArgsDict', 'outputs.SourceAchCreditTransfer']]] = None,
+            ach_debit: pulumi.Input[Optional[Union['SourceAchDebitArgs', 'SourceAchDebitArgsDict', 'outputs.SourceAchDebit']]] = None,
+            acss_debit: pulumi.Input[Optional[Union['SourceAcssDebitArgs', 'SourceAcssDebitArgsDict', 'outputs.SourceAcssDebit']]] = None,
+            alipay: pulumi.Input[Optional[Union['SourceAlipayArgs', 'SourceAlipayArgsDict', 'outputs.SourceAlipay']]] = None,
             allow_redisplay: pulumi.Input[Optional[_builtins.str]] = None,
             amount: pulumi.Input[Optional[_builtins.float]] = None,
-            au_becs_debit: pulumi.Input[Optional[Union['SourceAuBecsDebitArgs', 'SourceAuBecsDebitArgsDict']]] = None,
-            bancontact: pulumi.Input[Optional[Union['SourceBancontactArgs', 'SourceBancontactArgsDict']]] = None,
-            card: pulumi.Input[Optional[Union['SourceCardArgs', 'SourceCardArgsDict']]] = None,
-            card_present: pulumi.Input[Optional[Union['SourceCardPresentArgs', 'SourceCardPresentArgsDict']]] = None,
+            au_becs_debit: pulumi.Input[Optional[Union['SourceAuBecsDebitArgs', 'SourceAuBecsDebitArgsDict', 'outputs.SourceAuBecsDebit']]] = None,
+            bancontact: pulumi.Input[Optional[Union['SourceBancontactArgs', 'SourceBancontactArgsDict', 'outputs.SourceBancontact']]] = None,
+            card: pulumi.Input[Optional[Union['SourceCardArgs', 'SourceCardArgsDict', 'outputs.SourceCard']]] = None,
+            card_present: pulumi.Input[Optional[Union['SourceCardPresentArgs', 'SourceCardPresentArgsDict', 'outputs.SourceCardPresent']]] = None,
             client_secret: pulumi.Input[Optional[_builtins.str]] = None,
-            code_verification: pulumi.Input[Optional[Union['SourceCodeVerificationArgs', 'SourceCodeVerificationArgsDict']]] = None,
+            code_verification: pulumi.Input[Optional[Union['SourceCodeVerificationArgs', 'SourceCodeVerificationArgsDict', 'outputs.SourceCodeVerification']]] = None,
             created: pulumi.Input[Optional[_builtins.float]] = None,
             currency: pulumi.Input[Optional[_builtins.str]] = None,
             customer: pulumi.Input[Optional[_builtins.str]] = None,
-            eps: pulumi.Input[Optional[Union['SourceEpsArgs', 'SourceEpsArgsDict']]] = None,
+            eps: pulumi.Input[Optional[Union['SourceEpsArgs', 'SourceEpsArgsDict', 'outputs.SourceEps']]] = None,
             flow: pulumi.Input[Optional[_builtins.str]] = None,
-            giropay: pulumi.Input[Optional[Union['SourceGiropayArgs', 'SourceGiropayArgsDict']]] = None,
-            ideal: pulumi.Input[Optional[Union['SourceIdealArgs', 'SourceIdealArgsDict']]] = None,
-            klarna: pulumi.Input[Optional[Union['SourceKlarnaArgs', 'SourceKlarnaArgsDict']]] = None,
+            giropay: pulumi.Input[Optional[Union['SourceGiropayArgs', 'SourceGiropayArgsDict', 'outputs.SourceGiropay']]] = None,
+            ideal: pulumi.Input[Optional[Union['SourceIdealArgs', 'SourceIdealArgsDict', 'outputs.SourceIdeal']]] = None,
+            klarna: pulumi.Input[Optional[Union['SourceKlarnaArgs', 'SourceKlarnaArgsDict', 'outputs.SourceKlarna']]] = None,
             livemode: pulumi.Input[Optional[_builtins.bool]] = None,
-            mandate: pulumi.Input[Optional[Union['SourceMandateArgs', 'SourceMandateArgsDict']]] = None,
+            mandate: pulumi.Input[Optional[Union['SourceMandateArgs', 'SourceMandateArgsDict', 'outputs.SourceMandate']]] = None,
             metadata: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-            multibanco: pulumi.Input[Optional[Union['SourceMultibancoArgs', 'SourceMultibancoArgsDict']]] = None,
+            multibanco: pulumi.Input[Optional[Union['SourceMultibancoArgs', 'SourceMultibancoArgsDict', 'outputs.SourceMultibanco']]] = None,
             object: pulumi.Input[Optional[_builtins.str]] = None,
             original_source: pulumi.Input[Optional[_builtins.str]] = None,
-            owner: pulumi.Input[Optional[Union['SourceOwnerArgs', 'SourceOwnerArgsDict']]] = None,
-            p24: pulumi.Input[Optional[Union['SourceP24Args', 'SourceP24ArgsDict']]] = None,
-            receiver: pulumi.Input[Optional[Union['SourceReceiverArgs', 'SourceReceiverArgsDict']]] = None,
-            redirect: pulumi.Input[Optional[Union['SourceRedirectArgs', 'SourceRedirectArgsDict']]] = None,
-            sepa_credit_transfer: pulumi.Input[Optional[Union['SourceSepaCreditTransferArgs', 'SourceSepaCreditTransferArgsDict']]] = None,
-            sepa_debit: pulumi.Input[Optional[Union['SourceSepaDebitArgs', 'SourceSepaDebitArgsDict']]] = None,
-            sofort: pulumi.Input[Optional[Union['SourceSofortArgs', 'SourceSofortArgsDict']]] = None,
-            source_order: pulumi.Input[Optional[Union['SourceSourceOrderArgs', 'SourceSourceOrderArgsDict']]] = None,
+            owner: pulumi.Input[Optional[Union['SourceOwnerArgs', 'SourceOwnerArgsDict', 'outputs.SourceOwner']]] = None,
+            p24: pulumi.Input[Optional[Union['SourceP24Args', 'SourceP24ArgsDict', 'outputs.SourceP24']]] = None,
+            receiver: pulumi.Input[Optional[Union['SourceReceiverArgs', 'SourceReceiverArgsDict', 'outputs.SourceReceiver']]] = None,
+            redirect: pulumi.Input[Optional[Union['SourceRedirectArgs', 'SourceRedirectArgsDict', 'outputs.SourceRedirect']]] = None,
+            sepa_credit_transfer: pulumi.Input[Optional[Union['SourceSepaCreditTransferArgs', 'SourceSepaCreditTransferArgsDict', 'outputs.SourceSepaCreditTransfer']]] = None,
+            sepa_debit: pulumi.Input[Optional[Union['SourceSepaDebitArgs', 'SourceSepaDebitArgsDict', 'outputs.SourceSepaDebit']]] = None,
+            sofort: pulumi.Input[Optional[Union['SourceSofortArgs', 'SourceSofortArgsDict', 'outputs.SourceSofort']]] = None,
+            source_order: pulumi.Input[Optional[Union['SourceSourceOrderArgs', 'SourceSourceOrderArgsDict', 'outputs.SourceSourceOrder']]] = None,
             statement_descriptor: pulumi.Input[Optional[_builtins.str]] = None,
             status: pulumi.Input[Optional[_builtins.str]] = None,
-            three_d_secure: pulumi.Input[Optional[Union['SourceThreeDSecureArgs', 'SourceThreeDSecureArgsDict']]] = None,
+            three_d_secure: pulumi.Input[Optional[Union['SourceThreeDSecureArgs', 'SourceThreeDSecureArgsDict', 'outputs.SourceThreeDSecure']]] = None,
             token: pulumi.Input[Optional[_builtins.str]] = None,
             type: pulumi.Input[Optional[_builtins.str]] = None,
             usage: pulumi.Input[Optional[_builtins.str]] = None,
-            wechat: pulumi.Input[Optional[Union['SourceWechatArgs', 'SourceWechatArgsDict']]] = None) -> 'Source':
+            wechat: pulumi.Input[Optional[Union['SourceWechatArgs', 'SourceWechatArgsDict', 'outputs.SourceWechat']]] = None) -> 'Source':
         """
         Get an existing Source resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -1041,13 +1041,13 @@ class Source(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] customer: The ID of the customer to which this source is attached. This will not be present when the source has not been attached to a customer.
         :param pulumi.Input[_builtins.str] flow: The authentication <span pulumi-lang-nodejs="`flow`" pulumi-lang-dotnet="`Flow`" pulumi-lang-go="`flow`" pulumi-lang-python="`flow`" pulumi-lang-yaml="`flow`" pulumi-lang-java="`flow`" pulumi-lang-hcl="`flow`">`flow`</span> of the source. <span pulumi-lang-nodejs="`flow`" pulumi-lang-dotnet="`Flow`" pulumi-lang-go="`flow`" pulumi-lang-python="`flow`" pulumi-lang-yaml="`flow`" pulumi-lang-java="`flow`" pulumi-lang-hcl="`flow`">`flow`</span> is one of <span pulumi-lang-nodejs="`redirect`" pulumi-lang-dotnet="`Redirect`" pulumi-lang-go="`redirect`" pulumi-lang-python="`redirect`" pulumi-lang-yaml="`redirect`" pulumi-lang-java="`redirect`" pulumi-lang-hcl="`redirect`">`redirect`</span>, <span pulumi-lang-nodejs="`receiver`" pulumi-lang-dotnet="`Receiver`" pulumi-lang-go="`receiver`" pulumi-lang-python="`receiver`" pulumi-lang-yaml="`receiver`" pulumi-lang-java="`receiver`" pulumi-lang-hcl="`receiver`">`receiver`</span>, <span pulumi-lang-nodejs="`codeVerification`" pulumi-lang-dotnet="`CodeVerification`" pulumi-lang-go="`codeVerification`" pulumi-lang-python="`code_verification`" pulumi-lang-yaml="`codeVerification`" pulumi-lang-java="`codeVerification`" pulumi-lang-hcl="`code_verification`">`codeVerification`</span>, <span pulumi-lang-nodejs="`none`" pulumi-lang-dotnet="`None`" pulumi-lang-go="`none`" pulumi-lang-python="`none`" pulumi-lang-yaml="`none`" pulumi-lang-java="`none`" pulumi-lang-hcl="`none`">`none`</span>.
         :param pulumi.Input[_builtins.bool] livemode: If the object exists in live mode, the value is <span pulumi-lang-nodejs="`true`" pulumi-lang-dotnet="`True`" pulumi-lang-go="`true`" pulumi-lang-python="`true`" pulumi-lang-yaml="`true`" pulumi-lang-java="`true`" pulumi-lang-hcl="`true`">`true`</span>. If the object exists in test mode, the value is <span pulumi-lang-nodejs="`false`" pulumi-lang-dotnet="`False`" pulumi-lang-go="`false`" pulumi-lang-python="`false`" pulumi-lang-yaml="`false`" pulumi-lang-java="`false`" pulumi-lang-hcl="`false`">`false`</span>.
-        :param pulumi.Input[Union['SourceMandateArgs', 'SourceMandateArgsDict']] mandate: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        :param pulumi.Input[Union['SourceMandateArgs', 'SourceMandateArgsDict', 'outputs.SourceMandate']] mandate: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
                Information about a mandate possibility attached to a source object (generally for bank debits) as well as its acceptance status.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] metadata: Set of [key-value pairs](https://docs.stripe.com/api/metadata) that you can attach to an object. This can be useful for storing additional information about the object in a structured format.
         :param pulumi.Input[_builtins.str] object: String representing the object's type. Objects of the same type share the same value.
         :param pulumi.Input[_builtins.str] original_source: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
                The source to share.
-        :param pulumi.Input[Union['SourceOwnerArgs', 'SourceOwnerArgsDict']] owner: Information about the owner of the payment instrument that may be used or required by particular source types.
+        :param pulumi.Input[Union['SourceOwnerArgs', 'SourceOwnerArgsDict', 'outputs.SourceOwner']] owner: Information about the owner of the payment instrument that may be used or required by particular source types.
         :param pulumi.Input[_builtins.str] statement_descriptor: Extra information about a source. This will appear on your customer's statement every time you charge the source.
         :param pulumi.Input[_builtins.str] status: The status of the source, one of <span pulumi-lang-nodejs="`canceled`" pulumi-lang-dotnet="`Canceled`" pulumi-lang-go="`canceled`" pulumi-lang-python="`canceled`" pulumi-lang-yaml="`canceled`" pulumi-lang-java="`canceled`" pulumi-lang-hcl="`canceled`">`canceled`</span>, <span pulumi-lang-nodejs="`chargeable`" pulumi-lang-dotnet="`Chargeable`" pulumi-lang-go="`chargeable`" pulumi-lang-python="`chargeable`" pulumi-lang-yaml="`chargeable`" pulumi-lang-java="`chargeable`" pulumi-lang-hcl="`chargeable`">`chargeable`</span>, <span pulumi-lang-nodejs="`consumed`" pulumi-lang-dotnet="`Consumed`" pulumi-lang-go="`consumed`" pulumi-lang-python="`consumed`" pulumi-lang-yaml="`consumed`" pulumi-lang-java="`consumed`" pulumi-lang-hcl="`consumed`">`consumed`</span>, <span pulumi-lang-nodejs="`failed`" pulumi-lang-dotnet="`Failed`" pulumi-lang-go="`failed`" pulumi-lang-python="`failed`" pulumi-lang-yaml="`failed`" pulumi-lang-java="`failed`" pulumi-lang-hcl="`failed`">`failed`</span>, or <span pulumi-lang-nodejs="`pending`" pulumi-lang-dotnet="`Pending`" pulumi-lang-go="`pending`" pulumi-lang-python="`pending`" pulumi-lang-yaml="`pending`" pulumi-lang-java="`pending`" pulumi-lang-hcl="`pending`">`pending`</span>. Only <span pulumi-lang-nodejs="`chargeable`" pulumi-lang-dotnet="`Chargeable`" pulumi-lang-go="`chargeable`" pulumi-lang-python="`chargeable`" pulumi-lang-yaml="`chargeable`" pulumi-lang-java="`chargeable`" pulumi-lang-hcl="`chargeable`">`chargeable`</span> sources can be used to create a charge.
         :param pulumi.Input[_builtins.str] token: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
@@ -1101,6 +1101,94 @@ class Source(pulumi.CustomResource):
         __props__.__dict__["usage"] = usage
         __props__.__dict__["wechat"] = wechat
         return Source(resource_name, opts=opts, __props__=__props__)
+
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            ach_credit_transfer: pulumi.Input[Optional[Union['SourceAchCreditTransferArgs', 'SourceAchCreditTransferArgsDict', 'outputs.SourceAchCreditTransfer']]] = None,
+            ach_debit: pulumi.Input[Optional[Union['SourceAchDebitArgs', 'SourceAchDebitArgsDict', 'outputs.SourceAchDebit']]] = None,
+            acss_debit: pulumi.Input[Optional[Union['SourceAcssDebitArgs', 'SourceAcssDebitArgsDict', 'outputs.SourceAcssDebit']]] = None,
+            alipay: pulumi.Input[Optional[Union['SourceAlipayArgs', 'SourceAlipayArgsDict', 'outputs.SourceAlipay']]] = None,
+            allow_redisplay: pulumi.Input[Optional[_builtins.str]] = None,
+            amount: pulumi.Input[Optional[_builtins.float]] = None,
+            au_becs_debit: pulumi.Input[Optional[Union['SourceAuBecsDebitArgs', 'SourceAuBecsDebitArgsDict', 'outputs.SourceAuBecsDebit']]] = None,
+            bancontact: pulumi.Input[Optional[Union['SourceBancontactArgs', 'SourceBancontactArgsDict', 'outputs.SourceBancontact']]] = None,
+            card: pulumi.Input[Optional[Union['SourceCardArgs', 'SourceCardArgsDict', 'outputs.SourceCard']]] = None,
+            card_present: pulumi.Input[Optional[Union['SourceCardPresentArgs', 'SourceCardPresentArgsDict', 'outputs.SourceCardPresent']]] = None,
+            client_secret: pulumi.Input[Optional[_builtins.str]] = None,
+            code_verification: pulumi.Input[Optional[Union['SourceCodeVerificationArgs', 'SourceCodeVerificationArgsDict', 'outputs.SourceCodeVerification']]] = None,
+            created: pulumi.Input[Optional[_builtins.float]] = None,
+            currency: pulumi.Input[Optional[_builtins.str]] = None,
+            customer: pulumi.Input[Optional[_builtins.str]] = None,
+            eps: pulumi.Input[Optional[Union['SourceEpsArgs', 'SourceEpsArgsDict', 'outputs.SourceEps']]] = None,
+            flow: pulumi.Input[Optional[_builtins.str]] = None,
+            giropay: pulumi.Input[Optional[Union['SourceGiropayArgs', 'SourceGiropayArgsDict', 'outputs.SourceGiropay']]] = None,
+            ideal: pulumi.Input[Optional[Union['SourceIdealArgs', 'SourceIdealArgsDict', 'outputs.SourceIdeal']]] = None,
+            klarna: pulumi.Input[Optional[Union['SourceKlarnaArgs', 'SourceKlarnaArgsDict', 'outputs.SourceKlarna']]] = None,
+            livemode: pulumi.Input[Optional[_builtins.bool]] = None,
+            mandate: pulumi.Input[Optional[Union['SourceMandateArgs', 'SourceMandateArgsDict', 'outputs.SourceMandate']]] = None,
+            metadata: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+            multibanco: pulumi.Input[Optional[Union['SourceMultibancoArgs', 'SourceMultibancoArgsDict', 'outputs.SourceMultibanco']]] = None,
+            object: pulumi.Input[Optional[_builtins.str]] = None,
+            original_source: pulumi.Input[Optional[_builtins.str]] = None,
+            owner: pulumi.Input[Optional[Union['SourceOwnerArgs', 'SourceOwnerArgsDict', 'outputs.SourceOwner']]] = None,
+            p24: pulumi.Input[Optional[Union['SourceP24Args', 'SourceP24ArgsDict', 'outputs.SourceP24']]] = None,
+            receiver: pulumi.Input[Optional[Union['SourceReceiverArgs', 'SourceReceiverArgsDict', 'outputs.SourceReceiver']]] = None,
+            redirect: pulumi.Input[Optional[Union['SourceRedirectArgs', 'SourceRedirectArgsDict', 'outputs.SourceRedirect']]] = None,
+            sepa_credit_transfer: pulumi.Input[Optional[Union['SourceSepaCreditTransferArgs', 'SourceSepaCreditTransferArgsDict', 'outputs.SourceSepaCreditTransfer']]] = None,
+            sepa_debit: pulumi.Input[Optional[Union['SourceSepaDebitArgs', 'SourceSepaDebitArgsDict', 'outputs.SourceSepaDebit']]] = None,
+            sofort: pulumi.Input[Optional[Union['SourceSofortArgs', 'SourceSofortArgsDict', 'outputs.SourceSofort']]] = None,
+            source_order: pulumi.Input[Optional[Union['SourceSourceOrderArgs', 'SourceSourceOrderArgsDict', 'outputs.SourceSourceOrder']]] = None,
+            statement_descriptor: pulumi.Input[Optional[_builtins.str]] = None,
+            status: pulumi.Input[Optional[_builtins.str]] = None,
+            three_d_secure: pulumi.Input[Optional[Union['SourceThreeDSecureArgs', 'SourceThreeDSecureArgsDict', 'outputs.SourceThreeDSecure']]] = None,
+            token: pulumi.Input[Optional[_builtins.str]] = None,
+            type: pulumi.Input[Optional[_builtins.str]] = None,
+            usage: pulumi.Input[Optional[_builtins.str]] = None,
+            wechat: pulumi.Input[Optional[Union['SourceWechatArgs', 'SourceWechatArgsDict', 'outputs.SourceWechat']]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["achCreditTransfer"] = ach_credit_transfer
+        __props__["achDebit"] = ach_debit
+        __props__["acssDebit"] = acss_debit
+        __props__["alipay"] = alipay
+        __props__["allowRedisplay"] = allow_redisplay
+        __props__["amount"] = amount
+        __props__["auBecsDebit"] = au_becs_debit
+        __props__["bancontact"] = bancontact
+        __props__["card"] = card
+        __props__["cardPresent"] = card_present
+        __props__["clientSecret"] = client_secret
+        __props__["codeVerification"] = code_verification
+        __props__["created"] = created
+        __props__["currency"] = currency
+        __props__["customer"] = customer
+        __props__["eps"] = eps
+        __props__["flow"] = flow
+        __props__["giropay"] = giropay
+        __props__["ideal"] = ideal
+        __props__["klarna"] = klarna
+        __props__["livemode"] = livemode
+        __props__["mandate"] = mandate
+        __props__["metadata"] = metadata
+        __props__["multibanco"] = multibanco
+        __props__["object"] = object
+        __props__["originalSource"] = original_source
+        __props__["owner"] = owner
+        __props__["p24"] = p24
+        __props__["receiver"] = receiver
+        __props__["redirect"] = redirect
+        __props__["sepaCreditTransfer"] = sepa_credit_transfer
+        __props__["sepaDebit"] = sepa_debit
+        __props__["sofort"] = sofort
+        __props__["sourceOrder"] = source_order
+        __props__["statementDescriptor"] = statement_descriptor
+        __props__["status"] = status
+        __props__["threeDSecure"] = three_d_secure
+        __props__["token"] = token
+        __props__["type"] = type
+        __props__["usage"] = usage
+        __props__["wechat"] = wechat
+        return pulumi.runtime.exists_resource(None, 'stripe:index/source:Source', id, __props__, opts or pulumi.ResourceOptions(), package_ref=_utilities.get_package())
 
     @_builtins.property
     @pulumi.getter(name="achCreditTransfer")

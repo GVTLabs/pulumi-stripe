@@ -266,7 +266,7 @@ public class PaymentIntent extends com.pulumi.resources.CustomResource {
      * 
      * Payment methods attached to other Customers cannot be used with this PaymentIntent.
      * 
-     * If &lt;span pulumi-lang-nodejs=&#34;[setupFutureUsage]&#34; pulumi-lang-dotnet=&#34;[SetupFutureUsage]&#34; pulumi-lang-go=&#34;[setupFutureUsage]&#34; pulumi-lang-python=&#34;[setup_future_usage]&#34; pulumi-lang-yaml=&#34;[setupFutureUsage]&#34; pulumi-lang-java=&#34;[setupFutureUsage]&#34; pulumi-lang-hcl=&#34;[setup_future_usage]&#34;&gt;[setupFutureUsage]&lt;/span&gt;(https://api.stripe.com#payment_intent_object-setup_future_usage) is set and this PaymentIntent&#39;s payment method is not &lt;span pulumi-lang-nodejs=&#34;`cardPresent`&#34; pulumi-lang-dotnet=&#34;`CardPresent`&#34; pulumi-lang-go=&#34;`cardPresent`&#34; pulumi-lang-python=&#34;`card_present`&#34; pulumi-lang-yaml=&#34;`cardPresent`&#34; pulumi-lang-java=&#34;`cardPresent`&#34; pulumi-lang-hcl=&#34;`card_present`&#34;&gt;`cardPresent`&lt;/span&gt;, then the payment method attaches to the Customer after the PaymentIntent has been confirmed and any required actions from the user are complete. If the payment method is &lt;span pulumi-lang-nodejs=&#34;`cardPresent`&#34; pulumi-lang-dotnet=&#34;`CardPresent`&#34; pulumi-lang-go=&#34;`cardPresent`&#34; pulumi-lang-python=&#34;`card_present`&#34; pulumi-lang-yaml=&#34;`cardPresent`&#34; pulumi-lang-java=&#34;`cardPresent`&#34; pulumi-lang-hcl=&#34;`card_present`&#34;&gt;`cardPresent`&lt;/span&gt; and isn&#39;t a digital wallet, then a &lt;span pulumi-lang-nodejs=&#34;[generatedCard]&#34; pulumi-lang-dotnet=&#34;[GeneratedCard]&#34; pulumi-lang-go=&#34;[generatedCard]&#34; pulumi-lang-python=&#34;[generated_card]&#34; pulumi-lang-yaml=&#34;[generatedCard]&#34; pulumi-lang-java=&#34;[generatedCard]&#34; pulumi-lang-hcl=&#34;[generated_card]&#34;&gt;[generatedCard]&lt;/span&gt;(https://docs.stripe.com/api/charges/object#charge_object-payment_method_details-card_present-generated_card) payment method representing the card is created and attached to the Customer instead.
+     * If &lt;span pulumi-lang-nodejs=&#34;[setupFutureUsage]&#34; pulumi-lang-dotnet=&#34;[SetupFutureUsage]&#34; pulumi-lang-go=&#34;[setupFutureUsage]&#34; pulumi-lang-python=&#34;[setup_future_usage]&#34; pulumi-lang-yaml=&#34;[setupFutureUsage]&#34; pulumi-lang-java=&#34;[setupFutureUsage]&#34; pulumi-lang-hcl=&#34;[setup_future_usage]&#34;&gt;[setupFutureUsage]&lt;/span&gt;(https://docs.stripe.com/api#payment_intent_object-setup_future_usage) is set and this PaymentIntent&#39;s payment method is not &lt;span pulumi-lang-nodejs=&#34;`cardPresent`&#34; pulumi-lang-dotnet=&#34;`CardPresent`&#34; pulumi-lang-go=&#34;`cardPresent`&#34; pulumi-lang-python=&#34;`card_present`&#34; pulumi-lang-yaml=&#34;`cardPresent`&#34; pulumi-lang-java=&#34;`cardPresent`&#34; pulumi-lang-hcl=&#34;`card_present`&#34;&gt;`cardPresent`&lt;/span&gt;, then the payment method attaches to the Customer after the PaymentIntent has been confirmed and any required actions from the user are complete. If the payment method is &lt;span pulumi-lang-nodejs=&#34;`cardPresent`&#34; pulumi-lang-dotnet=&#34;`CardPresent`&#34; pulumi-lang-go=&#34;`cardPresent`&#34; pulumi-lang-python=&#34;`card_present`&#34; pulumi-lang-yaml=&#34;`cardPresent`&#34; pulumi-lang-java=&#34;`cardPresent`&#34; pulumi-lang-hcl=&#34;`card_present`&#34;&gt;`cardPresent`&lt;/span&gt; and isn&#39;t a digital wallet, then a &lt;span pulumi-lang-nodejs=&#34;[generatedCard]&#34; pulumi-lang-dotnet=&#34;[GeneratedCard]&#34; pulumi-lang-go=&#34;[generatedCard]&#34; pulumi-lang-python=&#34;[generated_card]&#34; pulumi-lang-yaml=&#34;[generatedCard]&#34; pulumi-lang-java=&#34;[generatedCard]&#34; pulumi-lang-hcl=&#34;[generated_card]&#34;&gt;[generatedCard]&lt;/span&gt;(https://docs.stripe.com/api/charges/object#charge_object-payment_method_details-card_present-generated_card) payment method representing the card is created and attached to the Customer instead.
      * 
      */
     @Export(name="customer", refs={String.class}, tree="[0]")
@@ -277,7 +277,7 @@ public class PaymentIntent extends com.pulumi.resources.CustomResource {
      * 
      * Payment methods attached to other Customers cannot be used with this PaymentIntent.
      * 
-     * If &lt;span pulumi-lang-nodejs=&#34;[setupFutureUsage]&#34; pulumi-lang-dotnet=&#34;[SetupFutureUsage]&#34; pulumi-lang-go=&#34;[setupFutureUsage]&#34; pulumi-lang-python=&#34;[setup_future_usage]&#34; pulumi-lang-yaml=&#34;[setupFutureUsage]&#34; pulumi-lang-java=&#34;[setupFutureUsage]&#34; pulumi-lang-hcl=&#34;[setup_future_usage]&#34;&gt;[setupFutureUsage]&lt;/span&gt;(https://api.stripe.com#payment_intent_object-setup_future_usage) is set and this PaymentIntent&#39;s payment method is not &lt;span pulumi-lang-nodejs=&#34;`cardPresent`&#34; pulumi-lang-dotnet=&#34;`CardPresent`&#34; pulumi-lang-go=&#34;`cardPresent`&#34; pulumi-lang-python=&#34;`card_present`&#34; pulumi-lang-yaml=&#34;`cardPresent`&#34; pulumi-lang-java=&#34;`cardPresent`&#34; pulumi-lang-hcl=&#34;`card_present`&#34;&gt;`cardPresent`&lt;/span&gt;, then the payment method attaches to the Customer after the PaymentIntent has been confirmed and any required actions from the user are complete. If the payment method is &lt;span pulumi-lang-nodejs=&#34;`cardPresent`&#34; pulumi-lang-dotnet=&#34;`CardPresent`&#34; pulumi-lang-go=&#34;`cardPresent`&#34; pulumi-lang-python=&#34;`card_present`&#34; pulumi-lang-yaml=&#34;`cardPresent`&#34; pulumi-lang-java=&#34;`cardPresent`&#34; pulumi-lang-hcl=&#34;`card_present`&#34;&gt;`cardPresent`&lt;/span&gt; and isn&#39;t a digital wallet, then a &lt;span pulumi-lang-nodejs=&#34;[generatedCard]&#34; pulumi-lang-dotnet=&#34;[GeneratedCard]&#34; pulumi-lang-go=&#34;[generatedCard]&#34; pulumi-lang-python=&#34;[generated_card]&#34; pulumi-lang-yaml=&#34;[generatedCard]&#34; pulumi-lang-java=&#34;[generatedCard]&#34; pulumi-lang-hcl=&#34;[generated_card]&#34;&gt;[generatedCard]&lt;/span&gt;(https://docs.stripe.com/api/charges/object#charge_object-payment_method_details-card_present-generated_card) payment method representing the card is created and attached to the Customer instead.
+     * If &lt;span pulumi-lang-nodejs=&#34;[setupFutureUsage]&#34; pulumi-lang-dotnet=&#34;[SetupFutureUsage]&#34; pulumi-lang-go=&#34;[setupFutureUsage]&#34; pulumi-lang-python=&#34;[setup_future_usage]&#34; pulumi-lang-yaml=&#34;[setupFutureUsage]&#34; pulumi-lang-java=&#34;[setupFutureUsage]&#34; pulumi-lang-hcl=&#34;[setup_future_usage]&#34;&gt;[setupFutureUsage]&lt;/span&gt;(https://docs.stripe.com/api#payment_intent_object-setup_future_usage) is set and this PaymentIntent&#39;s payment method is not &lt;span pulumi-lang-nodejs=&#34;`cardPresent`&#34; pulumi-lang-dotnet=&#34;`CardPresent`&#34; pulumi-lang-go=&#34;`cardPresent`&#34; pulumi-lang-python=&#34;`card_present`&#34; pulumi-lang-yaml=&#34;`cardPresent`&#34; pulumi-lang-java=&#34;`cardPresent`&#34; pulumi-lang-hcl=&#34;`card_present`&#34;&gt;`cardPresent`&lt;/span&gt;, then the payment method attaches to the Customer after the PaymentIntent has been confirmed and any required actions from the user are complete. If the payment method is &lt;span pulumi-lang-nodejs=&#34;`cardPresent`&#34; pulumi-lang-dotnet=&#34;`CardPresent`&#34; pulumi-lang-go=&#34;`cardPresent`&#34; pulumi-lang-python=&#34;`card_present`&#34; pulumi-lang-yaml=&#34;`cardPresent`&#34; pulumi-lang-java=&#34;`cardPresent`&#34; pulumi-lang-hcl=&#34;`card_present`&#34;&gt;`cardPresent`&lt;/span&gt; and isn&#39;t a digital wallet, then a &lt;span pulumi-lang-nodejs=&#34;[generatedCard]&#34; pulumi-lang-dotnet=&#34;[GeneratedCard]&#34; pulumi-lang-go=&#34;[generatedCard]&#34; pulumi-lang-python=&#34;[generated_card]&#34; pulumi-lang-yaml=&#34;[generatedCard]&#34; pulumi-lang-java=&#34;[generatedCard]&#34; pulumi-lang-hcl=&#34;[generated_card]&#34;&gt;[generatedCard]&lt;/span&gt;(https://docs.stripe.com/api/charges/object#charge_object-payment_method_details-card_present-generated_card) payment method representing the card is created and attached to the Customer instead.
      * 
      */
     public Output<String> customer() {
@@ -562,6 +562,34 @@ public class PaymentIntent extends com.pulumi.resources.CustomResource {
      */
     public Output<PaymentIntentPaymentMethodOptions> paymentMethodOptions() {
         return this.paymentMethodOptions;
+    }
+    /**
+     * The list of payment method types (e.g. card) that this PaymentIntent is allowed to use. A comprehensive list of valid payment method types can be found [here](https://docs.stripe.com/api/payment_methods/object#payment_method_object-type).
+     * 
+     */
+    @Export(name="paymentMethodTypes", refs={List.class,String.class}, tree="[0,1]")
+    private Output<List<String>> paymentMethodTypes;
+
+    /**
+     * @return The list of payment method types (e.g. card) that this PaymentIntent is allowed to use. A comprehensive list of valid payment method types can be found [here](https://docs.stripe.com/api/payment_methods/object#payment_method_object-type).
+     * 
+     */
+    public Output<List<String>> paymentMethodTypes() {
+        return this.paymentMethodTypes;
+    }
+    /**
+     * ID of the [Payment Record object](https://docs.stripe.com/api/payment-record) created by this PaymentIntent.
+     * 
+     */
+    @Export(name="paymentRecord", refs={String.class}, tree="[0]")
+    private Output<String> paymentRecord;
+
+    /**
+     * @return ID of the [Payment Record object](https://docs.stripe.com/api/payment-record) created by this PaymentIntent.
+     * 
+     */
+    public Output<String> paymentRecord() {
+        return this.paymentRecord;
     }
     @Export(name="presentmentDetails", refs={PaymentIntentPresentmentDetails.class}, tree="[0]")
     private Output<PaymentIntentPresentmentDetails> presentmentDetails;

@@ -70,14 +70,14 @@ public class BillingPortalConfiguration extends com.pulumi.resources.CustomResou
         return this.created;
     }
     /**
-     * The default URL to redirect customers to when they click on the portal&#39;s link to return to your website. This can be [overriden](https://docs.stripe.com/api/customer_portal/sessions/create#create_portal_session-return_url) when creating the session.
+     * The default URL to redirect customers to when they click on the portal&#39;s link to return to your website. This can be [overridden](https://docs.stripe.com/api/customer_portal/sessions/create#create_portal_session-return_url) when creating the session.
      * 
      */
     @Export(name="defaultReturnUrl", refs={String.class}, tree="[0]")
     private Output<String> defaultReturnUrl;
 
     /**
-     * @return The default URL to redirect customers to when they click on the portal&#39;s link to return to your website. This can be [overriden](https://docs.stripe.com/api/customer_portal/sessions/create#create_portal_session-return_url) when creating the session.
+     * @return The default URL to redirect customers to when they click on the portal&#39;s link to return to your website. This can be [overridden](https://docs.stripe.com/api/customer_portal/sessions/create#create_portal_session-return_url) when creating the session.
      * 
      */
     public Output<String> defaultReturnUrl() {

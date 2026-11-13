@@ -393,10 +393,10 @@ class TreasuryFinancialAccount(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 features: pulumi.Input[Optional[Union['TreasuryFinancialAccountFeaturesArgs', 'TreasuryFinancialAccountFeaturesArgsDict']]] = None,
+                 features: pulumi.Input[Optional[Union['TreasuryFinancialAccountFeaturesArgs', 'TreasuryFinancialAccountFeaturesArgsDict', 'outputs.TreasuryFinancialAccountFeatures']]] = None,
                  metadata: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
                  nickname: pulumi.Input[Optional[_builtins.str]] = None,
-                 platform_restrictions: pulumi.Input[Optional[Union['TreasuryFinancialAccountPlatformRestrictionsArgs', 'TreasuryFinancialAccountPlatformRestrictionsArgsDict']]] = None,
+                 platform_restrictions: pulumi.Input[Optional[Union['TreasuryFinancialAccountPlatformRestrictionsArgs', 'TreasuryFinancialAccountPlatformRestrictionsArgsDict', 'outputs.TreasuryFinancialAccountPlatformRestrictions']]] = None,
                  supported_currencies: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  __props__=None):
         """
@@ -404,12 +404,12 @@ class TreasuryFinancialAccount(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[Union['TreasuryFinancialAccountFeaturesArgs', 'TreasuryFinancialAccountFeaturesArgsDict']] features: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        :param pulumi.Input[Union['TreasuryFinancialAccountFeaturesArgs', 'TreasuryFinancialAccountFeaturesArgsDict', 'outputs.TreasuryFinancialAccountFeatures']] features: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
                Encodes whether a FinancialAccount has access to a particular Feature, with a <span pulumi-lang-nodejs="`status`" pulumi-lang-dotnet="`Status`" pulumi-lang-go="`status`" pulumi-lang-python="`status`" pulumi-lang-yaml="`status`" pulumi-lang-java="`status`" pulumi-lang-hcl="`status`">`status`</span> enum and associated <span pulumi-lang-nodejs="`statusDetails`" pulumi-lang-dotnet="`StatusDetails`" pulumi-lang-go="`statusDetails`" pulumi-lang-python="`status_details`" pulumi-lang-yaml="`statusDetails`" pulumi-lang-java="`statusDetails`" pulumi-lang-hcl="`status_details`">`statusDetails`</span>.
                Stripe or the platform can control Features via the requested field.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] metadata: Set of [key-value pairs](https://docs.stripe.com/api/metadata) that you can attach to an object. This can be useful for storing additional information about the object in a structured format.
         :param pulumi.Input[_builtins.str] nickname: The nickname for the FinancialAccount.
-        :param pulumi.Input[Union['TreasuryFinancialAccountPlatformRestrictionsArgs', 'TreasuryFinancialAccountPlatformRestrictionsArgsDict']] platform_restrictions: The set of functionalities that the platform can restrict on the FinancialAccount.
+        :param pulumi.Input[Union['TreasuryFinancialAccountPlatformRestrictionsArgs', 'TreasuryFinancialAccountPlatformRestrictionsArgsDict', 'outputs.TreasuryFinancialAccountPlatformRestrictions']] platform_restrictions: The set of functionalities that the platform can restrict on the FinancialAccount.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] supported_currencies: The currencies the FinancialAccount can hold a balance in. Three-letter [ISO currency code](https://www.iso.org/iso-4217-currency-codes.html), in lowercase.
         """
         ...
@@ -436,10 +436,10 @@ class TreasuryFinancialAccount(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 features: pulumi.Input[Optional[Union['TreasuryFinancialAccountFeaturesArgs', 'TreasuryFinancialAccountFeaturesArgsDict']]] = None,
+                 features: pulumi.Input[Optional[Union['TreasuryFinancialAccountFeaturesArgs', 'TreasuryFinancialAccountFeaturesArgsDict', 'outputs.TreasuryFinancialAccountFeatures']]] = None,
                  metadata: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
                  nickname: pulumi.Input[Optional[_builtins.str]] = None,
-                 platform_restrictions: pulumi.Input[Optional[Union['TreasuryFinancialAccountPlatformRestrictionsArgs', 'TreasuryFinancialAccountPlatformRestrictionsArgsDict']]] = None,
+                 platform_restrictions: pulumi.Input[Optional[Union['TreasuryFinancialAccountPlatformRestrictionsArgs', 'TreasuryFinancialAccountPlatformRestrictionsArgsDict', 'outputs.TreasuryFinancialAccountPlatformRestrictions']]] = None,
                  supported_currencies: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
@@ -483,21 +483,21 @@ class TreasuryFinancialAccount(pulumi.CustomResource):
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
             active_features: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
-            balance: pulumi.Input[Optional[Union['TreasuryFinancialAccountBalanceArgs', 'TreasuryFinancialAccountBalanceArgsDict']]] = None,
+            balance: pulumi.Input[Optional[Union['TreasuryFinancialAccountBalanceArgs', 'TreasuryFinancialAccountBalanceArgsDict', 'outputs.TreasuryFinancialAccountBalance']]] = None,
             country: pulumi.Input[Optional[_builtins.str]] = None,
             created: pulumi.Input[Optional[_builtins.float]] = None,
-            features: pulumi.Input[Optional[Union['TreasuryFinancialAccountFeaturesArgs', 'TreasuryFinancialAccountFeaturesArgsDict']]] = None,
-            financial_addresses: pulumi.Input[Optional[Sequence[pulumi.Input[Union['TreasuryFinancialAccountFinancialAddressArgs', 'TreasuryFinancialAccountFinancialAddressArgsDict']]]]] = None,
+            features: pulumi.Input[Optional[Union['TreasuryFinancialAccountFeaturesArgs', 'TreasuryFinancialAccountFeaturesArgsDict', 'outputs.TreasuryFinancialAccountFeatures']]] = None,
+            financial_addresses: pulumi.Input[Optional[Sequence[pulumi.Input[Union['TreasuryFinancialAccountFinancialAddressArgs', 'TreasuryFinancialAccountFinancialAddressArgsDict', 'outputs.TreasuryFinancialAccountFinancialAddress']]]]] = None,
             is_default: pulumi.Input[Optional[_builtins.bool]] = None,
             livemode: pulumi.Input[Optional[_builtins.bool]] = None,
             metadata: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
             nickname: pulumi.Input[Optional[_builtins.str]] = None,
             object: pulumi.Input[Optional[_builtins.str]] = None,
             pending_features: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
-            platform_restrictions: pulumi.Input[Optional[Union['TreasuryFinancialAccountPlatformRestrictionsArgs', 'TreasuryFinancialAccountPlatformRestrictionsArgsDict']]] = None,
+            platform_restrictions: pulumi.Input[Optional[Union['TreasuryFinancialAccountPlatformRestrictionsArgs', 'TreasuryFinancialAccountPlatformRestrictionsArgsDict', 'outputs.TreasuryFinancialAccountPlatformRestrictions']]] = None,
             restricted_features: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
             status: pulumi.Input[Optional[_builtins.str]] = None,
-            status_details: pulumi.Input[Optional[Union['TreasuryFinancialAccountStatusDetailsArgs', 'TreasuryFinancialAccountStatusDetailsArgsDict']]] = None,
+            status_details: pulumi.Input[Optional[Union['TreasuryFinancialAccountStatusDetailsArgs', 'TreasuryFinancialAccountStatusDetailsArgsDict', 'outputs.TreasuryFinancialAccountStatusDetails']]] = None,
             supported_currencies: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None) -> 'TreasuryFinancialAccount':
         """
         Get an existing TreasuryFinancialAccount resource's state with the given name, id, and optional extra
@@ -507,19 +507,19 @@ class TreasuryFinancialAccount(pulumi.CustomResource):
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] active_features: The array of paths to active Features in the Features hash.
-        :param pulumi.Input[Union['TreasuryFinancialAccountBalanceArgs', 'TreasuryFinancialAccountBalanceArgsDict']] balance: Balance information for the FinancialAccount
+        :param pulumi.Input[Union['TreasuryFinancialAccountBalanceArgs', 'TreasuryFinancialAccountBalanceArgsDict', 'outputs.TreasuryFinancialAccountBalance']] balance: Balance information for the FinancialAccount
         :param pulumi.Input[_builtins.str] country: Two-letter country code ([ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2)).
         :param pulumi.Input[_builtins.float] created: Time at which the object was created. Measured in seconds since the Unix epoch.
-        :param pulumi.Input[Union['TreasuryFinancialAccountFeaturesArgs', 'TreasuryFinancialAccountFeaturesArgsDict']] features: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        :param pulumi.Input[Union['TreasuryFinancialAccountFeaturesArgs', 'TreasuryFinancialAccountFeaturesArgsDict', 'outputs.TreasuryFinancialAccountFeatures']] features: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
                Encodes whether a FinancialAccount has access to a particular Feature, with a <span pulumi-lang-nodejs="`status`" pulumi-lang-dotnet="`Status`" pulumi-lang-go="`status`" pulumi-lang-python="`status`" pulumi-lang-yaml="`status`" pulumi-lang-java="`status`" pulumi-lang-hcl="`status`">`status`</span> enum and associated <span pulumi-lang-nodejs="`statusDetails`" pulumi-lang-dotnet="`StatusDetails`" pulumi-lang-go="`statusDetails`" pulumi-lang-python="`status_details`" pulumi-lang-yaml="`statusDetails`" pulumi-lang-java="`statusDetails`" pulumi-lang-hcl="`status_details`">`statusDetails`</span>.
                Stripe or the platform can control Features via the requested field.
-        :param pulumi.Input[Sequence[pulumi.Input[Union['TreasuryFinancialAccountFinancialAddressArgs', 'TreasuryFinancialAccountFinancialAddressArgsDict']]]] financial_addresses: The set of credentials that resolve to a FinancialAccount.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['TreasuryFinancialAccountFinancialAddressArgs', 'TreasuryFinancialAccountFinancialAddressArgsDict', 'outputs.TreasuryFinancialAccountFinancialAddress']]]] financial_addresses: The set of credentials that resolve to a FinancialAccount.
         :param pulumi.Input[_builtins.bool] livemode: If the object exists in live mode, the value is <span pulumi-lang-nodejs="`true`" pulumi-lang-dotnet="`True`" pulumi-lang-go="`true`" pulumi-lang-python="`true`" pulumi-lang-yaml="`true`" pulumi-lang-java="`true`" pulumi-lang-hcl="`true`">`true`</span>. If the object exists in test mode, the value is <span pulumi-lang-nodejs="`false`" pulumi-lang-dotnet="`False`" pulumi-lang-go="`false`" pulumi-lang-python="`false`" pulumi-lang-yaml="`false`" pulumi-lang-java="`false`" pulumi-lang-hcl="`false`">`false`</span>.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] metadata: Set of [key-value pairs](https://docs.stripe.com/api/metadata) that you can attach to an object. This can be useful for storing additional information about the object in a structured format.
         :param pulumi.Input[_builtins.str] nickname: The nickname for the FinancialAccount.
         :param pulumi.Input[_builtins.str] object: String representing the object's type. Objects of the same type share the same value.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] pending_features: The array of paths to pending Features in the Features hash.
-        :param pulumi.Input[Union['TreasuryFinancialAccountPlatformRestrictionsArgs', 'TreasuryFinancialAccountPlatformRestrictionsArgsDict']] platform_restrictions: The set of functionalities that the platform can restrict on the FinancialAccount.
+        :param pulumi.Input[Union['TreasuryFinancialAccountPlatformRestrictionsArgs', 'TreasuryFinancialAccountPlatformRestrictionsArgsDict', 'outputs.TreasuryFinancialAccountPlatformRestrictions']] platform_restrictions: The set of functionalities that the platform can restrict on the FinancialAccount.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] restricted_features: The array of paths to restricted Features in the Features hash.
         :param pulumi.Input[_builtins.str] status: Status of this FinancialAccount.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] supported_currencies: The currencies the FinancialAccount can hold a balance in. Three-letter [ISO currency code](https://www.iso.org/iso-4217-currency-codes.html), in lowercase.
@@ -546,6 +546,46 @@ class TreasuryFinancialAccount(pulumi.CustomResource):
         __props__.__dict__["status_details"] = status_details
         __props__.__dict__["supported_currencies"] = supported_currencies
         return TreasuryFinancialAccount(resource_name, opts=opts, __props__=__props__)
+
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            active_features: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            balance: pulumi.Input[Optional[Union['TreasuryFinancialAccountBalanceArgs', 'TreasuryFinancialAccountBalanceArgsDict', 'outputs.TreasuryFinancialAccountBalance']]] = None,
+            country: pulumi.Input[Optional[_builtins.str]] = None,
+            created: pulumi.Input[Optional[_builtins.float]] = None,
+            features: pulumi.Input[Optional[Union['TreasuryFinancialAccountFeaturesArgs', 'TreasuryFinancialAccountFeaturesArgsDict', 'outputs.TreasuryFinancialAccountFeatures']]] = None,
+            financial_addresses: pulumi.Input[Optional[Sequence[pulumi.Input[Union['TreasuryFinancialAccountFinancialAddressArgs', 'TreasuryFinancialAccountFinancialAddressArgsDict', 'outputs.TreasuryFinancialAccountFinancialAddress']]]]] = None,
+            is_default: pulumi.Input[Optional[_builtins.bool]] = None,
+            livemode: pulumi.Input[Optional[_builtins.bool]] = None,
+            metadata: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+            nickname: pulumi.Input[Optional[_builtins.str]] = None,
+            object: pulumi.Input[Optional[_builtins.str]] = None,
+            pending_features: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            platform_restrictions: pulumi.Input[Optional[Union['TreasuryFinancialAccountPlatformRestrictionsArgs', 'TreasuryFinancialAccountPlatformRestrictionsArgsDict', 'outputs.TreasuryFinancialAccountPlatformRestrictions']]] = None,
+            restricted_features: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            status: pulumi.Input[Optional[_builtins.str]] = None,
+            status_details: pulumi.Input[Optional[Union['TreasuryFinancialAccountStatusDetailsArgs', 'TreasuryFinancialAccountStatusDetailsArgsDict', 'outputs.TreasuryFinancialAccountStatusDetails']]] = None,
+            supported_currencies: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["activeFeatures"] = active_features
+        __props__["balance"] = balance
+        __props__["country"] = country
+        __props__["created"] = created
+        __props__["features"] = features
+        __props__["financialAddresses"] = financial_addresses
+        __props__["isDefault"] = is_default
+        __props__["livemode"] = livemode
+        __props__["metadata"] = metadata
+        __props__["nickname"] = nickname
+        __props__["object"] = object
+        __props__["pendingFeatures"] = pending_features
+        __props__["platformRestrictions"] = platform_restrictions
+        __props__["restrictedFeatures"] = restricted_features
+        __props__["status"] = status
+        __props__["statusDetails"] = status_details
+        __props__["supportedCurrencies"] = supported_currencies
+        return pulumi.runtime.exists_resource(None, 'stripe:index/treasuryFinancialAccount:TreasuryFinancialAccount', id, __props__, opts or pulumi.ResourceOptions(), package_ref=_utilities.get_package())
 
     @_builtins.property
     @pulumi.getter(name="activeFeatures")

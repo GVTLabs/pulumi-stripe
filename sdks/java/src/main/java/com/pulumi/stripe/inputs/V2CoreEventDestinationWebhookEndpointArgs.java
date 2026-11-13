@@ -17,14 +17,14 @@ public final class V2CoreEventDestinationWebhookEndpointArgs extends com.pulumi.
     public static final V2CoreEventDestinationWebhookEndpointArgs Empty = new V2CoreEventDestinationWebhookEndpointArgs();
 
     /**
-     * The signing secret of the webhook endpoint, only includable on creation.
+     * The secret used to verify Stripe signatures on delivered events. Returned only in the create response when explicitly included; public API clients cannot retrieve it later.
      * 
      */
     @Import(name="signingSecret")
     private @Nullable Output<String> signingSecret;
 
     /**
-     * @return The signing secret of the webhook endpoint, only includable on creation.
+     * @return The secret used to verify Stripe signatures on delivered events. Returned only in the create response when explicitly included; public API clients cannot retrieve it later.
      * 
      */
     public Optional<Output<String>> signingSecret() {
@@ -32,14 +32,14 @@ public final class V2CoreEventDestinationWebhookEndpointArgs extends com.pulumi.
     }
 
     /**
-     * The URL of the webhook endpoint, includable.
+     * The URL where Stripe sends matching events. Live mode requires HTTPS; sandbox mode also supports HTTP. Returned only when explicitly included.
      * 
      */
     @Import(name="url", required=true)
     private Output<String> url;
 
     /**
-     * @return The URL of the webhook endpoint, includable.
+     * @return The URL where Stripe sends matching events. Live mode requires HTTPS; sandbox mode also supports HTTP. Returned only when explicitly included.
      * 
      */
     public Output<String> url() {
@@ -72,7 +72,7 @@ public final class V2CoreEventDestinationWebhookEndpointArgs extends com.pulumi.
         }
 
         /**
-         * @param signingSecret The signing secret of the webhook endpoint, only includable on creation.
+         * @param signingSecret The secret used to verify Stripe signatures on delivered events. Returned only in the create response when explicitly included; public API clients cannot retrieve it later.
          * 
          * @return builder
          * 
@@ -83,7 +83,7 @@ public final class V2CoreEventDestinationWebhookEndpointArgs extends com.pulumi.
         }
 
         /**
-         * @param signingSecret The signing secret of the webhook endpoint, only includable on creation.
+         * @param signingSecret The secret used to verify Stripe signatures on delivered events. Returned only in the create response when explicitly included; public API clients cannot retrieve it later.
          * 
          * @return builder
          * 
@@ -93,7 +93,7 @@ public final class V2CoreEventDestinationWebhookEndpointArgs extends com.pulumi.
         }
 
         /**
-         * @param url The URL of the webhook endpoint, includable.
+         * @param url The URL where Stripe sends matching events. Live mode requires HTTPS; sandbox mode also supports HTTP. Returned only when explicitly included.
          * 
          * @return builder
          * 
@@ -104,7 +104,7 @@ public final class V2CoreEventDestinationWebhookEndpointArgs extends com.pulumi.
         }
 
         /**
-         * @param url The URL of the webhook endpoint, includable.
+         * @param url The URL where Stripe sends matching events. Live mode requires HTTPS; sandbox mode also supports HTTP. Returned only when explicitly included.
          * 
          * @return builder
          * 

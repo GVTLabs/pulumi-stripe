@@ -49,7 +49,9 @@ import com.pulumi.stripe.inputs.PaymentIntentPaymentMethodOptionsSamsungPayArgs;
 import com.pulumi.stripe.inputs.PaymentIntentPaymentMethodOptionsSatispayArgs;
 import com.pulumi.stripe.inputs.PaymentIntentPaymentMethodOptionsScalapayArgs;
 import com.pulumi.stripe.inputs.PaymentIntentPaymentMethodOptionsSepaDebitArgs;
+import com.pulumi.stripe.inputs.PaymentIntentPaymentMethodOptionsSequraArgs;
 import com.pulumi.stripe.inputs.PaymentIntentPaymentMethodOptionsSofortArgs;
+import com.pulumi.stripe.inputs.PaymentIntentPaymentMethodOptionsSunbitArgs;
 import com.pulumi.stripe.inputs.PaymentIntentPaymentMethodOptionsSwishArgs;
 import com.pulumi.stripe.inputs.PaymentIntentPaymentMethodOptionsTwintArgs;
 import com.pulumi.stripe.inputs.PaymentIntentPaymentMethodOptionsUpiArgs;
@@ -373,11 +375,25 @@ public final class PaymentIntentPaymentMethodOptionsArgs extends com.pulumi.reso
         return Optional.ofNullable(this.sepaDebit);
     }
 
+    @Import(name="sequra")
+    private @Nullable Output<PaymentIntentPaymentMethodOptionsSequraArgs> sequra;
+
+    public Optional<Output<PaymentIntentPaymentMethodOptionsSequraArgs>> sequra() {
+        return Optional.ofNullable(this.sequra);
+    }
+
     @Import(name="sofort")
     private @Nullable Output<PaymentIntentPaymentMethodOptionsSofortArgs> sofort;
 
     public Optional<Output<PaymentIntentPaymentMethodOptionsSofortArgs>> sofort() {
         return Optional.ofNullable(this.sofort);
+    }
+
+    @Import(name="sunbit")
+    private @Nullable Output<PaymentIntentPaymentMethodOptionsSunbitArgs> sunbit;
+
+    public Optional<Output<PaymentIntentPaymentMethodOptionsSunbitArgs>> sunbit() {
+        return Optional.ofNullable(this.sunbit);
     }
 
     @Import(name="swish")
@@ -469,7 +485,9 @@ public final class PaymentIntentPaymentMethodOptionsArgs extends com.pulumi.reso
         this.satispay = $.satispay;
         this.scalapay = $.scalapay;
         this.sepaDebit = $.sepaDebit;
+        this.sequra = $.sequra;
         this.sofort = $.sofort;
+        this.sunbit = $.sunbit;
         this.swish = $.swish;
         this.twint = $.twint;
         this.upi = $.upi;
@@ -892,6 +910,15 @@ public final class PaymentIntentPaymentMethodOptionsArgs extends com.pulumi.reso
             return sepaDebit(Output.of(sepaDebit));
         }
 
+        public Builder sequra(@Nullable Output<PaymentIntentPaymentMethodOptionsSequraArgs> sequra) {
+            $.sequra = sequra;
+            return this;
+        }
+
+        public Builder sequra(PaymentIntentPaymentMethodOptionsSequraArgs sequra) {
+            return sequra(Output.of(sequra));
+        }
+
         public Builder sofort(@Nullable Output<PaymentIntentPaymentMethodOptionsSofortArgs> sofort) {
             $.sofort = sofort;
             return this;
@@ -899,6 +926,15 @@ public final class PaymentIntentPaymentMethodOptionsArgs extends com.pulumi.reso
 
         public Builder sofort(PaymentIntentPaymentMethodOptionsSofortArgs sofort) {
             return sofort(Output.of(sofort));
+        }
+
+        public Builder sunbit(@Nullable Output<PaymentIntentPaymentMethodOptionsSunbitArgs> sunbit) {
+            $.sunbit = sunbit;
+            return this;
+        }
+
+        public Builder sunbit(PaymentIntentPaymentMethodOptionsSunbitArgs sunbit) {
+            return sunbit(Output.of(sunbit));
         }
 
         public Builder swish(@Nullable Output<PaymentIntentPaymentMethodOptionsSwishArgs> swish) {

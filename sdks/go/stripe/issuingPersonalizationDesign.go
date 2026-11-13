@@ -149,6 +149,18 @@ func (IssuingPersonalizationDesignState) ElementType() reflect.Type {
 	return reflect.TypeOf((*issuingPersonalizationDesignState)(nil)).Elem()
 }
 
+// IssuingPersonalizationDesignExists checks whether an existing IssuingPersonalizationDesign resource with the given ID exists.
+func IssuingPersonalizationDesignExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *IssuingPersonalizationDesignState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	ref, err := internal.PkgGetPackageRef(ctx)
+	if err != nil {
+		return pulumi.Bool(false).ToBoolOutput().ApplyT(func(bool) (bool, error) {
+			return false, err
+		}).(pulumi.BoolOutput)
+	}
+	return ctx.ExistsResource("stripe:index/issuingPersonalizationDesign:IssuingPersonalizationDesign", id, state, ref, opts...)
+}
+
 type issuingPersonalizationDesignArgs struct {
 	// The file for the card logo to use with physical bundles that support card logos. Must have a <span pulumi-lang-nodejs="`purpose`" pulumi-lang-dotnet="`Purpose`" pulumi-lang-go="`purpose`" pulumi-lang-python="`purpose`" pulumi-lang-yaml="`purpose`" pulumi-lang-java="`purpose`" pulumi-lang-hcl="`purpose`">`purpose`</span> value of <span pulumi-lang-nodejs="`issuingLogo`" pulumi-lang-dotnet="`IssuingLogo`" pulumi-lang-go="`issuingLogo`" pulumi-lang-python="`issuing_logo`" pulumi-lang-yaml="`issuingLogo`" pulumi-lang-java="`issuingLogo`" pulumi-lang-hcl="`issuing_logo`">`issuingLogo`</span>. Image must be in PNG format with dimensions of 1000px by 200px. It must be a binary (black and white) image containing a black logo on a white background. We don't accept grayscale.
 	CardLogo *string `pulumi:"cardLogo"`

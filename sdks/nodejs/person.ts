@@ -20,6 +20,17 @@ export class Person extends pulumi.CustomResource {
         return new Person(name, <any>state, { ...opts, id: id });
     }
 
+    /**
+     * Check whether an existing Person resource with the given ID exists.
+     *
+     * @param id The _unique_ provider ID of the resource to check.
+     * @param state Any extra arguments used during the lookup.
+     * @param opts Optional settings to control the behavior of the CustomResource.
+     */
+    public static exists(id: pulumi.Input<string>, state?: PersonState, opts?: pulumi.CustomResourceOptions): pulumi.Output<boolean> {
+        return pulumi.runtime.existsResource("stripe:index/person:Person", id, <any>state || {}, { ...opts }, utilities.getPackage());
+    }
+
     /** @internal */
     public static readonly __pulumiType = 'stripe:index/person:Person';
 
@@ -89,6 +100,8 @@ export class Person extends pulumi.CustomResource {
     /**
      * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
      * The person's ID number, as appropriate for their country. For example, a social security number in the U.S., social insurance number in Canada, etc. Instead of the number itself, you can also provide a [PII token provided by Stripe.js](https://docs.stripe.com/js/tokens/create_token?type=pii).
+     *
+     * Changing this value for the account's representative requires that the account re-accept the [terms of service](https://www.terraform.io/api/accounts/object#account_object-tos_acceptance).
      */
     declare public readonly idNumber: pulumi.Output<string | undefined>;
     /**
@@ -98,6 +111,8 @@ export class Person extends pulumi.CustomResource {
     /**
      * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
      * The person's secondary ID number, as appropriate for their country, will be used for enhanced verification checks. In Thailand, this would be the laser code found on the back of an ID card. Instead of the number itself, you can also provide a [PII token provided by Stripe.js](https://docs.stripe.com/js/tokens/create_token?type=pii).
+     *
+     * Changing this value for the account's representative requires that the account re-accept the [terms of service](https://www.terraform.io/api/accounts/object#account_object-tos_acceptance).
      */
     declare public readonly idNumberSecondary: pulumi.Output<string | undefined>;
     /**
@@ -154,6 +169,8 @@ export class Person extends pulumi.CustomResource {
     /**
      * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
      * The last four digits of the person's Social Security number (U.S. only).
+     *
+     * Changing this value for the account's representative requires that the account re-accept the [terms of service](https://www.terraform.io/api/accounts/object#account_object-tos_acceptance).
      */
     declare public readonly ssnLast4: pulumi.Output<string | undefined>;
     /**
@@ -323,6 +340,8 @@ export interface PersonState {
     /**
      * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
      * The person's ID number, as appropriate for their country. For example, a social security number in the U.S., social insurance number in Canada, etc. Instead of the number itself, you can also provide a [PII token provided by Stripe.js](https://docs.stripe.com/js/tokens/create_token?type=pii).
+     *
+     * Changing this value for the account's representative requires that the account re-accept the [terms of service](https://www.terraform.io/api/accounts/object#account_object-tos_acceptance).
      */
     idNumber?: pulumi.Input<string | undefined>;
     /**
@@ -332,6 +351,8 @@ export interface PersonState {
     /**
      * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
      * The person's secondary ID number, as appropriate for their country, will be used for enhanced verification checks. In Thailand, this would be the laser code found on the back of an ID card. Instead of the number itself, you can also provide a [PII token provided by Stripe.js](https://docs.stripe.com/js/tokens/create_token?type=pii).
+     *
+     * Changing this value for the account's representative requires that the account re-accept the [terms of service](https://www.terraform.io/api/accounts/object#account_object-tos_acceptance).
      */
     idNumberSecondary?: pulumi.Input<string | undefined>;
     /**
@@ -388,6 +409,8 @@ export interface PersonState {
     /**
      * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
      * The last four digits of the person's Social Security number (U.S. only).
+     *
+     * Changing this value for the account's representative requires that the account re-accept the [terms of service](https://www.terraform.io/api/accounts/object#account_object-tos_acceptance).
      */
     ssnLast4?: pulumi.Input<string | undefined>;
     /**
@@ -452,11 +475,15 @@ export interface PersonArgs {
     /**
      * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
      * The person's ID number, as appropriate for their country. For example, a social security number in the U.S., social insurance number in Canada, etc. Instead of the number itself, you can also provide a [PII token provided by Stripe.js](https://docs.stripe.com/js/tokens/create_token?type=pii).
+     *
+     * Changing this value for the account's representative requires that the account re-accept the [terms of service](https://www.terraform.io/api/accounts/object#account_object-tos_acceptance).
      */
     idNumber?: pulumi.Input<string | undefined>;
     /**
      * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
      * The person's secondary ID number, as appropriate for their country, will be used for enhanced verification checks. In Thailand, this would be the laser code found on the back of an ID card. Instead of the number itself, you can also provide a [PII token provided by Stripe.js](https://docs.stripe.com/js/tokens/create_token?type=pii).
+     *
+     * Changing this value for the account's representative requires that the account re-accept the [terms of service](https://www.terraform.io/api/accounts/object#account_object-tos_acceptance).
      */
     idNumberSecondary?: pulumi.Input<string | undefined>;
     /**
@@ -501,6 +528,8 @@ export interface PersonArgs {
     /**
      * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
      * The last four digits of the person's Social Security number (U.S. only).
+     *
+     * Changing this value for the account's representative requires that the account re-accept the [terms of service](https://www.terraform.io/api/accounts/object#account_object-tos_acceptance).
      */
     ssnLast4?: pulumi.Input<string | undefined>;
     /**

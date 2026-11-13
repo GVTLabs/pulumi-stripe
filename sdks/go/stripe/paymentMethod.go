@@ -20,6 +20,8 @@ type PaymentMethod struct {
 	AuBecsDebit    PaymentMethodAuBecsDebitOutput    `pulumi:"auBecsDebit"`
 	BacsDebit      PaymentMethodBacsDebitOutput      `pulumi:"bacsDebit"`
 	BillingDetails PaymentMethodBillingDetailsOutput `pulumi:"billingDetails"`
+	Bizum          PaymentMethodBizumOutput          `pulumi:"bizum"`
+	Blik           PaymentMethodBlikOutput           `pulumi:"blik"`
 	Boleto         PaymentMethodBoletoOutput         `pulumi:"boleto"`
 	Card           PaymentMethodCardOutput           `pulumi:"card"`
 	CardPresent    PaymentMethodCardPresentOutput    `pulumi:"cardPresent"`
@@ -49,6 +51,7 @@ type PaymentMethod struct {
 	PaymentMethod pulumi.StringPtrOutput    `pulumi:"paymentMethod"`
 	Paypal        PaymentMethodPaypalOutput `pulumi:"paypal"`
 	Payto         PaymentMethodPaytoOutput  `pulumi:"payto"`
+	Pix           PaymentMethodPixOutput    `pulumi:"pix"`
 	// Options to configure Radar. See [Radar Session](https://docs.stripe.com/radar/radar-session) for more information.
 	RadarOptions PaymentMethodRadarOptionsOutput `pulumi:"radarOptions"`
 	SepaDebit    PaymentMethodSepaDebitOutput    `pulumi:"sepaDebit"`
@@ -110,6 +113,8 @@ type paymentMethodState struct {
 	AuBecsDebit    *PaymentMethodAuBecsDebit    `pulumi:"auBecsDebit"`
 	BacsDebit      *PaymentMethodBacsDebit      `pulumi:"bacsDebit"`
 	BillingDetails *PaymentMethodBillingDetails `pulumi:"billingDetails"`
+	Bizum          *PaymentMethodBizum          `pulumi:"bizum"`
+	Blik           *PaymentMethodBlik           `pulumi:"blik"`
 	Boleto         *PaymentMethodBoleto         `pulumi:"boleto"`
 	Card           *PaymentMethodCard           `pulumi:"card"`
 	CardPresent    *PaymentMethodCardPresent    `pulumi:"cardPresent"`
@@ -139,6 +144,7 @@ type paymentMethodState struct {
 	PaymentMethod *string              `pulumi:"paymentMethod"`
 	Paypal        *PaymentMethodPaypal `pulumi:"paypal"`
 	Payto         *PaymentMethodPayto  `pulumi:"payto"`
+	Pix           *PaymentMethodPix    `pulumi:"pix"`
 	// Options to configure Radar. See [Radar Session](https://docs.stripe.com/radar/radar-session) for more information.
 	RadarOptions *PaymentMethodRadarOptions `pulumi:"radarOptions"`
 	SepaDebit    *PaymentMethodSepaDebit    `pulumi:"sepaDebit"`
@@ -156,6 +162,8 @@ type PaymentMethodState struct {
 	AuBecsDebit    PaymentMethodAuBecsDebitPtrInput
 	BacsDebit      PaymentMethodBacsDebitPtrInput
 	BillingDetails PaymentMethodBillingDetailsPtrInput
+	Bizum          PaymentMethodBizumPtrInput
+	Blik           PaymentMethodBlikPtrInput
 	Boleto         PaymentMethodBoletoPtrInput
 	Card           PaymentMethodCardPtrInput
 	CardPresent    PaymentMethodCardPresentPtrInput
@@ -185,6 +193,7 @@ type PaymentMethodState struct {
 	PaymentMethod pulumi.StringPtrInput
 	Paypal        PaymentMethodPaypalPtrInput
 	Payto         PaymentMethodPaytoPtrInput
+	Pix           PaymentMethodPixPtrInput
 	// Options to configure Radar. See [Radar Session](https://docs.stripe.com/radar/radar-session) for more information.
 	RadarOptions PaymentMethodRadarOptionsPtrInput
 	SepaDebit    PaymentMethodSepaDebitPtrInput
@@ -199,6 +208,18 @@ func (PaymentMethodState) ElementType() reflect.Type {
 	return reflect.TypeOf((*paymentMethodState)(nil)).Elem()
 }
 
+// PaymentMethodExists checks whether an existing PaymentMethod resource with the given ID exists.
+func PaymentMethodExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *PaymentMethodState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	ref, err := internal.PkgGetPackageRef(ctx)
+	if err != nil {
+		return pulumi.Bool(false).ToBoolOutput().ApplyT(func(bool) (bool, error) {
+			return false, err
+		}).(pulumi.BoolOutput)
+	}
+	return ctx.ExistsResource("stripe:index/paymentMethod:PaymentMethod", id, state, ref, opts...)
+}
+
 type paymentMethodArgs struct {
 	AcssDebit *PaymentMethodAcssDebit `pulumi:"acssDebit"`
 	// This field indicates whether this payment method can be shown again to its customer in a checkout flow. Stripe products such as Checkout and Elements use this field to determine whether a payment method can be shown as a saved payment method in a checkout flow. The field defaults to “unspecified”.
@@ -206,6 +227,8 @@ type paymentMethodArgs struct {
 	AuBecsDebit    *PaymentMethodAuBecsDebit    `pulumi:"auBecsDebit"`
 	BacsDebit      *PaymentMethodBacsDebit      `pulumi:"bacsDebit"`
 	BillingDetails *PaymentMethodBillingDetails `pulumi:"billingDetails"`
+	Bizum          *PaymentMethodBizum          `pulumi:"bizum"`
+	Blik           *PaymentMethodBlik           `pulumi:"blik"`
 	Boleto         *PaymentMethodBoleto         `pulumi:"boleto"`
 	Card           *PaymentMethodCard           `pulumi:"card"`
 	Cashapp        *PaymentMethodCashapp        `pulumi:"cashapp"`
@@ -228,6 +251,7 @@ type paymentMethodArgs struct {
 	PaymentMethod *string              `pulumi:"paymentMethod"`
 	Paypal        *PaymentMethodPaypal `pulumi:"paypal"`
 	Payto         *PaymentMethodPayto  `pulumi:"payto"`
+	Pix           *PaymentMethodPix    `pulumi:"pix"`
 	// Options to configure Radar. See [Radar Session](https://docs.stripe.com/radar/radar-session) for more information.
 	RadarOptions *PaymentMethodRadarOptions `pulumi:"radarOptions"`
 	SepaDebit    *PaymentMethodSepaDebit    `pulumi:"sepaDebit"`
@@ -246,6 +270,8 @@ type PaymentMethodArgs struct {
 	AuBecsDebit    PaymentMethodAuBecsDebitPtrInput
 	BacsDebit      PaymentMethodBacsDebitPtrInput
 	BillingDetails PaymentMethodBillingDetailsPtrInput
+	Bizum          PaymentMethodBizumPtrInput
+	Blik           PaymentMethodBlikPtrInput
 	Boleto         PaymentMethodBoletoPtrInput
 	Card           PaymentMethodCardPtrInput
 	Cashapp        PaymentMethodCashappPtrInput
@@ -268,6 +294,7 @@ type PaymentMethodArgs struct {
 	PaymentMethod pulumi.StringPtrInput
 	Paypal        PaymentMethodPaypalPtrInput
 	Payto         PaymentMethodPaytoPtrInput
+	Pix           PaymentMethodPixPtrInput
 	// Options to configure Radar. See [Radar Session](https://docs.stripe.com/radar/radar-session) for more information.
 	RadarOptions PaymentMethodRadarOptionsPtrInput
 	SepaDebit    PaymentMethodSepaDebitPtrInput
@@ -334,6 +361,14 @@ func (o PaymentMethodOutput) BacsDebit() PaymentMethodBacsDebitOutput {
 
 func (o PaymentMethodOutput) BillingDetails() PaymentMethodBillingDetailsOutput {
 	return o.ApplyT(func(v *PaymentMethod) PaymentMethodBillingDetailsOutput { return v.BillingDetails }).(PaymentMethodBillingDetailsOutput)
+}
+
+func (o PaymentMethodOutput) Bizum() PaymentMethodBizumOutput {
+	return o.ApplyT(func(v *PaymentMethod) PaymentMethodBizumOutput { return v.Bizum }).(PaymentMethodBizumOutput)
+}
+
+func (o PaymentMethodOutput) Blik() PaymentMethodBlikOutput {
+	return o.ApplyT(func(v *PaymentMethod) PaymentMethodBlikOutput { return v.Blik }).(PaymentMethodBlikOutput)
 }
 
 func (o PaymentMethodOutput) Boleto() PaymentMethodBoletoOutput {
@@ -429,6 +464,10 @@ func (o PaymentMethodOutput) Paypal() PaymentMethodPaypalOutput {
 
 func (o PaymentMethodOutput) Payto() PaymentMethodPaytoOutput {
 	return o.ApplyT(func(v *PaymentMethod) PaymentMethodPaytoOutput { return v.Payto }).(PaymentMethodPaytoOutput)
+}
+
+func (o PaymentMethodOutput) Pix() PaymentMethodPixOutput {
+	return o.ApplyT(func(v *PaymentMethod) PaymentMethodPixOutput { return v.Pix }).(PaymentMethodPixOutput)
 }
 
 // Options to configure Radar. See [Radar Session](https://docs.stripe.com/radar/radar-session) for more information.

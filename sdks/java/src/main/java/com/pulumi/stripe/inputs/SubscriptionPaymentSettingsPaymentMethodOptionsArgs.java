@@ -7,6 +7,8 @@ import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
 import com.pulumi.stripe.inputs.SubscriptionPaymentSettingsPaymentMethodOptionsAcssDebitArgs;
 import com.pulumi.stripe.inputs.SubscriptionPaymentSettingsPaymentMethodOptionsBancontactArgs;
+import com.pulumi.stripe.inputs.SubscriptionPaymentSettingsPaymentMethodOptionsBillieArgs;
+import com.pulumi.stripe.inputs.SubscriptionPaymentSettingsPaymentMethodOptionsBlikArgs;
 import com.pulumi.stripe.inputs.SubscriptionPaymentSettingsPaymentMethodOptionsCardArgs;
 import com.pulumi.stripe.inputs.SubscriptionPaymentSettingsPaymentMethodOptionsCustomerBalanceArgs;
 import com.pulumi.stripe.inputs.SubscriptionPaymentSettingsPaymentMethodOptionsPaytoArgs;
@@ -50,6 +52,36 @@ public final class SubscriptionPaymentSettingsPaymentMethodOptionsArgs extends c
      */
     public Optional<Output<SubscriptionPaymentSettingsPaymentMethodOptionsBancontactArgs>> bancontact() {
         return Optional.ofNullable(this.bancontact);
+    }
+
+    /**
+     * This sub-hash contains details about the Billie payment method options to pass to invoices created by the subscription.
+     * 
+     */
+    @Import(name="billie")
+    private @Nullable Output<SubscriptionPaymentSettingsPaymentMethodOptionsBillieArgs> billie;
+
+    /**
+     * @return This sub-hash contains details about the Billie payment method options to pass to invoices created by the subscription.
+     * 
+     */
+    public Optional<Output<SubscriptionPaymentSettingsPaymentMethodOptionsBillieArgs>> billie() {
+        return Optional.ofNullable(this.billie);
+    }
+
+    /**
+     * This sub-hash contains details about the Blik payment method options to pass to invoices created by the subscription.
+     * 
+     */
+    @Import(name="blik")
+    private @Nullable Output<SubscriptionPaymentSettingsPaymentMethodOptionsBlikArgs> blik;
+
+    /**
+     * @return This sub-hash contains details about the Blik payment method options to pass to invoices created by the subscription.
+     * 
+     */
+    public Optional<Output<SubscriptionPaymentSettingsPaymentMethodOptionsBlikArgs>> blik() {
+        return Optional.ofNullable(this.blik);
     }
 
     /**
@@ -147,6 +179,8 @@ public final class SubscriptionPaymentSettingsPaymentMethodOptionsArgs extends c
     private SubscriptionPaymentSettingsPaymentMethodOptionsArgs(SubscriptionPaymentSettingsPaymentMethodOptionsArgs $) {
         this.acssDebit = $.acssDebit;
         this.bancontact = $.bancontact;
+        this.billie = $.billie;
+        this.blik = $.blik;
         this.card = $.card;
         this.customerBalance = $.customerBalance;
         this.payto = $.payto;
@@ -213,6 +247,48 @@ public final class SubscriptionPaymentSettingsPaymentMethodOptionsArgs extends c
          */
         public Builder bancontact(SubscriptionPaymentSettingsPaymentMethodOptionsBancontactArgs bancontact) {
             return bancontact(Output.of(bancontact));
+        }
+
+        /**
+         * @param billie This sub-hash contains details about the Billie payment method options to pass to invoices created by the subscription.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder billie(@Nullable Output<SubscriptionPaymentSettingsPaymentMethodOptionsBillieArgs> billie) {
+            $.billie = billie;
+            return this;
+        }
+
+        /**
+         * @param billie This sub-hash contains details about the Billie payment method options to pass to invoices created by the subscription.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder billie(SubscriptionPaymentSettingsPaymentMethodOptionsBillieArgs billie) {
+            return billie(Output.of(billie));
+        }
+
+        /**
+         * @param blik This sub-hash contains details about the Blik payment method options to pass to invoices created by the subscription.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder blik(@Nullable Output<SubscriptionPaymentSettingsPaymentMethodOptionsBlikArgs> blik) {
+            $.blik = blik;
+            return this;
+        }
+
+        /**
+         * @param blik This sub-hash contains details about the Blik payment method options to pass to invoices created by the subscription.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder blik(SubscriptionPaymentSettingsPaymentMethodOptionsBlikArgs blik) {
+            return blik(Output.of(blik));
         }
 
         /**

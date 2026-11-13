@@ -26,6 +26,7 @@ class ProductFeatureArgs:
 
         :param pulumi.Input[_builtins.str] entitlement_feature: A feature represents a monetizable ability or functionality in your system.
                Features can be assigned to products, and when those products are purchased, Stripe will create an entitlement to the feature for the purchasing customer.
+        :param pulumi.Input[_builtins.str] product: Unique identifier for the object.
         """
         pulumi.set(__self__, "entitlement_feature", entitlement_feature)
         pulumi.set(__self__, "product", product)
@@ -46,6 +47,9 @@ class ProductFeatureArgs:
     @_builtins.property
     @pulumi.getter
     def product(self) -> pulumi.Input[_builtins.str]:
+        """
+        Unique identifier for the object.
+        """
         return pulumi.get(self, "product")
 
     @product.setter
@@ -67,6 +71,7 @@ class _ProductFeatureState:
                Features can be assigned to products, and when those products are purchased, Stripe will create an entitlement to the feature for the purchasing customer.
         :param pulumi.Input[_builtins.bool] livemode: If the object exists in live mode, the value is <span pulumi-lang-nodejs="`true`" pulumi-lang-dotnet="`True`" pulumi-lang-go="`true`" pulumi-lang-python="`true`" pulumi-lang-yaml="`true`" pulumi-lang-java="`true`" pulumi-lang-hcl="`true`">`true`</span>. If the object exists in test mode, the value is <span pulumi-lang-nodejs="`false`" pulumi-lang-dotnet="`False`" pulumi-lang-go="`false`" pulumi-lang-python="`false`" pulumi-lang-yaml="`false`" pulumi-lang-java="`false`" pulumi-lang-hcl="`false`">`false`</span>.
         :param pulumi.Input[_builtins.str] object: String representing the object's type. Objects of the same type share the same value.
+        :param pulumi.Input[_builtins.str] product: Unique identifier for the object.
         """
         if entitlement_feature is not None:
             pulumi.set(__self__, "entitlement_feature", entitlement_feature)
@@ -117,6 +122,9 @@ class _ProductFeatureState:
     @_builtins.property
     @pulumi.getter
     def product(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        Unique identifier for the object.
+        """
         return pulumi.get(self, "product")
 
     @product.setter
@@ -140,6 +148,7 @@ class ProductFeature(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] entitlement_feature: A feature represents a monetizable ability or functionality in your system.
                Features can be assigned to products, and when those products are purchased, Stripe will create an entitlement to the feature for the purchasing customer.
+        :param pulumi.Input[_builtins.str] product: Unique identifier for the object.
         """
         ...
     @overload
@@ -210,6 +219,7 @@ class ProductFeature(pulumi.CustomResource):
                Features can be assigned to products, and when those products are purchased, Stripe will create an entitlement to the feature for the purchasing customer.
         :param pulumi.Input[_builtins.bool] livemode: If the object exists in live mode, the value is <span pulumi-lang-nodejs="`true`" pulumi-lang-dotnet="`True`" pulumi-lang-go="`true`" pulumi-lang-python="`true`" pulumi-lang-yaml="`true`" pulumi-lang-java="`true`" pulumi-lang-hcl="`true`">`true`</span>. If the object exists in test mode, the value is <span pulumi-lang-nodejs="`false`" pulumi-lang-dotnet="`False`" pulumi-lang-go="`false`" pulumi-lang-python="`false`" pulumi-lang-yaml="`false`" pulumi-lang-java="`false`" pulumi-lang-hcl="`false`">`false`</span>.
         :param pulumi.Input[_builtins.str] object: String representing the object's type. Objects of the same type share the same value.
+        :param pulumi.Input[_builtins.str] product: Unique identifier for the object.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -220,6 +230,20 @@ class ProductFeature(pulumi.CustomResource):
         __props__.__dict__["object"] = object
         __props__.__dict__["product"] = product
         return ProductFeature(resource_name, opts=opts, __props__=__props__)
+
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            entitlement_feature: pulumi.Input[Optional[_builtins.str]] = None,
+            livemode: pulumi.Input[Optional[_builtins.bool]] = None,
+            object: pulumi.Input[Optional[_builtins.str]] = None,
+            product: pulumi.Input[Optional[_builtins.str]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["entitlementFeature"] = entitlement_feature
+        __props__["livemode"] = livemode
+        __props__["object"] = object
+        __props__["product"] = product
+        return pulumi.runtime.exists_resource(None, 'stripe:index/productFeature:ProductFeature', id, __props__, opts or pulumi.ResourceOptions(), package_ref=_utilities.get_package())
 
     @_builtins.property
     @pulumi.getter(name="entitlementFeature")
@@ -249,5 +273,8 @@ class ProductFeature(pulumi.CustomResource):
     @_builtins.property
     @pulumi.getter
     def product(self) -> pulumi.Output[_builtins.str]:
+        """
+        Unique identifier for the object.
+        """
         return pulumi.get(self, "product")
 

@@ -6,6 +6,7 @@ package com.pulumi.stripe.outputs;
 import com.pulumi.core.annotations.CustomType;
 import com.pulumi.stripe.outputs.SetupIntentPaymentMethodOptionsAcssDebit;
 import com.pulumi.stripe.outputs.SetupIntentPaymentMethodOptionsBacsDebit;
+import com.pulumi.stripe.outputs.SetupIntentPaymentMethodOptionsBlik;
 import com.pulumi.stripe.outputs.SetupIntentPaymentMethodOptionsCard;
 import com.pulumi.stripe.outputs.SetupIntentPaymentMethodOptionsKlarna;
 import com.pulumi.stripe.outputs.SetupIntentPaymentMethodOptionsLink;
@@ -23,6 +24,7 @@ import javax.annotation.Nullable;
 public final class SetupIntentPaymentMethodOptions {
     private @Nullable SetupIntentPaymentMethodOptionsAcssDebit acssDebit;
     private @Nullable SetupIntentPaymentMethodOptionsBacsDebit bacsDebit;
+    private @Nullable SetupIntentPaymentMethodOptionsBlik blik;
     private @Nullable SetupIntentPaymentMethodOptionsCard card;
     private @Nullable SetupIntentPaymentMethodOptionsKlarna klarna;
     private @Nullable SetupIntentPaymentMethodOptionsLink link;
@@ -39,6 +41,9 @@ public final class SetupIntentPaymentMethodOptions {
     }
     public Optional<SetupIntentPaymentMethodOptionsBacsDebit> bacsDebit() {
         return Optional.ofNullable(this.bacsDebit);
+    }
+    public Optional<SetupIntentPaymentMethodOptionsBlik> blik() {
+        return Optional.ofNullable(this.blik);
     }
     public Optional<SetupIntentPaymentMethodOptionsCard> card() {
         return Optional.ofNullable(this.card);
@@ -79,6 +84,7 @@ public final class SetupIntentPaymentMethodOptions {
     public static final class Builder {
         private @Nullable SetupIntentPaymentMethodOptionsAcssDebit acssDebit;
         private @Nullable SetupIntentPaymentMethodOptionsBacsDebit bacsDebit;
+        private @Nullable SetupIntentPaymentMethodOptionsBlik blik;
         private @Nullable SetupIntentPaymentMethodOptionsCard card;
         private @Nullable SetupIntentPaymentMethodOptionsKlarna klarna;
         private @Nullable SetupIntentPaymentMethodOptionsLink link;
@@ -93,6 +99,7 @@ public final class SetupIntentPaymentMethodOptions {
     	      Objects.requireNonNull(defaults);
     	      this.acssDebit = defaults.acssDebit;
     	      this.bacsDebit = defaults.bacsDebit;
+    	      this.blik = defaults.blik;
     	      this.card = defaults.card;
     	      this.klarna = defaults.klarna;
     	      this.link = defaults.link;
@@ -114,6 +121,12 @@ public final class SetupIntentPaymentMethodOptions {
         public Builder bacsDebit(@Nullable SetupIntentPaymentMethodOptionsBacsDebit bacsDebit) {
 
             this.bacsDebit = bacsDebit;
+            return this;
+        }
+        @CustomType.Setter
+        public Builder blik(@Nullable SetupIntentPaymentMethodOptionsBlik blik) {
+
+            this.blik = blik;
             return this;
         }
         @CustomType.Setter
@@ -174,6 +187,7 @@ public final class SetupIntentPaymentMethodOptions {
             final var _resultValue = new SetupIntentPaymentMethodOptions();
             _resultValue.acssDebit = acssDebit;
             _resultValue.bacsDebit = bacsDebit;
+            _resultValue.blik = blik;
             _resultValue.card = card;
             _resultValue.klarna = klarna;
             _resultValue.link = link;

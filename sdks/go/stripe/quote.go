@@ -240,6 +240,18 @@ func (QuoteState) ElementType() reflect.Type {
 	return reflect.TypeOf((*quoteState)(nil)).Elem()
 }
 
+// QuoteExists checks whether an existing Quote resource with the given ID exists.
+func QuoteExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *QuoteState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	ref, err := internal.PkgGetPackageRef(ctx)
+	if err != nil {
+		return pulumi.Bool(false).ToBoolOutput().ApplyT(func(bool) (bool, error) {
+			return false, err
+		}).(pulumi.BoolOutput)
+	}
+	return ctx.ExistsResource("stripe:index/quote:Quote", id, state, ref, opts...)
+}
+
 type quoteArgs struct {
 	// The amount of the application fee (if any) that will be requested to be applied to the payment and transferred to the application owner's Stripe account. Only applicable if there are no line items with recurring prices on the quote.
 	ApplicationFeeAmount *float64 `pulumi:"applicationFeeAmount"`

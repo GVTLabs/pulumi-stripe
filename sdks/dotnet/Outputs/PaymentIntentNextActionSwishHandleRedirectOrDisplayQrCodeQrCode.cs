@@ -18,6 +18,10 @@ namespace Pulumi.Stripe.Outputs
         /// </summary>
         public readonly string? Data;
         /// <summary>
+        /// The timestamp at which the QR code expires.
+        /// </summary>
+        public readonly double? ExpiresAt;
+        /// <summary>
         /// The&lt;span pulumi-lang-nodejs=" imageUrlPng " pulumi-lang-dotnet=" ImageUrlPng " pulumi-lang-go=" imageUrlPng " pulumi-lang-python=" image_url_png " pulumi-lang-yaml=" imageUrlPng " pulumi-lang-java=" imageUrlPng " pulumi-lang-hcl=" image_url_png "&gt; imageUrlPng &lt;/span&gt;string used to render QR code
         /// </summary>
         public readonly string? ImageUrlPng;
@@ -30,11 +34,14 @@ namespace Pulumi.Stripe.Outputs
         private PaymentIntentNextActionSwishHandleRedirectOrDisplayQrCodeQrCode(
             string? data,
 
+            double? expiresAt,
+
             string? imageUrlPng,
 
             string? imageUrlSvg)
         {
             Data = data;
+            ExpiresAt = expiresAt;
             ImageUrlPng = imageUrlPng;
             ImageUrlSvg = imageUrlSvg;
         }

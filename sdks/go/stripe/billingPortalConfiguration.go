@@ -22,7 +22,7 @@ type BillingPortalConfiguration struct {
 	BusinessProfile BillingPortalConfigurationBusinessProfileOutput `pulumi:"businessProfile"`
 	// Time at which the object was created. Measured in seconds since the Unix epoch.
 	Created pulumi.Float64Output `pulumi:"created"`
-	// The default URL to redirect customers to when they click on the portal's link to return to your website. This can be [overriden](https://docs.stripe.com/api/customer_portal/sessions/create#create_portal_session-return_url) when creating the session.
+	// The default URL to redirect customers to when they click on the portal's link to return to your website. This can be [overridden](https://docs.stripe.com/api/customer_portal/sessions/create#create_portal_session-return_url) when creating the session.
 	DefaultReturnUrl pulumi.StringOutput                      `pulumi:"defaultReturnUrl"`
 	Features         BillingPortalConfigurationFeaturesOutput `pulumi:"features"`
 	// Whether the configuration is the default. If <span pulumi-lang-nodejs="`true`" pulumi-lang-dotnet="`True`" pulumi-lang-go="`true`" pulumi-lang-python="`true`" pulumi-lang-yaml="`true`" pulumi-lang-java="`true`" pulumi-lang-hcl="`true`">`true`</span>, this configuration can be managed in the Dashboard and portal sessions will use this configuration unless it is overriden when creating the session.
@@ -86,7 +86,7 @@ type billingPortalConfigurationState struct {
 	BusinessProfile *BillingPortalConfigurationBusinessProfile `pulumi:"businessProfile"`
 	// Time at which the object was created. Measured in seconds since the Unix epoch.
 	Created *float64 `pulumi:"created"`
-	// The default URL to redirect customers to when they click on the portal's link to return to your website. This can be [overriden](https://docs.stripe.com/api/customer_portal/sessions/create#create_portal_session-return_url) when creating the session.
+	// The default URL to redirect customers to when they click on the portal's link to return to your website. This can be [overridden](https://docs.stripe.com/api/customer_portal/sessions/create#create_portal_session-return_url) when creating the session.
 	DefaultReturnUrl *string                             `pulumi:"defaultReturnUrl"`
 	Features         *BillingPortalConfigurationFeatures `pulumi:"features"`
 	// Whether the configuration is the default. If <span pulumi-lang-nodejs="`true`" pulumi-lang-dotnet="`True`" pulumi-lang-go="`true`" pulumi-lang-python="`true`" pulumi-lang-yaml="`true`" pulumi-lang-java="`true`" pulumi-lang-hcl="`true`">`true`</span>, this configuration can be managed in the Dashboard and portal sessions will use this configuration unless it is overriden when creating the session.
@@ -110,7 +110,7 @@ type BillingPortalConfigurationState struct {
 	BusinessProfile BillingPortalConfigurationBusinessProfilePtrInput
 	// Time at which the object was created. Measured in seconds since the Unix epoch.
 	Created pulumi.Float64PtrInput
-	// The default URL to redirect customers to when they click on the portal's link to return to your website. This can be [overriden](https://docs.stripe.com/api/customer_portal/sessions/create#create_portal_session-return_url) when creating the session.
+	// The default URL to redirect customers to when they click on the portal's link to return to your website. This can be [overridden](https://docs.stripe.com/api/customer_portal/sessions/create#create_portal_session-return_url) when creating the session.
 	DefaultReturnUrl pulumi.StringPtrInput
 	Features         BillingPortalConfigurationFeaturesPtrInput
 	// Whether the configuration is the default. If <span pulumi-lang-nodejs="`true`" pulumi-lang-dotnet="`True`" pulumi-lang-go="`true`" pulumi-lang-python="`true`" pulumi-lang-yaml="`true`" pulumi-lang-java="`true`" pulumi-lang-hcl="`true`">`true`</span>, this configuration can be managed in the Dashboard and portal sessions will use this configuration unless it is overriden when creating the session.
@@ -130,11 +130,23 @@ func (BillingPortalConfigurationState) ElementType() reflect.Type {
 	return reflect.TypeOf((*billingPortalConfigurationState)(nil)).Elem()
 }
 
+// BillingPortalConfigurationExists checks whether an existing BillingPortalConfiguration resource with the given ID exists.
+func BillingPortalConfigurationExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *BillingPortalConfigurationState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	ref, err := internal.PkgGetPackageRef(ctx)
+	if err != nil {
+		return pulumi.Bool(false).ToBoolOutput().ApplyT(func(bool) (bool, error) {
+			return false, err
+		}).(pulumi.BoolOutput)
+	}
+	return ctx.ExistsResource("stripe:index/billingPortalConfiguration:BillingPortalConfiguration", id, state, ref, opts...)
+}
+
 type billingPortalConfigurationArgs struct {
 	// Whether the configuration is active and can be used to create portal sessions.
 	Active          *bool                                      `pulumi:"active"`
 	BusinessProfile *BillingPortalConfigurationBusinessProfile `pulumi:"businessProfile"`
-	// The default URL to redirect customers to when they click on the portal's link to return to your website. This can be [overriden](https://docs.stripe.com/api/customer_portal/sessions/create#create_portal_session-return_url) when creating the session.
+	// The default URL to redirect customers to when they click on the portal's link to return to your website. This can be [overridden](https://docs.stripe.com/api/customer_portal/sessions/create#create_portal_session-return_url) when creating the session.
 	DefaultReturnUrl *string                              `pulumi:"defaultReturnUrl"`
 	Features         BillingPortalConfigurationFeatures   `pulumi:"features"`
 	LoginPage        *BillingPortalConfigurationLoginPage `pulumi:"loginPage"`
@@ -149,7 +161,7 @@ type BillingPortalConfigurationArgs struct {
 	// Whether the configuration is active and can be used to create portal sessions.
 	Active          pulumi.BoolPtrInput
 	BusinessProfile BillingPortalConfigurationBusinessProfilePtrInput
-	// The default URL to redirect customers to when they click on the portal's link to return to your website. This can be [overriden](https://docs.stripe.com/api/customer_portal/sessions/create#create_portal_session-return_url) when creating the session.
+	// The default URL to redirect customers to when they click on the portal's link to return to your website. This can be [overridden](https://docs.stripe.com/api/customer_portal/sessions/create#create_portal_session-return_url) when creating the session.
 	DefaultReturnUrl pulumi.StringPtrInput
 	Features         BillingPortalConfigurationFeaturesInput
 	LoginPage        BillingPortalConfigurationLoginPagePtrInput
@@ -217,7 +229,7 @@ func (o BillingPortalConfigurationOutput) Created() pulumi.Float64Output {
 	return o.ApplyT(func(v *BillingPortalConfiguration) pulumi.Float64Output { return v.Created }).(pulumi.Float64Output)
 }
 
-// The default URL to redirect customers to when they click on the portal's link to return to your website. This can be [overriden](https://docs.stripe.com/api/customer_portal/sessions/create#create_portal_session-return_url) when creating the session.
+// The default URL to redirect customers to when they click on the portal's link to return to your website. This can be [overridden](https://docs.stripe.com/api/customer_portal/sessions/create#create_portal_session-return_url) when creating the session.
 func (o BillingPortalConfigurationOutput) DefaultReturnUrl() pulumi.StringOutput {
 	return o.ApplyT(func(v *BillingPortalConfiguration) pulumi.StringOutput { return v.DefaultReturnUrl }).(pulumi.StringOutput)
 }

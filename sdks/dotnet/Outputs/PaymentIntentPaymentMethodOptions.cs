@@ -57,7 +57,9 @@ namespace Pulumi.Stripe.Outputs
         public readonly Outputs.PaymentIntentPaymentMethodOptionsSatispay? Satispay;
         public readonly Outputs.PaymentIntentPaymentMethodOptionsScalapay? Scalapay;
         public readonly Outputs.PaymentIntentPaymentMethodOptionsSepaDebit? SepaDebit;
+        public readonly Outputs.PaymentIntentPaymentMethodOptionsSequra? Sequra;
         public readonly Outputs.PaymentIntentPaymentMethodOptionsSofort? Sofort;
+        public readonly Outputs.PaymentIntentPaymentMethodOptionsSunbit? Sunbit;
         public readonly Outputs.PaymentIntentPaymentMethodOptionsSwish? Swish;
         public readonly Outputs.PaymentIntentPaymentMethodOptionsTwint? Twint;
         public readonly Outputs.PaymentIntentPaymentMethodOptionsUpi? Upi;
@@ -155,7 +157,11 @@ namespace Pulumi.Stripe.Outputs
 
             Outputs.PaymentIntentPaymentMethodOptionsSepaDebit? sepaDebit,
 
+            Outputs.PaymentIntentPaymentMethodOptionsSequra? sequra,
+
             Outputs.PaymentIntentPaymentMethodOptionsSofort? sofort,
+
+            Outputs.PaymentIntentPaymentMethodOptionsSunbit? sunbit,
 
             Outputs.PaymentIntentPaymentMethodOptionsSwish? swish,
 
@@ -213,7 +219,9 @@ namespace Pulumi.Stripe.Outputs
             Satispay = satispay;
             Scalapay = scalapay;
             SepaDebit = sepaDebit;
+            Sequra = sequra;
             Sofort = sofort;
+            Sunbit = sunbit;
             Swish = swish;
             Twint = twint;
             Upi = upi;

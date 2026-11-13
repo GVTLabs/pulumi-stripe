@@ -9,6 +9,8 @@ import com.pulumi.stripe.inputs.PaymentMethodAcssDebitArgs;
 import com.pulumi.stripe.inputs.PaymentMethodAuBecsDebitArgs;
 import com.pulumi.stripe.inputs.PaymentMethodBacsDebitArgs;
 import com.pulumi.stripe.inputs.PaymentMethodBillingDetailsArgs;
+import com.pulumi.stripe.inputs.PaymentMethodBizumArgs;
+import com.pulumi.stripe.inputs.PaymentMethodBlikArgs;
 import com.pulumi.stripe.inputs.PaymentMethodBoletoArgs;
 import com.pulumi.stripe.inputs.PaymentMethodCardArgs;
 import com.pulumi.stripe.inputs.PaymentMethodCardPresentArgs;
@@ -25,6 +27,7 @@ import com.pulumi.stripe.inputs.PaymentMethodNzBankAccountArgs;
 import com.pulumi.stripe.inputs.PaymentMethodP24Args;
 import com.pulumi.stripe.inputs.PaymentMethodPaypalArgs;
 import com.pulumi.stripe.inputs.PaymentMethodPaytoArgs;
+import com.pulumi.stripe.inputs.PaymentMethodPixArgs;
 import com.pulumi.stripe.inputs.PaymentMethodRadarOptionsArgs;
 import com.pulumi.stripe.inputs.PaymentMethodSepaDebitArgs;
 import com.pulumi.stripe.inputs.PaymentMethodSofortArgs;
@@ -84,6 +87,20 @@ public final class PaymentMethodState extends com.pulumi.resources.ResourceArgs 
 
     public Optional<Output<PaymentMethodBillingDetailsArgs>> billingDetails() {
         return Optional.ofNullable(this.billingDetails);
+    }
+
+    @Import(name="bizum")
+    private @Nullable Output<PaymentMethodBizumArgs> bizum;
+
+    public Optional<Output<PaymentMethodBizumArgs>> bizum() {
+        return Optional.ofNullable(this.bizum);
+    }
+
+    @Import(name="blik")
+    private @Nullable Output<PaymentMethodBlikArgs> blik;
+
+    public Optional<Output<PaymentMethodBlikArgs>> blik() {
+        return Optional.ofNullable(this.blik);
     }
 
     @Import(name="boleto")
@@ -290,6 +307,13 @@ public final class PaymentMethodState extends com.pulumi.resources.ResourceArgs 
         return Optional.ofNullable(this.payto);
     }
 
+    @Import(name="pix")
+    private @Nullable Output<PaymentMethodPixArgs> pix;
+
+    public Optional<Output<PaymentMethodPixArgs>> pix() {
+        return Optional.ofNullable(this.pix);
+    }
+
     /**
      * Options to configure Radar. See [Radar Session](https://docs.stripe.com/radar/radar-session) for more information.
      * 
@@ -356,6 +380,8 @@ public final class PaymentMethodState extends com.pulumi.resources.ResourceArgs 
         this.auBecsDebit = $.auBecsDebit;
         this.bacsDebit = $.bacsDebit;
         this.billingDetails = $.billingDetails;
+        this.bizum = $.bizum;
+        this.blik = $.blik;
         this.boleto = $.boleto;
         this.card = $.card;
         this.cardPresent = $.cardPresent;
@@ -378,6 +404,7 @@ public final class PaymentMethodState extends com.pulumi.resources.ResourceArgs 
         this.paymentMethod = $.paymentMethod;
         this.paypal = $.paypal;
         this.payto = $.payto;
+        this.pix = $.pix;
         this.radarOptions = $.radarOptions;
         this.sepaDebit = $.sepaDebit;
         this.sofort = $.sofort;
@@ -459,6 +486,24 @@ public final class PaymentMethodState extends com.pulumi.resources.ResourceArgs 
 
         public Builder billingDetails(PaymentMethodBillingDetailsArgs billingDetails) {
             return billingDetails(Output.of(billingDetails));
+        }
+
+        public Builder bizum(@Nullable Output<PaymentMethodBizumArgs> bizum) {
+            $.bizum = bizum;
+            return this;
+        }
+
+        public Builder bizum(PaymentMethodBizumArgs bizum) {
+            return bizum(Output.of(bizum));
+        }
+
+        public Builder blik(@Nullable Output<PaymentMethodBlikArgs> blik) {
+            $.blik = blik;
+            return this;
+        }
+
+        public Builder blik(PaymentMethodBlikArgs blik) {
+            return blik(Output.of(blik));
         }
 
         public Builder boleto(@Nullable Output<PaymentMethodBoletoArgs> boleto) {
@@ -731,6 +776,15 @@ public final class PaymentMethodState extends com.pulumi.resources.ResourceArgs 
 
         public Builder payto(PaymentMethodPaytoArgs payto) {
             return payto(Output.of(payto));
+        }
+
+        public Builder pix(@Nullable Output<PaymentMethodPixArgs> pix) {
+            $.pix = pix;
+            return this;
+        }
+
+        public Builder pix(PaymentMethodPixArgs pix) {
+            return pix(Output.of(pix));
         }
 
         /**

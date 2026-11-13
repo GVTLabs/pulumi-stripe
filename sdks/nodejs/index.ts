@@ -10,6 +10,11 @@ export type ApplePayDomain = import("./applePayDomain").ApplePayDomain;
 export const ApplePayDomain: typeof import("./applePayDomain").ApplePayDomain = null as any;
 utilities.lazyLoad(exports, ["ApplePayDomain"], () => require("./applePayDomain"));
 
+export { AppsInstallArgs, AppsInstallState } from "./appsInstall";
+export type AppsInstall = import("./appsInstall").AppsInstall;
+export const AppsInstall: typeof import("./appsInstall").AppsInstall = null as any;
+utilities.lazyLoad(exports, ["AppsInstall"], () => require("./appsInstall"));
+
 export { BillingAlertArgs, BillingAlertState } from "./billingAlert";
 export type BillingAlert = import("./billingAlert").BillingAlert;
 export const BillingAlert: typeof import("./billingAlert").BillingAlert = null as any;
@@ -19,6 +24,11 @@ export { BillingCreditGrantArgs, BillingCreditGrantState } from "./billingCredit
 export type BillingCreditGrant = import("./billingCreditGrant").BillingCreditGrant;
 export const BillingCreditGrant: typeof import("./billingCreditGrant").BillingCreditGrant = null as any;
 utilities.lazyLoad(exports, ["BillingCreditGrant"], () => require("./billingCreditGrant"));
+
+export { BillingFeedbackOptionArgs, BillingFeedbackOptionState } from "./billingFeedbackOption";
+export type BillingFeedbackOption = import("./billingFeedbackOption").BillingFeedbackOption;
+export const BillingFeedbackOption: typeof import("./billingFeedbackOption").BillingFeedbackOption = null as any;
+utilities.lazyLoad(exports, ["BillingFeedbackOption"], () => require("./billingFeedbackOption"));
 
 export { BillingMeterArgs, BillingMeterState } from "./billingMeter";
 export type BillingMeter = import("./billingMeter").BillingMeter;
@@ -150,6 +160,11 @@ export type Product = import("./product").Product;
 export const Product: typeof import("./product").Product = null as any;
 utilities.lazyLoad(exports, ["Product"], () => require("./product"));
 
+export { ProductCatalogTrialOfferArgs, ProductCatalogTrialOfferState } from "./productCatalogTrialOffer";
+export type ProductCatalogTrialOffer = import("./productCatalogTrialOffer").ProductCatalogTrialOffer;
+export const ProductCatalogTrialOffer: typeof import("./productCatalogTrialOffer").ProductCatalogTrialOffer = null as any;
+utilities.lazyLoad(exports, ["ProductCatalogTrialOffer"], () => require("./productCatalogTrialOffer"));
+
 export { ProductFeatureArgs, ProductFeatureState } from "./productFeature";
 export type ProductFeature = import("./productFeature").ProductFeature;
 export const ProductFeature: typeof import("./productFeature").ProductFeature = null as any;
@@ -213,6 +228,11 @@ export type TaxId = import("./taxId").TaxId;
 export const TaxId: typeof import("./taxId").TaxId = null as any;
 utilities.lazyLoad(exports, ["TaxId"], () => require("./taxId"));
 
+export { TaxLocationArgs, TaxLocationState } from "./taxLocation";
+export type TaxLocation = import("./taxLocation").TaxLocation;
+export const TaxLocation: typeof import("./taxLocation").TaxLocation = null as any;
+utilities.lazyLoad(exports, ["TaxLocation"], () => require("./taxLocation"));
+
 export { TaxRateArgs, TaxRateState } from "./taxRate";
 export type TaxRate = import("./taxRate").TaxRate;
 export const TaxRate: typeof import("./taxRate").TaxRate = null as any;
@@ -238,6 +258,11 @@ export type TerminalReader = import("./terminalReader").TerminalReader;
 export const TerminalReader: typeof import("./terminalReader").TerminalReader = null as any;
 utilities.lazyLoad(exports, ["TerminalReader"], () => require("./terminalReader"));
 
+export { ThreeDSecureAuthenticationArgs, ThreeDSecureAuthenticationState } from "./threeDSecureAuthentication";
+export type ThreeDSecureAuthentication = import("./threeDSecureAuthentication").ThreeDSecureAuthentication;
+export const ThreeDSecureAuthentication: typeof import("./threeDSecureAuthentication").ThreeDSecureAuthentication = null as any;
+utilities.lazyLoad(exports, ["ThreeDSecureAuthentication"], () => require("./threeDSecureAuthentication"));
+
 export { TreasuryFinancialAccountArgs, TreasuryFinancialAccountState } from "./treasuryFinancialAccount";
 export type TreasuryFinancialAccount = import("./treasuryFinancialAccount").TreasuryFinancialAccount;
 export const TreasuryFinancialAccount: typeof import("./treasuryFinancialAccount").TreasuryFinancialAccount = null as any;
@@ -247,6 +272,46 @@ export { V2CoreEventDestinationArgs, V2CoreEventDestinationState } from "./v2cor
 export type V2CoreEventDestination = import("./v2coreEventDestination").V2CoreEventDestination;
 export const V2CoreEventDestination: typeof import("./v2coreEventDestination").V2CoreEventDestination = null as any;
 utilities.lazyLoad(exports, ["V2CoreEventDestination"], () => require("./v2coreEventDestination"));
+
+export { V2CoreVaultGbBankAccountArgs, V2CoreVaultGbBankAccountState } from "./v2coreVaultGbBankAccount";
+export type V2CoreVaultGbBankAccount = import("./v2coreVaultGbBankAccount").V2CoreVaultGbBankAccount;
+export const V2CoreVaultGbBankAccount: typeof import("./v2coreVaultGbBankAccount").V2CoreVaultGbBankAccount = null as any;
+utilities.lazyLoad(exports, ["V2CoreVaultGbBankAccount"], () => require("./v2coreVaultGbBankAccount"));
+
+export { V2CoreVaultUsBankAccountArgs, V2CoreVaultUsBankAccountState } from "./v2coreVaultUsBankAccount";
+export type V2CoreVaultUsBankAccount = import("./v2coreVaultUsBankAccount").V2CoreVaultUsBankAccount;
+export const V2CoreVaultUsBankAccount: typeof import("./v2coreVaultUsBankAccount").V2CoreVaultUsBankAccount = null as any;
+utilities.lazyLoad(exports, ["V2CoreVaultUsBankAccount"], () => require("./v2coreVaultUsBankAccount"));
+
+export { V2MoneyManagementFinancialAddressArgs, V2MoneyManagementFinancialAddressState } from "./v2moneyManagementFinancialAddress";
+export type V2MoneyManagementFinancialAddress = import("./v2moneyManagementFinancialAddress").V2MoneyManagementFinancialAddress;
+export const V2MoneyManagementFinancialAddress: typeof import("./v2moneyManagementFinancialAddress").V2MoneyManagementFinancialAddress = null as any;
+utilities.lazyLoad(exports, ["V2MoneyManagementFinancialAddress"], () => require("./v2moneyManagementFinancialAddress"));
+
+export { V2MoneyManagementInboundTransferArgs, V2MoneyManagementInboundTransferState } from "./v2moneyManagementInboundTransfer";
+export type V2MoneyManagementInboundTransfer = import("./v2moneyManagementInboundTransfer").V2MoneyManagementInboundTransfer;
+export const V2MoneyManagementInboundTransfer: typeof import("./v2moneyManagementInboundTransfer").V2MoneyManagementInboundTransfer = null as any;
+utilities.lazyLoad(exports, ["V2MoneyManagementInboundTransfer"], () => require("./v2moneyManagementInboundTransfer"));
+
+export { V2MoneyManagementOutboundPaymentArgs, V2MoneyManagementOutboundPaymentState } from "./v2moneyManagementOutboundPayment";
+export type V2MoneyManagementOutboundPayment = import("./v2moneyManagementOutboundPayment").V2MoneyManagementOutboundPayment;
+export const V2MoneyManagementOutboundPayment: typeof import("./v2moneyManagementOutboundPayment").V2MoneyManagementOutboundPayment = null as any;
+utilities.lazyLoad(exports, ["V2MoneyManagementOutboundPayment"], () => require("./v2moneyManagementOutboundPayment"));
+
+export { V2MoneyManagementOutboundSetupIntentArgs, V2MoneyManagementOutboundSetupIntentState } from "./v2moneyManagementOutboundSetupIntent";
+export type V2MoneyManagementOutboundSetupIntent = import("./v2moneyManagementOutboundSetupIntent").V2MoneyManagementOutboundSetupIntent;
+export const V2MoneyManagementOutboundSetupIntent: typeof import("./v2moneyManagementOutboundSetupIntent").V2MoneyManagementOutboundSetupIntent = null as any;
+utilities.lazyLoad(exports, ["V2MoneyManagementOutboundSetupIntent"], () => require("./v2moneyManagementOutboundSetupIntent"));
+
+export { V2MoneyManagementPayoutIntentArgs, V2MoneyManagementPayoutIntentState } from "./v2moneyManagementPayoutIntent";
+export type V2MoneyManagementPayoutIntent = import("./v2moneyManagementPayoutIntent").V2MoneyManagementPayoutIntent;
+export const V2MoneyManagementPayoutIntent: typeof import("./v2moneyManagementPayoutIntent").V2MoneyManagementPayoutIntent = null as any;
+utilities.lazyLoad(exports, ["V2MoneyManagementPayoutIntent"], () => require("./v2moneyManagementPayoutIntent"));
+
+export { V2MoneyManagementRecipientVerificationArgs, V2MoneyManagementRecipientVerificationState } from "./v2moneyManagementRecipientVerification";
+export type V2MoneyManagementRecipientVerification = import("./v2moneyManagementRecipientVerification").V2MoneyManagementRecipientVerification;
+export const V2MoneyManagementRecipientVerification: typeof import("./v2moneyManagementRecipientVerification").V2MoneyManagementRecipientVerification = null as any;
+utilities.lazyLoad(exports, ["V2MoneyManagementRecipientVerification"], () => require("./v2moneyManagementRecipientVerification"));
 
 export { WebhookEndpointArgs, WebhookEndpointState } from "./webhookEndpoint";
 export type WebhookEndpoint = import("./webhookEndpoint").WebhookEndpoint;
@@ -269,10 +334,14 @@ const _module = {
         switch (type) {
             case "stripe:index/applePayDomain:ApplePayDomain":
                 return new ApplePayDomain(name, <any>undefined, { urn })
+            case "stripe:index/appsInstall:AppsInstall":
+                return new AppsInstall(name, <any>undefined, { urn })
             case "stripe:index/billingAlert:BillingAlert":
                 return new BillingAlert(name, <any>undefined, { urn })
             case "stripe:index/billingCreditGrant:BillingCreditGrant":
                 return new BillingCreditGrant(name, <any>undefined, { urn })
+            case "stripe:index/billingFeedbackOption:BillingFeedbackOption":
+                return new BillingFeedbackOption(name, <any>undefined, { urn })
             case "stripe:index/billingMeter:BillingMeter":
                 return new BillingMeter(name, <any>undefined, { urn })
             case "stripe:index/billingPortalConfiguration:BillingPortalConfiguration":
@@ -325,6 +394,8 @@ const _module = {
                 return new Price(name, <any>undefined, { urn })
             case "stripe:index/product:Product":
                 return new Product(name, <any>undefined, { urn })
+            case "stripe:index/productCatalogTrialOffer:ProductCatalogTrialOffer":
+                return new ProductCatalogTrialOffer(name, <any>undefined, { urn })
             case "stripe:index/productFeature:ProductFeature":
                 return new ProductFeature(name, <any>undefined, { urn })
             case "stripe:index/promotionCode:PromotionCode":
@@ -349,6 +420,8 @@ const _module = {
                 return new SubscriptionSchedule(name, <any>undefined, { urn })
             case "stripe:index/taxId:TaxId":
                 return new TaxId(name, <any>undefined, { urn })
+            case "stripe:index/taxLocation:TaxLocation":
+                return new TaxLocation(name, <any>undefined, { urn })
             case "stripe:index/taxRate:TaxRate":
                 return new TaxRate(name, <any>undefined, { urn })
             case "stripe:index/taxRegistration:TaxRegistration":
@@ -359,10 +432,28 @@ const _module = {
                 return new TerminalLocation(name, <any>undefined, { urn })
             case "stripe:index/terminalReader:TerminalReader":
                 return new TerminalReader(name, <any>undefined, { urn })
+            case "stripe:index/threeDSecureAuthentication:ThreeDSecureAuthentication":
+                return new ThreeDSecureAuthentication(name, <any>undefined, { urn })
             case "stripe:index/treasuryFinancialAccount:TreasuryFinancialAccount":
                 return new TreasuryFinancialAccount(name, <any>undefined, { urn })
             case "stripe:index/v2CoreEventDestination:V2CoreEventDestination":
                 return new V2CoreEventDestination(name, <any>undefined, { urn })
+            case "stripe:index/v2CoreVaultGbBankAccount:V2CoreVaultGbBankAccount":
+                return new V2CoreVaultGbBankAccount(name, <any>undefined, { urn })
+            case "stripe:index/v2CoreVaultUsBankAccount:V2CoreVaultUsBankAccount":
+                return new V2CoreVaultUsBankAccount(name, <any>undefined, { urn })
+            case "stripe:index/v2MoneyManagementFinancialAddress:V2MoneyManagementFinancialAddress":
+                return new V2MoneyManagementFinancialAddress(name, <any>undefined, { urn })
+            case "stripe:index/v2MoneyManagementInboundTransfer:V2MoneyManagementInboundTransfer":
+                return new V2MoneyManagementInboundTransfer(name, <any>undefined, { urn })
+            case "stripe:index/v2MoneyManagementOutboundPayment:V2MoneyManagementOutboundPayment":
+                return new V2MoneyManagementOutboundPayment(name, <any>undefined, { urn })
+            case "stripe:index/v2MoneyManagementOutboundSetupIntent:V2MoneyManagementOutboundSetupIntent":
+                return new V2MoneyManagementOutboundSetupIntent(name, <any>undefined, { urn })
+            case "stripe:index/v2MoneyManagementPayoutIntent:V2MoneyManagementPayoutIntent":
+                return new V2MoneyManagementPayoutIntent(name, <any>undefined, { urn })
+            case "stripe:index/v2MoneyManagementRecipientVerification:V2MoneyManagementRecipientVerification":
+                return new V2MoneyManagementRecipientVerification(name, <any>undefined, { urn })
             case "stripe:index/webhookEndpoint:WebhookEndpoint":
                 return new WebhookEndpoint(name, <any>undefined, { urn })
             default:
@@ -371,8 +462,10 @@ const _module = {
     },
 };
 pulumi.runtime.registerResourceModule("stripe", "index/applePayDomain", _module)
+pulumi.runtime.registerResourceModule("stripe", "index/appsInstall", _module)
 pulumi.runtime.registerResourceModule("stripe", "index/billingAlert", _module)
 pulumi.runtime.registerResourceModule("stripe", "index/billingCreditGrant", _module)
+pulumi.runtime.registerResourceModule("stripe", "index/billingFeedbackOption", _module)
 pulumi.runtime.registerResourceModule("stripe", "index/billingMeter", _module)
 pulumi.runtime.registerResourceModule("stripe", "index/billingPortalConfiguration", _module)
 pulumi.runtime.registerResourceModule("stripe", "index/charge", _module)
@@ -399,6 +492,7 @@ pulumi.runtime.registerResourceModule("stripe", "index/person", _module)
 pulumi.runtime.registerResourceModule("stripe", "index/plan", _module)
 pulumi.runtime.registerResourceModule("stripe", "index/price", _module)
 pulumi.runtime.registerResourceModule("stripe", "index/product", _module)
+pulumi.runtime.registerResourceModule("stripe", "index/productCatalogTrialOffer", _module)
 pulumi.runtime.registerResourceModule("stripe", "index/productFeature", _module)
 pulumi.runtime.registerResourceModule("stripe", "index/promotionCode", _module)
 pulumi.runtime.registerResourceModule("stripe", "index/quote", _module)
@@ -411,13 +505,23 @@ pulumi.runtime.registerResourceModule("stripe", "index/subscription", _module)
 pulumi.runtime.registerResourceModule("stripe", "index/subscriptionItem", _module)
 pulumi.runtime.registerResourceModule("stripe", "index/subscriptionSchedule", _module)
 pulumi.runtime.registerResourceModule("stripe", "index/taxId", _module)
+pulumi.runtime.registerResourceModule("stripe", "index/taxLocation", _module)
 pulumi.runtime.registerResourceModule("stripe", "index/taxRate", _module)
 pulumi.runtime.registerResourceModule("stripe", "index/taxRegistration", _module)
 pulumi.runtime.registerResourceModule("stripe", "index/terminalConfiguration", _module)
 pulumi.runtime.registerResourceModule("stripe", "index/terminalLocation", _module)
 pulumi.runtime.registerResourceModule("stripe", "index/terminalReader", _module)
+pulumi.runtime.registerResourceModule("stripe", "index/threeDSecureAuthentication", _module)
 pulumi.runtime.registerResourceModule("stripe", "index/treasuryFinancialAccount", _module)
 pulumi.runtime.registerResourceModule("stripe", "index/v2CoreEventDestination", _module)
+pulumi.runtime.registerResourceModule("stripe", "index/v2CoreVaultGbBankAccount", _module)
+pulumi.runtime.registerResourceModule("stripe", "index/v2CoreVaultUsBankAccount", _module)
+pulumi.runtime.registerResourceModule("stripe", "index/v2MoneyManagementFinancialAddress", _module)
+pulumi.runtime.registerResourceModule("stripe", "index/v2MoneyManagementInboundTransfer", _module)
+pulumi.runtime.registerResourceModule("stripe", "index/v2MoneyManagementOutboundPayment", _module)
+pulumi.runtime.registerResourceModule("stripe", "index/v2MoneyManagementOutboundSetupIntent", _module)
+pulumi.runtime.registerResourceModule("stripe", "index/v2MoneyManagementPayoutIntent", _module)
+pulumi.runtime.registerResourceModule("stripe", "index/v2MoneyManagementRecipientVerification", _module)
 pulumi.runtime.registerResourceModule("stripe", "index/webhookEndpoint", _module)
 pulumi.runtime.registerResourcePackage("stripe", {
     version: utilities.getVersion(),

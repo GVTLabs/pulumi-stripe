@@ -95,6 +95,12 @@ namespace Pulumi.Stripe
         public Output<string> Object { get; private set; } = null!;
 
         /// <summary>
+        /// The pause schedules for this subscription schedule.
+        /// </summary>
+        [Output("pauseSchedules")]
+        public Output<ImmutableArray<Outputs.SubscriptionSchedulePauseSchedule>> PauseSchedules { get; private set; } = null!;
+
+        /// <summary>
         /// Configuration for the subscription schedule's phases.
         /// </summary>
         [Output("phases")]
@@ -113,7 +119,7 @@ namespace Pulumi.Stripe
         public Output<string> ReleasedSubscription { get; private set; } = null!;
 
         /// <summary>
-        /// When the subscription schedule starts. We recommend using &lt;span pulumi-lang-nodejs="`now`" pulumi-lang-dotnet="`Now`" pulumi-lang-go="`now`" pulumi-lang-python="`now`" pulumi-lang-yaml="`now`" pulumi-lang-java="`now`" pulumi-lang-hcl="`now`"&gt;`now`&lt;/span&gt; so that it starts the subscription immediately. You can also use a Unix timestamp to backdate the subscription so that it starts on a past date, or set a future date for the subscription to start on.
+        /// When the subscription schedule starts. We recommend using &lt;span pulumi-lang-nodejs="`now`" pulumi-lang-dotnet="`Now`" pulumi-lang-go="`now`" pulumi-lang-python="`now`" pulumi-lang-yaml="`now`" pulumi-lang-java="`now`" pulumi-lang-hcl="`now`"&gt;`now`&lt;/span&gt; so that it starts the subscription immediately, and to avoid unexpected behavior due to request delays or clock skew resulting in a slightly backdated or postdated start. You can also use a Unix timestamp to backdate the subscription so that it starts on a past date, or set a future date for the subscription to start on.
         /// </summary>
         [Output("startDate")]
         public Output<double?> StartDate { get; private set; } = null!;
@@ -242,6 +248,18 @@ namespace Pulumi.Stripe
             set => _metadata = value;
         }
 
+        [Input("pauseSchedules")]
+        private InputList<Inputs.SubscriptionSchedulePauseScheduleArgs>? _pauseSchedules;
+
+        /// <summary>
+        /// The pause schedules for this subscription schedule.
+        /// </summary>
+        public InputList<Inputs.SubscriptionSchedulePauseScheduleArgs> PauseSchedules
+        {
+            get => _pauseSchedules ?? (_pauseSchedules = new InputList<Inputs.SubscriptionSchedulePauseScheduleArgs>());
+            set => _pauseSchedules = value;
+        }
+
         [Input("phases")]
         private InputList<Inputs.SubscriptionSchedulePhaseArgs>? _phases;
 
@@ -255,7 +273,7 @@ namespace Pulumi.Stripe
         }
 
         /// <summary>
-        /// When the subscription schedule starts. We recommend using &lt;span pulumi-lang-nodejs="`now`" pulumi-lang-dotnet="`Now`" pulumi-lang-go="`now`" pulumi-lang-python="`now`" pulumi-lang-yaml="`now`" pulumi-lang-java="`now`" pulumi-lang-hcl="`now`"&gt;`now`&lt;/span&gt; so that it starts the subscription immediately. You can also use a Unix timestamp to backdate the subscription so that it starts on a past date, or set a future date for the subscription to start on.
+        /// When the subscription schedule starts. We recommend using &lt;span pulumi-lang-nodejs="`now`" pulumi-lang-dotnet="`Now`" pulumi-lang-go="`now`" pulumi-lang-python="`now`" pulumi-lang-yaml="`now`" pulumi-lang-java="`now`" pulumi-lang-hcl="`now`"&gt;`now`&lt;/span&gt; so that it starts the subscription immediately, and to avoid unexpected behavior due to request delays or clock skew resulting in a slightly backdated or postdated start. You can also use a Unix timestamp to backdate the subscription so that it starts on a past date, or set a future date for the subscription to start on.
         /// </summary>
         [Input("startDate")]
         public Input<double>? StartDate { get; set; }
@@ -366,6 +384,18 @@ namespace Pulumi.Stripe
         [Input("object")]
         public Input<string>? Object { get; set; }
 
+        [Input("pauseSchedules")]
+        private InputList<Inputs.SubscriptionSchedulePauseScheduleGetArgs>? _pauseSchedules;
+
+        /// <summary>
+        /// The pause schedules for this subscription schedule.
+        /// </summary>
+        public InputList<Inputs.SubscriptionSchedulePauseScheduleGetArgs> PauseSchedules
+        {
+            get => _pauseSchedules ?? (_pauseSchedules = new InputList<Inputs.SubscriptionSchedulePauseScheduleGetArgs>());
+            set => _pauseSchedules = value;
+        }
+
         [Input("phases")]
         private InputList<Inputs.SubscriptionSchedulePhaseGetArgs>? _phases;
 
@@ -391,7 +421,7 @@ namespace Pulumi.Stripe
         public Input<string>? ReleasedSubscription { get; set; }
 
         /// <summary>
-        /// When the subscription schedule starts. We recommend using &lt;span pulumi-lang-nodejs="`now`" pulumi-lang-dotnet="`Now`" pulumi-lang-go="`now`" pulumi-lang-python="`now`" pulumi-lang-yaml="`now`" pulumi-lang-java="`now`" pulumi-lang-hcl="`now`"&gt;`now`&lt;/span&gt; so that it starts the subscription immediately. You can also use a Unix timestamp to backdate the subscription so that it starts on a past date, or set a future date for the subscription to start on.
+        /// When the subscription schedule starts. We recommend using &lt;span pulumi-lang-nodejs="`now`" pulumi-lang-dotnet="`Now`" pulumi-lang-go="`now`" pulumi-lang-python="`now`" pulumi-lang-yaml="`now`" pulumi-lang-java="`now`" pulumi-lang-hcl="`now`"&gt;`now`&lt;/span&gt; so that it starts the subscription immediately, and to avoid unexpected behavior due to request delays or clock skew resulting in a slightly backdated or postdated start. You can also use a Unix timestamp to backdate the subscription so that it starts on a past date, or set a future date for the subscription to start on.
         /// </summary>
         [Input("startDate")]
         public Input<double>? StartDate { get; set; }

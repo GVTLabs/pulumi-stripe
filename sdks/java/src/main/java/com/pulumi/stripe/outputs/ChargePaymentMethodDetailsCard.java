@@ -58,6 +58,11 @@ public final class ChargePaymentMethodDetailsCard {
      */
     private @Nullable String description;
     /**
+     * @return The Electronic Commerce Indicator (ECI) returned by the card network in the authorization response. Indicates the level of authentication used. Only populated for Visa and Mastercard transactions. This is the network&#39;s final ECI and can differ from the request value. An authenticated ECI alone doesn&#39;t determine liability shift.
+     * 
+     */
+    private @Nullable String electronicCommerceIndicator;
+    /**
      * @return Two-digit number representing the card&#39;s expiration month.
      * 
      */
@@ -136,10 +141,25 @@ public final class ChargePaymentMethodDetailsCard {
      */
     private @Nullable String regulatedStatus;
     /**
+     * @return The payment_method_options.card.setup_credential_usage value that was passed when&lt;span pulumi-lang-nodejs=&#34; setupFutureUsage &#34; pulumi-lang-dotnet=&#34; SetupFutureUsage &#34; pulumi-lang-go=&#34; setupFutureUsage &#34; pulumi-lang-python=&#34; setup_future_usage &#34; pulumi-lang-yaml=&#34; setupFutureUsage &#34; pulumi-lang-java=&#34; setupFutureUsage &#34; pulumi-lang-hcl=&#34; setup_future_usage &#34;&gt; setupFutureUsage &lt;/span&gt;was present at confirmation, one of &lt;span pulumi-lang-nodejs=&#34;`recurring`&#34; pulumi-lang-dotnet=&#34;`Recurring`&#34; pulumi-lang-go=&#34;`recurring`&#34; pulumi-lang-python=&#34;`recurring`&#34; pulumi-lang-yaml=&#34;`recurring`&#34; pulumi-lang-java=&#34;`recurring`&#34; pulumi-lang-hcl=&#34;`recurring`&#34;&gt;`recurring`&lt;/span&gt;, &lt;span pulumi-lang-nodejs=&#34;`unscheduled`&#34; pulumi-lang-dotnet=&#34;`Unscheduled`&#34; pulumi-lang-go=&#34;`unscheduled`&#34; pulumi-lang-python=&#34;`unscheduled`&#34; pulumi-lang-yaml=&#34;`unscheduled`&#34; pulumi-lang-java=&#34;`unscheduled`&#34; pulumi-lang-hcl=&#34;`unscheduled`&#34;&gt;`unscheduled`&lt;/span&gt;, or &lt;span pulumi-lang-nodejs=&#34;`installment`&#34; pulumi-lang-dotnet=&#34;`Installment`&#34; pulumi-lang-go=&#34;`installment`&#34; pulumi-lang-python=&#34;`installment`&#34; pulumi-lang-yaml=&#34;`installment`&#34; pulumi-lang-java=&#34;`installment`&#34; pulumi-lang-hcl=&#34;`installment`&#34;&gt;`installment`&lt;/span&gt;
+     * 
+     */
+    private @Nullable String setupCredentialUsage;
+    /**
+     * @return The payment_method_options.card.stored_credential_usage value that was passed for an off session, merchant-initiated transaction.
+     * 
+     */
+    private @Nullable String storedCredentialUsage;
+    /**
      * @return Populated if this transaction used 3D Secure authentication.
      * 
      */
     private @Nullable ChargePaymentMethodDetailsCardThreeDSecure threeDSecure;
+    /**
+     * @return Transaction Link ID (TLID) is a unique identifier for a transaction. This is used by some card networks, such as Mastercard, for transaction linking, in addition to Network Transaction IDs. This value will be present if it is returned by the financial network in the authorization response, and null otherwise.
+     * 
+     */
+    private @Nullable String transactionLinkId;
     /**
      * @return If this Card is part of a card wallet, this contains the details of the card wallet.
      * 
@@ -195,6 +215,13 @@ public final class ChargePaymentMethodDetailsCard {
      */
     public Optional<String> description() {
         return Optional.ofNullable(this.description);
+    }
+    /**
+     * @return The Electronic Commerce Indicator (ECI) returned by the card network in the authorization response. Indicates the level of authentication used. Only populated for Visa and Mastercard transactions. This is the network&#39;s final ECI and can differ from the request value. An authenticated ECI alone doesn&#39;t determine liability shift.
+     * 
+     */
+    public Optional<String> electronicCommerceIndicator() {
+        return Optional.ofNullable(this.electronicCommerceIndicator);
     }
     /**
      * @return Two-digit number representing the card&#39;s expiration month.
@@ -311,11 +338,32 @@ public final class ChargePaymentMethodDetailsCard {
         return Optional.ofNullable(this.regulatedStatus);
     }
     /**
+     * @return The payment_method_options.card.setup_credential_usage value that was passed when&lt;span pulumi-lang-nodejs=&#34; setupFutureUsage &#34; pulumi-lang-dotnet=&#34; SetupFutureUsage &#34; pulumi-lang-go=&#34; setupFutureUsage &#34; pulumi-lang-python=&#34; setup_future_usage &#34; pulumi-lang-yaml=&#34; setupFutureUsage &#34; pulumi-lang-java=&#34; setupFutureUsage &#34; pulumi-lang-hcl=&#34; setup_future_usage &#34;&gt; setupFutureUsage &lt;/span&gt;was present at confirmation, one of &lt;span pulumi-lang-nodejs=&#34;`recurring`&#34; pulumi-lang-dotnet=&#34;`Recurring`&#34; pulumi-lang-go=&#34;`recurring`&#34; pulumi-lang-python=&#34;`recurring`&#34; pulumi-lang-yaml=&#34;`recurring`&#34; pulumi-lang-java=&#34;`recurring`&#34; pulumi-lang-hcl=&#34;`recurring`&#34;&gt;`recurring`&lt;/span&gt;, &lt;span pulumi-lang-nodejs=&#34;`unscheduled`&#34; pulumi-lang-dotnet=&#34;`Unscheduled`&#34; pulumi-lang-go=&#34;`unscheduled`&#34; pulumi-lang-python=&#34;`unscheduled`&#34; pulumi-lang-yaml=&#34;`unscheduled`&#34; pulumi-lang-java=&#34;`unscheduled`&#34; pulumi-lang-hcl=&#34;`unscheduled`&#34;&gt;`unscheduled`&lt;/span&gt;, or &lt;span pulumi-lang-nodejs=&#34;`installment`&#34; pulumi-lang-dotnet=&#34;`Installment`&#34; pulumi-lang-go=&#34;`installment`&#34; pulumi-lang-python=&#34;`installment`&#34; pulumi-lang-yaml=&#34;`installment`&#34; pulumi-lang-java=&#34;`installment`&#34; pulumi-lang-hcl=&#34;`installment`&#34;&gt;`installment`&lt;/span&gt;
+     * 
+     */
+    public Optional<String> setupCredentialUsage() {
+        return Optional.ofNullable(this.setupCredentialUsage);
+    }
+    /**
+     * @return The payment_method_options.card.stored_credential_usage value that was passed for an off session, merchant-initiated transaction.
+     * 
+     */
+    public Optional<String> storedCredentialUsage() {
+        return Optional.ofNullable(this.storedCredentialUsage);
+    }
+    /**
      * @return Populated if this transaction used 3D Secure authentication.
      * 
      */
     public Optional<ChargePaymentMethodDetailsCardThreeDSecure> threeDSecure() {
         return Optional.ofNullable(this.threeDSecure);
+    }
+    /**
+     * @return Transaction Link ID (TLID) is a unique identifier for a transaction. This is used by some card networks, such as Mastercard, for transaction linking, in addition to Network Transaction IDs. This value will be present if it is returned by the financial network in the authorization response, and null otherwise.
+     * 
+     */
+    public Optional<String> transactionLinkId() {
+        return Optional.ofNullable(this.transactionLinkId);
     }
     /**
      * @return If this Card is part of a card wallet, this contains the details of the card wallet.
@@ -341,6 +389,7 @@ public final class ChargePaymentMethodDetailsCard {
         private @Nullable ChargePaymentMethodDetailsCardChecks checks;
         private @Nullable String country;
         private @Nullable String description;
+        private @Nullable String electronicCommerceIndicator;
         private @Nullable Double expMonth;
         private @Nullable Double expYear;
         private @Nullable ChargePaymentMethodDetailsCardExtendedAuthorization extendedAuthorization;
@@ -359,7 +408,10 @@ public final class ChargePaymentMethodDetailsCard {
         private @Nullable String networkTransactionId;
         private @Nullable ChargePaymentMethodDetailsCardOvercapture overcapture;
         private @Nullable String regulatedStatus;
+        private @Nullable String setupCredentialUsage;
+        private @Nullable String storedCredentialUsage;
         private @Nullable ChargePaymentMethodDetailsCardThreeDSecure threeDSecure;
+        private @Nullable String transactionLinkId;
         private @Nullable ChargePaymentMethodDetailsCardWallet wallet;
         public Builder() {}
         public Builder(ChargePaymentMethodDetailsCard defaults) {
@@ -371,6 +423,7 @@ public final class ChargePaymentMethodDetailsCard {
     	      this.checks = defaults.checks;
     	      this.country = defaults.country;
     	      this.description = defaults.description;
+    	      this.electronicCommerceIndicator = defaults.electronicCommerceIndicator;
     	      this.expMonth = defaults.expMonth;
     	      this.expYear = defaults.expYear;
     	      this.extendedAuthorization = defaults.extendedAuthorization;
@@ -389,7 +442,10 @@ public final class ChargePaymentMethodDetailsCard {
     	      this.networkTransactionId = defaults.networkTransactionId;
     	      this.overcapture = defaults.overcapture;
     	      this.regulatedStatus = defaults.regulatedStatus;
+    	      this.setupCredentialUsage = defaults.setupCredentialUsage;
+    	      this.storedCredentialUsage = defaults.storedCredentialUsage;
     	      this.threeDSecure = defaults.threeDSecure;
+    	      this.transactionLinkId = defaults.transactionLinkId;
     	      this.wallet = defaults.wallet;
         }
 
@@ -433,6 +489,12 @@ public final class ChargePaymentMethodDetailsCard {
         public Builder description(@Nullable String description) {
 
             this.description = description;
+            return this;
+        }
+        @CustomType.Setter
+        public Builder electronicCommerceIndicator(@Nullable String electronicCommerceIndicator) {
+
+            this.electronicCommerceIndicator = electronicCommerceIndicator;
             return this;
         }
         @CustomType.Setter
@@ -544,9 +606,27 @@ public final class ChargePaymentMethodDetailsCard {
             return this;
         }
         @CustomType.Setter
+        public Builder setupCredentialUsage(@Nullable String setupCredentialUsage) {
+
+            this.setupCredentialUsage = setupCredentialUsage;
+            return this;
+        }
+        @CustomType.Setter
+        public Builder storedCredentialUsage(@Nullable String storedCredentialUsage) {
+
+            this.storedCredentialUsage = storedCredentialUsage;
+            return this;
+        }
+        @CustomType.Setter
         public Builder threeDSecure(@Nullable ChargePaymentMethodDetailsCardThreeDSecure threeDSecure) {
 
             this.threeDSecure = threeDSecure;
+            return this;
+        }
+        @CustomType.Setter
+        public Builder transactionLinkId(@Nullable String transactionLinkId) {
+
+            this.transactionLinkId = transactionLinkId;
             return this;
         }
         @CustomType.Setter
@@ -564,6 +644,7 @@ public final class ChargePaymentMethodDetailsCard {
             _resultValue.checks = checks;
             _resultValue.country = country;
             _resultValue.description = description;
+            _resultValue.electronicCommerceIndicator = electronicCommerceIndicator;
             _resultValue.expMonth = expMonth;
             _resultValue.expYear = expYear;
             _resultValue.extendedAuthorization = extendedAuthorization;
@@ -582,7 +663,10 @@ public final class ChargePaymentMethodDetailsCard {
             _resultValue.networkTransactionId = networkTransactionId;
             _resultValue.overcapture = overcapture;
             _resultValue.regulatedStatus = regulatedStatus;
+            _resultValue.setupCredentialUsage = setupCredentialUsage;
+            _resultValue.storedCredentialUsage = storedCredentialUsage;
             _resultValue.threeDSecure = threeDSecure;
+            _resultValue.transactionLinkId = transactionLinkId;
             _resultValue.wallet = wallet;
             return _resultValue;
         }

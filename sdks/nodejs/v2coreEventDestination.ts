@@ -20,6 +20,17 @@ export class V2CoreEventDestination extends pulumi.CustomResource {
         return new V2CoreEventDestination(name, <any>state, { ...opts, id: id });
     }
 
+    /**
+     * Check whether an existing V2CoreEventDestination resource with the given ID exists.
+     *
+     * @param id The _unique_ provider ID of the resource to check.
+     * @param state Any extra arguments used during the lookup.
+     * @param opts Optional settings to control the behavior of the CustomResource.
+     */
+    public static exists(id: pulumi.Input<string>, state?: V2CoreEventDestinationState, opts?: pulumi.CustomResourceOptions): pulumi.Output<boolean> {
+        return pulumi.runtime.existsResource("stripe:index/v2CoreEventDestination:V2CoreEventDestination", id, <any>state || {}, { ...opts }, utilities.getPackage());
+    }
+
     /** @internal */
     public static readonly __pulumiType = 'stripe:index/v2CoreEventDestination:V2CoreEventDestination';
 
@@ -35,27 +46,27 @@ export class V2CoreEventDestination extends pulumi.CustomResource {
     }
 
     /**
-     * Amazon EventBridge configuration.
+     * Configuration for delivering events through an Amazon EventBridge partner event source.
      */
     declare public readonly amazonEventbridges: pulumi.Output<outputs.V2CoreEventDestinationAmazonEventbridge[] | undefined>;
     /**
-     * Azure Event Grid configuration.
+     * Configuration for delivering events through an Azure Event Grid partner topic.
      */
     declare public readonly azureEventGrid: pulumi.Output<outputs.V2CoreEventDestinationAzureEventGrid>;
     /**
-     * Time at which the object was created.
+     * The time when the destination was created.
      */
     declare public /*out*/ readonly created: pulumi.Output<string>;
     /**
-     * An optional description of what the event destination is used for.
+     * An optional user-defined description of the destination's purpose.
      */
     declare public readonly description: pulumi.Output<string>;
     /**
-     * The list of events to enable for this endpoint.
+     * The list of event types enabled for delivery to this destination.
      */
     declare public readonly enabledEvents: pulumi.Output<string[]>;
     /**
-     * Payload type of events being subscribed to.
+     * Whether to deliver as snapshot or thin events.
      */
     declare public readonly eventPayload: pulumi.Output<string>;
     /**
@@ -68,7 +79,7 @@ export class V2CoreEventDestination extends pulumi.CustomResource {
     declare public readonly eventsFroms: pulumi.Output<string[]>;
     /**
      * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
-     * Additional fields to include in the response.
+     * Include normally redacted webhook fields in the create response. Public API clients must include `webhook_endpoint.signing_secret` to receive the signing secret.
      */
     declare public readonly includes: pulumi.Output<string[] | undefined>;
     /**
@@ -76,11 +87,11 @@ export class V2CoreEventDestination extends pulumi.CustomResource {
      */
     declare public /*out*/ readonly livemode: pulumi.Output<boolean>;
     /**
-     * Metadata.
+     * User-defined key/value data for the destination; it has no effect on event matching or delivery.
      */
     declare public readonly metadata: pulumi.Output<{[key: string]: string}>;
     /**
-     * Event destination name.
+     * A user-defined label for identifying the destination in Stripe.
      */
     declare public readonly name: pulumi.Output<string>;
     /**
@@ -88,27 +99,27 @@ export class V2CoreEventDestination extends pulumi.CustomResource {
      */
     declare public /*out*/ readonly object: pulumi.Output<string>;
     /**
-     * If using the snapshot event payload, the API version events are rendered as.
+     * For snapshot events only, the Stripe API version used to render event objects. You can't change this value after you create the event destination. Thin events are not pinned to an API version.
      */
     declare public readonly snapshotApiVersion: pulumi.Output<string>;
     /**
-     * Status. It can be set to either enabled or disabled.
+     * Whether Stripe currently attempts delivery. Stripe attempts delivery to enabled destinations when their provider configuration is active; disabled destinations do not receive delivery attempts.
      */
     declare public /*out*/ readonly status: pulumi.Output<string>;
     /**
-     * Additional information about event destination status.
+     * Additional lifecycle context for the destination status, when available.
      */
     declare public /*out*/ readonly statusDetails: pulumi.Output<outputs.V2CoreEventDestinationStatusDetails>;
     /**
-     * Event destination type.
+     * The delivery transport. Chosen when the destination is created and cannot be changed by update.
      */
     declare public readonly type: pulumi.Output<string>;
     /**
-     * Time at which the object was last updated.
+     * The time when the destination object was last updated.
      */
     declare public /*out*/ readonly updated: pulumi.Output<string>;
     /**
-     * Webhook endpoint configuration.
+     * Configuration for delivering events to a webhook endpoint. Live mode requires HTTPS; sandbox mode also supports HTTP.
      */
     declare public readonly webhookEndpoints: pulumi.Output<outputs.V2CoreEventDestinationWebhookEndpoint[] | undefined>;
 
@@ -185,27 +196,27 @@ export class V2CoreEventDestination extends pulumi.CustomResource {
  */
 export interface V2CoreEventDestinationState {
     /**
-     * Amazon EventBridge configuration.
+     * Configuration for delivering events through an Amazon EventBridge partner event source.
      */
     amazonEventbridges?: pulumi.Input<pulumi.Input<inputs.V2CoreEventDestinationAmazonEventbridge>[] | undefined>;
     /**
-     * Azure Event Grid configuration.
+     * Configuration for delivering events through an Azure Event Grid partner topic.
      */
     azureEventGrid?: pulumi.Input<inputs.V2CoreEventDestinationAzureEventGrid | undefined>;
     /**
-     * Time at which the object was created.
+     * The time when the destination was created.
      */
     created?: pulumi.Input<string | undefined>;
     /**
-     * An optional description of what the event destination is used for.
+     * An optional user-defined description of the destination's purpose.
      */
     description?: pulumi.Input<string | undefined>;
     /**
-     * The list of events to enable for this endpoint.
+     * The list of event types enabled for delivery to this destination.
      */
     enabledEvents?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
-     * Payload type of events being subscribed to.
+     * Whether to deliver as snapshot or thin events.
      */
     eventPayload?: pulumi.Input<string | undefined>;
     /**
@@ -218,7 +229,7 @@ export interface V2CoreEventDestinationState {
     eventsFroms?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
-     * Additional fields to include in the response.
+     * Include normally redacted webhook fields in the create response. Public API clients must include `webhook_endpoint.signing_secret` to receive the signing secret.
      */
     includes?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
@@ -226,11 +237,11 @@ export interface V2CoreEventDestinationState {
      */
     livemode?: pulumi.Input<boolean | undefined>;
     /**
-     * Metadata.
+     * User-defined key/value data for the destination; it has no effect on event matching or delivery.
      */
     metadata?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
     /**
-     * Event destination name.
+     * A user-defined label for identifying the destination in Stripe.
      */
     name?: pulumi.Input<string | undefined>;
     /**
@@ -238,27 +249,27 @@ export interface V2CoreEventDestinationState {
      */
     object?: pulumi.Input<string | undefined>;
     /**
-     * If using the snapshot event payload, the API version events are rendered as.
+     * For snapshot events only, the Stripe API version used to render event objects. You can't change this value after you create the event destination. Thin events are not pinned to an API version.
      */
     snapshotApiVersion?: pulumi.Input<string | undefined>;
     /**
-     * Status. It can be set to either enabled or disabled.
+     * Whether Stripe currently attempts delivery. Stripe attempts delivery to enabled destinations when their provider configuration is active; disabled destinations do not receive delivery attempts.
      */
     status?: pulumi.Input<string | undefined>;
     /**
-     * Additional information about event destination status.
+     * Additional lifecycle context for the destination status, when available.
      */
     statusDetails?: pulumi.Input<inputs.V2CoreEventDestinationStatusDetails | undefined>;
     /**
-     * Event destination type.
+     * The delivery transport. Chosen when the destination is created and cannot be changed by update.
      */
     type?: pulumi.Input<string | undefined>;
     /**
-     * Time at which the object was last updated.
+     * The time when the destination object was last updated.
      */
     updated?: pulumi.Input<string | undefined>;
     /**
-     * Webhook endpoint configuration.
+     * Configuration for delivering events to a webhook endpoint. Live mode requires HTTPS; sandbox mode also supports HTTP.
      */
     webhookEndpoints?: pulumi.Input<pulumi.Input<inputs.V2CoreEventDestinationWebhookEndpoint>[] | undefined>;
 }
@@ -268,23 +279,23 @@ export interface V2CoreEventDestinationState {
  */
 export interface V2CoreEventDestinationArgs {
     /**
-     * Amazon EventBridge configuration.
+     * Configuration for delivering events through an Amazon EventBridge partner event source.
      */
     amazonEventbridges?: pulumi.Input<pulumi.Input<inputs.V2CoreEventDestinationAmazonEventbridge>[] | undefined>;
     /**
-     * Azure Event Grid configuration.
+     * Configuration for delivering events through an Azure Event Grid partner topic.
      */
     azureEventGrid?: pulumi.Input<inputs.V2CoreEventDestinationAzureEventGrid | undefined>;
     /**
-     * An optional description of what the event destination is used for.
+     * An optional user-defined description of the destination's purpose.
      */
     description?: pulumi.Input<string | undefined>;
     /**
-     * The list of events to enable for this endpoint.
+     * The list of event types enabled for delivery to this destination.
      */
     enabledEvents: pulumi.Input<pulumi.Input<string>[]>;
     /**
-     * Payload type of events being subscribed to.
+     * Whether to deliver as snapshot or thin events.
      */
     eventPayload: pulumi.Input<string>;
     /**
@@ -297,27 +308,27 @@ export interface V2CoreEventDestinationArgs {
     eventsFroms?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
-     * Additional fields to include in the response.
+     * Include normally redacted webhook fields in the create response. Public API clients must include `webhook_endpoint.signing_secret` to receive the signing secret.
      */
     includes?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
-     * Metadata.
+     * User-defined key/value data for the destination; it has no effect on event matching or delivery.
      */
     metadata?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
     /**
-     * Event destination name.
+     * A user-defined label for identifying the destination in Stripe.
      */
     name?: pulumi.Input<string | undefined>;
     /**
-     * If using the snapshot event payload, the API version events are rendered as.
+     * For snapshot events only, the Stripe API version used to render event objects. You can't change this value after you create the event destination. Thin events are not pinned to an API version.
      */
     snapshotApiVersion?: pulumi.Input<string | undefined>;
     /**
-     * Event destination type.
+     * The delivery transport. Chosen when the destination is created and cannot be changed by update.
      */
     type: pulumi.Input<string>;
     /**
-     * Webhook endpoint configuration.
+     * Configuration for delivering events to a webhook endpoint. Live mode requires HTTPS; sandbox mode also supports HTTP.
      */
     webhookEndpoints?: pulumi.Input<pulumi.Input<inputs.V2CoreEventDestinationWebhookEndpoint>[] | undefined>;
 }

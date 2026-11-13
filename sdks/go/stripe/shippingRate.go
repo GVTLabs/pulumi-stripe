@@ -130,6 +130,18 @@ func (ShippingRateState) ElementType() reflect.Type {
 	return reflect.TypeOf((*shippingRateState)(nil)).Elem()
 }
 
+// ShippingRateExists checks whether an existing ShippingRate resource with the given ID exists.
+func ShippingRateExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *ShippingRateState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	ref, err := internal.PkgGetPackageRef(ctx)
+	if err != nil {
+		return pulumi.Bool(false).ToBoolOutput().ApplyT(func(bool) (bool, error) {
+			return false, err
+		}).(pulumi.BoolOutput)
+	}
+	return ctx.ExistsResource("stripe:index/shippingRate:ShippingRate", id, state, ref, opts...)
+}
+
 type shippingRateArgs struct {
 	// Whether the shipping rate can be used for new purchases. Defaults to <span pulumi-lang-nodejs="`true`" pulumi-lang-dotnet="`True`" pulumi-lang-go="`true`" pulumi-lang-python="`true`" pulumi-lang-yaml="`true`" pulumi-lang-java="`true`" pulumi-lang-hcl="`true`">`true`</span>.
 	Active *bool `pulumi:"active"`

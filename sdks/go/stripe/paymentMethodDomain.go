@@ -133,6 +133,18 @@ func (PaymentMethodDomainState) ElementType() reflect.Type {
 	return reflect.TypeOf((*paymentMethodDomainState)(nil)).Elem()
 }
 
+// PaymentMethodDomainExists checks whether an existing PaymentMethodDomain resource with the given ID exists.
+func PaymentMethodDomainExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *PaymentMethodDomainState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	ref, err := internal.PkgGetPackageRef(ctx)
+	if err != nil {
+		return pulumi.Bool(false).ToBoolOutput().ApplyT(func(bool) (bool, error) {
+			return false, err
+		}).(pulumi.BoolOutput)
+	}
+	return ctx.ExistsResource("stripe:index/paymentMethodDomain:PaymentMethodDomain", id, state, ref, opts...)
+}
+
 type paymentMethodDomainArgs struct {
 	// The domain name that this payment method domain object represents.
 	DomainName string `pulumi:"domainName"`

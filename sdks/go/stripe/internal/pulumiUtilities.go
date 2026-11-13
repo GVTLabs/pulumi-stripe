@@ -167,19 +167,19 @@ func callPlainInner(
 // The reference is cached per pulumi.Context so that concurrent inline
 // programs each register with their own engine and receive distinct refs.
 func PkgGetPackageRef(ctx *pulumi.Context) (string, error) {
-	return ctx.GetOrRegisterPackageRef("stripe:0.3.0", func() (*pulumirpc.RegisterPackageRequest, error) {
-		parameter, err := base64.StdEncoding.DecodeString("eyJyZW1vdGUiOnsidXJsIjoicmVnaXN0cnkub3BlbnRvZnUub3JnL3N0cmlwZS9zdHJpcGUiLCJ2ZXJzaW9uIjoiMC4zLjAifX0=")
+	return ctx.GetOrRegisterPackageRef("stripe:0.3.1", func() (*pulumirpc.RegisterPackageRequest, error) {
+		parameter, err := base64.StdEncoding.DecodeString("eyJyZW1vdGUiOnsidXJsIjoicmVnaXN0cnkub3BlbnRvZnUub3JnL3N0cmlwZS9zdHJpcGUiLCJ2ZXJzaW9uIjoiMC4zLjEifX0=")
 		if err != nil {
 			return nil, err
 		}
 
 		return &pulumirpc.RegisterPackageRequest{
 			Name:        "terraform-provider",
-			Version:     "1.3.0",
+			Version:     "1.5.1",
 			DownloadUrl: "",
 			Parameterization: &pulumirpc.Parameterization{
 				Name:    "stripe",
-				Version: "0.3.0",
+				Version: "0.3.1",
 				Value:   parameter,
 			},
 		}, nil
@@ -190,7 +190,7 @@ func PkgGetPackageRef(ctx *pulumi.Context) (string, error) {
 func PkgResourceDefaultOpts(opts []pulumi.ResourceOption) []pulumi.ResourceOption {
 	defaults := []pulumi.ResourceOption{}
 
-	version := semver.MustParse("0.3.0")
+	version := semver.MustParse("0.3.1")
 	if !version.Equals(semver.Version{}) {
 		defaults = append(defaults, pulumi.Version(version.String()))
 	}
@@ -201,7 +201,7 @@ func PkgResourceDefaultOpts(opts []pulumi.ResourceOption) []pulumi.ResourceOptio
 func PkgInvokeDefaultOpts(opts []pulumi.InvokeOption) []pulumi.InvokeOption {
 	defaults := []pulumi.InvokeOption{}
 
-	version := semver.MustParse("0.3.0")
+	version := semver.MustParse("0.3.1")
 	if !version.Equals(semver.Version{}) {
 		defaults = append(defaults, pulumi.Version(version.String()))
 	}

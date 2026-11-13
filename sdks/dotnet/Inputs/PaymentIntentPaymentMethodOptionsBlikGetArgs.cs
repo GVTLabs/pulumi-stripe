@@ -18,6 +18,9 @@ namespace Pulumi.Stripe.Inputs
         [Input("code")]
         public Input<string>? Code { get; set; }
 
+        [Input("mandateOptions")]
+        public Input<Inputs.PaymentIntentPaymentMethodOptionsBlikMandateOptionsGetArgs>? MandateOptions { get; set; }
+
         /// <summary>
         /// Indicates that you intend to make future payments with this PaymentIntent's payment method.
         /// 

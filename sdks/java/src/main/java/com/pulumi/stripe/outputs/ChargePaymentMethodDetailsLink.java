@@ -17,6 +17,11 @@ public final class ChargePaymentMethodDetailsLink {
      * 
      */
     private @Nullable String country;
+    /**
+     * @return The [funding source group code](https://docs.stripe.com/payments/link/link-payment-methods) applied to this Link payment at confirmation time.
+     * 
+     */
+    private @Nullable String fundingSourceGroup;
 
     private ChargePaymentMethodDetailsLink() {}
     /**
@@ -26,6 +31,13 @@ public final class ChargePaymentMethodDetailsLink {
      */
     public Optional<String> country() {
         return Optional.ofNullable(this.country);
+    }
+    /**
+     * @return The [funding source group code](https://docs.stripe.com/payments/link/link-payment-methods) applied to this Link payment at confirmation time.
+     * 
+     */
+    public Optional<String> fundingSourceGroup() {
+        return Optional.ofNullable(this.fundingSourceGroup);
     }
 
     public static Builder builder() {
@@ -38,10 +50,12 @@ public final class ChargePaymentMethodDetailsLink {
     @CustomType.Builder
     public static final class Builder {
         private @Nullable String country;
+        private @Nullable String fundingSourceGroup;
         public Builder() {}
         public Builder(ChargePaymentMethodDetailsLink defaults) {
     	      Objects.requireNonNull(defaults);
     	      this.country = defaults.country;
+    	      this.fundingSourceGroup = defaults.fundingSourceGroup;
         }
 
         @CustomType.Setter
@@ -50,9 +64,16 @@ public final class ChargePaymentMethodDetailsLink {
             this.country = country;
             return this;
         }
+        @CustomType.Setter
+        public Builder fundingSourceGroup(@Nullable String fundingSourceGroup) {
+
+            this.fundingSourceGroup = fundingSourceGroup;
+            return this;
+        }
         public ChargePaymentMethodDetailsLink build() {
             final var _resultValue = new ChargePaymentMethodDetailsLink();
             _resultValue.country = country;
+            _resultValue.fundingSourceGroup = fundingSourceGroup;
             return _resultValue;
         }
     }

@@ -14,7 +14,7 @@ namespace Pulumi.Stripe.Outputs
     public sealed class PaymentLinkCustomFieldLabel
     {
         /// <summary>
-        /// Custom text for the label, displayed to the customer. Up to 50 characters.
+        /// Custom text for the label, displayed to the customer. Up to 100 characters.
         /// </summary>
         public readonly string Custom;
         /// <summary>

@@ -66,7 +66,7 @@ public final class FileState extends com.pulumi.resources.ResourceArgs {
 
     /**
      * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
-     * Optional parameters that automatically create a [file link](https://api.stripe.com#file_links) for the newly created file.
+     * Optional parameters that automatically create a [file link](https://docs.stripe.com/api#file_links) for the newly created file.
      * 
      */
     @Import(name="fileLinkData")
@@ -74,7 +74,7 @@ public final class FileState extends com.pulumi.resources.ResourceArgs {
 
     /**
      * @return **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
-     * Optional parameters that automatically create a [file link](https://api.stripe.com#file_links) for the newly created file.
+     * Optional parameters that automatically create a [file link](https://docs.stripe.com/api#file_links) for the newly created file.
      * 
      */
     public Optional<Output<FileFileLinkDataArgs>> fileLinkData() {
@@ -287,7 +287,7 @@ public final class FileState extends com.pulumi.resources.ResourceArgs {
 
         /**
          * @param fileLinkData **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
-         * Optional parameters that automatically create a [file link](https://api.stripe.com#file_links) for the newly created file.
+         * Optional parameters that automatically create a [file link](https://docs.stripe.com/api#file_links) for the newly created file.
          * 
          * @return builder
          * 
@@ -299,7 +299,7 @@ public final class FileState extends com.pulumi.resources.ResourceArgs {
 
         /**
          * @param fileLinkData **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
-         * Optional parameters that automatically create a [file link](https://api.stripe.com#file_links) for the newly created file.
+         * Optional parameters that automatically create a [file link](https://docs.stripe.com/api#file_links) for the newly created file.
          * 
          * @return builder
          * 

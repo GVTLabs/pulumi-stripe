@@ -13,50 +13,50 @@ import javax.annotation.Nullable;
 @CustomType
 public final class V2CoreEventDestinationAmazonEventbridge {
     /**
-     * @return The AWS account ID.
+     * @return The AWS account ID that owns the event bus receiving events.
      * 
      */
     private String awsAccountId;
     /**
-     * @return The ARN of the AWS event source.
+     * @return The ARN of the Stripe-created partner event source in your AWS account.
      * 
      */
     private @Nullable String awsEventSourceArn;
     /**
-     * @return The state of the AWS event source.
+     * @return The AWS-reported lifecycle state of the partner event source.
      * 
      */
     private @Nullable String awsEventSourceStatus;
     /**
-     * @return The region of the AWS event source.
+     * @return The AWS region where Stripe creates the partner event source.
      * 
      */
     private String awsRegion;
 
     private V2CoreEventDestinationAmazonEventbridge() {}
     /**
-     * @return The AWS account ID.
+     * @return The AWS account ID that owns the event bus receiving events.
      * 
      */
     public String awsAccountId() {
         return this.awsAccountId;
     }
     /**
-     * @return The ARN of the AWS event source.
+     * @return The ARN of the Stripe-created partner event source in your AWS account.
      * 
      */
     public Optional<String> awsEventSourceArn() {
         return Optional.ofNullable(this.awsEventSourceArn);
     }
     /**
-     * @return The state of the AWS event source.
+     * @return The AWS-reported lifecycle state of the partner event source.
      * 
      */
     public Optional<String> awsEventSourceStatus() {
         return Optional.ofNullable(this.awsEventSourceStatus);
     }
     /**
-     * @return The region of the AWS event source.
+     * @return The AWS region where Stripe creates the partner event source.
      * 
      */
     public String awsRegion() {

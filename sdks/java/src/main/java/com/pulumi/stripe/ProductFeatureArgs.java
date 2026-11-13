@@ -31,9 +31,17 @@ public final class ProductFeatureArgs extends com.pulumi.resources.ResourceArgs 
         return this.entitlementFeature;
     }
 
+    /**
+     * Unique identifier for the object.
+     * 
+     */
     @Import(name="product", required=true)
     private Output<String> product;
 
+    /**
+     * @return Unique identifier for the object.
+     * 
+     */
     public Output<String> product() {
         return this.product;
     }
@@ -86,11 +94,23 @@ public final class ProductFeatureArgs extends com.pulumi.resources.ResourceArgs 
             return entitlementFeature(Output.of(entitlementFeature));
         }
 
+        /**
+         * @param product Unique identifier for the object.
+         * 
+         * @return builder
+         * 
+         */
         public Builder product(Output<String> product) {
             $.product = product;
             return this;
         }
 
+        /**
+         * @param product Unique identifier for the object.
+         * 
+         * @return builder
+         * 
+         */
         public Builder product(String product) {
             return product(Output.of(product));
         }

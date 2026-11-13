@@ -13,12 +13,26 @@ import javax.annotation.Nullable;
 public final class PaymentIntentRadarOptions {
     /**
      * @return **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * The referrer URL of the current checkout session. You can use this to supply session-level referrer data when a Radar Session isn&#39;t available or doesn&#39;t contain a referrer.
+     * 
+     */
+    private @Nullable String referrer;
+    /**
+     * @return **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
      * A [Radar Session](https://docs.stripe.com/radar/radar-session) is a snapshot of the browser metadata and device details that help Radar make more accurate predictions on your payments.
      * 
      */
     private @Nullable String session;
 
     private PaymentIntentRadarOptions() {}
+    /**
+     * @return **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * The referrer URL of the current checkout session. You can use this to supply session-level referrer data when a Radar Session isn&#39;t available or doesn&#39;t contain a referrer.
+     * 
+     */
+    public Optional<String> referrer() {
+        return Optional.ofNullable(this.referrer);
+    }
     /**
      * @return **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
      * A [Radar Session](https://docs.stripe.com/radar/radar-session) is a snapshot of the browser metadata and device details that help Radar make more accurate predictions on your payments.
@@ -37,13 +51,21 @@ public final class PaymentIntentRadarOptions {
     }
     @CustomType.Builder
     public static final class Builder {
+        private @Nullable String referrer;
         private @Nullable String session;
         public Builder() {}
         public Builder(PaymentIntentRadarOptions defaults) {
     	      Objects.requireNonNull(defaults);
+    	      this.referrer = defaults.referrer;
     	      this.session = defaults.session;
         }
 
+        @CustomType.Setter
+        public Builder referrer(@Nullable String referrer) {
+
+            this.referrer = referrer;
+            return this;
+        }
         @CustomType.Setter
         public Builder session(@Nullable String session) {
 
@@ -52,6 +74,7 @@ public final class PaymentIntentRadarOptions {
         }
         public PaymentIntentRadarOptions build() {
             final var _resultValue = new PaymentIntentRadarOptions();
+            _resultValue.referrer = referrer;
             _resultValue.session = session;
             return _resultValue;
         }

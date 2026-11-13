@@ -20,6 +20,17 @@ export class BillingPortalConfiguration extends pulumi.CustomResource {
         return new BillingPortalConfiguration(name, <any>state, { ...opts, id: id });
     }
 
+    /**
+     * Check whether an existing BillingPortalConfiguration resource with the given ID exists.
+     *
+     * @param id The _unique_ provider ID of the resource to check.
+     * @param state Any extra arguments used during the lookup.
+     * @param opts Optional settings to control the behavior of the CustomResource.
+     */
+    public static exists(id: pulumi.Input<string>, state?: BillingPortalConfigurationState, opts?: pulumi.CustomResourceOptions): pulumi.Output<boolean> {
+        return pulumi.runtime.existsResource("stripe:index/billingPortalConfiguration:BillingPortalConfiguration", id, <any>state || {}, { ...opts }, utilities.getPackage());
+    }
+
     /** @internal */
     public static readonly __pulumiType = 'stripe:index/billingPortalConfiguration:BillingPortalConfiguration';
 
@@ -48,7 +59,7 @@ export class BillingPortalConfiguration extends pulumi.CustomResource {
      */
     declare public /*out*/ readonly created: pulumi.Output<number>;
     /**
-     * The default URL to redirect customers to when they click on the portal's link to return to your website. This can be [overriden](https://docs.stripe.com/api/customer_portal/sessions/create#create_portal_session-return_url) when creating the session.
+     * The default URL to redirect customers to when they click on the portal's link to return to your website. This can be [overridden](https://docs.stripe.com/api/customer_portal/sessions/create#create_portal_session-return_url) when creating the session.
      */
     declare public readonly defaultReturnUrl: pulumi.Output<string>;
     declare public readonly features: pulumi.Output<outputs.BillingPortalConfigurationFeatures>;
@@ -140,7 +151,7 @@ export interface BillingPortalConfigurationState {
      */
     created?: pulumi.Input<number | undefined>;
     /**
-     * The default URL to redirect customers to when they click on the portal's link to return to your website. This can be [overriden](https://docs.stripe.com/api/customer_portal/sessions/create#create_portal_session-return_url) when creating the session.
+     * The default URL to redirect customers to when they click on the portal's link to return to your website. This can be [overridden](https://docs.stripe.com/api/customer_portal/sessions/create#create_portal_session-return_url) when creating the session.
      */
     defaultReturnUrl?: pulumi.Input<string | undefined>;
     features?: pulumi.Input<inputs.BillingPortalConfigurationFeatures | undefined>;
@@ -177,7 +188,7 @@ export interface BillingPortalConfigurationArgs {
     active?: pulumi.Input<boolean | undefined>;
     businessProfile?: pulumi.Input<inputs.BillingPortalConfigurationBusinessProfile | undefined>;
     /**
-     * The default URL to redirect customers to when they click on the portal's link to return to your website. This can be [overriden](https://docs.stripe.com/api/customer_portal/sessions/create#create_portal_session-return_url) when creating the session.
+     * The default URL to redirect customers to when they click on the portal's link to return to your website. This can be [overridden](https://docs.stripe.com/api/customer_portal/sessions/create#create_portal_session-return_url) when creating the session.
      */
     defaultReturnUrl?: pulumi.Input<string | undefined>;
     features: pulumi.Input<inputs.BillingPortalConfigurationFeatures>;

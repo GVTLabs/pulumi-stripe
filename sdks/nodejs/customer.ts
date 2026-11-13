@@ -20,6 +20,17 @@ export class Customer extends pulumi.CustomResource {
         return new Customer(name, <any>state, { ...opts, id: id });
     }
 
+    /**
+     * Check whether an existing Customer resource with the given ID exists.
+     *
+     * @param id The _unique_ provider ID of the resource to check.
+     * @param state Any extra arguments used during the lookup.
+     * @param opts Optional settings to control the behavior of the CustomResource.
+     */
+    public static exists(id: pulumi.Input<string>, state?: CustomerState, opts?: pulumi.CustomResourceOptions): pulumi.Output<boolean> {
+        return pulumi.runtime.existsResource("stripe:index/customer:Customer", id, <any>state || {}, { ...opts }, utilities.getPackage());
+    }
+
     /** @internal */
     public static readonly __pulumiType = 'stripe:index/customer:Customer';
 
@@ -35,7 +46,7 @@ export class Customer extends pulumi.CustomResource {
     }
 
     /**
-     * The customer's address.
+     * The customer's billing address.
      */
     declare public readonly addresses: pulumi.Output<outputs.CustomerAddress[] | undefined>;
     /**
@@ -246,7 +257,7 @@ export class Customer extends pulumi.CustomResource {
  */
 export interface CustomerState {
     /**
-     * The customer's address.
+     * The customer's billing address.
      */
     addresses?: pulumi.Input<pulumi.Input<inputs.CustomerAddress>[] | undefined>;
     /**
@@ -373,7 +384,7 @@ export interface CustomerState {
  */
 export interface CustomerArgs {
     /**
-     * The customer's address.
+     * The customer's billing address.
      */
     addresses?: pulumi.Input<pulumi.Input<inputs.CustomerAddress>[] | undefined>;
     /**

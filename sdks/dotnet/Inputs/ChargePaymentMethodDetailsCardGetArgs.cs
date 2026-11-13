@@ -55,6 +55,12 @@ namespace Pulumi.Stripe.Inputs
         public Input<string>? Description { get; set; }
 
         /// <summary>
+        /// The Electronic Commerce Indicator (ECI) returned by the card network in the authorization response. Indicates the level of authentication used. Only populated for Visa and Mastercard transactions. This is the network's final ECI and can differ from the request value. An authenticated ECI alone doesn't determine liability shift.
+        /// </summary>
+        [Input("electronicCommerceIndicator")]
+        public Input<string>? ElectronicCommerceIndicator { get; set; }
+
+        /// <summary>
         /// Two-digit number representing the card's expiration month.
         /// </summary>
         [Input("expMonth")]
@@ -155,10 +161,28 @@ namespace Pulumi.Stripe.Inputs
         public Input<string>? RegulatedStatus { get; set; }
 
         /// <summary>
+        /// The payment_method_options.card.setup_credential_usage value that was passed when&lt;span pulumi-lang-nodejs=" setupFutureUsage " pulumi-lang-dotnet=" SetupFutureUsage " pulumi-lang-go=" setupFutureUsage " pulumi-lang-python=" setup_future_usage " pulumi-lang-yaml=" setupFutureUsage " pulumi-lang-java=" setupFutureUsage " pulumi-lang-hcl=" setup_future_usage "&gt; setupFutureUsage &lt;/span&gt;was present at confirmation, one of &lt;span pulumi-lang-nodejs="`recurring`" pulumi-lang-dotnet="`Recurring`" pulumi-lang-go="`recurring`" pulumi-lang-python="`recurring`" pulumi-lang-yaml="`recurring`" pulumi-lang-java="`recurring`" pulumi-lang-hcl="`recurring`"&gt;`recurring`&lt;/span&gt;, &lt;span pulumi-lang-nodejs="`unscheduled`" pulumi-lang-dotnet="`Unscheduled`" pulumi-lang-go="`unscheduled`" pulumi-lang-python="`unscheduled`" pulumi-lang-yaml="`unscheduled`" pulumi-lang-java="`unscheduled`" pulumi-lang-hcl="`unscheduled`"&gt;`unscheduled`&lt;/span&gt;, or &lt;span pulumi-lang-nodejs="`installment`" pulumi-lang-dotnet="`Installment`" pulumi-lang-go="`installment`" pulumi-lang-python="`installment`" pulumi-lang-yaml="`installment`" pulumi-lang-java="`installment`" pulumi-lang-hcl="`installment`"&gt;`installment`&lt;/span&gt;
+        /// </summary>
+        [Input("setupCredentialUsage")]
+        public Input<string>? SetupCredentialUsage { get; set; }
+
+        /// <summary>
+        /// The payment_method_options.card.stored_credential_usage value that was passed for an off session, merchant-initiated transaction.
+        /// </summary>
+        [Input("storedCredentialUsage")]
+        public Input<string>? StoredCredentialUsage { get; set; }
+
+        /// <summary>
         /// Populated if this transaction used 3D Secure authentication.
         /// </summary>
         [Input("threeDSecure")]
         public Input<Inputs.ChargePaymentMethodDetailsCardThreeDSecureGetArgs>? ThreeDSecure { get; set; }
+
+        /// <summary>
+        /// Transaction Link ID (TLID) is a unique identifier for a transaction. This is used by some card networks, such as Mastercard, for transaction linking, in addition to Network Transaction IDs. This value will be present if it is returned by the financial network in the authorization response, and null otherwise.
+        /// </summary>
+        [Input("transactionLinkId")]
+        public Input<string>? TransactionLinkId { get; set; }
 
         /// <summary>
         /// If this Card is part of a card wallet, this contains the details of the card wallet.

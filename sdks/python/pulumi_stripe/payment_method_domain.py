@@ -319,17 +319,17 @@ class PaymentMethodDomain(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            amazon_pay: pulumi.Input[Optional[Union['PaymentMethodDomainAmazonPayArgs', 'PaymentMethodDomainAmazonPayArgsDict']]] = None,
-            apple_pay: pulumi.Input[Optional[Union['PaymentMethodDomainApplePayArgs', 'PaymentMethodDomainApplePayArgsDict']]] = None,
+            amazon_pay: pulumi.Input[Optional[Union['PaymentMethodDomainAmazonPayArgs', 'PaymentMethodDomainAmazonPayArgsDict', 'outputs.PaymentMethodDomainAmazonPay']]] = None,
+            apple_pay: pulumi.Input[Optional[Union['PaymentMethodDomainApplePayArgs', 'PaymentMethodDomainApplePayArgsDict', 'outputs.PaymentMethodDomainApplePay']]] = None,
             created: pulumi.Input[Optional[_builtins.float]] = None,
             domain_name: pulumi.Input[Optional[_builtins.str]] = None,
             enabled: pulumi.Input[Optional[_builtins.bool]] = None,
-            google_pay: pulumi.Input[Optional[Union['PaymentMethodDomainGooglePayArgs', 'PaymentMethodDomainGooglePayArgsDict']]] = None,
-            klarna: pulumi.Input[Optional[Union['PaymentMethodDomainKlarnaArgs', 'PaymentMethodDomainKlarnaArgsDict']]] = None,
-            link: pulumi.Input[Optional[Union['PaymentMethodDomainLinkArgs', 'PaymentMethodDomainLinkArgsDict']]] = None,
+            google_pay: pulumi.Input[Optional[Union['PaymentMethodDomainGooglePayArgs', 'PaymentMethodDomainGooglePayArgsDict', 'outputs.PaymentMethodDomainGooglePay']]] = None,
+            klarna: pulumi.Input[Optional[Union['PaymentMethodDomainKlarnaArgs', 'PaymentMethodDomainKlarnaArgsDict', 'outputs.PaymentMethodDomainKlarna']]] = None,
+            link: pulumi.Input[Optional[Union['PaymentMethodDomainLinkArgs', 'PaymentMethodDomainLinkArgsDict', 'outputs.PaymentMethodDomainLink']]] = None,
             livemode: pulumi.Input[Optional[_builtins.bool]] = None,
             object: pulumi.Input[Optional[_builtins.str]] = None,
-            paypal: pulumi.Input[Optional[Union['PaymentMethodDomainPaypalArgs', 'PaymentMethodDomainPaypalArgsDict']]] = None) -> 'PaymentMethodDomain':
+            paypal: pulumi.Input[Optional[Union['PaymentMethodDomainPaypalArgs', 'PaymentMethodDomainPaypalArgsDict', 'outputs.PaymentMethodDomainPaypal']]] = None) -> 'PaymentMethodDomain':
         """
         Get an existing PaymentMethodDomain resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -337,17 +337,17 @@ class PaymentMethodDomain(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[Union['PaymentMethodDomainAmazonPayArgs', 'PaymentMethodDomainAmazonPayArgsDict']] amazon_pay: Indicates the status of a specific payment method on a payment method domain.
-        :param pulumi.Input[Union['PaymentMethodDomainApplePayArgs', 'PaymentMethodDomainApplePayArgsDict']] apple_pay: Indicates the status of a specific payment method on a payment method domain.
+        :param pulumi.Input[Union['PaymentMethodDomainAmazonPayArgs', 'PaymentMethodDomainAmazonPayArgsDict', 'outputs.PaymentMethodDomainAmazonPay']] amazon_pay: Indicates the status of a specific payment method on a payment method domain.
+        :param pulumi.Input[Union['PaymentMethodDomainApplePayArgs', 'PaymentMethodDomainApplePayArgsDict', 'outputs.PaymentMethodDomainApplePay']] apple_pay: Indicates the status of a specific payment method on a payment method domain.
         :param pulumi.Input[_builtins.float] created: Time at which the object was created. Measured in seconds since the Unix epoch.
         :param pulumi.Input[_builtins.str] domain_name: The domain name that this payment method domain object represents.
         :param pulumi.Input[_builtins.bool] enabled: Whether this payment method domain is enabled. If the domain is not enabled, payment methods that require a payment method domain will not appear in Elements.
-        :param pulumi.Input[Union['PaymentMethodDomainGooglePayArgs', 'PaymentMethodDomainGooglePayArgsDict']] google_pay: Indicates the status of a specific payment method on a payment method domain.
-        :param pulumi.Input[Union['PaymentMethodDomainKlarnaArgs', 'PaymentMethodDomainKlarnaArgsDict']] klarna: Indicates the status of a specific payment method on a payment method domain.
-        :param pulumi.Input[Union['PaymentMethodDomainLinkArgs', 'PaymentMethodDomainLinkArgsDict']] link: Indicates the status of a specific payment method on a payment method domain.
+        :param pulumi.Input[Union['PaymentMethodDomainGooglePayArgs', 'PaymentMethodDomainGooglePayArgsDict', 'outputs.PaymentMethodDomainGooglePay']] google_pay: Indicates the status of a specific payment method on a payment method domain.
+        :param pulumi.Input[Union['PaymentMethodDomainKlarnaArgs', 'PaymentMethodDomainKlarnaArgsDict', 'outputs.PaymentMethodDomainKlarna']] klarna: Indicates the status of a specific payment method on a payment method domain.
+        :param pulumi.Input[Union['PaymentMethodDomainLinkArgs', 'PaymentMethodDomainLinkArgsDict', 'outputs.PaymentMethodDomainLink']] link: Indicates the status of a specific payment method on a payment method domain.
         :param pulumi.Input[_builtins.bool] livemode: If the object exists in live mode, the value is <span pulumi-lang-nodejs="`true`" pulumi-lang-dotnet="`True`" pulumi-lang-go="`true`" pulumi-lang-python="`true`" pulumi-lang-yaml="`true`" pulumi-lang-java="`true`" pulumi-lang-hcl="`true`">`true`</span>. If the object exists in test mode, the value is <span pulumi-lang-nodejs="`false`" pulumi-lang-dotnet="`False`" pulumi-lang-go="`false`" pulumi-lang-python="`false`" pulumi-lang-yaml="`false`" pulumi-lang-java="`false`" pulumi-lang-hcl="`false`">`false`</span>.
         :param pulumi.Input[_builtins.str] object: String representing the object's type. Objects of the same type share the same value.
-        :param pulumi.Input[Union['PaymentMethodDomainPaypalArgs', 'PaymentMethodDomainPaypalArgsDict']] paypal: Indicates the status of a specific payment method on a payment method domain.
+        :param pulumi.Input[Union['PaymentMethodDomainPaypalArgs', 'PaymentMethodDomainPaypalArgsDict', 'outputs.PaymentMethodDomainPaypal']] paypal: Indicates the status of a specific payment method on a payment method domain.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -365,6 +365,34 @@ class PaymentMethodDomain(pulumi.CustomResource):
         __props__.__dict__["object"] = object
         __props__.__dict__["paypal"] = paypal
         return PaymentMethodDomain(resource_name, opts=opts, __props__=__props__)
+
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            amazon_pay: pulumi.Input[Optional[Union['PaymentMethodDomainAmazonPayArgs', 'PaymentMethodDomainAmazonPayArgsDict', 'outputs.PaymentMethodDomainAmazonPay']]] = None,
+            apple_pay: pulumi.Input[Optional[Union['PaymentMethodDomainApplePayArgs', 'PaymentMethodDomainApplePayArgsDict', 'outputs.PaymentMethodDomainApplePay']]] = None,
+            created: pulumi.Input[Optional[_builtins.float]] = None,
+            domain_name: pulumi.Input[Optional[_builtins.str]] = None,
+            enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+            google_pay: pulumi.Input[Optional[Union['PaymentMethodDomainGooglePayArgs', 'PaymentMethodDomainGooglePayArgsDict', 'outputs.PaymentMethodDomainGooglePay']]] = None,
+            klarna: pulumi.Input[Optional[Union['PaymentMethodDomainKlarnaArgs', 'PaymentMethodDomainKlarnaArgsDict', 'outputs.PaymentMethodDomainKlarna']]] = None,
+            link: pulumi.Input[Optional[Union['PaymentMethodDomainLinkArgs', 'PaymentMethodDomainLinkArgsDict', 'outputs.PaymentMethodDomainLink']]] = None,
+            livemode: pulumi.Input[Optional[_builtins.bool]] = None,
+            object: pulumi.Input[Optional[_builtins.str]] = None,
+            paypal: pulumi.Input[Optional[Union['PaymentMethodDomainPaypalArgs', 'PaymentMethodDomainPaypalArgsDict', 'outputs.PaymentMethodDomainPaypal']]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["amazonPay"] = amazon_pay
+        __props__["applePay"] = apple_pay
+        __props__["created"] = created
+        __props__["domainName"] = domain_name
+        __props__["enabled"] = enabled
+        __props__["googlePay"] = google_pay
+        __props__["klarna"] = klarna
+        __props__["link"] = link
+        __props__["livemode"] = livemode
+        __props__["object"] = object
+        __props__["paypal"] = paypal
+        return pulumi.runtime.exists_resource(None, 'stripe:index/paymentMethodDomain:PaymentMethodDomain', id, __props__, opts or pulumi.ResourceOptions(), package_ref=_utilities.get_package())
 
     @_builtins.property
     @pulumi.getter(name="amazonPay")

@@ -4,6 +4,7 @@
 package com.pulumi.stripe.outputs;
 
 import com.pulumi.core.annotations.CustomType;
+import com.pulumi.stripe.outputs.ChargePaymentMethodDetailsCardWalletLink;
 import com.pulumi.stripe.outputs.ChargePaymentMethodDetailsCardWalletMasterpass;
 import com.pulumi.stripe.outputs.ChargePaymentMethodDetailsCardWalletVisaCheckout;
 import java.lang.String;
@@ -18,6 +19,7 @@ public final class ChargePaymentMethodDetailsCardWallet {
      * 
      */
     private @Nullable String dynamicLast4;
+    private @Nullable ChargePaymentMethodDetailsCardWalletLink link;
     private @Nullable ChargePaymentMethodDetailsCardWalletMasterpass masterpass;
     /**
      * @return The type of the card wallet, one of &lt;span pulumi-lang-nodejs=&#34;`amexExpressCheckout`&#34; pulumi-lang-dotnet=&#34;`AmexExpressCheckout`&#34; pulumi-lang-go=&#34;`amexExpressCheckout`&#34; pulumi-lang-python=&#34;`amex_express_checkout`&#34; pulumi-lang-yaml=&#34;`amexExpressCheckout`&#34; pulumi-lang-java=&#34;`amexExpressCheckout`&#34; pulumi-lang-hcl=&#34;`amex_express_checkout`&#34;&gt;`amexExpressCheckout`&lt;/span&gt;, &lt;span pulumi-lang-nodejs=&#34;`applePay`&#34; pulumi-lang-dotnet=&#34;`ApplePay`&#34; pulumi-lang-go=&#34;`applePay`&#34; pulumi-lang-python=&#34;`apple_pay`&#34; pulumi-lang-yaml=&#34;`applePay`&#34; pulumi-lang-java=&#34;`applePay`&#34; pulumi-lang-hcl=&#34;`apple_pay`&#34;&gt;`applePay`&lt;/span&gt;, &lt;span pulumi-lang-nodejs=&#34;`googlePay`&#34; pulumi-lang-dotnet=&#34;`GooglePay`&#34; pulumi-lang-go=&#34;`googlePay`&#34; pulumi-lang-python=&#34;`google_pay`&#34; pulumi-lang-yaml=&#34;`googlePay`&#34; pulumi-lang-java=&#34;`googlePay`&#34; pulumi-lang-hcl=&#34;`google_pay`&#34;&gt;`googlePay`&lt;/span&gt;, &lt;span pulumi-lang-nodejs=&#34;`masterpass`&#34; pulumi-lang-dotnet=&#34;`Masterpass`&#34; pulumi-lang-go=&#34;`masterpass`&#34; pulumi-lang-python=&#34;`masterpass`&#34; pulumi-lang-yaml=&#34;`masterpass`&#34; pulumi-lang-java=&#34;`masterpass`&#34; pulumi-lang-hcl=&#34;`masterpass`&#34;&gt;`masterpass`&lt;/span&gt;, &lt;span pulumi-lang-nodejs=&#34;`samsungPay`&#34; pulumi-lang-dotnet=&#34;`SamsungPay`&#34; pulumi-lang-go=&#34;`samsungPay`&#34; pulumi-lang-python=&#34;`samsung_pay`&#34; pulumi-lang-yaml=&#34;`samsungPay`&#34; pulumi-lang-java=&#34;`samsungPay`&#34; pulumi-lang-hcl=&#34;`samsung_pay`&#34;&gt;`samsungPay`&lt;/span&gt;, &lt;span pulumi-lang-nodejs=&#34;`visaCheckout`&#34; pulumi-lang-dotnet=&#34;`VisaCheckout`&#34; pulumi-lang-go=&#34;`visaCheckout`&#34; pulumi-lang-python=&#34;`visa_checkout`&#34; pulumi-lang-yaml=&#34;`visaCheckout`&#34; pulumi-lang-java=&#34;`visaCheckout`&#34; pulumi-lang-hcl=&#34;`visa_checkout`&#34;&gt;`visaCheckout`&lt;/span&gt;, or &lt;span pulumi-lang-nodejs=&#34;`link`&#34; pulumi-lang-dotnet=&#34;`Link`&#34; pulumi-lang-go=&#34;`link`&#34; pulumi-lang-python=&#34;`link`&#34; pulumi-lang-yaml=&#34;`link`&#34; pulumi-lang-java=&#34;`link`&#34; pulumi-lang-hcl=&#34;`link`&#34;&gt;`link`&lt;/span&gt;. An additional hash is included on the Wallet subhash with a name matching this value. It contains additional information specific to the card wallet type.
@@ -33,6 +35,9 @@ public final class ChargePaymentMethodDetailsCardWallet {
      */
     public Optional<String> dynamicLast4() {
         return Optional.ofNullable(this.dynamicLast4);
+    }
+    public Optional<ChargePaymentMethodDetailsCardWalletLink> link() {
+        return Optional.ofNullable(this.link);
     }
     public Optional<ChargePaymentMethodDetailsCardWalletMasterpass> masterpass() {
         return Optional.ofNullable(this.masterpass);
@@ -58,6 +63,7 @@ public final class ChargePaymentMethodDetailsCardWallet {
     @CustomType.Builder
     public static final class Builder {
         private @Nullable String dynamicLast4;
+        private @Nullable ChargePaymentMethodDetailsCardWalletLink link;
         private @Nullable ChargePaymentMethodDetailsCardWalletMasterpass masterpass;
         private @Nullable String type;
         private @Nullable ChargePaymentMethodDetailsCardWalletVisaCheckout visaCheckout;
@@ -65,6 +71,7 @@ public final class ChargePaymentMethodDetailsCardWallet {
         public Builder(ChargePaymentMethodDetailsCardWallet defaults) {
     	      Objects.requireNonNull(defaults);
     	      this.dynamicLast4 = defaults.dynamicLast4;
+    	      this.link = defaults.link;
     	      this.masterpass = defaults.masterpass;
     	      this.type = defaults.type;
     	      this.visaCheckout = defaults.visaCheckout;
@@ -74,6 +81,12 @@ public final class ChargePaymentMethodDetailsCardWallet {
         public Builder dynamicLast4(@Nullable String dynamicLast4) {
 
             this.dynamicLast4 = dynamicLast4;
+            return this;
+        }
+        @CustomType.Setter
+        public Builder link(@Nullable ChargePaymentMethodDetailsCardWalletLink link) {
+
+            this.link = link;
             return this;
         }
         @CustomType.Setter
@@ -97,6 +110,7 @@ public final class ChargePaymentMethodDetailsCardWallet {
         public ChargePaymentMethodDetailsCardWallet build() {
             final var _resultValue = new ChargePaymentMethodDetailsCardWallet();
             _resultValue.dynamicLast4 = dynamicLast4;
+            _resultValue.link = link;
             _resultValue.masterpass = masterpass;
             _resultValue.type = type;
             _resultValue.visaCheckout = visaCheckout;

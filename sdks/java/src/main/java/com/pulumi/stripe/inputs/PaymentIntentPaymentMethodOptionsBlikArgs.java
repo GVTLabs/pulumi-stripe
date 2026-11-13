@@ -5,6 +5,7 @@ package com.pulumi.stripe.inputs;
 
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
+import com.pulumi.stripe.inputs.PaymentIntentPaymentMethodOptionsBlikMandateOptionsArgs;
 import java.lang.String;
 import java.util.Objects;
 import java.util.Optional;
@@ -28,6 +29,13 @@ public final class PaymentIntentPaymentMethodOptionsBlikArgs extends com.pulumi.
      */
     public Optional<Output<String>> code() {
         return Optional.ofNullable(this.code);
+    }
+
+    @Import(name="mandateOptions")
+    private @Nullable Output<PaymentIntentPaymentMethodOptionsBlikMandateOptionsArgs> mandateOptions;
+
+    public Optional<Output<PaymentIntentPaymentMethodOptionsBlikMandateOptionsArgs>> mandateOptions() {
+        return Optional.ofNullable(this.mandateOptions);
     }
 
     /**
@@ -61,6 +69,7 @@ public final class PaymentIntentPaymentMethodOptionsBlikArgs extends com.pulumi.
 
     private PaymentIntentPaymentMethodOptionsBlikArgs(PaymentIntentPaymentMethodOptionsBlikArgs $) {
         this.code = $.code;
+        this.mandateOptions = $.mandateOptions;
         this.setupFutureUsage = $.setupFutureUsage;
     }
 
@@ -101,6 +110,15 @@ public final class PaymentIntentPaymentMethodOptionsBlikArgs extends com.pulumi.
          */
         public Builder code(String code) {
             return code(Output.of(code));
+        }
+
+        public Builder mandateOptions(@Nullable Output<PaymentIntentPaymentMethodOptionsBlikMandateOptionsArgs> mandateOptions) {
+            $.mandateOptions = mandateOptions;
+            return this;
+        }
+
+        public Builder mandateOptions(PaymentIntentPaymentMethodOptionsBlikMandateOptionsArgs mandateOptions) {
+            return mandateOptions(Output.of(mandateOptions));
         }
 
         /**

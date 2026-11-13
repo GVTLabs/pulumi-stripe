@@ -37,6 +37,11 @@ public final class SetupIntentPaymentMethodOptionsCard {
      */
     private @Nullable String requestThreeDSecure;
     /**
+     * @return Set to indicate the future transaction type usage for the card being set up.
+     * 
+     */
+    private @Nullable String setupCredentialUsage;
+    /**
      * @return If 3D Secure authentication was performed with a third-party provider,
      * the authentication details to use for this setup.
      * 
@@ -75,6 +80,13 @@ public final class SetupIntentPaymentMethodOptionsCard {
         return Optional.ofNullable(this.requestThreeDSecure);
     }
     /**
+     * @return Set to indicate the future transaction type usage for the card being set up.
+     * 
+     */
+    public Optional<String> setupCredentialUsage() {
+        return Optional.ofNullable(this.setupCredentialUsage);
+    }
+    /**
      * @return If 3D Secure authentication was performed with a third-party provider,
      * the authentication details to use for this setup.
      * 
@@ -96,6 +108,7 @@ public final class SetupIntentPaymentMethodOptionsCard {
         private @Nullable Boolean moto;
         private @Nullable String network;
         private @Nullable String requestThreeDSecure;
+        private @Nullable String setupCredentialUsage;
         private @Nullable SetupIntentPaymentMethodOptionsCardThreeDSecure threeDSecure;
         public Builder() {}
         public Builder(SetupIntentPaymentMethodOptionsCard defaults) {
@@ -104,6 +117,7 @@ public final class SetupIntentPaymentMethodOptionsCard {
     	      this.moto = defaults.moto;
     	      this.network = defaults.network;
     	      this.requestThreeDSecure = defaults.requestThreeDSecure;
+    	      this.setupCredentialUsage = defaults.setupCredentialUsage;
     	      this.threeDSecure = defaults.threeDSecure;
         }
 
@@ -132,6 +146,12 @@ public final class SetupIntentPaymentMethodOptionsCard {
             return this;
         }
         @CustomType.Setter
+        public Builder setupCredentialUsage(@Nullable String setupCredentialUsage) {
+
+            this.setupCredentialUsage = setupCredentialUsage;
+            return this;
+        }
+        @CustomType.Setter
         public Builder threeDSecure(@Nullable SetupIntentPaymentMethodOptionsCardThreeDSecure threeDSecure) {
 
             this.threeDSecure = threeDSecure;
@@ -143,6 +163,7 @@ public final class SetupIntentPaymentMethodOptionsCard {
             _resultValue.moto = moto;
             _resultValue.network = network;
             _resultValue.requestThreeDSecure = requestThreeDSecure;
+            _resultValue.setupCredentialUsage = setupCredentialUsage;
             _resultValue.threeDSecure = threeDSecure;
             return _resultValue;
         }

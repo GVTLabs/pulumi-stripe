@@ -42,6 +42,10 @@ namespace Pulumi.Stripe.Outputs
         /// </summary>
         public readonly string? Description;
         /// <summary>
+        /// The Electronic Commerce Indicator (ECI) returned by the card network in the authorization response. Indicates the level of authentication used. Only populated for Visa and Mastercard transactions. This is the network's final ECI and can differ from the request value. An authenticated ECI alone doesn't determine liability shift.
+        /// </summary>
+        public readonly string? ElectronicCommerceIndicator;
+        /// <summary>
         /// Two-digit number representing the card's expiration month.
         /// </summary>
         public readonly double? ExpMonth;
@@ -106,9 +110,21 @@ namespace Pulumi.Stripe.Outputs
         /// </summary>
         public readonly string? RegulatedStatus;
         /// <summary>
+        /// The payment_method_options.card.setup_credential_usage value that was passed when&lt;span pulumi-lang-nodejs=" setupFutureUsage " pulumi-lang-dotnet=" SetupFutureUsage " pulumi-lang-go=" setupFutureUsage " pulumi-lang-python=" setup_future_usage " pulumi-lang-yaml=" setupFutureUsage " pulumi-lang-java=" setupFutureUsage " pulumi-lang-hcl=" setup_future_usage "&gt; setupFutureUsage &lt;/span&gt;was present at confirmation, one of &lt;span pulumi-lang-nodejs="`recurring`" pulumi-lang-dotnet="`Recurring`" pulumi-lang-go="`recurring`" pulumi-lang-python="`recurring`" pulumi-lang-yaml="`recurring`" pulumi-lang-java="`recurring`" pulumi-lang-hcl="`recurring`"&gt;`recurring`&lt;/span&gt;, &lt;span pulumi-lang-nodejs="`unscheduled`" pulumi-lang-dotnet="`Unscheduled`" pulumi-lang-go="`unscheduled`" pulumi-lang-python="`unscheduled`" pulumi-lang-yaml="`unscheduled`" pulumi-lang-java="`unscheduled`" pulumi-lang-hcl="`unscheduled`"&gt;`unscheduled`&lt;/span&gt;, or &lt;span pulumi-lang-nodejs="`installment`" pulumi-lang-dotnet="`Installment`" pulumi-lang-go="`installment`" pulumi-lang-python="`installment`" pulumi-lang-yaml="`installment`" pulumi-lang-java="`installment`" pulumi-lang-hcl="`installment`"&gt;`installment`&lt;/span&gt;
+        /// </summary>
+        public readonly string? SetupCredentialUsage;
+        /// <summary>
+        /// The payment_method_options.card.stored_credential_usage value that was passed for an off session, merchant-initiated transaction.
+        /// </summary>
+        public readonly string? StoredCredentialUsage;
+        /// <summary>
         /// Populated if this transaction used 3D Secure authentication.
         /// </summary>
         public readonly Outputs.ChargePaymentMethodDetailsCardThreeDSecure? ThreeDSecure;
+        /// <summary>
+        /// Transaction Link ID (TLID) is a unique identifier for a transaction. This is used by some card networks, such as Mastercard, for transaction linking, in addition to Network Transaction IDs. This value will be present if it is returned by the financial network in the authorization response, and null otherwise.
+        /// </summary>
+        public readonly string? TransactionLinkId;
         /// <summary>
         /// If this Card is part of a card wallet, this contains the details of the card wallet.
         /// </summary>
@@ -129,6 +145,8 @@ namespace Pulumi.Stripe.Outputs
             string? country,
 
             string? description,
+
+            string? electronicCommerceIndicator,
 
             double? expMonth,
 
@@ -166,7 +184,13 @@ namespace Pulumi.Stripe.Outputs
 
             string? regulatedStatus,
 
+            string? setupCredentialUsage,
+
+            string? storedCredentialUsage,
+
             Outputs.ChargePaymentMethodDetailsCardThreeDSecure? threeDSecure,
+
+            string? transactionLinkId,
 
             Outputs.ChargePaymentMethodDetailsCardWallet? wallet)
         {
@@ -177,6 +201,7 @@ namespace Pulumi.Stripe.Outputs
             Checks = checks;
             Country = country;
             Description = description;
+            ElectronicCommerceIndicator = electronicCommerceIndicator;
             ExpMonth = expMonth;
             ExpYear = expYear;
             ExtendedAuthorization = extendedAuthorization;
@@ -195,7 +220,10 @@ namespace Pulumi.Stripe.Outputs
             NetworkTransactionId = networkTransactionId;
             Overcapture = overcapture;
             RegulatedStatus = regulatedStatus;
+            SetupCredentialUsage = setupCredentialUsage;
+            StoredCredentialUsage = storedCredentialUsage;
             ThreeDSecure = threeDSecure;
+            TransactionLinkId = transactionLinkId;
             Wallet = wallet;
         }
     }

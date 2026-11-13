@@ -14,11 +14,11 @@ namespace Pulumi.Stripe.Outputs
     public sealed class V2CoreEventDestinationWebhookEndpoint
     {
         /// <summary>
-        /// The signing secret of the webhook endpoint, only includable on creation.
+        /// The secret used to verify Stripe signatures on delivered events. Returned only in the create response when explicitly included; public API clients cannot retrieve it later.
         /// </summary>
         public readonly string? SigningSecret;
         /// <summary>
-        /// The URL of the webhook endpoint, includable.
+        /// The URL where Stripe sends matching events. Live mode requires HTTPS; sandbox mode also supports HTTP. Returned only when explicitly included.
         /// </summary>
         public readonly string Url;
 

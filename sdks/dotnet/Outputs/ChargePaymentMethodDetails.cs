@@ -61,6 +61,7 @@ namespace Pulumi.Stripe.Outputs
         public readonly Outputs.ChargePaymentMethodDetailsScalapay? Scalapay;
         public readonly Outputs.ChargePaymentMethodDetailsSepaCreditTransfer? SepaCreditTransfer;
         public readonly Outputs.ChargePaymentMethodDetailsSepaDebit? SepaDebit;
+        public readonly Outputs.ChargePaymentMethodDetailsSequra? Sequra;
         public readonly Outputs.ChargePaymentMethodDetailsSofort? Sofort;
         public readonly Outputs.ChargePaymentMethodDetailsSunbit? Sunbit;
         public readonly Outputs.ChargePaymentMethodDetailsSwish? Swish;
@@ -173,6 +174,8 @@ namespace Pulumi.Stripe.Outputs
 
             Outputs.ChargePaymentMethodDetailsSepaDebit? sepaDebit,
 
+            Outputs.ChargePaymentMethodDetailsSequra? sequra,
+
             Outputs.ChargePaymentMethodDetailsSofort? sofort,
 
             Outputs.ChargePaymentMethodDetailsSunbit? sunbit,
@@ -237,6 +240,7 @@ namespace Pulumi.Stripe.Outputs
             Scalapay = scalapay;
             SepaCreditTransfer = sepaCreditTransfer;
             SepaDebit = sepaDebit;
+            Sequra = sequra;
             Sofort = sofort;
             Sunbit = sunbit;
             Swish = swish;

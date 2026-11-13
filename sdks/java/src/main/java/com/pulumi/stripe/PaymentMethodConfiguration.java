@@ -53,6 +53,7 @@ import com.pulumi.stripe.outputs.PaymentMethodConfigurationPayByBank;
 import com.pulumi.stripe.outputs.PaymentMethodConfigurationPayco;
 import com.pulumi.stripe.outputs.PaymentMethodConfigurationPaynow;
 import com.pulumi.stripe.outputs.PaymentMethodConfigurationPaypal;
+import com.pulumi.stripe.outputs.PaymentMethodConfigurationPaypay;
 import com.pulumi.stripe.outputs.PaymentMethodConfigurationPayto;
 import com.pulumi.stripe.outputs.PaymentMethodConfigurationPix;
 import com.pulumi.stripe.outputs.PaymentMethodConfigurationPromptpay;
@@ -61,6 +62,7 @@ import com.pulumi.stripe.outputs.PaymentMethodConfigurationSamsungPay;
 import com.pulumi.stripe.outputs.PaymentMethodConfigurationSatispay;
 import com.pulumi.stripe.outputs.PaymentMethodConfigurationScalapay;
 import com.pulumi.stripe.outputs.PaymentMethodConfigurationSepaDebit;
+import com.pulumi.stripe.outputs.PaymentMethodConfigurationSequra;
 import com.pulumi.stripe.outputs.PaymentMethodConfigurationSofort;
 import com.pulumi.stripe.outputs.PaymentMethodConfigurationSunbit;
 import com.pulumi.stripe.outputs.PaymentMethodConfigurationSwish;
@@ -443,6 +445,12 @@ public class PaymentMethodConfiguration extends com.pulumi.resources.CustomResou
     public Output<PaymentMethodConfigurationPaypal> paypal() {
         return this.paypal;
     }
+    @Export(name="paypay", refs={PaymentMethodConfigurationPaypay.class}, tree="[0]")
+    private Output<PaymentMethodConfigurationPaypay> paypay;
+
+    public Output<PaymentMethodConfigurationPaypay> paypay() {
+        return this.paypay;
+    }
     @Export(name="payto", refs={PaymentMethodConfigurationPayto.class}, tree="[0]")
     private Output<PaymentMethodConfigurationPayto> payto;
 
@@ -490,6 +498,12 @@ public class PaymentMethodConfiguration extends com.pulumi.resources.CustomResou
 
     public Output<PaymentMethodConfigurationSepaDebit> sepaDebit() {
         return this.sepaDebit;
+    }
+    @Export(name="sequra", refs={PaymentMethodConfigurationSequra.class}, tree="[0]")
+    private Output<PaymentMethodConfigurationSequra> sequra;
+
+    public Output<PaymentMethodConfigurationSequra> sequra() {
+        return this.sequra;
     }
     @Export(name="sofort", refs={PaymentMethodConfigurationSofort.class}, tree="[0]")
     private Output<PaymentMethodConfigurationSofort> sofort;

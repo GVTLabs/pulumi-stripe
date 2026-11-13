@@ -24,84 +24,84 @@ import javax.annotation.Nullable;
 @ResourceType(type="stripe:index/v2CoreEventDestination:V2CoreEventDestination")
 public class V2CoreEventDestination extends com.pulumi.resources.CustomResource {
     /**
-     * Amazon EventBridge configuration.
+     * Configuration for delivering events through an Amazon EventBridge partner event source.
      * 
      */
     @Export(name="amazonEventbridges", refs={List.class,V2CoreEventDestinationAmazonEventbridge.class}, tree="[0,1]")
     private Output</* @Nullable */ List<V2CoreEventDestinationAmazonEventbridge>> amazonEventbridges;
 
     /**
-     * @return Amazon EventBridge configuration.
+     * @return Configuration for delivering events through an Amazon EventBridge partner event source.
      * 
      */
     public Output<Optional<List<V2CoreEventDestinationAmazonEventbridge>>> amazonEventbridges() {
         return Codegen.optional(this.amazonEventbridges);
     }
     /**
-     * Azure Event Grid configuration.
+     * Configuration for delivering events through an Azure Event Grid partner topic.
      * 
      */
     @Export(name="azureEventGrid", refs={V2CoreEventDestinationAzureEventGrid.class}, tree="[0]")
     private Output<V2CoreEventDestinationAzureEventGrid> azureEventGrid;
 
     /**
-     * @return Azure Event Grid configuration.
+     * @return Configuration for delivering events through an Azure Event Grid partner topic.
      * 
      */
     public Output<V2CoreEventDestinationAzureEventGrid> azureEventGrid() {
         return this.azureEventGrid;
     }
     /**
-     * Time at which the object was created.
+     * The time when the destination was created.
      * 
      */
     @Export(name="created", refs={String.class}, tree="[0]")
     private Output<String> created;
 
     /**
-     * @return Time at which the object was created.
+     * @return The time when the destination was created.
      * 
      */
     public Output<String> created() {
         return this.created;
     }
     /**
-     * An optional description of what the event destination is used for.
+     * An optional user-defined description of the destination&#39;s purpose.
      * 
      */
     @Export(name="description", refs={String.class}, tree="[0]")
     private Output<String> description;
 
     /**
-     * @return An optional description of what the event destination is used for.
+     * @return An optional user-defined description of the destination&#39;s purpose.
      * 
      */
     public Output<String> description() {
         return this.description;
     }
     /**
-     * The list of events to enable for this endpoint.
+     * The list of event types enabled for delivery to this destination.
      * 
      */
     @Export(name="enabledEvents", refs={List.class,String.class}, tree="[0,1]")
     private Output<List<String>> enabledEvents;
 
     /**
-     * @return The list of events to enable for this endpoint.
+     * @return The list of event types enabled for delivery to this destination.
      * 
      */
     public Output<List<String>> enabledEvents() {
         return this.enabledEvents;
     }
     /**
-     * Payload type of events being subscribed to.
+     * Whether to deliver as snapshot or thin events.
      * 
      */
     @Export(name="eventPayload", refs={String.class}, tree="[0]")
     private Output<String> eventPayload;
 
     /**
-     * @return Payload type of events being subscribed to.
+     * @return Whether to deliver as snapshot or thin events.
      * 
      */
     public Output<String> eventPayload() {
@@ -131,7 +131,7 @@ public class V2CoreEventDestination extends com.pulumi.resources.CustomResource 
     }
     /**
      * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
-     * Additional fields to include in the response.
+     * Include normally redacted webhook fields in the create response. Public API clients must include `webhook_endpoint.signing_secret` to receive the signing secret.
      * 
      */
     @Export(name="includes", refs={List.class,String.class}, tree="[0,1]")
@@ -139,7 +139,7 @@ public class V2CoreEventDestination extends com.pulumi.resources.CustomResource 
 
     /**
      * @return **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
-     * Additional fields to include in the response.
+     * Include normally redacted webhook fields in the create response. Public API clients must include `webhook_endpoint.signing_secret` to receive the signing secret.
      * 
      */
     public Output<Optional<List<String>>> includes() {
@@ -160,28 +160,28 @@ public class V2CoreEventDestination extends com.pulumi.resources.CustomResource 
         return this.livemode;
     }
     /**
-     * Metadata.
+     * User-defined key/value data for the destination; it has no effect on event matching or delivery.
      * 
      */
     @Export(name="metadata", refs={Map.class,String.class}, tree="[0,1,1]")
     private Output<Map<String,String>> metadata;
 
     /**
-     * @return Metadata.
+     * @return User-defined key/value data for the destination; it has no effect on event matching or delivery.
      * 
      */
     public Output<Map<String,String>> metadata() {
         return this.metadata;
     }
     /**
-     * Event destination name.
+     * A user-defined label for identifying the destination in Stripe.
      * 
      */
     @Export(name="name", refs={String.class}, tree="[0]")
     private Output<String> name;
 
     /**
-     * @return Event destination name.
+     * @return A user-defined label for identifying the destination in Stripe.
      * 
      */
     public Output<String> name() {
@@ -202,84 +202,84 @@ public class V2CoreEventDestination extends com.pulumi.resources.CustomResource 
         return this.object;
     }
     /**
-     * If using the snapshot event payload, the API version events are rendered as.
+     * For snapshot events only, the Stripe API version used to render event objects. You can&#39;t change this value after you create the event destination. Thin events are not pinned to an API version.
      * 
      */
     @Export(name="snapshotApiVersion", refs={String.class}, tree="[0]")
     private Output<String> snapshotApiVersion;
 
     /**
-     * @return If using the snapshot event payload, the API version events are rendered as.
+     * @return For snapshot events only, the Stripe API version used to render event objects. You can&#39;t change this value after you create the event destination. Thin events are not pinned to an API version.
      * 
      */
     public Output<String> snapshotApiVersion() {
         return this.snapshotApiVersion;
     }
     /**
-     * Status. It can be set to either enabled or disabled.
+     * Whether Stripe currently attempts delivery. Stripe attempts delivery to enabled destinations when their provider configuration is active; disabled destinations do not receive delivery attempts.
      * 
      */
     @Export(name="status", refs={String.class}, tree="[0]")
     private Output<String> status;
 
     /**
-     * @return Status. It can be set to either enabled or disabled.
+     * @return Whether Stripe currently attempts delivery. Stripe attempts delivery to enabled destinations when their provider configuration is active; disabled destinations do not receive delivery attempts.
      * 
      */
     public Output<String> status() {
         return this.status;
     }
     /**
-     * Additional information about event destination status.
+     * Additional lifecycle context for the destination status, when available.
      * 
      */
     @Export(name="statusDetails", refs={V2CoreEventDestinationStatusDetails.class}, tree="[0]")
     private Output<V2CoreEventDestinationStatusDetails> statusDetails;
 
     /**
-     * @return Additional information about event destination status.
+     * @return Additional lifecycle context for the destination status, when available.
      * 
      */
     public Output<V2CoreEventDestinationStatusDetails> statusDetails() {
         return this.statusDetails;
     }
     /**
-     * Event destination type.
+     * The delivery transport. Chosen when the destination is created and cannot be changed by update.
      * 
      */
     @Export(name="type", refs={String.class}, tree="[0]")
     private Output<String> type;
 
     /**
-     * @return Event destination type.
+     * @return The delivery transport. Chosen when the destination is created and cannot be changed by update.
      * 
      */
     public Output<String> type() {
         return this.type;
     }
     /**
-     * Time at which the object was last updated.
+     * The time when the destination object was last updated.
      * 
      */
     @Export(name="updated", refs={String.class}, tree="[0]")
     private Output<String> updated;
 
     /**
-     * @return Time at which the object was last updated.
+     * @return The time when the destination object was last updated.
      * 
      */
     public Output<String> updated() {
         return this.updated;
     }
     /**
-     * Webhook endpoint configuration.
+     * Configuration for delivering events to a webhook endpoint. Live mode requires HTTPS; sandbox mode also supports HTTP.
      * 
      */
     @Export(name="webhookEndpoints", refs={List.class,V2CoreEventDestinationWebhookEndpoint.class}, tree="[0,1]")
     private Output</* @Nullable */ List<V2CoreEventDestinationWebhookEndpoint>> webhookEndpoints;
 
     /**
-     * @return Webhook endpoint configuration.
+     * @return Configuration for delivering events to a webhook endpoint. Live mode requires HTTPS; sandbox mode also supports HTTP.
      * 
      */
     public Output<Optional<List<V2CoreEventDestinationWebhookEndpoint>>> webhookEndpoints() {

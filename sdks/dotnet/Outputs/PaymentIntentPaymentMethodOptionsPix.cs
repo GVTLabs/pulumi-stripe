@@ -18,11 +18,11 @@ namespace Pulumi.Stripe.Outputs
         /// </summary>
         public readonly string? AmountIncludesIof;
         /// <summary>
-        /// The number of seconds (between 10 and 1209600) after which Pix payment will expire.
+        /// The number of seconds after PaymentIntent confirmation when the Pix expires (between 60 and 1209600, inclusive). If neither expiration option is supplied, defaults to 14400 seconds (4 hours). Mutually exclusive with &lt;span pulumi-lang-nodejs="`expiresAt`" pulumi-lang-dotnet="`ExpiresAt`" pulumi-lang-go="`expiresAt`" pulumi-lang-python="`expires_at`" pulumi-lang-yaml="`expiresAt`" pulumi-lang-java="`expiresAt`" pulumi-lang-hcl="`expires_at`"&gt;`expiresAt`&lt;/span&gt;.
         /// </summary>
         public readonly double? ExpiresAfterSeconds;
         /// <summary>
-        /// The timestamp at which the Pix expires.
+        /// The absolute Unix timestamp at which the Pix expires. When supplied as an input, it must be between 60 and 1209600 seconds from the current time at validation, inclusive. If neither expiration option is supplied, the Pix expires 14400 seconds (4 hours) after PaymentIntent confirmation. Mutually exclusive with &lt;span pulumi-lang-nodejs="`expiresAfterSeconds`" pulumi-lang-dotnet="`ExpiresAfterSeconds`" pulumi-lang-go="`expiresAfterSeconds`" pulumi-lang-python="`expires_after_seconds`" pulumi-lang-yaml="`expiresAfterSeconds`" pulumi-lang-java="`expiresAfterSeconds`" pulumi-lang-hcl="`expires_after_seconds`"&gt;`expiresAfterSeconds`&lt;/span&gt;.
         /// </summary>
         public readonly double? ExpiresAt;
         public readonly Outputs.PaymentIntentPaymentMethodOptionsPixMandateOptions? MandateOptions;

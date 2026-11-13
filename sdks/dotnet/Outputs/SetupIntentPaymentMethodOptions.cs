@@ -15,6 +15,7 @@ namespace Pulumi.Stripe.Outputs
     {
         public readonly Outputs.SetupIntentPaymentMethodOptionsAcssDebit? AcssDebit;
         public readonly Outputs.SetupIntentPaymentMethodOptionsBacsDebit? BacsDebit;
+        public readonly Outputs.SetupIntentPaymentMethodOptionsBlik? Blik;
         public readonly Outputs.SetupIntentPaymentMethodOptionsCard? Card;
         public readonly Outputs.SetupIntentPaymentMethodOptionsKlarna? Klarna;
         public readonly Outputs.SetupIntentPaymentMethodOptionsLink? Link;
@@ -30,6 +31,8 @@ namespace Pulumi.Stripe.Outputs
             Outputs.SetupIntentPaymentMethodOptionsAcssDebit? acssDebit,
 
             Outputs.SetupIntentPaymentMethodOptionsBacsDebit? bacsDebit,
+
+            Outputs.SetupIntentPaymentMethodOptionsBlik? blik,
 
             Outputs.SetupIntentPaymentMethodOptionsCard? card,
 
@@ -51,6 +54,7 @@ namespace Pulumi.Stripe.Outputs
         {
             AcssDebit = acssDebit;
             BacsDebit = bacsDebit;
+            Blik = blik;
             Card = card;
             Klarna = klarna;
             Link = link;

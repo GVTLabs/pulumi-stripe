@@ -226,14 +226,14 @@ public final class ClimateOrderState extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * The year this order is expected to be delivered.
+     * The year this order is expected to be delivered. If the year is in the past, the order is a spot purchase and will be delivered within 30 days of purchase.
      * 
      */
     @Import(name="expectedDeliveryYear")
     private @Nullable Output<Double> expectedDeliveryYear;
 
     /**
-     * @return The year this order is expected to be delivered.
+     * @return The year this order is expected to be delivered. If the year is in the past, the order is a spot purchase and will be delivered within 30 days of purchase.
      * 
      */
     public Optional<Output<Double>> expectedDeliveryYear() {
@@ -685,7 +685,7 @@ public final class ClimateOrderState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param expectedDeliveryYear The year this order is expected to be delivered.
+         * @param expectedDeliveryYear The year this order is expected to be delivered. If the year is in the past, the order is a spot purchase and will be delivered within 30 days of purchase.
          * 
          * @return builder
          * 
@@ -696,7 +696,7 @@ public final class ClimateOrderState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param expectedDeliveryYear The year this order is expected to be delivered.
+         * @param expectedDeliveryYear The year this order is expected to be delivered. If the year is in the past, the order is a spot purchase and will be delivered within 30 days of purchase.
          * 
          * @return builder
          * 

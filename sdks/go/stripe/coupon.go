@@ -17,6 +17,8 @@ type Coupon struct {
 	// Amount (in the <span pulumi-lang-nodejs="`currency`" pulumi-lang-dotnet="`Currency`" pulumi-lang-go="`currency`" pulumi-lang-python="`currency`" pulumi-lang-yaml="`currency`" pulumi-lang-java="`currency`" pulumi-lang-hcl="`currency`">`currency`</span> specified) that will be taken off the subtotal of any invoices for this customer.
 	AmountOff  pulumi.Float64Output       `pulumi:"amountOff"`
 	AppliesTos CouponAppliesToArrayOutput `pulumi:"appliesTos"`
+	// Unique identifier for the object.
+	CouponId pulumi.StringOutput `pulumi:"couponId"`
 	// Time at which the object was created. Measured in seconds since the Unix epoch.
 	Created pulumi.Float64Output `pulumi:"created"`
 	// If <span pulumi-lang-nodejs="`amountOff`" pulumi-lang-dotnet="`AmountOff`" pulumi-lang-go="`amountOff`" pulumi-lang-python="`amount_off`" pulumi-lang-yaml="`amountOff`" pulumi-lang-java="`amountOff`" pulumi-lang-hcl="`amount_off`">`amountOff`</span> has been set, the three-letter [ISO code for the currency](https://stripe.com/docs/currencies) of the amount to take off.
@@ -88,6 +90,8 @@ type couponState struct {
 	// Amount (in the <span pulumi-lang-nodejs="`currency`" pulumi-lang-dotnet="`Currency`" pulumi-lang-go="`currency`" pulumi-lang-python="`currency`" pulumi-lang-yaml="`currency`" pulumi-lang-java="`currency`" pulumi-lang-hcl="`currency`">`currency`</span> specified) that will be taken off the subtotal of any invoices for this customer.
 	AmountOff  *float64          `pulumi:"amountOff"`
 	AppliesTos []CouponAppliesTo `pulumi:"appliesTos"`
+	// Unique identifier for the object.
+	CouponId *string `pulumi:"couponId"`
 	// Time at which the object was created. Measured in seconds since the Unix epoch.
 	Created *float64 `pulumi:"created"`
 	// If <span pulumi-lang-nodejs="`amountOff`" pulumi-lang-dotnet="`AmountOff`" pulumi-lang-go="`amountOff`" pulumi-lang-python="`amount_off`" pulumi-lang-yaml="`amountOff`" pulumi-lang-java="`amountOff`" pulumi-lang-hcl="`amount_off`">`amountOff`</span> has been set, the three-letter [ISO code for the currency](https://stripe.com/docs/currencies) of the amount to take off.
@@ -122,6 +126,8 @@ type CouponState struct {
 	// Amount (in the <span pulumi-lang-nodejs="`currency`" pulumi-lang-dotnet="`Currency`" pulumi-lang-go="`currency`" pulumi-lang-python="`currency`" pulumi-lang-yaml="`currency`" pulumi-lang-java="`currency`" pulumi-lang-hcl="`currency`">`currency`</span> specified) that will be taken off the subtotal of any invoices for this customer.
 	AmountOff  pulumi.Float64PtrInput
 	AppliesTos CouponAppliesToArrayInput
+	// Unique identifier for the object.
+	CouponId pulumi.StringPtrInput
 	// Time at which the object was created. Measured in seconds since the Unix epoch.
 	Created pulumi.Float64PtrInput
 	// If <span pulumi-lang-nodejs="`amountOff`" pulumi-lang-dotnet="`AmountOff`" pulumi-lang-go="`amountOff`" pulumi-lang-python="`amount_off`" pulumi-lang-yaml="`amountOff`" pulumi-lang-java="`amountOff`" pulumi-lang-hcl="`amount_off`">`amountOff`</span> has been set, the three-letter [ISO code for the currency](https://stripe.com/docs/currencies) of the amount to take off.
@@ -156,10 +162,24 @@ func (CouponState) ElementType() reflect.Type {
 	return reflect.TypeOf((*couponState)(nil)).Elem()
 }
 
+// CouponExists checks whether an existing Coupon resource with the given ID exists.
+func CouponExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *CouponState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	ref, err := internal.PkgGetPackageRef(ctx)
+	if err != nil {
+		return pulumi.Bool(false).ToBoolOutput().ApplyT(func(bool) (bool, error) {
+			return false, err
+		}).(pulumi.BoolOutput)
+	}
+	return ctx.ExistsResource("stripe:index/coupon:Coupon", id, state, ref, opts...)
+}
+
 type couponArgs struct {
 	// Amount (in the <span pulumi-lang-nodejs="`currency`" pulumi-lang-dotnet="`Currency`" pulumi-lang-go="`currency`" pulumi-lang-python="`currency`" pulumi-lang-yaml="`currency`" pulumi-lang-java="`currency`" pulumi-lang-hcl="`currency`">`currency`</span> specified) that will be taken off the subtotal of any invoices for this customer.
 	AmountOff  *float64          `pulumi:"amountOff"`
 	AppliesTos []CouponAppliesTo `pulumi:"appliesTos"`
+	// Unique identifier for the object.
+	CouponId *string `pulumi:"couponId"`
 	// If <span pulumi-lang-nodejs="`amountOff`" pulumi-lang-dotnet="`AmountOff`" pulumi-lang-go="`amountOff`" pulumi-lang-python="`amount_off`" pulumi-lang-yaml="`amountOff`" pulumi-lang-java="`amountOff`" pulumi-lang-hcl="`amount_off`">`amountOff`</span> has been set, the three-letter [ISO code for the currency](https://stripe.com/docs/currencies) of the amount to take off.
 	Currency *string `pulumi:"currency"`
 	// Coupons defined in each available currency option. Each key must be a three-letter [ISO currency code](https://www.iso.org/iso-4217-currency-codes.html) and a [supported currency](https://stripe.com/docs/currencies).
@@ -185,6 +205,8 @@ type CouponArgs struct {
 	// Amount (in the <span pulumi-lang-nodejs="`currency`" pulumi-lang-dotnet="`Currency`" pulumi-lang-go="`currency`" pulumi-lang-python="`currency`" pulumi-lang-yaml="`currency`" pulumi-lang-java="`currency`" pulumi-lang-hcl="`currency`">`currency`</span> specified) that will be taken off the subtotal of any invoices for this customer.
 	AmountOff  pulumi.Float64PtrInput
 	AppliesTos CouponAppliesToArrayInput
+	// Unique identifier for the object.
+	CouponId pulumi.StringPtrInput
 	// If <span pulumi-lang-nodejs="`amountOff`" pulumi-lang-dotnet="`AmountOff`" pulumi-lang-go="`amountOff`" pulumi-lang-python="`amount_off`" pulumi-lang-yaml="`amountOff`" pulumi-lang-java="`amountOff`" pulumi-lang-hcl="`amount_off`">`amountOff`</span> has been set, the three-letter [ISO code for the currency](https://stripe.com/docs/currencies) of the amount to take off.
 	Currency pulumi.StringPtrInput
 	// Coupons defined in each available currency option. Each key must be a three-letter [ISO currency code](https://www.iso.org/iso-4217-currency-codes.html) and a [supported currency](https://stripe.com/docs/currencies).
@@ -249,6 +271,11 @@ func (o CouponOutput) AmountOff() pulumi.Float64Output {
 
 func (o CouponOutput) AppliesTos() CouponAppliesToArrayOutput {
 	return o.ApplyT(func(v *Coupon) CouponAppliesToArrayOutput { return v.AppliesTos }).(CouponAppliesToArrayOutput)
+}
+
+// Unique identifier for the object.
+func (o CouponOutput) CouponId() pulumi.StringOutput {
+	return o.ApplyT(func(v *Coupon) pulumi.StringOutput { return v.CouponId }).(pulumi.StringOutput)
 }
 
 // Time at which the object was created. Measured in seconds since the Unix epoch.

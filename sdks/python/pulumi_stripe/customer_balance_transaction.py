@@ -463,6 +463,38 @@ class CustomerBalanceTransaction(pulumi.CustomResource):
         __props__.__dict__["type"] = type
         return CustomerBalanceTransaction(resource_name, opts=opts, __props__=__props__)
 
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            amount: pulumi.Input[Optional[_builtins.float]] = None,
+            checkout_session: pulumi.Input[Optional[_builtins.str]] = None,
+            created: pulumi.Input[Optional[_builtins.float]] = None,
+            credit_note: pulumi.Input[Optional[_builtins.str]] = None,
+            currency: pulumi.Input[Optional[_builtins.str]] = None,
+            customer: pulumi.Input[Optional[_builtins.str]] = None,
+            description: pulumi.Input[Optional[_builtins.str]] = None,
+            ending_balance: pulumi.Input[Optional[_builtins.float]] = None,
+            invoice: pulumi.Input[Optional[_builtins.str]] = None,
+            livemode: pulumi.Input[Optional[_builtins.bool]] = None,
+            metadata: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+            object: pulumi.Input[Optional[_builtins.str]] = None,
+            type: pulumi.Input[Optional[_builtins.str]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["amount"] = amount
+        __props__["checkoutSession"] = checkout_session
+        __props__["created"] = created
+        __props__["creditNote"] = credit_note
+        __props__["currency"] = currency
+        __props__["customer"] = customer
+        __props__["description"] = description
+        __props__["endingBalance"] = ending_balance
+        __props__["invoice"] = invoice
+        __props__["livemode"] = livemode
+        __props__["metadata"] = metadata
+        __props__["object"] = object
+        __props__["type"] = type
+        return pulumi.runtime.exists_resource(None, 'stripe:index/customerBalanceTransaction:CustomerBalanceTransaction', id, __props__, opts or pulumi.ResourceOptions(), package_ref=_utilities.get_package())
+
     @_builtins.property
     @pulumi.getter
     def amount(self) -> pulumi.Output[_builtins.float]:

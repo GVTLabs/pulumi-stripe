@@ -20,6 +20,17 @@ export class ClimateOrder extends pulumi.CustomResource {
         return new ClimateOrder(name, <any>state, { ...opts, id: id });
     }
 
+    /**
+     * Check whether an existing ClimateOrder resource with the given ID exists.
+     *
+     * @param id The _unique_ provider ID of the resource to check.
+     * @param state Any extra arguments used during the lookup.
+     * @param opts Optional settings to control the behavior of the CustomResource.
+     */
+    public static exists(id: pulumi.Input<string>, state?: ClimateOrderState, opts?: pulumi.CustomResourceOptions): pulumi.Output<boolean> {
+        return pulumi.runtime.existsResource("stripe:index/climateOrder:ClimateOrder", id, <any>state || {}, { ...opts }, utilities.getPackage());
+    }
+
     /** @internal */
     public static readonly __pulumiType = 'stripe:index/climateOrder:ClimateOrder';
 
@@ -89,7 +100,7 @@ export class ClimateOrder extends pulumi.CustomResource {
      */
     declare public /*out*/ readonly deliveryDetails: pulumi.Output<outputs.ClimateOrderDeliveryDetail[]>;
     /**
-     * The year this order is expected to be delivered.
+     * The year this order is expected to be delivered. If the year is in the past, the order is a spot purchase and will be delivered within 30 days of purchase.
      */
     declare public /*out*/ readonly expectedDeliveryYear: pulumi.Output<number>;
     /**
@@ -250,7 +261,7 @@ export interface ClimateOrderState {
      */
     deliveryDetails?: pulumi.Input<pulumi.Input<inputs.ClimateOrderDeliveryDetail>[] | undefined>;
     /**
-     * The year this order is expected to be delivered.
+     * The year this order is expected to be delivered. If the year is in the past, the order is a spot purchase and will be delivered within 30 days of purchase.
      */
     expectedDeliveryYear?: pulumi.Input<number | undefined>;
     /**

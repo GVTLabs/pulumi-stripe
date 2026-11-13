@@ -66,8 +66,12 @@ class PersonArgs:
         :param pulumi.Input[_builtins.str] gender: The person's gender.
         :param pulumi.Input[_builtins.str] id_number: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
                The person's ID number, as appropriate for their country. For example, a social security number in the U.S., social insurance number in Canada, etc. Instead of the number itself, you can also provide a [PII token provided by Stripe.js](https://docs.stripe.com/js/tokens/create_token?type=pii).
+               
+               Changing this value for the account's representative requires that the account re-accept the [terms of service](https://www.terraform.io/api/accounts/object#account_object-tos_acceptance).
         :param pulumi.Input[_builtins.str] id_number_secondary: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
                The person's secondary ID number, as appropriate for their country, will be used for enhanced verification checks. In Thailand, this would be the laser code found on the back of an ID card. Instead of the number itself, you can also provide a [PII token provided by Stripe.js](https://docs.stripe.com/js/tokens/create_token?type=pii).
+               
+               Changing this value for the account's representative requires that the account re-accept the [terms of service](https://www.terraform.io/api/accounts/object#account_object-tos_acceptance).
         :param pulumi.Input[_builtins.str] last_name: The person's last name. Also available for accounts where [controller.requirement_collection](https://www.terraform.io/api/accounts/object#account_object-controller-requirement_collection) is <span pulumi-lang-nodejs="`stripe`" pulumi-lang-dotnet="`Stripe`" pulumi-lang-go="`stripe`" pulumi-lang-python="`stripe`" pulumi-lang-yaml="`stripe`" pulumi-lang-java="`stripe`" pulumi-lang-hcl="`stripe`">`stripe`</span>.
         :param pulumi.Input[_builtins.str] last_name_kana: The Kana variation of the person's last name (Japan only). Also available for accounts where [controller.requirement_collection](https://www.terraform.io/api/accounts/object#account_object-controller-requirement_collection) is <span pulumi-lang-nodejs="`stripe`" pulumi-lang-dotnet="`Stripe`" pulumi-lang-go="`stripe`" pulumi-lang-python="`stripe`" pulumi-lang-yaml="`stripe`" pulumi-lang-java="`stripe`" pulumi-lang-hcl="`stripe`">`stripe`</span>.
         :param pulumi.Input[_builtins.str] last_name_kanji: The Kanji variation of the person's last name (Japan only). Also available for accounts where [controller.requirement_collection](https://www.terraform.io/api/accounts/object#account_object-controller-requirement_collection) is <span pulumi-lang-nodejs="`stripe`" pulumi-lang-dotnet="`Stripe`" pulumi-lang-go="`stripe`" pulumi-lang-python="`stripe`" pulumi-lang-yaml="`stripe`" pulumi-lang-java="`stripe`" pulumi-lang-hcl="`stripe`">`stripe`</span>.
@@ -80,6 +84,8 @@ class PersonArgs:
         :param pulumi.Input[_builtins.str] political_exposure: Indicates if the person or any of their representatives, family members, or other closely related persons, declares that they hold or have held an important public job or function, in any jurisdiction.
         :param pulumi.Input[_builtins.str] ssn_last4: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
                The last four digits of the person's Social Security number (U.S. only).
+               
+               Changing this value for the account's representative requires that the account re-accept the [terms of service](https://www.terraform.io/api/accounts/object#account_object-tos_acceptance).
         :param pulumi.Input['PersonUsCfpbDataArgs'] us_cfpb_data: Demographic data related to the person.
         """
         pulumi.set(__self__, "account", account)
@@ -294,6 +300,8 @@ class PersonArgs:
         """
         **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
         The person's ID number, as appropriate for their country. For example, a social security number in the U.S., social insurance number in Canada, etc. Instead of the number itself, you can also provide a [PII token provided by Stripe.js](https://docs.stripe.com/js/tokens/create_token?type=pii).
+
+        Changing this value for the account's representative requires that the account re-accept the [terms of service](https://www.terraform.io/api/accounts/object#account_object-tos_acceptance).
         """
         return pulumi.get(self, "id_number")
 
@@ -307,6 +315,8 @@ class PersonArgs:
         """
         **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
         The person's secondary ID number, as appropriate for their country, will be used for enhanced verification checks. In Thailand, this would be the laser code found on the back of an ID card. Instead of the number itself, you can also provide a [PII token provided by Stripe.js](https://docs.stripe.com/js/tokens/create_token?type=pii).
+
+        Changing this value for the account's representative requires that the account re-accept the [terms of service](https://www.terraform.io/api/accounts/object#account_object-tos_acceptance).
         """
         return pulumi.get(self, "id_number_secondary")
 
@@ -447,6 +457,8 @@ class PersonArgs:
         """
         **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
         The last four digits of the person's Social Security number (U.S. only).
+
+        Changing this value for the account's representative requires that the account re-accept the [terms of service](https://www.terraform.io/api/accounts/object#account_object-tos_acceptance).
         """
         return pulumi.get(self, "ssn_last4")
 
@@ -533,9 +545,13 @@ class _PersonState:
         :param pulumi.Input[_builtins.str] gender: The person's gender.
         :param pulumi.Input[_builtins.str] id_number: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
                The person's ID number, as appropriate for their country. For example, a social security number in the U.S., social insurance number in Canada, etc. Instead of the number itself, you can also provide a [PII token provided by Stripe.js](https://docs.stripe.com/js/tokens/create_token?type=pii).
+               
+               Changing this value for the account's representative requires that the account re-accept the [terms of service](https://www.terraform.io/api/accounts/object#account_object-tos_acceptance).
         :param pulumi.Input[_builtins.bool] id_number_provided: Whether the person's <span pulumi-lang-nodejs="`idNumber`" pulumi-lang-dotnet="`IdNumber`" pulumi-lang-go="`idNumber`" pulumi-lang-python="`id_number`" pulumi-lang-yaml="`idNumber`" pulumi-lang-java="`idNumber`" pulumi-lang-hcl="`id_number`">`idNumber`</span> was provided. True if either the full ID number was provided or if only the required part of the ID number was provided (ex. last four of an individual's SSN for the US indicated by <span pulumi-lang-nodejs="`ssnLast4Provided`" pulumi-lang-dotnet="`SsnLast4Provided`" pulumi-lang-go="`ssnLast4Provided`" pulumi-lang-python="`ssn_last_4_provided`" pulumi-lang-yaml="`ssnLast4Provided`" pulumi-lang-java="`ssnLast4Provided`" pulumi-lang-hcl="`ssn_last_4_provided`">`ssnLast4Provided`</span>).
         :param pulumi.Input[_builtins.str] id_number_secondary: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
                The person's secondary ID number, as appropriate for their country, will be used for enhanced verification checks. In Thailand, this would be the laser code found on the back of an ID card. Instead of the number itself, you can also provide a [PII token provided by Stripe.js](https://docs.stripe.com/js/tokens/create_token?type=pii).
+               
+               Changing this value for the account's representative requires that the account re-accept the [terms of service](https://www.terraform.io/api/accounts/object#account_object-tos_acceptance).
         :param pulumi.Input[_builtins.bool] id_number_secondary_provided: Whether the person's <span pulumi-lang-nodejs="`idNumberSecondary`" pulumi-lang-dotnet="`IdNumberSecondary`" pulumi-lang-go="`idNumberSecondary`" pulumi-lang-python="`id_number_secondary`" pulumi-lang-yaml="`idNumberSecondary`" pulumi-lang-java="`idNumberSecondary`" pulumi-lang-hcl="`id_number_secondary`">`idNumberSecondary`</span> was provided.
         :param pulumi.Input[_builtins.str] last_name: The person's last name. Also available for accounts where [controller.requirement_collection](https://www.terraform.io/api/accounts/object#account_object-controller-requirement_collection) is <span pulumi-lang-nodejs="`stripe`" pulumi-lang-dotnet="`Stripe`" pulumi-lang-go="`stripe`" pulumi-lang-python="`stripe`" pulumi-lang-yaml="`stripe`" pulumi-lang-java="`stripe`" pulumi-lang-hcl="`stripe`">`stripe`</span>.
         :param pulumi.Input[_builtins.str] last_name_kana: The Kana variation of the person's last name (Japan only). Also available for accounts where [controller.requirement_collection](https://www.terraform.io/api/accounts/object#account_object-controller-requirement_collection) is <span pulumi-lang-nodejs="`stripe`" pulumi-lang-dotnet="`Stripe`" pulumi-lang-go="`stripe`" pulumi-lang-python="`stripe`" pulumi-lang-yaml="`stripe`" pulumi-lang-java="`stripe`" pulumi-lang-hcl="`stripe`">`stripe`</span>.
@@ -551,6 +567,8 @@ class _PersonState:
         :param pulumi.Input['PersonRequirementsArgs'] requirements: Information about the requirements for this person, including what information needs to be collected, and by when.
         :param pulumi.Input[_builtins.str] ssn_last4: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
                The last four digits of the person's Social Security number (U.S. only).
+               
+               Changing this value for the account's representative requires that the account re-accept the [terms of service](https://www.terraform.io/api/accounts/object#account_object-tos_acceptance).
         :param pulumi.Input[_builtins.bool] ssn_last4_provided: Whether the last four digits of the person's Social Security number have been provided (U.S. only).
         :param pulumi.Input['PersonUsCfpbDataArgs'] us_cfpb_data: Demographic data related to the person.
         """
@@ -805,6 +823,8 @@ class _PersonState:
         """
         **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
         The person's ID number, as appropriate for their country. For example, a social security number in the U.S., social insurance number in Canada, etc. Instead of the number itself, you can also provide a [PII token provided by Stripe.js](https://docs.stripe.com/js/tokens/create_token?type=pii).
+
+        Changing this value for the account's representative requires that the account re-accept the [terms of service](https://www.terraform.io/api/accounts/object#account_object-tos_acceptance).
         """
         return pulumi.get(self, "id_number")
 
@@ -830,6 +850,8 @@ class _PersonState:
         """
         **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
         The person's secondary ID number, as appropriate for their country, will be used for enhanced verification checks. In Thailand, this would be the laser code found on the back of an ID card. Instead of the number itself, you can also provide a [PII token provided by Stripe.js](https://docs.stripe.com/js/tokens/create_token?type=pii).
+
+        Changing this value for the account's representative requires that the account re-accept the [terms of service](https://www.terraform.io/api/accounts/object#account_object-tos_acceptance).
         """
         return pulumi.get(self, "id_number_secondary")
 
@@ -1006,6 +1028,8 @@ class _PersonState:
         """
         **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
         The last four digits of the person's Social Security number (U.S. only).
+
+        Changing this value for the account's representative requires that the account re-accept the [terms of service](https://www.terraform.io/api/accounts/object#account_object-tos_acceptance).
         """
         return pulumi.get(self, "ssn_last4")
 
@@ -1054,12 +1078,12 @@ class Person(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  account: pulumi.Input[Optional[_builtins.str]] = None,
-                 additional_tos_acceptances: pulumi.Input[Optional[Union['PersonAdditionalTosAcceptancesArgs', 'PersonAdditionalTosAcceptancesArgsDict']]] = None,
-                 address: pulumi.Input[Optional[Union['PersonAddressArgs', 'PersonAddressArgsDict']]] = None,
-                 address_kana: pulumi.Input[Optional[Union['PersonAddressKanaArgs', 'PersonAddressKanaArgsDict']]] = None,
-                 address_kanji: pulumi.Input[Optional[Union['PersonAddressKanjiArgs', 'PersonAddressKanjiArgsDict']]] = None,
-                 dob: pulumi.Input[Optional[Union['PersonDobArgs', 'PersonDobArgsDict']]] = None,
-                 documents: pulumi.Input[Optional[Union['PersonDocumentsArgs', 'PersonDocumentsArgsDict']]] = None,
+                 additional_tos_acceptances: pulumi.Input[Optional[Union['PersonAdditionalTosAcceptancesArgs', 'PersonAdditionalTosAcceptancesArgsDict', 'outputs.PersonAdditionalTosAcceptances']]] = None,
+                 address: pulumi.Input[Optional[Union['PersonAddressArgs', 'PersonAddressArgsDict', 'outputs.PersonAddress']]] = None,
+                 address_kana: pulumi.Input[Optional[Union['PersonAddressKanaArgs', 'PersonAddressKanaArgsDict', 'outputs.PersonAddressKana']]] = None,
+                 address_kanji: pulumi.Input[Optional[Union['PersonAddressKanjiArgs', 'PersonAddressKanjiArgsDict', 'outputs.PersonAddressKanji']]] = None,
+                 dob: pulumi.Input[Optional[Union['PersonDobArgs', 'PersonDobArgsDict', 'outputs.PersonDob']]] = None,
+                 documents: pulumi.Input[Optional[Union['PersonDocumentsArgs', 'PersonDocumentsArgsDict', 'outputs.PersonDocuments']]] = None,
                  email: pulumi.Input[Optional[_builtins.str]] = None,
                  first_name: pulumi.Input[Optional[_builtins.str]] = None,
                  first_name_kana: pulumi.Input[Optional[_builtins.str]] = None,
@@ -1077,11 +1101,11 @@ class Person(pulumi.CustomResource):
                  person_token: pulumi.Input[Optional[_builtins.str]] = None,
                  phone: pulumi.Input[Optional[_builtins.str]] = None,
                  political_exposure: pulumi.Input[Optional[_builtins.str]] = None,
-                 registered_address: pulumi.Input[Optional[Union['PersonRegisteredAddressArgs', 'PersonRegisteredAddressArgsDict']]] = None,
-                 relationship: pulumi.Input[Optional[Union['PersonRelationshipArgs', 'PersonRelationshipArgsDict']]] = None,
+                 registered_address: pulumi.Input[Optional[Union['PersonRegisteredAddressArgs', 'PersonRegisteredAddressArgsDict', 'outputs.PersonRegisteredAddress']]] = None,
+                 relationship: pulumi.Input[Optional[Union['PersonRelationshipArgs', 'PersonRelationshipArgsDict', 'outputs.PersonRelationship']]] = None,
                  ssn_last4: pulumi.Input[Optional[_builtins.str]] = None,
-                 us_cfpb_data: pulumi.Input[Optional[Union['PersonUsCfpbDataArgs', 'PersonUsCfpbDataArgsDict']]] = None,
-                 verification: pulumi.Input[Optional[Union['PersonVerificationArgs', 'PersonVerificationArgsDict']]] = None,
+                 us_cfpb_data: pulumi.Input[Optional[Union['PersonUsCfpbDataArgs', 'PersonUsCfpbDataArgsDict', 'outputs.PersonUsCfpbData']]] = None,
+                 verification: pulumi.Input[Optional[Union['PersonVerificationArgs', 'PersonVerificationArgsDict', 'outputs.PersonVerification']]] = None,
                  __props__=None):
         """
         Create a Person resource with the given unique name, props, and options.
@@ -1089,9 +1113,9 @@ class Person(pulumi.CustomResource):
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] account: The account the person is associated with.
-        :param pulumi.Input[Union['PersonAddressKanaArgs', 'PersonAddressKanaArgsDict']] address_kana: The Kana variation of the person's address (Japan only).
-        :param pulumi.Input[Union['PersonAddressKanjiArgs', 'PersonAddressKanjiArgsDict']] address_kanji: The Kanji variation of the person's address (Japan only).
-        :param pulumi.Input[Union['PersonDocumentsArgs', 'PersonDocumentsArgsDict']] documents: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        :param pulumi.Input[Union['PersonAddressKanaArgs', 'PersonAddressKanaArgsDict', 'outputs.PersonAddressKana']] address_kana: The Kana variation of the person's address (Japan only).
+        :param pulumi.Input[Union['PersonAddressKanjiArgs', 'PersonAddressKanjiArgsDict', 'outputs.PersonAddressKanji']] address_kanji: The Kanji variation of the person's address (Japan only).
+        :param pulumi.Input[Union['PersonDocumentsArgs', 'PersonDocumentsArgsDict', 'outputs.PersonDocuments']] documents: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
                Documents that may be submitted to satisfy various informational requests.
         :param pulumi.Input[_builtins.str] email: The person's email address. Also available for accounts where [controller.requirement_collection](https://www.terraform.io/api/accounts/object#account_object-controller-requirement_collection) is <span pulumi-lang-nodejs="`stripe`" pulumi-lang-dotnet="`Stripe`" pulumi-lang-go="`stripe`" pulumi-lang-python="`stripe`" pulumi-lang-yaml="`stripe`" pulumi-lang-java="`stripe`" pulumi-lang-hcl="`stripe`">`stripe`</span>.
         :param pulumi.Input[_builtins.str] first_name: The person's first name. Also available for accounts where [controller.requirement_collection](https://www.terraform.io/api/accounts/object#account_object-controller-requirement_collection) is <span pulumi-lang-nodejs="`stripe`" pulumi-lang-dotnet="`Stripe`" pulumi-lang-go="`stripe`" pulumi-lang-python="`stripe`" pulumi-lang-yaml="`stripe`" pulumi-lang-java="`stripe`" pulumi-lang-hcl="`stripe`">`stripe`</span>.
@@ -1101,8 +1125,12 @@ class Person(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] gender: The person's gender.
         :param pulumi.Input[_builtins.str] id_number: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
                The person's ID number, as appropriate for their country. For example, a social security number in the U.S., social insurance number in Canada, etc. Instead of the number itself, you can also provide a [PII token provided by Stripe.js](https://docs.stripe.com/js/tokens/create_token?type=pii).
+               
+               Changing this value for the account's representative requires that the account re-accept the [terms of service](https://www.terraform.io/api/accounts/object#account_object-tos_acceptance).
         :param pulumi.Input[_builtins.str] id_number_secondary: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
                The person's secondary ID number, as appropriate for their country, will be used for enhanced verification checks. In Thailand, this would be the laser code found on the back of an ID card. Instead of the number itself, you can also provide a [PII token provided by Stripe.js](https://docs.stripe.com/js/tokens/create_token?type=pii).
+               
+               Changing this value for the account's representative requires that the account re-accept the [terms of service](https://www.terraform.io/api/accounts/object#account_object-tos_acceptance).
         :param pulumi.Input[_builtins.str] last_name: The person's last name. Also available for accounts where [controller.requirement_collection](https://www.terraform.io/api/accounts/object#account_object-controller-requirement_collection) is <span pulumi-lang-nodejs="`stripe`" pulumi-lang-dotnet="`Stripe`" pulumi-lang-go="`stripe`" pulumi-lang-python="`stripe`" pulumi-lang-yaml="`stripe`" pulumi-lang-java="`stripe`" pulumi-lang-hcl="`stripe`">`stripe`</span>.
         :param pulumi.Input[_builtins.str] last_name_kana: The Kana variation of the person's last name (Japan only). Also available for accounts where [controller.requirement_collection](https://www.terraform.io/api/accounts/object#account_object-controller-requirement_collection) is <span pulumi-lang-nodejs="`stripe`" pulumi-lang-dotnet="`Stripe`" pulumi-lang-go="`stripe`" pulumi-lang-python="`stripe`" pulumi-lang-yaml="`stripe`" pulumi-lang-java="`stripe`" pulumi-lang-hcl="`stripe`">`stripe`</span>.
         :param pulumi.Input[_builtins.str] last_name_kanji: The Kanji variation of the person's last name (Japan only). Also available for accounts where [controller.requirement_collection](https://www.terraform.io/api/accounts/object#account_object-controller-requirement_collection) is <span pulumi-lang-nodejs="`stripe`" pulumi-lang-dotnet="`Stripe`" pulumi-lang-go="`stripe`" pulumi-lang-python="`stripe`" pulumi-lang-yaml="`stripe`" pulumi-lang-java="`stripe`" pulumi-lang-hcl="`stripe`">`stripe`</span>.
@@ -1115,7 +1143,9 @@ class Person(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] political_exposure: Indicates if the person or any of their representatives, family members, or other closely related persons, declares that they hold or have held an important public job or function, in any jurisdiction.
         :param pulumi.Input[_builtins.str] ssn_last4: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
                The last four digits of the person's Social Security number (U.S. only).
-        :param pulumi.Input[Union['PersonUsCfpbDataArgs', 'PersonUsCfpbDataArgsDict']] us_cfpb_data: Demographic data related to the person.
+               
+               Changing this value for the account's representative requires that the account re-accept the [terms of service](https://www.terraform.io/api/accounts/object#account_object-tos_acceptance).
+        :param pulumi.Input[Union['PersonUsCfpbDataArgs', 'PersonUsCfpbDataArgsDict', 'outputs.PersonUsCfpbData']] us_cfpb_data: Demographic data related to the person.
         """
         ...
     @overload
@@ -1142,12 +1172,12 @@ class Person(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  account: pulumi.Input[Optional[_builtins.str]] = None,
-                 additional_tos_acceptances: pulumi.Input[Optional[Union['PersonAdditionalTosAcceptancesArgs', 'PersonAdditionalTosAcceptancesArgsDict']]] = None,
-                 address: pulumi.Input[Optional[Union['PersonAddressArgs', 'PersonAddressArgsDict']]] = None,
-                 address_kana: pulumi.Input[Optional[Union['PersonAddressKanaArgs', 'PersonAddressKanaArgsDict']]] = None,
-                 address_kanji: pulumi.Input[Optional[Union['PersonAddressKanjiArgs', 'PersonAddressKanjiArgsDict']]] = None,
-                 dob: pulumi.Input[Optional[Union['PersonDobArgs', 'PersonDobArgsDict']]] = None,
-                 documents: pulumi.Input[Optional[Union['PersonDocumentsArgs', 'PersonDocumentsArgsDict']]] = None,
+                 additional_tos_acceptances: pulumi.Input[Optional[Union['PersonAdditionalTosAcceptancesArgs', 'PersonAdditionalTosAcceptancesArgsDict', 'outputs.PersonAdditionalTosAcceptances']]] = None,
+                 address: pulumi.Input[Optional[Union['PersonAddressArgs', 'PersonAddressArgsDict', 'outputs.PersonAddress']]] = None,
+                 address_kana: pulumi.Input[Optional[Union['PersonAddressKanaArgs', 'PersonAddressKanaArgsDict', 'outputs.PersonAddressKana']]] = None,
+                 address_kanji: pulumi.Input[Optional[Union['PersonAddressKanjiArgs', 'PersonAddressKanjiArgsDict', 'outputs.PersonAddressKanji']]] = None,
+                 dob: pulumi.Input[Optional[Union['PersonDobArgs', 'PersonDobArgsDict', 'outputs.PersonDob']]] = None,
+                 documents: pulumi.Input[Optional[Union['PersonDocumentsArgs', 'PersonDocumentsArgsDict', 'outputs.PersonDocuments']]] = None,
                  email: pulumi.Input[Optional[_builtins.str]] = None,
                  first_name: pulumi.Input[Optional[_builtins.str]] = None,
                  first_name_kana: pulumi.Input[Optional[_builtins.str]] = None,
@@ -1165,11 +1195,11 @@ class Person(pulumi.CustomResource):
                  person_token: pulumi.Input[Optional[_builtins.str]] = None,
                  phone: pulumi.Input[Optional[_builtins.str]] = None,
                  political_exposure: pulumi.Input[Optional[_builtins.str]] = None,
-                 registered_address: pulumi.Input[Optional[Union['PersonRegisteredAddressArgs', 'PersonRegisteredAddressArgsDict']]] = None,
-                 relationship: pulumi.Input[Optional[Union['PersonRelationshipArgs', 'PersonRelationshipArgsDict']]] = None,
+                 registered_address: pulumi.Input[Optional[Union['PersonRegisteredAddressArgs', 'PersonRegisteredAddressArgsDict', 'outputs.PersonRegisteredAddress']]] = None,
+                 relationship: pulumi.Input[Optional[Union['PersonRelationshipArgs', 'PersonRelationshipArgsDict', 'outputs.PersonRelationship']]] = None,
                  ssn_last4: pulumi.Input[Optional[_builtins.str]] = None,
-                 us_cfpb_data: pulumi.Input[Optional[Union['PersonUsCfpbDataArgs', 'PersonUsCfpbDataArgsDict']]] = None,
-                 verification: pulumi.Input[Optional[Union['PersonVerificationArgs', 'PersonVerificationArgsDict']]] = None,
+                 us_cfpb_data: pulumi.Input[Optional[Union['PersonUsCfpbDataArgs', 'PersonUsCfpbDataArgsDict', 'outputs.PersonUsCfpbData']]] = None,
+                 verification: pulumi.Input[Optional[Union['PersonVerificationArgs', 'PersonVerificationArgsDict', 'outputs.PersonVerification']]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -1231,19 +1261,19 @@ class Person(pulumi.CustomResource):
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
             account: pulumi.Input[Optional[_builtins.str]] = None,
-            additional_tos_acceptances: pulumi.Input[Optional[Union['PersonAdditionalTosAcceptancesArgs', 'PersonAdditionalTosAcceptancesArgsDict']]] = None,
-            address: pulumi.Input[Optional[Union['PersonAddressArgs', 'PersonAddressArgsDict']]] = None,
-            address_kana: pulumi.Input[Optional[Union['PersonAddressKanaArgs', 'PersonAddressKanaArgsDict']]] = None,
-            address_kanji: pulumi.Input[Optional[Union['PersonAddressKanjiArgs', 'PersonAddressKanjiArgsDict']]] = None,
+            additional_tos_acceptances: pulumi.Input[Optional[Union['PersonAdditionalTosAcceptancesArgs', 'PersonAdditionalTosAcceptancesArgsDict', 'outputs.PersonAdditionalTosAcceptances']]] = None,
+            address: pulumi.Input[Optional[Union['PersonAddressArgs', 'PersonAddressArgsDict', 'outputs.PersonAddress']]] = None,
+            address_kana: pulumi.Input[Optional[Union['PersonAddressKanaArgs', 'PersonAddressKanaArgsDict', 'outputs.PersonAddressKana']]] = None,
+            address_kanji: pulumi.Input[Optional[Union['PersonAddressKanjiArgs', 'PersonAddressKanjiArgsDict', 'outputs.PersonAddressKanji']]] = None,
             created: pulumi.Input[Optional[_builtins.float]] = None,
-            dob: pulumi.Input[Optional[Union['PersonDobArgs', 'PersonDobArgsDict']]] = None,
-            documents: pulumi.Input[Optional[Union['PersonDocumentsArgs', 'PersonDocumentsArgsDict']]] = None,
+            dob: pulumi.Input[Optional[Union['PersonDobArgs', 'PersonDobArgsDict', 'outputs.PersonDob']]] = None,
+            documents: pulumi.Input[Optional[Union['PersonDocumentsArgs', 'PersonDocumentsArgsDict', 'outputs.PersonDocuments']]] = None,
             email: pulumi.Input[Optional[_builtins.str]] = None,
             first_name: pulumi.Input[Optional[_builtins.str]] = None,
             first_name_kana: pulumi.Input[Optional[_builtins.str]] = None,
             first_name_kanji: pulumi.Input[Optional[_builtins.str]] = None,
             full_name_aliases: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
-            future_requirements: pulumi.Input[Optional[Union['PersonFutureRequirementsArgs', 'PersonFutureRequirementsArgsDict']]] = None,
+            future_requirements: pulumi.Input[Optional[Union['PersonFutureRequirementsArgs', 'PersonFutureRequirementsArgsDict', 'outputs.PersonFutureRequirements']]] = None,
             gender: pulumi.Input[Optional[_builtins.str]] = None,
             id_number: pulumi.Input[Optional[_builtins.str]] = None,
             id_number_provided: pulumi.Input[Optional[_builtins.bool]] = None,
@@ -1259,13 +1289,13 @@ class Person(pulumi.CustomResource):
             person_token: pulumi.Input[Optional[_builtins.str]] = None,
             phone: pulumi.Input[Optional[_builtins.str]] = None,
             political_exposure: pulumi.Input[Optional[_builtins.str]] = None,
-            registered_address: pulumi.Input[Optional[Union['PersonRegisteredAddressArgs', 'PersonRegisteredAddressArgsDict']]] = None,
-            relationship: pulumi.Input[Optional[Union['PersonRelationshipArgs', 'PersonRelationshipArgsDict']]] = None,
-            requirements: pulumi.Input[Optional[Union['PersonRequirementsArgs', 'PersonRequirementsArgsDict']]] = None,
+            registered_address: pulumi.Input[Optional[Union['PersonRegisteredAddressArgs', 'PersonRegisteredAddressArgsDict', 'outputs.PersonRegisteredAddress']]] = None,
+            relationship: pulumi.Input[Optional[Union['PersonRelationshipArgs', 'PersonRelationshipArgsDict', 'outputs.PersonRelationship']]] = None,
+            requirements: pulumi.Input[Optional[Union['PersonRequirementsArgs', 'PersonRequirementsArgsDict', 'outputs.PersonRequirements']]] = None,
             ssn_last4: pulumi.Input[Optional[_builtins.str]] = None,
             ssn_last4_provided: pulumi.Input[Optional[_builtins.bool]] = None,
-            us_cfpb_data: pulumi.Input[Optional[Union['PersonUsCfpbDataArgs', 'PersonUsCfpbDataArgsDict']]] = None,
-            verification: pulumi.Input[Optional[Union['PersonVerificationArgs', 'PersonVerificationArgsDict']]] = None) -> 'Person':
+            us_cfpb_data: pulumi.Input[Optional[Union['PersonUsCfpbDataArgs', 'PersonUsCfpbDataArgsDict', 'outputs.PersonUsCfpbData']]] = None,
+            verification: pulumi.Input[Optional[Union['PersonVerificationArgs', 'PersonVerificationArgsDict', 'outputs.PersonVerification']]] = None) -> 'Person':
         """
         Get an existing Person resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -1274,23 +1304,27 @@ class Person(pulumi.CustomResource):
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] account: The account the person is associated with.
-        :param pulumi.Input[Union['PersonAddressKanaArgs', 'PersonAddressKanaArgsDict']] address_kana: The Kana variation of the person's address (Japan only).
-        :param pulumi.Input[Union['PersonAddressKanjiArgs', 'PersonAddressKanjiArgsDict']] address_kanji: The Kanji variation of the person's address (Japan only).
+        :param pulumi.Input[Union['PersonAddressKanaArgs', 'PersonAddressKanaArgsDict', 'outputs.PersonAddressKana']] address_kana: The Kana variation of the person's address (Japan only).
+        :param pulumi.Input[Union['PersonAddressKanjiArgs', 'PersonAddressKanjiArgsDict', 'outputs.PersonAddressKanji']] address_kanji: The Kanji variation of the person's address (Japan only).
         :param pulumi.Input[_builtins.float] created: Time at which the object was created. Measured in seconds since the Unix epoch.
-        :param pulumi.Input[Union['PersonDocumentsArgs', 'PersonDocumentsArgsDict']] documents: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        :param pulumi.Input[Union['PersonDocumentsArgs', 'PersonDocumentsArgsDict', 'outputs.PersonDocuments']] documents: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
                Documents that may be submitted to satisfy various informational requests.
         :param pulumi.Input[_builtins.str] email: The person's email address. Also available for accounts where [controller.requirement_collection](https://www.terraform.io/api/accounts/object#account_object-controller-requirement_collection) is <span pulumi-lang-nodejs="`stripe`" pulumi-lang-dotnet="`Stripe`" pulumi-lang-go="`stripe`" pulumi-lang-python="`stripe`" pulumi-lang-yaml="`stripe`" pulumi-lang-java="`stripe`" pulumi-lang-hcl="`stripe`">`stripe`</span>.
         :param pulumi.Input[_builtins.str] first_name: The person's first name. Also available for accounts where [controller.requirement_collection](https://www.terraform.io/api/accounts/object#account_object-controller-requirement_collection) is <span pulumi-lang-nodejs="`stripe`" pulumi-lang-dotnet="`Stripe`" pulumi-lang-go="`stripe`" pulumi-lang-python="`stripe`" pulumi-lang-yaml="`stripe`" pulumi-lang-java="`stripe`" pulumi-lang-hcl="`stripe`">`stripe`</span>.
         :param pulumi.Input[_builtins.str] first_name_kana: The Kana variation of the person's first name (Japan only). Also available for accounts where [controller.requirement_collection](https://www.terraform.io/api/accounts/object#account_object-controller-requirement_collection) is <span pulumi-lang-nodejs="`stripe`" pulumi-lang-dotnet="`Stripe`" pulumi-lang-go="`stripe`" pulumi-lang-python="`stripe`" pulumi-lang-yaml="`stripe`" pulumi-lang-java="`stripe`" pulumi-lang-hcl="`stripe`">`stripe`</span>.
         :param pulumi.Input[_builtins.str] first_name_kanji: The Kanji variation of the person's first name (Japan only). Also available for accounts where [controller.requirement_collection](https://www.terraform.io/api/accounts/object#account_object-controller-requirement_collection) is <span pulumi-lang-nodejs="`stripe`" pulumi-lang-dotnet="`Stripe`" pulumi-lang-go="`stripe`" pulumi-lang-python="`stripe`" pulumi-lang-yaml="`stripe`" pulumi-lang-java="`stripe`" pulumi-lang-hcl="`stripe`">`stripe`</span>.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] full_name_aliases: A list of alternate names or aliases that the person is known by. Also available for accounts where [controller.requirement_collection](https://www.terraform.io/api/accounts/object#account_object-controller-requirement_collection) is <span pulumi-lang-nodejs="`stripe`" pulumi-lang-dotnet="`Stripe`" pulumi-lang-go="`stripe`" pulumi-lang-python="`stripe`" pulumi-lang-yaml="`stripe`" pulumi-lang-java="`stripe`" pulumi-lang-hcl="`stripe`">`stripe`</span>.
-        :param pulumi.Input[Union['PersonFutureRequirementsArgs', 'PersonFutureRequirementsArgsDict']] future_requirements: Information about the [upcoming new requirements for this person](https://docs.stripe.com/connect/custom-accounts/future-requirements), including what information needs to be collected, and by when.
+        :param pulumi.Input[Union['PersonFutureRequirementsArgs', 'PersonFutureRequirementsArgsDict', 'outputs.PersonFutureRequirements']] future_requirements: Information about the [upcoming new requirements for this person](https://docs.stripe.com/connect/custom-accounts/future-requirements), including what information needs to be collected, and by when.
         :param pulumi.Input[_builtins.str] gender: The person's gender.
         :param pulumi.Input[_builtins.str] id_number: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
                The person's ID number, as appropriate for their country. For example, a social security number in the U.S., social insurance number in Canada, etc. Instead of the number itself, you can also provide a [PII token provided by Stripe.js](https://docs.stripe.com/js/tokens/create_token?type=pii).
+               
+               Changing this value for the account's representative requires that the account re-accept the [terms of service](https://www.terraform.io/api/accounts/object#account_object-tos_acceptance).
         :param pulumi.Input[_builtins.bool] id_number_provided: Whether the person's <span pulumi-lang-nodejs="`idNumber`" pulumi-lang-dotnet="`IdNumber`" pulumi-lang-go="`idNumber`" pulumi-lang-python="`id_number`" pulumi-lang-yaml="`idNumber`" pulumi-lang-java="`idNumber`" pulumi-lang-hcl="`id_number`">`idNumber`</span> was provided. True if either the full ID number was provided or if only the required part of the ID number was provided (ex. last four of an individual's SSN for the US indicated by <span pulumi-lang-nodejs="`ssnLast4Provided`" pulumi-lang-dotnet="`SsnLast4Provided`" pulumi-lang-go="`ssnLast4Provided`" pulumi-lang-python="`ssn_last_4_provided`" pulumi-lang-yaml="`ssnLast4Provided`" pulumi-lang-java="`ssnLast4Provided`" pulumi-lang-hcl="`ssn_last_4_provided`">`ssnLast4Provided`</span>).
         :param pulumi.Input[_builtins.str] id_number_secondary: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
                The person's secondary ID number, as appropriate for their country, will be used for enhanced verification checks. In Thailand, this would be the laser code found on the back of an ID card. Instead of the number itself, you can also provide a [PII token provided by Stripe.js](https://docs.stripe.com/js/tokens/create_token?type=pii).
+               
+               Changing this value for the account's representative requires that the account re-accept the [terms of service](https://www.terraform.io/api/accounts/object#account_object-tos_acceptance).
         :param pulumi.Input[_builtins.bool] id_number_secondary_provided: Whether the person's <span pulumi-lang-nodejs="`idNumberSecondary`" pulumi-lang-dotnet="`IdNumberSecondary`" pulumi-lang-go="`idNumberSecondary`" pulumi-lang-python="`id_number_secondary`" pulumi-lang-yaml="`idNumberSecondary`" pulumi-lang-java="`idNumberSecondary`" pulumi-lang-hcl="`id_number_secondary`">`idNumberSecondary`</span> was provided.
         :param pulumi.Input[_builtins.str] last_name: The person's last name. Also available for accounts where [controller.requirement_collection](https://www.terraform.io/api/accounts/object#account_object-controller-requirement_collection) is <span pulumi-lang-nodejs="`stripe`" pulumi-lang-dotnet="`Stripe`" pulumi-lang-go="`stripe`" pulumi-lang-python="`stripe`" pulumi-lang-yaml="`stripe`" pulumi-lang-java="`stripe`" pulumi-lang-hcl="`stripe`">`stripe`</span>.
         :param pulumi.Input[_builtins.str] last_name_kana: The Kana variation of the person's last name (Japan only). Also available for accounts where [controller.requirement_collection](https://www.terraform.io/api/accounts/object#account_object-controller-requirement_collection) is <span pulumi-lang-nodejs="`stripe`" pulumi-lang-dotnet="`Stripe`" pulumi-lang-go="`stripe`" pulumi-lang-python="`stripe`" pulumi-lang-yaml="`stripe`" pulumi-lang-java="`stripe`" pulumi-lang-hcl="`stripe`">`stripe`</span>.
@@ -1303,11 +1337,13 @@ class Person(pulumi.CustomResource):
                A [person token](https://docs.stripe.com/connect/account-tokens), used to securely provide details to the person.
         :param pulumi.Input[_builtins.str] phone: The person's phone number.
         :param pulumi.Input[_builtins.str] political_exposure: Indicates if the person or any of their representatives, family members, or other closely related persons, declares that they hold or have held an important public job or function, in any jurisdiction.
-        :param pulumi.Input[Union['PersonRequirementsArgs', 'PersonRequirementsArgsDict']] requirements: Information about the requirements for this person, including what information needs to be collected, and by when.
+        :param pulumi.Input[Union['PersonRequirementsArgs', 'PersonRequirementsArgsDict', 'outputs.PersonRequirements']] requirements: Information about the requirements for this person, including what information needs to be collected, and by when.
         :param pulumi.Input[_builtins.str] ssn_last4: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
                The last four digits of the person's Social Security number (U.S. only).
+               
+               Changing this value for the account's representative requires that the account re-accept the [terms of service](https://www.terraform.io/api/accounts/object#account_object-tos_acceptance).
         :param pulumi.Input[_builtins.bool] ssn_last4_provided: Whether the last four digits of the person's Social Security number have been provided (U.S. only).
-        :param pulumi.Input[Union['PersonUsCfpbDataArgs', 'PersonUsCfpbDataArgsDict']] us_cfpb_data: Demographic data related to the person.
+        :param pulumi.Input[Union['PersonUsCfpbDataArgs', 'PersonUsCfpbDataArgsDict', 'outputs.PersonUsCfpbData']] us_cfpb_data: Demographic data related to the person.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -1350,6 +1386,84 @@ class Person(pulumi.CustomResource):
         __props__.__dict__["us_cfpb_data"] = us_cfpb_data
         __props__.__dict__["verification"] = verification
         return Person(resource_name, opts=opts, __props__=__props__)
+
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            account: pulumi.Input[Optional[_builtins.str]] = None,
+            additional_tos_acceptances: pulumi.Input[Optional[Union['PersonAdditionalTosAcceptancesArgs', 'PersonAdditionalTosAcceptancesArgsDict', 'outputs.PersonAdditionalTosAcceptances']]] = None,
+            address: pulumi.Input[Optional[Union['PersonAddressArgs', 'PersonAddressArgsDict', 'outputs.PersonAddress']]] = None,
+            address_kana: pulumi.Input[Optional[Union['PersonAddressKanaArgs', 'PersonAddressKanaArgsDict', 'outputs.PersonAddressKana']]] = None,
+            address_kanji: pulumi.Input[Optional[Union['PersonAddressKanjiArgs', 'PersonAddressKanjiArgsDict', 'outputs.PersonAddressKanji']]] = None,
+            created: pulumi.Input[Optional[_builtins.float]] = None,
+            dob: pulumi.Input[Optional[Union['PersonDobArgs', 'PersonDobArgsDict', 'outputs.PersonDob']]] = None,
+            documents: pulumi.Input[Optional[Union['PersonDocumentsArgs', 'PersonDocumentsArgsDict', 'outputs.PersonDocuments']]] = None,
+            email: pulumi.Input[Optional[_builtins.str]] = None,
+            first_name: pulumi.Input[Optional[_builtins.str]] = None,
+            first_name_kana: pulumi.Input[Optional[_builtins.str]] = None,
+            first_name_kanji: pulumi.Input[Optional[_builtins.str]] = None,
+            full_name_aliases: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            future_requirements: pulumi.Input[Optional[Union['PersonFutureRequirementsArgs', 'PersonFutureRequirementsArgsDict', 'outputs.PersonFutureRequirements']]] = None,
+            gender: pulumi.Input[Optional[_builtins.str]] = None,
+            id_number: pulumi.Input[Optional[_builtins.str]] = None,
+            id_number_provided: pulumi.Input[Optional[_builtins.bool]] = None,
+            id_number_secondary: pulumi.Input[Optional[_builtins.str]] = None,
+            id_number_secondary_provided: pulumi.Input[Optional[_builtins.bool]] = None,
+            last_name: pulumi.Input[Optional[_builtins.str]] = None,
+            last_name_kana: pulumi.Input[Optional[_builtins.str]] = None,
+            last_name_kanji: pulumi.Input[Optional[_builtins.str]] = None,
+            maiden_name: pulumi.Input[Optional[_builtins.str]] = None,
+            metadata: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+            nationality: pulumi.Input[Optional[_builtins.str]] = None,
+            object: pulumi.Input[Optional[_builtins.str]] = None,
+            person_token: pulumi.Input[Optional[_builtins.str]] = None,
+            phone: pulumi.Input[Optional[_builtins.str]] = None,
+            political_exposure: pulumi.Input[Optional[_builtins.str]] = None,
+            registered_address: pulumi.Input[Optional[Union['PersonRegisteredAddressArgs', 'PersonRegisteredAddressArgsDict', 'outputs.PersonRegisteredAddress']]] = None,
+            relationship: pulumi.Input[Optional[Union['PersonRelationshipArgs', 'PersonRelationshipArgsDict', 'outputs.PersonRelationship']]] = None,
+            requirements: pulumi.Input[Optional[Union['PersonRequirementsArgs', 'PersonRequirementsArgsDict', 'outputs.PersonRequirements']]] = None,
+            ssn_last4: pulumi.Input[Optional[_builtins.str]] = None,
+            ssn_last4_provided: pulumi.Input[Optional[_builtins.bool]] = None,
+            us_cfpb_data: pulumi.Input[Optional[Union['PersonUsCfpbDataArgs', 'PersonUsCfpbDataArgsDict', 'outputs.PersonUsCfpbData']]] = None,
+            verification: pulumi.Input[Optional[Union['PersonVerificationArgs', 'PersonVerificationArgsDict', 'outputs.PersonVerification']]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["account"] = account
+        __props__["additionalTosAcceptances"] = additional_tos_acceptances
+        __props__["address"] = address
+        __props__["addressKana"] = address_kana
+        __props__["addressKanji"] = address_kanji
+        __props__["created"] = created
+        __props__["dob"] = dob
+        __props__["documents"] = documents
+        __props__["email"] = email
+        __props__["firstName"] = first_name
+        __props__["firstNameKana"] = first_name_kana
+        __props__["firstNameKanji"] = first_name_kanji
+        __props__["fullNameAliases"] = full_name_aliases
+        __props__["futureRequirements"] = future_requirements
+        __props__["gender"] = gender
+        __props__["idNumber"] = id_number
+        __props__["idNumberProvided"] = id_number_provided
+        __props__["idNumberSecondary"] = id_number_secondary
+        __props__["idNumberSecondaryProvided"] = id_number_secondary_provided
+        __props__["lastName"] = last_name
+        __props__["lastNameKana"] = last_name_kana
+        __props__["lastNameKanji"] = last_name_kanji
+        __props__["maidenName"] = maiden_name
+        __props__["metadata"] = metadata
+        __props__["nationality"] = nationality
+        __props__["object"] = object
+        __props__["personToken"] = person_token
+        __props__["phone"] = phone
+        __props__["politicalExposure"] = political_exposure
+        __props__["registeredAddress"] = registered_address
+        __props__["relationship"] = relationship
+        __props__["requirements"] = requirements
+        __props__["ssnLast4"] = ssn_last4
+        __props__["ssnLast4Provided"] = ssn_last4_provided
+        __props__["usCfpbData"] = us_cfpb_data
+        __props__["verification"] = verification
+        return pulumi.runtime.exists_resource(None, 'stripe:index/person:Person', id, __props__, opts or pulumi.ResourceOptions(), package_ref=_utilities.get_package())
 
     @_builtins.property
     @pulumi.getter
@@ -1469,6 +1583,8 @@ class Person(pulumi.CustomResource):
         """
         **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
         The person's ID number, as appropriate for their country. For example, a social security number in the U.S., social insurance number in Canada, etc. Instead of the number itself, you can also provide a [PII token provided by Stripe.js](https://docs.stripe.com/js/tokens/create_token?type=pii).
+
+        Changing this value for the account's representative requires that the account re-accept the [terms of service](https://www.terraform.io/api/accounts/object#account_object-tos_acceptance).
         """
         return pulumi.get(self, "id_number")
 
@@ -1486,6 +1602,8 @@ class Person(pulumi.CustomResource):
         """
         **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
         The person's secondary ID number, as appropriate for their country, will be used for enhanced verification checks. In Thailand, this would be the laser code found on the back of an ID card. Instead of the number itself, you can also provide a [PII token provided by Stripe.js](https://docs.stripe.com/js/tokens/create_token?type=pii).
+
+        Changing this value for the account's representative requires that the account re-accept the [terms of service](https://www.terraform.io/api/accounts/object#account_object-tos_acceptance).
         """
         return pulumi.get(self, "id_number_secondary")
 
@@ -1602,6 +1720,8 @@ class Person(pulumi.CustomResource):
         """
         **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
         The last four digits of the person's Social Security number (U.S. only).
+
+        Changing this value for the account's representative requires that the account re-accept the [terms of service](https://www.terraform.io/api/accounts/object#account_object-tos_acceptance).
         """
         return pulumi.get(self, "ssn_last4")
 

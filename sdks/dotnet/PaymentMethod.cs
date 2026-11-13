@@ -30,6 +30,12 @@ namespace Pulumi.Stripe
         [Output("billingDetails")]
         public Output<Outputs.PaymentMethodBillingDetails> BillingDetails { get; private set; } = null!;
 
+        [Output("bizum")]
+        public Output<Outputs.PaymentMethodBizum> Bizum { get; private set; } = null!;
+
+        [Output("blik")]
+        public Output<Outputs.PaymentMethodBlik> Blik { get; private set; } = null!;
+
         [Output("boleto")]
         public Output<Outputs.PaymentMethodBoleto> Boleto { get; private set; } = null!;
 
@@ -114,6 +120,9 @@ namespace Pulumi.Stripe
 
         [Output("payto")]
         public Output<Outputs.PaymentMethodPayto> Payto { get; private set; } = null!;
+
+        [Output("pix")]
+        public Output<Outputs.PaymentMethodPix> Pix { get; private set; } = null!;
 
         /// <summary>
         /// Options to configure Radar. See [Radar Session](https://docs.stripe.com/radar/radar-session) for more information.
@@ -207,6 +216,12 @@ namespace Pulumi.Stripe
         [Input("billingDetails")]
         public Input<Inputs.PaymentMethodBillingDetailsArgs>? BillingDetails { get; set; }
 
+        [Input("bizum")]
+        public Input<Inputs.PaymentMethodBizumArgs>? Bizum { get; set; }
+
+        [Input("blik")]
+        public Input<Inputs.PaymentMethodBlikArgs>? Blik { get; set; }
+
         [Input("boleto")]
         public Input<Inputs.PaymentMethodBoletoArgs>? Boleto { get; set; }
 
@@ -287,6 +302,9 @@ namespace Pulumi.Stripe
         [Input("payto")]
         public Input<Inputs.PaymentMethodPaytoArgs>? Payto { get; set; }
 
+        [Input("pix")]
+        public Input<Inputs.PaymentMethodPixArgs>? Pix { get; set; }
+
         /// <summary>
         /// Options to configure Radar. See [Radar Session](https://docs.stripe.com/radar/radar-session) for more information.
         /// </summary>
@@ -336,6 +354,12 @@ namespace Pulumi.Stripe
 
         [Input("billingDetails")]
         public Input<Inputs.PaymentMethodBillingDetailsGetArgs>? BillingDetails { get; set; }
+
+        [Input("bizum")]
+        public Input<Inputs.PaymentMethodBizumGetArgs>? Bizum { get; set; }
+
+        [Input("blik")]
+        public Input<Inputs.PaymentMethodBlikGetArgs>? Blik { get; set; }
 
         [Input("boleto")]
         public Input<Inputs.PaymentMethodBoletoGetArgs>? Boleto { get; set; }
@@ -437,6 +461,9 @@ namespace Pulumi.Stripe
 
         [Input("payto")]
         public Input<Inputs.PaymentMethodPaytoGetArgs>? Payto { get; set; }
+
+        [Input("pix")]
+        public Input<Inputs.PaymentMethodPixGetArgs>? Pix { get; set; }
 
         /// <summary>
         /// Options to configure Radar. See [Radar Session](https://docs.stripe.com/radar/radar-session) for more information.

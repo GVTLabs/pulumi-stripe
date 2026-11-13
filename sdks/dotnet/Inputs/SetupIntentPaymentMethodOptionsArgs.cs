@@ -18,6 +18,9 @@ namespace Pulumi.Stripe.Inputs
         [Input("bacsDebit")]
         public Input<Inputs.SetupIntentPaymentMethodOptionsBacsDebitArgs>? BacsDebit { get; set; }
 
+        [Input("blik")]
+        public Input<Inputs.SetupIntentPaymentMethodOptionsBlikArgs>? Blik { get; set; }
+
         [Input("card")]
         public Input<Inputs.SetupIntentPaymentMethodOptionsCardArgs>? Card { get; set; }
 

@@ -25,6 +25,7 @@ import com.pulumi.stripe.outputs.InvoicePaymentSettings;
 import com.pulumi.stripe.outputs.InvoiceRendering;
 import com.pulumi.stripe.outputs.InvoiceShippingCost;
 import com.pulumi.stripe.outputs.InvoiceShippingDetails;
+import com.pulumi.stripe.outputs.InvoiceStatusDetails;
 import com.pulumi.stripe.outputs.InvoiceStatusTransitions;
 import com.pulumi.stripe.outputs.InvoiceThresholdReason;
 import com.pulumi.stripe.outputs.InvoiceTotalDiscountAmount;
@@ -880,14 +881,14 @@ public class Invoice extends com.pulumi.resources.CustomResource {
         return this.receiptNumber;
     }
     /**
-     * The rendering-related settings that control how the invoice is displayed on customer-facing surfaces such as PDF and Hosted Invoice Page.
+     * The rendering-related settings that control how invoices render in customer-facing interfaces such as the PDF or hosted invoice page.
      * 
      */
     @Export(name="rendering", refs={InvoiceRendering.class}, tree="[0]")
     private Output<InvoiceRendering> rendering;
 
     /**
-     * @return The rendering-related settings that control how the invoice is displayed on customer-facing surfaces such as PDF and Hosted Invoice Page.
+     * @return The rendering-related settings that control how invoices render in customer-facing interfaces such as the PDF or hosted invoice page.
      * 
      */
     public Output<InvoiceRendering> rendering() {
@@ -962,6 +963,12 @@ public class Invoice extends com.pulumi.resources.CustomResource {
      */
     public Output<String> status() {
         return this.status;
+    }
+    @Export(name="statusDetails", refs={InvoiceStatusDetails.class}, tree="[0]")
+    private Output<InvoiceStatusDetails> statusDetails;
+
+    public Output<InvoiceStatusDetails> statusDetails() {
+        return this.statusDetails;
     }
     @Export(name="statusTransitions", refs={InvoiceStatusTransitions.class}, tree="[0]")
     private Output<InvoiceStatusTransitions> statusTransitions;

@@ -26,14 +26,14 @@ public final class CustomerArgs extends com.pulumi.resources.ResourceArgs {
     public static final CustomerArgs Empty = new CustomerArgs();
 
     /**
-     * The customer&#39;s address.
+     * The customer&#39;s billing address.
      * 
      */
     @Import(name="addresses")
     private @Nullable Output<List<CustomerAddressArgs>> addresses;
 
     /**
-     * @return The customer&#39;s address.
+     * @return The customer&#39;s billing address.
      * 
      */
     public Optional<Output<List<CustomerAddressArgs>>> addresses() {
@@ -397,7 +397,7 @@ public final class CustomerArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param addresses The customer&#39;s address.
+         * @param addresses The customer&#39;s billing address.
          * 
          * @return builder
          * 
@@ -408,7 +408,7 @@ public final class CustomerArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param addresses The customer&#39;s address.
+         * @param addresses The customer&#39;s billing address.
          * 
          * @return builder
          * 
@@ -418,7 +418,7 @@ public final class CustomerArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param addresses The customer&#39;s address.
+         * @param addresses The customer&#39;s billing address.
          * 
          * @return builder
          * 

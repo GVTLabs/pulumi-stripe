@@ -15,7 +15,7 @@ namespace Pulumi.Stripe.Outputs
     {
         public readonly Outputs.TaxRegistrationCountryOptionsEsStandard? Standard;
         /// <summary>
-        /// Type of registration in an EU country.
+        /// Type of registration in ES.
         /// </summary>
         public readonly string Type;
 

@@ -80,6 +80,11 @@ public final class PaymentIntentPaymentMethodOptionsCard {
      */
     private @Nullable Boolean requireCvcRecollection;
     /**
+     * @return Set to indicate the future transaction type usage for the card being set up.
+     * 
+     */
+    private @Nullable String setupCredentialUsage;
+    /**
      * @return Indicates that you intend to make future payments with this PaymentIntent&#39;s payment method.
      * 
      * If you provide a Customer with the PaymentIntent, you can use this parameter to [attach the payment method](https://www.terraform.io/payments/save-during-payment) to the Customer after the PaymentIntent is confirmed and the customer completes any required actions. If you don&#39;t provide a Customer, you can still [attach](https://www.terraform.io/api/payment_methods/attach) the payment method to a Customer after the transaction completes.
@@ -100,6 +105,11 @@ public final class PaymentIntentPaymentMethodOptionsCard {
      * 
      */
     private @Nullable String statementDescriptorSuffixKanji;
+    /**
+     * @return Selected usage to indicate the transaction type of the off-session payment.
+     * 
+     */
+    private @Nullable String storedCredentialUsage;
     /**
      * @return If 3D Secure authentication was performed with a third-party provider,
      * the authentication details to use for this payment.
@@ -197,6 +207,13 @@ public final class PaymentIntentPaymentMethodOptionsCard {
         return Optional.ofNullable(this.requireCvcRecollection);
     }
     /**
+     * @return Set to indicate the future transaction type usage for the card being set up.
+     * 
+     */
+    public Optional<String> setupCredentialUsage() {
+        return Optional.ofNullable(this.setupCredentialUsage);
+    }
+    /**
      * @return Indicates that you intend to make future payments with this PaymentIntent&#39;s payment method.
      * 
      * If you provide a Customer with the PaymentIntent, you can use this parameter to [attach the payment method](https://www.terraform.io/payments/save-during-payment) to the Customer after the PaymentIntent is confirmed and the customer completes any required actions. If you don&#39;t provide a Customer, you can still [attach](https://www.terraform.io/api/payment_methods/attach) the payment method to a Customer after the transaction completes.
@@ -222,6 +239,13 @@ public final class PaymentIntentPaymentMethodOptionsCard {
      */
     public Optional<String> statementDescriptorSuffixKanji() {
         return Optional.ofNullable(this.statementDescriptorSuffixKanji);
+    }
+    /**
+     * @return Selected usage to indicate the transaction type of the off-session payment.
+     * 
+     */
+    public Optional<String> storedCredentialUsage() {
+        return Optional.ofNullable(this.storedCredentialUsage);
     }
     /**
      * @return If 3D Secure authentication was performed with a third-party provider,
@@ -253,9 +277,11 @@ public final class PaymentIntentPaymentMethodOptionsCard {
         private @Nullable String requestOvercapture;
         private @Nullable String requestThreeDSecure;
         private @Nullable Boolean requireCvcRecollection;
+        private @Nullable String setupCredentialUsage;
         private @Nullable String setupFutureUsage;
         private @Nullable String statementDescriptorSuffixKana;
         private @Nullable String statementDescriptorSuffixKanji;
+        private @Nullable String storedCredentialUsage;
         private @Nullable PaymentIntentPaymentMethodOptionsCardThreeDSecure threeDSecure;
         public Builder() {}
         public Builder(PaymentIntentPaymentMethodOptionsCard defaults) {
@@ -272,9 +298,11 @@ public final class PaymentIntentPaymentMethodOptionsCard {
     	      this.requestOvercapture = defaults.requestOvercapture;
     	      this.requestThreeDSecure = defaults.requestThreeDSecure;
     	      this.requireCvcRecollection = defaults.requireCvcRecollection;
+    	      this.setupCredentialUsage = defaults.setupCredentialUsage;
     	      this.setupFutureUsage = defaults.setupFutureUsage;
     	      this.statementDescriptorSuffixKana = defaults.statementDescriptorSuffixKana;
     	      this.statementDescriptorSuffixKanji = defaults.statementDescriptorSuffixKanji;
+    	      this.storedCredentialUsage = defaults.storedCredentialUsage;
     	      this.threeDSecure = defaults.threeDSecure;
         }
 
@@ -351,6 +379,12 @@ public final class PaymentIntentPaymentMethodOptionsCard {
             return this;
         }
         @CustomType.Setter
+        public Builder setupCredentialUsage(@Nullable String setupCredentialUsage) {
+
+            this.setupCredentialUsage = setupCredentialUsage;
+            return this;
+        }
+        @CustomType.Setter
         public Builder setupFutureUsage(@Nullable String setupFutureUsage) {
 
             this.setupFutureUsage = setupFutureUsage;
@@ -366,6 +400,12 @@ public final class PaymentIntentPaymentMethodOptionsCard {
         public Builder statementDescriptorSuffixKanji(@Nullable String statementDescriptorSuffixKanji) {
 
             this.statementDescriptorSuffixKanji = statementDescriptorSuffixKanji;
+            return this;
+        }
+        @CustomType.Setter
+        public Builder storedCredentialUsage(@Nullable String storedCredentialUsage) {
+
+            this.storedCredentialUsage = storedCredentialUsage;
             return this;
         }
         @CustomType.Setter
@@ -388,9 +428,11 @@ public final class PaymentIntentPaymentMethodOptionsCard {
             _resultValue.requestOvercapture = requestOvercapture;
             _resultValue.requestThreeDSecure = requestThreeDSecure;
             _resultValue.requireCvcRecollection = requireCvcRecollection;
+            _resultValue.setupCredentialUsage = setupCredentialUsage;
             _resultValue.setupFutureUsage = setupFutureUsage;
             _resultValue.statementDescriptorSuffixKana = statementDescriptorSuffixKana;
             _resultValue.statementDescriptorSuffixKanji = statementDescriptorSuffixKanji;
+            _resultValue.storedCredentialUsage = storedCredentialUsage;
             _resultValue.threeDSecure = threeDSecure;
             return _resultValue;
         }

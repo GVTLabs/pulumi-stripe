@@ -5,6 +5,7 @@ package com.pulumi.stripe.outputs;
 
 import com.pulumi.core.annotations.CustomType;
 import com.pulumi.stripe.outputs.SubscriptionItemBillingThresholds;
+import com.pulumi.stripe.outputs.SubscriptionItemCurrentTrial;
 import com.pulumi.stripe.outputs.SubscriptionItemDiscount;
 import com.pulumi.stripe.outputs.SubscriptionItemPriceData;
 import java.lang.Double;
@@ -22,6 +23,11 @@ public final class SubscriptionItem {
      * 
      */
     private @Nullable SubscriptionItemBillingThresholds billingThresholds;
+    /**
+     * @return The trial offer to apply to this subscription item.
+     * 
+     */
+    private @Nullable SubscriptionItemCurrentTrial currentTrial;
     /**
      * @return The coupons to redeem into discounts for the subscription item.
      * 
@@ -65,6 +71,13 @@ public final class SubscriptionItem {
      */
     public Optional<SubscriptionItemBillingThresholds> billingThresholds() {
         return Optional.ofNullable(this.billingThresholds);
+    }
+    /**
+     * @return The trial offer to apply to this subscription item.
+     * 
+     */
+    public Optional<SubscriptionItemCurrentTrial> currentTrial() {
+        return Optional.ofNullable(this.currentTrial);
     }
     /**
      * @return The coupons to redeem into discounts for the subscription item.
@@ -126,6 +139,7 @@ public final class SubscriptionItem {
     @CustomType.Builder
     public static final class Builder {
         private @Nullable SubscriptionItemBillingThresholds billingThresholds;
+        private @Nullable SubscriptionItemCurrentTrial currentTrial;
         private @Nullable List<SubscriptionItemDiscount> discounts;
         private @Nullable String id;
         private @Nullable Map<String,String> metadata;
@@ -137,6 +151,7 @@ public final class SubscriptionItem {
         public Builder(SubscriptionItem defaults) {
     	      Objects.requireNonNull(defaults);
     	      this.billingThresholds = defaults.billingThresholds;
+    	      this.currentTrial = defaults.currentTrial;
     	      this.discounts = defaults.discounts;
     	      this.id = defaults.id;
     	      this.metadata = defaults.metadata;
@@ -150,6 +165,12 @@ public final class SubscriptionItem {
         public Builder billingThresholds(@Nullable SubscriptionItemBillingThresholds billingThresholds) {
 
             this.billingThresholds = billingThresholds;
+            return this;
+        }
+        @CustomType.Setter
+        public Builder currentTrial(@Nullable SubscriptionItemCurrentTrial currentTrial) {
+
+            this.currentTrial = currentTrial;
             return this;
         }
         @CustomType.Setter
@@ -203,6 +224,7 @@ public final class SubscriptionItem {
         public SubscriptionItem build() {
             final var _resultValue = new SubscriptionItem();
             _resultValue.billingThresholds = billingThresholds;
+            _resultValue.currentTrial = currentTrial;
             _resultValue.discounts = discounts;
             _resultValue.id = id;
             _resultValue.metadata = metadata;

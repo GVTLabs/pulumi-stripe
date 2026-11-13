@@ -16,14 +16,14 @@ public final class V2CoreEventDestinationStatusDetailsArgs extends com.pulumi.re
     public static final V2CoreEventDestinationStatusDetailsArgs Empty = new V2CoreEventDestinationStatusDetailsArgs();
 
     /**
-     * Details about why the event destination has been disabled.
+     * Present when the destination was disabled; identifies the cause, time, and provider-side object involved when available.
      * 
      */
     @Import(name="disabled")
     private @Nullable Output<V2CoreEventDestinationStatusDetailsDisabledArgs> disabled;
 
     /**
-     * @return Details about why the event destination has been disabled.
+     * @return Present when the destination was disabled; identifies the cause, time, and provider-side object involved when available.
      * 
      */
     public Optional<Output<V2CoreEventDestinationStatusDetailsDisabledArgs>> disabled() {
@@ -55,7 +55,7 @@ public final class V2CoreEventDestinationStatusDetailsArgs extends com.pulumi.re
         }
 
         /**
-         * @param disabled Details about why the event destination has been disabled.
+         * @param disabled Present when the destination was disabled; identifies the cause, time, and provider-side object involved when available.
          * 
          * @return builder
          * 
@@ -66,7 +66,7 @@ public final class V2CoreEventDestinationStatusDetailsArgs extends com.pulumi.re
         }
 
         /**
-         * @param disabled Details about why the event destination has been disabled.
+         * @param disabled Present when the destination was disabled; identifies the cause, time, and provider-side object involved when available.
          * 
          * @return builder
          * 

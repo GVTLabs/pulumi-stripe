@@ -21,7 +21,8 @@ type ProductFeature struct {
 	// If the object exists in live mode, the value is <span pulumi-lang-nodejs="`true`" pulumi-lang-dotnet="`True`" pulumi-lang-go="`true`" pulumi-lang-python="`true`" pulumi-lang-yaml="`true`" pulumi-lang-java="`true`" pulumi-lang-hcl="`true`">`true`</span>. If the object exists in test mode, the value is <span pulumi-lang-nodejs="`false`" pulumi-lang-dotnet="`False`" pulumi-lang-go="`false`" pulumi-lang-python="`false`" pulumi-lang-yaml="`false`" pulumi-lang-java="`false`" pulumi-lang-hcl="`false`">`false`</span>.
 	Livemode pulumi.BoolOutput `pulumi:"livemode"`
 	// String representing the object's type. Objects of the same type share the same value.
-	Object  pulumi.StringOutput `pulumi:"object"`
+	Object pulumi.StringOutput `pulumi:"object"`
+	// Unique identifier for the object.
 	Product pulumi.StringOutput `pulumi:"product"`
 }
 
@@ -75,7 +76,8 @@ type productFeatureState struct {
 	// If the object exists in live mode, the value is <span pulumi-lang-nodejs="`true`" pulumi-lang-dotnet="`True`" pulumi-lang-go="`true`" pulumi-lang-python="`true`" pulumi-lang-yaml="`true`" pulumi-lang-java="`true`" pulumi-lang-hcl="`true`">`true`</span>. If the object exists in test mode, the value is <span pulumi-lang-nodejs="`false`" pulumi-lang-dotnet="`False`" pulumi-lang-go="`false`" pulumi-lang-python="`false`" pulumi-lang-yaml="`false`" pulumi-lang-java="`false`" pulumi-lang-hcl="`false`">`false`</span>.
 	Livemode *bool `pulumi:"livemode"`
 	// String representing the object's type. Objects of the same type share the same value.
-	Object  *string `pulumi:"object"`
+	Object *string `pulumi:"object"`
+	// Unique identifier for the object.
 	Product *string `pulumi:"product"`
 }
 
@@ -86,7 +88,8 @@ type ProductFeatureState struct {
 	// If the object exists in live mode, the value is <span pulumi-lang-nodejs="`true`" pulumi-lang-dotnet="`True`" pulumi-lang-go="`true`" pulumi-lang-python="`true`" pulumi-lang-yaml="`true`" pulumi-lang-java="`true`" pulumi-lang-hcl="`true`">`true`</span>. If the object exists in test mode, the value is <span pulumi-lang-nodejs="`false`" pulumi-lang-dotnet="`False`" pulumi-lang-go="`false`" pulumi-lang-python="`false`" pulumi-lang-yaml="`false`" pulumi-lang-java="`false`" pulumi-lang-hcl="`false`">`false`</span>.
 	Livemode pulumi.BoolPtrInput
 	// String representing the object's type. Objects of the same type share the same value.
-	Object  pulumi.StringPtrInput
+	Object pulumi.StringPtrInput
+	// Unique identifier for the object.
 	Product pulumi.StringPtrInput
 }
 
@@ -94,11 +97,24 @@ func (ProductFeatureState) ElementType() reflect.Type {
 	return reflect.TypeOf((*productFeatureState)(nil)).Elem()
 }
 
+// ProductFeatureExists checks whether an existing ProductFeature resource with the given ID exists.
+func ProductFeatureExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *ProductFeatureState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	ref, err := internal.PkgGetPackageRef(ctx)
+	if err != nil {
+		return pulumi.Bool(false).ToBoolOutput().ApplyT(func(bool) (bool, error) {
+			return false, err
+		}).(pulumi.BoolOutput)
+	}
+	return ctx.ExistsResource("stripe:index/productFeature:ProductFeature", id, state, ref, opts...)
+}
+
 type productFeatureArgs struct {
 	// A feature represents a monetizable ability or functionality in your system.
 	// Features can be assigned to products, and when those products are purchased, Stripe will create an entitlement to the feature for the purchasing customer.
 	EntitlementFeature string `pulumi:"entitlementFeature"`
-	Product            string `pulumi:"product"`
+	// Unique identifier for the object.
+	Product string `pulumi:"product"`
 }
 
 // The set of arguments for constructing a ProductFeature resource.
@@ -106,7 +122,8 @@ type ProductFeatureArgs struct {
 	// A feature represents a monetizable ability or functionality in your system.
 	// Features can be assigned to products, and when those products are purchased, Stripe will create an entitlement to the feature for the purchasing customer.
 	EntitlementFeature pulumi.StringInput
-	Product            pulumi.StringInput
+	// Unique identifier for the object.
+	Product pulumi.StringInput
 }
 
 func (ProductFeatureArgs) ElementType() reflect.Type {
@@ -162,6 +179,7 @@ func (o ProductFeatureOutput) Object() pulumi.StringOutput {
 	return o.ApplyT(func(v *ProductFeature) pulumi.StringOutput { return v.Object }).(pulumi.StringOutput)
 }
 
+// Unique identifier for the object.
 func (o ProductFeatureOutput) Product() pulumi.StringOutput {
 	return o.ApplyT(func(v *ProductFeature) pulumi.StringOutput { return v.Product }).(pulumi.StringOutput)
 }

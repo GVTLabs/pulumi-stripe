@@ -7,6 +7,7 @@ import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
 import com.pulumi.stripe.inputs.InvoicePaymentSettingsPaymentMethodOptionsAcssDebitArgs;
 import com.pulumi.stripe.inputs.InvoicePaymentSettingsPaymentMethodOptionsBancontactArgs;
+import com.pulumi.stripe.inputs.InvoicePaymentSettingsPaymentMethodOptionsBillieArgs;
 import com.pulumi.stripe.inputs.InvoicePaymentSettingsPaymentMethodOptionsCardArgs;
 import com.pulumi.stripe.inputs.InvoicePaymentSettingsPaymentMethodOptionsCustomerBalanceArgs;
 import com.pulumi.stripe.inputs.InvoicePaymentSettingsPaymentMethodOptionsPaytoArgs;
@@ -50,6 +51,21 @@ public final class InvoicePaymentSettingsPaymentMethodOptionsArgs extends com.pu
      */
     public Optional<Output<InvoicePaymentSettingsPaymentMethodOptionsBancontactArgs>> bancontact() {
         return Optional.ofNullable(this.bancontact);
+    }
+
+    /**
+     * If paying by &lt;span pulumi-lang-nodejs=&#34;`billie`&#34; pulumi-lang-dotnet=&#34;`Billie`&#34; pulumi-lang-go=&#34;`billie`&#34; pulumi-lang-python=&#34;`billie`&#34; pulumi-lang-yaml=&#34;`billie`&#34; pulumi-lang-java=&#34;`billie`&#34; pulumi-lang-hcl=&#34;`billie`&#34;&gt;`billie`&lt;/span&gt;, this sub-hash contains details about the Billie payment method options to pass to the invoice’s PaymentIntent.
+     * 
+     */
+    @Import(name="billie")
+    private @Nullable Output<InvoicePaymentSettingsPaymentMethodOptionsBillieArgs> billie;
+
+    /**
+     * @return If paying by &lt;span pulumi-lang-nodejs=&#34;`billie`&#34; pulumi-lang-dotnet=&#34;`Billie`&#34; pulumi-lang-go=&#34;`billie`&#34; pulumi-lang-python=&#34;`billie`&#34; pulumi-lang-yaml=&#34;`billie`&#34; pulumi-lang-java=&#34;`billie`&#34; pulumi-lang-hcl=&#34;`billie`&#34;&gt;`billie`&lt;/span&gt;, this sub-hash contains details about the Billie payment method options to pass to the invoice’s PaymentIntent.
+     * 
+     */
+    public Optional<Output<InvoicePaymentSettingsPaymentMethodOptionsBillieArgs>> billie() {
+        return Optional.ofNullable(this.billie);
     }
 
     /**
@@ -147,6 +163,7 @@ public final class InvoicePaymentSettingsPaymentMethodOptionsArgs extends com.pu
     private InvoicePaymentSettingsPaymentMethodOptionsArgs(InvoicePaymentSettingsPaymentMethodOptionsArgs $) {
         this.acssDebit = $.acssDebit;
         this.bancontact = $.bancontact;
+        this.billie = $.billie;
         this.card = $.card;
         this.customerBalance = $.customerBalance;
         this.payto = $.payto;
@@ -213,6 +230,27 @@ public final class InvoicePaymentSettingsPaymentMethodOptionsArgs extends com.pu
          */
         public Builder bancontact(InvoicePaymentSettingsPaymentMethodOptionsBancontactArgs bancontact) {
             return bancontact(Output.of(bancontact));
+        }
+
+        /**
+         * @param billie If paying by &lt;span pulumi-lang-nodejs=&#34;`billie`&#34; pulumi-lang-dotnet=&#34;`Billie`&#34; pulumi-lang-go=&#34;`billie`&#34; pulumi-lang-python=&#34;`billie`&#34; pulumi-lang-yaml=&#34;`billie`&#34; pulumi-lang-java=&#34;`billie`&#34; pulumi-lang-hcl=&#34;`billie`&#34;&gt;`billie`&lt;/span&gt;, this sub-hash contains details about the Billie payment method options to pass to the invoice’s PaymentIntent.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder billie(@Nullable Output<InvoicePaymentSettingsPaymentMethodOptionsBillieArgs> billie) {
+            $.billie = billie;
+            return this;
+        }
+
+        /**
+         * @param billie If paying by &lt;span pulumi-lang-nodejs=&#34;`billie`&#34; pulumi-lang-dotnet=&#34;`Billie`&#34; pulumi-lang-go=&#34;`billie`&#34; pulumi-lang-python=&#34;`billie`&#34; pulumi-lang-yaml=&#34;`billie`&#34; pulumi-lang-java=&#34;`billie`&#34; pulumi-lang-hcl=&#34;`billie`&#34;&gt;`billie`&lt;/span&gt;, this sub-hash contains details about the Billie payment method options to pass to the invoice’s PaymentIntent.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder billie(InvoicePaymentSettingsPaymentMethodOptionsBillieArgs billie) {
+            return billie(Output.of(billie));
         }
 
         /**

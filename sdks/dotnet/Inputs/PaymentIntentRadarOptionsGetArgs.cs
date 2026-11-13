@@ -12,6 +12,23 @@ namespace Pulumi.Stripe.Inputs
 
     public sealed class PaymentIntentRadarOptionsGetArgs : global::Pulumi.ResourceArgs
     {
+        [Input("referrer")]
+        private Input<string>? _referrer;
+
+        /// <summary>
+        /// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        /// The referrer URL of the current checkout session. You can use this to supply session-level referrer data when a Radar Session isn't available or doesn't contain a referrer.
+        /// </summary>
+        public Input<string>? Referrer
+        {
+            get => _referrer;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _referrer = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
+
         [Input("session")]
         private Input<string>? _session;
 

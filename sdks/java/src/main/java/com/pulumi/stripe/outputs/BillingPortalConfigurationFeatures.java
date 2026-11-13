@@ -8,6 +8,7 @@ import com.pulumi.stripe.outputs.BillingPortalConfigurationFeaturesCustomerUpdat
 import com.pulumi.stripe.outputs.BillingPortalConfigurationFeaturesInvoiceHistory;
 import com.pulumi.stripe.outputs.BillingPortalConfigurationFeaturesPaymentMethodUpdate;
 import com.pulumi.stripe.outputs.BillingPortalConfigurationFeaturesSubscriptionCancel;
+import com.pulumi.stripe.outputs.BillingPortalConfigurationFeaturesSubscriptionPause;
 import com.pulumi.stripe.outputs.BillingPortalConfigurationFeaturesSubscriptionUpdate;
 import java.util.Objects;
 import java.util.Optional;
@@ -19,6 +20,7 @@ public final class BillingPortalConfigurationFeatures {
     private @Nullable BillingPortalConfigurationFeaturesInvoiceHistory invoiceHistory;
     private @Nullable BillingPortalConfigurationFeaturesPaymentMethodUpdate paymentMethodUpdate;
     private @Nullable BillingPortalConfigurationFeaturesSubscriptionCancel subscriptionCancel;
+    private @Nullable BillingPortalConfigurationFeaturesSubscriptionPause subscriptionPause;
     private @Nullable BillingPortalConfigurationFeaturesSubscriptionUpdate subscriptionUpdate;
 
     private BillingPortalConfigurationFeatures() {}
@@ -33,6 +35,9 @@ public final class BillingPortalConfigurationFeatures {
     }
     public Optional<BillingPortalConfigurationFeaturesSubscriptionCancel> subscriptionCancel() {
         return Optional.ofNullable(this.subscriptionCancel);
+    }
+    public Optional<BillingPortalConfigurationFeaturesSubscriptionPause> subscriptionPause() {
+        return Optional.ofNullable(this.subscriptionPause);
     }
     public Optional<BillingPortalConfigurationFeaturesSubscriptionUpdate> subscriptionUpdate() {
         return Optional.ofNullable(this.subscriptionUpdate);
@@ -51,6 +56,7 @@ public final class BillingPortalConfigurationFeatures {
         private @Nullable BillingPortalConfigurationFeaturesInvoiceHistory invoiceHistory;
         private @Nullable BillingPortalConfigurationFeaturesPaymentMethodUpdate paymentMethodUpdate;
         private @Nullable BillingPortalConfigurationFeaturesSubscriptionCancel subscriptionCancel;
+        private @Nullable BillingPortalConfigurationFeaturesSubscriptionPause subscriptionPause;
         private @Nullable BillingPortalConfigurationFeaturesSubscriptionUpdate subscriptionUpdate;
         public Builder() {}
         public Builder(BillingPortalConfigurationFeatures defaults) {
@@ -59,6 +65,7 @@ public final class BillingPortalConfigurationFeatures {
     	      this.invoiceHistory = defaults.invoiceHistory;
     	      this.paymentMethodUpdate = defaults.paymentMethodUpdate;
     	      this.subscriptionCancel = defaults.subscriptionCancel;
+    	      this.subscriptionPause = defaults.subscriptionPause;
     	      this.subscriptionUpdate = defaults.subscriptionUpdate;
         }
 
@@ -87,6 +94,12 @@ public final class BillingPortalConfigurationFeatures {
             return this;
         }
         @CustomType.Setter
+        public Builder subscriptionPause(@Nullable BillingPortalConfigurationFeaturesSubscriptionPause subscriptionPause) {
+
+            this.subscriptionPause = subscriptionPause;
+            return this;
+        }
+        @CustomType.Setter
         public Builder subscriptionUpdate(@Nullable BillingPortalConfigurationFeaturesSubscriptionUpdate subscriptionUpdate) {
 
             this.subscriptionUpdate = subscriptionUpdate;
@@ -98,6 +111,7 @@ public final class BillingPortalConfigurationFeatures {
             _resultValue.invoiceHistory = invoiceHistory;
             _resultValue.paymentMethodUpdate = paymentMethodUpdate;
             _resultValue.subscriptionCancel = subscriptionCancel;
+            _resultValue.subscriptionPause = subscriptionPause;
             _resultValue.subscriptionUpdate = subscriptionUpdate;
             return _resultValue;
         }

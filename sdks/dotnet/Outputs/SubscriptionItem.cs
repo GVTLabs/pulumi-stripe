@@ -18,6 +18,10 @@ namespace Pulumi.Stripe.Outputs
         /// </summary>
         public readonly Outputs.SubscriptionItemBillingThresholds? BillingThresholds;
         /// <summary>
+        /// The trial offer to apply to this subscription item.
+        /// </summary>
+        public readonly Outputs.SubscriptionItemCurrentTrial? CurrentTrial;
+        /// <summary>
         /// The coupons to redeem into discounts for the subscription item.
         /// </summary>
         public readonly ImmutableArray<Outputs.SubscriptionItemDiscount> Discounts;
@@ -50,6 +54,8 @@ namespace Pulumi.Stripe.Outputs
         private SubscriptionItem(
             Outputs.SubscriptionItemBillingThresholds? billingThresholds,
 
+            Outputs.SubscriptionItemCurrentTrial? currentTrial,
+
             ImmutableArray<Outputs.SubscriptionItemDiscount> discounts,
 
             string? id,
@@ -65,6 +71,7 @@ namespace Pulumi.Stripe.Outputs
             ImmutableArray<string> taxRates)
         {
             BillingThresholds = billingThresholds;
+            CurrentTrial = currentTrial;
             Discounts = discounts;
             Id = id;
             Metadata = metadata;

@@ -82,7 +82,7 @@ class InvoiceArgs:
         :param pulumi.Input[_builtins.str] on_behalf_of: The account (if any) for which the funds of the invoice payment are intended. If set, the invoice will be presented with the branding and support information of the specified account. See the [Invoices with Connect](https://docs.stripe.com/billing/invoices/connect) documentation for details.
         :param pulumi.Input[_builtins.str] pending_invoice_items_behavior: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
                How to handle pending invoice items on invoice creation. Defaults to <span pulumi-lang-nodejs="`exclude`" pulumi-lang-dotnet="`Exclude`" pulumi-lang-go="`exclude`" pulumi-lang-python="`exclude`" pulumi-lang-yaml="`exclude`" pulumi-lang-java="`exclude`" pulumi-lang-hcl="`exclude`">`exclude`</span> if the parameter is omitted.
-        :param pulumi.Input['InvoiceRenderingArgs'] rendering: The rendering-related settings that control how the invoice is displayed on customer-facing surfaces such as PDF and Hosted Invoice Page.
+        :param pulumi.Input['InvoiceRenderingArgs'] rendering: The rendering-related settings that control how invoices render in customer-facing interfaces such as the PDF or hosted invoice page.
         :param pulumi.Input['InvoiceShippingCostArgs'] shipping_cost: The details of the cost of shipping, including the ShippingRate applied on the invoice.
         :param pulumi.Input['InvoiceShippingDetailsArgs'] shipping_details: Shipping details for the invoice. The Invoice PDF will use the <span pulumi-lang-nodejs="`shippingDetails`" pulumi-lang-dotnet="`ShippingDetails`" pulumi-lang-go="`shippingDetails`" pulumi-lang-python="`shipping_details`" pulumi-lang-yaml="`shippingDetails`" pulumi-lang-java="`shippingDetails`" pulumi-lang-hcl="`shipping_details`">`shippingDetails`</span> value if it is set, otherwise the PDF will render the shipping address from the customer.
         :param pulumi.Input[_builtins.str] statement_descriptor: Extra information about an invoice for the customer's credit card statement.
@@ -464,7 +464,7 @@ class InvoiceArgs:
     @pulumi.getter
     def rendering(self) -> pulumi.Input[Optional['InvoiceRenderingArgs']]:
         """
-        The rendering-related settings that control how the invoice is displayed on customer-facing surfaces such as PDF and Hosted Invoice Page.
+        The rendering-related settings that control how invoices render in customer-facing interfaces such as the PDF or hosted invoice page.
         """
         return pulumi.get(self, "rendering")
 
@@ -600,6 +600,7 @@ class _InvoiceState:
                  starting_balance: pulumi.Input[Optional[_builtins.float]] = None,
                  statement_descriptor: pulumi.Input[Optional[_builtins.str]] = None,
                  status: pulumi.Input[Optional[_builtins.str]] = None,
+                 status_details: pulumi.Input[Optional['InvoiceStatusDetailsArgs']] = None,
                  status_transitions: pulumi.Input[Optional['InvoiceStatusTransitionsArgs']] = None,
                  subscription: pulumi.Input[Optional[_builtins.str]] = None,
                  subtotal: pulumi.Input[Optional[_builtins.float]] = None,
@@ -684,7 +685,7 @@ class _InvoiceState:
         :param pulumi.Input[_builtins.float] post_payment_credit_notes_amount: Total amount of all post-payment credit notes issued for this invoice.
         :param pulumi.Input[_builtins.float] pre_payment_credit_notes_amount: Total amount of all pre-payment credit notes issued for this invoice.
         :param pulumi.Input[_builtins.str] receipt_number: This is the transaction number that appears on email receipts sent for this invoice.
-        :param pulumi.Input['InvoiceRenderingArgs'] rendering: The rendering-related settings that control how the invoice is displayed on customer-facing surfaces such as PDF and Hosted Invoice Page.
+        :param pulumi.Input['InvoiceRenderingArgs'] rendering: The rendering-related settings that control how invoices render in customer-facing interfaces such as the PDF or hosted invoice page.
         :param pulumi.Input['InvoiceShippingCostArgs'] shipping_cost: The details of the cost of shipping, including the ShippingRate applied on the invoice.
         :param pulumi.Input['InvoiceShippingDetailsArgs'] shipping_details: Shipping details for the invoice. The Invoice PDF will use the <span pulumi-lang-nodejs="`shippingDetails`" pulumi-lang-dotnet="`ShippingDetails`" pulumi-lang-go="`shippingDetails`" pulumi-lang-python="`shipping_details`" pulumi-lang-yaml="`shippingDetails`" pulumi-lang-java="`shippingDetails`" pulumi-lang-hcl="`shipping_details`">`shippingDetails`</span> value if it is set, otherwise the PDF will render the shipping address from the customer.
         :param pulumi.Input[_builtins.float] starting_balance: Starting customer balance before the invoice is finalized. If the invoice has not been finalized yet, this will be the current customer balance. For revision invoices, this also includes any customer balance that was applied to the original invoice.
@@ -834,6 +835,8 @@ class _InvoiceState:
             pulumi.set(__self__, "statement_descriptor", statement_descriptor)
         if status is not None:
             pulumi.set(__self__, "status", status)
+        if status_details is not None:
+            pulumi.set(__self__, "status_details", status_details)
         if status_transitions is not None:
             pulumi.set(__self__, "status_transitions", status_transitions)
         if subscription is not None:
@@ -1587,7 +1590,7 @@ class _InvoiceState:
     @pulumi.getter
     def rendering(self) -> pulumi.Input[Optional['InvoiceRenderingArgs']]:
         """
-        The rendering-related settings that control how the invoice is displayed on customer-facing surfaces such as PDF and Hosted Invoice Page.
+        The rendering-related settings that control how invoices render in customer-facing interfaces such as the PDF or hosted invoice page.
         """
         return pulumi.get(self, "rendering")
 
@@ -1654,6 +1657,15 @@ class _InvoiceState:
     @status.setter
     def status(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "status", value)
+
+    @_builtins.property
+    @pulumi.getter(name="statusDetails")
+    def status_details(self) -> pulumi.Input[Optional['InvoiceStatusDetailsArgs']]:
+        return pulumi.get(self, "status_details")
+
+    @status_details.setter
+    def status_details(self, value: pulumi.Input[Optional['InvoiceStatusDetailsArgs']]):
+        pulumi.set(self, "status_details", value)
 
     @_builtins.property
     @pulumi.getter(name="statusTransitions")
@@ -1813,11 +1825,11 @@ class Invoice(pulumi.CustomResource):
                  account_tax_ids: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  application_fee_amount: pulumi.Input[Optional[_builtins.float]] = None,
                  auto_advance: pulumi.Input[Optional[_builtins.bool]] = None,
-                 automatic_tax: pulumi.Input[Optional[Union['InvoiceAutomaticTaxArgs', 'InvoiceAutomaticTaxArgsDict']]] = None,
+                 automatic_tax: pulumi.Input[Optional[Union['InvoiceAutomaticTaxArgs', 'InvoiceAutomaticTaxArgsDict', 'outputs.InvoiceAutomaticTax']]] = None,
                  automatically_finalizes_at: pulumi.Input[Optional[_builtins.float]] = None,
                  collection_method: pulumi.Input[Optional[_builtins.str]] = None,
                  currency: pulumi.Input[Optional[_builtins.str]] = None,
-                 custom_fields: pulumi.Input[Optional[Sequence[pulumi.Input[Union['InvoiceCustomFieldArgs', 'InvoiceCustomFieldArgsDict']]]]] = None,
+                 custom_fields: pulumi.Input[Optional[Sequence[pulumi.Input[Union['InvoiceCustomFieldArgs', 'InvoiceCustomFieldArgsDict', 'outputs.InvoiceCustomField']]]]] = None,
                  customer: pulumi.Input[Optional[_builtins.str]] = None,
                  customer_account: pulumi.Input[Optional[_builtins.str]] = None,
                  days_until_due: pulumi.Input[Optional[_builtins.float]] = None,
@@ -1825,23 +1837,23 @@ class Invoice(pulumi.CustomResource):
                  default_source: pulumi.Input[Optional[_builtins.str]] = None,
                  default_tax_rates: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  description: pulumi.Input[Optional[_builtins.str]] = None,
-                 discounts: pulumi.Input[Optional[Sequence[pulumi.Input[Union['InvoiceDiscountArgs', 'InvoiceDiscountArgsDict']]]]] = None,
+                 discounts: pulumi.Input[Optional[Sequence[pulumi.Input[Union['InvoiceDiscountArgs', 'InvoiceDiscountArgsDict', 'outputs.InvoiceDiscount']]]]] = None,
                  due_date: pulumi.Input[Optional[_builtins.float]] = None,
                  effective_at: pulumi.Input[Optional[_builtins.float]] = None,
                  footer: pulumi.Input[Optional[_builtins.str]] = None,
-                 from_invoice: pulumi.Input[Optional[Union['InvoiceFromInvoiceArgs', 'InvoiceFromInvoiceArgsDict']]] = None,
-                 issuer: pulumi.Input[Optional[Union['InvoiceIssuerArgs', 'InvoiceIssuerArgsDict']]] = None,
+                 from_invoice: pulumi.Input[Optional[Union['InvoiceFromInvoiceArgs', 'InvoiceFromInvoiceArgsDict', 'outputs.InvoiceFromInvoice']]] = None,
+                 issuer: pulumi.Input[Optional[Union['InvoiceIssuerArgs', 'InvoiceIssuerArgsDict', 'outputs.InvoiceIssuer']]] = None,
                  metadata: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
                  number: pulumi.Input[Optional[_builtins.str]] = None,
                  on_behalf_of: pulumi.Input[Optional[_builtins.str]] = None,
-                 payment_settings: pulumi.Input[Optional[Union['InvoicePaymentSettingsArgs', 'InvoicePaymentSettingsArgsDict']]] = None,
+                 payment_settings: pulumi.Input[Optional[Union['InvoicePaymentSettingsArgs', 'InvoicePaymentSettingsArgsDict', 'outputs.InvoicePaymentSettings']]] = None,
                  pending_invoice_items_behavior: pulumi.Input[Optional[_builtins.str]] = None,
-                 rendering: pulumi.Input[Optional[Union['InvoiceRenderingArgs', 'InvoiceRenderingArgsDict']]] = None,
-                 shipping_cost: pulumi.Input[Optional[Union['InvoiceShippingCostArgs', 'InvoiceShippingCostArgsDict']]] = None,
-                 shipping_details: pulumi.Input[Optional[Union['InvoiceShippingDetailsArgs', 'InvoiceShippingDetailsArgsDict']]] = None,
+                 rendering: pulumi.Input[Optional[Union['InvoiceRenderingArgs', 'InvoiceRenderingArgsDict', 'outputs.InvoiceRendering']]] = None,
+                 shipping_cost: pulumi.Input[Optional[Union['InvoiceShippingCostArgs', 'InvoiceShippingCostArgsDict', 'outputs.InvoiceShippingCost']]] = None,
+                 shipping_details: pulumi.Input[Optional[Union['InvoiceShippingDetailsArgs', 'InvoiceShippingDetailsArgsDict', 'outputs.InvoiceShippingDetails']]] = None,
                  statement_descriptor: pulumi.Input[Optional[_builtins.str]] = None,
                  subscription: pulumi.Input[Optional[_builtins.str]] = None,
-                 transfer_data: pulumi.Input[Optional[Union['InvoiceTransferDataArgs', 'InvoiceTransferDataArgsDict']]] = None,
+                 transfer_data: pulumi.Input[Optional[Union['InvoiceTransferDataArgs', 'InvoiceTransferDataArgsDict', 'outputs.InvoiceTransferData']]] = None,
                  __props__=None):
         """
         Create a Invoice resource with the given unique name, props, and options.
@@ -1855,7 +1867,7 @@ class Invoice(pulumi.CustomResource):
         :param pulumi.Input[_builtins.float] automatically_finalizes_at: The time when this invoice is currently scheduled to be automatically finalized. The field will be <span pulumi-lang-nodejs="`null`" pulumi-lang-dotnet="`Null`" pulumi-lang-go="`null`" pulumi-lang-python="`null`" pulumi-lang-yaml="`null`" pulumi-lang-java="`null`" pulumi-lang-hcl="`null`">`null`</span> if the invoice is not scheduled to finalize in the future. If the invoice is not in the draft state, this field will always be <span pulumi-lang-nodejs="`null`" pulumi-lang-dotnet="`Null`" pulumi-lang-go="`null`" pulumi-lang-python="`null`" pulumi-lang-yaml="`null`" pulumi-lang-java="`null`" pulumi-lang-hcl="`null`">`null`</span> - see <span pulumi-lang-nodejs="`finalizedAt`" pulumi-lang-dotnet="`FinalizedAt`" pulumi-lang-go="`finalizedAt`" pulumi-lang-python="`finalized_at`" pulumi-lang-yaml="`finalizedAt`" pulumi-lang-java="`finalizedAt`" pulumi-lang-hcl="`finalized_at`">`finalizedAt`</span> for the time when an already-finalized invoice was finalized.
         :param pulumi.Input[_builtins.str] collection_method: Either <span pulumi-lang-nodejs="`chargeAutomatically`" pulumi-lang-dotnet="`ChargeAutomatically`" pulumi-lang-go="`chargeAutomatically`" pulumi-lang-python="`charge_automatically`" pulumi-lang-yaml="`chargeAutomatically`" pulumi-lang-java="`chargeAutomatically`" pulumi-lang-hcl="`charge_automatically`">`chargeAutomatically`</span>, or <span pulumi-lang-nodejs="`sendInvoice`" pulumi-lang-dotnet="`SendInvoice`" pulumi-lang-go="`sendInvoice`" pulumi-lang-python="`send_invoice`" pulumi-lang-yaml="`sendInvoice`" pulumi-lang-java="`sendInvoice`" pulumi-lang-hcl="`send_invoice`">`sendInvoice`</span>. When charging automatically, Stripe will attempt to pay this invoice using the default source attached to the customer. When sending an invoice, Stripe will email this invoice to the customer with payment instructions.
         :param pulumi.Input[_builtins.str] currency: Three-letter [ISO currency code](https://www.iso.org/iso-4217-currency-codes.html), in lowercase. Must be a [supported currency](https://stripe.com/docs/currencies).
-        :param pulumi.Input[Sequence[pulumi.Input[Union['InvoiceCustomFieldArgs', 'InvoiceCustomFieldArgsDict']]]] custom_fields: Custom fields displayed on the invoice.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['InvoiceCustomFieldArgs', 'InvoiceCustomFieldArgsDict', 'outputs.InvoiceCustomField']]]] custom_fields: Custom fields displayed on the invoice.
         :param pulumi.Input[_builtins.str] customer: The ID of the customer to bill.
         :param pulumi.Input[_builtins.str] customer_account: The ID of the account representing the customer to bill.
         :param pulumi.Input[_builtins.float] days_until_due: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
@@ -1864,21 +1876,21 @@ class Invoice(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] default_source: ID of the default payment source for the invoice. It must belong to the customer associated with the invoice and be in a chargeable state. If not set, defaults to the subscription's default source, if any, or to the customer's default source.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] default_tax_rates: The tax rates applied to this invoice, if any.
         :param pulumi.Input[_builtins.str] description: An arbitrary string attached to the object. Often useful for displaying to users. Referenced as 'memo' in the Dashboard.
-        :param pulumi.Input[Sequence[pulumi.Input[Union['InvoiceDiscountArgs', 'InvoiceDiscountArgsDict']]]] discounts: The discounts applied to the invoice. Line item discounts are applied before invoice discounts. Use `expand[]=discounts` to expand each discount.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['InvoiceDiscountArgs', 'InvoiceDiscountArgsDict', 'outputs.InvoiceDiscount']]]] discounts: The discounts applied to the invoice. Line item discounts are applied before invoice discounts. Use `expand[]=discounts` to expand each discount.
         :param pulumi.Input[_builtins.float] due_date: The date on which payment for this invoice is due. This value will be <span pulumi-lang-nodejs="`null`" pulumi-lang-dotnet="`Null`" pulumi-lang-go="`null`" pulumi-lang-python="`null`" pulumi-lang-yaml="`null`" pulumi-lang-java="`null`" pulumi-lang-hcl="`null`">`null`</span> for invoices where `collection_method=charge_automatically`.
         :param pulumi.Input[_builtins.float] effective_at: The date when this invoice is in effect. Same as <span pulumi-lang-nodejs="`finalizedAt`" pulumi-lang-dotnet="`FinalizedAt`" pulumi-lang-go="`finalizedAt`" pulumi-lang-python="`finalized_at`" pulumi-lang-yaml="`finalizedAt`" pulumi-lang-java="`finalizedAt`" pulumi-lang-hcl="`finalized_at`">`finalizedAt`</span> unless overwritten. When defined, this value replaces the system-generated 'Date of issue' printed on the invoice PDF and receipt.
         :param pulumi.Input[_builtins.str] footer: Footer displayed on the invoice.
-        :param pulumi.Input[Union['InvoiceFromInvoiceArgs', 'InvoiceFromInvoiceArgsDict']] from_invoice: Details of the invoice that was cloned. See the [revision documentation](https://docs.stripe.com/invoicing/invoice-revisions) for more details.
+        :param pulumi.Input[Union['InvoiceFromInvoiceArgs', 'InvoiceFromInvoiceArgsDict', 'outputs.InvoiceFromInvoice']] from_invoice: Details of the invoice that was cloned. See the [revision documentation](https://docs.stripe.com/invoicing/invoice-revisions) for more details.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] metadata: Set of [key-value pairs](https://docs.stripe.com/api/metadata) that you can attach to an object. This can be useful for storing additional information about the object in a structured format.
         :param pulumi.Input[_builtins.str] number: A unique, identifying string that appears on emails sent to the customer for this invoice. This starts with the customer's unique<span pulumi-lang-nodejs=" invoicePrefix " pulumi-lang-dotnet=" InvoicePrefix " pulumi-lang-go=" invoicePrefix " pulumi-lang-python=" invoice_prefix " pulumi-lang-yaml=" invoicePrefix " pulumi-lang-java=" invoicePrefix " pulumi-lang-hcl=" invoice_prefix "> invoicePrefix </span>if it is specified.
         :param pulumi.Input[_builtins.str] on_behalf_of: The account (if any) for which the funds of the invoice payment are intended. If set, the invoice will be presented with the branding and support information of the specified account. See the [Invoices with Connect](https://docs.stripe.com/billing/invoices/connect) documentation for details.
         :param pulumi.Input[_builtins.str] pending_invoice_items_behavior: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
                How to handle pending invoice items on invoice creation. Defaults to <span pulumi-lang-nodejs="`exclude`" pulumi-lang-dotnet="`Exclude`" pulumi-lang-go="`exclude`" pulumi-lang-python="`exclude`" pulumi-lang-yaml="`exclude`" pulumi-lang-java="`exclude`" pulumi-lang-hcl="`exclude`">`exclude`</span> if the parameter is omitted.
-        :param pulumi.Input[Union['InvoiceRenderingArgs', 'InvoiceRenderingArgsDict']] rendering: The rendering-related settings that control how the invoice is displayed on customer-facing surfaces such as PDF and Hosted Invoice Page.
-        :param pulumi.Input[Union['InvoiceShippingCostArgs', 'InvoiceShippingCostArgsDict']] shipping_cost: The details of the cost of shipping, including the ShippingRate applied on the invoice.
-        :param pulumi.Input[Union['InvoiceShippingDetailsArgs', 'InvoiceShippingDetailsArgsDict']] shipping_details: Shipping details for the invoice. The Invoice PDF will use the <span pulumi-lang-nodejs="`shippingDetails`" pulumi-lang-dotnet="`ShippingDetails`" pulumi-lang-go="`shippingDetails`" pulumi-lang-python="`shipping_details`" pulumi-lang-yaml="`shippingDetails`" pulumi-lang-java="`shippingDetails`" pulumi-lang-hcl="`shipping_details`">`shippingDetails`</span> value if it is set, otherwise the PDF will render the shipping address from the customer.
+        :param pulumi.Input[Union['InvoiceRenderingArgs', 'InvoiceRenderingArgsDict', 'outputs.InvoiceRendering']] rendering: The rendering-related settings that control how invoices render in customer-facing interfaces such as the PDF or hosted invoice page.
+        :param pulumi.Input[Union['InvoiceShippingCostArgs', 'InvoiceShippingCostArgsDict', 'outputs.InvoiceShippingCost']] shipping_cost: The details of the cost of shipping, including the ShippingRate applied on the invoice.
+        :param pulumi.Input[Union['InvoiceShippingDetailsArgs', 'InvoiceShippingDetailsArgsDict', 'outputs.InvoiceShippingDetails']] shipping_details: Shipping details for the invoice. The Invoice PDF will use the <span pulumi-lang-nodejs="`shippingDetails`" pulumi-lang-dotnet="`ShippingDetails`" pulumi-lang-go="`shippingDetails`" pulumi-lang-python="`shipping_details`" pulumi-lang-yaml="`shippingDetails`" pulumi-lang-java="`shippingDetails`" pulumi-lang-hcl="`shipping_details`">`shippingDetails`</span> value if it is set, otherwise the PDF will render the shipping address from the customer.
         :param pulumi.Input[_builtins.str] statement_descriptor: Extra information about an invoice for the customer's credit card statement.
-        :param pulumi.Input[Union['InvoiceTransferDataArgs', 'InvoiceTransferDataArgsDict']] transfer_data: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        :param pulumi.Input[Union['InvoiceTransferDataArgs', 'InvoiceTransferDataArgsDict', 'outputs.InvoiceTransferData']] transfer_data: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
                If specified, the funds from the invoice will be transferred to the destination and the ID of the resulting transfer will be found on the invoice's charge.
         """
         ...
@@ -1908,11 +1920,11 @@ class Invoice(pulumi.CustomResource):
                  account_tax_ids: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  application_fee_amount: pulumi.Input[Optional[_builtins.float]] = None,
                  auto_advance: pulumi.Input[Optional[_builtins.bool]] = None,
-                 automatic_tax: pulumi.Input[Optional[Union['InvoiceAutomaticTaxArgs', 'InvoiceAutomaticTaxArgsDict']]] = None,
+                 automatic_tax: pulumi.Input[Optional[Union['InvoiceAutomaticTaxArgs', 'InvoiceAutomaticTaxArgsDict', 'outputs.InvoiceAutomaticTax']]] = None,
                  automatically_finalizes_at: pulumi.Input[Optional[_builtins.float]] = None,
                  collection_method: pulumi.Input[Optional[_builtins.str]] = None,
                  currency: pulumi.Input[Optional[_builtins.str]] = None,
-                 custom_fields: pulumi.Input[Optional[Sequence[pulumi.Input[Union['InvoiceCustomFieldArgs', 'InvoiceCustomFieldArgsDict']]]]] = None,
+                 custom_fields: pulumi.Input[Optional[Sequence[pulumi.Input[Union['InvoiceCustomFieldArgs', 'InvoiceCustomFieldArgsDict', 'outputs.InvoiceCustomField']]]]] = None,
                  customer: pulumi.Input[Optional[_builtins.str]] = None,
                  customer_account: pulumi.Input[Optional[_builtins.str]] = None,
                  days_until_due: pulumi.Input[Optional[_builtins.float]] = None,
@@ -1920,23 +1932,23 @@ class Invoice(pulumi.CustomResource):
                  default_source: pulumi.Input[Optional[_builtins.str]] = None,
                  default_tax_rates: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  description: pulumi.Input[Optional[_builtins.str]] = None,
-                 discounts: pulumi.Input[Optional[Sequence[pulumi.Input[Union['InvoiceDiscountArgs', 'InvoiceDiscountArgsDict']]]]] = None,
+                 discounts: pulumi.Input[Optional[Sequence[pulumi.Input[Union['InvoiceDiscountArgs', 'InvoiceDiscountArgsDict', 'outputs.InvoiceDiscount']]]]] = None,
                  due_date: pulumi.Input[Optional[_builtins.float]] = None,
                  effective_at: pulumi.Input[Optional[_builtins.float]] = None,
                  footer: pulumi.Input[Optional[_builtins.str]] = None,
-                 from_invoice: pulumi.Input[Optional[Union['InvoiceFromInvoiceArgs', 'InvoiceFromInvoiceArgsDict']]] = None,
-                 issuer: pulumi.Input[Optional[Union['InvoiceIssuerArgs', 'InvoiceIssuerArgsDict']]] = None,
+                 from_invoice: pulumi.Input[Optional[Union['InvoiceFromInvoiceArgs', 'InvoiceFromInvoiceArgsDict', 'outputs.InvoiceFromInvoice']]] = None,
+                 issuer: pulumi.Input[Optional[Union['InvoiceIssuerArgs', 'InvoiceIssuerArgsDict', 'outputs.InvoiceIssuer']]] = None,
                  metadata: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
                  number: pulumi.Input[Optional[_builtins.str]] = None,
                  on_behalf_of: pulumi.Input[Optional[_builtins.str]] = None,
-                 payment_settings: pulumi.Input[Optional[Union['InvoicePaymentSettingsArgs', 'InvoicePaymentSettingsArgsDict']]] = None,
+                 payment_settings: pulumi.Input[Optional[Union['InvoicePaymentSettingsArgs', 'InvoicePaymentSettingsArgsDict', 'outputs.InvoicePaymentSettings']]] = None,
                  pending_invoice_items_behavior: pulumi.Input[Optional[_builtins.str]] = None,
-                 rendering: pulumi.Input[Optional[Union['InvoiceRenderingArgs', 'InvoiceRenderingArgsDict']]] = None,
-                 shipping_cost: pulumi.Input[Optional[Union['InvoiceShippingCostArgs', 'InvoiceShippingCostArgsDict']]] = None,
-                 shipping_details: pulumi.Input[Optional[Union['InvoiceShippingDetailsArgs', 'InvoiceShippingDetailsArgsDict']]] = None,
+                 rendering: pulumi.Input[Optional[Union['InvoiceRenderingArgs', 'InvoiceRenderingArgsDict', 'outputs.InvoiceRendering']]] = None,
+                 shipping_cost: pulumi.Input[Optional[Union['InvoiceShippingCostArgs', 'InvoiceShippingCostArgsDict', 'outputs.InvoiceShippingCost']]] = None,
+                 shipping_details: pulumi.Input[Optional[Union['InvoiceShippingDetailsArgs', 'InvoiceShippingDetailsArgsDict', 'outputs.InvoiceShippingDetails']]] = None,
                  statement_descriptor: pulumi.Input[Optional[_builtins.str]] = None,
                  subscription: pulumi.Input[Optional[_builtins.str]] = None,
-                 transfer_data: pulumi.Input[Optional[Union['InvoiceTransferDataArgs', 'InvoiceTransferDataArgsDict']]] = None,
+                 transfer_data: pulumi.Input[Optional[Union['InvoiceTransferDataArgs', 'InvoiceTransferDataArgsDict', 'outputs.InvoiceTransferData']]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -2014,6 +2026,7 @@ class Invoice(pulumi.CustomResource):
             __props__.__dict__["receipt_number"] = None
             __props__.__dict__["starting_balance"] = None
             __props__.__dict__["status"] = None
+            __props__.__dict__["status_details"] = None
             __props__.__dict__["status_transitions"] = None
             __props__.__dict__["subtotal"] = None
             __props__.__dict__["subtotal_excluding_tax"] = None
@@ -2052,37 +2065,37 @@ class Invoice(pulumi.CustomResource):
             attempt_count: pulumi.Input[Optional[_builtins.float]] = None,
             attempted: pulumi.Input[Optional[_builtins.bool]] = None,
             auto_advance: pulumi.Input[Optional[_builtins.bool]] = None,
-            automatic_tax: pulumi.Input[Optional[Union['InvoiceAutomaticTaxArgs', 'InvoiceAutomaticTaxArgsDict']]] = None,
+            automatic_tax: pulumi.Input[Optional[Union['InvoiceAutomaticTaxArgs', 'InvoiceAutomaticTaxArgsDict', 'outputs.InvoiceAutomaticTax']]] = None,
             automatically_finalizes_at: pulumi.Input[Optional[_builtins.float]] = None,
             billing_reason: pulumi.Input[Optional[_builtins.str]] = None,
             collection_method: pulumi.Input[Optional[_builtins.str]] = None,
-            confirmation_secret: pulumi.Input[Optional[Union['InvoiceConfirmationSecretArgs', 'InvoiceConfirmationSecretArgsDict']]] = None,
+            confirmation_secret: pulumi.Input[Optional[Union['InvoiceConfirmationSecretArgs', 'InvoiceConfirmationSecretArgsDict', 'outputs.InvoiceConfirmationSecret']]] = None,
             created: pulumi.Input[Optional[_builtins.float]] = None,
             currency: pulumi.Input[Optional[_builtins.str]] = None,
-            custom_fields: pulumi.Input[Optional[Sequence[pulumi.Input[Union['InvoiceCustomFieldArgs', 'InvoiceCustomFieldArgsDict']]]]] = None,
+            custom_fields: pulumi.Input[Optional[Sequence[pulumi.Input[Union['InvoiceCustomFieldArgs', 'InvoiceCustomFieldArgsDict', 'outputs.InvoiceCustomField']]]]] = None,
             customer: pulumi.Input[Optional[_builtins.str]] = None,
             customer_account: pulumi.Input[Optional[_builtins.str]] = None,
-            customer_address: pulumi.Input[Optional[Union['InvoiceCustomerAddressArgs', 'InvoiceCustomerAddressArgsDict']]] = None,
+            customer_address: pulumi.Input[Optional[Union['InvoiceCustomerAddressArgs', 'InvoiceCustomerAddressArgsDict', 'outputs.InvoiceCustomerAddress']]] = None,
             customer_email: pulumi.Input[Optional[_builtins.str]] = None,
             customer_name: pulumi.Input[Optional[_builtins.str]] = None,
             customer_phone: pulumi.Input[Optional[_builtins.str]] = None,
-            customer_shipping: pulumi.Input[Optional[Union['InvoiceCustomerShippingArgs', 'InvoiceCustomerShippingArgsDict']]] = None,
-            customer_tax_ids: pulumi.Input[Optional[Sequence[pulumi.Input[Union['InvoiceCustomerTaxIdArgs', 'InvoiceCustomerTaxIdArgsDict']]]]] = None,
+            customer_shipping: pulumi.Input[Optional[Union['InvoiceCustomerShippingArgs', 'InvoiceCustomerShippingArgsDict', 'outputs.InvoiceCustomerShipping']]] = None,
+            customer_tax_ids: pulumi.Input[Optional[Sequence[pulumi.Input[Union['InvoiceCustomerTaxIdArgs', 'InvoiceCustomerTaxIdArgsDict', 'outputs.InvoiceCustomerTaxId']]]]] = None,
             days_until_due: pulumi.Input[Optional[_builtins.float]] = None,
             default_payment_method: pulumi.Input[Optional[_builtins.str]] = None,
             default_source: pulumi.Input[Optional[_builtins.str]] = None,
             default_tax_rates: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
             description: pulumi.Input[Optional[_builtins.str]] = None,
-            discounts: pulumi.Input[Optional[Sequence[pulumi.Input[Union['InvoiceDiscountArgs', 'InvoiceDiscountArgsDict']]]]] = None,
+            discounts: pulumi.Input[Optional[Sequence[pulumi.Input[Union['InvoiceDiscountArgs', 'InvoiceDiscountArgsDict', 'outputs.InvoiceDiscount']]]]] = None,
             due_date: pulumi.Input[Optional[_builtins.float]] = None,
             effective_at: pulumi.Input[Optional[_builtins.float]] = None,
             ending_balance: pulumi.Input[Optional[_builtins.float]] = None,
             footer: pulumi.Input[Optional[_builtins.str]] = None,
-            from_invoice: pulumi.Input[Optional[Union['InvoiceFromInvoiceArgs', 'InvoiceFromInvoiceArgsDict']]] = None,
+            from_invoice: pulumi.Input[Optional[Union['InvoiceFromInvoiceArgs', 'InvoiceFromInvoiceArgsDict', 'outputs.InvoiceFromInvoice']]] = None,
             hosted_invoice_url: pulumi.Input[Optional[_builtins.str]] = None,
             invoice_pdf: pulumi.Input[Optional[_builtins.str]] = None,
-            issuer: pulumi.Input[Optional[Union['InvoiceIssuerArgs', 'InvoiceIssuerArgsDict']]] = None,
-            last_finalization_error: pulumi.Input[Optional[Union['InvoiceLastFinalizationErrorArgs', 'InvoiceLastFinalizationErrorArgsDict']]] = None,
+            issuer: pulumi.Input[Optional[Union['InvoiceIssuerArgs', 'InvoiceIssuerArgsDict', 'outputs.InvoiceIssuer']]] = None,
+            last_finalization_error: pulumi.Input[Optional[Union['InvoiceLastFinalizationErrorArgs', 'InvoiceLastFinalizationErrorArgsDict', 'outputs.InvoiceLastFinalizationError']]] = None,
             latest_revision: pulumi.Input[Optional[_builtins.str]] = None,
             livemode: pulumi.Input[Optional[_builtins.bool]] = None,
             metadata: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
@@ -2090,32 +2103,33 @@ class Invoice(pulumi.CustomResource):
             number: pulumi.Input[Optional[_builtins.str]] = None,
             object: pulumi.Input[Optional[_builtins.str]] = None,
             on_behalf_of: pulumi.Input[Optional[_builtins.str]] = None,
-            parent: pulumi.Input[Optional[Union['InvoiceParentArgs', 'InvoiceParentArgsDict']]] = None,
-            payment_settings: pulumi.Input[Optional[Union['InvoicePaymentSettingsArgs', 'InvoicePaymentSettingsArgsDict']]] = None,
+            parent: pulumi.Input[Optional[Union['InvoiceParentArgs', 'InvoiceParentArgsDict', 'outputs.InvoiceParent']]] = None,
+            payment_settings: pulumi.Input[Optional[Union['InvoicePaymentSettingsArgs', 'InvoicePaymentSettingsArgsDict', 'outputs.InvoicePaymentSettings']]] = None,
             pending_invoice_items_behavior: pulumi.Input[Optional[_builtins.str]] = None,
             period_end: pulumi.Input[Optional[_builtins.float]] = None,
             period_start: pulumi.Input[Optional[_builtins.float]] = None,
             post_payment_credit_notes_amount: pulumi.Input[Optional[_builtins.float]] = None,
             pre_payment_credit_notes_amount: pulumi.Input[Optional[_builtins.float]] = None,
             receipt_number: pulumi.Input[Optional[_builtins.str]] = None,
-            rendering: pulumi.Input[Optional[Union['InvoiceRenderingArgs', 'InvoiceRenderingArgsDict']]] = None,
-            shipping_cost: pulumi.Input[Optional[Union['InvoiceShippingCostArgs', 'InvoiceShippingCostArgsDict']]] = None,
-            shipping_details: pulumi.Input[Optional[Union['InvoiceShippingDetailsArgs', 'InvoiceShippingDetailsArgsDict']]] = None,
+            rendering: pulumi.Input[Optional[Union['InvoiceRenderingArgs', 'InvoiceRenderingArgsDict', 'outputs.InvoiceRendering']]] = None,
+            shipping_cost: pulumi.Input[Optional[Union['InvoiceShippingCostArgs', 'InvoiceShippingCostArgsDict', 'outputs.InvoiceShippingCost']]] = None,
+            shipping_details: pulumi.Input[Optional[Union['InvoiceShippingDetailsArgs', 'InvoiceShippingDetailsArgsDict', 'outputs.InvoiceShippingDetails']]] = None,
             starting_balance: pulumi.Input[Optional[_builtins.float]] = None,
             statement_descriptor: pulumi.Input[Optional[_builtins.str]] = None,
             status: pulumi.Input[Optional[_builtins.str]] = None,
-            status_transitions: pulumi.Input[Optional[Union['InvoiceStatusTransitionsArgs', 'InvoiceStatusTransitionsArgsDict']]] = None,
+            status_details: pulumi.Input[Optional[Union['InvoiceStatusDetailsArgs', 'InvoiceStatusDetailsArgsDict', 'outputs.InvoiceStatusDetails']]] = None,
+            status_transitions: pulumi.Input[Optional[Union['InvoiceStatusTransitionsArgs', 'InvoiceStatusTransitionsArgsDict', 'outputs.InvoiceStatusTransitions']]] = None,
             subscription: pulumi.Input[Optional[_builtins.str]] = None,
             subtotal: pulumi.Input[Optional[_builtins.float]] = None,
             subtotal_excluding_tax: pulumi.Input[Optional[_builtins.float]] = None,
             test_clock: pulumi.Input[Optional[_builtins.str]] = None,
-            threshold_reason: pulumi.Input[Optional[Union['InvoiceThresholdReasonArgs', 'InvoiceThresholdReasonArgsDict']]] = None,
+            threshold_reason: pulumi.Input[Optional[Union['InvoiceThresholdReasonArgs', 'InvoiceThresholdReasonArgsDict', 'outputs.InvoiceThresholdReason']]] = None,
             total: pulumi.Input[Optional[_builtins.float]] = None,
-            total_discount_amounts: pulumi.Input[Optional[Sequence[pulumi.Input[Union['InvoiceTotalDiscountAmountArgs', 'InvoiceTotalDiscountAmountArgsDict']]]]] = None,
+            total_discount_amounts: pulumi.Input[Optional[Sequence[pulumi.Input[Union['InvoiceTotalDiscountAmountArgs', 'InvoiceTotalDiscountAmountArgsDict', 'outputs.InvoiceTotalDiscountAmount']]]]] = None,
             total_excluding_tax: pulumi.Input[Optional[_builtins.float]] = None,
-            total_pretax_credit_amounts: pulumi.Input[Optional[Sequence[pulumi.Input[Union['InvoiceTotalPretaxCreditAmountArgs', 'InvoiceTotalPretaxCreditAmountArgsDict']]]]] = None,
-            total_taxes: pulumi.Input[Optional[Sequence[pulumi.Input[Union['InvoiceTotalTaxArgs', 'InvoiceTotalTaxArgsDict']]]]] = None,
-            transfer_data: pulumi.Input[Optional[Union['InvoiceTransferDataArgs', 'InvoiceTransferDataArgsDict']]] = None,
+            total_pretax_credit_amounts: pulumi.Input[Optional[Sequence[pulumi.Input[Union['InvoiceTotalPretaxCreditAmountArgs', 'InvoiceTotalPretaxCreditAmountArgsDict', 'outputs.InvoiceTotalPretaxCreditAmount']]]]] = None,
+            total_taxes: pulumi.Input[Optional[Sequence[pulumi.Input[Union['InvoiceTotalTaxArgs', 'InvoiceTotalTaxArgsDict', 'outputs.InvoiceTotalTax']]]]] = None,
+            transfer_data: pulumi.Input[Optional[Union['InvoiceTransferDataArgs', 'InvoiceTransferDataArgsDict', 'outputs.InvoiceTransferData']]] = None,
             webhooks_delivered_at: pulumi.Input[Optional[_builtins.float]] = None) -> 'Invoice':
         """
         Get an existing Invoice resource's state with the given name, id, and optional extra
@@ -2150,33 +2164,33 @@ class Invoice(pulumi.CustomResource):
                * <span pulumi-lang-nodejs="`subscriptionUpdate`" pulumi-lang-dotnet="`SubscriptionUpdate`" pulumi-lang-go="`subscriptionUpdate`" pulumi-lang-python="`subscription_update`" pulumi-lang-yaml="`subscriptionUpdate`" pulumi-lang-java="`subscriptionUpdate`" pulumi-lang-hcl="`subscription_update`">`subscriptionUpdate`</span>: A subscription was updated.
                * <span pulumi-lang-nodejs="`upcoming`" pulumi-lang-dotnet="`Upcoming`" pulumi-lang-go="`upcoming`" pulumi-lang-python="`upcoming`" pulumi-lang-yaml="`upcoming`" pulumi-lang-java="`upcoming`" pulumi-lang-hcl="`upcoming`">`upcoming`</span>: Reserved for upcoming invoices created through the Create Preview Invoice API or when an `invoice.upcoming` event is generated for an upcoming invoice on a subscription.
         :param pulumi.Input[_builtins.str] collection_method: Either <span pulumi-lang-nodejs="`chargeAutomatically`" pulumi-lang-dotnet="`ChargeAutomatically`" pulumi-lang-go="`chargeAutomatically`" pulumi-lang-python="`charge_automatically`" pulumi-lang-yaml="`chargeAutomatically`" pulumi-lang-java="`chargeAutomatically`" pulumi-lang-hcl="`charge_automatically`">`chargeAutomatically`</span>, or <span pulumi-lang-nodejs="`sendInvoice`" pulumi-lang-dotnet="`SendInvoice`" pulumi-lang-go="`sendInvoice`" pulumi-lang-python="`send_invoice`" pulumi-lang-yaml="`sendInvoice`" pulumi-lang-java="`sendInvoice`" pulumi-lang-hcl="`send_invoice`">`sendInvoice`</span>. When charging automatically, Stripe will attempt to pay this invoice using the default source attached to the customer. When sending an invoice, Stripe will email this invoice to the customer with payment instructions.
-        :param pulumi.Input[Union['InvoiceConfirmationSecretArgs', 'InvoiceConfirmationSecretArgsDict']] confirmation_secret: The confirmation secret associated with this invoice. Currently, this contains the<span pulumi-lang-nodejs=" clientSecret " pulumi-lang-dotnet=" ClientSecret " pulumi-lang-go=" clientSecret " pulumi-lang-python=" client_secret " pulumi-lang-yaml=" clientSecret " pulumi-lang-java=" clientSecret " pulumi-lang-hcl=" client_secret "> clientSecret </span>of the PaymentIntent that Stripe creates during invoice finalization.
+        :param pulumi.Input[Union['InvoiceConfirmationSecretArgs', 'InvoiceConfirmationSecretArgsDict', 'outputs.InvoiceConfirmationSecret']] confirmation_secret: The confirmation secret associated with this invoice. Currently, this contains the<span pulumi-lang-nodejs=" clientSecret " pulumi-lang-dotnet=" ClientSecret " pulumi-lang-go=" clientSecret " pulumi-lang-python=" client_secret " pulumi-lang-yaml=" clientSecret " pulumi-lang-java=" clientSecret " pulumi-lang-hcl=" client_secret "> clientSecret </span>of the PaymentIntent that Stripe creates during invoice finalization.
         :param pulumi.Input[_builtins.float] created: Time at which the object was created. Measured in seconds since the Unix epoch.
         :param pulumi.Input[_builtins.str] currency: Three-letter [ISO currency code](https://www.iso.org/iso-4217-currency-codes.html), in lowercase. Must be a [supported currency](https://stripe.com/docs/currencies).
-        :param pulumi.Input[Sequence[pulumi.Input[Union['InvoiceCustomFieldArgs', 'InvoiceCustomFieldArgsDict']]]] custom_fields: Custom fields displayed on the invoice.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['InvoiceCustomFieldArgs', 'InvoiceCustomFieldArgsDict', 'outputs.InvoiceCustomField']]]] custom_fields: Custom fields displayed on the invoice.
         :param pulumi.Input[_builtins.str] customer: The ID of the customer to bill.
         :param pulumi.Input[_builtins.str] customer_account: The ID of the account representing the customer to bill.
-        :param pulumi.Input[Union['InvoiceCustomerAddressArgs', 'InvoiceCustomerAddressArgsDict']] customer_address: The customer's address. Until the invoice is finalized, this field will equal `customer.address`. Once the invoice is finalized, this field will no longer be updated.
+        :param pulumi.Input[Union['InvoiceCustomerAddressArgs', 'InvoiceCustomerAddressArgsDict', 'outputs.InvoiceCustomerAddress']] customer_address: The customer's address. Until the invoice is finalized, this field will equal `customer.address`. Once the invoice is finalized, this field will no longer be updated.
         :param pulumi.Input[_builtins.str] customer_email: The customer's email. Until the invoice is finalized, this field will equal `customer.email`. Once the invoice is finalized, this field will no longer be updated.
         :param pulumi.Input[_builtins.str] customer_name: The customer's name. Until the invoice is finalized, this field will equal `customer.name`. Once the invoice is finalized, this field will no longer be updated.
         :param pulumi.Input[_builtins.str] customer_phone: The customer's phone number. Until the invoice is finalized, this field will equal `customer.phone`. Once the invoice is finalized, this field will no longer be updated.
-        :param pulumi.Input[Union['InvoiceCustomerShippingArgs', 'InvoiceCustomerShippingArgsDict']] customer_shipping: The customer's shipping information. Until the invoice is finalized, this field will equal `customer.shipping`. Once the invoice is finalized, this field will no longer be updated.
-        :param pulumi.Input[Sequence[pulumi.Input[Union['InvoiceCustomerTaxIdArgs', 'InvoiceCustomerTaxIdArgsDict']]]] customer_tax_ids: The customer's tax IDs. Until the invoice is finalized, this field will contain the same tax IDs as `customer.tax_ids`. Once the invoice is finalized, this field will no longer be updated.
+        :param pulumi.Input[Union['InvoiceCustomerShippingArgs', 'InvoiceCustomerShippingArgsDict', 'outputs.InvoiceCustomerShipping']] customer_shipping: The customer's shipping information. Until the invoice is finalized, this field will equal `customer.shipping`. Once the invoice is finalized, this field will no longer be updated.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['InvoiceCustomerTaxIdArgs', 'InvoiceCustomerTaxIdArgsDict', 'outputs.InvoiceCustomerTaxId']]]] customer_tax_ids: The customer's tax IDs. Until the invoice is finalized, this field will contain the same tax IDs as `customer.tax_ids`. Once the invoice is finalized, this field will no longer be updated.
         :param pulumi.Input[_builtins.float] days_until_due: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
                The number of days from when the invoice is created until it is due. Valid only for invoices where `collection_method=send_invoice`.
         :param pulumi.Input[_builtins.str] default_payment_method: ID of the default payment method for the invoice. It must belong to the customer associated with the invoice. If not set, defaults to the subscription's default payment method, if any, or to the default payment method in the customer's invoice settings.
         :param pulumi.Input[_builtins.str] default_source: ID of the default payment source for the invoice. It must belong to the customer associated with the invoice and be in a chargeable state. If not set, defaults to the subscription's default source, if any, or to the customer's default source.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] default_tax_rates: The tax rates applied to this invoice, if any.
         :param pulumi.Input[_builtins.str] description: An arbitrary string attached to the object. Often useful for displaying to users. Referenced as 'memo' in the Dashboard.
-        :param pulumi.Input[Sequence[pulumi.Input[Union['InvoiceDiscountArgs', 'InvoiceDiscountArgsDict']]]] discounts: The discounts applied to the invoice. Line item discounts are applied before invoice discounts. Use `expand[]=discounts` to expand each discount.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['InvoiceDiscountArgs', 'InvoiceDiscountArgsDict', 'outputs.InvoiceDiscount']]]] discounts: The discounts applied to the invoice. Line item discounts are applied before invoice discounts. Use `expand[]=discounts` to expand each discount.
         :param pulumi.Input[_builtins.float] due_date: The date on which payment for this invoice is due. This value will be <span pulumi-lang-nodejs="`null`" pulumi-lang-dotnet="`Null`" pulumi-lang-go="`null`" pulumi-lang-python="`null`" pulumi-lang-yaml="`null`" pulumi-lang-java="`null`" pulumi-lang-hcl="`null`">`null`</span> for invoices where `collection_method=charge_automatically`.
         :param pulumi.Input[_builtins.float] effective_at: The date when this invoice is in effect. Same as <span pulumi-lang-nodejs="`finalizedAt`" pulumi-lang-dotnet="`FinalizedAt`" pulumi-lang-go="`finalizedAt`" pulumi-lang-python="`finalized_at`" pulumi-lang-yaml="`finalizedAt`" pulumi-lang-java="`finalizedAt`" pulumi-lang-hcl="`finalized_at`">`finalizedAt`</span> unless overwritten. When defined, this value replaces the system-generated 'Date of issue' printed on the invoice PDF and receipt.
         :param pulumi.Input[_builtins.float] ending_balance: Ending customer balance after the invoice is finalized. Invoices are finalized approximately an hour after successful webhook delivery or when payment collection is attempted for the invoice. If the invoice has not been finalized yet, this will be null.
         :param pulumi.Input[_builtins.str] footer: Footer displayed on the invoice.
-        :param pulumi.Input[Union['InvoiceFromInvoiceArgs', 'InvoiceFromInvoiceArgsDict']] from_invoice: Details of the invoice that was cloned. See the [revision documentation](https://docs.stripe.com/invoicing/invoice-revisions) for more details.
+        :param pulumi.Input[Union['InvoiceFromInvoiceArgs', 'InvoiceFromInvoiceArgsDict', 'outputs.InvoiceFromInvoice']] from_invoice: Details of the invoice that was cloned. See the [revision documentation](https://docs.stripe.com/invoicing/invoice-revisions) for more details.
         :param pulumi.Input[_builtins.str] hosted_invoice_url: The URL for the hosted invoice page, which allows customers to view and pay an invoice. If the invoice has not been finalized yet, this will be null.
         :param pulumi.Input[_builtins.str] invoice_pdf: The link to download the PDF for the invoice. If the invoice has not been finalized yet, this will be null.
-        :param pulumi.Input[Union['InvoiceLastFinalizationErrorArgs', 'InvoiceLastFinalizationErrorArgsDict']] last_finalization_error: The error encountered during the previous attempt to finalize the invoice. This field is cleared when the invoice is successfully finalized.
+        :param pulumi.Input[Union['InvoiceLastFinalizationErrorArgs', 'InvoiceLastFinalizationErrorArgsDict', 'outputs.InvoiceLastFinalizationError']] last_finalization_error: The error encountered during the previous attempt to finalize the invoice. This field is cleared when the invoice is successfully finalized.
         :param pulumi.Input[_builtins.str] latest_revision: The ID of the most recent non-draft revision of this invoice
         :param pulumi.Input[_builtins.bool] livemode: If the object exists in live mode, the value is <span pulumi-lang-nodejs="`true`" pulumi-lang-dotnet="`True`" pulumi-lang-go="`true`" pulumi-lang-python="`true`" pulumi-lang-yaml="`true`" pulumi-lang-java="`true`" pulumi-lang-hcl="`true`">`true`</span>. If the object exists in test mode, the value is <span pulumi-lang-nodejs="`false`" pulumi-lang-dotnet="`False`" pulumi-lang-go="`false`" pulumi-lang-python="`false`" pulumi-lang-yaml="`false`" pulumi-lang-java="`false`" pulumi-lang-hcl="`false`">`false`</span>.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] metadata: Set of [key-value pairs](https://docs.stripe.com/api/metadata) that you can attach to an object. This can be useful for storing additional information about the object in a structured format.
@@ -2184,7 +2198,7 @@ class Invoice(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] number: A unique, identifying string that appears on emails sent to the customer for this invoice. This starts with the customer's unique<span pulumi-lang-nodejs=" invoicePrefix " pulumi-lang-dotnet=" InvoicePrefix " pulumi-lang-go=" invoicePrefix " pulumi-lang-python=" invoice_prefix " pulumi-lang-yaml=" invoicePrefix " pulumi-lang-java=" invoicePrefix " pulumi-lang-hcl=" invoice_prefix "> invoicePrefix </span>if it is specified.
         :param pulumi.Input[_builtins.str] object: String representing the object's type. Objects of the same type share the same value.
         :param pulumi.Input[_builtins.str] on_behalf_of: The account (if any) for which the funds of the invoice payment are intended. If set, the invoice will be presented with the branding and support information of the specified account. See the [Invoices with Connect](https://docs.stripe.com/billing/invoices/connect) documentation for details.
-        :param pulumi.Input[Union['InvoiceParentArgs', 'InvoiceParentArgsDict']] parent: The parent that generated this invoice
+        :param pulumi.Input[Union['InvoiceParentArgs', 'InvoiceParentArgsDict', 'outputs.InvoiceParent']] parent: The parent that generated this invoice
         :param pulumi.Input[_builtins.str] pending_invoice_items_behavior: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
                How to handle pending invoice items on invoice creation. Defaults to <span pulumi-lang-nodejs="`exclude`" pulumi-lang-dotnet="`Exclude`" pulumi-lang-go="`exclude`" pulumi-lang-python="`exclude`" pulumi-lang-yaml="`exclude`" pulumi-lang-java="`exclude`" pulumi-lang-hcl="`exclude`">`exclude`</span> if the parameter is omitted.
         :param pulumi.Input[_builtins.float] period_end: The latest timestamp at which invoice items can be associated with this invoice. Use the [line item period](https://www.terraform.io/api/invoices/line_item#invoice_line_item_object-period) to get the service period for each price.
@@ -2192,9 +2206,9 @@ class Invoice(pulumi.CustomResource):
         :param pulumi.Input[_builtins.float] post_payment_credit_notes_amount: Total amount of all post-payment credit notes issued for this invoice.
         :param pulumi.Input[_builtins.float] pre_payment_credit_notes_amount: Total amount of all pre-payment credit notes issued for this invoice.
         :param pulumi.Input[_builtins.str] receipt_number: This is the transaction number that appears on email receipts sent for this invoice.
-        :param pulumi.Input[Union['InvoiceRenderingArgs', 'InvoiceRenderingArgsDict']] rendering: The rendering-related settings that control how the invoice is displayed on customer-facing surfaces such as PDF and Hosted Invoice Page.
-        :param pulumi.Input[Union['InvoiceShippingCostArgs', 'InvoiceShippingCostArgsDict']] shipping_cost: The details of the cost of shipping, including the ShippingRate applied on the invoice.
-        :param pulumi.Input[Union['InvoiceShippingDetailsArgs', 'InvoiceShippingDetailsArgsDict']] shipping_details: Shipping details for the invoice. The Invoice PDF will use the <span pulumi-lang-nodejs="`shippingDetails`" pulumi-lang-dotnet="`ShippingDetails`" pulumi-lang-go="`shippingDetails`" pulumi-lang-python="`shipping_details`" pulumi-lang-yaml="`shippingDetails`" pulumi-lang-java="`shippingDetails`" pulumi-lang-hcl="`shipping_details`">`shippingDetails`</span> value if it is set, otherwise the PDF will render the shipping address from the customer.
+        :param pulumi.Input[Union['InvoiceRenderingArgs', 'InvoiceRenderingArgsDict', 'outputs.InvoiceRendering']] rendering: The rendering-related settings that control how invoices render in customer-facing interfaces such as the PDF or hosted invoice page.
+        :param pulumi.Input[Union['InvoiceShippingCostArgs', 'InvoiceShippingCostArgsDict', 'outputs.InvoiceShippingCost']] shipping_cost: The details of the cost of shipping, including the ShippingRate applied on the invoice.
+        :param pulumi.Input[Union['InvoiceShippingDetailsArgs', 'InvoiceShippingDetailsArgsDict', 'outputs.InvoiceShippingDetails']] shipping_details: Shipping details for the invoice. The Invoice PDF will use the <span pulumi-lang-nodejs="`shippingDetails`" pulumi-lang-dotnet="`ShippingDetails`" pulumi-lang-go="`shippingDetails`" pulumi-lang-python="`shipping_details`" pulumi-lang-yaml="`shippingDetails`" pulumi-lang-java="`shippingDetails`" pulumi-lang-hcl="`shipping_details`">`shippingDetails`</span> value if it is set, otherwise the PDF will render the shipping address from the customer.
         :param pulumi.Input[_builtins.float] starting_balance: Starting customer balance before the invoice is finalized. If the invoice has not been finalized yet, this will be the current customer balance. For revision invoices, this also includes any customer balance that was applied to the original invoice.
         :param pulumi.Input[_builtins.str] statement_descriptor: Extra information about an invoice for the customer's credit card statement.
         :param pulumi.Input[_builtins.str] status: The status of the invoice, one of <span pulumi-lang-nodejs="`draft`" pulumi-lang-dotnet="`Draft`" pulumi-lang-go="`draft`" pulumi-lang-python="`draft`" pulumi-lang-yaml="`draft`" pulumi-lang-java="`draft`" pulumi-lang-hcl="`draft`">`draft`</span>, <span pulumi-lang-nodejs="`open`" pulumi-lang-dotnet="`Open`" pulumi-lang-go="`open`" pulumi-lang-python="`open`" pulumi-lang-yaml="`open`" pulumi-lang-java="`open`" pulumi-lang-hcl="`open`">`open`</span>, <span pulumi-lang-nodejs="`paid`" pulumi-lang-dotnet="`Paid`" pulumi-lang-go="`paid`" pulumi-lang-python="`paid`" pulumi-lang-yaml="`paid`" pulumi-lang-java="`paid`" pulumi-lang-hcl="`paid`">`paid`</span>, <span pulumi-lang-nodejs="`uncollectible`" pulumi-lang-dotnet="`Uncollectible`" pulumi-lang-go="`uncollectible`" pulumi-lang-python="`uncollectible`" pulumi-lang-yaml="`uncollectible`" pulumi-lang-java="`uncollectible`" pulumi-lang-hcl="`uncollectible`">`uncollectible`</span>, or <span pulumi-lang-nodejs="`void`" pulumi-lang-dotnet="`Void`" pulumi-lang-go="`void`" pulumi-lang-python="`void`" pulumi-lang-yaml="`void`" pulumi-lang-java="`void`" pulumi-lang-hcl="`void`">`void`</span>. [Learn more](https://docs.stripe.com/billing/invoices/workflow#workflow-overview)
@@ -2202,11 +2216,11 @@ class Invoice(pulumi.CustomResource):
         :param pulumi.Input[_builtins.float] subtotal_excluding_tax: The integer amount in cents (or local equivalent) representing the subtotal of the invoice before any invoice level discount or tax is applied. Item discounts are already incorporated
         :param pulumi.Input[_builtins.str] test_clock: ID of the test clock this invoice belongs to.
         :param pulumi.Input[_builtins.float] total: Total after discounts and taxes.
-        :param pulumi.Input[Sequence[pulumi.Input[Union['InvoiceTotalDiscountAmountArgs', 'InvoiceTotalDiscountAmountArgsDict']]]] total_discount_amounts: The aggregate amounts calculated per discount across all line items.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['InvoiceTotalDiscountAmountArgs', 'InvoiceTotalDiscountAmountArgsDict', 'outputs.InvoiceTotalDiscountAmount']]]] total_discount_amounts: The aggregate amounts calculated per discount across all line items.
         :param pulumi.Input[_builtins.float] total_excluding_tax: The integer amount in cents (or local equivalent) representing the total amount of the invoice including all discounts but excluding all tax.
-        :param pulumi.Input[Sequence[pulumi.Input[Union['InvoiceTotalPretaxCreditAmountArgs', 'InvoiceTotalPretaxCreditAmountArgsDict']]]] total_pretax_credit_amounts: Contains pretax credit amounts (ex: discount, credit grants, etc) that apply to this invoice. This is a combined list of<span pulumi-lang-nodejs=" totalPretaxCreditAmounts " pulumi-lang-dotnet=" TotalPretaxCreditAmounts " pulumi-lang-go=" totalPretaxCreditAmounts " pulumi-lang-python=" total_pretax_credit_amounts " pulumi-lang-yaml=" totalPretaxCreditAmounts " pulumi-lang-java=" totalPretaxCreditAmounts " pulumi-lang-hcl=" total_pretax_credit_amounts "> totalPretaxCreditAmounts </span>across all invoice line items.
-        :param pulumi.Input[Sequence[pulumi.Input[Union['InvoiceTotalTaxArgs', 'InvoiceTotalTaxArgsDict']]]] total_taxes: The aggregate tax information of all line items.
-        :param pulumi.Input[Union['InvoiceTransferDataArgs', 'InvoiceTransferDataArgsDict']] transfer_data: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['InvoiceTotalPretaxCreditAmountArgs', 'InvoiceTotalPretaxCreditAmountArgsDict', 'outputs.InvoiceTotalPretaxCreditAmount']]]] total_pretax_credit_amounts: Contains pretax credit amounts (ex: discount, credit grants, etc) that apply to this invoice. This is a combined list of<span pulumi-lang-nodejs=" totalPretaxCreditAmounts " pulumi-lang-dotnet=" TotalPretaxCreditAmounts " pulumi-lang-go=" totalPretaxCreditAmounts " pulumi-lang-python=" total_pretax_credit_amounts " pulumi-lang-yaml=" totalPretaxCreditAmounts " pulumi-lang-java=" totalPretaxCreditAmounts " pulumi-lang-hcl=" total_pretax_credit_amounts "> totalPretaxCreditAmounts </span>across all invoice line items.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['InvoiceTotalTaxArgs', 'InvoiceTotalTaxArgsDict', 'outputs.InvoiceTotalTax']]]] total_taxes: The aggregate tax information of all line items.
+        :param pulumi.Input[Union['InvoiceTransferDataArgs', 'InvoiceTransferDataArgsDict', 'outputs.InvoiceTransferData']] transfer_data: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
                If specified, the funds from the invoice will be transferred to the destination and the ID of the resulting transfer will be found on the invoice's charge.
         :param pulumi.Input[_builtins.float] webhooks_delivered_at: Invoices are automatically paid or sent 1 hour after webhooks are delivered, or until all webhook delivery attempts have [been exhausted](https://docs.stripe.com/billing/webhooks#understand). This field tracks the time when webhooks for this invoice were successfully delivered. If the invoice had no webhooks to deliver, this will be set while the invoice is being created.
         """
@@ -2280,6 +2294,7 @@ class Invoice(pulumi.CustomResource):
         __props__.__dict__["starting_balance"] = starting_balance
         __props__.__dict__["statement_descriptor"] = statement_descriptor
         __props__.__dict__["status"] = status
+        __props__.__dict__["status_details"] = status_details
         __props__.__dict__["status_transitions"] = status_transitions
         __props__.__dict__["subscription"] = subscription
         __props__.__dict__["subtotal"] = subtotal
@@ -2294,6 +2309,172 @@ class Invoice(pulumi.CustomResource):
         __props__.__dict__["transfer_data"] = transfer_data
         __props__.__dict__["webhooks_delivered_at"] = webhooks_delivered_at
         return Invoice(resource_name, opts=opts, __props__=__props__)
+
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            account_country: pulumi.Input[Optional[_builtins.str]] = None,
+            account_name: pulumi.Input[Optional[_builtins.str]] = None,
+            account_tax_ids: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            amount_due: pulumi.Input[Optional[_builtins.float]] = None,
+            amount_overpaid: pulumi.Input[Optional[_builtins.float]] = None,
+            amount_paid: pulumi.Input[Optional[_builtins.float]] = None,
+            amount_paid_off_stripe: pulumi.Input[Optional[_builtins.float]] = None,
+            amount_remaining: pulumi.Input[Optional[_builtins.float]] = None,
+            amount_shipping: pulumi.Input[Optional[_builtins.float]] = None,
+            application: pulumi.Input[Optional[_builtins.str]] = None,
+            application_fee_amount: pulumi.Input[Optional[_builtins.float]] = None,
+            attempt_count: pulumi.Input[Optional[_builtins.float]] = None,
+            attempted: pulumi.Input[Optional[_builtins.bool]] = None,
+            auto_advance: pulumi.Input[Optional[_builtins.bool]] = None,
+            automatic_tax: pulumi.Input[Optional[Union['InvoiceAutomaticTaxArgs', 'InvoiceAutomaticTaxArgsDict', 'outputs.InvoiceAutomaticTax']]] = None,
+            automatically_finalizes_at: pulumi.Input[Optional[_builtins.float]] = None,
+            billing_reason: pulumi.Input[Optional[_builtins.str]] = None,
+            collection_method: pulumi.Input[Optional[_builtins.str]] = None,
+            confirmation_secret: pulumi.Input[Optional[Union['InvoiceConfirmationSecretArgs', 'InvoiceConfirmationSecretArgsDict', 'outputs.InvoiceConfirmationSecret']]] = None,
+            created: pulumi.Input[Optional[_builtins.float]] = None,
+            currency: pulumi.Input[Optional[_builtins.str]] = None,
+            custom_fields: pulumi.Input[Optional[Sequence[pulumi.Input[Union['InvoiceCustomFieldArgs', 'InvoiceCustomFieldArgsDict', 'outputs.InvoiceCustomField']]]]] = None,
+            customer: pulumi.Input[Optional[_builtins.str]] = None,
+            customer_account: pulumi.Input[Optional[_builtins.str]] = None,
+            customer_address: pulumi.Input[Optional[Union['InvoiceCustomerAddressArgs', 'InvoiceCustomerAddressArgsDict', 'outputs.InvoiceCustomerAddress']]] = None,
+            customer_email: pulumi.Input[Optional[_builtins.str]] = None,
+            customer_name: pulumi.Input[Optional[_builtins.str]] = None,
+            customer_phone: pulumi.Input[Optional[_builtins.str]] = None,
+            customer_shipping: pulumi.Input[Optional[Union['InvoiceCustomerShippingArgs', 'InvoiceCustomerShippingArgsDict', 'outputs.InvoiceCustomerShipping']]] = None,
+            customer_tax_ids: pulumi.Input[Optional[Sequence[pulumi.Input[Union['InvoiceCustomerTaxIdArgs', 'InvoiceCustomerTaxIdArgsDict', 'outputs.InvoiceCustomerTaxId']]]]] = None,
+            days_until_due: pulumi.Input[Optional[_builtins.float]] = None,
+            default_payment_method: pulumi.Input[Optional[_builtins.str]] = None,
+            default_source: pulumi.Input[Optional[_builtins.str]] = None,
+            default_tax_rates: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            description: pulumi.Input[Optional[_builtins.str]] = None,
+            discounts: pulumi.Input[Optional[Sequence[pulumi.Input[Union['InvoiceDiscountArgs', 'InvoiceDiscountArgsDict', 'outputs.InvoiceDiscount']]]]] = None,
+            due_date: pulumi.Input[Optional[_builtins.float]] = None,
+            effective_at: pulumi.Input[Optional[_builtins.float]] = None,
+            ending_balance: pulumi.Input[Optional[_builtins.float]] = None,
+            footer: pulumi.Input[Optional[_builtins.str]] = None,
+            from_invoice: pulumi.Input[Optional[Union['InvoiceFromInvoiceArgs', 'InvoiceFromInvoiceArgsDict', 'outputs.InvoiceFromInvoice']]] = None,
+            hosted_invoice_url: pulumi.Input[Optional[_builtins.str]] = None,
+            invoice_pdf: pulumi.Input[Optional[_builtins.str]] = None,
+            issuer: pulumi.Input[Optional[Union['InvoiceIssuerArgs', 'InvoiceIssuerArgsDict', 'outputs.InvoiceIssuer']]] = None,
+            last_finalization_error: pulumi.Input[Optional[Union['InvoiceLastFinalizationErrorArgs', 'InvoiceLastFinalizationErrorArgsDict', 'outputs.InvoiceLastFinalizationError']]] = None,
+            latest_revision: pulumi.Input[Optional[_builtins.str]] = None,
+            livemode: pulumi.Input[Optional[_builtins.bool]] = None,
+            metadata: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+            next_payment_attempt: pulumi.Input[Optional[_builtins.float]] = None,
+            number: pulumi.Input[Optional[_builtins.str]] = None,
+            object: pulumi.Input[Optional[_builtins.str]] = None,
+            on_behalf_of: pulumi.Input[Optional[_builtins.str]] = None,
+            parent: pulumi.Input[Optional[Union['InvoiceParentArgs', 'InvoiceParentArgsDict', 'outputs.InvoiceParent']]] = None,
+            payment_settings: pulumi.Input[Optional[Union['InvoicePaymentSettingsArgs', 'InvoicePaymentSettingsArgsDict', 'outputs.InvoicePaymentSettings']]] = None,
+            pending_invoice_items_behavior: pulumi.Input[Optional[_builtins.str]] = None,
+            period_end: pulumi.Input[Optional[_builtins.float]] = None,
+            period_start: pulumi.Input[Optional[_builtins.float]] = None,
+            post_payment_credit_notes_amount: pulumi.Input[Optional[_builtins.float]] = None,
+            pre_payment_credit_notes_amount: pulumi.Input[Optional[_builtins.float]] = None,
+            receipt_number: pulumi.Input[Optional[_builtins.str]] = None,
+            rendering: pulumi.Input[Optional[Union['InvoiceRenderingArgs', 'InvoiceRenderingArgsDict', 'outputs.InvoiceRendering']]] = None,
+            shipping_cost: pulumi.Input[Optional[Union['InvoiceShippingCostArgs', 'InvoiceShippingCostArgsDict', 'outputs.InvoiceShippingCost']]] = None,
+            shipping_details: pulumi.Input[Optional[Union['InvoiceShippingDetailsArgs', 'InvoiceShippingDetailsArgsDict', 'outputs.InvoiceShippingDetails']]] = None,
+            starting_balance: pulumi.Input[Optional[_builtins.float]] = None,
+            statement_descriptor: pulumi.Input[Optional[_builtins.str]] = None,
+            status: pulumi.Input[Optional[_builtins.str]] = None,
+            status_details: pulumi.Input[Optional[Union['InvoiceStatusDetailsArgs', 'InvoiceStatusDetailsArgsDict', 'outputs.InvoiceStatusDetails']]] = None,
+            status_transitions: pulumi.Input[Optional[Union['InvoiceStatusTransitionsArgs', 'InvoiceStatusTransitionsArgsDict', 'outputs.InvoiceStatusTransitions']]] = None,
+            subscription: pulumi.Input[Optional[_builtins.str]] = None,
+            subtotal: pulumi.Input[Optional[_builtins.float]] = None,
+            subtotal_excluding_tax: pulumi.Input[Optional[_builtins.float]] = None,
+            test_clock: pulumi.Input[Optional[_builtins.str]] = None,
+            threshold_reason: pulumi.Input[Optional[Union['InvoiceThresholdReasonArgs', 'InvoiceThresholdReasonArgsDict', 'outputs.InvoiceThresholdReason']]] = None,
+            total: pulumi.Input[Optional[_builtins.float]] = None,
+            total_discount_amounts: pulumi.Input[Optional[Sequence[pulumi.Input[Union['InvoiceTotalDiscountAmountArgs', 'InvoiceTotalDiscountAmountArgsDict', 'outputs.InvoiceTotalDiscountAmount']]]]] = None,
+            total_excluding_tax: pulumi.Input[Optional[_builtins.float]] = None,
+            total_pretax_credit_amounts: pulumi.Input[Optional[Sequence[pulumi.Input[Union['InvoiceTotalPretaxCreditAmountArgs', 'InvoiceTotalPretaxCreditAmountArgsDict', 'outputs.InvoiceTotalPretaxCreditAmount']]]]] = None,
+            total_taxes: pulumi.Input[Optional[Sequence[pulumi.Input[Union['InvoiceTotalTaxArgs', 'InvoiceTotalTaxArgsDict', 'outputs.InvoiceTotalTax']]]]] = None,
+            transfer_data: pulumi.Input[Optional[Union['InvoiceTransferDataArgs', 'InvoiceTransferDataArgsDict', 'outputs.InvoiceTransferData']]] = None,
+            webhooks_delivered_at: pulumi.Input[Optional[_builtins.float]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["accountCountry"] = account_country
+        __props__["accountName"] = account_name
+        __props__["accountTaxIds"] = account_tax_ids
+        __props__["amountDue"] = amount_due
+        __props__["amountOverpaid"] = amount_overpaid
+        __props__["amountPaid"] = amount_paid
+        __props__["amountPaidOffStripe"] = amount_paid_off_stripe
+        __props__["amountRemaining"] = amount_remaining
+        __props__["amountShipping"] = amount_shipping
+        __props__["application"] = application
+        __props__["applicationFeeAmount"] = application_fee_amount
+        __props__["attemptCount"] = attempt_count
+        __props__["attempted"] = attempted
+        __props__["autoAdvance"] = auto_advance
+        __props__["automaticTax"] = automatic_tax
+        __props__["automaticallyFinalizesAt"] = automatically_finalizes_at
+        __props__["billingReason"] = billing_reason
+        __props__["collectionMethod"] = collection_method
+        __props__["confirmationSecret"] = confirmation_secret
+        __props__["created"] = created
+        __props__["currency"] = currency
+        __props__["customFields"] = custom_fields
+        __props__["customer"] = customer
+        __props__["customerAccount"] = customer_account
+        __props__["customerAddress"] = customer_address
+        __props__["customerEmail"] = customer_email
+        __props__["customerName"] = customer_name
+        __props__["customerPhone"] = customer_phone
+        __props__["customerShipping"] = customer_shipping
+        __props__["customerTaxIds"] = customer_tax_ids
+        __props__["daysUntilDue"] = days_until_due
+        __props__["defaultPaymentMethod"] = default_payment_method
+        __props__["defaultSource"] = default_source
+        __props__["defaultTaxRates"] = default_tax_rates
+        __props__["description"] = description
+        __props__["discounts"] = discounts
+        __props__["dueDate"] = due_date
+        __props__["effectiveAt"] = effective_at
+        __props__["endingBalance"] = ending_balance
+        __props__["footer"] = footer
+        __props__["fromInvoice"] = from_invoice
+        __props__["hostedInvoiceUrl"] = hosted_invoice_url
+        __props__["invoicePdf"] = invoice_pdf
+        __props__["issuer"] = issuer
+        __props__["lastFinalizationError"] = last_finalization_error
+        __props__["latestRevision"] = latest_revision
+        __props__["livemode"] = livemode
+        __props__["metadata"] = metadata
+        __props__["nextPaymentAttempt"] = next_payment_attempt
+        __props__["number"] = number
+        __props__["object"] = object
+        __props__["onBehalfOf"] = on_behalf_of
+        __props__["parent"] = parent
+        __props__["paymentSettings"] = payment_settings
+        __props__["pendingInvoiceItemsBehavior"] = pending_invoice_items_behavior
+        __props__["periodEnd"] = period_end
+        __props__["periodStart"] = period_start
+        __props__["postPaymentCreditNotesAmount"] = post_payment_credit_notes_amount
+        __props__["prePaymentCreditNotesAmount"] = pre_payment_credit_notes_amount
+        __props__["receiptNumber"] = receipt_number
+        __props__["rendering"] = rendering
+        __props__["shippingCost"] = shipping_cost
+        __props__["shippingDetails"] = shipping_details
+        __props__["startingBalance"] = starting_balance
+        __props__["statementDescriptor"] = statement_descriptor
+        __props__["status"] = status
+        __props__["statusDetails"] = status_details
+        __props__["statusTransitions"] = status_transitions
+        __props__["subscription"] = subscription
+        __props__["subtotal"] = subtotal
+        __props__["subtotalExcludingTax"] = subtotal_excluding_tax
+        __props__["testClock"] = test_clock
+        __props__["thresholdReason"] = threshold_reason
+        __props__["total"] = total
+        __props__["totalDiscountAmounts"] = total_discount_amounts
+        __props__["totalExcludingTax"] = total_excluding_tax
+        __props__["totalPretaxCreditAmounts"] = total_pretax_credit_amounts
+        __props__["totalTaxes"] = total_taxes
+        __props__["transferData"] = transfer_data
+        __props__["webhooksDeliveredAt"] = webhooks_delivered_at
+        return pulumi.runtime.exists_resource(None, 'stripe:index/invoice:Invoice', id, __props__, opts or pulumi.ResourceOptions(), package_ref=_utilities.get_package())
 
     @_builtins.property
     @pulumi.getter(name="accountCountry")
@@ -2781,7 +2962,7 @@ class Invoice(pulumi.CustomResource):
     @pulumi.getter
     def rendering(self) -> pulumi.Output['outputs.InvoiceRendering']:
         """
-        The rendering-related settings that control how the invoice is displayed on customer-facing surfaces such as PDF and Hosted Invoice Page.
+        The rendering-related settings that control how invoices render in customer-facing interfaces such as the PDF or hosted invoice page.
         """
         return pulumi.get(self, "rendering")
 
@@ -2824,6 +3005,11 @@ class Invoice(pulumi.CustomResource):
         The status of the invoice, one of <span pulumi-lang-nodejs="`draft`" pulumi-lang-dotnet="`Draft`" pulumi-lang-go="`draft`" pulumi-lang-python="`draft`" pulumi-lang-yaml="`draft`" pulumi-lang-java="`draft`" pulumi-lang-hcl="`draft`">`draft`</span>, <span pulumi-lang-nodejs="`open`" pulumi-lang-dotnet="`Open`" pulumi-lang-go="`open`" pulumi-lang-python="`open`" pulumi-lang-yaml="`open`" pulumi-lang-java="`open`" pulumi-lang-hcl="`open`">`open`</span>, <span pulumi-lang-nodejs="`paid`" pulumi-lang-dotnet="`Paid`" pulumi-lang-go="`paid`" pulumi-lang-python="`paid`" pulumi-lang-yaml="`paid`" pulumi-lang-java="`paid`" pulumi-lang-hcl="`paid`">`paid`</span>, <span pulumi-lang-nodejs="`uncollectible`" pulumi-lang-dotnet="`Uncollectible`" pulumi-lang-go="`uncollectible`" pulumi-lang-python="`uncollectible`" pulumi-lang-yaml="`uncollectible`" pulumi-lang-java="`uncollectible`" pulumi-lang-hcl="`uncollectible`">`uncollectible`</span>, or <span pulumi-lang-nodejs="`void`" pulumi-lang-dotnet="`Void`" pulumi-lang-go="`void`" pulumi-lang-python="`void`" pulumi-lang-yaml="`void`" pulumi-lang-java="`void`" pulumi-lang-hcl="`void`">`void`</span>. [Learn more](https://docs.stripe.com/billing/invoices/workflow#workflow-overview)
         """
         return pulumi.get(self, "status")
+
+    @_builtins.property
+    @pulumi.getter(name="statusDetails")
+    def status_details(self) -> pulumi.Output['outputs.InvoiceStatusDetails']:
+        return pulumi.get(self, "status_details")
 
     @_builtins.property
     @pulumi.getter(name="statusTransitions")

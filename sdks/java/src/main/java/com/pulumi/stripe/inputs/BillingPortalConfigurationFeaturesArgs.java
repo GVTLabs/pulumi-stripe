@@ -9,6 +9,7 @@ import com.pulumi.stripe.inputs.BillingPortalConfigurationFeaturesCustomerUpdate
 import com.pulumi.stripe.inputs.BillingPortalConfigurationFeaturesInvoiceHistoryArgs;
 import com.pulumi.stripe.inputs.BillingPortalConfigurationFeaturesPaymentMethodUpdateArgs;
 import com.pulumi.stripe.inputs.BillingPortalConfigurationFeaturesSubscriptionCancelArgs;
+import com.pulumi.stripe.inputs.BillingPortalConfigurationFeaturesSubscriptionPauseArgs;
 import com.pulumi.stripe.inputs.BillingPortalConfigurationFeaturesSubscriptionUpdateArgs;
 import java.util.Objects;
 import java.util.Optional;
@@ -47,6 +48,13 @@ public final class BillingPortalConfigurationFeaturesArgs extends com.pulumi.res
         return Optional.ofNullable(this.subscriptionCancel);
     }
 
+    @Import(name="subscriptionPause")
+    private @Nullable Output<BillingPortalConfigurationFeaturesSubscriptionPauseArgs> subscriptionPause;
+
+    public Optional<Output<BillingPortalConfigurationFeaturesSubscriptionPauseArgs>> subscriptionPause() {
+        return Optional.ofNullable(this.subscriptionPause);
+    }
+
     @Import(name="subscriptionUpdate")
     private @Nullable Output<BillingPortalConfigurationFeaturesSubscriptionUpdateArgs> subscriptionUpdate;
 
@@ -61,6 +69,7 @@ public final class BillingPortalConfigurationFeaturesArgs extends com.pulumi.res
         this.invoiceHistory = $.invoiceHistory;
         this.paymentMethodUpdate = $.paymentMethodUpdate;
         this.subscriptionCancel = $.subscriptionCancel;
+        this.subscriptionPause = $.subscriptionPause;
         this.subscriptionUpdate = $.subscriptionUpdate;
     }
 
@@ -116,6 +125,15 @@ public final class BillingPortalConfigurationFeaturesArgs extends com.pulumi.res
 
         public Builder subscriptionCancel(BillingPortalConfigurationFeaturesSubscriptionCancelArgs subscriptionCancel) {
             return subscriptionCancel(Output.of(subscriptionCancel));
+        }
+
+        public Builder subscriptionPause(@Nullable Output<BillingPortalConfigurationFeaturesSubscriptionPauseArgs> subscriptionPause) {
+            $.subscriptionPause = subscriptionPause;
+            return this;
+        }
+
+        public Builder subscriptionPause(BillingPortalConfigurationFeaturesSubscriptionPauseArgs subscriptionPause) {
+            return subscriptionPause(Output.of(subscriptionPause));
         }
 
         public Builder subscriptionUpdate(@Nullable Output<BillingPortalConfigurationFeaturesSubscriptionUpdateArgs> subscriptionUpdate) {

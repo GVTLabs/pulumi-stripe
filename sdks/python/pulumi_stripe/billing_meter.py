@@ -300,12 +300,12 @@ class BillingMeter(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 customer_mappings: pulumi.Input[Optional[Sequence[pulumi.Input[Union['BillingMeterCustomerMappingArgs', 'BillingMeterCustomerMappingArgsDict']]]]] = None,
-                 default_aggregations: pulumi.Input[Optional[Sequence[pulumi.Input[Union['BillingMeterDefaultAggregationArgs', 'BillingMeterDefaultAggregationArgsDict']]]]] = None,
+                 customer_mappings: pulumi.Input[Optional[Sequence[pulumi.Input[Union['BillingMeterCustomerMappingArgs', 'BillingMeterCustomerMappingArgsDict', 'outputs.BillingMeterCustomerMapping']]]]] = None,
+                 default_aggregations: pulumi.Input[Optional[Sequence[pulumi.Input[Union['BillingMeterDefaultAggregationArgs', 'BillingMeterDefaultAggregationArgsDict', 'outputs.BillingMeterDefaultAggregation']]]]] = None,
                  display_name: pulumi.Input[Optional[_builtins.str]] = None,
                  event_name: pulumi.Input[Optional[_builtins.str]] = None,
                  event_time_window: pulumi.Input[Optional[_builtins.str]] = None,
-                 value_settings: pulumi.Input[Optional[Sequence[pulumi.Input[Union['BillingMeterValueSettingArgs', 'BillingMeterValueSettingArgsDict']]]]] = None,
+                 value_settings: pulumi.Input[Optional[Sequence[pulumi.Input[Union['BillingMeterValueSettingArgs', 'BillingMeterValueSettingArgsDict', 'outputs.BillingMeterValueSetting']]]]] = None,
                  __props__=None):
         """
         Create a BillingMeter resource with the given unique name, props, and options.
@@ -340,12 +340,12 @@ class BillingMeter(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 customer_mappings: pulumi.Input[Optional[Sequence[pulumi.Input[Union['BillingMeterCustomerMappingArgs', 'BillingMeterCustomerMappingArgsDict']]]]] = None,
-                 default_aggregations: pulumi.Input[Optional[Sequence[pulumi.Input[Union['BillingMeterDefaultAggregationArgs', 'BillingMeterDefaultAggregationArgsDict']]]]] = None,
+                 customer_mappings: pulumi.Input[Optional[Sequence[pulumi.Input[Union['BillingMeterCustomerMappingArgs', 'BillingMeterCustomerMappingArgsDict', 'outputs.BillingMeterCustomerMapping']]]]] = None,
+                 default_aggregations: pulumi.Input[Optional[Sequence[pulumi.Input[Union['BillingMeterDefaultAggregationArgs', 'BillingMeterDefaultAggregationArgsDict', 'outputs.BillingMeterDefaultAggregation']]]]] = None,
                  display_name: pulumi.Input[Optional[_builtins.str]] = None,
                  event_name: pulumi.Input[Optional[_builtins.str]] = None,
                  event_time_window: pulumi.Input[Optional[_builtins.str]] = None,
-                 value_settings: pulumi.Input[Optional[Sequence[pulumi.Input[Union['BillingMeterValueSettingArgs', 'BillingMeterValueSettingArgsDict']]]]] = None,
+                 value_settings: pulumi.Input[Optional[Sequence[pulumi.Input[Union['BillingMeterValueSettingArgs', 'BillingMeterValueSettingArgsDict', 'outputs.BillingMeterValueSetting']]]]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -383,17 +383,17 @@ class BillingMeter(pulumi.CustomResource):
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
             created: pulumi.Input[Optional[_builtins.float]] = None,
-            customer_mappings: pulumi.Input[Optional[Sequence[pulumi.Input[Union['BillingMeterCustomerMappingArgs', 'BillingMeterCustomerMappingArgsDict']]]]] = None,
-            default_aggregations: pulumi.Input[Optional[Sequence[pulumi.Input[Union['BillingMeterDefaultAggregationArgs', 'BillingMeterDefaultAggregationArgsDict']]]]] = None,
+            customer_mappings: pulumi.Input[Optional[Sequence[pulumi.Input[Union['BillingMeterCustomerMappingArgs', 'BillingMeterCustomerMappingArgsDict', 'outputs.BillingMeterCustomerMapping']]]]] = None,
+            default_aggregations: pulumi.Input[Optional[Sequence[pulumi.Input[Union['BillingMeterDefaultAggregationArgs', 'BillingMeterDefaultAggregationArgsDict', 'outputs.BillingMeterDefaultAggregation']]]]] = None,
             display_name: pulumi.Input[Optional[_builtins.str]] = None,
             event_name: pulumi.Input[Optional[_builtins.str]] = None,
             event_time_window: pulumi.Input[Optional[_builtins.str]] = None,
             livemode: pulumi.Input[Optional[_builtins.bool]] = None,
             object: pulumi.Input[Optional[_builtins.str]] = None,
             status: pulumi.Input[Optional[_builtins.str]] = None,
-            status_transitions: pulumi.Input[Optional[Union['BillingMeterStatusTransitionsArgs', 'BillingMeterStatusTransitionsArgsDict']]] = None,
+            status_transitions: pulumi.Input[Optional[Union['BillingMeterStatusTransitionsArgs', 'BillingMeterStatusTransitionsArgsDict', 'outputs.BillingMeterStatusTransitions']]] = None,
             updated: pulumi.Input[Optional[_builtins.float]] = None,
-            value_settings: pulumi.Input[Optional[Sequence[pulumi.Input[Union['BillingMeterValueSettingArgs', 'BillingMeterValueSettingArgsDict']]]]] = None) -> 'BillingMeter':
+            value_settings: pulumi.Input[Optional[Sequence[pulumi.Input[Union['BillingMeterValueSettingArgs', 'BillingMeterValueSettingArgsDict', 'outputs.BillingMeterValueSetting']]]]] = None) -> 'BillingMeter':
         """
         Get an existing BillingMeter resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -427,6 +427,36 @@ class BillingMeter(pulumi.CustomResource):
         __props__.__dict__["updated"] = updated
         __props__.__dict__["value_settings"] = value_settings
         return BillingMeter(resource_name, opts=opts, __props__=__props__)
+
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            created: pulumi.Input[Optional[_builtins.float]] = None,
+            customer_mappings: pulumi.Input[Optional[Sequence[pulumi.Input[Union['BillingMeterCustomerMappingArgs', 'BillingMeterCustomerMappingArgsDict', 'outputs.BillingMeterCustomerMapping']]]]] = None,
+            default_aggregations: pulumi.Input[Optional[Sequence[pulumi.Input[Union['BillingMeterDefaultAggregationArgs', 'BillingMeterDefaultAggregationArgsDict', 'outputs.BillingMeterDefaultAggregation']]]]] = None,
+            display_name: pulumi.Input[Optional[_builtins.str]] = None,
+            event_name: pulumi.Input[Optional[_builtins.str]] = None,
+            event_time_window: pulumi.Input[Optional[_builtins.str]] = None,
+            livemode: pulumi.Input[Optional[_builtins.bool]] = None,
+            object: pulumi.Input[Optional[_builtins.str]] = None,
+            status: pulumi.Input[Optional[_builtins.str]] = None,
+            status_transitions: pulumi.Input[Optional[Union['BillingMeterStatusTransitionsArgs', 'BillingMeterStatusTransitionsArgsDict', 'outputs.BillingMeterStatusTransitions']]] = None,
+            updated: pulumi.Input[Optional[_builtins.float]] = None,
+            value_settings: pulumi.Input[Optional[Sequence[pulumi.Input[Union['BillingMeterValueSettingArgs', 'BillingMeterValueSettingArgsDict', 'outputs.BillingMeterValueSetting']]]]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["created"] = created
+        __props__["customerMappings"] = customer_mappings
+        __props__["defaultAggregations"] = default_aggregations
+        __props__["displayName"] = display_name
+        __props__["eventName"] = event_name
+        __props__["eventTimeWindow"] = event_time_window
+        __props__["livemode"] = livemode
+        __props__["object"] = object
+        __props__["status"] = status
+        __props__["statusTransitions"] = status_transitions
+        __props__["updated"] = updated
+        __props__["valueSettings"] = value_settings
+        return pulumi.runtime.exists_resource(None, 'stripe:index/billingMeter:BillingMeter', id, __props__, opts or pulumi.ResourceOptions(), package_ref=_utilities.get_package())
 
     @_builtins.property
     @pulumi.getter

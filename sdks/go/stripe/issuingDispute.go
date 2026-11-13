@@ -126,6 +126,18 @@ func (IssuingDisputeState) ElementType() reflect.Type {
 	return reflect.TypeOf((*issuingDisputeState)(nil)).Elem()
 }
 
+// IssuingDisputeExists checks whether an existing IssuingDispute resource with the given ID exists.
+func IssuingDisputeExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *IssuingDisputeState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	ref, err := internal.PkgGetPackageRef(ctx)
+	if err != nil {
+		return pulumi.Bool(false).ToBoolOutput().ApplyT(func(bool) (bool, error) {
+			return false, err
+		}).(pulumi.BoolOutput)
+	}
+	return ctx.ExistsResource("stripe:index/issuingDispute:IssuingDispute", id, state, ref, opts...)
+}
+
 type issuingDisputeArgs struct {
 	// Disputed amount in the card's currency and in the [smallest currency unit](https://docs.stripe.com/currencies#zero-decimal). Usually the amount of the <span pulumi-lang-nodejs="`transaction`" pulumi-lang-dotnet="`Transaction`" pulumi-lang-go="`transaction`" pulumi-lang-python="`transaction`" pulumi-lang-yaml="`transaction`" pulumi-lang-java="`transaction`" pulumi-lang-hcl="`transaction`">`transaction`</span>, but can differ (usually because of currency fluctuation).
 	Amount   *float64                `pulumi:"amount"`

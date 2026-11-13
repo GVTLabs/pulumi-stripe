@@ -13,7 +13,7 @@ namespace Pulumi.Stripe.Inputs
     public sealed class V2CoreEventDestinationStatusDetailsArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Details about why the event destination has been disabled.
+        /// Present when the destination was disabled; identifies the cause, time, and provider-side object involved when available.
         /// </summary>
         [Input("disabled")]
         public Input<Inputs.V2CoreEventDestinationStatusDetailsDisabledArgs>? Disabled { get; set; }

@@ -16,14 +16,14 @@ public final class IssuingCardholderIndividualCardIssuingArgs extends com.pulumi
     public static final IssuingCardholderIndividualCardIssuingArgs Empty = new IssuingCardholderIndividualCardIssuingArgs();
 
     /**
-     * Information about cardholder acceptance of Celtic [Authorized User Terms](https://stripe.com/docs/issuing/cards#accept-authorized-user-terms). Required for cards backed by a Celtic program.
+     * Information about cardholder acceptance of Celtic [Authorized User Terms](https://docs.stripe.com/issuing/compliance-us#issuing-terms). Required for cards backed by a Celtic program.
      * 
      */
     @Import(name="userTermsAcceptance")
     private @Nullable Output<IssuingCardholderIndividualCardIssuingUserTermsAcceptanceArgs> userTermsAcceptance;
 
     /**
-     * @return Information about cardholder acceptance of Celtic [Authorized User Terms](https://stripe.com/docs/issuing/cards#accept-authorized-user-terms). Required for cards backed by a Celtic program.
+     * @return Information about cardholder acceptance of Celtic [Authorized User Terms](https://docs.stripe.com/issuing/compliance-us#issuing-terms). Required for cards backed by a Celtic program.
      * 
      */
     public Optional<Output<IssuingCardholderIndividualCardIssuingUserTermsAcceptanceArgs>> userTermsAcceptance() {
@@ -55,7 +55,7 @@ public final class IssuingCardholderIndividualCardIssuingArgs extends com.pulumi
         }
 
         /**
-         * @param userTermsAcceptance Information about cardholder acceptance of Celtic [Authorized User Terms](https://stripe.com/docs/issuing/cards#accept-authorized-user-terms). Required for cards backed by a Celtic program.
+         * @param userTermsAcceptance Information about cardholder acceptance of Celtic [Authorized User Terms](https://docs.stripe.com/issuing/compliance-us#issuing-terms). Required for cards backed by a Celtic program.
          * 
          * @return builder
          * 
@@ -66,7 +66,7 @@ public final class IssuingCardholderIndividualCardIssuingArgs extends com.pulumi
         }
 
         /**
-         * @param userTermsAcceptance Information about cardholder acceptance of Celtic [Authorized User Terms](https://stripe.com/docs/issuing/cards#accept-authorized-user-terms). Required for cards backed by a Celtic program.
+         * @param userTermsAcceptance Information about cardholder acceptance of Celtic [Authorized User Terms](https://docs.stripe.com/issuing/compliance-us#issuing-terms). Required for cards backed by a Celtic program.
          * 
          * @return builder
          * 

@@ -115,6 +115,18 @@ func (RadarValueListState) ElementType() reflect.Type {
 	return reflect.TypeOf((*radarValueListState)(nil)).Elem()
 }
 
+// RadarValueListExists checks whether an existing RadarValueList resource with the given ID exists.
+func RadarValueListExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *RadarValueListState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	ref, err := internal.PkgGetPackageRef(ctx)
+	if err != nil {
+		return pulumi.Bool(false).ToBoolOutput().ApplyT(func(bool) (bool, error) {
+			return false, err
+		}).(pulumi.BoolOutput)
+	}
+	return ctx.ExistsResource("stripe:index/radarValueList:RadarValueList", id, state, ref, opts...)
+}
+
 type radarValueListArgs struct {
 	// The name of the value list for use in rules.
 	Alias string `pulumi:"alias"`

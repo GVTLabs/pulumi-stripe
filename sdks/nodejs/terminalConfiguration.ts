@@ -20,6 +20,17 @@ export class TerminalConfiguration extends pulumi.CustomResource {
         return new TerminalConfiguration(name, <any>state, { ...opts, id: id });
     }
 
+    /**
+     * Check whether an existing TerminalConfiguration resource with the given ID exists.
+     *
+     * @param id The _unique_ provider ID of the resource to check.
+     * @param state Any extra arguments used during the lookup.
+     * @param opts Optional settings to control the behavior of the CustomResource.
+     */
+    public static exists(id: pulumi.Input<string>, state?: TerminalConfigurationState, opts?: pulumi.CustomResourceOptions): pulumi.Output<boolean> {
+        return pulumi.runtime.existsResource("stripe:index/terminalConfiguration:TerminalConfiguration", id, <any>state || {}, { ...opts }, utilities.getPackage());
+    }
+
     /** @internal */
     public static readonly __pulumiType = 'stripe:index/terminalConfiguration:TerminalConfiguration';
 
@@ -54,9 +65,11 @@ export class TerminalConfiguration extends pulumi.CustomResource {
      */
     declare public /*out*/ readonly object: pulumi.Output<string>;
     declare public readonly offline: pulumi.Output<outputs.TerminalConfigurationOffline>;
+    declare public readonly readerSecurity: pulumi.Output<outputs.TerminalConfigurationReaderSecurity>;
     declare public readonly rebootWindow: pulumi.Output<outputs.TerminalConfigurationRebootWindow>;
     declare public readonly stripeS700: pulumi.Output<outputs.TerminalConfigurationStripeS700>;
     declare public readonly stripeS710: pulumi.Output<outputs.TerminalConfigurationStripeS710>;
+    declare public readonly stripeT600: pulumi.Output<outputs.TerminalConfigurationStripeT600>;
     declare public readonly tipping: pulumi.Output<outputs.TerminalConfigurationTipping>;
     declare public readonly verifoneM425: pulumi.Output<outputs.TerminalConfigurationVerifoneM425>;
     declare public readonly verifoneP400: pulumi.Output<outputs.TerminalConfigurationVerifoneP400>;
@@ -86,9 +99,11 @@ export class TerminalConfiguration extends pulumi.CustomResource {
             resourceInputs["name"] = state?.name;
             resourceInputs["object"] = state?.object;
             resourceInputs["offline"] = state?.offline;
+            resourceInputs["readerSecurity"] = state?.readerSecurity;
             resourceInputs["rebootWindow"] = state?.rebootWindow;
             resourceInputs["stripeS700"] = state?.stripeS700;
             resourceInputs["stripeS710"] = state?.stripeS710;
+            resourceInputs["stripeT600"] = state?.stripeT600;
             resourceInputs["tipping"] = state?.tipping;
             resourceInputs["verifoneM425"] = state?.verifoneM425;
             resourceInputs["verifoneP400"] = state?.verifoneP400;
@@ -103,9 +118,11 @@ export class TerminalConfiguration extends pulumi.CustomResource {
             resourceInputs["cellular"] = args?.cellular;
             resourceInputs["name"] = args?.name;
             resourceInputs["offline"] = args?.offline;
+            resourceInputs["readerSecurity"] = args?.readerSecurity;
             resourceInputs["rebootWindow"] = args?.rebootWindow;
             resourceInputs["stripeS700"] = args?.stripeS700;
             resourceInputs["stripeS710"] = args?.stripeS710;
+            resourceInputs["stripeT600"] = args?.stripeT600;
             resourceInputs["tipping"] = args?.tipping;
             resourceInputs["verifoneM425"] = args?.verifoneM425;
             resourceInputs["verifoneP400"] = args?.verifoneP400;
@@ -146,9 +163,11 @@ export interface TerminalConfigurationState {
      */
     object?: pulumi.Input<string | undefined>;
     offline?: pulumi.Input<inputs.TerminalConfigurationOffline | undefined>;
+    readerSecurity?: pulumi.Input<inputs.TerminalConfigurationReaderSecurity | undefined>;
     rebootWindow?: pulumi.Input<inputs.TerminalConfigurationRebootWindow | undefined>;
     stripeS700?: pulumi.Input<inputs.TerminalConfigurationStripeS700 | undefined>;
     stripeS710?: pulumi.Input<inputs.TerminalConfigurationStripeS710 | undefined>;
+    stripeT600?: pulumi.Input<inputs.TerminalConfigurationStripeT600 | undefined>;
     tipping?: pulumi.Input<inputs.TerminalConfigurationTipping | undefined>;
     verifoneM425?: pulumi.Input<inputs.TerminalConfigurationVerifoneM425 | undefined>;
     verifoneP400?: pulumi.Input<inputs.TerminalConfigurationVerifoneP400 | undefined>;
@@ -170,9 +189,11 @@ export interface TerminalConfigurationArgs {
      */
     name?: pulumi.Input<string | undefined>;
     offline?: pulumi.Input<inputs.TerminalConfigurationOffline | undefined>;
+    readerSecurity?: pulumi.Input<inputs.TerminalConfigurationReaderSecurity | undefined>;
     rebootWindow?: pulumi.Input<inputs.TerminalConfigurationRebootWindow | undefined>;
     stripeS700?: pulumi.Input<inputs.TerminalConfigurationStripeS700 | undefined>;
     stripeS710?: pulumi.Input<inputs.TerminalConfigurationStripeS710 | undefined>;
+    stripeT600?: pulumi.Input<inputs.TerminalConfigurationStripeT600 | undefined>;
     tipping?: pulumi.Input<inputs.TerminalConfigurationTipping | undefined>;
     verifoneM425?: pulumi.Input<inputs.TerminalConfigurationVerifoneM425 | undefined>;
     verifoneP400?: pulumi.Input<inputs.TerminalConfigurationVerifoneP400 | undefined>;

@@ -370,12 +370,12 @@ class IssuingPersonalizationDesign(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  card_logo: pulumi.Input[Optional[_builtins.str]] = None,
-                 carrier_text: pulumi.Input[Optional[Union['IssuingPersonalizationDesignCarrierTextArgs', 'IssuingPersonalizationDesignCarrierTextArgsDict']]] = None,
+                 carrier_text: pulumi.Input[Optional[Union['IssuingPersonalizationDesignCarrierTextArgs', 'IssuingPersonalizationDesignCarrierTextArgsDict', 'outputs.IssuingPersonalizationDesignCarrierText']]] = None,
                  lookup_key: pulumi.Input[Optional[_builtins.str]] = None,
                  metadata: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
                  name: pulumi.Input[Optional[_builtins.str]] = None,
                  physical_bundle: pulumi.Input[Optional[_builtins.str]] = None,
-                 preferences: pulumi.Input[Optional[Union['IssuingPersonalizationDesignPreferencesArgs', 'IssuingPersonalizationDesignPreferencesArgsDict']]] = None,
+                 preferences: pulumi.Input[Optional[Union['IssuingPersonalizationDesignPreferencesArgs', 'IssuingPersonalizationDesignPreferencesArgsDict', 'outputs.IssuingPersonalizationDesignPreferences']]] = None,
                  transfer_lookup_key: pulumi.Input[Optional[_builtins.bool]] = None,
                  __props__=None):
         """
@@ -384,7 +384,7 @@ class IssuingPersonalizationDesign(pulumi.CustomResource):
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] card_logo: The file for the card logo to use with physical bundles that support card logos. Must have a <span pulumi-lang-nodejs="`purpose`" pulumi-lang-dotnet="`Purpose`" pulumi-lang-go="`purpose`" pulumi-lang-python="`purpose`" pulumi-lang-yaml="`purpose`" pulumi-lang-java="`purpose`" pulumi-lang-hcl="`purpose`">`purpose`</span> value of <span pulumi-lang-nodejs="`issuingLogo`" pulumi-lang-dotnet="`IssuingLogo`" pulumi-lang-go="`issuingLogo`" pulumi-lang-python="`issuing_logo`" pulumi-lang-yaml="`issuingLogo`" pulumi-lang-java="`issuingLogo`" pulumi-lang-hcl="`issuing_logo`">`issuingLogo`</span>. Image must be in PNG format with dimensions of 1000px by 200px. It must be a binary (black and white) image containing a black logo on a white background. We don't accept grayscale.
-        :param pulumi.Input[Union['IssuingPersonalizationDesignCarrierTextArgs', 'IssuingPersonalizationDesignCarrierTextArgsDict']] carrier_text: Hash containing carrier text, for use with physical bundles that support carrier text.
+        :param pulumi.Input[Union['IssuingPersonalizationDesignCarrierTextArgs', 'IssuingPersonalizationDesignCarrierTextArgsDict', 'outputs.IssuingPersonalizationDesignCarrierText']] carrier_text: Hash containing carrier text, for use with physical bundles that support carrier text.
         :param pulumi.Input[_builtins.str] lookup_key: A lookup key used to retrieve personalization designs dynamically from a static string. This may be up to 200 characters.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] metadata: Set of [key-value pairs](https://docs.stripe.com/api/metadata) that you can attach to an object. This can be useful for storing additional information about the object in a structured format.
         :param pulumi.Input[_builtins.str] name: Friendly display name.
@@ -417,12 +417,12 @@ class IssuingPersonalizationDesign(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  card_logo: pulumi.Input[Optional[_builtins.str]] = None,
-                 carrier_text: pulumi.Input[Optional[Union['IssuingPersonalizationDesignCarrierTextArgs', 'IssuingPersonalizationDesignCarrierTextArgsDict']]] = None,
+                 carrier_text: pulumi.Input[Optional[Union['IssuingPersonalizationDesignCarrierTextArgs', 'IssuingPersonalizationDesignCarrierTextArgsDict', 'outputs.IssuingPersonalizationDesignCarrierText']]] = None,
                  lookup_key: pulumi.Input[Optional[_builtins.str]] = None,
                  metadata: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
                  name: pulumi.Input[Optional[_builtins.str]] = None,
                  physical_bundle: pulumi.Input[Optional[_builtins.str]] = None,
-                 preferences: pulumi.Input[Optional[Union['IssuingPersonalizationDesignPreferencesArgs', 'IssuingPersonalizationDesignPreferencesArgsDict']]] = None,
+                 preferences: pulumi.Input[Optional[Union['IssuingPersonalizationDesignPreferencesArgs', 'IssuingPersonalizationDesignPreferencesArgsDict', 'outputs.IssuingPersonalizationDesignPreferences']]] = None,
                  transfer_lookup_key: pulumi.Input[Optional[_builtins.bool]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
@@ -462,7 +462,7 @@ class IssuingPersonalizationDesign(pulumi.CustomResource):
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
             card_logo: pulumi.Input[Optional[_builtins.str]] = None,
-            carrier_text: pulumi.Input[Optional[Union['IssuingPersonalizationDesignCarrierTextArgs', 'IssuingPersonalizationDesignCarrierTextArgsDict']]] = None,
+            carrier_text: pulumi.Input[Optional[Union['IssuingPersonalizationDesignCarrierTextArgs', 'IssuingPersonalizationDesignCarrierTextArgsDict', 'outputs.IssuingPersonalizationDesignCarrierText']]] = None,
             created: pulumi.Input[Optional[_builtins.float]] = None,
             livemode: pulumi.Input[Optional[_builtins.bool]] = None,
             lookup_key: pulumi.Input[Optional[_builtins.str]] = None,
@@ -470,8 +470,8 @@ class IssuingPersonalizationDesign(pulumi.CustomResource):
             name: pulumi.Input[Optional[_builtins.str]] = None,
             object: pulumi.Input[Optional[_builtins.str]] = None,
             physical_bundle: pulumi.Input[Optional[_builtins.str]] = None,
-            preferences: pulumi.Input[Optional[Union['IssuingPersonalizationDesignPreferencesArgs', 'IssuingPersonalizationDesignPreferencesArgsDict']]] = None,
-            rejection_reasons: pulumi.Input[Optional[Union['IssuingPersonalizationDesignRejectionReasonsArgs', 'IssuingPersonalizationDesignRejectionReasonsArgsDict']]] = None,
+            preferences: pulumi.Input[Optional[Union['IssuingPersonalizationDesignPreferencesArgs', 'IssuingPersonalizationDesignPreferencesArgsDict', 'outputs.IssuingPersonalizationDesignPreferences']]] = None,
+            rejection_reasons: pulumi.Input[Optional[Union['IssuingPersonalizationDesignRejectionReasonsArgs', 'IssuingPersonalizationDesignRejectionReasonsArgsDict', 'outputs.IssuingPersonalizationDesignRejectionReasons']]] = None,
             status: pulumi.Input[Optional[_builtins.str]] = None,
             transfer_lookup_key: pulumi.Input[Optional[_builtins.bool]] = None) -> 'IssuingPersonalizationDesign':
         """
@@ -482,7 +482,7 @@ class IssuingPersonalizationDesign(pulumi.CustomResource):
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] card_logo: The file for the card logo to use with physical bundles that support card logos. Must have a <span pulumi-lang-nodejs="`purpose`" pulumi-lang-dotnet="`Purpose`" pulumi-lang-go="`purpose`" pulumi-lang-python="`purpose`" pulumi-lang-yaml="`purpose`" pulumi-lang-java="`purpose`" pulumi-lang-hcl="`purpose`">`purpose`</span> value of <span pulumi-lang-nodejs="`issuingLogo`" pulumi-lang-dotnet="`IssuingLogo`" pulumi-lang-go="`issuingLogo`" pulumi-lang-python="`issuing_logo`" pulumi-lang-yaml="`issuingLogo`" pulumi-lang-java="`issuingLogo`" pulumi-lang-hcl="`issuing_logo`">`issuingLogo`</span>. Image must be in PNG format with dimensions of 1000px by 200px. It must be a binary (black and white) image containing a black logo on a white background. We don't accept grayscale.
-        :param pulumi.Input[Union['IssuingPersonalizationDesignCarrierTextArgs', 'IssuingPersonalizationDesignCarrierTextArgsDict']] carrier_text: Hash containing carrier text, for use with physical bundles that support carrier text.
+        :param pulumi.Input[Union['IssuingPersonalizationDesignCarrierTextArgs', 'IssuingPersonalizationDesignCarrierTextArgsDict', 'outputs.IssuingPersonalizationDesignCarrierText']] carrier_text: Hash containing carrier text, for use with physical bundles that support carrier text.
         :param pulumi.Input[_builtins.float] created: Time at which the object was created. Measured in seconds since the Unix epoch.
         :param pulumi.Input[_builtins.bool] livemode: If the object exists in live mode, the value is <span pulumi-lang-nodejs="`true`" pulumi-lang-dotnet="`True`" pulumi-lang-go="`true`" pulumi-lang-python="`true`" pulumi-lang-yaml="`true`" pulumi-lang-java="`true`" pulumi-lang-hcl="`true`">`true`</span>. If the object exists in test mode, the value is <span pulumi-lang-nodejs="`false`" pulumi-lang-dotnet="`False`" pulumi-lang-go="`false`" pulumi-lang-python="`false`" pulumi-lang-yaml="`false`" pulumi-lang-java="`false`" pulumi-lang-hcl="`false`">`false`</span>.
         :param pulumi.Input[_builtins.str] lookup_key: A lookup key used to retrieve personalization designs dynamically from a static string. This may be up to 200 characters.
@@ -512,6 +512,38 @@ class IssuingPersonalizationDesign(pulumi.CustomResource):
         __props__.__dict__["status"] = status
         __props__.__dict__["transfer_lookup_key"] = transfer_lookup_key
         return IssuingPersonalizationDesign(resource_name, opts=opts, __props__=__props__)
+
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            card_logo: pulumi.Input[Optional[_builtins.str]] = None,
+            carrier_text: pulumi.Input[Optional[Union['IssuingPersonalizationDesignCarrierTextArgs', 'IssuingPersonalizationDesignCarrierTextArgsDict', 'outputs.IssuingPersonalizationDesignCarrierText']]] = None,
+            created: pulumi.Input[Optional[_builtins.float]] = None,
+            livemode: pulumi.Input[Optional[_builtins.bool]] = None,
+            lookup_key: pulumi.Input[Optional[_builtins.str]] = None,
+            metadata: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+            name: pulumi.Input[Optional[_builtins.str]] = None,
+            object: pulumi.Input[Optional[_builtins.str]] = None,
+            physical_bundle: pulumi.Input[Optional[_builtins.str]] = None,
+            preferences: pulumi.Input[Optional[Union['IssuingPersonalizationDesignPreferencesArgs', 'IssuingPersonalizationDesignPreferencesArgsDict', 'outputs.IssuingPersonalizationDesignPreferences']]] = None,
+            rejection_reasons: pulumi.Input[Optional[Union['IssuingPersonalizationDesignRejectionReasonsArgs', 'IssuingPersonalizationDesignRejectionReasonsArgsDict', 'outputs.IssuingPersonalizationDesignRejectionReasons']]] = None,
+            status: pulumi.Input[Optional[_builtins.str]] = None,
+            transfer_lookup_key: pulumi.Input[Optional[_builtins.bool]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["cardLogo"] = card_logo
+        __props__["carrierText"] = carrier_text
+        __props__["created"] = created
+        __props__["livemode"] = livemode
+        __props__["lookupKey"] = lookup_key
+        __props__["metadata"] = metadata
+        __props__["name"] = name
+        __props__["object"] = object
+        __props__["physicalBundle"] = physical_bundle
+        __props__["preferences"] = preferences
+        __props__["rejectionReasons"] = rejection_reasons
+        __props__["status"] = status
+        __props__["transferLookupKey"] = transfer_lookup_key
+        return pulumi.runtime.exists_resource(None, 'stripe:index/issuingPersonalizationDesign:IssuingPersonalizationDesign', id, __props__, opts or pulumi.ResourceOptions(), package_ref=_utilities.get_package())
 
     @_builtins.property
     @pulumi.getter(name="cardLogo")

@@ -15,7 +15,7 @@ import (
 type WebhookEndpoint struct {
 	pulumi.CustomResourceState
 
-	// The API version events are rendered as for this webhook endpoint.
+	// The API version that events are rendered as for this webhook endpoint. You can't change this value after you create the endpoint.
 	ApiVersion pulumi.StringOutput `pulumi:"apiVersion"`
 	// The ID of the associated Connect application.
 	Application pulumi.StringOutput `pulumi:"application"`
@@ -89,7 +89,7 @@ func GetWebhookEndpoint(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering WebhookEndpoint resources.
 type webhookEndpointState struct {
-	// The API version events are rendered as for this webhook endpoint.
+	// The API version that events are rendered as for this webhook endpoint. You can't change this value after you create the endpoint.
 	ApiVersion *string `pulumi:"apiVersion"`
 	// The ID of the associated Connect application.
 	Application *string `pulumi:"application"`
@@ -116,7 +116,7 @@ type webhookEndpointState struct {
 }
 
 type WebhookEndpointState struct {
-	// The API version events are rendered as for this webhook endpoint.
+	// The API version that events are rendered as for this webhook endpoint. You can't change this value after you create the endpoint.
 	ApiVersion pulumi.StringPtrInput
 	// The ID of the associated Connect application.
 	Application pulumi.StringPtrInput
@@ -146,8 +146,20 @@ func (WebhookEndpointState) ElementType() reflect.Type {
 	return reflect.TypeOf((*webhookEndpointState)(nil)).Elem()
 }
 
+// WebhookEndpointExists checks whether an existing WebhookEndpoint resource with the given ID exists.
+func WebhookEndpointExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *WebhookEndpointState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	ref, err := internal.PkgGetPackageRef(ctx)
+	if err != nil {
+		return pulumi.Bool(false).ToBoolOutput().ApplyT(func(bool) (bool, error) {
+			return false, err
+		}).(pulumi.BoolOutput)
+	}
+	return ctx.ExistsResource("stripe:index/webhookEndpoint:WebhookEndpoint", id, state, ref, opts...)
+}
+
 type webhookEndpointArgs struct {
-	// The API version events are rendered as for this webhook endpoint.
+	// The API version that events are rendered as for this webhook endpoint. You can't change this value after you create the endpoint.
 	ApiVersion *string `pulumi:"apiVersion"`
 	// Whether this endpoint should receive events from connected accounts (<span pulumi-lang-nodejs="`true`" pulumi-lang-dotnet="`True`" pulumi-lang-go="`true`" pulumi-lang-python="`true`" pulumi-lang-yaml="`true`" pulumi-lang-java="`true`" pulumi-lang-hcl="`true`">`true`</span>), or from your account (<span pulumi-lang-nodejs="`false`" pulumi-lang-dotnet="`False`" pulumi-lang-go="`false`" pulumi-lang-python="`false`" pulumi-lang-yaml="`false`" pulumi-lang-java="`false`" pulumi-lang-hcl="`false`">`false`</span>). Defaults to <span pulumi-lang-nodejs="`false`" pulumi-lang-dotnet="`False`" pulumi-lang-go="`false`" pulumi-lang-python="`false`" pulumi-lang-yaml="`false`" pulumi-lang-java="`false`" pulumi-lang-hcl="`false`">`false`</span>.
 	Connect *bool `pulumi:"connect"`
@@ -163,7 +175,7 @@ type webhookEndpointArgs struct {
 
 // The set of arguments for constructing a WebhookEndpoint resource.
 type WebhookEndpointArgs struct {
-	// The API version events are rendered as for this webhook endpoint.
+	// The API version that events are rendered as for this webhook endpoint. You can't change this value after you create the endpoint.
 	ApiVersion pulumi.StringPtrInput
 	// Whether this endpoint should receive events from connected accounts (<span pulumi-lang-nodejs="`true`" pulumi-lang-dotnet="`True`" pulumi-lang-go="`true`" pulumi-lang-python="`true`" pulumi-lang-yaml="`true`" pulumi-lang-java="`true`" pulumi-lang-hcl="`true`">`true`</span>), or from your account (<span pulumi-lang-nodejs="`false`" pulumi-lang-dotnet="`False`" pulumi-lang-go="`false`" pulumi-lang-python="`false`" pulumi-lang-yaml="`false`" pulumi-lang-java="`false`" pulumi-lang-hcl="`false`">`false`</span>). Defaults to <span pulumi-lang-nodejs="`false`" pulumi-lang-dotnet="`False`" pulumi-lang-go="`false`" pulumi-lang-python="`false`" pulumi-lang-yaml="`false`" pulumi-lang-java="`false`" pulumi-lang-hcl="`false`">`false`</span>.
 	Connect pulumi.BoolPtrInput
@@ -214,7 +226,7 @@ func (o WebhookEndpointOutput) ToWebhookEndpointOutputWithContext(ctx context.Co
 	return o
 }
 
-// The API version events are rendered as for this webhook endpoint.
+// The API version that events are rendered as for this webhook endpoint. You can't change this value after you create the endpoint.
 func (o WebhookEndpointOutput) ApiVersion() pulumi.StringOutput {
 	return o.ApplyT(func(v *WebhookEndpoint) pulumi.StringOutput { return v.ApiVersion }).(pulumi.StringOutput)
 }

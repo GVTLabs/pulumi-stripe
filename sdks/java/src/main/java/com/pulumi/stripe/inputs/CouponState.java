@@ -44,6 +44,21 @@ public final class CouponState extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
+     * Unique identifier for the object.
+     * 
+     */
+    @Import(name="couponId")
+    private @Nullable Output<String> couponId;
+
+    /**
+     * @return Unique identifier for the object.
+     * 
+     */
+    public Optional<Output<String>> couponId() {
+        return Optional.ofNullable(this.couponId);
+    }
+
+    /**
      * Time at which the object was created. Measured in seconds since the Unix epoch.
      * 
      */
@@ -258,6 +273,7 @@ public final class CouponState extends com.pulumi.resources.ResourceArgs {
     private CouponState(CouponState $) {
         this.amountOff = $.amountOff;
         this.appliesTos = $.appliesTos;
+        this.couponId = $.couponId;
         this.created = $.created;
         this.currency = $.currency;
         this.currencyOptions = $.currencyOptions;
@@ -324,6 +340,27 @@ public final class CouponState extends com.pulumi.resources.ResourceArgs {
 
         public Builder appliesTos(CouponAppliesToArgs... appliesTos) {
             return appliesTos(List.of(appliesTos));
+        }
+
+        /**
+         * @param couponId Unique identifier for the object.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder couponId(@Nullable Output<String> couponId) {
+            $.couponId = couponId;
+            return this;
+        }
+
+        /**
+         * @param couponId Unique identifier for the object.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder couponId(String couponId) {
+            return couponId(Output.of(couponId));
         }
 
         /**

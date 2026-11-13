@@ -14,7 +14,7 @@ namespace Pulumi.Stripe.Outputs
     public sealed class PersonVerificationAdditionalDocument
     {
         /// <summary>
-        /// The back of an ID returned by a [file upload](https://api.stripe.com#create_file) with a &lt;span pulumi-lang-nodejs="`purpose`" pulumi-lang-dotnet="`Purpose`" pulumi-lang-go="`purpose`" pulumi-lang-python="`purpose`" pulumi-lang-yaml="`purpose`" pulumi-lang-java="`purpose`" pulumi-lang-hcl="`purpose`"&gt;`purpose`&lt;/span&gt; value of &lt;span pulumi-lang-nodejs="`identityDocument`" pulumi-lang-dotnet="`IdentityDocument`" pulumi-lang-go="`identityDocument`" pulumi-lang-python="`identity_document`" pulumi-lang-yaml="`identityDocument`" pulumi-lang-java="`identityDocument`" pulumi-lang-hcl="`identity_document`"&gt;`identityDocument`&lt;/span&gt;.
+        /// The back of an ID returned by a [file upload](https://docs.stripe.com/api#create_file) with a &lt;span pulumi-lang-nodejs="`purpose`" pulumi-lang-dotnet="`Purpose`" pulumi-lang-go="`purpose`" pulumi-lang-python="`purpose`" pulumi-lang-yaml="`purpose`" pulumi-lang-java="`purpose`" pulumi-lang-hcl="`purpose`"&gt;`purpose`&lt;/span&gt; value of &lt;span pulumi-lang-nodejs="`identityDocument`" pulumi-lang-dotnet="`IdentityDocument`" pulumi-lang-go="`identityDocument`" pulumi-lang-python="`identity_document`" pulumi-lang-yaml="`identityDocument`" pulumi-lang-java="`identityDocument`" pulumi-lang-hcl="`identity_document`"&gt;`identityDocument`&lt;/span&gt;.
         /// </summary>
         public readonly string? Back;
         /// <summary>
@@ -26,7 +26,7 @@ namespace Pulumi.Stripe.Outputs
         /// </summary>
         public readonly string? DetailsCode;
         /// <summary>
-        /// The front of an ID returned by a [file upload](https://api.stripe.com#create_file) with a &lt;span pulumi-lang-nodejs="`purpose`" pulumi-lang-dotnet="`Purpose`" pulumi-lang-go="`purpose`" pulumi-lang-python="`purpose`" pulumi-lang-yaml="`purpose`" pulumi-lang-java="`purpose`" pulumi-lang-hcl="`purpose`"&gt;`purpose`&lt;/span&gt; value of &lt;span pulumi-lang-nodejs="`identityDocument`" pulumi-lang-dotnet="`IdentityDocument`" pulumi-lang-go="`identityDocument`" pulumi-lang-python="`identity_document`" pulumi-lang-yaml="`identityDocument`" pulumi-lang-java="`identityDocument`" pulumi-lang-hcl="`identity_document`"&gt;`identityDocument`&lt;/span&gt;.
+        /// The front of an ID returned by a [file upload](https://docs.stripe.com/api#create_file) with a &lt;span pulumi-lang-nodejs="`purpose`" pulumi-lang-dotnet="`Purpose`" pulumi-lang-go="`purpose`" pulumi-lang-python="`purpose`" pulumi-lang-yaml="`purpose`" pulumi-lang-java="`purpose`" pulumi-lang-hcl="`purpose`"&gt;`purpose`&lt;/span&gt; value of &lt;span pulumi-lang-nodejs="`identityDocument`" pulumi-lang-dotnet="`IdentityDocument`" pulumi-lang-go="`identityDocument`" pulumi-lang-python="`identity_document`" pulumi-lang-yaml="`identityDocument`" pulumi-lang-java="`identityDocument`" pulumi-lang-hcl="`identity_document`"&gt;`identityDocument`&lt;/span&gt;.
         /// </summary>
         public readonly string? Front;
 

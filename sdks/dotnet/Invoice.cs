@@ -375,7 +375,7 @@ namespace Pulumi.Stripe
         public Output<string> ReceiptNumber { get; private set; } = null!;
 
         /// <summary>
-        /// The rendering-related settings that control how the invoice is displayed on customer-facing surfaces such as PDF and Hosted Invoice Page.
+        /// The rendering-related settings that control how invoices render in customer-facing interfaces such as the PDF or hosted invoice page.
         /// </summary>
         [Output("rendering")]
         public Output<Outputs.InvoiceRendering> Rendering { get; private set; } = null!;
@@ -409,6 +409,9 @@ namespace Pulumi.Stripe
         /// </summary>
         [Output("status")]
         public Output<string> Status { get; private set; } = null!;
+
+        [Output("statusDetails")]
+        public Output<Outputs.InvoiceStatusDetails> StatusDetails { get; private set; } = null!;
 
         [Output("statusTransitions")]
         public Output<Outputs.InvoiceStatusTransitions> StatusTransitions { get; private set; } = null!;
@@ -744,7 +747,7 @@ namespace Pulumi.Stripe
         }
 
         /// <summary>
-        /// The rendering-related settings that control how the invoice is displayed on customer-facing surfaces such as PDF and Hosted Invoice Page.
+        /// The rendering-related settings that control how invoices render in customer-facing interfaces such as the PDF or hosted invoice page.
         /// </summary>
         [Input("rendering")]
         public Input<Inputs.InvoiceRenderingArgs>? Rendering { get; set; }
@@ -1224,7 +1227,7 @@ namespace Pulumi.Stripe
         public Input<string>? ReceiptNumber { get; set; }
 
         /// <summary>
-        /// The rendering-related settings that control how the invoice is displayed on customer-facing surfaces such as PDF and Hosted Invoice Page.
+        /// The rendering-related settings that control how invoices render in customer-facing interfaces such as the PDF or hosted invoice page.
         /// </summary>
         [Input("rendering")]
         public Input<Inputs.InvoiceRenderingGetArgs>? Rendering { get; set; }
@@ -1258,6 +1261,9 @@ namespace Pulumi.Stripe
         /// </summary>
         [Input("status")]
         public Input<string>? Status { get; set; }
+
+        [Input("statusDetails")]
+        public Input<Inputs.InvoiceStatusDetailsGetArgs>? StatusDetails { get; set; }
 
         [Input("statusTransitions")]
         public Input<Inputs.InvoiceStatusTransitionsGetArgs>? StatusTransitions { get; set; }

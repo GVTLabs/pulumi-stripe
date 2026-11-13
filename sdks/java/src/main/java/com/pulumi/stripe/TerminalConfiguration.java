@@ -14,9 +14,11 @@ import com.pulumi.stripe.outputs.TerminalConfigurationBbposWisepad3;
 import com.pulumi.stripe.outputs.TerminalConfigurationBbposWiseposE;
 import com.pulumi.stripe.outputs.TerminalConfigurationCellular;
 import com.pulumi.stripe.outputs.TerminalConfigurationOffline;
+import com.pulumi.stripe.outputs.TerminalConfigurationReaderSecurity;
 import com.pulumi.stripe.outputs.TerminalConfigurationRebootWindow;
 import com.pulumi.stripe.outputs.TerminalConfigurationStripeS700;
 import com.pulumi.stripe.outputs.TerminalConfigurationStripeS710;
+import com.pulumi.stripe.outputs.TerminalConfigurationStripeT600;
 import com.pulumi.stripe.outputs.TerminalConfigurationTipping;
 import com.pulumi.stripe.outputs.TerminalConfigurationVerifoneM425;
 import com.pulumi.stripe.outputs.TerminalConfigurationVerifoneP400;
@@ -110,6 +112,12 @@ public class TerminalConfiguration extends com.pulumi.resources.CustomResource {
     public Output<TerminalConfigurationOffline> offline() {
         return this.offline;
     }
+    @Export(name="readerSecurity", refs={TerminalConfigurationReaderSecurity.class}, tree="[0]")
+    private Output<TerminalConfigurationReaderSecurity> readerSecurity;
+
+    public Output<TerminalConfigurationReaderSecurity> readerSecurity() {
+        return this.readerSecurity;
+    }
     @Export(name="rebootWindow", refs={TerminalConfigurationRebootWindow.class}, tree="[0]")
     private Output<TerminalConfigurationRebootWindow> rebootWindow;
 
@@ -127,6 +135,12 @@ public class TerminalConfiguration extends com.pulumi.resources.CustomResource {
 
     public Output<TerminalConfigurationStripeS710> stripeS710() {
         return this.stripeS710;
+    }
+    @Export(name="stripeT600", refs={TerminalConfigurationStripeT600.class}, tree="[0]")
+    private Output<TerminalConfigurationStripeT600> stripeT600;
+
+    public Output<TerminalConfigurationStripeT600> stripeT600() {
+        return this.stripeT600;
     }
     @Export(name="tipping", refs={TerminalConfigurationTipping.class}, tree="[0]")
     private Output<TerminalConfigurationTipping> tipping;

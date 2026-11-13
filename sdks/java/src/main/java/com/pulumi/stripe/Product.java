@@ -13,6 +13,7 @@ import com.pulumi.stripe.inputs.ProductState;
 import com.pulumi.stripe.outputs.ProductDefaultPriceData;
 import com.pulumi.stripe.outputs.ProductMarketingFeature;
 import com.pulumi.stripe.outputs.ProductPackageDimension;
+import com.pulumi.stripe.outputs.ProductTaxDetails;
 import java.lang.Boolean;
 import java.lang.Double;
 import java.lang.String;
@@ -192,6 +193,20 @@ public class Product extends com.pulumi.resources.CustomResource {
         return Codegen.optional(this.packageDimensions);
     }
     /**
+     * Unique identifier for the object.
+     * 
+     */
+    @Export(name="productId", refs={String.class}, tree="[0]")
+    private Output<String> productId;
+
+    /**
+     * @return Unique identifier for the object.
+     * 
+     */
+    public Output<String> productId() {
+        return this.productId;
+    }
+    /**
      * Whether this product is shipped (i.e., physical goods).
      * 
      */
@@ -232,6 +247,20 @@ public class Product extends com.pulumi.resources.CustomResource {
      */
     public Output<String> taxCode() {
         return this.taxCode;
+    }
+    /**
+     * Tax details for this product, including the [tax code](https://www.terraform.io/tax/tax-codes) and an optional performance location.
+     * 
+     */
+    @Export(name="taxDetails", refs={ProductTaxDetails.class}, tree="[0]")
+    private Output<ProductTaxDetails> taxDetails;
+
+    /**
+     * @return Tax details for this product, including the [tax code](https://www.terraform.io/tax/tax-codes) and an optional performance location.
+     * 
+     */
+    public Output<ProductTaxDetails> taxDetails() {
+        return this.taxDetails;
     }
     /**
      * The type of the product. The product is either of type &lt;span pulumi-lang-nodejs=&#34;`good`&#34; pulumi-lang-dotnet=&#34;`Good`&#34; pulumi-lang-go=&#34;`good`&#34; pulumi-lang-python=&#34;`good`&#34; pulumi-lang-yaml=&#34;`good`&#34; pulumi-lang-java=&#34;`good`&#34; pulumi-lang-hcl=&#34;`good`&#34;&gt;`good`&lt;/span&gt;, which is eligible for use with Orders and SKUs, or &lt;span pulumi-lang-nodejs=&#34;`service`&#34; pulumi-lang-dotnet=&#34;`Service`&#34; pulumi-lang-go=&#34;`service`&#34; pulumi-lang-python=&#34;`service`&#34; pulumi-lang-yaml=&#34;`service`&#34; pulumi-lang-java=&#34;`service`&#34; pulumi-lang-hcl=&#34;`service`&#34;&gt;`service`&lt;/span&gt;, which is eligible for use with Subscriptions and Plans.

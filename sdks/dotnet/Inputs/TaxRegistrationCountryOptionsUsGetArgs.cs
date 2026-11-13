@@ -12,11 +12,38 @@ namespace Pulumi.Stripe.Inputs
 
     public sealed class TaxRegistrationCountryOptionsUsGetArgs : global::Pulumi.ResourceArgs
     {
+        [Input("admissionsTax")]
+        public Input<Inputs.TaxRegistrationCountryOptionsUsAdmissionsTaxGetArgs>? AdmissionsTax { get; set; }
+
+        [Input("attendanceTax")]
+        public Input<Inputs.TaxRegistrationCountryOptionsUsAttendanceTaxGetArgs>? AttendanceTax { get; set; }
+
+        [Input("entertainmentTax")]
+        public Input<Inputs.TaxRegistrationCountryOptionsUsEntertainmentTaxGetArgs>? EntertainmentTax { get; set; }
+
+        [Input("grossReceiptsTax")]
+        public Input<Inputs.TaxRegistrationCountryOptionsUsGrossReceiptsTaxGetArgs>? GrossReceiptsTax { get; set; }
+
+        [Input("hospitalityTax")]
+        public Input<Inputs.TaxRegistrationCountryOptionsUsHospitalityTaxGetArgs>? HospitalityTax { get; set; }
+
         [Input("localAmusementTax")]
         public Input<Inputs.TaxRegistrationCountryOptionsUsLocalAmusementTaxGetArgs>? LocalAmusementTax { get; set; }
 
         [Input("localLeaseTax")]
         public Input<Inputs.TaxRegistrationCountryOptionsUsLocalLeaseTaxGetArgs>? LocalLeaseTax { get; set; }
+
+        [Input("luxuryTax")]
+        public Input<Inputs.TaxRegistrationCountryOptionsUsLuxuryTaxGetArgs>? LuxuryTax { get; set; }
+
+        [Input("massTransitParkingTax")]
+        public Input<Inputs.TaxRegistrationCountryOptionsUsMassTransitParkingTaxGetArgs>? MassTransitParkingTax { get; set; }
+
+        [Input("parkingTax")]
+        public Input<Inputs.TaxRegistrationCountryOptionsUsParkingTaxGetArgs>? ParkingTax { get; set; }
+
+        [Input("resortTax")]
+        public Input<Inputs.TaxRegistrationCountryOptionsUsResortTaxGetArgs>? ResortTax { get; set; }
 
         /// <summary>
         /// Two-letter US state code ([ISO 3166-2](https://en.wikipedia.org/wiki/ISO_3166-2)).
@@ -27,11 +54,17 @@ namespace Pulumi.Stripe.Inputs
         [Input("stateSalesTax")]
         public Input<Inputs.TaxRegistrationCountryOptionsUsStateSalesTaxGetArgs>? StateSalesTax { get; set; }
 
+        [Input("tourismTax")]
+        public Input<Inputs.TaxRegistrationCountryOptionsUsTourismTaxGetArgs>? TourismTax { get; set; }
+
         /// <summary>
         /// Type of registration in the US.
         /// </summary>
         [Input("type", required: true)]
         public Input<string> Type { get; set; } = null!;
+
+        [Input("utilityUsersTax")]
+        public Input<Inputs.TaxRegistrationCountryOptionsUsUtilityUsersTaxGetArgs>? UtilityUsersTax { get; set; }
 
         public TaxRegistrationCountryOptionsUsGetArgs()
         {

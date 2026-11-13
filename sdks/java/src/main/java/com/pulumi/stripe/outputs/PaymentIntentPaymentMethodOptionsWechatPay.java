@@ -12,7 +12,7 @@ import javax.annotation.Nullable;
 @CustomType
 public final class PaymentIntentPaymentMethodOptionsWechatPay {
     /**
-     * @return The app ID registered with WeChat Pay. Only required when client is ios or android.
+     * @return The app ID registered with WeChat Pay. Only required when client is ios, android, or mini_program.
      * 
      */
     private @Nullable String appId;
@@ -35,7 +35,7 @@ public final class PaymentIntentPaymentMethodOptionsWechatPay {
 
     private PaymentIntentPaymentMethodOptionsWechatPay() {}
     /**
-     * @return The app ID registered with WeChat Pay. Only required when client is ios or android.
+     * @return The app ID registered with WeChat Pay. Only required when client is ios, android, or mini_program.
      * 
      */
     public Optional<String> appId() {

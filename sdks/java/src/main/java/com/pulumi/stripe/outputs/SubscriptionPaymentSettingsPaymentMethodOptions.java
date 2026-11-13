@@ -6,6 +6,8 @@ package com.pulumi.stripe.outputs;
 import com.pulumi.core.annotations.CustomType;
 import com.pulumi.stripe.outputs.SubscriptionPaymentSettingsPaymentMethodOptionsAcssDebit;
 import com.pulumi.stripe.outputs.SubscriptionPaymentSettingsPaymentMethodOptionsBancontact;
+import com.pulumi.stripe.outputs.SubscriptionPaymentSettingsPaymentMethodOptionsBillie;
+import com.pulumi.stripe.outputs.SubscriptionPaymentSettingsPaymentMethodOptionsBlik;
 import com.pulumi.stripe.outputs.SubscriptionPaymentSettingsPaymentMethodOptionsCard;
 import com.pulumi.stripe.outputs.SubscriptionPaymentSettingsPaymentMethodOptionsCustomerBalance;
 import com.pulumi.stripe.outputs.SubscriptionPaymentSettingsPaymentMethodOptionsPayto;
@@ -28,6 +30,16 @@ public final class SubscriptionPaymentSettingsPaymentMethodOptions {
      * 
      */
     private @Nullable SubscriptionPaymentSettingsPaymentMethodOptionsBancontact bancontact;
+    /**
+     * @return This sub-hash contains details about the Billie payment method options to pass to invoices created by the subscription.
+     * 
+     */
+    private @Nullable SubscriptionPaymentSettingsPaymentMethodOptionsBillie billie;
+    /**
+     * @return This sub-hash contains details about the Blik payment method options to pass to invoices created by the subscription.
+     * 
+     */
+    private @Nullable SubscriptionPaymentSettingsPaymentMethodOptionsBlik blik;
     /**
      * @return This sub-hash contains details about the Card payment method options to pass to invoices created by the subscription.
      * 
@@ -73,6 +85,20 @@ public final class SubscriptionPaymentSettingsPaymentMethodOptions {
      */
     public Optional<SubscriptionPaymentSettingsPaymentMethodOptionsBancontact> bancontact() {
         return Optional.ofNullable(this.bancontact);
+    }
+    /**
+     * @return This sub-hash contains details about the Billie payment method options to pass to invoices created by the subscription.
+     * 
+     */
+    public Optional<SubscriptionPaymentSettingsPaymentMethodOptionsBillie> billie() {
+        return Optional.ofNullable(this.billie);
+    }
+    /**
+     * @return This sub-hash contains details about the Blik payment method options to pass to invoices created by the subscription.
+     * 
+     */
+    public Optional<SubscriptionPaymentSettingsPaymentMethodOptionsBlik> blik() {
+        return Optional.ofNullable(this.blik);
     }
     /**
      * @return This sub-hash contains details about the Card payment method options to pass to invoices created by the subscription.
@@ -128,6 +154,8 @@ public final class SubscriptionPaymentSettingsPaymentMethodOptions {
     public static final class Builder {
         private @Nullable SubscriptionPaymentSettingsPaymentMethodOptionsAcssDebit acssDebit;
         private @Nullable SubscriptionPaymentSettingsPaymentMethodOptionsBancontact bancontact;
+        private @Nullable SubscriptionPaymentSettingsPaymentMethodOptionsBillie billie;
+        private @Nullable SubscriptionPaymentSettingsPaymentMethodOptionsBlik blik;
         private @Nullable SubscriptionPaymentSettingsPaymentMethodOptionsCard card;
         private @Nullable SubscriptionPaymentSettingsPaymentMethodOptionsCustomerBalance customerBalance;
         private @Nullable SubscriptionPaymentSettingsPaymentMethodOptionsPayto payto;
@@ -139,6 +167,8 @@ public final class SubscriptionPaymentSettingsPaymentMethodOptions {
     	      Objects.requireNonNull(defaults);
     	      this.acssDebit = defaults.acssDebit;
     	      this.bancontact = defaults.bancontact;
+    	      this.billie = defaults.billie;
+    	      this.blik = defaults.blik;
     	      this.card = defaults.card;
     	      this.customerBalance = defaults.customerBalance;
     	      this.payto = defaults.payto;
@@ -157,6 +187,18 @@ public final class SubscriptionPaymentSettingsPaymentMethodOptions {
         public Builder bancontact(@Nullable SubscriptionPaymentSettingsPaymentMethodOptionsBancontact bancontact) {
 
             this.bancontact = bancontact;
+            return this;
+        }
+        @CustomType.Setter
+        public Builder billie(@Nullable SubscriptionPaymentSettingsPaymentMethodOptionsBillie billie) {
+
+            this.billie = billie;
+            return this;
+        }
+        @CustomType.Setter
+        public Builder blik(@Nullable SubscriptionPaymentSettingsPaymentMethodOptionsBlik blik) {
+
+            this.blik = blik;
             return this;
         }
         @CustomType.Setter
@@ -199,6 +241,8 @@ public final class SubscriptionPaymentSettingsPaymentMethodOptions {
             final var _resultValue = new SubscriptionPaymentSettingsPaymentMethodOptions();
             _resultValue.acssDebit = acssDebit;
             _resultValue.bancontact = bancontact;
+            _resultValue.billie = billie;
+            _resultValue.blik = blik;
             _resultValue.card = card;
             _resultValue.customerBalance = customerBalance;
             _resultValue.payto = payto;

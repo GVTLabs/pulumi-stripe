@@ -15,7 +15,7 @@ import javax.annotation.Nullable;
 public final class TaxRegistrationCountryOptionsEs {
     private @Nullable TaxRegistrationCountryOptionsEsStandard standard;
     /**
-     * @return Type of registration in an EU country.
+     * @return Type of registration in ES.
      * 
      */
     private String type;
@@ -25,7 +25,7 @@ public final class TaxRegistrationCountryOptionsEs {
         return Optional.ofNullable(this.standard);
     }
     /**
-     * @return Type of registration in an EU country.
+     * @return Type of registration in ES.
      * 
      */
     public String type() {

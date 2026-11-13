@@ -48,6 +48,9 @@ namespace Pulumi.Stripe
         [Output("offline")]
         public Output<Outputs.TerminalConfigurationOffline> Offline { get; private set; } = null!;
 
+        [Output("readerSecurity")]
+        public Output<Outputs.TerminalConfigurationReaderSecurity> ReaderSecurity { get; private set; } = null!;
+
         [Output("rebootWindow")]
         public Output<Outputs.TerminalConfigurationRebootWindow> RebootWindow { get; private set; } = null!;
 
@@ -56,6 +59,9 @@ namespace Pulumi.Stripe
 
         [Output("stripeS710")]
         public Output<Outputs.TerminalConfigurationStripeS710> StripeS710 { get; private set; } = null!;
+
+        [Output("stripeT600")]
+        public Output<Outputs.TerminalConfigurationStripeT600> StripeT600 { get; private set; } = null!;
 
         [Output("tipping")]
         public Output<Outputs.TerminalConfigurationTipping> Tipping { get; private set; } = null!;
@@ -142,6 +148,9 @@ namespace Pulumi.Stripe
         [Input("offline")]
         public Input<Inputs.TerminalConfigurationOfflineArgs>? Offline { get; set; }
 
+        [Input("readerSecurity")]
+        public Input<Inputs.TerminalConfigurationReaderSecurityArgs>? ReaderSecurity { get; set; }
+
         [Input("rebootWindow")]
         public Input<Inputs.TerminalConfigurationRebootWindowArgs>? RebootWindow { get; set; }
 
@@ -150,6 +159,9 @@ namespace Pulumi.Stripe
 
         [Input("stripeS710")]
         public Input<Inputs.TerminalConfigurationStripeS710Args>? StripeS710 { get; set; }
+
+        [Input("stripeT600")]
+        public Input<Inputs.TerminalConfigurationStripeT600Args>? StripeT600 { get; set; }
 
         [Input("tipping")]
         public Input<Inputs.TerminalConfigurationTippingArgs>? Tipping { get; set; }
@@ -216,6 +228,9 @@ namespace Pulumi.Stripe
         [Input("offline")]
         public Input<Inputs.TerminalConfigurationOfflineGetArgs>? Offline { get; set; }
 
+        [Input("readerSecurity")]
+        public Input<Inputs.TerminalConfigurationReaderSecurityGetArgs>? ReaderSecurity { get; set; }
+
         [Input("rebootWindow")]
         public Input<Inputs.TerminalConfigurationRebootWindowGetArgs>? RebootWindow { get; set; }
 
@@ -224,6 +239,9 @@ namespace Pulumi.Stripe
 
         [Input("stripeS710")]
         public Input<Inputs.TerminalConfigurationStripeS710GetArgs>? StripeS710 { get; set; }
+
+        [Input("stripeT600")]
+        public Input<Inputs.TerminalConfigurationStripeT600GetArgs>? StripeT600 { get; set; }
 
         [Input("tipping")]
         public Input<Inputs.TerminalConfigurationTippingGetArgs>? Tipping { get; set; }

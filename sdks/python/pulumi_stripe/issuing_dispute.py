@@ -291,10 +291,10 @@ class IssuingDispute(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  amount: pulumi.Input[Optional[_builtins.float]] = None,
-                 evidence: pulumi.Input[Optional[Union['IssuingDisputeEvidenceArgs', 'IssuingDisputeEvidenceArgsDict']]] = None,
+                 evidence: pulumi.Input[Optional[Union['IssuingDisputeEvidenceArgs', 'IssuingDisputeEvidenceArgsDict', 'outputs.IssuingDisputeEvidence']]] = None,
                  metadata: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
                  transaction: pulumi.Input[Optional[_builtins.str]] = None,
-                 treasury: pulumi.Input[Optional[Union['IssuingDisputeTreasuryArgs', 'IssuingDisputeTreasuryArgsDict']]] = None,
+                 treasury: pulumi.Input[Optional[Union['IssuingDisputeTreasuryArgs', 'IssuingDisputeTreasuryArgsDict', 'outputs.IssuingDisputeTreasury']]] = None,
                  __props__=None):
         """
         Create a IssuingDispute resource with the given unique name, props, and options.
@@ -304,7 +304,7 @@ class IssuingDispute(pulumi.CustomResource):
         :param pulumi.Input[_builtins.float] amount: Disputed amount in the card's currency and in the [smallest currency unit](https://docs.stripe.com/currencies#zero-decimal). Usually the amount of the <span pulumi-lang-nodejs="`transaction`" pulumi-lang-dotnet="`Transaction`" pulumi-lang-go="`transaction`" pulumi-lang-python="`transaction`" pulumi-lang-yaml="`transaction`" pulumi-lang-java="`transaction`" pulumi-lang-hcl="`transaction`">`transaction`</span>, but can differ (usually because of currency fluctuation).
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] metadata: Set of [key-value pairs](https://docs.stripe.com/api/metadata) that you can attach to an object. This can be useful for storing additional information about the object in a structured format.
         :param pulumi.Input[_builtins.str] transaction: The transaction being disputed.
-        :param pulumi.Input[Union['IssuingDisputeTreasuryArgs', 'IssuingDisputeTreasuryArgsDict']] treasury: [Treasury](https://docs.stripe.com/api/treasury) details related to this dispute if it was created on a [FinancialAccount](https://docs.stripe.com/api/treasury/financial_accounts)
+        :param pulumi.Input[Union['IssuingDisputeTreasuryArgs', 'IssuingDisputeTreasuryArgsDict', 'outputs.IssuingDisputeTreasury']] treasury: [Treasury](https://docs.stripe.com/api/treasury) details related to this dispute if it was created on a [FinancialAccount](https://docs.stripe.com/api/treasury/financial_accounts)
         """
         ...
     @overload
@@ -331,10 +331,10 @@ class IssuingDispute(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  amount: pulumi.Input[Optional[_builtins.float]] = None,
-                 evidence: pulumi.Input[Optional[Union['IssuingDisputeEvidenceArgs', 'IssuingDisputeEvidenceArgsDict']]] = None,
+                 evidence: pulumi.Input[Optional[Union['IssuingDisputeEvidenceArgs', 'IssuingDisputeEvidenceArgsDict', 'outputs.IssuingDisputeEvidence']]] = None,
                  metadata: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
                  transaction: pulumi.Input[Optional[_builtins.str]] = None,
-                 treasury: pulumi.Input[Optional[Union['IssuingDisputeTreasuryArgs', 'IssuingDisputeTreasuryArgsDict']]] = None,
+                 treasury: pulumi.Input[Optional[Union['IssuingDisputeTreasuryArgs', 'IssuingDisputeTreasuryArgsDict', 'outputs.IssuingDisputeTreasury']]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -369,14 +369,14 @@ class IssuingDispute(pulumi.CustomResource):
             amount: pulumi.Input[Optional[_builtins.float]] = None,
             created: pulumi.Input[Optional[_builtins.float]] = None,
             currency: pulumi.Input[Optional[_builtins.str]] = None,
-            evidence: pulumi.Input[Optional[Union['IssuingDisputeEvidenceArgs', 'IssuingDisputeEvidenceArgsDict']]] = None,
+            evidence: pulumi.Input[Optional[Union['IssuingDisputeEvidenceArgs', 'IssuingDisputeEvidenceArgsDict', 'outputs.IssuingDisputeEvidence']]] = None,
             livemode: pulumi.Input[Optional[_builtins.bool]] = None,
             loss_reason: pulumi.Input[Optional[_builtins.str]] = None,
             metadata: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
             object: pulumi.Input[Optional[_builtins.str]] = None,
             status: pulumi.Input[Optional[_builtins.str]] = None,
             transaction: pulumi.Input[Optional[_builtins.str]] = None,
-            treasury: pulumi.Input[Optional[Union['IssuingDisputeTreasuryArgs', 'IssuingDisputeTreasuryArgsDict']]] = None) -> 'IssuingDispute':
+            treasury: pulumi.Input[Optional[Union['IssuingDisputeTreasuryArgs', 'IssuingDisputeTreasuryArgsDict', 'outputs.IssuingDisputeTreasury']]] = None) -> 'IssuingDispute':
         """
         Get an existing IssuingDispute resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -393,7 +393,7 @@ class IssuingDispute(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] object: String representing the object's type. Objects of the same type share the same value.
         :param pulumi.Input[_builtins.str] status: Current status of the dispute.
         :param pulumi.Input[_builtins.str] transaction: The transaction being disputed.
-        :param pulumi.Input[Union['IssuingDisputeTreasuryArgs', 'IssuingDisputeTreasuryArgsDict']] treasury: [Treasury](https://docs.stripe.com/api/treasury) details related to this dispute if it was created on a [FinancialAccount](https://docs.stripe.com/api/treasury/financial_accounts)
+        :param pulumi.Input[Union['IssuingDisputeTreasuryArgs', 'IssuingDisputeTreasuryArgsDict', 'outputs.IssuingDisputeTreasury']] treasury: [Treasury](https://docs.stripe.com/api/treasury) details related to this dispute if it was created on a [FinancialAccount](https://docs.stripe.com/api/treasury/financial_accounts)
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -411,6 +411,34 @@ class IssuingDispute(pulumi.CustomResource):
         __props__.__dict__["transaction"] = transaction
         __props__.__dict__["treasury"] = treasury
         return IssuingDispute(resource_name, opts=opts, __props__=__props__)
+
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            amount: pulumi.Input[Optional[_builtins.float]] = None,
+            created: pulumi.Input[Optional[_builtins.float]] = None,
+            currency: pulumi.Input[Optional[_builtins.str]] = None,
+            evidence: pulumi.Input[Optional[Union['IssuingDisputeEvidenceArgs', 'IssuingDisputeEvidenceArgsDict', 'outputs.IssuingDisputeEvidence']]] = None,
+            livemode: pulumi.Input[Optional[_builtins.bool]] = None,
+            loss_reason: pulumi.Input[Optional[_builtins.str]] = None,
+            metadata: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+            object: pulumi.Input[Optional[_builtins.str]] = None,
+            status: pulumi.Input[Optional[_builtins.str]] = None,
+            transaction: pulumi.Input[Optional[_builtins.str]] = None,
+            treasury: pulumi.Input[Optional[Union['IssuingDisputeTreasuryArgs', 'IssuingDisputeTreasuryArgsDict', 'outputs.IssuingDisputeTreasury']]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["amount"] = amount
+        __props__["created"] = created
+        __props__["currency"] = currency
+        __props__["evidence"] = evidence
+        __props__["livemode"] = livemode
+        __props__["lossReason"] = loss_reason
+        __props__["metadata"] = metadata
+        __props__["object"] = object
+        __props__["status"] = status
+        __props__["transaction"] = transaction
+        __props__["treasury"] = treasury
+        return pulumi.runtime.exists_resource(None, 'stripe:index/issuingDispute:IssuingDispute', id, __props__, opts or pulumi.ResourceOptions(), package_ref=_utilities.get_package())
 
     @_builtins.property
     @pulumi.getter

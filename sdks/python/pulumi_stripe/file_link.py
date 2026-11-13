@@ -323,6 +323,28 @@ class FileLink(pulumi.CustomResource):
         __props__.__dict__["url"] = url
         return FileLink(resource_name, opts=opts, __props__=__props__)
 
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            created: pulumi.Input[Optional[_builtins.float]] = None,
+            expired: pulumi.Input[Optional[_builtins.bool]] = None,
+            expires_at: pulumi.Input[Optional[_builtins.float]] = None,
+            file: pulumi.Input[Optional[_builtins.str]] = None,
+            livemode: pulumi.Input[Optional[_builtins.bool]] = None,
+            metadata: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+            object: pulumi.Input[Optional[_builtins.str]] = None,
+            url: pulumi.Input[Optional[_builtins.str]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["created"] = created
+        __props__["expired"] = expired
+        __props__["expiresAt"] = expires_at
+        __props__["file"] = file
+        __props__["livemode"] = livemode
+        __props__["metadata"] = metadata
+        __props__["object"] = object
+        __props__["url"] = url
+        return pulumi.runtime.exists_resource(None, 'stripe:index/fileLink:FileLink', id, __props__, opts or pulumi.ResourceOptions(), package_ref=_utilities.get_package())
+
     @_builtins.property
     @pulumi.getter
     def created(self) -> pulumi.Output[_builtins.float]:

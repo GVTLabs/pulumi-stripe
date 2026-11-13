@@ -135,6 +135,18 @@ func (PromotionCodeState) ElementType() reflect.Type {
 	return reflect.TypeOf((*promotionCodeState)(nil)).Elem()
 }
 
+// PromotionCodeExists checks whether an existing PromotionCode resource with the given ID exists.
+func PromotionCodeExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *PromotionCodeState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	ref, err := internal.PkgGetPackageRef(ctx)
+	if err != nil {
+		return pulumi.Bool(false).ToBoolOutput().ApplyT(func(bool) (bool, error) {
+			return false, err
+		}).(pulumi.BoolOutput)
+	}
+	return ctx.ExistsResource("stripe:index/promotionCode:PromotionCode", id, state, ref, opts...)
+}
+
 type promotionCodeArgs struct {
 	// Whether the promotion code is currently active. A promotion code is only active if the coupon is also valid.
 	Active *bool `pulumi:"active"`

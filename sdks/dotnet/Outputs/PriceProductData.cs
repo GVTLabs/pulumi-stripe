@@ -40,6 +40,10 @@ namespace Pulumi.Stripe.Outputs
         /// </summary>
         public readonly string? TaxCode;
         /// <summary>
+        /// Tax details for this product, including the [tax code](https://www.terraform.io/tax/tax-codes) and an optional performance location.
+        /// </summary>
+        public readonly Outputs.PriceProductDataTaxDetails? TaxDetails;
+        /// <summary>
         /// A label that represents units of this product. When set, this will be included in customers' receipts, invoices, Checkout, and the customer portal.
         /// </summary>
         public readonly string? UnitLabel;
@@ -58,6 +62,8 @@ namespace Pulumi.Stripe.Outputs
 
             string? taxCode,
 
+            Outputs.PriceProductDataTaxDetails? taxDetails,
+
             string? unitLabel)
         {
             Active = active;
@@ -66,6 +72,7 @@ namespace Pulumi.Stripe.Outputs
             Name = name;
             StatementDescriptor = statementDescriptor;
             TaxCode = taxCode;
+            TaxDetails = taxDetails;
             UnitLabel = unitLabel;
         }
     }

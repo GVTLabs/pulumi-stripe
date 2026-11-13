@@ -10,6 +10,8 @@ import java.lang.Boolean;
 import java.lang.String;
 import java.util.List;
 import java.util.Objects;
+import java.util.Optional;
+import javax.annotation.Nullable;
 
 
 public final class BillingPortalConfigurationFeaturesSubscriptionCancelCancellationReasonArgs extends com.pulumi.resources.ResourceArgs {
@@ -32,6 +34,21 @@ public final class BillingPortalConfigurationFeaturesSubscriptionCancelCancellat
     }
 
     /**
+     * The IDs of custom feedback options configured for this cancellation reason.
+     * 
+     */
+    @Import(name="feedbackOptions")
+    private @Nullable Output<List<String>> feedbackOptions;
+
+    /**
+     * @return The IDs of custom feedback options configured for this cancellation reason.
+     * 
+     */
+    public Optional<Output<List<String>>> feedbackOptions() {
+        return Optional.ofNullable(this.feedbackOptions);
+    }
+
+    /**
      * Which cancellation reasons will be given as options to the customer.
      * 
      */
@@ -50,6 +67,7 @@ public final class BillingPortalConfigurationFeaturesSubscriptionCancelCancellat
 
     private BillingPortalConfigurationFeaturesSubscriptionCancelCancellationReasonArgs(BillingPortalConfigurationFeaturesSubscriptionCancelCancellationReasonArgs $) {
         this.enabled = $.enabled;
+        this.feedbackOptions = $.feedbackOptions;
         this.options = $.options;
     }
 
@@ -90,6 +108,37 @@ public final class BillingPortalConfigurationFeaturesSubscriptionCancelCancellat
          */
         public Builder enabled(Boolean enabled) {
             return enabled(Output.of(enabled));
+        }
+
+        /**
+         * @param feedbackOptions The IDs of custom feedback options configured for this cancellation reason.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder feedbackOptions(@Nullable Output<List<String>> feedbackOptions) {
+            $.feedbackOptions = feedbackOptions;
+            return this;
+        }
+
+        /**
+         * @param feedbackOptions The IDs of custom feedback options configured for this cancellation reason.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder feedbackOptions(List<String> feedbackOptions) {
+            return feedbackOptions(Output.of(feedbackOptions));
+        }
+
+        /**
+         * @param feedbackOptions The IDs of custom feedback options configured for this cancellation reason.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder feedbackOptions(String... feedbackOptions) {
+            return feedbackOptions(List.of(feedbackOptions));
         }
 
         /**

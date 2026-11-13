@@ -6,6 +6,7 @@ package com.pulumi.stripe.inputs;
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
 import com.pulumi.stripe.inputs.SubscriptionItemBillingThresholdsArgs;
+import com.pulumi.stripe.inputs.SubscriptionItemCurrentTrialArgs;
 import com.pulumi.stripe.inputs.SubscriptionItemDiscountArgs;
 import com.pulumi.stripe.inputs.SubscriptionItemPriceDataArgs;
 import java.lang.Double;
@@ -34,6 +35,21 @@ public final class SubscriptionItemArgs extends com.pulumi.resources.ResourceArg
      */
     public Optional<Output<SubscriptionItemBillingThresholdsArgs>> billingThresholds() {
         return Optional.ofNullable(this.billingThresholds);
+    }
+
+    /**
+     * The trial offer to apply to this subscription item.
+     * 
+     */
+    @Import(name="currentTrial")
+    private @Nullable Output<SubscriptionItemCurrentTrialArgs> currentTrial;
+
+    /**
+     * @return The trial offer to apply to this subscription item.
+     * 
+     */
+    public Optional<Output<SubscriptionItemCurrentTrialArgs>> currentTrial() {
+        return Optional.ofNullable(this.currentTrial);
     }
 
     /**
@@ -145,6 +161,7 @@ public final class SubscriptionItemArgs extends com.pulumi.resources.ResourceArg
 
     private SubscriptionItemArgs(SubscriptionItemArgs $) {
         this.billingThresholds = $.billingThresholds;
+        this.currentTrial = $.currentTrial;
         this.discounts = $.discounts;
         this.id = $.id;
         this.metadata = $.metadata;
@@ -191,6 +208,27 @@ public final class SubscriptionItemArgs extends com.pulumi.resources.ResourceArg
          */
         public Builder billingThresholds(SubscriptionItemBillingThresholdsArgs billingThresholds) {
             return billingThresholds(Output.of(billingThresholds));
+        }
+
+        /**
+         * @param currentTrial The trial offer to apply to this subscription item.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder currentTrial(@Nullable Output<SubscriptionItemCurrentTrialArgs> currentTrial) {
+            $.currentTrial = currentTrial;
+            return this;
+        }
+
+        /**
+         * @param currentTrial The trial offer to apply to this subscription item.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder currentTrial(SubscriptionItemCurrentTrialArgs currentTrial) {
+            return currentTrial(Output.of(currentTrial));
         }
 
         /**

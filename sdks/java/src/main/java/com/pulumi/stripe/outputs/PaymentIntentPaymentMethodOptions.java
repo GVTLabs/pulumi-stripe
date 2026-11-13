@@ -48,7 +48,9 @@ import com.pulumi.stripe.outputs.PaymentIntentPaymentMethodOptionsSamsungPay;
 import com.pulumi.stripe.outputs.PaymentIntentPaymentMethodOptionsSatispay;
 import com.pulumi.stripe.outputs.PaymentIntentPaymentMethodOptionsScalapay;
 import com.pulumi.stripe.outputs.PaymentIntentPaymentMethodOptionsSepaDebit;
+import com.pulumi.stripe.outputs.PaymentIntentPaymentMethodOptionsSequra;
 import com.pulumi.stripe.outputs.PaymentIntentPaymentMethodOptionsSofort;
+import com.pulumi.stripe.outputs.PaymentIntentPaymentMethodOptionsSunbit;
 import com.pulumi.stripe.outputs.PaymentIntentPaymentMethodOptionsSwish;
 import com.pulumi.stripe.outputs.PaymentIntentPaymentMethodOptionsTwint;
 import com.pulumi.stripe.outputs.PaymentIntentPaymentMethodOptionsUpi;
@@ -105,7 +107,9 @@ public final class PaymentIntentPaymentMethodOptions {
     private @Nullable PaymentIntentPaymentMethodOptionsSatispay satispay;
     private @Nullable PaymentIntentPaymentMethodOptionsScalapay scalapay;
     private @Nullable PaymentIntentPaymentMethodOptionsSepaDebit sepaDebit;
+    private @Nullable PaymentIntentPaymentMethodOptionsSequra sequra;
     private @Nullable PaymentIntentPaymentMethodOptionsSofort sofort;
+    private @Nullable PaymentIntentPaymentMethodOptionsSunbit sunbit;
     private @Nullable PaymentIntentPaymentMethodOptionsSwish swish;
     private @Nullable PaymentIntentPaymentMethodOptionsTwint twint;
     private @Nullable PaymentIntentPaymentMethodOptionsUpi upi;
@@ -246,8 +250,14 @@ public final class PaymentIntentPaymentMethodOptions {
     public Optional<PaymentIntentPaymentMethodOptionsSepaDebit> sepaDebit() {
         return Optional.ofNullable(this.sepaDebit);
     }
+    public Optional<PaymentIntentPaymentMethodOptionsSequra> sequra() {
+        return Optional.ofNullable(this.sequra);
+    }
     public Optional<PaymentIntentPaymentMethodOptionsSofort> sofort() {
         return Optional.ofNullable(this.sofort);
+    }
+    public Optional<PaymentIntentPaymentMethodOptionsSunbit> sunbit() {
+        return Optional.ofNullable(this.sunbit);
     }
     public Optional<PaymentIntentPaymentMethodOptionsSwish> swish() {
         return Optional.ofNullable(this.swish);
@@ -321,7 +331,9 @@ public final class PaymentIntentPaymentMethodOptions {
         private @Nullable PaymentIntentPaymentMethodOptionsSatispay satispay;
         private @Nullable PaymentIntentPaymentMethodOptionsScalapay scalapay;
         private @Nullable PaymentIntentPaymentMethodOptionsSepaDebit sepaDebit;
+        private @Nullable PaymentIntentPaymentMethodOptionsSequra sequra;
         private @Nullable PaymentIntentPaymentMethodOptionsSofort sofort;
+        private @Nullable PaymentIntentPaymentMethodOptionsSunbit sunbit;
         private @Nullable PaymentIntentPaymentMethodOptionsSwish swish;
         private @Nullable PaymentIntentPaymentMethodOptionsTwint twint;
         private @Nullable PaymentIntentPaymentMethodOptionsUpi upi;
@@ -375,7 +387,9 @@ public final class PaymentIntentPaymentMethodOptions {
     	      this.satispay = defaults.satispay;
     	      this.scalapay = defaults.scalapay;
     	      this.sepaDebit = defaults.sepaDebit;
+    	      this.sequra = defaults.sequra;
     	      this.sofort = defaults.sofort;
+    	      this.sunbit = defaults.sunbit;
     	      this.swish = defaults.swish;
     	      this.twint = defaults.twint;
     	      this.upi = defaults.upi;
@@ -649,9 +663,21 @@ public final class PaymentIntentPaymentMethodOptions {
             return this;
         }
         @CustomType.Setter
+        public Builder sequra(@Nullable PaymentIntentPaymentMethodOptionsSequra sequra) {
+
+            this.sequra = sequra;
+            return this;
+        }
+        @CustomType.Setter
         public Builder sofort(@Nullable PaymentIntentPaymentMethodOptionsSofort sofort) {
 
             this.sofort = sofort;
+            return this;
+        }
+        @CustomType.Setter
+        public Builder sunbit(@Nullable PaymentIntentPaymentMethodOptionsSunbit sunbit) {
+
+            this.sunbit = sunbit;
             return this;
         }
         @CustomType.Setter
@@ -736,7 +762,9 @@ public final class PaymentIntentPaymentMethodOptions {
             _resultValue.satispay = satispay;
             _resultValue.scalapay = scalapay;
             _resultValue.sepaDebit = sepaDebit;
+            _resultValue.sequra = sequra;
             _resultValue.sofort = sofort;
+            _resultValue.sunbit = sunbit;
             _resultValue.swish = swish;
             _resultValue.twint = twint;
             _resultValue.upi = upi;

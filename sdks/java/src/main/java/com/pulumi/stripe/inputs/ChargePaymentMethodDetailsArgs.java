@@ -53,6 +53,7 @@ import com.pulumi.stripe.inputs.ChargePaymentMethodDetailsSatispayArgs;
 import com.pulumi.stripe.inputs.ChargePaymentMethodDetailsScalapayArgs;
 import com.pulumi.stripe.inputs.ChargePaymentMethodDetailsSepaCreditTransferArgs;
 import com.pulumi.stripe.inputs.ChargePaymentMethodDetailsSepaDebitArgs;
+import com.pulumi.stripe.inputs.ChargePaymentMethodDetailsSequraArgs;
 import com.pulumi.stripe.inputs.ChargePaymentMethodDetailsSofortArgs;
 import com.pulumi.stripe.inputs.ChargePaymentMethodDetailsSunbitArgs;
 import com.pulumi.stripe.inputs.ChargePaymentMethodDetailsSwishArgs;
@@ -406,6 +407,13 @@ public final class ChargePaymentMethodDetailsArgs extends com.pulumi.resources.R
         return Optional.ofNullable(this.sepaDebit);
     }
 
+    @Import(name="sequra")
+    private @Nullable Output<ChargePaymentMethodDetailsSequraArgs> sequra;
+
+    public Optional<Output<ChargePaymentMethodDetailsSequraArgs>> sequra() {
+        return Optional.ofNullable(this.sequra);
+    }
+
     @Import(name="sofort")
     private @Nullable Output<ChargePaymentMethodDetailsSofortArgs> sofort;
 
@@ -525,6 +533,7 @@ public final class ChargePaymentMethodDetailsArgs extends com.pulumi.resources.R
         this.scalapay = $.scalapay;
         this.sepaCreditTransfer = $.sepaCreditTransfer;
         this.sepaDebit = $.sepaDebit;
+        this.sequra = $.sequra;
         this.sofort = $.sofort;
         this.sunbit = $.sunbit;
         this.swish = $.swish;
@@ -983,6 +992,15 @@ public final class ChargePaymentMethodDetailsArgs extends com.pulumi.resources.R
 
         public Builder sepaDebit(ChargePaymentMethodDetailsSepaDebitArgs sepaDebit) {
             return sepaDebit(Output.of(sepaDebit));
+        }
+
+        public Builder sequra(@Nullable Output<ChargePaymentMethodDetailsSequraArgs> sequra) {
+            $.sequra = sequra;
+            return this;
+        }
+
+        public Builder sequra(ChargePaymentMethodDetailsSequraArgs sequra) {
+            return sequra(Output.of(sequra));
         }
 
         public Builder sofort(@Nullable Output<ChargePaymentMethodDetailsSofortArgs> sofort) {

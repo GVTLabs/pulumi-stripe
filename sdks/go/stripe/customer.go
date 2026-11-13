@@ -14,7 +14,7 @@ import (
 type Customer struct {
 	pulumi.CustomResourceState
 
-	// The customer's address.
+	// The customer's billing address.
 	Addresses CustomerAddressArrayOutput `pulumi:"addresses"`
 	// The current balance, if any, that's stored on the customer in their default currency. If negative, the customer has credit to apply to their next invoice. If positive, the customer has an amount owed that's added to their next invoice. The balance only considers amounts that Stripe hasn't successfully applied to any invoice. It doesn't reflect unpaid invoices. This balance is only taken into account after invoices finalize. For multi-currency balances, see <span pulumi-lang-nodejs="[invoiceCreditBalance]" pulumi-lang-dotnet="[InvoiceCreditBalance]" pulumi-lang-go="[invoiceCreditBalance]" pulumi-lang-python="[invoice_credit_balance]" pulumi-lang-yaml="[invoiceCreditBalance]" pulumi-lang-java="[invoiceCreditBalance]" pulumi-lang-hcl="[invoice_credit_balance]">[invoiceCreditBalance]</span>(https://docs.stripe.com/api/customers/object#customer_object-invoice_credit_balance).
 	Balance pulumi.Float64Output `pulumi:"balance"`
@@ -130,7 +130,7 @@ func GetCustomer(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering Customer resources.
 type customerState struct {
-	// The customer's address.
+	// The customer's billing address.
 	Addresses []CustomerAddress `pulumi:"addresses"`
 	// The current balance, if any, that's stored on the customer in their default currency. If negative, the customer has credit to apply to their next invoice. If positive, the customer has an amount owed that's added to their next invoice. The balance only considers amounts that Stripe hasn't successfully applied to any invoice. It doesn't reflect unpaid invoices. This balance is only taken into account after invoices finalize. For multi-currency balances, see <span pulumi-lang-nodejs="[invoiceCreditBalance]" pulumi-lang-dotnet="[InvoiceCreditBalance]" pulumi-lang-go="[invoiceCreditBalance]" pulumi-lang-python="[invoice_credit_balance]" pulumi-lang-yaml="[invoiceCreditBalance]" pulumi-lang-java="[invoiceCreditBalance]" pulumi-lang-hcl="[invoice_credit_balance]">[invoiceCreditBalance]</span>(https://docs.stripe.com/api/customers/object#customer_object-invoice_credit_balance).
 	Balance *float64 `pulumi:"balance"`
@@ -198,7 +198,7 @@ type customerState struct {
 }
 
 type CustomerState struct {
-	// The customer's address.
+	// The customer's billing address.
 	Addresses CustomerAddressArrayInput
 	// The current balance, if any, that's stored on the customer in their default currency. If negative, the customer has credit to apply to their next invoice. If positive, the customer has an amount owed that's added to their next invoice. The balance only considers amounts that Stripe hasn't successfully applied to any invoice. It doesn't reflect unpaid invoices. This balance is only taken into account after invoices finalize. For multi-currency balances, see <span pulumi-lang-nodejs="[invoiceCreditBalance]" pulumi-lang-dotnet="[InvoiceCreditBalance]" pulumi-lang-go="[invoiceCreditBalance]" pulumi-lang-python="[invoice_credit_balance]" pulumi-lang-yaml="[invoiceCreditBalance]" pulumi-lang-java="[invoiceCreditBalance]" pulumi-lang-hcl="[invoice_credit_balance]">[invoiceCreditBalance]</span>(https://docs.stripe.com/api/customers/object#customer_object-invoice_credit_balance).
 	Balance pulumi.Float64PtrInput
@@ -269,8 +269,20 @@ func (CustomerState) ElementType() reflect.Type {
 	return reflect.TypeOf((*customerState)(nil)).Elem()
 }
 
+// CustomerExists checks whether an existing Customer resource with the given ID exists.
+func CustomerExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *CustomerState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	ref, err := internal.PkgGetPackageRef(ctx)
+	if err != nil {
+		return pulumi.Bool(false).ToBoolOutput().ApplyT(func(bool) (bool, error) {
+			return false, err
+		}).(pulumi.BoolOutput)
+	}
+	return ctx.ExistsResource("stripe:index/customer:Customer", id, state, ref, opts...)
+}
+
 type customerArgs struct {
-	// The customer's address.
+	// The customer's billing address.
 	Addresses []CustomerAddress `pulumi:"addresses"`
 	// The current balance, if any, that's stored on the customer in their default currency. If negative, the customer has credit to apply to their next invoice. If positive, the customer has an amount owed that's added to their next invoice. The balance only considers amounts that Stripe hasn't successfully applied to any invoice. It doesn't reflect unpaid invoices. This balance is only taken into account after invoices finalize. For multi-currency balances, see <span pulumi-lang-nodejs="[invoiceCreditBalance]" pulumi-lang-dotnet="[InvoiceCreditBalance]" pulumi-lang-go="[invoiceCreditBalance]" pulumi-lang-python="[invoice_credit_balance]" pulumi-lang-yaml="[invoiceCreditBalance]" pulumi-lang-java="[invoiceCreditBalance]" pulumi-lang-hcl="[invoice_credit_balance]">[invoiceCreditBalance]</span>(https://docs.stripe.com/api/customers/object#customer_object-invoice_credit_balance).
 	Balance *float64 `pulumi:"balance"`
@@ -319,7 +331,7 @@ type customerArgs struct {
 
 // The set of arguments for constructing a Customer resource.
 type CustomerArgs struct {
-	// The customer's address.
+	// The customer's billing address.
 	Addresses CustomerAddressArrayInput
 	// The current balance, if any, that's stored on the customer in their default currency. If negative, the customer has credit to apply to their next invoice. If positive, the customer has an amount owed that's added to their next invoice. The balance only considers amounts that Stripe hasn't successfully applied to any invoice. It doesn't reflect unpaid invoices. This balance is only taken into account after invoices finalize. For multi-currency balances, see <span pulumi-lang-nodejs="[invoiceCreditBalance]" pulumi-lang-dotnet="[InvoiceCreditBalance]" pulumi-lang-go="[invoiceCreditBalance]" pulumi-lang-python="[invoice_credit_balance]" pulumi-lang-yaml="[invoiceCreditBalance]" pulumi-lang-java="[invoiceCreditBalance]" pulumi-lang-hcl="[invoice_credit_balance]">[invoiceCreditBalance]</span>(https://docs.stripe.com/api/customers/object#customer_object-invoice_credit_balance).
 	Balance pulumi.Float64PtrInput
@@ -403,7 +415,7 @@ func (o CustomerOutput) ToCustomerOutputWithContext(ctx context.Context) Custome
 	return o
 }
 
-// The customer's address.
+// The customer's billing address.
 func (o CustomerOutput) Addresses() CustomerAddressArrayOutput {
 	return o.ApplyT(func(v *Customer) CustomerAddressArrayOutput { return v.Addresses }).(CustomerAddressArrayOutput)
 }

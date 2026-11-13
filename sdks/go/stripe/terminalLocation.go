@@ -117,6 +117,18 @@ func (TerminalLocationState) ElementType() reflect.Type {
 	return reflect.TypeOf((*terminalLocationState)(nil)).Elem()
 }
 
+// TerminalLocationExists checks whether an existing TerminalLocation resource with the given ID exists.
+func TerminalLocationExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *TerminalLocationState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	ref, err := internal.PkgGetPackageRef(ctx)
+	if err != nil {
+		return pulumi.Bool(false).ToBoolOutput().ApplyT(func(bool) (bool, error) {
+			return false, err
+		}).(pulumi.BoolOutput)
+	}
+	return ctx.ExistsResource("stripe:index/terminalLocation:TerminalLocation", id, state, ref, opts...)
+}
+
 type terminalLocationArgs struct {
 	Address     *TerminalLocationAddress     `pulumi:"address"`
 	AddressKana *TerminalLocationAddressKana `pulumi:"addressKana"`

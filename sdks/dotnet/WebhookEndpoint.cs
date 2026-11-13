@@ -13,7 +13,7 @@ namespace Pulumi.Stripe
     public partial class WebhookEndpoint : global::Pulumi.CustomResource
     {
         /// <summary>
-        /// The API version events are rendered as for this webhook endpoint.
+        /// The API version that events are rendered as for this webhook endpoint. You can't change this value after you create the endpoint.
         /// </summary>
         [Output("apiVersion")]
         public Output<string> ApiVersion { get; private set; } = null!;
@@ -135,7 +135,7 @@ namespace Pulumi.Stripe
     public sealed class WebhookEndpointArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The API version events are rendered as for this webhook endpoint.
+        /// The API version that events are rendered as for this webhook endpoint. You can't change this value after you create the endpoint.
         /// </summary>
         [Input("apiVersion")]
         public Input<string>? ApiVersion { get; set; }
@@ -191,7 +191,7 @@ namespace Pulumi.Stripe
     public sealed class WebhookEndpointState : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The API version events are rendered as for this webhook endpoint.
+        /// The API version that events are rendered as for this webhook endpoint. You can't change this value after you create the endpoint.
         /// </summary>
         [Input("apiVersion")]
         public Input<string>? ApiVersion { get; set; }

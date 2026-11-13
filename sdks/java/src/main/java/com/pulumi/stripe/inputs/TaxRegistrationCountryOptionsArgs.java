@@ -22,10 +22,12 @@ import com.pulumi.stripe.inputs.TaxRegistrationCountryOptionsBgArgs;
 import com.pulumi.stripe.inputs.TaxRegistrationCountryOptionsBhArgs;
 import com.pulumi.stripe.inputs.TaxRegistrationCountryOptionsBjArgs;
 import com.pulumi.stripe.inputs.TaxRegistrationCountryOptionsBsArgs;
+import com.pulumi.stripe.inputs.TaxRegistrationCountryOptionsBwArgs;
 import com.pulumi.stripe.inputs.TaxRegistrationCountryOptionsByArgs;
 import com.pulumi.stripe.inputs.TaxRegistrationCountryOptionsCaArgs;
 import com.pulumi.stripe.inputs.TaxRegistrationCountryOptionsCdArgs;
 import com.pulumi.stripe.inputs.TaxRegistrationCountryOptionsChArgs;
+import com.pulumi.stripe.inputs.TaxRegistrationCountryOptionsCiArgs;
 import com.pulumi.stripe.inputs.TaxRegistrationCountryOptionsClArgs;
 import com.pulumi.stripe.inputs.TaxRegistrationCountryOptionsCmArgs;
 import com.pulumi.stripe.inputs.TaxRegistrationCountryOptionsCoArgs;
@@ -44,6 +46,7 @@ import com.pulumi.stripe.inputs.TaxRegistrationCountryOptionsFiArgs;
 import com.pulumi.stripe.inputs.TaxRegistrationCountryOptionsFrArgs;
 import com.pulumi.stripe.inputs.TaxRegistrationCountryOptionsGbArgs;
 import com.pulumi.stripe.inputs.TaxRegistrationCountryOptionsGeArgs;
+import com.pulumi.stripe.inputs.TaxRegistrationCountryOptionsGhArgs;
 import com.pulumi.stripe.inputs.TaxRegistrationCountryOptionsGnArgs;
 import com.pulumi.stripe.inputs.TaxRegistrationCountryOptionsGrArgs;
 import com.pulumi.stripe.inputs.TaxRegistrationCountryOptionsHrArgs;
@@ -70,6 +73,7 @@ import com.pulumi.stripe.inputs.TaxRegistrationCountryOptionsMeArgs;
 import com.pulumi.stripe.inputs.TaxRegistrationCountryOptionsMkArgs;
 import com.pulumi.stripe.inputs.TaxRegistrationCountryOptionsMrArgs;
 import com.pulumi.stripe.inputs.TaxRegistrationCountryOptionsMtArgs;
+import com.pulumi.stripe.inputs.TaxRegistrationCountryOptionsMuArgs;
 import com.pulumi.stripe.inputs.TaxRegistrationCountryOptionsMxArgs;
 import com.pulumi.stripe.inputs.TaxRegistrationCountryOptionsMyArgs;
 import com.pulumi.stripe.inputs.TaxRegistrationCountryOptionsNgArgs;
@@ -234,6 +238,13 @@ public final class TaxRegistrationCountryOptionsArgs extends com.pulumi.resource
         return Optional.ofNullable(this.bs);
     }
 
+    @Import(name="bw")
+    private @Nullable Output<TaxRegistrationCountryOptionsBwArgs> bw;
+
+    public Optional<Output<TaxRegistrationCountryOptionsBwArgs>> bw() {
+        return Optional.ofNullable(this.bw);
+    }
+
     @Import(name="by")
     private @Nullable Output<TaxRegistrationCountryOptionsByArgs> by;
 
@@ -260,6 +271,13 @@ public final class TaxRegistrationCountryOptionsArgs extends com.pulumi.resource
 
     public Optional<Output<TaxRegistrationCountryOptionsChArgs>> ch() {
         return Optional.ofNullable(this.ch);
+    }
+
+    @Import(name="ci")
+    private @Nullable Output<TaxRegistrationCountryOptionsCiArgs> ci;
+
+    public Optional<Output<TaxRegistrationCountryOptionsCiArgs>> ci() {
+        return Optional.ofNullable(this.ci);
     }
 
     @Import(name="cl")
@@ -386,6 +404,13 @@ public final class TaxRegistrationCountryOptionsArgs extends com.pulumi.resource
 
     public Optional<Output<TaxRegistrationCountryOptionsGeArgs>> ge() {
         return Optional.ofNullable(this.ge);
+    }
+
+    @Import(name="gh")
+    private @Nullable Output<TaxRegistrationCountryOptionsGhArgs> gh;
+
+    public Optional<Output<TaxRegistrationCountryOptionsGhArgs>> gh() {
+        return Optional.ofNullable(this.gh);
     }
 
     @Import(name="gn")
@@ -568,6 +593,13 @@ public final class TaxRegistrationCountryOptionsArgs extends com.pulumi.resource
 
     public Optional<Output<TaxRegistrationCountryOptionsMtArgs>> mt() {
         return Optional.ofNullable(this.mt);
+    }
+
+    @Import(name="mu")
+    private @Nullable Output<TaxRegistrationCountryOptionsMuArgs> mu;
+
+    public Optional<Output<TaxRegistrationCountryOptionsMuArgs>> mu() {
+        return Optional.ofNullable(this.mu);
     }
 
     @Import(name="mx")
@@ -842,10 +874,12 @@ public final class TaxRegistrationCountryOptionsArgs extends com.pulumi.resource
         this.bh = $.bh;
         this.bj = $.bj;
         this.bs = $.bs;
+        this.bw = $.bw;
         this.by = $.by;
         this.ca = $.ca;
         this.cd = $.cd;
         this.ch = $.ch;
+        this.ci = $.ci;
         this.cl = $.cl;
         this.cm = $.cm;
         this.co = $.co;
@@ -864,6 +898,7 @@ public final class TaxRegistrationCountryOptionsArgs extends com.pulumi.resource
         this.fr = $.fr;
         this.gb = $.gb;
         this.ge = $.ge;
+        this.gh = $.gh;
         this.gn = $.gn;
         this.gr = $.gr;
         this.hr = $.hr;
@@ -890,6 +925,7 @@ public final class TaxRegistrationCountryOptionsArgs extends com.pulumi.resource
         this.mk = $.mk;
         this.mr = $.mr;
         this.mt = $.mt;
+        this.mu = $.mu;
         this.mx = $.mx;
         this.my = $.my;
         this.ng = $.ng;
@@ -1099,6 +1135,15 @@ public final class TaxRegistrationCountryOptionsArgs extends com.pulumi.resource
             return bs(Output.of(bs));
         }
 
+        public Builder bw(@Nullable Output<TaxRegistrationCountryOptionsBwArgs> bw) {
+            $.bw = bw;
+            return this;
+        }
+
+        public Builder bw(TaxRegistrationCountryOptionsBwArgs bw) {
+            return bw(Output.of(bw));
+        }
+
         public Builder by(@Nullable Output<TaxRegistrationCountryOptionsByArgs> by) {
             $.by = by;
             return this;
@@ -1133,6 +1178,15 @@ public final class TaxRegistrationCountryOptionsArgs extends com.pulumi.resource
 
         public Builder ch(TaxRegistrationCountryOptionsChArgs ch) {
             return ch(Output.of(ch));
+        }
+
+        public Builder ci(@Nullable Output<TaxRegistrationCountryOptionsCiArgs> ci) {
+            $.ci = ci;
+            return this;
+        }
+
+        public Builder ci(TaxRegistrationCountryOptionsCiArgs ci) {
+            return ci(Output.of(ci));
         }
 
         public Builder cl(@Nullable Output<TaxRegistrationCountryOptionsClArgs> cl) {
@@ -1295,6 +1349,15 @@ public final class TaxRegistrationCountryOptionsArgs extends com.pulumi.resource
 
         public Builder ge(TaxRegistrationCountryOptionsGeArgs ge) {
             return ge(Output.of(ge));
+        }
+
+        public Builder gh(@Nullable Output<TaxRegistrationCountryOptionsGhArgs> gh) {
+            $.gh = gh;
+            return this;
+        }
+
+        public Builder gh(TaxRegistrationCountryOptionsGhArgs gh) {
+            return gh(Output.of(gh));
         }
 
         public Builder gn(@Nullable Output<TaxRegistrationCountryOptionsGnArgs> gn) {
@@ -1529,6 +1592,15 @@ public final class TaxRegistrationCountryOptionsArgs extends com.pulumi.resource
 
         public Builder mt(TaxRegistrationCountryOptionsMtArgs mt) {
             return mt(Output.of(mt));
+        }
+
+        public Builder mu(@Nullable Output<TaxRegistrationCountryOptionsMuArgs> mu) {
+            $.mu = mu;
+            return this;
+        }
+
+        public Builder mu(TaxRegistrationCountryOptionsMuArgs mu) {
+            return mu(Output.of(mu));
         }
 
         public Builder mx(@Nullable Output<TaxRegistrationCountryOptionsMxArgs> mx) {

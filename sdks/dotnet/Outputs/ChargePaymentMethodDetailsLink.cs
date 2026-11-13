@@ -18,11 +18,19 @@ namespace Pulumi.Stripe.Outputs
         /// You could use this attribute to get a sense of international fees.
         /// </summary>
         public readonly string? Country;
+        /// <summary>
+        /// The [funding source group code](https://docs.stripe.com/payments/link/link-payment-methods) applied to this Link payment at confirmation time.
+        /// </summary>
+        public readonly string? FundingSourceGroup;
 
         [OutputConstructor]
-        private ChargePaymentMethodDetailsLink(string? country)
+        private ChargePaymentMethodDetailsLink(
+            string? country,
+
+            string? fundingSourceGroup)
         {
             Country = country;
+            FundingSourceGroup = fundingSourceGroup;
         }
     }
 }

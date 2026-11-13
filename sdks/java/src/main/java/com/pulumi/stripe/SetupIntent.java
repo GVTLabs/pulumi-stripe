@@ -30,6 +30,20 @@ import javax.annotation.Nullable;
 @ResourceType(type="stripe:index/setupIntent:SetupIntent")
 public class SetupIntent extends com.pulumi.resources.CustomResource {
     /**
+     * The list of payment method types to allow for this SetupIntent. Stripe will only use methods in this list when determining the payment methods to offer.
+     * 
+     */
+    @Export(name="allowedPaymentMethodTypes", refs={List.class,String.class}, tree="[0,1]")
+    private Output<List<String>> allowedPaymentMethodTypes;
+
+    /**
+     * @return The list of payment method types to allow for this SetupIntent. Stripe will only use methods in this list when determining the payment methods to offer.
+     * 
+     */
+    public Output<List<String>> allowedPaymentMethodTypes() {
+        return this.allowedPaymentMethodTypes;
+    }
+    /**
      * ID of the Connect application that created the SetupIntent.
      * 
      */

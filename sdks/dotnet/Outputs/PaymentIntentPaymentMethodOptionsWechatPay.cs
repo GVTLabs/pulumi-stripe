@@ -14,7 +14,7 @@ namespace Pulumi.Stripe.Outputs
     public sealed class PaymentIntentPaymentMethodOptionsWechatPay
     {
         /// <summary>
-        /// The app ID registered with WeChat Pay. Only required when client is ios or android.
+        /// The app ID registered with WeChat Pay. Only required when client is ios, android, or mini_program.
         /// </summary>
         public readonly string? AppId;
         /// <summary>

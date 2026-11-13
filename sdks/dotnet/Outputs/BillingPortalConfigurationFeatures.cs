@@ -17,6 +17,7 @@ namespace Pulumi.Stripe.Outputs
         public readonly Outputs.BillingPortalConfigurationFeaturesInvoiceHistory? InvoiceHistory;
         public readonly Outputs.BillingPortalConfigurationFeaturesPaymentMethodUpdate? PaymentMethodUpdate;
         public readonly Outputs.BillingPortalConfigurationFeaturesSubscriptionCancel? SubscriptionCancel;
+        public readonly Outputs.BillingPortalConfigurationFeaturesSubscriptionPause? SubscriptionPause;
         public readonly Outputs.BillingPortalConfigurationFeaturesSubscriptionUpdate? SubscriptionUpdate;
 
         [OutputConstructor]
@@ -29,12 +30,15 @@ namespace Pulumi.Stripe.Outputs
 
             Outputs.BillingPortalConfigurationFeaturesSubscriptionCancel? subscriptionCancel,
 
+            Outputs.BillingPortalConfigurationFeaturesSubscriptionPause? subscriptionPause,
+
             Outputs.BillingPortalConfigurationFeaturesSubscriptionUpdate? subscriptionUpdate)
         {
             CustomerUpdate = customerUpdate;
             InvoiceHistory = invoiceHistory;
             PaymentMethodUpdate = paymentMethodUpdate;
             SubscriptionCancel = subscriptionCancel;
+            SubscriptionPause = subscriptionPause;
             SubscriptionUpdate = subscriptionUpdate;
         }
     }

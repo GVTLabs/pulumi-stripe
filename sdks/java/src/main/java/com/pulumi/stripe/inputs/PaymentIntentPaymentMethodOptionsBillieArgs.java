@@ -5,6 +5,7 @@ package com.pulumi.stripe.inputs;
 
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
+import com.pulumi.stripe.inputs.PaymentIntentPaymentMethodOptionsBillieCompanyDetailsArgs;
 import java.lang.String;
 import java.util.Objects;
 import java.util.Optional;
@@ -30,10 +31,34 @@ public final class PaymentIntentPaymentMethodOptionsBillieArgs extends com.pulum
         return Optional.ofNullable(this.captureMethod);
     }
 
+    @Import(name="companyDetails")
+    private @Nullable Output<PaymentIntentPaymentMethodOptionsBillieCompanyDetailsArgs> companyDetails;
+
+    public Optional<Output<PaymentIntentPaymentMethodOptionsBillieCompanyDetailsArgs>> companyDetails() {
+        return Optional.ofNullable(this.companyDetails);
+    }
+
+    /**
+     * An identifier or reference that this payment corresponds to.
+     * 
+     */
+    @Import(name="reference")
+    private @Nullable Output<String> reference;
+
+    /**
+     * @return An identifier or reference that this payment corresponds to.
+     * 
+     */
+    public Optional<Output<String>> reference() {
+        return Optional.ofNullable(this.reference);
+    }
+
     private PaymentIntentPaymentMethodOptionsBillieArgs() {}
 
     private PaymentIntentPaymentMethodOptionsBillieArgs(PaymentIntentPaymentMethodOptionsBillieArgs $) {
         this.captureMethod = $.captureMethod;
+        this.companyDetails = $.companyDetails;
+        this.reference = $.reference;
     }
 
     public static Builder builder() {
@@ -73,6 +98,36 @@ public final class PaymentIntentPaymentMethodOptionsBillieArgs extends com.pulum
          */
         public Builder captureMethod(String captureMethod) {
             return captureMethod(Output.of(captureMethod));
+        }
+
+        public Builder companyDetails(@Nullable Output<PaymentIntentPaymentMethodOptionsBillieCompanyDetailsArgs> companyDetails) {
+            $.companyDetails = companyDetails;
+            return this;
+        }
+
+        public Builder companyDetails(PaymentIntentPaymentMethodOptionsBillieCompanyDetailsArgs companyDetails) {
+            return companyDetails(Output.of(companyDetails));
+        }
+
+        /**
+         * @param reference An identifier or reference that this payment corresponds to.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder reference(@Nullable Output<String> reference) {
+            $.reference = reference;
+            return this;
+        }
+
+        /**
+         * @param reference An identifier or reference that this payment corresponds to.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder reference(String reference) {
+            return reference(Output.of(reference));
         }
 
         public PaymentIntentPaymentMethodOptionsBillieArgs build() {

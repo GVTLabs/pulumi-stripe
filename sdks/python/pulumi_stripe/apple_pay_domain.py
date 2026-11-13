@@ -194,6 +194,20 @@ class ApplePayDomain(pulumi.CustomResource):
         __props__.__dict__["object"] = object
         return ApplePayDomain(resource_name, opts=opts, __props__=__props__)
 
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            created: pulumi.Input[Optional[_builtins.float]] = None,
+            domain_name: pulumi.Input[Optional[_builtins.str]] = None,
+            livemode: pulumi.Input[Optional[_builtins.bool]] = None,
+            object: pulumi.Input[Optional[_builtins.str]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["created"] = created
+        __props__["domainName"] = domain_name
+        __props__["livemode"] = livemode
+        __props__["object"] = object
+        return pulumi.runtime.exists_resource(None, 'stripe:index/applePayDomain:ApplePayDomain', id, __props__, opts or pulumi.ResourceOptions(), package_ref=_utilities.get_package())
+
     @_builtins.property
     @pulumi.getter
     def created(self) -> pulumi.Output[_builtins.float]:

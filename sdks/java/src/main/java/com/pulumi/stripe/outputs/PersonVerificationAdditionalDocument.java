@@ -12,7 +12,7 @@ import javax.annotation.Nullable;
 @CustomType
 public final class PersonVerificationAdditionalDocument {
     /**
-     * @return The back of an ID returned by a [file upload](https://api.stripe.com#create_file) with a &lt;span pulumi-lang-nodejs=&#34;`purpose`&#34; pulumi-lang-dotnet=&#34;`Purpose`&#34; pulumi-lang-go=&#34;`purpose`&#34; pulumi-lang-python=&#34;`purpose`&#34; pulumi-lang-yaml=&#34;`purpose`&#34; pulumi-lang-java=&#34;`purpose`&#34; pulumi-lang-hcl=&#34;`purpose`&#34;&gt;`purpose`&lt;/span&gt; value of &lt;span pulumi-lang-nodejs=&#34;`identityDocument`&#34; pulumi-lang-dotnet=&#34;`IdentityDocument`&#34; pulumi-lang-go=&#34;`identityDocument`&#34; pulumi-lang-python=&#34;`identity_document`&#34; pulumi-lang-yaml=&#34;`identityDocument`&#34; pulumi-lang-java=&#34;`identityDocument`&#34; pulumi-lang-hcl=&#34;`identity_document`&#34;&gt;`identityDocument`&lt;/span&gt;.
+     * @return The back of an ID returned by a [file upload](https://docs.stripe.com/api#create_file) with a &lt;span pulumi-lang-nodejs=&#34;`purpose`&#34; pulumi-lang-dotnet=&#34;`Purpose`&#34; pulumi-lang-go=&#34;`purpose`&#34; pulumi-lang-python=&#34;`purpose`&#34; pulumi-lang-yaml=&#34;`purpose`&#34; pulumi-lang-java=&#34;`purpose`&#34; pulumi-lang-hcl=&#34;`purpose`&#34;&gt;`purpose`&lt;/span&gt; value of &lt;span pulumi-lang-nodejs=&#34;`identityDocument`&#34; pulumi-lang-dotnet=&#34;`IdentityDocument`&#34; pulumi-lang-go=&#34;`identityDocument`&#34; pulumi-lang-python=&#34;`identity_document`&#34; pulumi-lang-yaml=&#34;`identityDocument`&#34; pulumi-lang-java=&#34;`identityDocument`&#34; pulumi-lang-hcl=&#34;`identity_document`&#34;&gt;`identityDocument`&lt;/span&gt;.
      * 
      */
     private @Nullable String back;
@@ -27,14 +27,14 @@ public final class PersonVerificationAdditionalDocument {
      */
     private @Nullable String detailsCode;
     /**
-     * @return The front of an ID returned by a [file upload](https://api.stripe.com#create_file) with a &lt;span pulumi-lang-nodejs=&#34;`purpose`&#34; pulumi-lang-dotnet=&#34;`Purpose`&#34; pulumi-lang-go=&#34;`purpose`&#34; pulumi-lang-python=&#34;`purpose`&#34; pulumi-lang-yaml=&#34;`purpose`&#34; pulumi-lang-java=&#34;`purpose`&#34; pulumi-lang-hcl=&#34;`purpose`&#34;&gt;`purpose`&lt;/span&gt; value of &lt;span pulumi-lang-nodejs=&#34;`identityDocument`&#34; pulumi-lang-dotnet=&#34;`IdentityDocument`&#34; pulumi-lang-go=&#34;`identityDocument`&#34; pulumi-lang-python=&#34;`identity_document`&#34; pulumi-lang-yaml=&#34;`identityDocument`&#34; pulumi-lang-java=&#34;`identityDocument`&#34; pulumi-lang-hcl=&#34;`identity_document`&#34;&gt;`identityDocument`&lt;/span&gt;.
+     * @return The front of an ID returned by a [file upload](https://docs.stripe.com/api#create_file) with a &lt;span pulumi-lang-nodejs=&#34;`purpose`&#34; pulumi-lang-dotnet=&#34;`Purpose`&#34; pulumi-lang-go=&#34;`purpose`&#34; pulumi-lang-python=&#34;`purpose`&#34; pulumi-lang-yaml=&#34;`purpose`&#34; pulumi-lang-java=&#34;`purpose`&#34; pulumi-lang-hcl=&#34;`purpose`&#34;&gt;`purpose`&lt;/span&gt; value of &lt;span pulumi-lang-nodejs=&#34;`identityDocument`&#34; pulumi-lang-dotnet=&#34;`IdentityDocument`&#34; pulumi-lang-go=&#34;`identityDocument`&#34; pulumi-lang-python=&#34;`identity_document`&#34; pulumi-lang-yaml=&#34;`identityDocument`&#34; pulumi-lang-java=&#34;`identityDocument`&#34; pulumi-lang-hcl=&#34;`identity_document`&#34;&gt;`identityDocument`&lt;/span&gt;.
      * 
      */
     private @Nullable String front;
 
     private PersonVerificationAdditionalDocument() {}
     /**
-     * @return The back of an ID returned by a [file upload](https://api.stripe.com#create_file) with a &lt;span pulumi-lang-nodejs=&#34;`purpose`&#34; pulumi-lang-dotnet=&#34;`Purpose`&#34; pulumi-lang-go=&#34;`purpose`&#34; pulumi-lang-python=&#34;`purpose`&#34; pulumi-lang-yaml=&#34;`purpose`&#34; pulumi-lang-java=&#34;`purpose`&#34; pulumi-lang-hcl=&#34;`purpose`&#34;&gt;`purpose`&lt;/span&gt; value of &lt;span pulumi-lang-nodejs=&#34;`identityDocument`&#34; pulumi-lang-dotnet=&#34;`IdentityDocument`&#34; pulumi-lang-go=&#34;`identityDocument`&#34; pulumi-lang-python=&#34;`identity_document`&#34; pulumi-lang-yaml=&#34;`identityDocument`&#34; pulumi-lang-java=&#34;`identityDocument`&#34; pulumi-lang-hcl=&#34;`identity_document`&#34;&gt;`identityDocument`&lt;/span&gt;.
+     * @return The back of an ID returned by a [file upload](https://docs.stripe.com/api#create_file) with a &lt;span pulumi-lang-nodejs=&#34;`purpose`&#34; pulumi-lang-dotnet=&#34;`Purpose`&#34; pulumi-lang-go=&#34;`purpose`&#34; pulumi-lang-python=&#34;`purpose`&#34; pulumi-lang-yaml=&#34;`purpose`&#34; pulumi-lang-java=&#34;`purpose`&#34; pulumi-lang-hcl=&#34;`purpose`&#34;&gt;`purpose`&lt;/span&gt; value of &lt;span pulumi-lang-nodejs=&#34;`identityDocument`&#34; pulumi-lang-dotnet=&#34;`IdentityDocument`&#34; pulumi-lang-go=&#34;`identityDocument`&#34; pulumi-lang-python=&#34;`identity_document`&#34; pulumi-lang-yaml=&#34;`identityDocument`&#34; pulumi-lang-java=&#34;`identityDocument`&#34; pulumi-lang-hcl=&#34;`identity_document`&#34;&gt;`identityDocument`&lt;/span&gt;.
      * 
      */
     public Optional<String> back() {
@@ -55,7 +55,7 @@ public final class PersonVerificationAdditionalDocument {
         return Optional.ofNullable(this.detailsCode);
     }
     /**
-     * @return The front of an ID returned by a [file upload](https://api.stripe.com#create_file) with a &lt;span pulumi-lang-nodejs=&#34;`purpose`&#34; pulumi-lang-dotnet=&#34;`Purpose`&#34; pulumi-lang-go=&#34;`purpose`&#34; pulumi-lang-python=&#34;`purpose`&#34; pulumi-lang-yaml=&#34;`purpose`&#34; pulumi-lang-java=&#34;`purpose`&#34; pulumi-lang-hcl=&#34;`purpose`&#34;&gt;`purpose`&lt;/span&gt; value of &lt;span pulumi-lang-nodejs=&#34;`identityDocument`&#34; pulumi-lang-dotnet=&#34;`IdentityDocument`&#34; pulumi-lang-go=&#34;`identityDocument`&#34; pulumi-lang-python=&#34;`identity_document`&#34; pulumi-lang-yaml=&#34;`identityDocument`&#34; pulumi-lang-java=&#34;`identityDocument`&#34; pulumi-lang-hcl=&#34;`identity_document`&#34;&gt;`identityDocument`&lt;/span&gt;.
+     * @return The front of an ID returned by a [file upload](https://docs.stripe.com/api#create_file) with a &lt;span pulumi-lang-nodejs=&#34;`purpose`&#34; pulumi-lang-dotnet=&#34;`Purpose`&#34; pulumi-lang-go=&#34;`purpose`&#34; pulumi-lang-python=&#34;`purpose`&#34; pulumi-lang-yaml=&#34;`purpose`&#34; pulumi-lang-java=&#34;`purpose`&#34; pulumi-lang-hcl=&#34;`purpose`&#34;&gt;`purpose`&lt;/span&gt; value of &lt;span pulumi-lang-nodejs=&#34;`identityDocument`&#34; pulumi-lang-dotnet=&#34;`IdentityDocument`&#34; pulumi-lang-go=&#34;`identityDocument`&#34; pulumi-lang-python=&#34;`identity_document`&#34; pulumi-lang-yaml=&#34;`identityDocument`&#34; pulumi-lang-java=&#34;`identityDocument`&#34; pulumi-lang-hcl=&#34;`identity_document`&#34;&gt;`identityDocument`&lt;/span&gt;.
      * 
      */
     public Optional<String> front() {

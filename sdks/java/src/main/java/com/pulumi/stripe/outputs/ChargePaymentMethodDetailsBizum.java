@@ -12,12 +12,24 @@ import javax.annotation.Nullable;
 @CustomType
 public final class ChargePaymentMethodDetailsBizum {
     /**
+     * @return A unique identifier for the buyer as determined by the local payment processor.
+     * 
+     */
+    private @Nullable String buyerId;
+    /**
      * @return The Bizum transaction ID associated with this payment.
      * 
      */
     private @Nullable String transactionId;
 
     private ChargePaymentMethodDetailsBizum() {}
+    /**
+     * @return A unique identifier for the buyer as determined by the local payment processor.
+     * 
+     */
+    public Optional<String> buyerId() {
+        return Optional.ofNullable(this.buyerId);
+    }
     /**
      * @return The Bizum transaction ID associated with this payment.
      * 
@@ -35,13 +47,21 @@ public final class ChargePaymentMethodDetailsBizum {
     }
     @CustomType.Builder
     public static final class Builder {
+        private @Nullable String buyerId;
         private @Nullable String transactionId;
         public Builder() {}
         public Builder(ChargePaymentMethodDetailsBizum defaults) {
     	      Objects.requireNonNull(defaults);
+    	      this.buyerId = defaults.buyerId;
     	      this.transactionId = defaults.transactionId;
         }
 
+        @CustomType.Setter
+        public Builder buyerId(@Nullable String buyerId) {
+
+            this.buyerId = buyerId;
+            return this;
+        }
         @CustomType.Setter
         public Builder transactionId(@Nullable String transactionId) {
 
@@ -50,6 +70,7 @@ public final class ChargePaymentMethodDetailsBizum {
         }
         public ChargePaymentMethodDetailsBizum build() {
             final var _resultValue = new ChargePaymentMethodDetailsBizum();
+            _resultValue.buyerId = buyerId;
             _resultValue.transactionId = transactionId;
             return _resultValue;
         }

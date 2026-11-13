@@ -20,6 +20,17 @@ export class SubscriptionSchedule extends pulumi.CustomResource {
         return new SubscriptionSchedule(name, <any>state, { ...opts, id: id });
     }
 
+    /**
+     * Check whether an existing SubscriptionSchedule resource with the given ID exists.
+     *
+     * @param id The _unique_ provider ID of the resource to check.
+     * @param state Any extra arguments used during the lookup.
+     * @param opts Optional settings to control the behavior of the CustomResource.
+     */
+    public static exists(id: pulumi.Input<string>, state?: SubscriptionScheduleState, opts?: pulumi.CustomResourceOptions): pulumi.Output<boolean> {
+        return pulumi.runtime.existsResource("stripe:index/subscriptionSchedule:SubscriptionSchedule", id, <any>state || {}, { ...opts }, utilities.getPackage());
+    }
+
     /** @internal */
     public static readonly __pulumiType = 'stripe:index/subscriptionSchedule:SubscriptionSchedule';
 
@@ -89,6 +100,10 @@ export class SubscriptionSchedule extends pulumi.CustomResource {
      */
     declare public /*out*/ readonly object: pulumi.Output<string>;
     /**
+     * The pause schedules for this subscription schedule.
+     */
+    declare public readonly pauseSchedules: pulumi.Output<outputs.SubscriptionSchedulePauseSchedule[]>;
+    /**
      * Configuration for the subscription schedule's phases.
      */
     declare public readonly phases: pulumi.Output<outputs.SubscriptionSchedulePhase[]>;
@@ -101,7 +116,7 @@ export class SubscriptionSchedule extends pulumi.CustomResource {
      */
     declare public /*out*/ readonly releasedSubscription: pulumi.Output<string>;
     /**
-     * When the subscription schedule starts. We recommend using <span pulumi-lang-nodejs="`now`" pulumi-lang-dotnet="`Now`" pulumi-lang-go="`now`" pulumi-lang-python="`now`" pulumi-lang-yaml="`now`" pulumi-lang-java="`now`" pulumi-lang-hcl="`now`">`now`</span> so that it starts the subscription immediately. You can also use a Unix timestamp to backdate the subscription so that it starts on a past date, or set a future date for the subscription to start on.
+     * When the subscription schedule starts. We recommend using <span pulumi-lang-nodejs="`now`" pulumi-lang-dotnet="`Now`" pulumi-lang-go="`now`" pulumi-lang-python="`now`" pulumi-lang-yaml="`now`" pulumi-lang-java="`now`" pulumi-lang-hcl="`now`">`now`</span> so that it starts the subscription immediately, and to avoid unexpected behavior due to request delays or clock skew resulting in a slightly backdated or postdated start. You can also use a Unix timestamp to backdate the subscription so that it starts on a past date, or set a future date for the subscription to start on.
      */
     declare public readonly startDate: pulumi.Output<number | undefined>;
     /**
@@ -144,6 +159,7 @@ export class SubscriptionSchedule extends pulumi.CustomResource {
             resourceInputs["livemode"] = state?.livemode;
             resourceInputs["metadata"] = state?.metadata;
             resourceInputs["object"] = state?.object;
+            resourceInputs["pauseSchedules"] = state?.pauseSchedules;
             resourceInputs["phases"] = state?.phases;
             resourceInputs["releasedAt"] = state?.releasedAt;
             resourceInputs["releasedSubscription"] = state?.releasedSubscription;
@@ -160,6 +176,7 @@ export class SubscriptionSchedule extends pulumi.CustomResource {
             resourceInputs["endBehavior"] = args?.endBehavior;
             resourceInputs["fromSubscription"] = args?.fromSubscription ? pulumi.secret(args.fromSubscription) : undefined;
             resourceInputs["metadata"] = args?.metadata;
+            resourceInputs["pauseSchedules"] = args?.pauseSchedules;
             resourceInputs["phases"] = args?.phases;
             resourceInputs["startDate"] = args?.startDate;
             resourceInputs["application"] = undefined /*out*/;
@@ -241,6 +258,10 @@ export interface SubscriptionScheduleState {
      */
     object?: pulumi.Input<string | undefined>;
     /**
+     * The pause schedules for this subscription schedule.
+     */
+    pauseSchedules?: pulumi.Input<pulumi.Input<inputs.SubscriptionSchedulePauseSchedule>[] | undefined>;
+    /**
      * Configuration for the subscription schedule's phases.
      */
     phases?: pulumi.Input<pulumi.Input<inputs.SubscriptionSchedulePhase>[] | undefined>;
@@ -253,7 +274,7 @@ export interface SubscriptionScheduleState {
      */
     releasedSubscription?: pulumi.Input<string | undefined>;
     /**
-     * When the subscription schedule starts. We recommend using <span pulumi-lang-nodejs="`now`" pulumi-lang-dotnet="`Now`" pulumi-lang-go="`now`" pulumi-lang-python="`now`" pulumi-lang-yaml="`now`" pulumi-lang-java="`now`" pulumi-lang-hcl="`now`">`now`</span> so that it starts the subscription immediately. You can also use a Unix timestamp to backdate the subscription so that it starts on a past date, or set a future date for the subscription to start on.
+     * When the subscription schedule starts. We recommend using <span pulumi-lang-nodejs="`now`" pulumi-lang-dotnet="`Now`" pulumi-lang-go="`now`" pulumi-lang-python="`now`" pulumi-lang-yaml="`now`" pulumi-lang-java="`now`" pulumi-lang-hcl="`now`">`now`</span> so that it starts the subscription immediately, and to avoid unexpected behavior due to request delays or clock skew resulting in a slightly backdated or postdated start. You can also use a Unix timestamp to backdate the subscription so that it starts on a past date, or set a future date for the subscription to start on.
      */
     startDate?: pulumi.Input<number | undefined>;
     /**
@@ -301,11 +322,15 @@ export interface SubscriptionScheduleArgs {
      */
     metadata?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
     /**
+     * The pause schedules for this subscription schedule.
+     */
+    pauseSchedules?: pulumi.Input<pulumi.Input<inputs.SubscriptionSchedulePauseSchedule>[] | undefined>;
+    /**
      * Configuration for the subscription schedule's phases.
      */
     phases?: pulumi.Input<pulumi.Input<inputs.SubscriptionSchedulePhase>[] | undefined>;
     /**
-     * When the subscription schedule starts. We recommend using <span pulumi-lang-nodejs="`now`" pulumi-lang-dotnet="`Now`" pulumi-lang-go="`now`" pulumi-lang-python="`now`" pulumi-lang-yaml="`now`" pulumi-lang-java="`now`" pulumi-lang-hcl="`now`">`now`</span> so that it starts the subscription immediately. You can also use a Unix timestamp to backdate the subscription so that it starts on a past date, or set a future date for the subscription to start on.
+     * When the subscription schedule starts. We recommend using <span pulumi-lang-nodejs="`now`" pulumi-lang-dotnet="`Now`" pulumi-lang-go="`now`" pulumi-lang-python="`now`" pulumi-lang-yaml="`now`" pulumi-lang-java="`now`" pulumi-lang-hcl="`now`">`now`</span> so that it starts the subscription immediately, and to avoid unexpected behavior due to request delays or clock skew resulting in a slightly backdated or postdated start. You can also use a Unix timestamp to backdate the subscription so that it starts on a past date, or set a future date for the subscription to start on.
      */
     startDate?: pulumi.Input<number | undefined>;
 }

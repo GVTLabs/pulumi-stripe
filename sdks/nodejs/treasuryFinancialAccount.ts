@@ -20,6 +20,17 @@ export class TreasuryFinancialAccount extends pulumi.CustomResource {
         return new TreasuryFinancialAccount(name, <any>state, { ...opts, id: id });
     }
 
+    /**
+     * Check whether an existing TreasuryFinancialAccount resource with the given ID exists.
+     *
+     * @param id The _unique_ provider ID of the resource to check.
+     * @param state Any extra arguments used during the lookup.
+     * @param opts Optional settings to control the behavior of the CustomResource.
+     */
+    public static exists(id: pulumi.Input<string>, state?: TreasuryFinancialAccountState, opts?: pulumi.CustomResourceOptions): pulumi.Output<boolean> {
+        return pulumi.runtime.existsResource("stripe:index/treasuryFinancialAccount:TreasuryFinancialAccount", id, <any>state || {}, { ...opts }, utilities.getPackage());
+    }
+
     /** @internal */
     public static readonly __pulumiType = 'stripe:index/treasuryFinancialAccount:TreasuryFinancialAccount';
 

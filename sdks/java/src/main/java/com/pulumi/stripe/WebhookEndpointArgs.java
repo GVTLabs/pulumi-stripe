@@ -20,14 +20,14 @@ public final class WebhookEndpointArgs extends com.pulumi.resources.ResourceArgs
     public static final WebhookEndpointArgs Empty = new WebhookEndpointArgs();
 
     /**
-     * The API version events are rendered as for this webhook endpoint.
+     * The API version that events are rendered as for this webhook endpoint. You can&#39;t change this value after you create the endpoint.
      * 
      */
     @Import(name="apiVersion")
     private @Nullable Output<String> apiVersion;
 
     /**
-     * @return The API version events are rendered as for this webhook endpoint.
+     * @return The API version that events are rendered as for this webhook endpoint. You can&#39;t change this value after you create the endpoint.
      * 
      */
     public Optional<Output<String>> apiVersion() {
@@ -139,7 +139,7 @@ public final class WebhookEndpointArgs extends com.pulumi.resources.ResourceArgs
         }
 
         /**
-         * @param apiVersion The API version events are rendered as for this webhook endpoint.
+         * @param apiVersion The API version that events are rendered as for this webhook endpoint. You can&#39;t change this value after you create the endpoint.
          * 
          * @return builder
          * 
@@ -150,7 +150,7 @@ public final class WebhookEndpointArgs extends com.pulumi.resources.ResourceArgs
         }
 
         /**
-         * @param apiVersion The API version events are rendered as for this webhook endpoint.
+         * @param apiVersion The API version that events are rendered as for this webhook endpoint. You can&#39;t change this value after you create the endpoint.
          * 
          * @return builder
          * 

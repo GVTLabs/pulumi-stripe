@@ -5,6 +5,28 @@ import * as pulumi from "@pulumi/pulumi";
 import * as inputs from "../types/input";
 import * as outputs from "../types/output";
 
+export interface AppsInstallContentSecurityPolicyGranted {
+    /**
+     * The URLs that the app can make network requests to.
+     */
+    connectSrcs?: pulumi.Input<pulumi.Input<string>[] | undefined>;
+    /**
+     * The URLs that the app can load images from.
+     */
+    imageSrcs?: pulumi.Input<pulumi.Input<string>[] | undefined>;
+}
+
+export interface AppsInstallContentSecurityPolicyPending {
+    /**
+     * The URLs that the app can make network requests to.
+     */
+    connectSrcs?: pulumi.Input<pulumi.Input<string>[] | undefined>;
+    /**
+     * The URLs that the app can load images from.
+     */
+    imageSrcs?: pulumi.Input<pulumi.Input<string>[] | undefined>;
+}
+
 export interface BillingAlertUsageThreshold {
     /**
      * The filters allow limiting the scope of this usage alert. You can only specify up to one filter at this time.
@@ -76,6 +98,13 @@ export interface BillingCreditGrantApplicabilityConfigScopePrice {
     id?: pulumi.Input<string | undefined>;
 }
 
+export interface BillingFeedbackOptionStatusTransitions {
+    /**
+     * The time the feedback option was deactivated, if any. Measured in seconds since Unix epoch.
+     */
+    deactivatedAt?: pulumi.Input<number | undefined>;
+}
+
 export interface BillingMeterCustomerMapping {
     /**
      * The key in the meter event payload to use for mapping the event to a customer.
@@ -128,6 +157,7 @@ export interface BillingPortalConfigurationFeatures {
     invoiceHistory?: pulumi.Input<inputs.BillingPortalConfigurationFeaturesInvoiceHistory | undefined>;
     paymentMethodUpdate?: pulumi.Input<inputs.BillingPortalConfigurationFeaturesPaymentMethodUpdate | undefined>;
     subscriptionCancel?: pulumi.Input<inputs.BillingPortalConfigurationFeaturesSubscriptionCancel | undefined>;
+    subscriptionPause?: pulumi.Input<inputs.BillingPortalConfigurationFeaturesSubscriptionPause | undefined>;
     subscriptionUpdate?: pulumi.Input<inputs.BillingPortalConfigurationFeaturesSubscriptionUpdate | undefined>;
 }
 
@@ -182,9 +212,43 @@ export interface BillingPortalConfigurationFeaturesSubscriptionCancelCancellatio
      */
     enabled: pulumi.Input<boolean>;
     /**
+     * The IDs of custom feedback options configured for this cancellation reason.
+     */
+    feedbackOptions?: pulumi.Input<pulumi.Input<string>[] | undefined>;
+    /**
      * Which cancellation reasons will be given as options to the customer.
      */
     options: pulumi.Input<pulumi.Input<string>[]>;
+}
+
+export interface BillingPortalConfigurationFeaturesSubscriptionPause {
+    duration?: pulumi.Input<inputs.BillingPortalConfigurationFeaturesSubscriptionPauseDuration | undefined>;
+    /**
+     * Whether the feature is enabled. Customers can only pause subscriptions in the [redesigned customer portal](https://www.terraform.io/customer-management).
+     */
+    enabled?: pulumi.Input<boolean | undefined>;
+}
+
+export interface BillingPortalConfigurationFeaturesSubscriptionPauseDuration {
+    /**
+     * The preset pause durations customers can choose from.
+     */
+    intervalOptions?: pulumi.Input<pulumi.Input<inputs.BillingPortalConfigurationFeaturesSubscriptionPauseDurationIntervalOption>[] | undefined>;
+    /**
+     * Whether subscriptions can be paused indefinitely or for a preset duration.
+     */
+    type: pulumi.Input<string>;
+}
+
+export interface BillingPortalConfigurationFeaturesSubscriptionPauseDurationIntervalOption {
+    /**
+     * Specifies the pause duration unit. Either <span pulumi-lang-nodejs="`day`" pulumi-lang-dotnet="`Day`" pulumi-lang-go="`day`" pulumi-lang-python="`day`" pulumi-lang-yaml="`day`" pulumi-lang-java="`day`" pulumi-lang-hcl="`day`">`day`</span>, <span pulumi-lang-nodejs="`week`" pulumi-lang-dotnet="`Week`" pulumi-lang-go="`week`" pulumi-lang-python="`week`" pulumi-lang-yaml="`week`" pulumi-lang-java="`week`" pulumi-lang-hcl="`week`">`week`</span>, <span pulumi-lang-nodejs="`month`" pulumi-lang-dotnet="`Month`" pulumi-lang-go="`month`" pulumi-lang-python="`month`" pulumi-lang-yaml="`month`" pulumi-lang-java="`month`" pulumi-lang-hcl="`month`">`month`</span>, or <span pulumi-lang-nodejs="`year`" pulumi-lang-dotnet="`Year`" pulumi-lang-go="`year`" pulumi-lang-python="`year`" pulumi-lang-yaml="`year`" pulumi-lang-java="`year`" pulumi-lang-hcl="`year`">`year`</span>.
+     */
+    interval: pulumi.Input<string>;
+    /**
+     * The number of intervals in the pause duration. The maximum duration is three years.
+     */
+    intervalCount?: pulumi.Input<number | undefined>;
 }
 
 export interface BillingPortalConfigurationFeaturesSubscriptionUpdate {
@@ -453,6 +517,7 @@ export interface ChargePaymentMethodDetails {
     scalapay?: pulumi.Input<inputs.ChargePaymentMethodDetailsScalapay | undefined>;
     sepaCreditTransfer?: pulumi.Input<inputs.ChargePaymentMethodDetailsSepaCreditTransfer | undefined>;
     sepaDebit?: pulumi.Input<inputs.ChargePaymentMethodDetailsSepaDebit | undefined>;
+    sequra?: pulumi.Input<inputs.ChargePaymentMethodDetailsSequra | undefined>;
     sofort?: pulumi.Input<inputs.ChargePaymentMethodDetailsSofort | undefined>;
     sunbit?: pulumi.Input<inputs.ChargePaymentMethodDetailsSunbit | undefined>;
     swish?: pulumi.Input<inputs.ChargePaymentMethodDetailsSwish | undefined>;
@@ -619,7 +684,7 @@ export interface ChargePaymentMethodDetailsAmazonPayFunding {
 
 export interface ChargePaymentMethodDetailsAmazonPayFundingCard {
     /**
-     * Card brand. Can be <span pulumi-lang-nodejs="`amex`" pulumi-lang-dotnet="`Amex`" pulumi-lang-go="`amex`" pulumi-lang-python="`amex`" pulumi-lang-yaml="`amex`" pulumi-lang-java="`amex`" pulumi-lang-hcl="`amex`">`amex`</span>, <span pulumi-lang-nodejs="`cartesBancaires`" pulumi-lang-dotnet="`CartesBancaires`" pulumi-lang-go="`cartesBancaires`" pulumi-lang-python="`cartes_bancaires`" pulumi-lang-yaml="`cartesBancaires`" pulumi-lang-java="`cartesBancaires`" pulumi-lang-hcl="`cartes_bancaires`">`cartesBancaires`</span>, <span pulumi-lang-nodejs="`diners`" pulumi-lang-dotnet="`Diners`" pulumi-lang-go="`diners`" pulumi-lang-python="`diners`" pulumi-lang-yaml="`diners`" pulumi-lang-java="`diners`" pulumi-lang-hcl="`diners`">`diners`</span>, <span pulumi-lang-nodejs="`discover`" pulumi-lang-dotnet="`Discover`" pulumi-lang-go="`discover`" pulumi-lang-python="`discover`" pulumi-lang-yaml="`discover`" pulumi-lang-java="`discover`" pulumi-lang-hcl="`discover`">`discover`</span>, <span pulumi-lang-nodejs="`eftposAu`" pulumi-lang-dotnet="`EftposAu`" pulumi-lang-go="`eftposAu`" pulumi-lang-python="`eftpos_au`" pulumi-lang-yaml="`eftposAu`" pulumi-lang-java="`eftposAu`" pulumi-lang-hcl="`eftpos_au`">`eftposAu`</span>, <span pulumi-lang-nodejs="`jcb`" pulumi-lang-dotnet="`Jcb`" pulumi-lang-go="`jcb`" pulumi-lang-python="`jcb`" pulumi-lang-yaml="`jcb`" pulumi-lang-java="`jcb`" pulumi-lang-hcl="`jcb`">`jcb`</span>, <span pulumi-lang-nodejs="`link`" pulumi-lang-dotnet="`Link`" pulumi-lang-go="`link`" pulumi-lang-python="`link`" pulumi-lang-yaml="`link`" pulumi-lang-java="`link`" pulumi-lang-hcl="`link`">`link`</span>, <span pulumi-lang-nodejs="`mastercard`" pulumi-lang-dotnet="`Mastercard`" pulumi-lang-go="`mastercard`" pulumi-lang-python="`mastercard`" pulumi-lang-yaml="`mastercard`" pulumi-lang-java="`mastercard`" pulumi-lang-hcl="`mastercard`">`mastercard`</span>, <span pulumi-lang-nodejs="`unionpay`" pulumi-lang-dotnet="`Unionpay`" pulumi-lang-go="`unionpay`" pulumi-lang-python="`unionpay`" pulumi-lang-yaml="`unionpay`" pulumi-lang-java="`unionpay`" pulumi-lang-hcl="`unionpay`">`unionpay`</span>, <span pulumi-lang-nodejs="`visa`" pulumi-lang-dotnet="`Visa`" pulumi-lang-go="`visa`" pulumi-lang-python="`visa`" pulumi-lang-yaml="`visa`" pulumi-lang-java="`visa`" pulumi-lang-hcl="`visa`">`visa`</span> or <span pulumi-lang-nodejs="`unknown`" pulumi-lang-dotnet="`Unknown`" pulumi-lang-go="`unknown`" pulumi-lang-python="`unknown`" pulumi-lang-yaml="`unknown`" pulumi-lang-java="`unknown`" pulumi-lang-hcl="`unknown`">`unknown`</span>.
+     * Card brand. Can be `American Express`, `Cartes Bancaires`, `Diners Club`, `Discover`, `Eftpos Australia`, `Girocard`, `JCB`, `MasterCard`, `UnionPay`, `Visa`, or `Unknown`.
      */
     brand?: pulumi.Input<string | undefined>;
     /**
@@ -736,6 +801,10 @@ export interface ChargePaymentMethodDetailsBillie {
 
 export interface ChargePaymentMethodDetailsBizum {
     /**
+     * A unique identifier for the buyer as determined by the local payment processor.
+     */
+    buyerId?: pulumi.Input<string | undefined>;
+    /**
      * The Bizum transaction ID associated with this payment.
      */
     transactionId?: pulumi.Input<string | undefined>;
@@ -784,6 +853,10 @@ export interface ChargePaymentMethodDetailsCard {
      * A high-level description of the type of cards issued in this range. (For internal use only and not typically available in standard API requests.)
      */
     description?: pulumi.Input<string | undefined>;
+    /**
+     * The Electronic Commerce Indicator (ECI) returned by the card network in the authorization response. Indicates the level of authentication used. Only populated for Visa and Mastercard transactions. This is the network's final ECI and can differ from the request value. An authenticated ECI alone doesn't determine liability shift.
+     */
+    electronicCommerceIndicator?: pulumi.Input<string | undefined>;
     /**
      * Two-digit number representing the card's expiration month.
      */
@@ -849,9 +922,21 @@ export interface ChargePaymentMethodDetailsCard {
      */
     regulatedStatus?: pulumi.Input<string | undefined>;
     /**
+     * The payment_method_options.card.setup_credential_usage value that was passed when<span pulumi-lang-nodejs=" setupFutureUsage " pulumi-lang-dotnet=" SetupFutureUsage " pulumi-lang-go=" setupFutureUsage " pulumi-lang-python=" setup_future_usage " pulumi-lang-yaml=" setupFutureUsage " pulumi-lang-java=" setupFutureUsage " pulumi-lang-hcl=" setup_future_usage "> setupFutureUsage </span>was present at confirmation, one of <span pulumi-lang-nodejs="`recurring`" pulumi-lang-dotnet="`Recurring`" pulumi-lang-go="`recurring`" pulumi-lang-python="`recurring`" pulumi-lang-yaml="`recurring`" pulumi-lang-java="`recurring`" pulumi-lang-hcl="`recurring`">`recurring`</span>, <span pulumi-lang-nodejs="`unscheduled`" pulumi-lang-dotnet="`Unscheduled`" pulumi-lang-go="`unscheduled`" pulumi-lang-python="`unscheduled`" pulumi-lang-yaml="`unscheduled`" pulumi-lang-java="`unscheduled`" pulumi-lang-hcl="`unscheduled`">`unscheduled`</span>, or <span pulumi-lang-nodejs="`installment`" pulumi-lang-dotnet="`Installment`" pulumi-lang-go="`installment`" pulumi-lang-python="`installment`" pulumi-lang-yaml="`installment`" pulumi-lang-java="`installment`" pulumi-lang-hcl="`installment`">`installment`</span>
+     */
+    setupCredentialUsage?: pulumi.Input<string | undefined>;
+    /**
+     * The payment_method_options.card.stored_credential_usage value that was passed for an off session, merchant-initiated transaction.
+     */
+    storedCredentialUsage?: pulumi.Input<string | undefined>;
+    /**
      * Populated if this transaction used 3D Secure authentication.
      */
     threeDSecure?: pulumi.Input<inputs.ChargePaymentMethodDetailsCardThreeDSecure | undefined>;
+    /**
+     * Transaction Link ID (TLID) is a unique identifier for a transaction. This is used by some card networks, such as Mastercard, for transaction linking, in addition to Network Transaction IDs. This value will be present if it is returned by the financial network in the authorization response, and null otherwise.
+     */
+    transactionLinkId?: pulumi.Input<string | undefined>;
     /**
      * If this Card is part of a card wallet, this contains the details of the card wallet.
      */
@@ -1147,12 +1232,20 @@ export interface ChargePaymentMethodDetailsCardWallet {
      * (For tokenized numbers only.) The last four digits of the device account number.
      */
     dynamicLast4?: pulumi.Input<string | undefined>;
+    link?: pulumi.Input<inputs.ChargePaymentMethodDetailsCardWalletLink | undefined>;
     masterpass?: pulumi.Input<inputs.ChargePaymentMethodDetailsCardWalletMasterpass | undefined>;
     /**
      * The type of the card wallet, one of <span pulumi-lang-nodejs="`amexExpressCheckout`" pulumi-lang-dotnet="`AmexExpressCheckout`" pulumi-lang-go="`amexExpressCheckout`" pulumi-lang-python="`amex_express_checkout`" pulumi-lang-yaml="`amexExpressCheckout`" pulumi-lang-java="`amexExpressCheckout`" pulumi-lang-hcl="`amex_express_checkout`">`amexExpressCheckout`</span>, <span pulumi-lang-nodejs="`applePay`" pulumi-lang-dotnet="`ApplePay`" pulumi-lang-go="`applePay`" pulumi-lang-python="`apple_pay`" pulumi-lang-yaml="`applePay`" pulumi-lang-java="`applePay`" pulumi-lang-hcl="`apple_pay`">`applePay`</span>, <span pulumi-lang-nodejs="`googlePay`" pulumi-lang-dotnet="`GooglePay`" pulumi-lang-go="`googlePay`" pulumi-lang-python="`google_pay`" pulumi-lang-yaml="`googlePay`" pulumi-lang-java="`googlePay`" pulumi-lang-hcl="`google_pay`">`googlePay`</span>, <span pulumi-lang-nodejs="`masterpass`" pulumi-lang-dotnet="`Masterpass`" pulumi-lang-go="`masterpass`" pulumi-lang-python="`masterpass`" pulumi-lang-yaml="`masterpass`" pulumi-lang-java="`masterpass`" pulumi-lang-hcl="`masterpass`">`masterpass`</span>, <span pulumi-lang-nodejs="`samsungPay`" pulumi-lang-dotnet="`SamsungPay`" pulumi-lang-go="`samsungPay`" pulumi-lang-python="`samsung_pay`" pulumi-lang-yaml="`samsungPay`" pulumi-lang-java="`samsungPay`" pulumi-lang-hcl="`samsung_pay`">`samsungPay`</span>, <span pulumi-lang-nodejs="`visaCheckout`" pulumi-lang-dotnet="`VisaCheckout`" pulumi-lang-go="`visaCheckout`" pulumi-lang-python="`visa_checkout`" pulumi-lang-yaml="`visaCheckout`" pulumi-lang-java="`visaCheckout`" pulumi-lang-hcl="`visa_checkout`">`visaCheckout`</span>, or <span pulumi-lang-nodejs="`link`" pulumi-lang-dotnet="`Link`" pulumi-lang-go="`link`" pulumi-lang-python="`link`" pulumi-lang-yaml="`link`" pulumi-lang-java="`link`" pulumi-lang-hcl="`link`">`link`</span>. An additional hash is included on the Wallet subhash with a name matching this value. It contains additional information specific to the card wallet type.
      */
     type?: pulumi.Input<string | undefined>;
     visaCheckout?: pulumi.Input<inputs.ChargePaymentMethodDetailsCardWalletVisaCheckout | undefined>;
+}
+
+export interface ChargePaymentMethodDetailsCardWalletLink {
+    /**
+     * The [funding source group code](https://docs.stripe.com/payments/link/link-payment-methods) applied to this Link payment at confirmation time.
+     */
+    fundingSourceGroup?: pulumi.Input<string | undefined>;
 }
 
 export interface ChargePaymentMethodDetailsCardWalletMasterpass {
@@ -1354,7 +1447,7 @@ export interface ChargePaymentMethodDetailsFpx {
      */
     accountHolderType?: pulumi.Input<string | undefined>;
     /**
-     * The customer's bank. Can be one of <span pulumi-lang-nodejs="`affinBank`" pulumi-lang-dotnet="`AffinBank`" pulumi-lang-go="`affinBank`" pulumi-lang-python="`affin_bank`" pulumi-lang-yaml="`affinBank`" pulumi-lang-java="`affinBank`" pulumi-lang-hcl="`affin_bank`">`affinBank`</span>, <span pulumi-lang-nodejs="`agrobank`" pulumi-lang-dotnet="`Agrobank`" pulumi-lang-go="`agrobank`" pulumi-lang-python="`agrobank`" pulumi-lang-yaml="`agrobank`" pulumi-lang-java="`agrobank`" pulumi-lang-hcl="`agrobank`">`agrobank`</span>, <span pulumi-lang-nodejs="`allianceBank`" pulumi-lang-dotnet="`AllianceBank`" pulumi-lang-go="`allianceBank`" pulumi-lang-python="`alliance_bank`" pulumi-lang-yaml="`allianceBank`" pulumi-lang-java="`allianceBank`" pulumi-lang-hcl="`alliance_bank`">`allianceBank`</span>, <span pulumi-lang-nodejs="`ambank`" pulumi-lang-dotnet="`Ambank`" pulumi-lang-go="`ambank`" pulumi-lang-python="`ambank`" pulumi-lang-yaml="`ambank`" pulumi-lang-java="`ambank`" pulumi-lang-hcl="`ambank`">`ambank`</span>, <span pulumi-lang-nodejs="`bankIslam`" pulumi-lang-dotnet="`BankIslam`" pulumi-lang-go="`bankIslam`" pulumi-lang-python="`bank_islam`" pulumi-lang-yaml="`bankIslam`" pulumi-lang-java="`bankIslam`" pulumi-lang-hcl="`bank_islam`">`bankIslam`</span>, <span pulumi-lang-nodejs="`bankMuamalat`" pulumi-lang-dotnet="`BankMuamalat`" pulumi-lang-go="`bankMuamalat`" pulumi-lang-python="`bank_muamalat`" pulumi-lang-yaml="`bankMuamalat`" pulumi-lang-java="`bankMuamalat`" pulumi-lang-hcl="`bank_muamalat`">`bankMuamalat`</span>, <span pulumi-lang-nodejs="`bankRakyat`" pulumi-lang-dotnet="`BankRakyat`" pulumi-lang-go="`bankRakyat`" pulumi-lang-python="`bank_rakyat`" pulumi-lang-yaml="`bankRakyat`" pulumi-lang-java="`bankRakyat`" pulumi-lang-hcl="`bank_rakyat`">`bankRakyat`</span>, <span pulumi-lang-nodejs="`bsn`" pulumi-lang-dotnet="`Bsn`" pulumi-lang-go="`bsn`" pulumi-lang-python="`bsn`" pulumi-lang-yaml="`bsn`" pulumi-lang-java="`bsn`" pulumi-lang-hcl="`bsn`">`bsn`</span>, <span pulumi-lang-nodejs="`cimb`" pulumi-lang-dotnet="`Cimb`" pulumi-lang-go="`cimb`" pulumi-lang-python="`cimb`" pulumi-lang-yaml="`cimb`" pulumi-lang-java="`cimb`" pulumi-lang-hcl="`cimb`">`cimb`</span>, <span pulumi-lang-nodejs="`hongLeongBank`" pulumi-lang-dotnet="`HongLeongBank`" pulumi-lang-go="`hongLeongBank`" pulumi-lang-python="`hong_leong_bank`" pulumi-lang-yaml="`hongLeongBank`" pulumi-lang-java="`hongLeongBank`" pulumi-lang-hcl="`hong_leong_bank`">`hongLeongBank`</span>, <span pulumi-lang-nodejs="`hsbc`" pulumi-lang-dotnet="`Hsbc`" pulumi-lang-go="`hsbc`" pulumi-lang-python="`hsbc`" pulumi-lang-yaml="`hsbc`" pulumi-lang-java="`hsbc`" pulumi-lang-hcl="`hsbc`">`hsbc`</span>, <span pulumi-lang-nodejs="`kfh`" pulumi-lang-dotnet="`Kfh`" pulumi-lang-go="`kfh`" pulumi-lang-python="`kfh`" pulumi-lang-yaml="`kfh`" pulumi-lang-java="`kfh`" pulumi-lang-hcl="`kfh`">`kfh`</span>, <span pulumi-lang-nodejs="`maybank2u`" pulumi-lang-dotnet="`Maybank2u`" pulumi-lang-go="`maybank2u`" pulumi-lang-python="`maybank2u`" pulumi-lang-yaml="`maybank2u`" pulumi-lang-java="`maybank2u`" pulumi-lang-hcl="`maybank2u`">`maybank2u`</span>, <span pulumi-lang-nodejs="`ocbc`" pulumi-lang-dotnet="`Ocbc`" pulumi-lang-go="`ocbc`" pulumi-lang-python="`ocbc`" pulumi-lang-yaml="`ocbc`" pulumi-lang-java="`ocbc`" pulumi-lang-hcl="`ocbc`">`ocbc`</span>, <span pulumi-lang-nodejs="`publicBank`" pulumi-lang-dotnet="`PublicBank`" pulumi-lang-go="`publicBank`" pulumi-lang-python="`public_bank`" pulumi-lang-yaml="`publicBank`" pulumi-lang-java="`publicBank`" pulumi-lang-hcl="`public_bank`">`publicBank`</span>, <span pulumi-lang-nodejs="`rhb`" pulumi-lang-dotnet="`Rhb`" pulumi-lang-go="`rhb`" pulumi-lang-python="`rhb`" pulumi-lang-yaml="`rhb`" pulumi-lang-java="`rhb`" pulumi-lang-hcl="`rhb`">`rhb`</span>, <span pulumi-lang-nodejs="`standardChartered`" pulumi-lang-dotnet="`StandardChartered`" pulumi-lang-go="`standardChartered`" pulumi-lang-python="`standard_chartered`" pulumi-lang-yaml="`standardChartered`" pulumi-lang-java="`standardChartered`" pulumi-lang-hcl="`standard_chartered`">`standardChartered`</span>, <span pulumi-lang-nodejs="`uob`" pulumi-lang-dotnet="`Uob`" pulumi-lang-go="`uob`" pulumi-lang-python="`uob`" pulumi-lang-yaml="`uob`" pulumi-lang-java="`uob`" pulumi-lang-hcl="`uob`">`uob`</span>, <span pulumi-lang-nodejs="`deutscheBank`" pulumi-lang-dotnet="`DeutscheBank`" pulumi-lang-go="`deutscheBank`" pulumi-lang-python="`deutsche_bank`" pulumi-lang-yaml="`deutscheBank`" pulumi-lang-java="`deutscheBank`" pulumi-lang-hcl="`deutsche_bank`">`deutscheBank`</span>, <span pulumi-lang-nodejs="`maybank2e`" pulumi-lang-dotnet="`Maybank2e`" pulumi-lang-go="`maybank2e`" pulumi-lang-python="`maybank2e`" pulumi-lang-yaml="`maybank2e`" pulumi-lang-java="`maybank2e`" pulumi-lang-hcl="`maybank2e`">`maybank2e`</span>, <span pulumi-lang-nodejs="`pbEnterprise`" pulumi-lang-dotnet="`PbEnterprise`" pulumi-lang-go="`pbEnterprise`" pulumi-lang-python="`pb_enterprise`" pulumi-lang-yaml="`pbEnterprise`" pulumi-lang-java="`pbEnterprise`" pulumi-lang-hcl="`pb_enterprise`">`pbEnterprise`</span>, or <span pulumi-lang-nodejs="`bankOfChina`" pulumi-lang-dotnet="`BankOfChina`" pulumi-lang-go="`bankOfChina`" pulumi-lang-python="`bank_of_china`" pulumi-lang-yaml="`bankOfChina`" pulumi-lang-java="`bankOfChina`" pulumi-lang-hcl="`bank_of_china`">`bankOfChina`</span>.
+     * The customer's bank. Can be one of <span pulumi-lang-nodejs="`affinBank`" pulumi-lang-dotnet="`AffinBank`" pulumi-lang-go="`affinBank`" pulumi-lang-python="`affin_bank`" pulumi-lang-yaml="`affinBank`" pulumi-lang-java="`affinBank`" pulumi-lang-hcl="`affin_bank`">`affinBank`</span>, <span pulumi-lang-nodejs="`agrobank`" pulumi-lang-dotnet="`Agrobank`" pulumi-lang-go="`agrobank`" pulumi-lang-python="`agrobank`" pulumi-lang-yaml="`agrobank`" pulumi-lang-java="`agrobank`" pulumi-lang-hcl="`agrobank`">`agrobank`</span>, <span pulumi-lang-nodejs="`allianceBank`" pulumi-lang-dotnet="`AllianceBank`" pulumi-lang-go="`allianceBank`" pulumi-lang-python="`alliance_bank`" pulumi-lang-yaml="`allianceBank`" pulumi-lang-java="`allianceBank`" pulumi-lang-hcl="`alliance_bank`">`allianceBank`</span>, <span pulumi-lang-nodejs="`ambank`" pulumi-lang-dotnet="`Ambank`" pulumi-lang-go="`ambank`" pulumi-lang-python="`ambank`" pulumi-lang-yaml="`ambank`" pulumi-lang-java="`ambank`" pulumi-lang-hcl="`ambank`">`ambank`</span>, <span pulumi-lang-nodejs="`bankIslam`" pulumi-lang-dotnet="`BankIslam`" pulumi-lang-go="`bankIslam`" pulumi-lang-python="`bank_islam`" pulumi-lang-yaml="`bankIslam`" pulumi-lang-java="`bankIslam`" pulumi-lang-hcl="`bank_islam`">`bankIslam`</span>, <span pulumi-lang-nodejs="`bankMuamalat`" pulumi-lang-dotnet="`BankMuamalat`" pulumi-lang-go="`bankMuamalat`" pulumi-lang-python="`bank_muamalat`" pulumi-lang-yaml="`bankMuamalat`" pulumi-lang-java="`bankMuamalat`" pulumi-lang-hcl="`bank_muamalat`">`bankMuamalat`</span>, <span pulumi-lang-nodejs="`bnpParibas`" pulumi-lang-dotnet="`BnpParibas`" pulumi-lang-go="`bnpParibas`" pulumi-lang-python="`bnp_paribas`" pulumi-lang-yaml="`bnpParibas`" pulumi-lang-java="`bnpParibas`" pulumi-lang-hcl="`bnp_paribas`">`bnpParibas`</span>, <span pulumi-lang-nodejs="`bankRakyat`" pulumi-lang-dotnet="`BankRakyat`" pulumi-lang-go="`bankRakyat`" pulumi-lang-python="`bank_rakyat`" pulumi-lang-yaml="`bankRakyat`" pulumi-lang-java="`bankRakyat`" pulumi-lang-hcl="`bank_rakyat`">`bankRakyat`</span>, <span pulumi-lang-nodejs="`bsn`" pulumi-lang-dotnet="`Bsn`" pulumi-lang-go="`bsn`" pulumi-lang-python="`bsn`" pulumi-lang-yaml="`bsn`" pulumi-lang-java="`bsn`" pulumi-lang-hcl="`bsn`">`bsn`</span>, <span pulumi-lang-nodejs="`cimb`" pulumi-lang-dotnet="`Cimb`" pulumi-lang-go="`cimb`" pulumi-lang-python="`cimb`" pulumi-lang-yaml="`cimb`" pulumi-lang-java="`cimb`" pulumi-lang-hcl="`cimb`">`cimb`</span>, <span pulumi-lang-nodejs="`citibank`" pulumi-lang-dotnet="`Citibank`" pulumi-lang-go="`citibank`" pulumi-lang-python="`citibank`" pulumi-lang-yaml="`citibank`" pulumi-lang-java="`citibank`" pulumi-lang-hcl="`citibank`">`citibank`</span>, <span pulumi-lang-nodejs="`hongLeongBank`" pulumi-lang-dotnet="`HongLeongBank`" pulumi-lang-go="`hongLeongBank`" pulumi-lang-python="`hong_leong_bank`" pulumi-lang-yaml="`hongLeongBank`" pulumi-lang-java="`hongLeongBank`" pulumi-lang-hcl="`hong_leong_bank`">`hongLeongBank`</span>, <span pulumi-lang-nodejs="`hsbc`" pulumi-lang-dotnet="`Hsbc`" pulumi-lang-go="`hsbc`" pulumi-lang-python="`hsbc`" pulumi-lang-yaml="`hsbc`" pulumi-lang-java="`hsbc`" pulumi-lang-hcl="`hsbc`">`hsbc`</span>, <span pulumi-lang-nodejs="`kfh`" pulumi-lang-dotnet="`Kfh`" pulumi-lang-go="`kfh`" pulumi-lang-python="`kfh`" pulumi-lang-yaml="`kfh`" pulumi-lang-java="`kfh`" pulumi-lang-hcl="`kfh`">`kfh`</span>, <span pulumi-lang-nodejs="`maybank2u`" pulumi-lang-dotnet="`Maybank2u`" pulumi-lang-go="`maybank2u`" pulumi-lang-python="`maybank2u`" pulumi-lang-yaml="`maybank2u`" pulumi-lang-java="`maybank2u`" pulumi-lang-hcl="`maybank2u`">`maybank2u`</span>, <span pulumi-lang-nodejs="`ocbc`" pulumi-lang-dotnet="`Ocbc`" pulumi-lang-go="`ocbc`" pulumi-lang-python="`ocbc`" pulumi-lang-yaml="`ocbc`" pulumi-lang-java="`ocbc`" pulumi-lang-hcl="`ocbc`">`ocbc`</span>, <span pulumi-lang-nodejs="`publicBank`" pulumi-lang-dotnet="`PublicBank`" pulumi-lang-go="`publicBank`" pulumi-lang-python="`public_bank`" pulumi-lang-yaml="`publicBank`" pulumi-lang-java="`publicBank`" pulumi-lang-hcl="`public_bank`">`publicBank`</span>, <span pulumi-lang-nodejs="`rhb`" pulumi-lang-dotnet="`Rhb`" pulumi-lang-go="`rhb`" pulumi-lang-python="`rhb`" pulumi-lang-yaml="`rhb`" pulumi-lang-java="`rhb`" pulumi-lang-hcl="`rhb`">`rhb`</span>, <span pulumi-lang-nodejs="`standardChartered`" pulumi-lang-dotnet="`StandardChartered`" pulumi-lang-go="`standardChartered`" pulumi-lang-python="`standard_chartered`" pulumi-lang-yaml="`standardChartered`" pulumi-lang-java="`standardChartered`" pulumi-lang-hcl="`standard_chartered`">`standardChartered`</span>, <span pulumi-lang-nodejs="`uob`" pulumi-lang-dotnet="`Uob`" pulumi-lang-go="`uob`" pulumi-lang-python="`uob`" pulumi-lang-yaml="`uob`" pulumi-lang-java="`uob`" pulumi-lang-hcl="`uob`">`uob`</span>, <span pulumi-lang-nodejs="`deutscheBank`" pulumi-lang-dotnet="`DeutscheBank`" pulumi-lang-go="`deutscheBank`" pulumi-lang-python="`deutsche_bank`" pulumi-lang-yaml="`deutscheBank`" pulumi-lang-java="`deutscheBank`" pulumi-lang-hcl="`deutsche_bank`">`deutscheBank`</span>, <span pulumi-lang-nodejs="`maybank2e`" pulumi-lang-dotnet="`Maybank2e`" pulumi-lang-go="`maybank2e`" pulumi-lang-python="`maybank2e`" pulumi-lang-yaml="`maybank2e`" pulumi-lang-java="`maybank2e`" pulumi-lang-hcl="`maybank2e`">`maybank2e`</span>, <span pulumi-lang-nodejs="`mbsbBank`" pulumi-lang-dotnet="`MbsbBank`" pulumi-lang-go="`mbsbBank`" pulumi-lang-python="`mbsb_bank`" pulumi-lang-yaml="`mbsbBank`" pulumi-lang-java="`mbsbBank`" pulumi-lang-hcl="`mbsb_bank`">`mbsbBank`</span>, <span pulumi-lang-nodejs="`pbEnterprise`" pulumi-lang-dotnet="`PbEnterprise`" pulumi-lang-go="`pbEnterprise`" pulumi-lang-python="`pb_enterprise`" pulumi-lang-yaml="`pbEnterprise`" pulumi-lang-java="`pbEnterprise`" pulumi-lang-hcl="`pb_enterprise`">`pbEnterprise`</span>, or <span pulumi-lang-nodejs="`bankOfChina`" pulumi-lang-dotnet="`BankOfChina`" pulumi-lang-go="`bankOfChina`" pulumi-lang-python="`bank_of_china`" pulumi-lang-yaml="`bankOfChina`" pulumi-lang-java="`bankOfChina`" pulumi-lang-hcl="`bank_of_china`">`bankOfChina`</span>.
      */
     bank?: pulumi.Input<string | undefined>;
     /**
@@ -1636,6 +1729,10 @@ export interface ChargePaymentMethodDetailsLink {
      * You could use this attribute to get a sense of international fees.
      */
     country?: pulumi.Input<string | undefined>;
+    /**
+     * The [funding source group code](https://docs.stripe.com/payments/link/link-payment-methods) applied to this Link payment at confirmation time.
+     */
+    fundingSourceGroup?: pulumi.Input<string | undefined>;
 }
 
 export interface ChargePaymentMethodDetailsMobilepay {
@@ -1836,7 +1933,11 @@ export interface ChargePaymentMethodDetailsPix {
      */
     bankTransactionId?: pulumi.Input<string | undefined>;
     /**
-     * ID of the multi use Mandate generated by the PaymentIntent
+     * Uniquely identifies this particular Pix account. You can use this attribute to check whether two Pix accounts are the same.
+     */
+    fingerprint?: pulumi.Input<string | undefined>;
+    /**
+     * ID of the multi use Mandate generated by the PaymentIntent or SetupIntent.
      */
     mandate?: pulumi.Input<string | undefined>;
 }
@@ -1866,7 +1967,7 @@ export interface ChargePaymentMethodDetailsRevolutPayFunding {
 
 export interface ChargePaymentMethodDetailsRevolutPayFundingCard {
     /**
-     * Card brand. Can be <span pulumi-lang-nodejs="`amex`" pulumi-lang-dotnet="`Amex`" pulumi-lang-go="`amex`" pulumi-lang-python="`amex`" pulumi-lang-yaml="`amex`" pulumi-lang-java="`amex`" pulumi-lang-hcl="`amex`">`amex`</span>, <span pulumi-lang-nodejs="`cartesBancaires`" pulumi-lang-dotnet="`CartesBancaires`" pulumi-lang-go="`cartesBancaires`" pulumi-lang-python="`cartes_bancaires`" pulumi-lang-yaml="`cartesBancaires`" pulumi-lang-java="`cartesBancaires`" pulumi-lang-hcl="`cartes_bancaires`">`cartesBancaires`</span>, <span pulumi-lang-nodejs="`diners`" pulumi-lang-dotnet="`Diners`" pulumi-lang-go="`diners`" pulumi-lang-python="`diners`" pulumi-lang-yaml="`diners`" pulumi-lang-java="`diners`" pulumi-lang-hcl="`diners`">`diners`</span>, <span pulumi-lang-nodejs="`discover`" pulumi-lang-dotnet="`Discover`" pulumi-lang-go="`discover`" pulumi-lang-python="`discover`" pulumi-lang-yaml="`discover`" pulumi-lang-java="`discover`" pulumi-lang-hcl="`discover`">`discover`</span>, <span pulumi-lang-nodejs="`eftposAu`" pulumi-lang-dotnet="`EftposAu`" pulumi-lang-go="`eftposAu`" pulumi-lang-python="`eftpos_au`" pulumi-lang-yaml="`eftposAu`" pulumi-lang-java="`eftposAu`" pulumi-lang-hcl="`eftpos_au`">`eftposAu`</span>, <span pulumi-lang-nodejs="`jcb`" pulumi-lang-dotnet="`Jcb`" pulumi-lang-go="`jcb`" pulumi-lang-python="`jcb`" pulumi-lang-yaml="`jcb`" pulumi-lang-java="`jcb`" pulumi-lang-hcl="`jcb`">`jcb`</span>, <span pulumi-lang-nodejs="`link`" pulumi-lang-dotnet="`Link`" pulumi-lang-go="`link`" pulumi-lang-python="`link`" pulumi-lang-yaml="`link`" pulumi-lang-java="`link`" pulumi-lang-hcl="`link`">`link`</span>, <span pulumi-lang-nodejs="`mastercard`" pulumi-lang-dotnet="`Mastercard`" pulumi-lang-go="`mastercard`" pulumi-lang-python="`mastercard`" pulumi-lang-yaml="`mastercard`" pulumi-lang-java="`mastercard`" pulumi-lang-hcl="`mastercard`">`mastercard`</span>, <span pulumi-lang-nodejs="`unionpay`" pulumi-lang-dotnet="`Unionpay`" pulumi-lang-go="`unionpay`" pulumi-lang-python="`unionpay`" pulumi-lang-yaml="`unionpay`" pulumi-lang-java="`unionpay`" pulumi-lang-hcl="`unionpay`">`unionpay`</span>, <span pulumi-lang-nodejs="`visa`" pulumi-lang-dotnet="`Visa`" pulumi-lang-go="`visa`" pulumi-lang-python="`visa`" pulumi-lang-yaml="`visa`" pulumi-lang-java="`visa`" pulumi-lang-hcl="`visa`">`visa`</span> or <span pulumi-lang-nodejs="`unknown`" pulumi-lang-dotnet="`Unknown`" pulumi-lang-go="`unknown`" pulumi-lang-python="`unknown`" pulumi-lang-yaml="`unknown`" pulumi-lang-java="`unknown`" pulumi-lang-hcl="`unknown`">`unknown`</span>.
+     * Card brand. Can be `American Express`, `Cartes Bancaires`, `Diners Club`, `Discover`, `Eftpos Australia`, `Girocard`, `JCB`, `MasterCard`, `UnionPay`, `Visa`, or `Unknown`.
      */
     brand?: pulumi.Input<string | undefined>;
     /**
@@ -1962,6 +2063,13 @@ export interface ChargePaymentMethodDetailsSepaDebit {
     mandate?: pulumi.Input<string | undefined>;
 }
 
+export interface ChargePaymentMethodDetailsSequra {
+    /**
+     * The SeQura transaction ID associated with this payment.
+     */
+    transactionId?: pulumi.Input<string | undefined>;
+}
+
 export interface ChargePaymentMethodDetailsSofort {
     /**
      * Bank code of bank associated with the bank account.
@@ -2027,7 +2135,7 @@ export interface ChargePaymentMethodDetailsSwish {
 
 export interface ChargePaymentMethodDetailsTwint {
     /**
-     * ID of the multi use Mandate generated by the PaymentIntent
+     * ID of the multi use Mandate generated by the PaymentIntent or SetupIntent.
      */
     mandate?: pulumi.Input<string | undefined>;
 }
@@ -2561,7 +2669,7 @@ export interface CustomerTax {
 
 export interface CustomerTaxIdData {
     /**
-     * Type of the tax ID, one of <span pulumi-lang-nodejs="`adNrt`" pulumi-lang-dotnet="`AdNrt`" pulumi-lang-go="`adNrt`" pulumi-lang-python="`ad_nrt`" pulumi-lang-yaml="`adNrt`" pulumi-lang-java="`adNrt`" pulumi-lang-hcl="`ad_nrt`">`adNrt`</span>, <span pulumi-lang-nodejs="`aeTrn`" pulumi-lang-dotnet="`AeTrn`" pulumi-lang-go="`aeTrn`" pulumi-lang-python="`ae_trn`" pulumi-lang-yaml="`aeTrn`" pulumi-lang-java="`aeTrn`" pulumi-lang-hcl="`ae_trn`">`aeTrn`</span>, <span pulumi-lang-nodejs="`alTin`" pulumi-lang-dotnet="`AlTin`" pulumi-lang-go="`alTin`" pulumi-lang-python="`al_tin`" pulumi-lang-yaml="`alTin`" pulumi-lang-java="`alTin`" pulumi-lang-hcl="`al_tin`">`alTin`</span>, <span pulumi-lang-nodejs="`amTin`" pulumi-lang-dotnet="`AmTin`" pulumi-lang-go="`amTin`" pulumi-lang-python="`am_tin`" pulumi-lang-yaml="`amTin`" pulumi-lang-java="`amTin`" pulumi-lang-hcl="`am_tin`">`amTin`</span>, <span pulumi-lang-nodejs="`aoTin`" pulumi-lang-dotnet="`AoTin`" pulumi-lang-go="`aoTin`" pulumi-lang-python="`ao_tin`" pulumi-lang-yaml="`aoTin`" pulumi-lang-java="`aoTin`" pulumi-lang-hcl="`ao_tin`">`aoTin`</span>, <span pulumi-lang-nodejs="`arCuit`" pulumi-lang-dotnet="`ArCuit`" pulumi-lang-go="`arCuit`" pulumi-lang-python="`ar_cuit`" pulumi-lang-yaml="`arCuit`" pulumi-lang-java="`arCuit`" pulumi-lang-hcl="`ar_cuit`">`arCuit`</span>, <span pulumi-lang-nodejs="`auAbn`" pulumi-lang-dotnet="`AuAbn`" pulumi-lang-go="`auAbn`" pulumi-lang-python="`au_abn`" pulumi-lang-yaml="`auAbn`" pulumi-lang-java="`auAbn`" pulumi-lang-hcl="`au_abn`">`auAbn`</span>, <span pulumi-lang-nodejs="`auArn`" pulumi-lang-dotnet="`AuArn`" pulumi-lang-go="`auArn`" pulumi-lang-python="`au_arn`" pulumi-lang-yaml="`auArn`" pulumi-lang-java="`auArn`" pulumi-lang-hcl="`au_arn`">`auArn`</span>, <span pulumi-lang-nodejs="`awTin`" pulumi-lang-dotnet="`AwTin`" pulumi-lang-go="`awTin`" pulumi-lang-python="`aw_tin`" pulumi-lang-yaml="`awTin`" pulumi-lang-java="`awTin`" pulumi-lang-hcl="`aw_tin`">`awTin`</span>, <span pulumi-lang-nodejs="`azTin`" pulumi-lang-dotnet="`AzTin`" pulumi-lang-go="`azTin`" pulumi-lang-python="`az_tin`" pulumi-lang-yaml="`azTin`" pulumi-lang-java="`azTin`" pulumi-lang-hcl="`az_tin`">`azTin`</span>, <span pulumi-lang-nodejs="`baTin`" pulumi-lang-dotnet="`BaTin`" pulumi-lang-go="`baTin`" pulumi-lang-python="`ba_tin`" pulumi-lang-yaml="`baTin`" pulumi-lang-java="`baTin`" pulumi-lang-hcl="`ba_tin`">`baTin`</span>, <span pulumi-lang-nodejs="`bbTin`" pulumi-lang-dotnet="`BbTin`" pulumi-lang-go="`bbTin`" pulumi-lang-python="`bb_tin`" pulumi-lang-yaml="`bbTin`" pulumi-lang-java="`bbTin`" pulumi-lang-hcl="`bb_tin`">`bbTin`</span>, <span pulumi-lang-nodejs="`bdBin`" pulumi-lang-dotnet="`BdBin`" pulumi-lang-go="`bdBin`" pulumi-lang-python="`bd_bin`" pulumi-lang-yaml="`bdBin`" pulumi-lang-java="`bdBin`" pulumi-lang-hcl="`bd_bin`">`bdBin`</span>, <span pulumi-lang-nodejs="`bfIfu`" pulumi-lang-dotnet="`BfIfu`" pulumi-lang-go="`bfIfu`" pulumi-lang-python="`bf_ifu`" pulumi-lang-yaml="`bfIfu`" pulumi-lang-java="`bfIfu`" pulumi-lang-hcl="`bf_ifu`">`bfIfu`</span>, <span pulumi-lang-nodejs="`bgUic`" pulumi-lang-dotnet="`BgUic`" pulumi-lang-go="`bgUic`" pulumi-lang-python="`bg_uic`" pulumi-lang-yaml="`bgUic`" pulumi-lang-java="`bgUic`" pulumi-lang-hcl="`bg_uic`">`bgUic`</span>, <span pulumi-lang-nodejs="`bhVat`" pulumi-lang-dotnet="`BhVat`" pulumi-lang-go="`bhVat`" pulumi-lang-python="`bh_vat`" pulumi-lang-yaml="`bhVat`" pulumi-lang-java="`bhVat`" pulumi-lang-hcl="`bh_vat`">`bhVat`</span>, <span pulumi-lang-nodejs="`bjIfu`" pulumi-lang-dotnet="`BjIfu`" pulumi-lang-go="`bjIfu`" pulumi-lang-python="`bj_ifu`" pulumi-lang-yaml="`bjIfu`" pulumi-lang-java="`bjIfu`" pulumi-lang-hcl="`bj_ifu`">`bjIfu`</span>, <span pulumi-lang-nodejs="`boTin`" pulumi-lang-dotnet="`BoTin`" pulumi-lang-go="`boTin`" pulumi-lang-python="`bo_tin`" pulumi-lang-yaml="`boTin`" pulumi-lang-java="`boTin`" pulumi-lang-hcl="`bo_tin`">`boTin`</span>, <span pulumi-lang-nodejs="`brCnpj`" pulumi-lang-dotnet="`BrCnpj`" pulumi-lang-go="`brCnpj`" pulumi-lang-python="`br_cnpj`" pulumi-lang-yaml="`brCnpj`" pulumi-lang-java="`brCnpj`" pulumi-lang-hcl="`br_cnpj`">`brCnpj`</span>, <span pulumi-lang-nodejs="`brCpf`" pulumi-lang-dotnet="`BrCpf`" pulumi-lang-go="`brCpf`" pulumi-lang-python="`br_cpf`" pulumi-lang-yaml="`brCpf`" pulumi-lang-java="`brCpf`" pulumi-lang-hcl="`br_cpf`">`brCpf`</span>, <span pulumi-lang-nodejs="`bsTin`" pulumi-lang-dotnet="`BsTin`" pulumi-lang-go="`bsTin`" pulumi-lang-python="`bs_tin`" pulumi-lang-yaml="`bsTin`" pulumi-lang-java="`bsTin`" pulumi-lang-hcl="`bs_tin`">`bsTin`</span>, <span pulumi-lang-nodejs="`byTin`" pulumi-lang-dotnet="`ByTin`" pulumi-lang-go="`byTin`" pulumi-lang-python="`by_tin`" pulumi-lang-yaml="`byTin`" pulumi-lang-java="`byTin`" pulumi-lang-hcl="`by_tin`">`byTin`</span>, <span pulumi-lang-nodejs="`caBn`" pulumi-lang-dotnet="`CaBn`" pulumi-lang-go="`caBn`" pulumi-lang-python="`ca_bn`" pulumi-lang-yaml="`caBn`" pulumi-lang-java="`caBn`" pulumi-lang-hcl="`ca_bn`">`caBn`</span>, <span pulumi-lang-nodejs="`caGstHst`" pulumi-lang-dotnet="`CaGstHst`" pulumi-lang-go="`caGstHst`" pulumi-lang-python="`ca_gst_hst`" pulumi-lang-yaml="`caGstHst`" pulumi-lang-java="`caGstHst`" pulumi-lang-hcl="`ca_gst_hst`">`caGstHst`</span>, <span pulumi-lang-nodejs="`caPstBc`" pulumi-lang-dotnet="`CaPstBc`" pulumi-lang-go="`caPstBc`" pulumi-lang-python="`ca_pst_bc`" pulumi-lang-yaml="`caPstBc`" pulumi-lang-java="`caPstBc`" pulumi-lang-hcl="`ca_pst_bc`">`caPstBc`</span>, <span pulumi-lang-nodejs="`caPstMb`" pulumi-lang-dotnet="`CaPstMb`" pulumi-lang-go="`caPstMb`" pulumi-lang-python="`ca_pst_mb`" pulumi-lang-yaml="`caPstMb`" pulumi-lang-java="`caPstMb`" pulumi-lang-hcl="`ca_pst_mb`">`caPstMb`</span>, <span pulumi-lang-nodejs="`caPstSk`" pulumi-lang-dotnet="`CaPstSk`" pulumi-lang-go="`caPstSk`" pulumi-lang-python="`ca_pst_sk`" pulumi-lang-yaml="`caPstSk`" pulumi-lang-java="`caPstSk`" pulumi-lang-hcl="`ca_pst_sk`">`caPstSk`</span>, <span pulumi-lang-nodejs="`caQst`" pulumi-lang-dotnet="`CaQst`" pulumi-lang-go="`caQst`" pulumi-lang-python="`ca_qst`" pulumi-lang-yaml="`caQst`" pulumi-lang-java="`caQst`" pulumi-lang-hcl="`ca_qst`">`caQst`</span>, <span pulumi-lang-nodejs="`cdNif`" pulumi-lang-dotnet="`CdNif`" pulumi-lang-go="`cdNif`" pulumi-lang-python="`cd_nif`" pulumi-lang-yaml="`cdNif`" pulumi-lang-java="`cdNif`" pulumi-lang-hcl="`cd_nif`">`cdNif`</span>, <span pulumi-lang-nodejs="`chUid`" pulumi-lang-dotnet="`ChUid`" pulumi-lang-go="`chUid`" pulumi-lang-python="`ch_uid`" pulumi-lang-yaml="`chUid`" pulumi-lang-java="`chUid`" pulumi-lang-hcl="`ch_uid`">`chUid`</span>, <span pulumi-lang-nodejs="`chVat`" pulumi-lang-dotnet="`ChVat`" pulumi-lang-go="`chVat`" pulumi-lang-python="`ch_vat`" pulumi-lang-yaml="`chVat`" pulumi-lang-java="`chVat`" pulumi-lang-hcl="`ch_vat`">`chVat`</span>, <span pulumi-lang-nodejs="`clTin`" pulumi-lang-dotnet="`ClTin`" pulumi-lang-go="`clTin`" pulumi-lang-python="`cl_tin`" pulumi-lang-yaml="`clTin`" pulumi-lang-java="`clTin`" pulumi-lang-hcl="`cl_tin`">`clTin`</span>, <span pulumi-lang-nodejs="`cmNiu`" pulumi-lang-dotnet="`CmNiu`" pulumi-lang-go="`cmNiu`" pulumi-lang-python="`cm_niu`" pulumi-lang-yaml="`cmNiu`" pulumi-lang-java="`cmNiu`" pulumi-lang-hcl="`cm_niu`">`cmNiu`</span>, <span pulumi-lang-nodejs="`cnTin`" pulumi-lang-dotnet="`CnTin`" pulumi-lang-go="`cnTin`" pulumi-lang-python="`cn_tin`" pulumi-lang-yaml="`cnTin`" pulumi-lang-java="`cnTin`" pulumi-lang-hcl="`cn_tin`">`cnTin`</span>, <span pulumi-lang-nodejs="`coNit`" pulumi-lang-dotnet="`CoNit`" pulumi-lang-go="`coNit`" pulumi-lang-python="`co_nit`" pulumi-lang-yaml="`coNit`" pulumi-lang-java="`coNit`" pulumi-lang-hcl="`co_nit`">`coNit`</span>, <span pulumi-lang-nodejs="`crTin`" pulumi-lang-dotnet="`CrTin`" pulumi-lang-go="`crTin`" pulumi-lang-python="`cr_tin`" pulumi-lang-yaml="`crTin`" pulumi-lang-java="`crTin`" pulumi-lang-hcl="`cr_tin`">`crTin`</span>, <span pulumi-lang-nodejs="`cvNif`" pulumi-lang-dotnet="`CvNif`" pulumi-lang-go="`cvNif`" pulumi-lang-python="`cv_nif`" pulumi-lang-yaml="`cvNif`" pulumi-lang-java="`cvNif`" pulumi-lang-hcl="`cv_nif`">`cvNif`</span>, <span pulumi-lang-nodejs="`deStn`" pulumi-lang-dotnet="`DeStn`" pulumi-lang-go="`deStn`" pulumi-lang-python="`de_stn`" pulumi-lang-yaml="`deStn`" pulumi-lang-java="`deStn`" pulumi-lang-hcl="`de_stn`">`deStn`</span>, <span pulumi-lang-nodejs="`doRcn`" pulumi-lang-dotnet="`DoRcn`" pulumi-lang-go="`doRcn`" pulumi-lang-python="`do_rcn`" pulumi-lang-yaml="`doRcn`" pulumi-lang-java="`doRcn`" pulumi-lang-hcl="`do_rcn`">`doRcn`</span>, <span pulumi-lang-nodejs="`ecRuc`" pulumi-lang-dotnet="`EcRuc`" pulumi-lang-go="`ecRuc`" pulumi-lang-python="`ec_ruc`" pulumi-lang-yaml="`ecRuc`" pulumi-lang-java="`ecRuc`" pulumi-lang-hcl="`ec_ruc`">`ecRuc`</span>, <span pulumi-lang-nodejs="`egTin`" pulumi-lang-dotnet="`EgTin`" pulumi-lang-go="`egTin`" pulumi-lang-python="`eg_tin`" pulumi-lang-yaml="`egTin`" pulumi-lang-java="`egTin`" pulumi-lang-hcl="`eg_tin`">`egTin`</span>, <span pulumi-lang-nodejs="`esCif`" pulumi-lang-dotnet="`EsCif`" pulumi-lang-go="`esCif`" pulumi-lang-python="`es_cif`" pulumi-lang-yaml="`esCif`" pulumi-lang-java="`esCif`" pulumi-lang-hcl="`es_cif`">`esCif`</span>, <span pulumi-lang-nodejs="`etTin`" pulumi-lang-dotnet="`EtTin`" pulumi-lang-go="`etTin`" pulumi-lang-python="`et_tin`" pulumi-lang-yaml="`etTin`" pulumi-lang-java="`etTin`" pulumi-lang-hcl="`et_tin`">`etTin`</span>, <span pulumi-lang-nodejs="`euOssVat`" pulumi-lang-dotnet="`EuOssVat`" pulumi-lang-go="`euOssVat`" pulumi-lang-python="`eu_oss_vat`" pulumi-lang-yaml="`euOssVat`" pulumi-lang-java="`euOssVat`" pulumi-lang-hcl="`eu_oss_vat`">`euOssVat`</span>, <span pulumi-lang-nodejs="`euVat`" pulumi-lang-dotnet="`EuVat`" pulumi-lang-go="`euVat`" pulumi-lang-python="`eu_vat`" pulumi-lang-yaml="`euVat`" pulumi-lang-java="`euVat`" pulumi-lang-hcl="`eu_vat`">`euVat`</span>, <span pulumi-lang-nodejs="`foVat`" pulumi-lang-dotnet="`FoVat`" pulumi-lang-go="`foVat`" pulumi-lang-python="`fo_vat`" pulumi-lang-yaml="`foVat`" pulumi-lang-java="`foVat`" pulumi-lang-hcl="`fo_vat`">`foVat`</span>, <span pulumi-lang-nodejs="`gbVat`" pulumi-lang-dotnet="`GbVat`" pulumi-lang-go="`gbVat`" pulumi-lang-python="`gb_vat`" pulumi-lang-yaml="`gbVat`" pulumi-lang-java="`gbVat`" pulumi-lang-hcl="`gb_vat`">`gbVat`</span>, <span pulumi-lang-nodejs="`geVat`" pulumi-lang-dotnet="`GeVat`" pulumi-lang-go="`geVat`" pulumi-lang-python="`ge_vat`" pulumi-lang-yaml="`geVat`" pulumi-lang-java="`geVat`" pulumi-lang-hcl="`ge_vat`">`geVat`</span>, <span pulumi-lang-nodejs="`giTin`" pulumi-lang-dotnet="`GiTin`" pulumi-lang-go="`giTin`" pulumi-lang-python="`gi_tin`" pulumi-lang-yaml="`giTin`" pulumi-lang-java="`giTin`" pulumi-lang-hcl="`gi_tin`">`giTin`</span>, <span pulumi-lang-nodejs="`gnNif`" pulumi-lang-dotnet="`GnNif`" pulumi-lang-go="`gnNif`" pulumi-lang-python="`gn_nif`" pulumi-lang-yaml="`gnNif`" pulumi-lang-java="`gnNif`" pulumi-lang-hcl="`gn_nif`">`gnNif`</span>, <span pulumi-lang-nodejs="`hkBr`" pulumi-lang-dotnet="`HkBr`" pulumi-lang-go="`hkBr`" pulumi-lang-python="`hk_br`" pulumi-lang-yaml="`hkBr`" pulumi-lang-java="`hkBr`" pulumi-lang-hcl="`hk_br`">`hkBr`</span>, <span pulumi-lang-nodejs="`hrOib`" pulumi-lang-dotnet="`HrOib`" pulumi-lang-go="`hrOib`" pulumi-lang-python="`hr_oib`" pulumi-lang-yaml="`hrOib`" pulumi-lang-java="`hrOib`" pulumi-lang-hcl="`hr_oib`">`hrOib`</span>, <span pulumi-lang-nodejs="`huTin`" pulumi-lang-dotnet="`HuTin`" pulumi-lang-go="`huTin`" pulumi-lang-python="`hu_tin`" pulumi-lang-yaml="`huTin`" pulumi-lang-java="`huTin`" pulumi-lang-hcl="`hu_tin`">`huTin`</span>, <span pulumi-lang-nodejs="`idNpwp`" pulumi-lang-dotnet="`IdNpwp`" pulumi-lang-go="`idNpwp`" pulumi-lang-python="`id_npwp`" pulumi-lang-yaml="`idNpwp`" pulumi-lang-java="`idNpwp`" pulumi-lang-hcl="`id_npwp`">`idNpwp`</span>, <span pulumi-lang-nodejs="`ilVat`" pulumi-lang-dotnet="`IlVat`" pulumi-lang-go="`ilVat`" pulumi-lang-python="`il_vat`" pulumi-lang-yaml="`ilVat`" pulumi-lang-java="`ilVat`" pulumi-lang-hcl="`il_vat`">`ilVat`</span>, <span pulumi-lang-nodejs="`inGst`" pulumi-lang-dotnet="`InGst`" pulumi-lang-go="`inGst`" pulumi-lang-python="`in_gst`" pulumi-lang-yaml="`inGst`" pulumi-lang-java="`inGst`" pulumi-lang-hcl="`in_gst`">`inGst`</span>, <span pulumi-lang-nodejs="`isVat`" pulumi-lang-dotnet="`IsVat`" pulumi-lang-go="`isVat`" pulumi-lang-python="`is_vat`" pulumi-lang-yaml="`isVat`" pulumi-lang-java="`isVat`" pulumi-lang-hcl="`is_vat`">`isVat`</span>, <span pulumi-lang-nodejs="`itCf`" pulumi-lang-dotnet="`ItCf`" pulumi-lang-go="`itCf`" pulumi-lang-python="`it_cf`" pulumi-lang-yaml="`itCf`" pulumi-lang-java="`itCf`" pulumi-lang-hcl="`it_cf`">`itCf`</span>, <span pulumi-lang-nodejs="`jpCn`" pulumi-lang-dotnet="`JpCn`" pulumi-lang-go="`jpCn`" pulumi-lang-python="`jp_cn`" pulumi-lang-yaml="`jpCn`" pulumi-lang-java="`jpCn`" pulumi-lang-hcl="`jp_cn`">`jpCn`</span>, <span pulumi-lang-nodejs="`jpRn`" pulumi-lang-dotnet="`JpRn`" pulumi-lang-go="`jpRn`" pulumi-lang-python="`jp_rn`" pulumi-lang-yaml="`jpRn`" pulumi-lang-java="`jpRn`" pulumi-lang-hcl="`jp_rn`">`jpRn`</span>, <span pulumi-lang-nodejs="`jpTrn`" pulumi-lang-dotnet="`JpTrn`" pulumi-lang-go="`jpTrn`" pulumi-lang-python="`jp_trn`" pulumi-lang-yaml="`jpTrn`" pulumi-lang-java="`jpTrn`" pulumi-lang-hcl="`jp_trn`">`jpTrn`</span>, <span pulumi-lang-nodejs="`kePin`" pulumi-lang-dotnet="`KePin`" pulumi-lang-go="`kePin`" pulumi-lang-python="`ke_pin`" pulumi-lang-yaml="`kePin`" pulumi-lang-java="`kePin`" pulumi-lang-hcl="`ke_pin`">`kePin`</span>, <span pulumi-lang-nodejs="`kgTin`" pulumi-lang-dotnet="`KgTin`" pulumi-lang-go="`kgTin`" pulumi-lang-python="`kg_tin`" pulumi-lang-yaml="`kgTin`" pulumi-lang-java="`kgTin`" pulumi-lang-hcl="`kg_tin`">`kgTin`</span>, <span pulumi-lang-nodejs="`khTin`" pulumi-lang-dotnet="`KhTin`" pulumi-lang-go="`khTin`" pulumi-lang-python="`kh_tin`" pulumi-lang-yaml="`khTin`" pulumi-lang-java="`khTin`" pulumi-lang-hcl="`kh_tin`">`khTin`</span>, <span pulumi-lang-nodejs="`krBrn`" pulumi-lang-dotnet="`KrBrn`" pulumi-lang-go="`krBrn`" pulumi-lang-python="`kr_brn`" pulumi-lang-yaml="`krBrn`" pulumi-lang-java="`krBrn`" pulumi-lang-hcl="`kr_brn`">`krBrn`</span>, <span pulumi-lang-nodejs="`kzBin`" pulumi-lang-dotnet="`KzBin`" pulumi-lang-go="`kzBin`" pulumi-lang-python="`kz_bin`" pulumi-lang-yaml="`kzBin`" pulumi-lang-java="`kzBin`" pulumi-lang-hcl="`kz_bin`">`kzBin`</span>, <span pulumi-lang-nodejs="`laTin`" pulumi-lang-dotnet="`LaTin`" pulumi-lang-go="`laTin`" pulumi-lang-python="`la_tin`" pulumi-lang-yaml="`laTin`" pulumi-lang-java="`laTin`" pulumi-lang-hcl="`la_tin`">`laTin`</span>, <span pulumi-lang-nodejs="`liUid`" pulumi-lang-dotnet="`LiUid`" pulumi-lang-go="`liUid`" pulumi-lang-python="`li_uid`" pulumi-lang-yaml="`liUid`" pulumi-lang-java="`liUid`" pulumi-lang-hcl="`li_uid`">`liUid`</span>, <span pulumi-lang-nodejs="`liVat`" pulumi-lang-dotnet="`LiVat`" pulumi-lang-go="`liVat`" pulumi-lang-python="`li_vat`" pulumi-lang-yaml="`liVat`" pulumi-lang-java="`liVat`" pulumi-lang-hcl="`li_vat`">`liVat`</span>, <span pulumi-lang-nodejs="`lkVat`" pulumi-lang-dotnet="`LkVat`" pulumi-lang-go="`lkVat`" pulumi-lang-python="`lk_vat`" pulumi-lang-yaml="`lkVat`" pulumi-lang-java="`lkVat`" pulumi-lang-hcl="`lk_vat`">`lkVat`</span>, <span pulumi-lang-nodejs="`maVat`" pulumi-lang-dotnet="`MaVat`" pulumi-lang-go="`maVat`" pulumi-lang-python="`ma_vat`" pulumi-lang-yaml="`maVat`" pulumi-lang-java="`maVat`" pulumi-lang-hcl="`ma_vat`">`maVat`</span>, <span pulumi-lang-nodejs="`mdVat`" pulumi-lang-dotnet="`MdVat`" pulumi-lang-go="`mdVat`" pulumi-lang-python="`md_vat`" pulumi-lang-yaml="`mdVat`" pulumi-lang-java="`mdVat`" pulumi-lang-hcl="`md_vat`">`mdVat`</span>, <span pulumi-lang-nodejs="`mePib`" pulumi-lang-dotnet="`MePib`" pulumi-lang-go="`mePib`" pulumi-lang-python="`me_pib`" pulumi-lang-yaml="`mePib`" pulumi-lang-java="`mePib`" pulumi-lang-hcl="`me_pib`">`mePib`</span>, <span pulumi-lang-nodejs="`mkVat`" pulumi-lang-dotnet="`MkVat`" pulumi-lang-go="`mkVat`" pulumi-lang-python="`mk_vat`" pulumi-lang-yaml="`mkVat`" pulumi-lang-java="`mkVat`" pulumi-lang-hcl="`mk_vat`">`mkVat`</span>, <span pulumi-lang-nodejs="`mrNif`" pulumi-lang-dotnet="`MrNif`" pulumi-lang-go="`mrNif`" pulumi-lang-python="`mr_nif`" pulumi-lang-yaml="`mrNif`" pulumi-lang-java="`mrNif`" pulumi-lang-hcl="`mr_nif`">`mrNif`</span>, <span pulumi-lang-nodejs="`mxRfc`" pulumi-lang-dotnet="`MxRfc`" pulumi-lang-go="`mxRfc`" pulumi-lang-python="`mx_rfc`" pulumi-lang-yaml="`mxRfc`" pulumi-lang-java="`mxRfc`" pulumi-lang-hcl="`mx_rfc`">`mxRfc`</span>, <span pulumi-lang-nodejs="`myFrp`" pulumi-lang-dotnet="`MyFrp`" pulumi-lang-go="`myFrp`" pulumi-lang-python="`my_frp`" pulumi-lang-yaml="`myFrp`" pulumi-lang-java="`myFrp`" pulumi-lang-hcl="`my_frp`">`myFrp`</span>, <span pulumi-lang-nodejs="`myItn`" pulumi-lang-dotnet="`MyItn`" pulumi-lang-go="`myItn`" pulumi-lang-python="`my_itn`" pulumi-lang-yaml="`myItn`" pulumi-lang-java="`myItn`" pulumi-lang-hcl="`my_itn`">`myItn`</span>, <span pulumi-lang-nodejs="`mySst`" pulumi-lang-dotnet="`MySst`" pulumi-lang-go="`mySst`" pulumi-lang-python="`my_sst`" pulumi-lang-yaml="`mySst`" pulumi-lang-java="`mySst`" pulumi-lang-hcl="`my_sst`">`mySst`</span>, <span pulumi-lang-nodejs="`ngTin`" pulumi-lang-dotnet="`NgTin`" pulumi-lang-go="`ngTin`" pulumi-lang-python="`ng_tin`" pulumi-lang-yaml="`ngTin`" pulumi-lang-java="`ngTin`" pulumi-lang-hcl="`ng_tin`">`ngTin`</span>, <span pulumi-lang-nodejs="`noVat`" pulumi-lang-dotnet="`NoVat`" pulumi-lang-go="`noVat`" pulumi-lang-python="`no_vat`" pulumi-lang-yaml="`noVat`" pulumi-lang-java="`noVat`" pulumi-lang-hcl="`no_vat`">`noVat`</span>, <span pulumi-lang-nodejs="`noVoec`" pulumi-lang-dotnet="`NoVoec`" pulumi-lang-go="`noVoec`" pulumi-lang-python="`no_voec`" pulumi-lang-yaml="`noVoec`" pulumi-lang-java="`noVoec`" pulumi-lang-hcl="`no_voec`">`noVoec`</span>, <span pulumi-lang-nodejs="`npPan`" pulumi-lang-dotnet="`NpPan`" pulumi-lang-go="`npPan`" pulumi-lang-python="`np_pan`" pulumi-lang-yaml="`npPan`" pulumi-lang-java="`npPan`" pulumi-lang-hcl="`np_pan`">`npPan`</span>, <span pulumi-lang-nodejs="`nzGst`" pulumi-lang-dotnet="`NzGst`" pulumi-lang-go="`nzGst`" pulumi-lang-python="`nz_gst`" pulumi-lang-yaml="`nzGst`" pulumi-lang-java="`nzGst`" pulumi-lang-hcl="`nz_gst`">`nzGst`</span>, <span pulumi-lang-nodejs="`omVat`" pulumi-lang-dotnet="`OmVat`" pulumi-lang-go="`omVat`" pulumi-lang-python="`om_vat`" pulumi-lang-yaml="`omVat`" pulumi-lang-java="`omVat`" pulumi-lang-hcl="`om_vat`">`omVat`</span>, <span pulumi-lang-nodejs="`peRuc`" pulumi-lang-dotnet="`PeRuc`" pulumi-lang-go="`peRuc`" pulumi-lang-python="`pe_ruc`" pulumi-lang-yaml="`peRuc`" pulumi-lang-java="`peRuc`" pulumi-lang-hcl="`pe_ruc`">`peRuc`</span>, <span pulumi-lang-nodejs="`phTin`" pulumi-lang-dotnet="`PhTin`" pulumi-lang-go="`phTin`" pulumi-lang-python="`ph_tin`" pulumi-lang-yaml="`phTin`" pulumi-lang-java="`phTin`" pulumi-lang-hcl="`ph_tin`">`phTin`</span>, <span pulumi-lang-nodejs="`plNip`" pulumi-lang-dotnet="`PlNip`" pulumi-lang-go="`plNip`" pulumi-lang-python="`pl_nip`" pulumi-lang-yaml="`plNip`" pulumi-lang-java="`plNip`" pulumi-lang-hcl="`pl_nip`">`plNip`</span>, <span pulumi-lang-nodejs="`pyRuc`" pulumi-lang-dotnet="`PyRuc`" pulumi-lang-go="`pyRuc`" pulumi-lang-python="`py_ruc`" pulumi-lang-yaml="`pyRuc`" pulumi-lang-java="`pyRuc`" pulumi-lang-hcl="`py_ruc`">`pyRuc`</span>, <span pulumi-lang-nodejs="`roTin`" pulumi-lang-dotnet="`RoTin`" pulumi-lang-go="`roTin`" pulumi-lang-python="`ro_tin`" pulumi-lang-yaml="`roTin`" pulumi-lang-java="`roTin`" pulumi-lang-hcl="`ro_tin`">`roTin`</span>, <span pulumi-lang-nodejs="`rsPib`" pulumi-lang-dotnet="`RsPib`" pulumi-lang-go="`rsPib`" pulumi-lang-python="`rs_pib`" pulumi-lang-yaml="`rsPib`" pulumi-lang-java="`rsPib`" pulumi-lang-hcl="`rs_pib`">`rsPib`</span>, <span pulumi-lang-nodejs="`ruInn`" pulumi-lang-dotnet="`RuInn`" pulumi-lang-go="`ruInn`" pulumi-lang-python="`ru_inn`" pulumi-lang-yaml="`ruInn`" pulumi-lang-java="`ruInn`" pulumi-lang-hcl="`ru_inn`">`ruInn`</span>, <span pulumi-lang-nodejs="`ruKpp`" pulumi-lang-dotnet="`RuKpp`" pulumi-lang-go="`ruKpp`" pulumi-lang-python="`ru_kpp`" pulumi-lang-yaml="`ruKpp`" pulumi-lang-java="`ruKpp`" pulumi-lang-hcl="`ru_kpp`">`ruKpp`</span>, <span pulumi-lang-nodejs="`saVat`" pulumi-lang-dotnet="`SaVat`" pulumi-lang-go="`saVat`" pulumi-lang-python="`sa_vat`" pulumi-lang-yaml="`saVat`" pulumi-lang-java="`saVat`" pulumi-lang-hcl="`sa_vat`">`saVat`</span>, <span pulumi-lang-nodejs="`sgGst`" pulumi-lang-dotnet="`SgGst`" pulumi-lang-go="`sgGst`" pulumi-lang-python="`sg_gst`" pulumi-lang-yaml="`sgGst`" pulumi-lang-java="`sgGst`" pulumi-lang-hcl="`sg_gst`">`sgGst`</span>, <span pulumi-lang-nodejs="`sgUen`" pulumi-lang-dotnet="`SgUen`" pulumi-lang-go="`sgUen`" pulumi-lang-python="`sg_uen`" pulumi-lang-yaml="`sgUen`" pulumi-lang-java="`sgUen`" pulumi-lang-hcl="`sg_uen`">`sgUen`</span>, <span pulumi-lang-nodejs="`siTin`" pulumi-lang-dotnet="`SiTin`" pulumi-lang-go="`siTin`" pulumi-lang-python="`si_tin`" pulumi-lang-yaml="`siTin`" pulumi-lang-java="`siTin`" pulumi-lang-hcl="`si_tin`">`siTin`</span>, <span pulumi-lang-nodejs="`snNinea`" pulumi-lang-dotnet="`SnNinea`" pulumi-lang-go="`snNinea`" pulumi-lang-python="`sn_ninea`" pulumi-lang-yaml="`snNinea`" pulumi-lang-java="`snNinea`" pulumi-lang-hcl="`sn_ninea`">`snNinea`</span>, <span pulumi-lang-nodejs="`srFin`" pulumi-lang-dotnet="`SrFin`" pulumi-lang-go="`srFin`" pulumi-lang-python="`sr_fin`" pulumi-lang-yaml="`srFin`" pulumi-lang-java="`srFin`" pulumi-lang-hcl="`sr_fin`">`srFin`</span>, <span pulumi-lang-nodejs="`svNit`" pulumi-lang-dotnet="`SvNit`" pulumi-lang-go="`svNit`" pulumi-lang-python="`sv_nit`" pulumi-lang-yaml="`svNit`" pulumi-lang-java="`svNit`" pulumi-lang-hcl="`sv_nit`">`svNit`</span>, <span pulumi-lang-nodejs="`thVat`" pulumi-lang-dotnet="`ThVat`" pulumi-lang-go="`thVat`" pulumi-lang-python="`th_vat`" pulumi-lang-yaml="`thVat`" pulumi-lang-java="`thVat`" pulumi-lang-hcl="`th_vat`">`thVat`</span>, <span pulumi-lang-nodejs="`tjTin`" pulumi-lang-dotnet="`TjTin`" pulumi-lang-go="`tjTin`" pulumi-lang-python="`tj_tin`" pulumi-lang-yaml="`tjTin`" pulumi-lang-java="`tjTin`" pulumi-lang-hcl="`tj_tin`">`tjTin`</span>, <span pulumi-lang-nodejs="`trTin`" pulumi-lang-dotnet="`TrTin`" pulumi-lang-go="`trTin`" pulumi-lang-python="`tr_tin`" pulumi-lang-yaml="`trTin`" pulumi-lang-java="`trTin`" pulumi-lang-hcl="`tr_tin`">`trTin`</span>, <span pulumi-lang-nodejs="`twVat`" pulumi-lang-dotnet="`TwVat`" pulumi-lang-go="`twVat`" pulumi-lang-python="`tw_vat`" pulumi-lang-yaml="`twVat`" pulumi-lang-java="`twVat`" pulumi-lang-hcl="`tw_vat`">`twVat`</span>, <span pulumi-lang-nodejs="`tzVat`" pulumi-lang-dotnet="`TzVat`" pulumi-lang-go="`tzVat`" pulumi-lang-python="`tz_vat`" pulumi-lang-yaml="`tzVat`" pulumi-lang-java="`tzVat`" pulumi-lang-hcl="`tz_vat`">`tzVat`</span>, <span pulumi-lang-nodejs="`uaVat`" pulumi-lang-dotnet="`UaVat`" pulumi-lang-go="`uaVat`" pulumi-lang-python="`ua_vat`" pulumi-lang-yaml="`uaVat`" pulumi-lang-java="`uaVat`" pulumi-lang-hcl="`ua_vat`">`uaVat`</span>, <span pulumi-lang-nodejs="`ugTin`" pulumi-lang-dotnet="`UgTin`" pulumi-lang-go="`ugTin`" pulumi-lang-python="`ug_tin`" pulumi-lang-yaml="`ugTin`" pulumi-lang-java="`ugTin`" pulumi-lang-hcl="`ug_tin`">`ugTin`</span>, <span pulumi-lang-nodejs="`usEin`" pulumi-lang-dotnet="`UsEin`" pulumi-lang-go="`usEin`" pulumi-lang-python="`us_ein`" pulumi-lang-yaml="`usEin`" pulumi-lang-java="`usEin`" pulumi-lang-hcl="`us_ein`">`usEin`</span>, <span pulumi-lang-nodejs="`uyRuc`" pulumi-lang-dotnet="`UyRuc`" pulumi-lang-go="`uyRuc`" pulumi-lang-python="`uy_ruc`" pulumi-lang-yaml="`uyRuc`" pulumi-lang-java="`uyRuc`" pulumi-lang-hcl="`uy_ruc`">`uyRuc`</span>, <span pulumi-lang-nodejs="`uzTin`" pulumi-lang-dotnet="`UzTin`" pulumi-lang-go="`uzTin`" pulumi-lang-python="`uz_tin`" pulumi-lang-yaml="`uzTin`" pulumi-lang-java="`uzTin`" pulumi-lang-hcl="`uz_tin`">`uzTin`</span>, <span pulumi-lang-nodejs="`uzVat`" pulumi-lang-dotnet="`UzVat`" pulumi-lang-go="`uzVat`" pulumi-lang-python="`uz_vat`" pulumi-lang-yaml="`uzVat`" pulumi-lang-java="`uzVat`" pulumi-lang-hcl="`uz_vat`">`uzVat`</span>, <span pulumi-lang-nodejs="`veRif`" pulumi-lang-dotnet="`VeRif`" pulumi-lang-go="`veRif`" pulumi-lang-python="`ve_rif`" pulumi-lang-yaml="`veRif`" pulumi-lang-java="`veRif`" pulumi-lang-hcl="`ve_rif`">`veRif`</span>, <span pulumi-lang-nodejs="`vnTin`" pulumi-lang-dotnet="`VnTin`" pulumi-lang-go="`vnTin`" pulumi-lang-python="`vn_tin`" pulumi-lang-yaml="`vnTin`" pulumi-lang-java="`vnTin`" pulumi-lang-hcl="`vn_tin`">`vnTin`</span>, <span pulumi-lang-nodejs="`zaVat`" pulumi-lang-dotnet="`ZaVat`" pulumi-lang-go="`zaVat`" pulumi-lang-python="`za_vat`" pulumi-lang-yaml="`zaVat`" pulumi-lang-java="`zaVat`" pulumi-lang-hcl="`za_vat`">`zaVat`</span>, <span pulumi-lang-nodejs="`zmTin`" pulumi-lang-dotnet="`ZmTin`" pulumi-lang-go="`zmTin`" pulumi-lang-python="`zm_tin`" pulumi-lang-yaml="`zmTin`" pulumi-lang-java="`zmTin`" pulumi-lang-hcl="`zm_tin`">`zmTin`</span>, or <span pulumi-lang-nodejs="`zwTin`" pulumi-lang-dotnet="`ZwTin`" pulumi-lang-go="`zwTin`" pulumi-lang-python="`zw_tin`" pulumi-lang-yaml="`zwTin`" pulumi-lang-java="`zwTin`" pulumi-lang-hcl="`zw_tin`">`zwTin`</span>
+     * Type of the tax ID, one of <span pulumi-lang-nodejs="`adNrt`" pulumi-lang-dotnet="`AdNrt`" pulumi-lang-go="`adNrt`" pulumi-lang-python="`ad_nrt`" pulumi-lang-yaml="`adNrt`" pulumi-lang-java="`adNrt`" pulumi-lang-hcl="`ad_nrt`">`adNrt`</span>, <span pulumi-lang-nodejs="`aeTrn`" pulumi-lang-dotnet="`AeTrn`" pulumi-lang-go="`aeTrn`" pulumi-lang-python="`ae_trn`" pulumi-lang-yaml="`aeTrn`" pulumi-lang-java="`aeTrn`" pulumi-lang-hcl="`ae_trn`">`aeTrn`</span>, <span pulumi-lang-nodejs="`alTin`" pulumi-lang-dotnet="`AlTin`" pulumi-lang-go="`alTin`" pulumi-lang-python="`al_tin`" pulumi-lang-yaml="`alTin`" pulumi-lang-java="`alTin`" pulumi-lang-hcl="`al_tin`">`alTin`</span>, <span pulumi-lang-nodejs="`amTin`" pulumi-lang-dotnet="`AmTin`" pulumi-lang-go="`amTin`" pulumi-lang-python="`am_tin`" pulumi-lang-yaml="`amTin`" pulumi-lang-java="`amTin`" pulumi-lang-hcl="`am_tin`">`amTin`</span>, <span pulumi-lang-nodejs="`aoTin`" pulumi-lang-dotnet="`AoTin`" pulumi-lang-go="`aoTin`" pulumi-lang-python="`ao_tin`" pulumi-lang-yaml="`aoTin`" pulumi-lang-java="`aoTin`" pulumi-lang-hcl="`ao_tin`">`aoTin`</span>, <span pulumi-lang-nodejs="`arCuit`" pulumi-lang-dotnet="`ArCuit`" pulumi-lang-go="`arCuit`" pulumi-lang-python="`ar_cuit`" pulumi-lang-yaml="`arCuit`" pulumi-lang-java="`arCuit`" pulumi-lang-hcl="`ar_cuit`">`arCuit`</span>, <span pulumi-lang-nodejs="`auAbn`" pulumi-lang-dotnet="`AuAbn`" pulumi-lang-go="`auAbn`" pulumi-lang-python="`au_abn`" pulumi-lang-yaml="`auAbn`" pulumi-lang-java="`auAbn`" pulumi-lang-hcl="`au_abn`">`auAbn`</span>, <span pulumi-lang-nodejs="`auAcn`" pulumi-lang-dotnet="`AuAcn`" pulumi-lang-go="`auAcn`" pulumi-lang-python="`au_acn`" pulumi-lang-yaml="`auAcn`" pulumi-lang-java="`auAcn`" pulumi-lang-hcl="`au_acn`">`auAcn`</span>, <span pulumi-lang-nodejs="`auArn`" pulumi-lang-dotnet="`AuArn`" pulumi-lang-go="`auArn`" pulumi-lang-python="`au_arn`" pulumi-lang-yaml="`auArn`" pulumi-lang-java="`auArn`" pulumi-lang-hcl="`au_arn`">`auArn`</span>, <span pulumi-lang-nodejs="`auWpn`" pulumi-lang-dotnet="`AuWpn`" pulumi-lang-go="`auWpn`" pulumi-lang-python="`au_wpn`" pulumi-lang-yaml="`auWpn`" pulumi-lang-java="`auWpn`" pulumi-lang-hcl="`au_wpn`">`auWpn`</span>, <span pulumi-lang-nodejs="`awTin`" pulumi-lang-dotnet="`AwTin`" pulumi-lang-go="`awTin`" pulumi-lang-python="`aw_tin`" pulumi-lang-yaml="`awTin`" pulumi-lang-java="`awTin`" pulumi-lang-hcl="`aw_tin`">`awTin`</span>, <span pulumi-lang-nodejs="`azTin`" pulumi-lang-dotnet="`AzTin`" pulumi-lang-go="`azTin`" pulumi-lang-python="`az_tin`" pulumi-lang-yaml="`azTin`" pulumi-lang-java="`azTin`" pulumi-lang-hcl="`az_tin`">`azTin`</span>, <span pulumi-lang-nodejs="`baTin`" pulumi-lang-dotnet="`BaTin`" pulumi-lang-go="`baTin`" pulumi-lang-python="`ba_tin`" pulumi-lang-yaml="`baTin`" pulumi-lang-java="`baTin`" pulumi-lang-hcl="`ba_tin`">`baTin`</span>, <span pulumi-lang-nodejs="`bbTin`" pulumi-lang-dotnet="`BbTin`" pulumi-lang-go="`bbTin`" pulumi-lang-python="`bb_tin`" pulumi-lang-yaml="`bbTin`" pulumi-lang-java="`bbTin`" pulumi-lang-hcl="`bb_tin`">`bbTin`</span>, <span pulumi-lang-nodejs="`bdBin`" pulumi-lang-dotnet="`BdBin`" pulumi-lang-go="`bdBin`" pulumi-lang-python="`bd_bin`" pulumi-lang-yaml="`bdBin`" pulumi-lang-java="`bdBin`" pulumi-lang-hcl="`bd_bin`">`bdBin`</span>, <span pulumi-lang-nodejs="`bfIfu`" pulumi-lang-dotnet="`BfIfu`" pulumi-lang-go="`bfIfu`" pulumi-lang-python="`bf_ifu`" pulumi-lang-yaml="`bfIfu`" pulumi-lang-java="`bfIfu`" pulumi-lang-hcl="`bf_ifu`">`bfIfu`</span>, <span pulumi-lang-nodejs="`bgUic`" pulumi-lang-dotnet="`BgUic`" pulumi-lang-go="`bgUic`" pulumi-lang-python="`bg_uic`" pulumi-lang-yaml="`bgUic`" pulumi-lang-java="`bgUic`" pulumi-lang-hcl="`bg_uic`">`bgUic`</span>, <span pulumi-lang-nodejs="`bhVat`" pulumi-lang-dotnet="`BhVat`" pulumi-lang-go="`bhVat`" pulumi-lang-python="`bh_vat`" pulumi-lang-yaml="`bhVat`" pulumi-lang-java="`bhVat`" pulumi-lang-hcl="`bh_vat`">`bhVat`</span>, <span pulumi-lang-nodejs="`bjIfu`" pulumi-lang-dotnet="`BjIfu`" pulumi-lang-go="`bjIfu`" pulumi-lang-python="`bj_ifu`" pulumi-lang-yaml="`bjIfu`" pulumi-lang-java="`bjIfu`" pulumi-lang-hcl="`bj_ifu`">`bjIfu`</span>, <span pulumi-lang-nodejs="`boTin`" pulumi-lang-dotnet="`BoTin`" pulumi-lang-go="`boTin`" pulumi-lang-python="`bo_tin`" pulumi-lang-yaml="`boTin`" pulumi-lang-java="`boTin`" pulumi-lang-hcl="`bo_tin`">`boTin`</span>, <span pulumi-lang-nodejs="`brCnpj`" pulumi-lang-dotnet="`BrCnpj`" pulumi-lang-go="`brCnpj`" pulumi-lang-python="`br_cnpj`" pulumi-lang-yaml="`brCnpj`" pulumi-lang-java="`brCnpj`" pulumi-lang-hcl="`br_cnpj`">`brCnpj`</span>, <span pulumi-lang-nodejs="`brCpf`" pulumi-lang-dotnet="`BrCpf`" pulumi-lang-go="`brCpf`" pulumi-lang-python="`br_cpf`" pulumi-lang-yaml="`brCpf`" pulumi-lang-java="`brCpf`" pulumi-lang-hcl="`br_cpf`">`brCpf`</span>, <span pulumi-lang-nodejs="`bsTin`" pulumi-lang-dotnet="`BsTin`" pulumi-lang-go="`bsTin`" pulumi-lang-python="`bs_tin`" pulumi-lang-yaml="`bsTin`" pulumi-lang-java="`bsTin`" pulumi-lang-hcl="`bs_tin`">`bsTin`</span>, <span pulumi-lang-nodejs="`bwVat`" pulumi-lang-dotnet="`BwVat`" pulumi-lang-go="`bwVat`" pulumi-lang-python="`bw_vat`" pulumi-lang-yaml="`bwVat`" pulumi-lang-java="`bwVat`" pulumi-lang-hcl="`bw_vat`">`bwVat`</span>, <span pulumi-lang-nodejs="`byTin`" pulumi-lang-dotnet="`ByTin`" pulumi-lang-go="`byTin`" pulumi-lang-python="`by_tin`" pulumi-lang-yaml="`byTin`" pulumi-lang-java="`byTin`" pulumi-lang-hcl="`by_tin`">`byTin`</span>, <span pulumi-lang-nodejs="`caBn`" pulumi-lang-dotnet="`CaBn`" pulumi-lang-go="`caBn`" pulumi-lang-python="`ca_bn`" pulumi-lang-yaml="`caBn`" pulumi-lang-java="`caBn`" pulumi-lang-hcl="`ca_bn`">`caBn`</span>, <span pulumi-lang-nodejs="`caGstHst`" pulumi-lang-dotnet="`CaGstHst`" pulumi-lang-go="`caGstHst`" pulumi-lang-python="`ca_gst_hst`" pulumi-lang-yaml="`caGstHst`" pulumi-lang-java="`caGstHst`" pulumi-lang-hcl="`ca_gst_hst`">`caGstHst`</span>, <span pulumi-lang-nodejs="`caPstBc`" pulumi-lang-dotnet="`CaPstBc`" pulumi-lang-go="`caPstBc`" pulumi-lang-python="`ca_pst_bc`" pulumi-lang-yaml="`caPstBc`" pulumi-lang-java="`caPstBc`" pulumi-lang-hcl="`ca_pst_bc`">`caPstBc`</span>, <span pulumi-lang-nodejs="`caPstMb`" pulumi-lang-dotnet="`CaPstMb`" pulumi-lang-go="`caPstMb`" pulumi-lang-python="`ca_pst_mb`" pulumi-lang-yaml="`caPstMb`" pulumi-lang-java="`caPstMb`" pulumi-lang-hcl="`ca_pst_mb`">`caPstMb`</span>, <span pulumi-lang-nodejs="`caPstSk`" pulumi-lang-dotnet="`CaPstSk`" pulumi-lang-go="`caPstSk`" pulumi-lang-python="`ca_pst_sk`" pulumi-lang-yaml="`caPstSk`" pulumi-lang-java="`caPstSk`" pulumi-lang-hcl="`ca_pst_sk`">`caPstSk`</span>, <span pulumi-lang-nodejs="`caQst`" pulumi-lang-dotnet="`CaQst`" pulumi-lang-go="`caQst`" pulumi-lang-python="`ca_qst`" pulumi-lang-yaml="`caQst`" pulumi-lang-java="`caQst`" pulumi-lang-hcl="`ca_qst`">`caQst`</span>, <span pulumi-lang-nodejs="`cdNif`" pulumi-lang-dotnet="`CdNif`" pulumi-lang-go="`cdNif`" pulumi-lang-python="`cd_nif`" pulumi-lang-yaml="`cdNif`" pulumi-lang-java="`cdNif`" pulumi-lang-hcl="`cd_nif`">`cdNif`</span>, <span pulumi-lang-nodejs="`chUid`" pulumi-lang-dotnet="`ChUid`" pulumi-lang-go="`chUid`" pulumi-lang-python="`ch_uid`" pulumi-lang-yaml="`chUid`" pulumi-lang-java="`chUid`" pulumi-lang-hcl="`ch_uid`">`chUid`</span>, <span pulumi-lang-nodejs="`chVat`" pulumi-lang-dotnet="`ChVat`" pulumi-lang-go="`chVat`" pulumi-lang-python="`ch_vat`" pulumi-lang-yaml="`chVat`" pulumi-lang-java="`chVat`" pulumi-lang-hcl="`ch_vat`">`chVat`</span>, <span pulumi-lang-nodejs="`ciVat`" pulumi-lang-dotnet="`CiVat`" pulumi-lang-go="`ciVat`" pulumi-lang-python="`ci_vat`" pulumi-lang-yaml="`ciVat`" pulumi-lang-java="`ciVat`" pulumi-lang-hcl="`ci_vat`">`ciVat`</span>, <span pulumi-lang-nodejs="`clTin`" pulumi-lang-dotnet="`ClTin`" pulumi-lang-go="`clTin`" pulumi-lang-python="`cl_tin`" pulumi-lang-yaml="`clTin`" pulumi-lang-java="`clTin`" pulumi-lang-hcl="`cl_tin`">`clTin`</span>, <span pulumi-lang-nodejs="`cmNiu`" pulumi-lang-dotnet="`CmNiu`" pulumi-lang-go="`cmNiu`" pulumi-lang-python="`cm_niu`" pulumi-lang-yaml="`cmNiu`" pulumi-lang-java="`cmNiu`" pulumi-lang-hcl="`cm_niu`">`cmNiu`</span>, <span pulumi-lang-nodejs="`cnTin`" pulumi-lang-dotnet="`CnTin`" pulumi-lang-go="`cnTin`" pulumi-lang-python="`cn_tin`" pulumi-lang-yaml="`cnTin`" pulumi-lang-java="`cnTin`" pulumi-lang-hcl="`cn_tin`">`cnTin`</span>, <span pulumi-lang-nodejs="`coNit`" pulumi-lang-dotnet="`CoNit`" pulumi-lang-go="`coNit`" pulumi-lang-python="`co_nit`" pulumi-lang-yaml="`coNit`" pulumi-lang-java="`coNit`" pulumi-lang-hcl="`co_nit`">`coNit`</span>, <span pulumi-lang-nodejs="`crTin`" pulumi-lang-dotnet="`CrTin`" pulumi-lang-go="`crTin`" pulumi-lang-python="`cr_tin`" pulumi-lang-yaml="`crTin`" pulumi-lang-java="`crTin`" pulumi-lang-hcl="`cr_tin`">`crTin`</span>, <span pulumi-lang-nodejs="`cvNif`" pulumi-lang-dotnet="`CvNif`" pulumi-lang-go="`cvNif`" pulumi-lang-python="`cv_nif`" pulumi-lang-yaml="`cvNif`" pulumi-lang-java="`cvNif`" pulumi-lang-hcl="`cv_nif`">`cvNif`</span>, <span pulumi-lang-nodejs="`czDic`" pulumi-lang-dotnet="`CzDic`" pulumi-lang-go="`czDic`" pulumi-lang-python="`cz_dic`" pulumi-lang-yaml="`czDic`" pulumi-lang-java="`czDic`" pulumi-lang-hcl="`cz_dic`">`czDic`</span>, <span pulumi-lang-nodejs="`deStn`" pulumi-lang-dotnet="`DeStn`" pulumi-lang-go="`deStn`" pulumi-lang-python="`de_stn`" pulumi-lang-yaml="`deStn`" pulumi-lang-java="`deStn`" pulumi-lang-hcl="`de_stn`">`deStn`</span>, <span pulumi-lang-nodejs="`doRcn`" pulumi-lang-dotnet="`DoRcn`" pulumi-lang-go="`doRcn`" pulumi-lang-python="`do_rcn`" pulumi-lang-yaml="`doRcn`" pulumi-lang-java="`doRcn`" pulumi-lang-hcl="`do_rcn`">`doRcn`</span>, <span pulumi-lang-nodejs="`ecRuc`" pulumi-lang-dotnet="`EcRuc`" pulumi-lang-go="`ecRuc`" pulumi-lang-python="`ec_ruc`" pulumi-lang-yaml="`ecRuc`" pulumi-lang-java="`ecRuc`" pulumi-lang-hcl="`ec_ruc`">`ecRuc`</span>, <span pulumi-lang-nodejs="`egTin`" pulumi-lang-dotnet="`EgTin`" pulumi-lang-go="`egTin`" pulumi-lang-python="`eg_tin`" pulumi-lang-yaml="`egTin`" pulumi-lang-java="`egTin`" pulumi-lang-hcl="`eg_tin`">`egTin`</span>, <span pulumi-lang-nodejs="`esCif`" pulumi-lang-dotnet="`EsCif`" pulumi-lang-go="`esCif`" pulumi-lang-python="`es_cif`" pulumi-lang-yaml="`esCif`" pulumi-lang-java="`esCif`" pulumi-lang-hcl="`es_cif`">`esCif`</span>, <span pulumi-lang-nodejs="`etTin`" pulumi-lang-dotnet="`EtTin`" pulumi-lang-go="`etTin`" pulumi-lang-python="`et_tin`" pulumi-lang-yaml="`etTin`" pulumi-lang-java="`etTin`" pulumi-lang-hcl="`et_tin`">`etTin`</span>, <span pulumi-lang-nodejs="`euOssVat`" pulumi-lang-dotnet="`EuOssVat`" pulumi-lang-go="`euOssVat`" pulumi-lang-python="`eu_oss_vat`" pulumi-lang-yaml="`euOssVat`" pulumi-lang-java="`euOssVat`" pulumi-lang-hcl="`eu_oss_vat`">`euOssVat`</span>, <span pulumi-lang-nodejs="`euVat`" pulumi-lang-dotnet="`EuVat`" pulumi-lang-go="`euVat`" pulumi-lang-python="`eu_vat`" pulumi-lang-yaml="`euVat`" pulumi-lang-java="`euVat`" pulumi-lang-hcl="`eu_vat`">`euVat`</span>, <span pulumi-lang-nodejs="`foVat`" pulumi-lang-dotnet="`FoVat`" pulumi-lang-go="`foVat`" pulumi-lang-python="`fo_vat`" pulumi-lang-yaml="`foVat`" pulumi-lang-java="`foVat`" pulumi-lang-hcl="`fo_vat`">`foVat`</span>, <span pulumi-lang-nodejs="`frSiren`" pulumi-lang-dotnet="`FrSiren`" pulumi-lang-go="`frSiren`" pulumi-lang-python="`fr_siren`" pulumi-lang-yaml="`frSiren`" pulumi-lang-java="`frSiren`" pulumi-lang-hcl="`fr_siren`">`frSiren`</span>, <span pulumi-lang-nodejs="`frSiret`" pulumi-lang-dotnet="`FrSiret`" pulumi-lang-go="`frSiret`" pulumi-lang-python="`fr_siret`" pulumi-lang-yaml="`frSiret`" pulumi-lang-java="`frSiret`" pulumi-lang-hcl="`fr_siret`">`frSiret`</span>, <span pulumi-lang-nodejs="`frSpi`" pulumi-lang-dotnet="`FrSpi`" pulumi-lang-go="`frSpi`" pulumi-lang-python="`fr_spi`" pulumi-lang-yaml="`frSpi`" pulumi-lang-java="`frSpi`" pulumi-lang-hcl="`fr_spi`">`frSpi`</span>, <span pulumi-lang-nodejs="`gbVat`" pulumi-lang-dotnet="`GbVat`" pulumi-lang-go="`gbVat`" pulumi-lang-python="`gb_vat`" pulumi-lang-yaml="`gbVat`" pulumi-lang-java="`gbVat`" pulumi-lang-hcl="`gb_vat`">`gbVat`</span>, <span pulumi-lang-nodejs="`geVat`" pulumi-lang-dotnet="`GeVat`" pulumi-lang-go="`geVat`" pulumi-lang-python="`ge_vat`" pulumi-lang-yaml="`geVat`" pulumi-lang-java="`geVat`" pulumi-lang-hcl="`ge_vat`">`geVat`</span>, <span pulumi-lang-nodejs="`ghTin`" pulumi-lang-dotnet="`GhTin`" pulumi-lang-go="`ghTin`" pulumi-lang-python="`gh_tin`" pulumi-lang-yaml="`ghTin`" pulumi-lang-java="`ghTin`" pulumi-lang-hcl="`gh_tin`">`ghTin`</span>, <span pulumi-lang-nodejs="`giTin`" pulumi-lang-dotnet="`GiTin`" pulumi-lang-go="`giTin`" pulumi-lang-python="`gi_tin`" pulumi-lang-yaml="`giTin`" pulumi-lang-java="`giTin`" pulumi-lang-hcl="`gi_tin`">`giTin`</span>, <span pulumi-lang-nodejs="`gnNif`" pulumi-lang-dotnet="`GnNif`" pulumi-lang-go="`gnNif`" pulumi-lang-python="`gn_nif`" pulumi-lang-yaml="`gnNif`" pulumi-lang-java="`gnNif`" pulumi-lang-hcl="`gn_nif`">`gnNif`</span>, <span pulumi-lang-nodejs="`hkBr`" pulumi-lang-dotnet="`HkBr`" pulumi-lang-go="`hkBr`" pulumi-lang-python="`hk_br`" pulumi-lang-yaml="`hkBr`" pulumi-lang-java="`hkBr`" pulumi-lang-hcl="`hk_br`">`hkBr`</span>, <span pulumi-lang-nodejs="`hrOib`" pulumi-lang-dotnet="`HrOib`" pulumi-lang-go="`hrOib`" pulumi-lang-python="`hr_oib`" pulumi-lang-yaml="`hrOib`" pulumi-lang-java="`hrOib`" pulumi-lang-hcl="`hr_oib`">`hrOib`</span>, <span pulumi-lang-nodejs="`huTin`" pulumi-lang-dotnet="`HuTin`" pulumi-lang-go="`huTin`" pulumi-lang-python="`hu_tin`" pulumi-lang-yaml="`huTin`" pulumi-lang-java="`huTin`" pulumi-lang-hcl="`hu_tin`">`huTin`</span>, <span pulumi-lang-nodejs="`icNif`" pulumi-lang-dotnet="`IcNif`" pulumi-lang-go="`icNif`" pulumi-lang-python="`ic_nif`" pulumi-lang-yaml="`icNif`" pulumi-lang-java="`icNif`" pulumi-lang-hcl="`ic_nif`">`icNif`</span>, <span pulumi-lang-nodejs="`idNpwp`" pulumi-lang-dotnet="`IdNpwp`" pulumi-lang-go="`idNpwp`" pulumi-lang-python="`id_npwp`" pulumi-lang-yaml="`idNpwp`" pulumi-lang-java="`idNpwp`" pulumi-lang-hcl="`id_npwp`">`idNpwp`</span>, <span pulumi-lang-nodejs="`ilVat`" pulumi-lang-dotnet="`IlVat`" pulumi-lang-go="`ilVat`" pulumi-lang-python="`il_vat`" pulumi-lang-yaml="`ilVat`" pulumi-lang-java="`ilVat`" pulumi-lang-hcl="`il_vat`">`ilVat`</span>, <span pulumi-lang-nodejs="`inGst`" pulumi-lang-dotnet="`InGst`" pulumi-lang-go="`inGst`" pulumi-lang-python="`in_gst`" pulumi-lang-yaml="`inGst`" pulumi-lang-java="`inGst`" pulumi-lang-hcl="`in_gst`">`inGst`</span>, <span pulumi-lang-nodejs="`isKt`" pulumi-lang-dotnet="`IsKt`" pulumi-lang-go="`isKt`" pulumi-lang-python="`is_kt`" pulumi-lang-yaml="`isKt`" pulumi-lang-java="`isKt`" pulumi-lang-hcl="`is_kt`">`isKt`</span>, <span pulumi-lang-nodejs="`isVat`" pulumi-lang-dotnet="`IsVat`" pulumi-lang-go="`isVat`" pulumi-lang-python="`is_vat`" pulumi-lang-yaml="`isVat`" pulumi-lang-java="`isVat`" pulumi-lang-hcl="`is_vat`">`isVat`</span>, <span pulumi-lang-nodejs="`itCf`" pulumi-lang-dotnet="`ItCf`" pulumi-lang-go="`itCf`" pulumi-lang-python="`it_cf`" pulumi-lang-yaml="`itCf`" pulumi-lang-java="`itCf`" pulumi-lang-hcl="`it_cf`">`itCf`</span>, <span pulumi-lang-nodejs="`jpCn`" pulumi-lang-dotnet="`JpCn`" pulumi-lang-go="`jpCn`" pulumi-lang-python="`jp_cn`" pulumi-lang-yaml="`jpCn`" pulumi-lang-java="`jpCn`" pulumi-lang-hcl="`jp_cn`">`jpCn`</span>, <span pulumi-lang-nodejs="`jpRn`" pulumi-lang-dotnet="`JpRn`" pulumi-lang-go="`jpRn`" pulumi-lang-python="`jp_rn`" pulumi-lang-yaml="`jpRn`" pulumi-lang-java="`jpRn`" pulumi-lang-hcl="`jp_rn`">`jpRn`</span>, <span pulumi-lang-nodejs="`jpTrn`" pulumi-lang-dotnet="`JpTrn`" pulumi-lang-go="`jpTrn`" pulumi-lang-python="`jp_trn`" pulumi-lang-yaml="`jpTrn`" pulumi-lang-java="`jpTrn`" pulumi-lang-hcl="`jp_trn`">`jpTrn`</span>, <span pulumi-lang-nodejs="`kePin`" pulumi-lang-dotnet="`KePin`" pulumi-lang-go="`kePin`" pulumi-lang-python="`ke_pin`" pulumi-lang-yaml="`kePin`" pulumi-lang-java="`kePin`" pulumi-lang-hcl="`ke_pin`">`kePin`</span>, <span pulumi-lang-nodejs="`kgTin`" pulumi-lang-dotnet="`KgTin`" pulumi-lang-go="`kgTin`" pulumi-lang-python="`kg_tin`" pulumi-lang-yaml="`kgTin`" pulumi-lang-java="`kgTin`" pulumi-lang-hcl="`kg_tin`">`kgTin`</span>, <span pulumi-lang-nodejs="`khTin`" pulumi-lang-dotnet="`KhTin`" pulumi-lang-go="`khTin`" pulumi-lang-python="`kh_tin`" pulumi-lang-yaml="`khTin`" pulumi-lang-java="`khTin`" pulumi-lang-hcl="`kh_tin`">`khTin`</span>, <span pulumi-lang-nodejs="`krBrn`" pulumi-lang-dotnet="`KrBrn`" pulumi-lang-go="`krBrn`" pulumi-lang-python="`kr_brn`" pulumi-lang-yaml="`krBrn`" pulumi-lang-java="`krBrn`" pulumi-lang-hcl="`kr_brn`">`krBrn`</span>, <span pulumi-lang-nodejs="`kzBin`" pulumi-lang-dotnet="`KzBin`" pulumi-lang-go="`kzBin`" pulumi-lang-python="`kz_bin`" pulumi-lang-yaml="`kzBin`" pulumi-lang-java="`kzBin`" pulumi-lang-hcl="`kz_bin`">`kzBin`</span>, <span pulumi-lang-nodejs="`laTin`" pulumi-lang-dotnet="`LaTin`" pulumi-lang-go="`laTin`" pulumi-lang-python="`la_tin`" pulumi-lang-yaml="`laTin`" pulumi-lang-java="`laTin`" pulumi-lang-hcl="`la_tin`">`laTin`</span>, <span pulumi-lang-nodejs="`liUid`" pulumi-lang-dotnet="`LiUid`" pulumi-lang-go="`liUid`" pulumi-lang-python="`li_uid`" pulumi-lang-yaml="`liUid`" pulumi-lang-java="`liUid`" pulumi-lang-hcl="`li_uid`">`liUid`</span>, <span pulumi-lang-nodejs="`liVat`" pulumi-lang-dotnet="`LiVat`" pulumi-lang-go="`liVat`" pulumi-lang-python="`li_vat`" pulumi-lang-yaml="`liVat`" pulumi-lang-java="`liVat`" pulumi-lang-hcl="`li_vat`">`liVat`</span>, <span pulumi-lang-nodejs="`lkVat`" pulumi-lang-dotnet="`LkVat`" pulumi-lang-go="`lkVat`" pulumi-lang-python="`lk_vat`" pulumi-lang-yaml="`lkVat`" pulumi-lang-java="`lkVat`" pulumi-lang-hcl="`lk_vat`">`lkVat`</span>, <span pulumi-lang-nodejs="`maVat`" pulumi-lang-dotnet="`MaVat`" pulumi-lang-go="`maVat`" pulumi-lang-python="`ma_vat`" pulumi-lang-yaml="`maVat`" pulumi-lang-java="`maVat`" pulumi-lang-hcl="`ma_vat`">`maVat`</span>, <span pulumi-lang-nodejs="`mdCf`" pulumi-lang-dotnet="`MdCf`" pulumi-lang-go="`mdCf`" pulumi-lang-python="`md_cf`" pulumi-lang-yaml="`mdCf`" pulumi-lang-java="`mdCf`" pulumi-lang-hcl="`md_cf`">`mdCf`</span>, <span pulumi-lang-nodejs="`mdVat`" pulumi-lang-dotnet="`MdVat`" pulumi-lang-go="`mdVat`" pulumi-lang-python="`md_vat`" pulumi-lang-yaml="`mdVat`" pulumi-lang-java="`mdVat`" pulumi-lang-hcl="`md_vat`">`mdVat`</span>, <span pulumi-lang-nodejs="`mePib`" pulumi-lang-dotnet="`MePib`" pulumi-lang-go="`mePib`" pulumi-lang-python="`me_pib`" pulumi-lang-yaml="`mePib`" pulumi-lang-java="`mePib`" pulumi-lang-hcl="`me_pib`">`mePib`</span>, <span pulumi-lang-nodejs="`mkVat`" pulumi-lang-dotnet="`MkVat`" pulumi-lang-go="`mkVat`" pulumi-lang-python="`mk_vat`" pulumi-lang-yaml="`mkVat`" pulumi-lang-java="`mkVat`" pulumi-lang-hcl="`mk_vat`">`mkVat`</span>, <span pulumi-lang-nodejs="`mrNif`" pulumi-lang-dotnet="`MrNif`" pulumi-lang-go="`mrNif`" pulumi-lang-python="`mr_nif`" pulumi-lang-yaml="`mrNif`" pulumi-lang-java="`mrNif`" pulumi-lang-hcl="`mr_nif`">`mrNif`</span>, <span pulumi-lang-nodejs="`muVat`" pulumi-lang-dotnet="`MuVat`" pulumi-lang-go="`muVat`" pulumi-lang-python="`mu_vat`" pulumi-lang-yaml="`muVat`" pulumi-lang-java="`muVat`" pulumi-lang-hcl="`mu_vat`">`muVat`</span>, <span pulumi-lang-nodejs="`mxRfc`" pulumi-lang-dotnet="`MxRfc`" pulumi-lang-go="`mxRfc`" pulumi-lang-python="`mx_rfc`" pulumi-lang-yaml="`mxRfc`" pulumi-lang-java="`mxRfc`" pulumi-lang-hcl="`mx_rfc`">`mxRfc`</span>, <span pulumi-lang-nodejs="`myFrp`" pulumi-lang-dotnet="`MyFrp`" pulumi-lang-go="`myFrp`" pulumi-lang-python="`my_frp`" pulumi-lang-yaml="`myFrp`" pulumi-lang-java="`myFrp`" pulumi-lang-hcl="`my_frp`">`myFrp`</span>, <span pulumi-lang-nodejs="`myItn`" pulumi-lang-dotnet="`MyItn`" pulumi-lang-go="`myItn`" pulumi-lang-python="`my_itn`" pulumi-lang-yaml="`myItn`" pulumi-lang-java="`myItn`" pulumi-lang-hcl="`my_itn`">`myItn`</span>, <span pulumi-lang-nodejs="`mySst`" pulumi-lang-dotnet="`MySst`" pulumi-lang-go="`mySst`" pulumi-lang-python="`my_sst`" pulumi-lang-yaml="`mySst`" pulumi-lang-java="`mySst`" pulumi-lang-hcl="`my_sst`">`mySst`</span>, <span pulumi-lang-nodejs="`mzNuit`" pulumi-lang-dotnet="`MzNuit`" pulumi-lang-go="`mzNuit`" pulumi-lang-python="`mz_nuit`" pulumi-lang-yaml="`mzNuit`" pulumi-lang-java="`mzNuit`" pulumi-lang-hcl="`mz_nuit`">`mzNuit`</span>, <span pulumi-lang-nodejs="`ngTin`" pulumi-lang-dotnet="`NgTin`" pulumi-lang-go="`ngTin`" pulumi-lang-python="`ng_tin`" pulumi-lang-yaml="`ngTin`" pulumi-lang-java="`ngTin`" pulumi-lang-hcl="`ng_tin`">`ngTin`</span>, <span pulumi-lang-nodejs="`noVat`" pulumi-lang-dotnet="`NoVat`" pulumi-lang-go="`noVat`" pulumi-lang-python="`no_vat`" pulumi-lang-yaml="`noVat`" pulumi-lang-java="`noVat`" pulumi-lang-hcl="`no_vat`">`noVat`</span>, <span pulumi-lang-nodejs="`noVoec`" pulumi-lang-dotnet="`NoVoec`" pulumi-lang-go="`noVoec`" pulumi-lang-python="`no_voec`" pulumi-lang-yaml="`noVoec`" pulumi-lang-java="`noVoec`" pulumi-lang-hcl="`no_voec`">`noVoec`</span>, <span pulumi-lang-nodejs="`npPan`" pulumi-lang-dotnet="`NpPan`" pulumi-lang-go="`npPan`" pulumi-lang-python="`np_pan`" pulumi-lang-yaml="`npPan`" pulumi-lang-java="`npPan`" pulumi-lang-hcl="`np_pan`">`npPan`</span>, <span pulumi-lang-nodejs="`nzBn`" pulumi-lang-dotnet="`NzBn`" pulumi-lang-go="`nzBn`" pulumi-lang-python="`nz_bn`" pulumi-lang-yaml="`nzBn`" pulumi-lang-java="`nzBn`" pulumi-lang-hcl="`nz_bn`">`nzBn`</span>, <span pulumi-lang-nodejs="`nzGst`" pulumi-lang-dotnet="`NzGst`" pulumi-lang-go="`nzGst`" pulumi-lang-python="`nz_gst`" pulumi-lang-yaml="`nzGst`" pulumi-lang-java="`nzGst`" pulumi-lang-hcl="`nz_gst`">`nzGst`</span>, <span pulumi-lang-nodejs="`omVat`" pulumi-lang-dotnet="`OmVat`" pulumi-lang-go="`omVat`" pulumi-lang-python="`om_vat`" pulumi-lang-yaml="`omVat`" pulumi-lang-java="`omVat`" pulumi-lang-hcl="`om_vat`">`omVat`</span>, <span pulumi-lang-nodejs="`peRuc`" pulumi-lang-dotnet="`PeRuc`" pulumi-lang-go="`peRuc`" pulumi-lang-python="`pe_ruc`" pulumi-lang-yaml="`peRuc`" pulumi-lang-java="`peRuc`" pulumi-lang-hcl="`pe_ruc`">`peRuc`</span>, <span pulumi-lang-nodejs="`phTin`" pulumi-lang-dotnet="`PhTin`" pulumi-lang-go="`phTin`" pulumi-lang-python="`ph_tin`" pulumi-lang-yaml="`phTin`" pulumi-lang-java="`phTin`" pulumi-lang-hcl="`ph_tin`">`phTin`</span>, <span pulumi-lang-nodejs="`plNip`" pulumi-lang-dotnet="`PlNip`" pulumi-lang-go="`plNip`" pulumi-lang-python="`pl_nip`" pulumi-lang-yaml="`plNip`" pulumi-lang-java="`plNip`" pulumi-lang-hcl="`pl_nip`">`plNip`</span>, <span pulumi-lang-nodejs="`ptNif`" pulumi-lang-dotnet="`PtNif`" pulumi-lang-go="`ptNif`" pulumi-lang-python="`pt_nif`" pulumi-lang-yaml="`ptNif`" pulumi-lang-java="`ptNif`" pulumi-lang-hcl="`pt_nif`">`ptNif`</span>, <span pulumi-lang-nodejs="`pyRuc`" pulumi-lang-dotnet="`PyRuc`" pulumi-lang-go="`pyRuc`" pulumi-lang-python="`py_ruc`" pulumi-lang-yaml="`pyRuc`" pulumi-lang-java="`pyRuc`" pulumi-lang-hcl="`py_ruc`">`pyRuc`</span>, <span pulumi-lang-nodejs="`roTin`" pulumi-lang-dotnet="`RoTin`" pulumi-lang-go="`roTin`" pulumi-lang-python="`ro_tin`" pulumi-lang-yaml="`roTin`" pulumi-lang-java="`roTin`" pulumi-lang-hcl="`ro_tin`">`roTin`</span>, <span pulumi-lang-nodejs="`rsPib`" pulumi-lang-dotnet="`RsPib`" pulumi-lang-go="`rsPib`" pulumi-lang-python="`rs_pib`" pulumi-lang-yaml="`rsPib`" pulumi-lang-java="`rsPib`" pulumi-lang-hcl="`rs_pib`">`rsPib`</span>, <span pulumi-lang-nodejs="`ruInn`" pulumi-lang-dotnet="`RuInn`" pulumi-lang-go="`ruInn`" pulumi-lang-python="`ru_inn`" pulumi-lang-yaml="`ruInn`" pulumi-lang-java="`ruInn`" pulumi-lang-hcl="`ru_inn`">`ruInn`</span>, <span pulumi-lang-nodejs="`ruKpp`" pulumi-lang-dotnet="`RuKpp`" pulumi-lang-go="`ruKpp`" pulumi-lang-python="`ru_kpp`" pulumi-lang-yaml="`ruKpp`" pulumi-lang-java="`ruKpp`" pulumi-lang-hcl="`ru_kpp`">`ruKpp`</span>, <span pulumi-lang-nodejs="`saVat`" pulumi-lang-dotnet="`SaVat`" pulumi-lang-go="`saVat`" pulumi-lang-python="`sa_vat`" pulumi-lang-yaml="`saVat`" pulumi-lang-java="`saVat`" pulumi-lang-hcl="`sa_vat`">`saVat`</span>, <span pulumi-lang-nodejs="`sgGst`" pulumi-lang-dotnet="`SgGst`" pulumi-lang-go="`sgGst`" pulumi-lang-python="`sg_gst`" pulumi-lang-yaml="`sgGst`" pulumi-lang-java="`sgGst`" pulumi-lang-hcl="`sg_gst`">`sgGst`</span>, <span pulumi-lang-nodejs="`sgUen`" pulumi-lang-dotnet="`SgUen`" pulumi-lang-go="`sgUen`" pulumi-lang-python="`sg_uen`" pulumi-lang-yaml="`sgUen`" pulumi-lang-java="`sgUen`" pulumi-lang-hcl="`sg_uen`">`sgUen`</span>, <span pulumi-lang-nodejs="`siTin`" pulumi-lang-dotnet="`SiTin`" pulumi-lang-go="`siTin`" pulumi-lang-python="`si_tin`" pulumi-lang-yaml="`siTin`" pulumi-lang-java="`siTin`" pulumi-lang-hcl="`si_tin`">`siTin`</span>, <span pulumi-lang-nodejs="`smCoe`" pulumi-lang-dotnet="`SmCoe`" pulumi-lang-go="`smCoe`" pulumi-lang-python="`sm_coe`" pulumi-lang-yaml="`smCoe`" pulumi-lang-java="`smCoe`" pulumi-lang-hcl="`sm_coe`">`smCoe`</span>, <span pulumi-lang-nodejs="`snNinea`" pulumi-lang-dotnet="`SnNinea`" pulumi-lang-go="`snNinea`" pulumi-lang-python="`sn_ninea`" pulumi-lang-yaml="`snNinea`" pulumi-lang-java="`snNinea`" pulumi-lang-hcl="`sn_ninea`">`snNinea`</span>, <span pulumi-lang-nodejs="`srFin`" pulumi-lang-dotnet="`SrFin`" pulumi-lang-go="`srFin`" pulumi-lang-python="`sr_fin`" pulumi-lang-yaml="`srFin`" pulumi-lang-java="`srFin`" pulumi-lang-hcl="`sr_fin`">`srFin`</span>, <span pulumi-lang-nodejs="`svNit`" pulumi-lang-dotnet="`SvNit`" pulumi-lang-go="`svNit`" pulumi-lang-python="`sv_nit`" pulumi-lang-yaml="`svNit`" pulumi-lang-java="`svNit`" pulumi-lang-hcl="`sv_nit`">`svNit`</span>, <span pulumi-lang-nodejs="`thVat`" pulumi-lang-dotnet="`ThVat`" pulumi-lang-go="`thVat`" pulumi-lang-python="`th_vat`" pulumi-lang-yaml="`thVat`" pulumi-lang-java="`thVat`" pulumi-lang-hcl="`th_vat`">`thVat`</span>, <span pulumi-lang-nodejs="`tjTin`" pulumi-lang-dotnet="`TjTin`" pulumi-lang-go="`tjTin`" pulumi-lang-python="`tj_tin`" pulumi-lang-yaml="`tjTin`" pulumi-lang-java="`tjTin`" pulumi-lang-hcl="`tj_tin`">`tjTin`</span>, <span pulumi-lang-nodejs="`trTin`" pulumi-lang-dotnet="`TrTin`" pulumi-lang-go="`trTin`" pulumi-lang-python="`tr_tin`" pulumi-lang-yaml="`trTin`" pulumi-lang-java="`trTin`" pulumi-lang-hcl="`tr_tin`">`trTin`</span>, <span pulumi-lang-nodejs="`ttBir`" pulumi-lang-dotnet="`TtBir`" pulumi-lang-go="`ttBir`" pulumi-lang-python="`tt_bir`" pulumi-lang-yaml="`ttBir`" pulumi-lang-java="`ttBir`" pulumi-lang-hcl="`tt_bir`">`ttBir`</span>, <span pulumi-lang-nodejs="`ttVat`" pulumi-lang-dotnet="`TtVat`" pulumi-lang-go="`ttVat`" pulumi-lang-python="`tt_vat`" pulumi-lang-yaml="`ttVat`" pulumi-lang-java="`ttVat`" pulumi-lang-hcl="`tt_vat`">`ttVat`</span>, <span pulumi-lang-nodejs="`twVat`" pulumi-lang-dotnet="`TwVat`" pulumi-lang-go="`twVat`" pulumi-lang-python="`tw_vat`" pulumi-lang-yaml="`twVat`" pulumi-lang-java="`twVat`" pulumi-lang-hcl="`tw_vat`">`twVat`</span>, <span pulumi-lang-nodejs="`tzVat`" pulumi-lang-dotnet="`TzVat`" pulumi-lang-go="`tzVat`" pulumi-lang-python="`tz_vat`" pulumi-lang-yaml="`tzVat`" pulumi-lang-java="`tzVat`" pulumi-lang-hcl="`tz_vat`">`tzVat`</span>, <span pulumi-lang-nodejs="`uaVat`" pulumi-lang-dotnet="`UaVat`" pulumi-lang-go="`uaVat`" pulumi-lang-python="`ua_vat`" pulumi-lang-yaml="`uaVat`" pulumi-lang-java="`uaVat`" pulumi-lang-hcl="`ua_vat`">`uaVat`</span>, <span pulumi-lang-nodejs="`ugTin`" pulumi-lang-dotnet="`UgTin`" pulumi-lang-go="`ugTin`" pulumi-lang-python="`ug_tin`" pulumi-lang-yaml="`ugTin`" pulumi-lang-java="`ugTin`" pulumi-lang-hcl="`ug_tin`">`ugTin`</span>, <span pulumi-lang-nodejs="`usEin`" pulumi-lang-dotnet="`UsEin`" pulumi-lang-go="`usEin`" pulumi-lang-python="`us_ein`" pulumi-lang-yaml="`usEin`" pulumi-lang-java="`usEin`" pulumi-lang-hcl="`us_ein`">`usEin`</span>, <span pulumi-lang-nodejs="`uyRuc`" pulumi-lang-dotnet="`UyRuc`" pulumi-lang-go="`uyRuc`" pulumi-lang-python="`uy_ruc`" pulumi-lang-yaml="`uyRuc`" pulumi-lang-java="`uyRuc`" pulumi-lang-hcl="`uy_ruc`">`uyRuc`</span>, <span pulumi-lang-nodejs="`uzTin`" pulumi-lang-dotnet="`UzTin`" pulumi-lang-go="`uzTin`" pulumi-lang-python="`uz_tin`" pulumi-lang-yaml="`uzTin`" pulumi-lang-java="`uzTin`" pulumi-lang-hcl="`uz_tin`">`uzTin`</span>, <span pulumi-lang-nodejs="`uzVat`" pulumi-lang-dotnet="`UzVat`" pulumi-lang-go="`uzVat`" pulumi-lang-python="`uz_vat`" pulumi-lang-yaml="`uzVat`" pulumi-lang-java="`uzVat`" pulumi-lang-hcl="`uz_vat`">`uzVat`</span>, <span pulumi-lang-nodejs="`veRif`" pulumi-lang-dotnet="`VeRif`" pulumi-lang-go="`veRif`" pulumi-lang-python="`ve_rif`" pulumi-lang-yaml="`veRif`" pulumi-lang-java="`veRif`" pulumi-lang-hcl="`ve_rif`">`veRif`</span>, <span pulumi-lang-nodejs="`vnTin`" pulumi-lang-dotnet="`VnTin`" pulumi-lang-go="`vnTin`" pulumi-lang-python="`vn_tin`" pulumi-lang-yaml="`vnTin`" pulumi-lang-java="`vnTin`" pulumi-lang-hcl="`vn_tin`">`vnTin`</span>, <span pulumi-lang-nodejs="`zaVat`" pulumi-lang-dotnet="`ZaVat`" pulumi-lang-go="`zaVat`" pulumi-lang-python="`za_vat`" pulumi-lang-yaml="`zaVat`" pulumi-lang-java="`zaVat`" pulumi-lang-hcl="`za_vat`">`zaVat`</span>, <span pulumi-lang-nodejs="`zmTin`" pulumi-lang-dotnet="`ZmTin`" pulumi-lang-go="`zmTin`" pulumi-lang-python="`zm_tin`" pulumi-lang-yaml="`zmTin`" pulumi-lang-java="`zmTin`" pulumi-lang-hcl="`zm_tin`">`zmTin`</span>, or <span pulumi-lang-nodejs="`zwTin`" pulumi-lang-dotnet="`ZwTin`" pulumi-lang-go="`zwTin`" pulumi-lang-python="`zw_tin`" pulumi-lang-yaml="`zwTin`" pulumi-lang-java="`zwTin`" pulumi-lang-hcl="`zw_tin`">`zwTin`</span>
      */
     type: pulumi.Input<string>;
     /**
@@ -2735,7 +2843,7 @@ export interface InvoiceCustomerShippingAddress {
 
 export interface InvoiceCustomerTaxId {
     /**
-     * The type of the tax ID, one of <span pulumi-lang-nodejs="`adNrt`" pulumi-lang-dotnet="`AdNrt`" pulumi-lang-go="`adNrt`" pulumi-lang-python="`ad_nrt`" pulumi-lang-yaml="`adNrt`" pulumi-lang-java="`adNrt`" pulumi-lang-hcl="`ad_nrt`">`adNrt`</span>, <span pulumi-lang-nodejs="`arCuit`" pulumi-lang-dotnet="`ArCuit`" pulumi-lang-go="`arCuit`" pulumi-lang-python="`ar_cuit`" pulumi-lang-yaml="`arCuit`" pulumi-lang-java="`arCuit`" pulumi-lang-hcl="`ar_cuit`">`arCuit`</span>, <span pulumi-lang-nodejs="`euVat`" pulumi-lang-dotnet="`EuVat`" pulumi-lang-go="`euVat`" pulumi-lang-python="`eu_vat`" pulumi-lang-yaml="`euVat`" pulumi-lang-java="`euVat`" pulumi-lang-hcl="`eu_vat`">`euVat`</span>, <span pulumi-lang-nodejs="`boTin`" pulumi-lang-dotnet="`BoTin`" pulumi-lang-go="`boTin`" pulumi-lang-python="`bo_tin`" pulumi-lang-yaml="`boTin`" pulumi-lang-java="`boTin`" pulumi-lang-hcl="`bo_tin`">`boTin`</span>, <span pulumi-lang-nodejs="`brCnpj`" pulumi-lang-dotnet="`BrCnpj`" pulumi-lang-go="`brCnpj`" pulumi-lang-python="`br_cnpj`" pulumi-lang-yaml="`brCnpj`" pulumi-lang-java="`brCnpj`" pulumi-lang-hcl="`br_cnpj`">`brCnpj`</span>, <span pulumi-lang-nodejs="`brCpf`" pulumi-lang-dotnet="`BrCpf`" pulumi-lang-go="`brCpf`" pulumi-lang-python="`br_cpf`" pulumi-lang-yaml="`brCpf`" pulumi-lang-java="`brCpf`" pulumi-lang-hcl="`br_cpf`">`brCpf`</span>, <span pulumi-lang-nodejs="`cnTin`" pulumi-lang-dotnet="`CnTin`" pulumi-lang-go="`cnTin`" pulumi-lang-python="`cn_tin`" pulumi-lang-yaml="`cnTin`" pulumi-lang-java="`cnTin`" pulumi-lang-hcl="`cn_tin`">`cnTin`</span>, <span pulumi-lang-nodejs="`coNit`" pulumi-lang-dotnet="`CoNit`" pulumi-lang-go="`coNit`" pulumi-lang-python="`co_nit`" pulumi-lang-yaml="`coNit`" pulumi-lang-java="`coNit`" pulumi-lang-hcl="`co_nit`">`coNit`</span>, <span pulumi-lang-nodejs="`crTin`" pulumi-lang-dotnet="`CrTin`" pulumi-lang-go="`crTin`" pulumi-lang-python="`cr_tin`" pulumi-lang-yaml="`crTin`" pulumi-lang-java="`crTin`" pulumi-lang-hcl="`cr_tin`">`crTin`</span>, <span pulumi-lang-nodejs="`doRcn`" pulumi-lang-dotnet="`DoRcn`" pulumi-lang-go="`doRcn`" pulumi-lang-python="`do_rcn`" pulumi-lang-yaml="`doRcn`" pulumi-lang-java="`doRcn`" pulumi-lang-hcl="`do_rcn`">`doRcn`</span>, <span pulumi-lang-nodejs="`ecRuc`" pulumi-lang-dotnet="`EcRuc`" pulumi-lang-go="`ecRuc`" pulumi-lang-python="`ec_ruc`" pulumi-lang-yaml="`ecRuc`" pulumi-lang-java="`ecRuc`" pulumi-lang-hcl="`ec_ruc`">`ecRuc`</span>, <span pulumi-lang-nodejs="`euOssVat`" pulumi-lang-dotnet="`EuOssVat`" pulumi-lang-go="`euOssVat`" pulumi-lang-python="`eu_oss_vat`" pulumi-lang-yaml="`euOssVat`" pulumi-lang-java="`euOssVat`" pulumi-lang-hcl="`eu_oss_vat`">`euOssVat`</span>, <span pulumi-lang-nodejs="`hrOib`" pulumi-lang-dotnet="`HrOib`" pulumi-lang-go="`hrOib`" pulumi-lang-python="`hr_oib`" pulumi-lang-yaml="`hrOib`" pulumi-lang-java="`hrOib`" pulumi-lang-hcl="`hr_oib`">`hrOib`</span>, <span pulumi-lang-nodejs="`peRuc`" pulumi-lang-dotnet="`PeRuc`" pulumi-lang-go="`peRuc`" pulumi-lang-python="`pe_ruc`" pulumi-lang-yaml="`peRuc`" pulumi-lang-java="`peRuc`" pulumi-lang-hcl="`pe_ruc`">`peRuc`</span>, <span pulumi-lang-nodejs="`roTin`" pulumi-lang-dotnet="`RoTin`" pulumi-lang-go="`roTin`" pulumi-lang-python="`ro_tin`" pulumi-lang-yaml="`roTin`" pulumi-lang-java="`roTin`" pulumi-lang-hcl="`ro_tin`">`roTin`</span>, <span pulumi-lang-nodejs="`rsPib`" pulumi-lang-dotnet="`RsPib`" pulumi-lang-go="`rsPib`" pulumi-lang-python="`rs_pib`" pulumi-lang-yaml="`rsPib`" pulumi-lang-java="`rsPib`" pulumi-lang-hcl="`rs_pib`">`rsPib`</span>, <span pulumi-lang-nodejs="`svNit`" pulumi-lang-dotnet="`SvNit`" pulumi-lang-go="`svNit`" pulumi-lang-python="`sv_nit`" pulumi-lang-yaml="`svNit`" pulumi-lang-java="`svNit`" pulumi-lang-hcl="`sv_nit`">`svNit`</span>, <span pulumi-lang-nodejs="`uyRuc`" pulumi-lang-dotnet="`UyRuc`" pulumi-lang-go="`uyRuc`" pulumi-lang-python="`uy_ruc`" pulumi-lang-yaml="`uyRuc`" pulumi-lang-java="`uyRuc`" pulumi-lang-hcl="`uy_ruc`">`uyRuc`</span>, <span pulumi-lang-nodejs="`veRif`" pulumi-lang-dotnet="`VeRif`" pulumi-lang-go="`veRif`" pulumi-lang-python="`ve_rif`" pulumi-lang-yaml="`veRif`" pulumi-lang-java="`veRif`" pulumi-lang-hcl="`ve_rif`">`veRif`</span>, <span pulumi-lang-nodejs="`vnTin`" pulumi-lang-dotnet="`VnTin`" pulumi-lang-go="`vnTin`" pulumi-lang-python="`vn_tin`" pulumi-lang-yaml="`vnTin`" pulumi-lang-java="`vnTin`" pulumi-lang-hcl="`vn_tin`">`vnTin`</span>, <span pulumi-lang-nodejs="`gbVat`" pulumi-lang-dotnet="`GbVat`" pulumi-lang-go="`gbVat`" pulumi-lang-python="`gb_vat`" pulumi-lang-yaml="`gbVat`" pulumi-lang-java="`gbVat`" pulumi-lang-hcl="`gb_vat`">`gbVat`</span>, <span pulumi-lang-nodejs="`nzGst`" pulumi-lang-dotnet="`NzGst`" pulumi-lang-go="`nzGst`" pulumi-lang-python="`nz_gst`" pulumi-lang-yaml="`nzGst`" pulumi-lang-java="`nzGst`" pulumi-lang-hcl="`nz_gst`">`nzGst`</span>, <span pulumi-lang-nodejs="`auAbn`" pulumi-lang-dotnet="`AuAbn`" pulumi-lang-go="`auAbn`" pulumi-lang-python="`au_abn`" pulumi-lang-yaml="`auAbn`" pulumi-lang-java="`auAbn`" pulumi-lang-hcl="`au_abn`">`auAbn`</span>, <span pulumi-lang-nodejs="`auArn`" pulumi-lang-dotnet="`AuArn`" pulumi-lang-go="`auArn`" pulumi-lang-python="`au_arn`" pulumi-lang-yaml="`auArn`" pulumi-lang-java="`auArn`" pulumi-lang-hcl="`au_arn`">`auArn`</span>, <span pulumi-lang-nodejs="`inGst`" pulumi-lang-dotnet="`InGst`" pulumi-lang-go="`inGst`" pulumi-lang-python="`in_gst`" pulumi-lang-yaml="`inGst`" pulumi-lang-java="`inGst`" pulumi-lang-hcl="`in_gst`">`inGst`</span>, <span pulumi-lang-nodejs="`noVat`" pulumi-lang-dotnet="`NoVat`" pulumi-lang-go="`noVat`" pulumi-lang-python="`no_vat`" pulumi-lang-yaml="`noVat`" pulumi-lang-java="`noVat`" pulumi-lang-hcl="`no_vat`">`noVat`</span>, <span pulumi-lang-nodejs="`noVoec`" pulumi-lang-dotnet="`NoVoec`" pulumi-lang-go="`noVoec`" pulumi-lang-python="`no_voec`" pulumi-lang-yaml="`noVoec`" pulumi-lang-java="`noVoec`" pulumi-lang-hcl="`no_voec`">`noVoec`</span>, <span pulumi-lang-nodejs="`zaVat`" pulumi-lang-dotnet="`ZaVat`" pulumi-lang-go="`zaVat`" pulumi-lang-python="`za_vat`" pulumi-lang-yaml="`zaVat`" pulumi-lang-java="`zaVat`" pulumi-lang-hcl="`za_vat`">`zaVat`</span>, <span pulumi-lang-nodejs="`chVat`" pulumi-lang-dotnet="`ChVat`" pulumi-lang-go="`chVat`" pulumi-lang-python="`ch_vat`" pulumi-lang-yaml="`chVat`" pulumi-lang-java="`chVat`" pulumi-lang-hcl="`ch_vat`">`chVat`</span>, <span pulumi-lang-nodejs="`mxRfc`" pulumi-lang-dotnet="`MxRfc`" pulumi-lang-go="`mxRfc`" pulumi-lang-python="`mx_rfc`" pulumi-lang-yaml="`mxRfc`" pulumi-lang-java="`mxRfc`" pulumi-lang-hcl="`mx_rfc`">`mxRfc`</span>, <span pulumi-lang-nodejs="`sgUen`" pulumi-lang-dotnet="`SgUen`" pulumi-lang-go="`sgUen`" pulumi-lang-python="`sg_uen`" pulumi-lang-yaml="`sgUen`" pulumi-lang-java="`sgUen`" pulumi-lang-hcl="`sg_uen`">`sgUen`</span>, <span pulumi-lang-nodejs="`ruInn`" pulumi-lang-dotnet="`RuInn`" pulumi-lang-go="`ruInn`" pulumi-lang-python="`ru_inn`" pulumi-lang-yaml="`ruInn`" pulumi-lang-java="`ruInn`" pulumi-lang-hcl="`ru_inn`">`ruInn`</span>, <span pulumi-lang-nodejs="`ruKpp`" pulumi-lang-dotnet="`RuKpp`" pulumi-lang-go="`ruKpp`" pulumi-lang-python="`ru_kpp`" pulumi-lang-yaml="`ruKpp`" pulumi-lang-java="`ruKpp`" pulumi-lang-hcl="`ru_kpp`">`ruKpp`</span>, <span pulumi-lang-nodejs="`caBn`" pulumi-lang-dotnet="`CaBn`" pulumi-lang-go="`caBn`" pulumi-lang-python="`ca_bn`" pulumi-lang-yaml="`caBn`" pulumi-lang-java="`caBn`" pulumi-lang-hcl="`ca_bn`">`caBn`</span>, <span pulumi-lang-nodejs="`hkBr`" pulumi-lang-dotnet="`HkBr`" pulumi-lang-go="`hkBr`" pulumi-lang-python="`hk_br`" pulumi-lang-yaml="`hkBr`" pulumi-lang-java="`hkBr`" pulumi-lang-hcl="`hk_br`">`hkBr`</span>, <span pulumi-lang-nodejs="`esCif`" pulumi-lang-dotnet="`EsCif`" pulumi-lang-go="`esCif`" pulumi-lang-python="`es_cif`" pulumi-lang-yaml="`esCif`" pulumi-lang-java="`esCif`" pulumi-lang-hcl="`es_cif`">`esCif`</span>, <span pulumi-lang-nodejs="`plNip`" pulumi-lang-dotnet="`PlNip`" pulumi-lang-go="`plNip`" pulumi-lang-python="`pl_nip`" pulumi-lang-yaml="`plNip`" pulumi-lang-java="`plNip`" pulumi-lang-hcl="`pl_nip`">`plNip`</span>, <span pulumi-lang-nodejs="`itCf`" pulumi-lang-dotnet="`ItCf`" pulumi-lang-go="`itCf`" pulumi-lang-python="`it_cf`" pulumi-lang-yaml="`itCf`" pulumi-lang-java="`itCf`" pulumi-lang-hcl="`it_cf`">`itCf`</span>, <span pulumi-lang-nodejs="`foVat`" pulumi-lang-dotnet="`FoVat`" pulumi-lang-go="`foVat`" pulumi-lang-python="`fo_vat`" pulumi-lang-yaml="`foVat`" pulumi-lang-java="`foVat`" pulumi-lang-hcl="`fo_vat`">`foVat`</span>, <span pulumi-lang-nodejs="`giTin`" pulumi-lang-dotnet="`GiTin`" pulumi-lang-go="`giTin`" pulumi-lang-python="`gi_tin`" pulumi-lang-yaml="`giTin`" pulumi-lang-java="`giTin`" pulumi-lang-hcl="`gi_tin`">`giTin`</span>, <span pulumi-lang-nodejs="`pyRuc`" pulumi-lang-dotnet="`PyRuc`" pulumi-lang-go="`pyRuc`" pulumi-lang-python="`py_ruc`" pulumi-lang-yaml="`pyRuc`" pulumi-lang-java="`pyRuc`" pulumi-lang-hcl="`py_ruc`">`pyRuc`</span>, <span pulumi-lang-nodejs="`twVat`" pulumi-lang-dotnet="`TwVat`" pulumi-lang-go="`twVat`" pulumi-lang-python="`tw_vat`" pulumi-lang-yaml="`twVat`" pulumi-lang-java="`twVat`" pulumi-lang-hcl="`tw_vat`">`twVat`</span>, <span pulumi-lang-nodejs="`thVat`" pulumi-lang-dotnet="`ThVat`" pulumi-lang-go="`thVat`" pulumi-lang-python="`th_vat`" pulumi-lang-yaml="`thVat`" pulumi-lang-java="`thVat`" pulumi-lang-hcl="`th_vat`">`thVat`</span>, <span pulumi-lang-nodejs="`jpCn`" pulumi-lang-dotnet="`JpCn`" pulumi-lang-go="`jpCn`" pulumi-lang-python="`jp_cn`" pulumi-lang-yaml="`jpCn`" pulumi-lang-java="`jpCn`" pulumi-lang-hcl="`jp_cn`">`jpCn`</span>, <span pulumi-lang-nodejs="`jpRn`" pulumi-lang-dotnet="`JpRn`" pulumi-lang-go="`jpRn`" pulumi-lang-python="`jp_rn`" pulumi-lang-yaml="`jpRn`" pulumi-lang-java="`jpRn`" pulumi-lang-hcl="`jp_rn`">`jpRn`</span>, <span pulumi-lang-nodejs="`jpTrn`" pulumi-lang-dotnet="`JpTrn`" pulumi-lang-go="`jpTrn`" pulumi-lang-python="`jp_trn`" pulumi-lang-yaml="`jpTrn`" pulumi-lang-java="`jpTrn`" pulumi-lang-hcl="`jp_trn`">`jpTrn`</span>, <span pulumi-lang-nodejs="`liUid`" pulumi-lang-dotnet="`LiUid`" pulumi-lang-go="`liUid`" pulumi-lang-python="`li_uid`" pulumi-lang-yaml="`liUid`" pulumi-lang-java="`liUid`" pulumi-lang-hcl="`li_uid`">`liUid`</span>, <span pulumi-lang-nodejs="`liVat`" pulumi-lang-dotnet="`LiVat`" pulumi-lang-go="`liVat`" pulumi-lang-python="`li_vat`" pulumi-lang-yaml="`liVat`" pulumi-lang-java="`liVat`" pulumi-lang-hcl="`li_vat`">`liVat`</span>, <span pulumi-lang-nodejs="`lkVat`" pulumi-lang-dotnet="`LkVat`" pulumi-lang-go="`lkVat`" pulumi-lang-python="`lk_vat`" pulumi-lang-yaml="`lkVat`" pulumi-lang-java="`lkVat`" pulumi-lang-hcl="`lk_vat`">`lkVat`</span>, <span pulumi-lang-nodejs="`myItn`" pulumi-lang-dotnet="`MyItn`" pulumi-lang-go="`myItn`" pulumi-lang-python="`my_itn`" pulumi-lang-yaml="`myItn`" pulumi-lang-java="`myItn`" pulumi-lang-hcl="`my_itn`">`myItn`</span>, <span pulumi-lang-nodejs="`usEin`" pulumi-lang-dotnet="`UsEin`" pulumi-lang-go="`usEin`" pulumi-lang-python="`us_ein`" pulumi-lang-yaml="`usEin`" pulumi-lang-java="`usEin`" pulumi-lang-hcl="`us_ein`">`usEin`</span>, <span pulumi-lang-nodejs="`krBrn`" pulumi-lang-dotnet="`KrBrn`" pulumi-lang-go="`krBrn`" pulumi-lang-python="`kr_brn`" pulumi-lang-yaml="`krBrn`" pulumi-lang-java="`krBrn`" pulumi-lang-hcl="`kr_brn`">`krBrn`</span>, <span pulumi-lang-nodejs="`caQst`" pulumi-lang-dotnet="`CaQst`" pulumi-lang-go="`caQst`" pulumi-lang-python="`ca_qst`" pulumi-lang-yaml="`caQst`" pulumi-lang-java="`caQst`" pulumi-lang-hcl="`ca_qst`">`caQst`</span>, <span pulumi-lang-nodejs="`caGstHst`" pulumi-lang-dotnet="`CaGstHst`" pulumi-lang-go="`caGstHst`" pulumi-lang-python="`ca_gst_hst`" pulumi-lang-yaml="`caGstHst`" pulumi-lang-java="`caGstHst`" pulumi-lang-hcl="`ca_gst_hst`">`caGstHst`</span>, <span pulumi-lang-nodejs="`caPstBc`" pulumi-lang-dotnet="`CaPstBc`" pulumi-lang-go="`caPstBc`" pulumi-lang-python="`ca_pst_bc`" pulumi-lang-yaml="`caPstBc`" pulumi-lang-java="`caPstBc`" pulumi-lang-hcl="`ca_pst_bc`">`caPstBc`</span>, <span pulumi-lang-nodejs="`caPstMb`" pulumi-lang-dotnet="`CaPstMb`" pulumi-lang-go="`caPstMb`" pulumi-lang-python="`ca_pst_mb`" pulumi-lang-yaml="`caPstMb`" pulumi-lang-java="`caPstMb`" pulumi-lang-hcl="`ca_pst_mb`">`caPstMb`</span>, <span pulumi-lang-nodejs="`caPstSk`" pulumi-lang-dotnet="`CaPstSk`" pulumi-lang-go="`caPstSk`" pulumi-lang-python="`ca_pst_sk`" pulumi-lang-yaml="`caPstSk`" pulumi-lang-java="`caPstSk`" pulumi-lang-hcl="`ca_pst_sk`">`caPstSk`</span>, <span pulumi-lang-nodejs="`mySst`" pulumi-lang-dotnet="`MySst`" pulumi-lang-go="`mySst`" pulumi-lang-python="`my_sst`" pulumi-lang-yaml="`mySst`" pulumi-lang-java="`mySst`" pulumi-lang-hcl="`my_sst`">`mySst`</span>, <span pulumi-lang-nodejs="`sgGst`" pulumi-lang-dotnet="`SgGst`" pulumi-lang-go="`sgGst`" pulumi-lang-python="`sg_gst`" pulumi-lang-yaml="`sgGst`" pulumi-lang-java="`sgGst`" pulumi-lang-hcl="`sg_gst`">`sgGst`</span>, <span pulumi-lang-nodejs="`aeTrn`" pulumi-lang-dotnet="`AeTrn`" pulumi-lang-go="`aeTrn`" pulumi-lang-python="`ae_trn`" pulumi-lang-yaml="`aeTrn`" pulumi-lang-java="`aeTrn`" pulumi-lang-hcl="`ae_trn`">`aeTrn`</span>, <span pulumi-lang-nodejs="`clTin`" pulumi-lang-dotnet="`ClTin`" pulumi-lang-go="`clTin`" pulumi-lang-python="`cl_tin`" pulumi-lang-yaml="`clTin`" pulumi-lang-java="`clTin`" pulumi-lang-hcl="`cl_tin`">`clTin`</span>, <span pulumi-lang-nodejs="`saVat`" pulumi-lang-dotnet="`SaVat`" pulumi-lang-go="`saVat`" pulumi-lang-python="`sa_vat`" pulumi-lang-yaml="`saVat`" pulumi-lang-java="`saVat`" pulumi-lang-hcl="`sa_vat`">`saVat`</span>, <span pulumi-lang-nodejs="`idNpwp`" pulumi-lang-dotnet="`IdNpwp`" pulumi-lang-go="`idNpwp`" pulumi-lang-python="`id_npwp`" pulumi-lang-yaml="`idNpwp`" pulumi-lang-java="`idNpwp`" pulumi-lang-hcl="`id_npwp`">`idNpwp`</span>, <span pulumi-lang-nodejs="`myFrp`" pulumi-lang-dotnet="`MyFrp`" pulumi-lang-go="`myFrp`" pulumi-lang-python="`my_frp`" pulumi-lang-yaml="`myFrp`" pulumi-lang-java="`myFrp`" pulumi-lang-hcl="`my_frp`">`myFrp`</span>, <span pulumi-lang-nodejs="`ilVat`" pulumi-lang-dotnet="`IlVat`" pulumi-lang-go="`ilVat`" pulumi-lang-python="`il_vat`" pulumi-lang-yaml="`ilVat`" pulumi-lang-java="`ilVat`" pulumi-lang-hcl="`il_vat`">`ilVat`</span>, <span pulumi-lang-nodejs="`geVat`" pulumi-lang-dotnet="`GeVat`" pulumi-lang-go="`geVat`" pulumi-lang-python="`ge_vat`" pulumi-lang-yaml="`geVat`" pulumi-lang-java="`geVat`" pulumi-lang-hcl="`ge_vat`">`geVat`</span>, <span pulumi-lang-nodejs="`uaVat`" pulumi-lang-dotnet="`UaVat`" pulumi-lang-go="`uaVat`" pulumi-lang-python="`ua_vat`" pulumi-lang-yaml="`uaVat`" pulumi-lang-java="`uaVat`" pulumi-lang-hcl="`ua_vat`">`uaVat`</span>, <span pulumi-lang-nodejs="`isVat`" pulumi-lang-dotnet="`IsVat`" pulumi-lang-go="`isVat`" pulumi-lang-python="`is_vat`" pulumi-lang-yaml="`isVat`" pulumi-lang-java="`isVat`" pulumi-lang-hcl="`is_vat`">`isVat`</span>, <span pulumi-lang-nodejs="`bgUic`" pulumi-lang-dotnet="`BgUic`" pulumi-lang-go="`bgUic`" pulumi-lang-python="`bg_uic`" pulumi-lang-yaml="`bgUic`" pulumi-lang-java="`bgUic`" pulumi-lang-hcl="`bg_uic`">`bgUic`</span>, <span pulumi-lang-nodejs="`huTin`" pulumi-lang-dotnet="`HuTin`" pulumi-lang-go="`huTin`" pulumi-lang-python="`hu_tin`" pulumi-lang-yaml="`huTin`" pulumi-lang-java="`huTin`" pulumi-lang-hcl="`hu_tin`">`huTin`</span>, <span pulumi-lang-nodejs="`siTin`" pulumi-lang-dotnet="`SiTin`" pulumi-lang-go="`siTin`" pulumi-lang-python="`si_tin`" pulumi-lang-yaml="`siTin`" pulumi-lang-java="`siTin`" pulumi-lang-hcl="`si_tin`">`siTin`</span>, <span pulumi-lang-nodejs="`kePin`" pulumi-lang-dotnet="`KePin`" pulumi-lang-go="`kePin`" pulumi-lang-python="`ke_pin`" pulumi-lang-yaml="`kePin`" pulumi-lang-java="`kePin`" pulumi-lang-hcl="`ke_pin`">`kePin`</span>, <span pulumi-lang-nodejs="`trTin`" pulumi-lang-dotnet="`TrTin`" pulumi-lang-go="`trTin`" pulumi-lang-python="`tr_tin`" pulumi-lang-yaml="`trTin`" pulumi-lang-java="`trTin`" pulumi-lang-hcl="`tr_tin`">`trTin`</span>, <span pulumi-lang-nodejs="`egTin`" pulumi-lang-dotnet="`EgTin`" pulumi-lang-go="`egTin`" pulumi-lang-python="`eg_tin`" pulumi-lang-yaml="`egTin`" pulumi-lang-java="`egTin`" pulumi-lang-hcl="`eg_tin`">`egTin`</span>, <span pulumi-lang-nodejs="`phTin`" pulumi-lang-dotnet="`PhTin`" pulumi-lang-go="`phTin`" pulumi-lang-python="`ph_tin`" pulumi-lang-yaml="`phTin`" pulumi-lang-java="`phTin`" pulumi-lang-hcl="`ph_tin`">`phTin`</span>, <span pulumi-lang-nodejs="`alTin`" pulumi-lang-dotnet="`AlTin`" pulumi-lang-go="`alTin`" pulumi-lang-python="`al_tin`" pulumi-lang-yaml="`alTin`" pulumi-lang-java="`alTin`" pulumi-lang-hcl="`al_tin`">`alTin`</span>, <span pulumi-lang-nodejs="`bhVat`" pulumi-lang-dotnet="`BhVat`" pulumi-lang-go="`bhVat`" pulumi-lang-python="`bh_vat`" pulumi-lang-yaml="`bhVat`" pulumi-lang-java="`bhVat`" pulumi-lang-hcl="`bh_vat`">`bhVat`</span>, <span pulumi-lang-nodejs="`kzBin`" pulumi-lang-dotnet="`KzBin`" pulumi-lang-go="`kzBin`" pulumi-lang-python="`kz_bin`" pulumi-lang-yaml="`kzBin`" pulumi-lang-java="`kzBin`" pulumi-lang-hcl="`kz_bin`">`kzBin`</span>, <span pulumi-lang-nodejs="`ngTin`" pulumi-lang-dotnet="`NgTin`" pulumi-lang-go="`ngTin`" pulumi-lang-python="`ng_tin`" pulumi-lang-yaml="`ngTin`" pulumi-lang-java="`ngTin`" pulumi-lang-hcl="`ng_tin`">`ngTin`</span>, <span pulumi-lang-nodejs="`omVat`" pulumi-lang-dotnet="`OmVat`" pulumi-lang-go="`omVat`" pulumi-lang-python="`om_vat`" pulumi-lang-yaml="`omVat`" pulumi-lang-java="`omVat`" pulumi-lang-hcl="`om_vat`">`omVat`</span>, <span pulumi-lang-nodejs="`deStn`" pulumi-lang-dotnet="`DeStn`" pulumi-lang-go="`deStn`" pulumi-lang-python="`de_stn`" pulumi-lang-yaml="`deStn`" pulumi-lang-java="`deStn`" pulumi-lang-hcl="`de_stn`">`deStn`</span>, <span pulumi-lang-nodejs="`chUid`" pulumi-lang-dotnet="`ChUid`" pulumi-lang-go="`chUid`" pulumi-lang-python="`ch_uid`" pulumi-lang-yaml="`chUid`" pulumi-lang-java="`chUid`" pulumi-lang-hcl="`ch_uid`">`chUid`</span>, <span pulumi-lang-nodejs="`tzVat`" pulumi-lang-dotnet="`TzVat`" pulumi-lang-go="`tzVat`" pulumi-lang-python="`tz_vat`" pulumi-lang-yaml="`tzVat`" pulumi-lang-java="`tzVat`" pulumi-lang-hcl="`tz_vat`">`tzVat`</span>, <span pulumi-lang-nodejs="`uzVat`" pulumi-lang-dotnet="`UzVat`" pulumi-lang-go="`uzVat`" pulumi-lang-python="`uz_vat`" pulumi-lang-yaml="`uzVat`" pulumi-lang-java="`uzVat`" pulumi-lang-hcl="`uz_vat`">`uzVat`</span>, <span pulumi-lang-nodejs="`uzTin`" pulumi-lang-dotnet="`UzTin`" pulumi-lang-go="`uzTin`" pulumi-lang-python="`uz_tin`" pulumi-lang-yaml="`uzTin`" pulumi-lang-java="`uzTin`" pulumi-lang-hcl="`uz_tin`">`uzTin`</span>, <span pulumi-lang-nodejs="`mdVat`" pulumi-lang-dotnet="`MdVat`" pulumi-lang-go="`mdVat`" pulumi-lang-python="`md_vat`" pulumi-lang-yaml="`mdVat`" pulumi-lang-java="`mdVat`" pulumi-lang-hcl="`md_vat`">`mdVat`</span>, <span pulumi-lang-nodejs="`maVat`" pulumi-lang-dotnet="`MaVat`" pulumi-lang-go="`maVat`" pulumi-lang-python="`ma_vat`" pulumi-lang-yaml="`maVat`" pulumi-lang-java="`maVat`" pulumi-lang-hcl="`ma_vat`">`maVat`</span>, <span pulumi-lang-nodejs="`byTin`" pulumi-lang-dotnet="`ByTin`" pulumi-lang-go="`byTin`" pulumi-lang-python="`by_tin`" pulumi-lang-yaml="`byTin`" pulumi-lang-java="`byTin`" pulumi-lang-hcl="`by_tin`">`byTin`</span>, <span pulumi-lang-nodejs="`aoTin`" pulumi-lang-dotnet="`AoTin`" pulumi-lang-go="`aoTin`" pulumi-lang-python="`ao_tin`" pulumi-lang-yaml="`aoTin`" pulumi-lang-java="`aoTin`" pulumi-lang-hcl="`ao_tin`">`aoTin`</span>, <span pulumi-lang-nodejs="`bsTin`" pulumi-lang-dotnet="`BsTin`" pulumi-lang-go="`bsTin`" pulumi-lang-python="`bs_tin`" pulumi-lang-yaml="`bsTin`" pulumi-lang-java="`bsTin`" pulumi-lang-hcl="`bs_tin`">`bsTin`</span>, <span pulumi-lang-nodejs="`bbTin`" pulumi-lang-dotnet="`BbTin`" pulumi-lang-go="`bbTin`" pulumi-lang-python="`bb_tin`" pulumi-lang-yaml="`bbTin`" pulumi-lang-java="`bbTin`" pulumi-lang-hcl="`bb_tin`">`bbTin`</span>, <span pulumi-lang-nodejs="`cdNif`" pulumi-lang-dotnet="`CdNif`" pulumi-lang-go="`cdNif`" pulumi-lang-python="`cd_nif`" pulumi-lang-yaml="`cdNif`" pulumi-lang-java="`cdNif`" pulumi-lang-hcl="`cd_nif`">`cdNif`</span>, <span pulumi-lang-nodejs="`mrNif`" pulumi-lang-dotnet="`MrNif`" pulumi-lang-go="`mrNif`" pulumi-lang-python="`mr_nif`" pulumi-lang-yaml="`mrNif`" pulumi-lang-java="`mrNif`" pulumi-lang-hcl="`mr_nif`">`mrNif`</span>, <span pulumi-lang-nodejs="`mePib`" pulumi-lang-dotnet="`MePib`" pulumi-lang-go="`mePib`" pulumi-lang-python="`me_pib`" pulumi-lang-yaml="`mePib`" pulumi-lang-java="`mePib`" pulumi-lang-hcl="`me_pib`">`mePib`</span>, <span pulumi-lang-nodejs="`zwTin`" pulumi-lang-dotnet="`ZwTin`" pulumi-lang-go="`zwTin`" pulumi-lang-python="`zw_tin`" pulumi-lang-yaml="`zwTin`" pulumi-lang-java="`zwTin`" pulumi-lang-hcl="`zw_tin`">`zwTin`</span>, <span pulumi-lang-nodejs="`baTin`" pulumi-lang-dotnet="`BaTin`" pulumi-lang-go="`baTin`" pulumi-lang-python="`ba_tin`" pulumi-lang-yaml="`baTin`" pulumi-lang-java="`baTin`" pulumi-lang-hcl="`ba_tin`">`baTin`</span>, <span pulumi-lang-nodejs="`gnNif`" pulumi-lang-dotnet="`GnNif`" pulumi-lang-go="`gnNif`" pulumi-lang-python="`gn_nif`" pulumi-lang-yaml="`gnNif`" pulumi-lang-java="`gnNif`" pulumi-lang-hcl="`gn_nif`">`gnNif`</span>, <span pulumi-lang-nodejs="`mkVat`" pulumi-lang-dotnet="`MkVat`" pulumi-lang-go="`mkVat`" pulumi-lang-python="`mk_vat`" pulumi-lang-yaml="`mkVat`" pulumi-lang-java="`mkVat`" pulumi-lang-hcl="`mk_vat`">`mkVat`</span>, <span pulumi-lang-nodejs="`srFin`" pulumi-lang-dotnet="`SrFin`" pulumi-lang-go="`srFin`" pulumi-lang-python="`sr_fin`" pulumi-lang-yaml="`srFin`" pulumi-lang-java="`srFin`" pulumi-lang-hcl="`sr_fin`">`srFin`</span>, <span pulumi-lang-nodejs="`snNinea`" pulumi-lang-dotnet="`SnNinea`" pulumi-lang-go="`snNinea`" pulumi-lang-python="`sn_ninea`" pulumi-lang-yaml="`snNinea`" pulumi-lang-java="`snNinea`" pulumi-lang-hcl="`sn_ninea`">`snNinea`</span>, <span pulumi-lang-nodejs="`amTin`" pulumi-lang-dotnet="`AmTin`" pulumi-lang-go="`amTin`" pulumi-lang-python="`am_tin`" pulumi-lang-yaml="`amTin`" pulumi-lang-java="`amTin`" pulumi-lang-hcl="`am_tin`">`amTin`</span>, <span pulumi-lang-nodejs="`npPan`" pulumi-lang-dotnet="`NpPan`" pulumi-lang-go="`npPan`" pulumi-lang-python="`np_pan`" pulumi-lang-yaml="`npPan`" pulumi-lang-java="`npPan`" pulumi-lang-hcl="`np_pan`">`npPan`</span>, <span pulumi-lang-nodejs="`tjTin`" pulumi-lang-dotnet="`TjTin`" pulumi-lang-go="`tjTin`" pulumi-lang-python="`tj_tin`" pulumi-lang-yaml="`tjTin`" pulumi-lang-java="`tjTin`" pulumi-lang-hcl="`tj_tin`">`tjTin`</span>, <span pulumi-lang-nodejs="`ugTin`" pulumi-lang-dotnet="`UgTin`" pulumi-lang-go="`ugTin`" pulumi-lang-python="`ug_tin`" pulumi-lang-yaml="`ugTin`" pulumi-lang-java="`ugTin`" pulumi-lang-hcl="`ug_tin`">`ugTin`</span>, <span pulumi-lang-nodejs="`zmTin`" pulumi-lang-dotnet="`ZmTin`" pulumi-lang-go="`zmTin`" pulumi-lang-python="`zm_tin`" pulumi-lang-yaml="`zmTin`" pulumi-lang-java="`zmTin`" pulumi-lang-hcl="`zm_tin`">`zmTin`</span>, <span pulumi-lang-nodejs="`khTin`" pulumi-lang-dotnet="`KhTin`" pulumi-lang-go="`khTin`" pulumi-lang-python="`kh_tin`" pulumi-lang-yaml="`khTin`" pulumi-lang-java="`khTin`" pulumi-lang-hcl="`kh_tin`">`khTin`</span>, <span pulumi-lang-nodejs="`awTin`" pulumi-lang-dotnet="`AwTin`" pulumi-lang-go="`awTin`" pulumi-lang-python="`aw_tin`" pulumi-lang-yaml="`awTin`" pulumi-lang-java="`awTin`" pulumi-lang-hcl="`aw_tin`">`awTin`</span>, <span pulumi-lang-nodejs="`azTin`" pulumi-lang-dotnet="`AzTin`" pulumi-lang-go="`azTin`" pulumi-lang-python="`az_tin`" pulumi-lang-yaml="`azTin`" pulumi-lang-java="`azTin`" pulumi-lang-hcl="`az_tin`">`azTin`</span>, <span pulumi-lang-nodejs="`bdBin`" pulumi-lang-dotnet="`BdBin`" pulumi-lang-go="`bdBin`" pulumi-lang-python="`bd_bin`" pulumi-lang-yaml="`bdBin`" pulumi-lang-java="`bdBin`" pulumi-lang-hcl="`bd_bin`">`bdBin`</span>, <span pulumi-lang-nodejs="`bjIfu`" pulumi-lang-dotnet="`BjIfu`" pulumi-lang-go="`bjIfu`" pulumi-lang-python="`bj_ifu`" pulumi-lang-yaml="`bjIfu`" pulumi-lang-java="`bjIfu`" pulumi-lang-hcl="`bj_ifu`">`bjIfu`</span>, <span pulumi-lang-nodejs="`etTin`" pulumi-lang-dotnet="`EtTin`" pulumi-lang-go="`etTin`" pulumi-lang-python="`et_tin`" pulumi-lang-yaml="`etTin`" pulumi-lang-java="`etTin`" pulumi-lang-hcl="`et_tin`">`etTin`</span>, <span pulumi-lang-nodejs="`kgTin`" pulumi-lang-dotnet="`KgTin`" pulumi-lang-go="`kgTin`" pulumi-lang-python="`kg_tin`" pulumi-lang-yaml="`kgTin`" pulumi-lang-java="`kgTin`" pulumi-lang-hcl="`kg_tin`">`kgTin`</span>, <span pulumi-lang-nodejs="`laTin`" pulumi-lang-dotnet="`LaTin`" pulumi-lang-go="`laTin`" pulumi-lang-python="`la_tin`" pulumi-lang-yaml="`laTin`" pulumi-lang-java="`laTin`" pulumi-lang-hcl="`la_tin`">`laTin`</span>, <span pulumi-lang-nodejs="`cmNiu`" pulumi-lang-dotnet="`CmNiu`" pulumi-lang-go="`cmNiu`" pulumi-lang-python="`cm_niu`" pulumi-lang-yaml="`cmNiu`" pulumi-lang-java="`cmNiu`" pulumi-lang-hcl="`cm_niu`">`cmNiu`</span>, <span pulumi-lang-nodejs="`cvNif`" pulumi-lang-dotnet="`CvNif`" pulumi-lang-go="`cvNif`" pulumi-lang-python="`cv_nif`" pulumi-lang-yaml="`cvNif`" pulumi-lang-java="`cvNif`" pulumi-lang-hcl="`cv_nif`">`cvNif`</span>, <span pulumi-lang-nodejs="`bfIfu`" pulumi-lang-dotnet="`BfIfu`" pulumi-lang-go="`bfIfu`" pulumi-lang-python="`bf_ifu`" pulumi-lang-yaml="`bfIfu`" pulumi-lang-java="`bfIfu`" pulumi-lang-hcl="`bf_ifu`">`bfIfu`</span>, or <span pulumi-lang-nodejs="`unknown`" pulumi-lang-dotnet="`Unknown`" pulumi-lang-go="`unknown`" pulumi-lang-python="`unknown`" pulumi-lang-yaml="`unknown`" pulumi-lang-java="`unknown`" pulumi-lang-hcl="`unknown`">`unknown`</span>
+     * The type of the tax ID, one of <span pulumi-lang-nodejs="`adNrt`" pulumi-lang-dotnet="`AdNrt`" pulumi-lang-go="`adNrt`" pulumi-lang-python="`ad_nrt`" pulumi-lang-yaml="`adNrt`" pulumi-lang-java="`adNrt`" pulumi-lang-hcl="`ad_nrt`">`adNrt`</span>, <span pulumi-lang-nodejs="`arCuit`" pulumi-lang-dotnet="`ArCuit`" pulumi-lang-go="`arCuit`" pulumi-lang-python="`ar_cuit`" pulumi-lang-yaml="`arCuit`" pulumi-lang-java="`arCuit`" pulumi-lang-hcl="`ar_cuit`">`arCuit`</span>, <span pulumi-lang-nodejs="`euVat`" pulumi-lang-dotnet="`EuVat`" pulumi-lang-go="`euVat`" pulumi-lang-python="`eu_vat`" pulumi-lang-yaml="`euVat`" pulumi-lang-java="`euVat`" pulumi-lang-hcl="`eu_vat`">`euVat`</span>, <span pulumi-lang-nodejs="`boTin`" pulumi-lang-dotnet="`BoTin`" pulumi-lang-go="`boTin`" pulumi-lang-python="`bo_tin`" pulumi-lang-yaml="`boTin`" pulumi-lang-java="`boTin`" pulumi-lang-hcl="`bo_tin`">`boTin`</span>, <span pulumi-lang-nodejs="`brCnpj`" pulumi-lang-dotnet="`BrCnpj`" pulumi-lang-go="`brCnpj`" pulumi-lang-python="`br_cnpj`" pulumi-lang-yaml="`brCnpj`" pulumi-lang-java="`brCnpj`" pulumi-lang-hcl="`br_cnpj`">`brCnpj`</span>, <span pulumi-lang-nodejs="`brCpf`" pulumi-lang-dotnet="`BrCpf`" pulumi-lang-go="`brCpf`" pulumi-lang-python="`br_cpf`" pulumi-lang-yaml="`brCpf`" pulumi-lang-java="`brCpf`" pulumi-lang-hcl="`br_cpf`">`brCpf`</span>, <span pulumi-lang-nodejs="`cnTin`" pulumi-lang-dotnet="`CnTin`" pulumi-lang-go="`cnTin`" pulumi-lang-python="`cn_tin`" pulumi-lang-yaml="`cnTin`" pulumi-lang-java="`cnTin`" pulumi-lang-hcl="`cn_tin`">`cnTin`</span>, <span pulumi-lang-nodejs="`coNit`" pulumi-lang-dotnet="`CoNit`" pulumi-lang-go="`coNit`" pulumi-lang-python="`co_nit`" pulumi-lang-yaml="`coNit`" pulumi-lang-java="`coNit`" pulumi-lang-hcl="`co_nit`">`coNit`</span>, <span pulumi-lang-nodejs="`crTin`" pulumi-lang-dotnet="`CrTin`" pulumi-lang-go="`crTin`" pulumi-lang-python="`cr_tin`" pulumi-lang-yaml="`crTin`" pulumi-lang-java="`crTin`" pulumi-lang-hcl="`cr_tin`">`crTin`</span>, <span pulumi-lang-nodejs="`doRcn`" pulumi-lang-dotnet="`DoRcn`" pulumi-lang-go="`doRcn`" pulumi-lang-python="`do_rcn`" pulumi-lang-yaml="`doRcn`" pulumi-lang-java="`doRcn`" pulumi-lang-hcl="`do_rcn`">`doRcn`</span>, <span pulumi-lang-nodejs="`ecRuc`" pulumi-lang-dotnet="`EcRuc`" pulumi-lang-go="`ecRuc`" pulumi-lang-python="`ec_ruc`" pulumi-lang-yaml="`ecRuc`" pulumi-lang-java="`ecRuc`" pulumi-lang-hcl="`ec_ruc`">`ecRuc`</span>, <span pulumi-lang-nodejs="`euOssVat`" pulumi-lang-dotnet="`EuOssVat`" pulumi-lang-go="`euOssVat`" pulumi-lang-python="`eu_oss_vat`" pulumi-lang-yaml="`euOssVat`" pulumi-lang-java="`euOssVat`" pulumi-lang-hcl="`eu_oss_vat`">`euOssVat`</span>, <span pulumi-lang-nodejs="`hrOib`" pulumi-lang-dotnet="`HrOib`" pulumi-lang-go="`hrOib`" pulumi-lang-python="`hr_oib`" pulumi-lang-yaml="`hrOib`" pulumi-lang-java="`hrOib`" pulumi-lang-hcl="`hr_oib`">`hrOib`</span>, <span pulumi-lang-nodejs="`peRuc`" pulumi-lang-dotnet="`PeRuc`" pulumi-lang-go="`peRuc`" pulumi-lang-python="`pe_ruc`" pulumi-lang-yaml="`peRuc`" pulumi-lang-java="`peRuc`" pulumi-lang-hcl="`pe_ruc`">`peRuc`</span>, <span pulumi-lang-nodejs="`roTin`" pulumi-lang-dotnet="`RoTin`" pulumi-lang-go="`roTin`" pulumi-lang-python="`ro_tin`" pulumi-lang-yaml="`roTin`" pulumi-lang-java="`roTin`" pulumi-lang-hcl="`ro_tin`">`roTin`</span>, <span pulumi-lang-nodejs="`rsPib`" pulumi-lang-dotnet="`RsPib`" pulumi-lang-go="`rsPib`" pulumi-lang-python="`rs_pib`" pulumi-lang-yaml="`rsPib`" pulumi-lang-java="`rsPib`" pulumi-lang-hcl="`rs_pib`">`rsPib`</span>, <span pulumi-lang-nodejs="`svNit`" pulumi-lang-dotnet="`SvNit`" pulumi-lang-go="`svNit`" pulumi-lang-python="`sv_nit`" pulumi-lang-yaml="`svNit`" pulumi-lang-java="`svNit`" pulumi-lang-hcl="`sv_nit`">`svNit`</span>, <span pulumi-lang-nodejs="`uyRuc`" pulumi-lang-dotnet="`UyRuc`" pulumi-lang-go="`uyRuc`" pulumi-lang-python="`uy_ruc`" pulumi-lang-yaml="`uyRuc`" pulumi-lang-java="`uyRuc`" pulumi-lang-hcl="`uy_ruc`">`uyRuc`</span>, <span pulumi-lang-nodejs="`veRif`" pulumi-lang-dotnet="`VeRif`" pulumi-lang-go="`veRif`" pulumi-lang-python="`ve_rif`" pulumi-lang-yaml="`veRif`" pulumi-lang-java="`veRif`" pulumi-lang-hcl="`ve_rif`">`veRif`</span>, <span pulumi-lang-nodejs="`vnTin`" pulumi-lang-dotnet="`VnTin`" pulumi-lang-go="`vnTin`" pulumi-lang-python="`vn_tin`" pulumi-lang-yaml="`vnTin`" pulumi-lang-java="`vnTin`" pulumi-lang-hcl="`vn_tin`">`vnTin`</span>, <span pulumi-lang-nodejs="`gbVat`" pulumi-lang-dotnet="`GbVat`" pulumi-lang-go="`gbVat`" pulumi-lang-python="`gb_vat`" pulumi-lang-yaml="`gbVat`" pulumi-lang-java="`gbVat`" pulumi-lang-hcl="`gb_vat`">`gbVat`</span>, <span pulumi-lang-nodejs="`nzGst`" pulumi-lang-dotnet="`NzGst`" pulumi-lang-go="`nzGst`" pulumi-lang-python="`nz_gst`" pulumi-lang-yaml="`nzGst`" pulumi-lang-java="`nzGst`" pulumi-lang-hcl="`nz_gst`">`nzGst`</span>, <span pulumi-lang-nodejs="`auAbn`" pulumi-lang-dotnet="`AuAbn`" pulumi-lang-go="`auAbn`" pulumi-lang-python="`au_abn`" pulumi-lang-yaml="`auAbn`" pulumi-lang-java="`auAbn`" pulumi-lang-hcl="`au_abn`">`auAbn`</span>, <span pulumi-lang-nodejs="`auArn`" pulumi-lang-dotnet="`AuArn`" pulumi-lang-go="`auArn`" pulumi-lang-python="`au_arn`" pulumi-lang-yaml="`auArn`" pulumi-lang-java="`auArn`" pulumi-lang-hcl="`au_arn`">`auArn`</span>, <span pulumi-lang-nodejs="`inGst`" pulumi-lang-dotnet="`InGst`" pulumi-lang-go="`inGst`" pulumi-lang-python="`in_gst`" pulumi-lang-yaml="`inGst`" pulumi-lang-java="`inGst`" pulumi-lang-hcl="`in_gst`">`inGst`</span>, <span pulumi-lang-nodejs="`noVat`" pulumi-lang-dotnet="`NoVat`" pulumi-lang-go="`noVat`" pulumi-lang-python="`no_vat`" pulumi-lang-yaml="`noVat`" pulumi-lang-java="`noVat`" pulumi-lang-hcl="`no_vat`">`noVat`</span>, <span pulumi-lang-nodejs="`noVoec`" pulumi-lang-dotnet="`NoVoec`" pulumi-lang-go="`noVoec`" pulumi-lang-python="`no_voec`" pulumi-lang-yaml="`noVoec`" pulumi-lang-java="`noVoec`" pulumi-lang-hcl="`no_voec`">`noVoec`</span>, <span pulumi-lang-nodejs="`zaVat`" pulumi-lang-dotnet="`ZaVat`" pulumi-lang-go="`zaVat`" pulumi-lang-python="`za_vat`" pulumi-lang-yaml="`zaVat`" pulumi-lang-java="`zaVat`" pulumi-lang-hcl="`za_vat`">`zaVat`</span>, <span pulumi-lang-nodejs="`chVat`" pulumi-lang-dotnet="`ChVat`" pulumi-lang-go="`chVat`" pulumi-lang-python="`ch_vat`" pulumi-lang-yaml="`chVat`" pulumi-lang-java="`chVat`" pulumi-lang-hcl="`ch_vat`">`chVat`</span>, <span pulumi-lang-nodejs="`mxRfc`" pulumi-lang-dotnet="`MxRfc`" pulumi-lang-go="`mxRfc`" pulumi-lang-python="`mx_rfc`" pulumi-lang-yaml="`mxRfc`" pulumi-lang-java="`mxRfc`" pulumi-lang-hcl="`mx_rfc`">`mxRfc`</span>, <span pulumi-lang-nodejs="`sgUen`" pulumi-lang-dotnet="`SgUen`" pulumi-lang-go="`sgUen`" pulumi-lang-python="`sg_uen`" pulumi-lang-yaml="`sgUen`" pulumi-lang-java="`sgUen`" pulumi-lang-hcl="`sg_uen`">`sgUen`</span>, <span pulumi-lang-nodejs="`ruInn`" pulumi-lang-dotnet="`RuInn`" pulumi-lang-go="`ruInn`" pulumi-lang-python="`ru_inn`" pulumi-lang-yaml="`ruInn`" pulumi-lang-java="`ruInn`" pulumi-lang-hcl="`ru_inn`">`ruInn`</span>, <span pulumi-lang-nodejs="`ruKpp`" pulumi-lang-dotnet="`RuKpp`" pulumi-lang-go="`ruKpp`" pulumi-lang-python="`ru_kpp`" pulumi-lang-yaml="`ruKpp`" pulumi-lang-java="`ruKpp`" pulumi-lang-hcl="`ru_kpp`">`ruKpp`</span>, <span pulumi-lang-nodejs="`caBn`" pulumi-lang-dotnet="`CaBn`" pulumi-lang-go="`caBn`" pulumi-lang-python="`ca_bn`" pulumi-lang-yaml="`caBn`" pulumi-lang-java="`caBn`" pulumi-lang-hcl="`ca_bn`">`caBn`</span>, <span pulumi-lang-nodejs="`hkBr`" pulumi-lang-dotnet="`HkBr`" pulumi-lang-go="`hkBr`" pulumi-lang-python="`hk_br`" pulumi-lang-yaml="`hkBr`" pulumi-lang-java="`hkBr`" pulumi-lang-hcl="`hk_br`">`hkBr`</span>, <span pulumi-lang-nodejs="`esCif`" pulumi-lang-dotnet="`EsCif`" pulumi-lang-go="`esCif`" pulumi-lang-python="`es_cif`" pulumi-lang-yaml="`esCif`" pulumi-lang-java="`esCif`" pulumi-lang-hcl="`es_cif`">`esCif`</span>, <span pulumi-lang-nodejs="`plNip`" pulumi-lang-dotnet="`PlNip`" pulumi-lang-go="`plNip`" pulumi-lang-python="`pl_nip`" pulumi-lang-yaml="`plNip`" pulumi-lang-java="`plNip`" pulumi-lang-hcl="`pl_nip`">`plNip`</span>, <span pulumi-lang-nodejs="`itCf`" pulumi-lang-dotnet="`ItCf`" pulumi-lang-go="`itCf`" pulumi-lang-python="`it_cf`" pulumi-lang-yaml="`itCf`" pulumi-lang-java="`itCf`" pulumi-lang-hcl="`it_cf`">`itCf`</span>, <span pulumi-lang-nodejs="`foVat`" pulumi-lang-dotnet="`FoVat`" pulumi-lang-go="`foVat`" pulumi-lang-python="`fo_vat`" pulumi-lang-yaml="`foVat`" pulumi-lang-java="`foVat`" pulumi-lang-hcl="`fo_vat`">`foVat`</span>, <span pulumi-lang-nodejs="`giTin`" pulumi-lang-dotnet="`GiTin`" pulumi-lang-go="`giTin`" pulumi-lang-python="`gi_tin`" pulumi-lang-yaml="`giTin`" pulumi-lang-java="`giTin`" pulumi-lang-hcl="`gi_tin`">`giTin`</span>, <span pulumi-lang-nodejs="`pyRuc`" pulumi-lang-dotnet="`PyRuc`" pulumi-lang-go="`pyRuc`" pulumi-lang-python="`py_ruc`" pulumi-lang-yaml="`pyRuc`" pulumi-lang-java="`pyRuc`" pulumi-lang-hcl="`py_ruc`">`pyRuc`</span>, <span pulumi-lang-nodejs="`twVat`" pulumi-lang-dotnet="`TwVat`" pulumi-lang-go="`twVat`" pulumi-lang-python="`tw_vat`" pulumi-lang-yaml="`twVat`" pulumi-lang-java="`twVat`" pulumi-lang-hcl="`tw_vat`">`twVat`</span>, <span pulumi-lang-nodejs="`thVat`" pulumi-lang-dotnet="`ThVat`" pulumi-lang-go="`thVat`" pulumi-lang-python="`th_vat`" pulumi-lang-yaml="`thVat`" pulumi-lang-java="`thVat`" pulumi-lang-hcl="`th_vat`">`thVat`</span>, <span pulumi-lang-nodejs="`jpCn`" pulumi-lang-dotnet="`JpCn`" pulumi-lang-go="`jpCn`" pulumi-lang-python="`jp_cn`" pulumi-lang-yaml="`jpCn`" pulumi-lang-java="`jpCn`" pulumi-lang-hcl="`jp_cn`">`jpCn`</span>, <span pulumi-lang-nodejs="`jpRn`" pulumi-lang-dotnet="`JpRn`" pulumi-lang-go="`jpRn`" pulumi-lang-python="`jp_rn`" pulumi-lang-yaml="`jpRn`" pulumi-lang-java="`jpRn`" pulumi-lang-hcl="`jp_rn`">`jpRn`</span>, <span pulumi-lang-nodejs="`jpTrn`" pulumi-lang-dotnet="`JpTrn`" pulumi-lang-go="`jpTrn`" pulumi-lang-python="`jp_trn`" pulumi-lang-yaml="`jpTrn`" pulumi-lang-java="`jpTrn`" pulumi-lang-hcl="`jp_trn`">`jpTrn`</span>, <span pulumi-lang-nodejs="`liUid`" pulumi-lang-dotnet="`LiUid`" pulumi-lang-go="`liUid`" pulumi-lang-python="`li_uid`" pulumi-lang-yaml="`liUid`" pulumi-lang-java="`liUid`" pulumi-lang-hcl="`li_uid`">`liUid`</span>, <span pulumi-lang-nodejs="`liVat`" pulumi-lang-dotnet="`LiVat`" pulumi-lang-go="`liVat`" pulumi-lang-python="`li_vat`" pulumi-lang-yaml="`liVat`" pulumi-lang-java="`liVat`" pulumi-lang-hcl="`li_vat`">`liVat`</span>, <span pulumi-lang-nodejs="`lkVat`" pulumi-lang-dotnet="`LkVat`" pulumi-lang-go="`lkVat`" pulumi-lang-python="`lk_vat`" pulumi-lang-yaml="`lkVat`" pulumi-lang-java="`lkVat`" pulumi-lang-hcl="`lk_vat`">`lkVat`</span>, <span pulumi-lang-nodejs="`myItn`" pulumi-lang-dotnet="`MyItn`" pulumi-lang-go="`myItn`" pulumi-lang-python="`my_itn`" pulumi-lang-yaml="`myItn`" pulumi-lang-java="`myItn`" pulumi-lang-hcl="`my_itn`">`myItn`</span>, <span pulumi-lang-nodejs="`usEin`" pulumi-lang-dotnet="`UsEin`" pulumi-lang-go="`usEin`" pulumi-lang-python="`us_ein`" pulumi-lang-yaml="`usEin`" pulumi-lang-java="`usEin`" pulumi-lang-hcl="`us_ein`">`usEin`</span>, <span pulumi-lang-nodejs="`krBrn`" pulumi-lang-dotnet="`KrBrn`" pulumi-lang-go="`krBrn`" pulumi-lang-python="`kr_brn`" pulumi-lang-yaml="`krBrn`" pulumi-lang-java="`krBrn`" pulumi-lang-hcl="`kr_brn`">`krBrn`</span>, <span pulumi-lang-nodejs="`caQst`" pulumi-lang-dotnet="`CaQst`" pulumi-lang-go="`caQst`" pulumi-lang-python="`ca_qst`" pulumi-lang-yaml="`caQst`" pulumi-lang-java="`caQst`" pulumi-lang-hcl="`ca_qst`">`caQst`</span>, <span pulumi-lang-nodejs="`caGstHst`" pulumi-lang-dotnet="`CaGstHst`" pulumi-lang-go="`caGstHst`" pulumi-lang-python="`ca_gst_hst`" pulumi-lang-yaml="`caGstHst`" pulumi-lang-java="`caGstHst`" pulumi-lang-hcl="`ca_gst_hst`">`caGstHst`</span>, <span pulumi-lang-nodejs="`caPstBc`" pulumi-lang-dotnet="`CaPstBc`" pulumi-lang-go="`caPstBc`" pulumi-lang-python="`ca_pst_bc`" pulumi-lang-yaml="`caPstBc`" pulumi-lang-java="`caPstBc`" pulumi-lang-hcl="`ca_pst_bc`">`caPstBc`</span>, <span pulumi-lang-nodejs="`caPstMb`" pulumi-lang-dotnet="`CaPstMb`" pulumi-lang-go="`caPstMb`" pulumi-lang-python="`ca_pst_mb`" pulumi-lang-yaml="`caPstMb`" pulumi-lang-java="`caPstMb`" pulumi-lang-hcl="`ca_pst_mb`">`caPstMb`</span>, <span pulumi-lang-nodejs="`caPstSk`" pulumi-lang-dotnet="`CaPstSk`" pulumi-lang-go="`caPstSk`" pulumi-lang-python="`ca_pst_sk`" pulumi-lang-yaml="`caPstSk`" pulumi-lang-java="`caPstSk`" pulumi-lang-hcl="`ca_pst_sk`">`caPstSk`</span>, <span pulumi-lang-nodejs="`mySst`" pulumi-lang-dotnet="`MySst`" pulumi-lang-go="`mySst`" pulumi-lang-python="`my_sst`" pulumi-lang-yaml="`mySst`" pulumi-lang-java="`mySst`" pulumi-lang-hcl="`my_sst`">`mySst`</span>, <span pulumi-lang-nodejs="`sgGst`" pulumi-lang-dotnet="`SgGst`" pulumi-lang-go="`sgGst`" pulumi-lang-python="`sg_gst`" pulumi-lang-yaml="`sgGst`" pulumi-lang-java="`sgGst`" pulumi-lang-hcl="`sg_gst`">`sgGst`</span>, <span pulumi-lang-nodejs="`aeTrn`" pulumi-lang-dotnet="`AeTrn`" pulumi-lang-go="`aeTrn`" pulumi-lang-python="`ae_trn`" pulumi-lang-yaml="`aeTrn`" pulumi-lang-java="`aeTrn`" pulumi-lang-hcl="`ae_trn`">`aeTrn`</span>, <span pulumi-lang-nodejs="`clTin`" pulumi-lang-dotnet="`ClTin`" pulumi-lang-go="`clTin`" pulumi-lang-python="`cl_tin`" pulumi-lang-yaml="`clTin`" pulumi-lang-java="`clTin`" pulumi-lang-hcl="`cl_tin`">`clTin`</span>, <span pulumi-lang-nodejs="`saVat`" pulumi-lang-dotnet="`SaVat`" pulumi-lang-go="`saVat`" pulumi-lang-python="`sa_vat`" pulumi-lang-yaml="`saVat`" pulumi-lang-java="`saVat`" pulumi-lang-hcl="`sa_vat`">`saVat`</span>, <span pulumi-lang-nodejs="`idNpwp`" pulumi-lang-dotnet="`IdNpwp`" pulumi-lang-go="`idNpwp`" pulumi-lang-python="`id_npwp`" pulumi-lang-yaml="`idNpwp`" pulumi-lang-java="`idNpwp`" pulumi-lang-hcl="`id_npwp`">`idNpwp`</span>, <span pulumi-lang-nodejs="`myFrp`" pulumi-lang-dotnet="`MyFrp`" pulumi-lang-go="`myFrp`" pulumi-lang-python="`my_frp`" pulumi-lang-yaml="`myFrp`" pulumi-lang-java="`myFrp`" pulumi-lang-hcl="`my_frp`">`myFrp`</span>, <span pulumi-lang-nodejs="`ilVat`" pulumi-lang-dotnet="`IlVat`" pulumi-lang-go="`ilVat`" pulumi-lang-python="`il_vat`" pulumi-lang-yaml="`ilVat`" pulumi-lang-java="`ilVat`" pulumi-lang-hcl="`il_vat`">`ilVat`</span>, <span pulumi-lang-nodejs="`geVat`" pulumi-lang-dotnet="`GeVat`" pulumi-lang-go="`geVat`" pulumi-lang-python="`ge_vat`" pulumi-lang-yaml="`geVat`" pulumi-lang-java="`geVat`" pulumi-lang-hcl="`ge_vat`">`geVat`</span>, <span pulumi-lang-nodejs="`uaVat`" pulumi-lang-dotnet="`UaVat`" pulumi-lang-go="`uaVat`" pulumi-lang-python="`ua_vat`" pulumi-lang-yaml="`uaVat`" pulumi-lang-java="`uaVat`" pulumi-lang-hcl="`ua_vat`">`uaVat`</span>, <span pulumi-lang-nodejs="`isVat`" pulumi-lang-dotnet="`IsVat`" pulumi-lang-go="`isVat`" pulumi-lang-python="`is_vat`" pulumi-lang-yaml="`isVat`" pulumi-lang-java="`isVat`" pulumi-lang-hcl="`is_vat`">`isVat`</span>, <span pulumi-lang-nodejs="`bgUic`" pulumi-lang-dotnet="`BgUic`" pulumi-lang-go="`bgUic`" pulumi-lang-python="`bg_uic`" pulumi-lang-yaml="`bgUic`" pulumi-lang-java="`bgUic`" pulumi-lang-hcl="`bg_uic`">`bgUic`</span>, <span pulumi-lang-nodejs="`huTin`" pulumi-lang-dotnet="`HuTin`" pulumi-lang-go="`huTin`" pulumi-lang-python="`hu_tin`" pulumi-lang-yaml="`huTin`" pulumi-lang-java="`huTin`" pulumi-lang-hcl="`hu_tin`">`huTin`</span>, <span pulumi-lang-nodejs="`siTin`" pulumi-lang-dotnet="`SiTin`" pulumi-lang-go="`siTin`" pulumi-lang-python="`si_tin`" pulumi-lang-yaml="`siTin`" pulumi-lang-java="`siTin`" pulumi-lang-hcl="`si_tin`">`siTin`</span>, <span pulumi-lang-nodejs="`kePin`" pulumi-lang-dotnet="`KePin`" pulumi-lang-go="`kePin`" pulumi-lang-python="`ke_pin`" pulumi-lang-yaml="`kePin`" pulumi-lang-java="`kePin`" pulumi-lang-hcl="`ke_pin`">`kePin`</span>, <span pulumi-lang-nodejs="`trTin`" pulumi-lang-dotnet="`TrTin`" pulumi-lang-go="`trTin`" pulumi-lang-python="`tr_tin`" pulumi-lang-yaml="`trTin`" pulumi-lang-java="`trTin`" pulumi-lang-hcl="`tr_tin`">`trTin`</span>, <span pulumi-lang-nodejs="`egTin`" pulumi-lang-dotnet="`EgTin`" pulumi-lang-go="`egTin`" pulumi-lang-python="`eg_tin`" pulumi-lang-yaml="`egTin`" pulumi-lang-java="`egTin`" pulumi-lang-hcl="`eg_tin`">`egTin`</span>, <span pulumi-lang-nodejs="`phTin`" pulumi-lang-dotnet="`PhTin`" pulumi-lang-go="`phTin`" pulumi-lang-python="`ph_tin`" pulumi-lang-yaml="`phTin`" pulumi-lang-java="`phTin`" pulumi-lang-hcl="`ph_tin`">`phTin`</span>, <span pulumi-lang-nodejs="`alTin`" pulumi-lang-dotnet="`AlTin`" pulumi-lang-go="`alTin`" pulumi-lang-python="`al_tin`" pulumi-lang-yaml="`alTin`" pulumi-lang-java="`alTin`" pulumi-lang-hcl="`al_tin`">`alTin`</span>, <span pulumi-lang-nodejs="`bhVat`" pulumi-lang-dotnet="`BhVat`" pulumi-lang-go="`bhVat`" pulumi-lang-python="`bh_vat`" pulumi-lang-yaml="`bhVat`" pulumi-lang-java="`bhVat`" pulumi-lang-hcl="`bh_vat`">`bhVat`</span>, <span pulumi-lang-nodejs="`kzBin`" pulumi-lang-dotnet="`KzBin`" pulumi-lang-go="`kzBin`" pulumi-lang-python="`kz_bin`" pulumi-lang-yaml="`kzBin`" pulumi-lang-java="`kzBin`" pulumi-lang-hcl="`kz_bin`">`kzBin`</span>, <span pulumi-lang-nodejs="`ngTin`" pulumi-lang-dotnet="`NgTin`" pulumi-lang-go="`ngTin`" pulumi-lang-python="`ng_tin`" pulumi-lang-yaml="`ngTin`" pulumi-lang-java="`ngTin`" pulumi-lang-hcl="`ng_tin`">`ngTin`</span>, <span pulumi-lang-nodejs="`omVat`" pulumi-lang-dotnet="`OmVat`" pulumi-lang-go="`omVat`" pulumi-lang-python="`om_vat`" pulumi-lang-yaml="`omVat`" pulumi-lang-java="`omVat`" pulumi-lang-hcl="`om_vat`">`omVat`</span>, <span pulumi-lang-nodejs="`deStn`" pulumi-lang-dotnet="`DeStn`" pulumi-lang-go="`deStn`" pulumi-lang-python="`de_stn`" pulumi-lang-yaml="`deStn`" pulumi-lang-java="`deStn`" pulumi-lang-hcl="`de_stn`">`deStn`</span>, <span pulumi-lang-nodejs="`chUid`" pulumi-lang-dotnet="`ChUid`" pulumi-lang-go="`chUid`" pulumi-lang-python="`ch_uid`" pulumi-lang-yaml="`chUid`" pulumi-lang-java="`chUid`" pulumi-lang-hcl="`ch_uid`">`chUid`</span>, <span pulumi-lang-nodejs="`tzVat`" pulumi-lang-dotnet="`TzVat`" pulumi-lang-go="`tzVat`" pulumi-lang-python="`tz_vat`" pulumi-lang-yaml="`tzVat`" pulumi-lang-java="`tzVat`" pulumi-lang-hcl="`tz_vat`">`tzVat`</span>, <span pulumi-lang-nodejs="`uzVat`" pulumi-lang-dotnet="`UzVat`" pulumi-lang-go="`uzVat`" pulumi-lang-python="`uz_vat`" pulumi-lang-yaml="`uzVat`" pulumi-lang-java="`uzVat`" pulumi-lang-hcl="`uz_vat`">`uzVat`</span>, <span pulumi-lang-nodejs="`uzTin`" pulumi-lang-dotnet="`UzTin`" pulumi-lang-go="`uzTin`" pulumi-lang-python="`uz_tin`" pulumi-lang-yaml="`uzTin`" pulumi-lang-java="`uzTin`" pulumi-lang-hcl="`uz_tin`">`uzTin`</span>, <span pulumi-lang-nodejs="`mdVat`" pulumi-lang-dotnet="`MdVat`" pulumi-lang-go="`mdVat`" pulumi-lang-python="`md_vat`" pulumi-lang-yaml="`mdVat`" pulumi-lang-java="`mdVat`" pulumi-lang-hcl="`md_vat`">`mdVat`</span>, <span pulumi-lang-nodejs="`maVat`" pulumi-lang-dotnet="`MaVat`" pulumi-lang-go="`maVat`" pulumi-lang-python="`ma_vat`" pulumi-lang-yaml="`maVat`" pulumi-lang-java="`maVat`" pulumi-lang-hcl="`ma_vat`">`maVat`</span>, <span pulumi-lang-nodejs="`byTin`" pulumi-lang-dotnet="`ByTin`" pulumi-lang-go="`byTin`" pulumi-lang-python="`by_tin`" pulumi-lang-yaml="`byTin`" pulumi-lang-java="`byTin`" pulumi-lang-hcl="`by_tin`">`byTin`</span>, <span pulumi-lang-nodejs="`aoTin`" pulumi-lang-dotnet="`AoTin`" pulumi-lang-go="`aoTin`" pulumi-lang-python="`ao_tin`" pulumi-lang-yaml="`aoTin`" pulumi-lang-java="`aoTin`" pulumi-lang-hcl="`ao_tin`">`aoTin`</span>, <span pulumi-lang-nodejs="`bsTin`" pulumi-lang-dotnet="`BsTin`" pulumi-lang-go="`bsTin`" pulumi-lang-python="`bs_tin`" pulumi-lang-yaml="`bsTin`" pulumi-lang-java="`bsTin`" pulumi-lang-hcl="`bs_tin`">`bsTin`</span>, <span pulumi-lang-nodejs="`bbTin`" pulumi-lang-dotnet="`BbTin`" pulumi-lang-go="`bbTin`" pulumi-lang-python="`bb_tin`" pulumi-lang-yaml="`bbTin`" pulumi-lang-java="`bbTin`" pulumi-lang-hcl="`bb_tin`">`bbTin`</span>, <span pulumi-lang-nodejs="`cdNif`" pulumi-lang-dotnet="`CdNif`" pulumi-lang-go="`cdNif`" pulumi-lang-python="`cd_nif`" pulumi-lang-yaml="`cdNif`" pulumi-lang-java="`cdNif`" pulumi-lang-hcl="`cd_nif`">`cdNif`</span>, <span pulumi-lang-nodejs="`mrNif`" pulumi-lang-dotnet="`MrNif`" pulumi-lang-go="`mrNif`" pulumi-lang-python="`mr_nif`" pulumi-lang-yaml="`mrNif`" pulumi-lang-java="`mrNif`" pulumi-lang-hcl="`mr_nif`">`mrNif`</span>, <span pulumi-lang-nodejs="`mePib`" pulumi-lang-dotnet="`MePib`" pulumi-lang-go="`mePib`" pulumi-lang-python="`me_pib`" pulumi-lang-yaml="`mePib`" pulumi-lang-java="`mePib`" pulumi-lang-hcl="`me_pib`">`mePib`</span>, <span pulumi-lang-nodejs="`zwTin`" pulumi-lang-dotnet="`ZwTin`" pulumi-lang-go="`zwTin`" pulumi-lang-python="`zw_tin`" pulumi-lang-yaml="`zwTin`" pulumi-lang-java="`zwTin`" pulumi-lang-hcl="`zw_tin`">`zwTin`</span>, <span pulumi-lang-nodejs="`baTin`" pulumi-lang-dotnet="`BaTin`" pulumi-lang-go="`baTin`" pulumi-lang-python="`ba_tin`" pulumi-lang-yaml="`baTin`" pulumi-lang-java="`baTin`" pulumi-lang-hcl="`ba_tin`">`baTin`</span>, <span pulumi-lang-nodejs="`gnNif`" pulumi-lang-dotnet="`GnNif`" pulumi-lang-go="`gnNif`" pulumi-lang-python="`gn_nif`" pulumi-lang-yaml="`gnNif`" pulumi-lang-java="`gnNif`" pulumi-lang-hcl="`gn_nif`">`gnNif`</span>, <span pulumi-lang-nodejs="`mkVat`" pulumi-lang-dotnet="`MkVat`" pulumi-lang-go="`mkVat`" pulumi-lang-python="`mk_vat`" pulumi-lang-yaml="`mkVat`" pulumi-lang-java="`mkVat`" pulumi-lang-hcl="`mk_vat`">`mkVat`</span>, <span pulumi-lang-nodejs="`srFin`" pulumi-lang-dotnet="`SrFin`" pulumi-lang-go="`srFin`" pulumi-lang-python="`sr_fin`" pulumi-lang-yaml="`srFin`" pulumi-lang-java="`srFin`" pulumi-lang-hcl="`sr_fin`">`srFin`</span>, <span pulumi-lang-nodejs="`snNinea`" pulumi-lang-dotnet="`SnNinea`" pulumi-lang-go="`snNinea`" pulumi-lang-python="`sn_ninea`" pulumi-lang-yaml="`snNinea`" pulumi-lang-java="`snNinea`" pulumi-lang-hcl="`sn_ninea`">`snNinea`</span>, <span pulumi-lang-nodejs="`amTin`" pulumi-lang-dotnet="`AmTin`" pulumi-lang-go="`amTin`" pulumi-lang-python="`am_tin`" pulumi-lang-yaml="`amTin`" pulumi-lang-java="`amTin`" pulumi-lang-hcl="`am_tin`">`amTin`</span>, <span pulumi-lang-nodejs="`npPan`" pulumi-lang-dotnet="`NpPan`" pulumi-lang-go="`npPan`" pulumi-lang-python="`np_pan`" pulumi-lang-yaml="`npPan`" pulumi-lang-java="`npPan`" pulumi-lang-hcl="`np_pan`">`npPan`</span>, <span pulumi-lang-nodejs="`tjTin`" pulumi-lang-dotnet="`TjTin`" pulumi-lang-go="`tjTin`" pulumi-lang-python="`tj_tin`" pulumi-lang-yaml="`tjTin`" pulumi-lang-java="`tjTin`" pulumi-lang-hcl="`tj_tin`">`tjTin`</span>, <span pulumi-lang-nodejs="`ugTin`" pulumi-lang-dotnet="`UgTin`" pulumi-lang-go="`ugTin`" pulumi-lang-python="`ug_tin`" pulumi-lang-yaml="`ugTin`" pulumi-lang-java="`ugTin`" pulumi-lang-hcl="`ug_tin`">`ugTin`</span>, <span pulumi-lang-nodejs="`zmTin`" pulumi-lang-dotnet="`ZmTin`" pulumi-lang-go="`zmTin`" pulumi-lang-python="`zm_tin`" pulumi-lang-yaml="`zmTin`" pulumi-lang-java="`zmTin`" pulumi-lang-hcl="`zm_tin`">`zmTin`</span>, <span pulumi-lang-nodejs="`khTin`" pulumi-lang-dotnet="`KhTin`" pulumi-lang-go="`khTin`" pulumi-lang-python="`kh_tin`" pulumi-lang-yaml="`khTin`" pulumi-lang-java="`khTin`" pulumi-lang-hcl="`kh_tin`">`khTin`</span>, <span pulumi-lang-nodejs="`awTin`" pulumi-lang-dotnet="`AwTin`" pulumi-lang-go="`awTin`" pulumi-lang-python="`aw_tin`" pulumi-lang-yaml="`awTin`" pulumi-lang-java="`awTin`" pulumi-lang-hcl="`aw_tin`">`awTin`</span>, <span pulumi-lang-nodejs="`azTin`" pulumi-lang-dotnet="`AzTin`" pulumi-lang-go="`azTin`" pulumi-lang-python="`az_tin`" pulumi-lang-yaml="`azTin`" pulumi-lang-java="`azTin`" pulumi-lang-hcl="`az_tin`">`azTin`</span>, <span pulumi-lang-nodejs="`bdBin`" pulumi-lang-dotnet="`BdBin`" pulumi-lang-go="`bdBin`" pulumi-lang-python="`bd_bin`" pulumi-lang-yaml="`bdBin`" pulumi-lang-java="`bdBin`" pulumi-lang-hcl="`bd_bin`">`bdBin`</span>, <span pulumi-lang-nodejs="`auAcn`" pulumi-lang-dotnet="`AuAcn`" pulumi-lang-go="`auAcn`" pulumi-lang-python="`au_acn`" pulumi-lang-yaml="`auAcn`" pulumi-lang-java="`auAcn`" pulumi-lang-hcl="`au_acn`">`auAcn`</span>, <span pulumi-lang-nodejs="`nzBn`" pulumi-lang-dotnet="`NzBn`" pulumi-lang-go="`nzBn`" pulumi-lang-python="`nz_bn`" pulumi-lang-yaml="`nzBn`" pulumi-lang-java="`nzBn`" pulumi-lang-hcl="`nz_bn`">`nzBn`</span>, <span pulumi-lang-nodejs="`ptNif`" pulumi-lang-dotnet="`PtNif`" pulumi-lang-go="`ptNif`" pulumi-lang-python="`pt_nif`" pulumi-lang-yaml="`ptNif`" pulumi-lang-java="`ptNif`" pulumi-lang-hcl="`pt_nif`">`ptNif`</span>, <span pulumi-lang-nodejs="`czDic`" pulumi-lang-dotnet="`CzDic`" pulumi-lang-go="`czDic`" pulumi-lang-python="`cz_dic`" pulumi-lang-yaml="`czDic`" pulumi-lang-java="`czDic`" pulumi-lang-hcl="`cz_dic`">`czDic`</span>, <span pulumi-lang-nodejs="`frSiret`" pulumi-lang-dotnet="`FrSiret`" pulumi-lang-go="`frSiret`" pulumi-lang-python="`fr_siret`" pulumi-lang-yaml="`frSiret`" pulumi-lang-java="`frSiret`" pulumi-lang-hcl="`fr_siret`">`frSiret`</span>, <span pulumi-lang-nodejs="`frSiren`" pulumi-lang-dotnet="`FrSiren`" pulumi-lang-go="`frSiren`" pulumi-lang-python="`fr_siren`" pulumi-lang-yaml="`frSiren`" pulumi-lang-java="`frSiren`" pulumi-lang-hcl="`fr_siren`">`frSiren`</span>, <span pulumi-lang-nodejs="`frSpi`" pulumi-lang-dotnet="`FrSpi`" pulumi-lang-go="`frSpi`" pulumi-lang-python="`fr_spi`" pulumi-lang-yaml="`frSpi`" pulumi-lang-java="`frSpi`" pulumi-lang-hcl="`fr_spi`">`frSpi`</span>, <span pulumi-lang-nodejs="`smCoe`" pulumi-lang-dotnet="`SmCoe`" pulumi-lang-go="`smCoe`" pulumi-lang-python="`sm_coe`" pulumi-lang-yaml="`smCoe`" pulumi-lang-java="`smCoe`" pulumi-lang-hcl="`sm_coe`">`smCoe`</span>, <span pulumi-lang-nodejs="`ttVat`" pulumi-lang-dotnet="`TtVat`" pulumi-lang-go="`ttVat`" pulumi-lang-python="`tt_vat`" pulumi-lang-yaml="`ttVat`" pulumi-lang-java="`ttVat`" pulumi-lang-hcl="`tt_vat`">`ttVat`</span>, <span pulumi-lang-nodejs="`ttBir`" pulumi-lang-dotnet="`TtBir`" pulumi-lang-go="`ttBir`" pulumi-lang-python="`tt_bir`" pulumi-lang-yaml="`ttBir`" pulumi-lang-java="`ttBir`" pulumi-lang-hcl="`tt_bir`">`ttBir`</span>, <span pulumi-lang-nodejs="`muVat`" pulumi-lang-dotnet="`MuVat`" pulumi-lang-go="`muVat`" pulumi-lang-python="`mu_vat`" pulumi-lang-yaml="`muVat`" pulumi-lang-java="`muVat`" pulumi-lang-hcl="`mu_vat`">`muVat`</span>, <span pulumi-lang-nodejs="`mzNuit`" pulumi-lang-dotnet="`MzNuit`" pulumi-lang-go="`mzNuit`" pulumi-lang-python="`mz_nuit`" pulumi-lang-yaml="`mzNuit`" pulumi-lang-java="`mzNuit`" pulumi-lang-hcl="`mz_nuit`">`mzNuit`</span>, <span pulumi-lang-nodejs="`auWpn`" pulumi-lang-dotnet="`AuWpn`" pulumi-lang-go="`auWpn`" pulumi-lang-python="`au_wpn`" pulumi-lang-yaml="`auWpn`" pulumi-lang-java="`auWpn`" pulumi-lang-hcl="`au_wpn`">`auWpn`</span>, <span pulumi-lang-nodejs="`mdCf`" pulumi-lang-dotnet="`MdCf`" pulumi-lang-go="`mdCf`" pulumi-lang-python="`md_cf`" pulumi-lang-yaml="`mdCf`" pulumi-lang-java="`mdCf`" pulumi-lang-hcl="`md_cf`">`mdCf`</span>, <span pulumi-lang-nodejs="`isKt`" pulumi-lang-dotnet="`IsKt`" pulumi-lang-go="`isKt`" pulumi-lang-python="`is_kt`" pulumi-lang-yaml="`isKt`" pulumi-lang-java="`isKt`" pulumi-lang-hcl="`is_kt`">`isKt`</span>, <span pulumi-lang-nodejs="`bjIfu`" pulumi-lang-dotnet="`BjIfu`" pulumi-lang-go="`bjIfu`" pulumi-lang-python="`bj_ifu`" pulumi-lang-yaml="`bjIfu`" pulumi-lang-java="`bjIfu`" pulumi-lang-hcl="`bj_ifu`">`bjIfu`</span>, <span pulumi-lang-nodejs="`etTin`" pulumi-lang-dotnet="`EtTin`" pulumi-lang-go="`etTin`" pulumi-lang-python="`et_tin`" pulumi-lang-yaml="`etTin`" pulumi-lang-java="`etTin`" pulumi-lang-hcl="`et_tin`">`etTin`</span>, <span pulumi-lang-nodejs="`kgTin`" pulumi-lang-dotnet="`KgTin`" pulumi-lang-go="`kgTin`" pulumi-lang-python="`kg_tin`" pulumi-lang-yaml="`kgTin`" pulumi-lang-java="`kgTin`" pulumi-lang-hcl="`kg_tin`">`kgTin`</span>, <span pulumi-lang-nodejs="`laTin`" pulumi-lang-dotnet="`LaTin`" pulumi-lang-go="`laTin`" pulumi-lang-python="`la_tin`" pulumi-lang-yaml="`laTin`" pulumi-lang-java="`laTin`" pulumi-lang-hcl="`la_tin`">`laTin`</span>, <span pulumi-lang-nodejs="`cmNiu`" pulumi-lang-dotnet="`CmNiu`" pulumi-lang-go="`cmNiu`" pulumi-lang-python="`cm_niu`" pulumi-lang-yaml="`cmNiu`" pulumi-lang-java="`cmNiu`" pulumi-lang-hcl="`cm_niu`">`cmNiu`</span>, <span pulumi-lang-nodejs="`cvNif`" pulumi-lang-dotnet="`CvNif`" pulumi-lang-go="`cvNif`" pulumi-lang-python="`cv_nif`" pulumi-lang-yaml="`cvNif`" pulumi-lang-java="`cvNif`" pulumi-lang-hcl="`cv_nif`">`cvNif`</span>, <span pulumi-lang-nodejs="`bfIfu`" pulumi-lang-dotnet="`BfIfu`" pulumi-lang-go="`bfIfu`" pulumi-lang-python="`bf_ifu`" pulumi-lang-yaml="`bfIfu`" pulumi-lang-java="`bfIfu`" pulumi-lang-hcl="`bf_ifu`">`bfIfu`</span>, <span pulumi-lang-nodejs="`icNif`" pulumi-lang-dotnet="`IcNif`" pulumi-lang-go="`icNif`" pulumi-lang-python="`ic_nif`" pulumi-lang-yaml="`icNif`" pulumi-lang-java="`icNif`" pulumi-lang-hcl="`ic_nif`">`icNif`</span>, <span pulumi-lang-nodejs="`ghTin`" pulumi-lang-dotnet="`GhTin`" pulumi-lang-go="`ghTin`" pulumi-lang-python="`gh_tin`" pulumi-lang-yaml="`ghTin`" pulumi-lang-java="`ghTin`" pulumi-lang-hcl="`gh_tin`">`ghTin`</span>, <span pulumi-lang-nodejs="`bwVat`" pulumi-lang-dotnet="`BwVat`" pulumi-lang-go="`bwVat`" pulumi-lang-python="`bw_vat`" pulumi-lang-yaml="`bwVat`" pulumi-lang-java="`bwVat`" pulumi-lang-hcl="`bw_vat`">`bwVat`</span>, <span pulumi-lang-nodejs="`ciVat`" pulumi-lang-dotnet="`CiVat`" pulumi-lang-go="`ciVat`" pulumi-lang-python="`ci_vat`" pulumi-lang-yaml="`ciVat`" pulumi-lang-java="`ciVat`" pulumi-lang-hcl="`ci_vat`">`ciVat`</span>, or <span pulumi-lang-nodejs="`unknown`" pulumi-lang-dotnet="`Unknown`" pulumi-lang-go="`unknown`" pulumi-lang-python="`unknown`" pulumi-lang-yaml="`unknown`" pulumi-lang-java="`unknown`" pulumi-lang-hcl="`unknown`">`unknown`</span>
      */
     type?: pulumi.Input<string | undefined>;
     /**
@@ -2794,6 +2902,13 @@ export interface InvoiceItemDiscount {
      * ID of the promotion code to create a new discount for.
      */
     promotionCode?: pulumi.Input<string | undefined>;
+}
+
+export interface InvoiceItemInvoicingRule {
+    /**
+     * The type of invoicing rule.
+     */
+    type?: pulumi.Input<string | undefined>;
 }
 
 export interface InvoiceItemParent {
@@ -2894,11 +3009,11 @@ export interface InvoiceItemPricingPriceDetails {
 
 export interface InvoiceItemProrationDetails {
     /**
-     * For a credit proration, links to the debit invoice line items or invoice item that the credit applies to.
+     * For a credit proration, links to the debit that the credit applies to. The reference is to an invoice item if the debit was pending when the credit was created, and to invoice line items if the debit was already invoiced.
      */
     creditedItems?: pulumi.Input<inputs.InvoiceItemProrationDetailsCreditedItems | undefined>;
     /**
-     * Discount amounts applied when the proration was created.
+     * Discount amounts applied when the proration was created. This field is only populated for prorations created from subscriptions with `billing_mode=flexible`.
      */
     discountAmounts?: pulumi.Input<pulumi.Input<inputs.InvoiceItemProrationDetailsDiscountAmount>[] | undefined>;
 }
@@ -2939,7 +3054,7 @@ export interface InvoiceItemProrationDetailsDiscountAmount {
 
 export interface InvoiceLastFinalizationError {
     /**
-     * For card errors resulting from a card issuer decline, a short string indicating [how to proceed with an error](https://docs.stripe.com/declines#retrying-issuer-declines) if they provide one.
+     * For card errors resulting from a card issuer decline, a short string indicating [how to proceed with an error](https://docs.stripe.com/declines/card#retrying-issuer-declines) if they provide one.
      */
     adviceCode?: pulumi.Input<string | undefined>;
     /**
@@ -3007,7 +3122,7 @@ export interface InvoiceLastFinalizationError {
     /**
      * A SetupIntent guides you through the process of setting up and saving a customer's payment credentials for future payments.
      * For example, you can use a SetupIntent to set up and save your customer's card without immediately collecting a payment.
-     * Later, you can use [PaymentIntents](https://api.stripe.com#payment_intents) to drive the payment flow.
+     * Later, you can use [PaymentIntents](https://docs.stripe.com/api#payment_intents) to drive the payment flow.
      *
      * Create a SetupIntent when you're ready to collect your customer's payment credentials.
      * Don't maintain long-lived, unconfirmed SetupIntents because they might not be valid.
@@ -3018,9 +3133,9 @@ export interface InvoiceLastFinalizationError {
      * For example, cardholders in [certain regions](https://stripe.com/guides/strong-customer-authentication) might need to be run through
      * [Strong Customer Authentication](https://docs.stripe.com/strong-customer-authentication) during payment method collection
      * to streamline later [off-session payments](https://docs.stripe.com/payments/setup-intents).
-     * If you use the SetupIntent with a [Customer](https://api.stripe.com#setup_intent_object-customer),
+     * If you use the SetupIntent with a [Customer](https://docs.stripe.com/api#setup_intent_object-customer),
      * it automatically attaches the resulting payment method to that Customer after successful setup.
-     * We recommend using SetupIntents or <span pulumi-lang-nodejs="[setupFutureUsage]" pulumi-lang-dotnet="[SetupFutureUsage]" pulumi-lang-go="[setupFutureUsage]" pulumi-lang-python="[setup_future_usage]" pulumi-lang-yaml="[setupFutureUsage]" pulumi-lang-java="[setupFutureUsage]" pulumi-lang-hcl="[setup_future_usage]">[setupFutureUsage]</span>(https://api.stripe.com#payment_intent_object-setup_future_usage) on
+     * We recommend using SetupIntents or <span pulumi-lang-nodejs="[setupFutureUsage]" pulumi-lang-dotnet="[SetupFutureUsage]" pulumi-lang-go="[setupFutureUsage]" pulumi-lang-python="[setup_future_usage]" pulumi-lang-yaml="[setupFutureUsage]" pulumi-lang-java="[setupFutureUsage]" pulumi-lang-hcl="[setup_future_usage]">[setupFutureUsage]</span>(https://docs.stripe.com/api#payment_intent_object-setup_future_usage) on
      * PaymentIntents to save payment methods to prevent saving invalid or unoptimized payment methods.
      *
      * By using SetupIntents, you can reduce friction for your customers, even as regulations change over time.
@@ -3098,6 +3213,10 @@ export interface InvoicePaymentSettingsPaymentMethodOptions {
      */
     bancontact?: pulumi.Input<inputs.InvoicePaymentSettingsPaymentMethodOptionsBancontact | undefined>;
     /**
+     * If paying by <span pulumi-lang-nodejs="`billie`" pulumi-lang-dotnet="`Billie`" pulumi-lang-go="`billie`" pulumi-lang-python="`billie`" pulumi-lang-yaml="`billie`" pulumi-lang-java="`billie`" pulumi-lang-hcl="`billie`">`billie`</span>, this sub-hash contains details about the Billie payment method options to pass to the invoice’s PaymentIntent.
+     */
+    billie?: pulumi.Input<inputs.InvoicePaymentSettingsPaymentMethodOptionsBillie | undefined>;
+    /**
      * If paying by <span pulumi-lang-nodejs="`card`" pulumi-lang-dotnet="`Card`" pulumi-lang-go="`card`" pulumi-lang-python="`card`" pulumi-lang-yaml="`card`" pulumi-lang-java="`card`" pulumi-lang-hcl="`card`">`card`</span>, this sub-hash contains details about the Card payment method options to pass to the invoice’s PaymentIntent.
      */
     card?: pulumi.Input<inputs.InvoicePaymentSettingsPaymentMethodOptionsCard | undefined>;
@@ -3143,6 +3262,61 @@ export interface InvoicePaymentSettingsPaymentMethodOptionsBancontact {
      * Preferred language of the Bancontact authorization page that the customer is redirected to.
      */
     preferredLanguage?: pulumi.Input<string | undefined>;
+}
+
+export interface InvoicePaymentSettingsPaymentMethodOptionsBillie {
+    companyDetails?: pulumi.Input<inputs.InvoicePaymentSettingsPaymentMethodOptionsBillieCompanyDetails | undefined>;
+    /**
+     * An identifier or reference that this payment corresponds to.
+     */
+    reference?: pulumi.Input<string | undefined>;
+}
+
+export interface InvoicePaymentSettingsPaymentMethodOptionsBillieCompanyDetails {
+    registeredAddress?: pulumi.Input<inputs.InvoicePaymentSettingsPaymentMethodOptionsBillieCompanyDetailsRegisteredAddress | undefined>;
+    /**
+     * Company or entity name.
+     */
+    registeredName?: pulumi.Input<string | undefined>;
+    /**
+     * The official registration number for the given registration type.
+     */
+    registrationNumber?: pulumi.Input<string | undefined>;
+    /**
+     * Type of registration the company or entity holds in their registered country.
+     */
+    registrationType?: pulumi.Input<string | undefined>;
+    /**
+     * VAT ID number.
+     */
+    vat?: pulumi.Input<string | undefined>;
+}
+
+export interface InvoicePaymentSettingsPaymentMethodOptionsBillieCompanyDetailsRegisteredAddress {
+    /**
+     * City, district, suburb, town, or village.
+     */
+    city?: pulumi.Input<string | undefined>;
+    /**
+     * Two-letter country code.
+     */
+    country?: pulumi.Input<string | undefined>;
+    /**
+     * Address line 1 (for example, street, PO Box, or company name).
+     */
+    line1?: pulumi.Input<string | undefined>;
+    /**
+     * Address line 2 (for example, apartment, suite, unit, or building).
+     */
+    line2?: pulumi.Input<string | undefined>;
+    /**
+     * ZIP or postal code.
+     */
+    postalCode?: pulumi.Input<string | undefined>;
+    /**
+     * State, county, province, or region.
+     */
+    state?: pulumi.Input<string | undefined>;
 }
 
 export interface InvoicePaymentSettingsPaymentMethodOptionsCard {
@@ -3228,7 +3402,7 @@ export interface InvoicePaymentSettingsPaymentMethodOptionsPix {
      */
     amountIncludesIof?: pulumi.Input<string | undefined>;
     /**
-     * The number of seconds (between 10 and 1209600) after which Pix payment will expire. Defaults to 86400 seconds.
+     * The number of seconds after PaymentIntent confirmation when the Pix expires (between 60 and 1209600, inclusive). If unspecified, defaults to 14400 seconds (4 hours).
      */
     expiresAfterSeconds?: pulumi.Input<number | undefined>;
 }
@@ -3494,6 +3668,17 @@ export interface InvoiceShippingDetailsAddress {
     state?: pulumi.Input<string | undefined>;
 }
 
+export interface InvoiceStatusDetails {
+    uncollectible?: pulumi.Input<inputs.InvoiceStatusDetailsUncollectible | undefined>;
+}
+
+export interface InvoiceStatusDetailsUncollectible {
+    /**
+     * The reason why the invoice is uncollectible.
+     */
+    reason?: pulumi.Input<string | undefined>;
+}
+
 export interface InvoiceStatusTransitions {
     /**
      * The time that the invoice draft was finalized.
@@ -3649,6 +3834,10 @@ export interface IssuingCardShipping {
      */
     addressValidation?: pulumi.Input<inputs.IssuingCardShippingAddressValidation | undefined>;
     /**
+     * The name of the business at the shipping address, used on the shipping label to ensure delivery when the card is shipped to a cardholder's workplace.
+     */
+    businessName?: pulumi.Input<string | undefined>;
+    /**
      * The delivery company that shipped a card.
      */
     carrier?: pulumi.Input<string | undefined>;
@@ -3656,6 +3845,10 @@ export interface IssuingCardShipping {
      * Additional information that may be required for clearing customs.
      */
     customs?: pulumi.Input<inputs.IssuingCardShippingCustoms | undefined>;
+    /**
+     * The time the card was reported as delivered. Null for undelivered or untracked shipments, or if Stripe has not recorded a delivery time.
+     */
+    deliveredAt?: pulumi.Input<number | undefined>;
     /**
      * A unix timestamp representing a best estimate of when the card will be delivered.
      */
@@ -3676,6 +3869,10 @@ export interface IssuingCardShipping {
      * Shipment service, such as <span pulumi-lang-nodejs="`standard`" pulumi-lang-dotnet="`Standard`" pulumi-lang-go="`standard`" pulumi-lang-python="`standard`" pulumi-lang-yaml="`standard`" pulumi-lang-java="`standard`" pulumi-lang-hcl="`standard`">`standard`</span> or <span pulumi-lang-nodejs="`express`" pulumi-lang-dotnet="`Express`" pulumi-lang-go="`express`" pulumi-lang-python="`express`" pulumi-lang-yaml="`express`" pulumi-lang-java="`express`" pulumi-lang-hcl="`express`">`express`</span>.
      */
     service?: pulumi.Input<string | undefined>;
+    /**
+     * The time the card was reported as shipped. Null if Stripe has not recorded a shipment time.
+     */
+    shippedAt?: pulumi.Input<number | undefined>;
     /**
      * The delivery status of the card.
      */
@@ -3918,7 +4115,7 @@ export interface IssuingCardholderIndividual {
 
 export interface IssuingCardholderIndividualCardIssuing {
     /**
-     * Information about cardholder acceptance of Celtic [Authorized User Terms](https://stripe.com/docs/issuing/cards#accept-authorized-user-terms). Required for cards backed by a Celtic program.
+     * Information about cardholder acceptance of Celtic [Authorized User Terms](https://docs.stripe.com/issuing/compliance-us#issuing-terms). Required for cards backed by a Celtic program.
      */
     userTermsAcceptance?: pulumi.Input<inputs.IssuingCardholderIndividualCardIssuingUserTermsAcceptance | undefined>;
 }
@@ -3962,11 +4159,11 @@ export interface IssuingCardholderIndividualVerification {
 
 export interface IssuingCardholderIndividualVerificationDocument {
     /**
-     * The back of a document returned by a [file upload](https://api.stripe.com#create_file) with a <span pulumi-lang-nodejs="`purpose`" pulumi-lang-dotnet="`Purpose`" pulumi-lang-go="`purpose`" pulumi-lang-python="`purpose`" pulumi-lang-yaml="`purpose`" pulumi-lang-java="`purpose`" pulumi-lang-hcl="`purpose`">`purpose`</span> value of <span pulumi-lang-nodejs="`identityDocument`" pulumi-lang-dotnet="`IdentityDocument`" pulumi-lang-go="`identityDocument`" pulumi-lang-python="`identity_document`" pulumi-lang-yaml="`identityDocument`" pulumi-lang-java="`identityDocument`" pulumi-lang-hcl="`identity_document`">`identityDocument`</span>.
+     * The back of a document returned by a [file upload](https://docs.stripe.com/api#create_file) with a <span pulumi-lang-nodejs="`purpose`" pulumi-lang-dotnet="`Purpose`" pulumi-lang-go="`purpose`" pulumi-lang-python="`purpose`" pulumi-lang-yaml="`purpose`" pulumi-lang-java="`purpose`" pulumi-lang-hcl="`purpose`">`purpose`</span> value of <span pulumi-lang-nodejs="`identityDocument`" pulumi-lang-dotnet="`IdentityDocument`" pulumi-lang-go="`identityDocument`" pulumi-lang-python="`identity_document`" pulumi-lang-yaml="`identityDocument`" pulumi-lang-java="`identityDocument`" pulumi-lang-hcl="`identity_document`">`identityDocument`</span>.
      */
     back?: pulumi.Input<string | undefined>;
     /**
-     * The front of a document returned by a [file upload](https://api.stripe.com#create_file) with a <span pulumi-lang-nodejs="`purpose`" pulumi-lang-dotnet="`Purpose`" pulumi-lang-go="`purpose`" pulumi-lang-python="`purpose`" pulumi-lang-yaml="`purpose`" pulumi-lang-java="`purpose`" pulumi-lang-hcl="`purpose`">`purpose`</span> value of <span pulumi-lang-nodejs="`identityDocument`" pulumi-lang-dotnet="`IdentityDocument`" pulumi-lang-go="`identityDocument`" pulumi-lang-python="`identity_document`" pulumi-lang-yaml="`identityDocument`" pulumi-lang-java="`identityDocument`" pulumi-lang-hcl="`identity_document`">`identityDocument`</span>.
+     * The front of a document returned by a [file upload](https://docs.stripe.com/api#create_file) with a <span pulumi-lang-nodejs="`purpose`" pulumi-lang-dotnet="`Purpose`" pulumi-lang-go="`purpose`" pulumi-lang-python="`purpose`" pulumi-lang-yaml="`purpose`" pulumi-lang-java="`purpose`" pulumi-lang-hcl="`purpose`">`purpose`</span> value of <span pulumi-lang-nodejs="`identityDocument`" pulumi-lang-dotnet="`IdentityDocument`" pulumi-lang-go="`identityDocument`" pulumi-lang-python="`identity_document`" pulumi-lang-yaml="`identityDocument`" pulumi-lang-java="`identityDocument`" pulumi-lang-hcl="`identity_document`">`identityDocument`</span>.
      */
     front?: pulumi.Input<string | undefined>;
 }
@@ -4309,7 +4506,7 @@ export interface PaymentIntentHooksInputsTax {
 
 export interface PaymentIntentLastPaymentError {
     /**
-     * For card errors resulting from a card issuer decline, a short string indicating [how to proceed with an error](https://docs.stripe.com/declines#retrying-issuer-declines) if they provide one.
+     * For card errors resulting from a card issuer decline, a short string indicating [how to proceed with an error](https://docs.stripe.com/declines/card#retrying-issuer-declines) if they provide one.
      */
     adviceCode?: pulumi.Input<string | undefined>;
     /**
@@ -4377,7 +4574,7 @@ export interface PaymentIntentLastPaymentError {
     /**
      * A SetupIntent guides you through the process of setting up and saving a customer's payment credentials for future payments.
      * For example, you can use a SetupIntent to set up and save your customer's card without immediately collecting a payment.
-     * Later, you can use [PaymentIntents](https://api.stripe.com#payment_intents) to drive the payment flow.
+     * Later, you can use [PaymentIntents](https://docs.stripe.com/api#payment_intents) to drive the payment flow.
      *
      * Create a SetupIntent when you're ready to collect your customer's payment credentials.
      * Don't maintain long-lived, unconfirmed SetupIntents because they might not be valid.
@@ -4388,9 +4585,9 @@ export interface PaymentIntentLastPaymentError {
      * For example, cardholders in [certain regions](https://stripe.com/guides/strong-customer-authentication) might need to be run through
      * [Strong Customer Authentication](https://docs.stripe.com/strong-customer-authentication) during payment method collection
      * to streamline later [off-session payments](https://docs.stripe.com/payments/setup-intents).
-     * If you use the SetupIntent with a [Customer](https://api.stripe.com#setup_intent_object-customer),
+     * If you use the SetupIntent with a [Customer](https://docs.stripe.com/api#setup_intent_object-customer),
      * it automatically attaches the resulting payment method to that Customer after successful setup.
-     * We recommend using SetupIntents or <span pulumi-lang-nodejs="[setupFutureUsage]" pulumi-lang-dotnet="[SetupFutureUsage]" pulumi-lang-go="[setupFutureUsage]" pulumi-lang-python="[setup_future_usage]" pulumi-lang-yaml="[setupFutureUsage]" pulumi-lang-java="[setupFutureUsage]" pulumi-lang-hcl="[setup_future_usage]">[setupFutureUsage]</span>(https://api.stripe.com#payment_intent_object-setup_future_usage) on
+     * We recommend using SetupIntents or <span pulumi-lang-nodejs="[setupFutureUsage]" pulumi-lang-dotnet="[SetupFutureUsage]" pulumi-lang-go="[setupFutureUsage]" pulumi-lang-python="[setup_future_usage]" pulumi-lang-yaml="[setupFutureUsage]" pulumi-lang-java="[setupFutureUsage]" pulumi-lang-hcl="[setup_future_usage]">[setupFutureUsage]</span>(https://docs.stripe.com/api#payment_intent_object-setup_future_usage) on
      * PaymentIntents to save payment methods to prevent saving invalid or unoptimized payment methods.
      *
      * By using SetupIntents, you can reduce friction for your customers, even as regulations change over time.
@@ -5303,6 +5500,10 @@ export interface PaymentIntentNextActionSwishHandleRedirectOrDisplayQrCodeQrCode
      */
     data?: pulumi.Input<string | undefined>;
     /**
+     * The timestamp at which the QR code expires.
+     */
+    expiresAt?: pulumi.Input<number | undefined>;
+    /**
      * The<span pulumi-lang-nodejs=" imageUrlPng " pulumi-lang-dotnet=" ImageUrlPng " pulumi-lang-go=" imageUrlPng " pulumi-lang-python=" image_url_png " pulumi-lang-yaml=" imageUrlPng " pulumi-lang-java=" imageUrlPng " pulumi-lang-hcl=" image_url_png "> imageUrlPng </span>string used to render QR code
      */
     imageUrlPng?: pulumi.Input<string | undefined>;
@@ -5907,7 +6108,9 @@ export interface PaymentIntentPaymentMethodOptions {
     satispay?: pulumi.Input<inputs.PaymentIntentPaymentMethodOptionsSatispay | undefined>;
     scalapay?: pulumi.Input<inputs.PaymentIntentPaymentMethodOptionsScalapay | undefined>;
     sepaDebit?: pulumi.Input<inputs.PaymentIntentPaymentMethodOptionsSepaDebit | undefined>;
+    sequra?: pulumi.Input<inputs.PaymentIntentPaymentMethodOptionsSequra | undefined>;
     sofort?: pulumi.Input<inputs.PaymentIntentPaymentMethodOptionsSofort | undefined>;
+    sunbit?: pulumi.Input<inputs.PaymentIntentPaymentMethodOptionsSunbit | undefined>;
     swish?: pulumi.Input<inputs.PaymentIntentPaymentMethodOptionsSwish | undefined>;
     twint?: pulumi.Input<inputs.PaymentIntentPaymentMethodOptionsTwint | undefined>;
     upi?: pulumi.Input<inputs.PaymentIntentPaymentMethodOptionsUpi | undefined>;
@@ -6101,6 +6304,58 @@ export interface PaymentIntentPaymentMethodOptionsBillie {
      * Controls when the funds will be captured from the customer's account.
      */
     captureMethod?: pulumi.Input<string | undefined>;
+    companyDetails?: pulumi.Input<inputs.PaymentIntentPaymentMethodOptionsBillieCompanyDetails | undefined>;
+    /**
+     * An identifier or reference that this payment corresponds to.
+     */
+    reference?: pulumi.Input<string | undefined>;
+}
+
+export interface PaymentIntentPaymentMethodOptionsBillieCompanyDetails {
+    registeredAddress?: pulumi.Input<inputs.PaymentIntentPaymentMethodOptionsBillieCompanyDetailsRegisteredAddress | undefined>;
+    /**
+     * Company or entity name.
+     */
+    registeredName?: pulumi.Input<string | undefined>;
+    /**
+     * The official registration number for the given registration type.
+     */
+    registrationNumber?: pulumi.Input<string | undefined>;
+    /**
+     * Type of registration the company or entity holds in their registered country.
+     */
+    registrationType?: pulumi.Input<string | undefined>;
+    /**
+     * VAT id number
+     */
+    vat?: pulumi.Input<string | undefined>;
+}
+
+export interface PaymentIntentPaymentMethodOptionsBillieCompanyDetailsRegisteredAddress {
+    /**
+     * City, district, suburb, town, or village.
+     */
+    city?: pulumi.Input<string | undefined>;
+    /**
+     * Two-letter country code.
+     */
+    country?: pulumi.Input<string | undefined>;
+    /**
+     * Address line 1 (e.g., street, PO Box, or company name).
+     */
+    line1?: pulumi.Input<string | undefined>;
+    /**
+     * Address line 2 (e.g., apartment, suite, unit, or building).
+     */
+    line2?: pulumi.Input<string | undefined>;
+    /**
+     * ZIP or postal code.
+     */
+    postalCode?: pulumi.Input<string | undefined>;
+    /**
+     * State, county, province, or region.
+     */
+    state?: pulumi.Input<string | undefined>;
 }
 
 export interface PaymentIntentPaymentMethodOptionsBlik {
@@ -6108,6 +6363,7 @@ export interface PaymentIntentPaymentMethodOptionsBlik {
      * The 6-digit BLIK code that a customer has generated using their banking application. Can only be set on confirmation.
      */
     code?: pulumi.Input<string | undefined>;
+    mandateOptions?: pulumi.Input<inputs.PaymentIntentPaymentMethodOptionsBlikMandateOptions | undefined>;
     /**
      * Indicates that you intend to make future payments with this PaymentIntent's payment method.
      *
@@ -6118,6 +6374,17 @@ export interface PaymentIntentPaymentMethodOptionsBlik {
      * When processing card payments, Stripe uses <span pulumi-lang-nodejs="`setupFutureUsage`" pulumi-lang-dotnet="`SetupFutureUsage`" pulumi-lang-go="`setupFutureUsage`" pulumi-lang-python="`setup_future_usage`" pulumi-lang-yaml="`setupFutureUsage`" pulumi-lang-java="`setupFutureUsage`" pulumi-lang-hcl="`setup_future_usage`">`setupFutureUsage`</span> to help you comply with regional legislation and network rules, such as [SCA](https://www.terraform.io/strong-customer-authentication).
      */
     setupFutureUsage?: pulumi.Input<string | undefined>;
+}
+
+export interface PaymentIntentPaymentMethodOptionsBlikMandateOptions {
+    /**
+     * Date at which the mandate expires.
+     */
+    expiresAt?: pulumi.Input<number | undefined>;
+    /**
+     * Type of the mandate.
+     */
+    type?: pulumi.Input<string | undefined>;
 }
 
 export interface PaymentIntentPaymentMethodOptionsBoleto {
@@ -6191,6 +6458,10 @@ export interface PaymentIntentPaymentMethodOptionsCard {
      */
     requireCvcRecollection?: pulumi.Input<boolean | undefined>;
     /**
+     * Set to indicate the future transaction type usage for the card being set up.
+     */
+    setupCredentialUsage?: pulumi.Input<string | undefined>;
+    /**
      * Indicates that you intend to make future payments with this PaymentIntent's payment method.
      *
      * If you provide a Customer with the PaymentIntent, you can use this parameter to [attach the payment method](https://www.terraform.io/payments/save-during-payment) to the Customer after the PaymentIntent is confirmed and the customer completes any required actions. If you don't provide a Customer, you can still [attach](https://www.terraform.io/api/payment_methods/attach) the payment method to a Customer after the transaction completes.
@@ -6208,6 +6479,10 @@ export interface PaymentIntentPaymentMethodOptionsCard {
      * Provides information about a card payment that customers see on their statements. Concatenated with the Kanji prefix (shortened Kanji descriptor) or Kanji statement descriptor that’s set on the account to form the complete statement descriptor. Maximum 17 characters. On card statements, the *concatenation* of both prefix and suffix (including separators) will appear truncated to 17 characters.
      */
     statementDescriptorSuffixKanji?: pulumi.Input<string | undefined>;
+    /**
+     * Selected usage to indicate the transaction type of the off-session payment.
+     */
+    storedCredentialUsage?: pulumi.Input<string | undefined>;
     /**
      * If 3D Secure authentication was performed with a third-party provider,
      * the authentication details to use for this payment.
@@ -6794,6 +7069,16 @@ export interface PaymentIntentPaymentMethodOptionsPayco {
      * Controls when the funds will be captured from the customer's account.
      */
     captureMethod?: pulumi.Input<string | undefined>;
+    /**
+     * Indicates that you intend to make future payments with this PaymentIntent's payment method.
+     *
+     * If you provide a Customer with the PaymentIntent, you can use this parameter to [attach the payment method](https://www.terraform.io/payments/save-during-payment) to the Customer after the PaymentIntent is confirmed and the customer completes any required actions. If you don't provide a Customer, you can still [attach](https://www.terraform.io/api/payment_methods/attach) the payment method to a Customer after the transaction completes.
+     *
+     * If the payment method is <span pulumi-lang-nodejs="`cardPresent`" pulumi-lang-dotnet="`CardPresent`" pulumi-lang-go="`cardPresent`" pulumi-lang-python="`card_present`" pulumi-lang-yaml="`cardPresent`" pulumi-lang-java="`cardPresent`" pulumi-lang-hcl="`card_present`">`cardPresent`</span> and isn't a digital wallet, Stripe creates and attaches a <span pulumi-lang-nodejs="[generatedCard]" pulumi-lang-dotnet="[GeneratedCard]" pulumi-lang-go="[generatedCard]" pulumi-lang-python="[generated_card]" pulumi-lang-yaml="[generatedCard]" pulumi-lang-java="[generatedCard]" pulumi-lang-hcl="[generated_card]">[generatedCard]</span>(https://www.terraform.io/api/charges/object#charge_object-payment_method_details-card_present-generated_card) payment method representing the card to the Customer instead.
+     *
+     * When processing card payments, Stripe uses <span pulumi-lang-nodejs="`setupFutureUsage`" pulumi-lang-dotnet="`SetupFutureUsage`" pulumi-lang-go="`setupFutureUsage`" pulumi-lang-python="`setup_future_usage`" pulumi-lang-yaml="`setupFutureUsage`" pulumi-lang-java="`setupFutureUsage`" pulumi-lang-hcl="`setup_future_usage`">`setupFutureUsage`</span> to help you comply with regional legislation and network rules, such as [SCA](https://www.terraform.io/strong-customer-authentication).
+     */
+    setupFutureUsage?: pulumi.Input<string | undefined>;
 }
 
 export interface PaymentIntentPaymentMethodOptionsPaynow {
@@ -6885,11 +7170,11 @@ export interface PaymentIntentPaymentMethodOptionsPix {
      */
     amountIncludesIof?: pulumi.Input<string | undefined>;
     /**
-     * The number of seconds (between 10 and 1209600) after which Pix payment will expire.
+     * The number of seconds after PaymentIntent confirmation when the Pix expires (between 60 and 1209600, inclusive). If neither expiration option is supplied, defaults to 14400 seconds (4 hours). Mutually exclusive with <span pulumi-lang-nodejs="`expiresAt`" pulumi-lang-dotnet="`ExpiresAt`" pulumi-lang-go="`expiresAt`" pulumi-lang-python="`expires_at`" pulumi-lang-yaml="`expiresAt`" pulumi-lang-java="`expiresAt`" pulumi-lang-hcl="`expires_at`">`expiresAt`</span>.
      */
     expiresAfterSeconds?: pulumi.Input<number | undefined>;
     /**
-     * The timestamp at which the Pix expires.
+     * The absolute Unix timestamp at which the Pix expires. When supplied as an input, it must be between 60 and 1209600 seconds from the current time at validation, inclusive. If neither expiration option is supplied, the Pix expires 14400 seconds (4 hours) after PaymentIntent confirmation. Mutually exclusive with <span pulumi-lang-nodejs="`expiresAfterSeconds`" pulumi-lang-dotnet="`ExpiresAfterSeconds`" pulumi-lang-go="`expiresAfterSeconds`" pulumi-lang-python="`expires_after_seconds`" pulumi-lang-yaml="`expiresAfterSeconds`" pulumi-lang-java="`expiresAfterSeconds`" pulumi-lang-hcl="`expires_after_seconds`">`expiresAfterSeconds`</span>.
      */
     expiresAt?: pulumi.Input<number | undefined>;
     mandateOptions?: pulumi.Input<inputs.PaymentIntentPaymentMethodOptionsPixMandateOptions | undefined>;
@@ -6975,6 +7260,16 @@ export interface PaymentIntentPaymentMethodOptionsSamsungPay {
      * Controls when the funds will be captured from the customer's account.
      */
     captureMethod?: pulumi.Input<string | undefined>;
+    /**
+     * Indicates that you intend to make future payments with this PaymentIntent's payment method.
+     *
+     * If you provide a Customer with the PaymentIntent, you can use this parameter to [attach the payment method](https://www.terraform.io/payments/save-during-payment) to the Customer after the PaymentIntent is confirmed and the customer completes any required actions. If you don't provide a Customer, you can still [attach](https://www.terraform.io/api/payment_methods/attach) the payment method to a Customer after the transaction completes.
+     *
+     * If the payment method is <span pulumi-lang-nodejs="`cardPresent`" pulumi-lang-dotnet="`CardPresent`" pulumi-lang-go="`cardPresent`" pulumi-lang-python="`card_present`" pulumi-lang-yaml="`cardPresent`" pulumi-lang-java="`cardPresent`" pulumi-lang-hcl="`card_present`">`cardPresent`</span> and isn't a digital wallet, Stripe creates and attaches a <span pulumi-lang-nodejs="[generatedCard]" pulumi-lang-dotnet="[GeneratedCard]" pulumi-lang-go="[generatedCard]" pulumi-lang-python="[generated_card]" pulumi-lang-yaml="[generatedCard]" pulumi-lang-java="[generatedCard]" pulumi-lang-hcl="[generated_card]">[generatedCard]</span>(https://www.terraform.io/api/charges/object#charge_object-payment_method_details-card_present-generated_card) payment method representing the card to the Customer instead.
+     *
+     * When processing card payments, Stripe uses <span pulumi-lang-nodejs="`setupFutureUsage`" pulumi-lang-dotnet="`SetupFutureUsage`" pulumi-lang-go="`setupFutureUsage`" pulumi-lang-python="`setup_future_usage`" pulumi-lang-yaml="`setupFutureUsage`" pulumi-lang-java="`setupFutureUsage`" pulumi-lang-hcl="`setup_future_usage`">`setupFutureUsage`</span> to help you comply with regional legislation and network rules, such as [SCA](https://www.terraform.io/strong-customer-authentication).
+     */
+    setupFutureUsage?: pulumi.Input<string | undefined>;
 }
 
 export interface PaymentIntentPaymentMethodOptionsSatispay {
@@ -6982,6 +7277,16 @@ export interface PaymentIntentPaymentMethodOptionsSatispay {
      * Controls when the funds will be captured from the customer's account.
      */
     captureMethod?: pulumi.Input<string | undefined>;
+    /**
+     * Indicates that you intend to make future payments with this PaymentIntent's payment method.
+     *
+     * If you provide a Customer with the PaymentIntent, you can use this parameter to [attach the payment method](https://www.terraform.io/payments/save-during-payment) to the Customer after the PaymentIntent is confirmed and the customer completes any required actions. If you don't provide a Customer, you can still [attach](https://www.terraform.io/api/payment_methods/attach) the payment method to a Customer after the transaction completes.
+     *
+     * If the payment method is <span pulumi-lang-nodejs="`cardPresent`" pulumi-lang-dotnet="`CardPresent`" pulumi-lang-go="`cardPresent`" pulumi-lang-python="`card_present`" pulumi-lang-yaml="`cardPresent`" pulumi-lang-java="`cardPresent`" pulumi-lang-hcl="`card_present`">`cardPresent`</span> and isn't a digital wallet, Stripe creates and attaches a <span pulumi-lang-nodejs="[generatedCard]" pulumi-lang-dotnet="[GeneratedCard]" pulumi-lang-go="[generatedCard]" pulumi-lang-python="[generated_card]" pulumi-lang-yaml="[generatedCard]" pulumi-lang-java="[generatedCard]" pulumi-lang-hcl="[generated_card]">[generatedCard]</span>(https://www.terraform.io/api/charges/object#charge_object-payment_method_details-card_present-generated_card) payment method representing the card to the Customer instead.
+     *
+     * When processing card payments, Stripe uses <span pulumi-lang-nodejs="`setupFutureUsage`" pulumi-lang-dotnet="`SetupFutureUsage`" pulumi-lang-go="`setupFutureUsage`" pulumi-lang-python="`setup_future_usage`" pulumi-lang-yaml="`setupFutureUsage`" pulumi-lang-java="`setupFutureUsage`" pulumi-lang-hcl="`setup_future_usage`">`setupFutureUsage`</span> to help you comply with regional legislation and network rules, such as [SCA](https://www.terraform.io/strong-customer-authentication).
+     */
+    setupFutureUsage?: pulumi.Input<string | undefined>;
 }
 
 export interface PaymentIntentPaymentMethodOptionsScalapay {
@@ -7016,11 +7321,45 @@ export interface PaymentIntentPaymentMethodOptionsSepaDebitMandateOptions {
     referencePrefix?: pulumi.Input<string | undefined>;
 }
 
+export interface PaymentIntentPaymentMethodOptionsSequra {
+    /**
+     * Controls when the funds will be captured from the customer's account.
+     */
+    captureMethod?: pulumi.Input<string | undefined>;
+    /**
+     * Indicates that you intend to make future payments with this PaymentIntent's payment method.
+     *
+     * If you provide a Customer with the PaymentIntent, you can use this parameter to [attach the payment method](https://www.terraform.io/payments/save-during-payment) to the Customer after the PaymentIntent is confirmed and the customer completes any required actions. If you don't provide a Customer, you can still [attach](https://www.terraform.io/api/payment_methods/attach) the payment method to a Customer after the transaction completes.
+     *
+     * If the payment method is <span pulumi-lang-nodejs="`cardPresent`" pulumi-lang-dotnet="`CardPresent`" pulumi-lang-go="`cardPresent`" pulumi-lang-python="`card_present`" pulumi-lang-yaml="`cardPresent`" pulumi-lang-java="`cardPresent`" pulumi-lang-hcl="`card_present`">`cardPresent`</span> and isn't a digital wallet, Stripe creates and attaches a <span pulumi-lang-nodejs="[generatedCard]" pulumi-lang-dotnet="[GeneratedCard]" pulumi-lang-go="[generatedCard]" pulumi-lang-python="[generated_card]" pulumi-lang-yaml="[generatedCard]" pulumi-lang-java="[generatedCard]" pulumi-lang-hcl="[generated_card]">[generatedCard]</span>(https://www.terraform.io/api/charges/object#charge_object-payment_method_details-card_present-generated_card) payment method representing the card to the Customer instead.
+     *
+     * When processing card payments, Stripe uses <span pulumi-lang-nodejs="`setupFutureUsage`" pulumi-lang-dotnet="`SetupFutureUsage`" pulumi-lang-go="`setupFutureUsage`" pulumi-lang-python="`setup_future_usage`" pulumi-lang-yaml="`setupFutureUsage`" pulumi-lang-java="`setupFutureUsage`" pulumi-lang-hcl="`setup_future_usage`">`setupFutureUsage`</span> to help you comply with regional legislation and network rules, such as [SCA](https://www.terraform.io/strong-customer-authentication).
+     */
+    setupFutureUsage?: pulumi.Input<string | undefined>;
+}
+
 export interface PaymentIntentPaymentMethodOptionsSofort {
     /**
      * Preferred language of the SOFORT authorization page that the customer is redirected to.
      */
     preferredLanguage?: pulumi.Input<string | undefined>;
+    /**
+     * Indicates that you intend to make future payments with this PaymentIntent's payment method.
+     *
+     * If you provide a Customer with the PaymentIntent, you can use this parameter to [attach the payment method](https://www.terraform.io/payments/save-during-payment) to the Customer after the PaymentIntent is confirmed and the customer completes any required actions. If you don't provide a Customer, you can still [attach](https://www.terraform.io/api/payment_methods/attach) the payment method to a Customer after the transaction completes.
+     *
+     * If the payment method is <span pulumi-lang-nodejs="`cardPresent`" pulumi-lang-dotnet="`CardPresent`" pulumi-lang-go="`cardPresent`" pulumi-lang-python="`card_present`" pulumi-lang-yaml="`cardPresent`" pulumi-lang-java="`cardPresent`" pulumi-lang-hcl="`card_present`">`cardPresent`</span> and isn't a digital wallet, Stripe creates and attaches a <span pulumi-lang-nodejs="[generatedCard]" pulumi-lang-dotnet="[GeneratedCard]" pulumi-lang-go="[generatedCard]" pulumi-lang-python="[generated_card]" pulumi-lang-yaml="[generatedCard]" pulumi-lang-java="[generatedCard]" pulumi-lang-hcl="[generated_card]">[generatedCard]</span>(https://www.terraform.io/api/charges/object#charge_object-payment_method_details-card_present-generated_card) payment method representing the card to the Customer instead.
+     *
+     * When processing card payments, Stripe uses <span pulumi-lang-nodejs="`setupFutureUsage`" pulumi-lang-dotnet="`SetupFutureUsage`" pulumi-lang-go="`setupFutureUsage`" pulumi-lang-python="`setup_future_usage`" pulumi-lang-yaml="`setupFutureUsage`" pulumi-lang-java="`setupFutureUsage`" pulumi-lang-hcl="`setup_future_usage`">`setupFutureUsage`</span> to help you comply with regional legislation and network rules, such as [SCA](https://www.terraform.io/strong-customer-authentication).
+     */
+    setupFutureUsage?: pulumi.Input<string | undefined>;
+}
+
+export interface PaymentIntentPaymentMethodOptionsSunbit {
+    /**
+     * Controls when the funds will be captured from the customer's account.
+     */
+    captureMethod?: pulumi.Input<string | undefined>;
     /**
      * Indicates that you intend to make future payments with this PaymentIntent's payment method.
      *
@@ -7169,7 +7508,7 @@ export interface PaymentIntentPaymentMethodOptionsUsBankAccountNetworks {
 
 export interface PaymentIntentPaymentMethodOptionsWechatPay {
     /**
-     * The app ID registered with WeChat Pay. Only required when client is ios or android.
+     * The app ID registered with WeChat Pay. Only required when client is ios, android, or mini_program.
      */
     appId?: pulumi.Input<string | undefined>;
     /**
@@ -7236,6 +7575,11 @@ export interface PaymentIntentProcessingCardCustomerNotification {
 }
 
 export interface PaymentIntentRadarOptions {
+    /**
+     * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * The referrer URL of the current checkout session. You can use this to supply session-level referrer data when a Radar Session isn't available or doesn't contain a referrer.
+     */
+    referrer?: pulumi.Input<string | undefined>;
     /**
      * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
      * A [Radar Session](https://docs.stripe.com/radar/radar-session) is a snapshot of the browser metadata and device details that help Radar make more accurate predictions on your payments.
@@ -7435,7 +7779,7 @@ export interface PaymentLinkCustomFieldDropdownOption {
 
 export interface PaymentLinkCustomFieldLabel {
     /**
-     * Custom text for the label, displayed to the customer. Up to 50 characters.
+     * Custom text for the label, displayed to the customer. Up to 100 characters.
      */
     custom: pulumi.Input<string>;
     /**
@@ -7688,9 +8032,24 @@ export interface PaymentLinkLineItemPriceDataProductData {
      */
     taxCode?: pulumi.Input<string | undefined>;
     /**
+     * Tax details for this product, including the [tax code](https://www.terraform.io/tax/tax-codes) and an optional performance location.
+     */
+    taxDetails?: pulumi.Input<inputs.PaymentLinkLineItemPriceDataProductDataTaxDetails | undefined>;
+    /**
      * A label that represents units of this product. When set, this will be included in customers' receipts, invoices, Checkout, and the customer portal.
      */
     unitLabel?: pulumi.Input<string | undefined>;
+}
+
+export interface PaymentLinkLineItemPriceDataProductDataTaxDetails {
+    /**
+     * A tax location ID. Depending on the [tax code](https://www.terraform.io/tax/tax-for-tickets/reference/tax-location-performance), this is required, optional, or not supported.
+     */
+    performanceLocation?: pulumi.Input<string | undefined>;
+    /**
+     * A [tax code](https://docs.stripe.com/tax/tax-categories) ID.
+     */
+    taxCode?: pulumi.Input<string | undefined>;
 }
 
 export interface PaymentLinkLineItemPriceDataRecurring {
@@ -7872,7 +8231,34 @@ export interface PaymentLinkSubscriptionData {
 }
 
 export interface PaymentLinkSubscriptionDataInvoiceSettings {
+    /**
+     * The account tax IDs associated with the subscription. Will be set on invoices generated by the subscription.
+     */
+    accountTaxIds?: pulumi.Input<pulumi.Input<string>[] | undefined>;
+    /**
+     * A list of up to 4 custom fields to be displayed on the invoice.
+     */
+    customFields?: pulumi.Input<pulumi.Input<inputs.PaymentLinkSubscriptionDataInvoiceSettingsCustomField>[] | undefined>;
+    /**
+     * An arbitrary string attached to the object. Often useful for displaying to users.
+     */
+    description?: pulumi.Input<string | undefined>;
+    /**
+     * Footer to be displayed on the invoice.
+     */
+    footer?: pulumi.Input<string | undefined>;
     issuer?: pulumi.Input<inputs.PaymentLinkSubscriptionDataInvoiceSettingsIssuer | undefined>;
+}
+
+export interface PaymentLinkSubscriptionDataInvoiceSettingsCustomField {
+    /**
+     * The name of the custom field.
+     */
+    name: pulumi.Input<string>;
+    /**
+     * The value of the custom field.
+     */
+    value: pulumi.Input<string>;
 }
 
 export interface PaymentLinkSubscriptionDataInvoiceSettingsIssuer {
@@ -8032,6 +8418,20 @@ export interface PaymentMethodBillingDetailsAddress {
      * State, county, province, or region ([ISO 3166-2](https://en.wikipedia.org/wiki/ISO_3166-2)).
      */
     state?: pulumi.Input<string | undefined>;
+}
+
+export interface PaymentMethodBizum {
+    /**
+     * A unique identifier for the buyer as determined by the local payment processor.
+     */
+    buyerId?: pulumi.Input<string | undefined>;
+}
+
+export interface PaymentMethodBlik {
+    /**
+     * A unique and immutable identifier assigned by BLIK to every buyer.
+     */
+    buyerId?: pulumi.Input<string | undefined>;
 }
 
 export interface PaymentMethodBoleto {
@@ -9592,6 +9992,29 @@ export interface PaymentMethodConfigurationPaypalDisplayPreference {
     value?: pulumi.Input<string | undefined>;
 }
 
+export interface PaymentMethodConfigurationPaypay {
+    /**
+     * Whether this payment method may be offered at checkout. True if <span pulumi-lang-nodejs="`displayPreference`" pulumi-lang-dotnet="`DisplayPreference`" pulumi-lang-go="`displayPreference`" pulumi-lang-python="`display_preference`" pulumi-lang-yaml="`displayPreference`" pulumi-lang-java="`displayPreference`" pulumi-lang-hcl="`display_preference`">`displayPreference`</span> is <span pulumi-lang-nodejs="`on`" pulumi-lang-dotnet="`On`" pulumi-lang-go="`on`" pulumi-lang-python="`on`" pulumi-lang-yaml="`on`" pulumi-lang-java="`on`" pulumi-lang-hcl="`on`">`on`</span> and the payment method's capability is active.
+     */
+    available?: pulumi.Input<boolean | undefined>;
+    displayPreference?: pulumi.Input<inputs.PaymentMethodConfigurationPaypayDisplayPreference | undefined>;
+}
+
+export interface PaymentMethodConfigurationPaypayDisplayPreference {
+    /**
+     * For child configs, whether or not the account's preference will be observed. If <span pulumi-lang-nodejs="`false`" pulumi-lang-dotnet="`False`" pulumi-lang-go="`false`" pulumi-lang-python="`false`" pulumi-lang-yaml="`false`" pulumi-lang-java="`false`" pulumi-lang-hcl="`false`">`false`</span>, the parent configuration's default is used.
+     */
+    overridable?: pulumi.Input<boolean | undefined>;
+    /**
+     * The account's display preference.
+     */
+    preference?: pulumi.Input<string | undefined>;
+    /**
+     * The effective display preference value.
+     */
+    value?: pulumi.Input<string | undefined>;
+}
+
 export interface PaymentMethodConfigurationPayto {
     /**
      * Whether this payment method may be offered at checkout. True if <span pulumi-lang-nodejs="`displayPreference`" pulumi-lang-dotnet="`DisplayPreference`" pulumi-lang-go="`displayPreference`" pulumi-lang-python="`display_preference`" pulumi-lang-yaml="`displayPreference`" pulumi-lang-java="`displayPreference`" pulumi-lang-hcl="`display_preference`">`displayPreference`</span> is <span pulumi-lang-nodejs="`on`" pulumi-lang-dotnet="`On`" pulumi-lang-go="`on`" pulumi-lang-python="`on`" pulumi-lang-yaml="`on`" pulumi-lang-java="`on`" pulumi-lang-hcl="`on`">`on`</span> and the payment method's capability is active.
@@ -9762,6 +10185,29 @@ export interface PaymentMethodConfigurationSepaDebit {
 }
 
 export interface PaymentMethodConfigurationSepaDebitDisplayPreference {
+    /**
+     * For child configs, whether or not the account's preference will be observed. If <span pulumi-lang-nodejs="`false`" pulumi-lang-dotnet="`False`" pulumi-lang-go="`false`" pulumi-lang-python="`false`" pulumi-lang-yaml="`false`" pulumi-lang-java="`false`" pulumi-lang-hcl="`false`">`false`</span>, the parent configuration's default is used.
+     */
+    overridable?: pulumi.Input<boolean | undefined>;
+    /**
+     * The account's display preference.
+     */
+    preference?: pulumi.Input<string | undefined>;
+    /**
+     * The effective display preference value.
+     */
+    value?: pulumi.Input<string | undefined>;
+}
+
+export interface PaymentMethodConfigurationSequra {
+    /**
+     * Whether this payment method may be offered at checkout. True if <span pulumi-lang-nodejs="`displayPreference`" pulumi-lang-dotnet="`DisplayPreference`" pulumi-lang-go="`displayPreference`" pulumi-lang-python="`display_preference`" pulumi-lang-yaml="`displayPreference`" pulumi-lang-java="`displayPreference`" pulumi-lang-hcl="`display_preference`">`displayPreference`</span> is <span pulumi-lang-nodejs="`on`" pulumi-lang-dotnet="`On`" pulumi-lang-go="`on`" pulumi-lang-python="`on`" pulumi-lang-yaml="`on`" pulumi-lang-java="`on`" pulumi-lang-hcl="`on`">`on`</span> and the payment method's capability is active.
+     */
+    available?: pulumi.Input<boolean | undefined>;
+    displayPreference?: pulumi.Input<inputs.PaymentMethodConfigurationSequraDisplayPreference | undefined>;
+}
+
+export interface PaymentMethodConfigurationSequraDisplayPreference {
     /**
      * For child configs, whether or not the account's preference will be observed. If <span pulumi-lang-nodejs="`false`" pulumi-lang-dotnet="`False`" pulumi-lang-go="`false`" pulumi-lang-python="`false`" pulumi-lang-yaml="`false`" pulumi-lang-java="`false`" pulumi-lang-hcl="`false`">`false`</span>, the parent configuration's default is used.
      */
@@ -10081,7 +10527,7 @@ export interface PaymentMethodFpx {
      */
     accountHolderType?: pulumi.Input<string | undefined>;
     /**
-     * The customer's bank, if provided. Can be one of <span pulumi-lang-nodejs="`affinBank`" pulumi-lang-dotnet="`AffinBank`" pulumi-lang-go="`affinBank`" pulumi-lang-python="`affin_bank`" pulumi-lang-yaml="`affinBank`" pulumi-lang-java="`affinBank`" pulumi-lang-hcl="`affin_bank`">`affinBank`</span>, <span pulumi-lang-nodejs="`agrobank`" pulumi-lang-dotnet="`Agrobank`" pulumi-lang-go="`agrobank`" pulumi-lang-python="`agrobank`" pulumi-lang-yaml="`agrobank`" pulumi-lang-java="`agrobank`" pulumi-lang-hcl="`agrobank`">`agrobank`</span>, <span pulumi-lang-nodejs="`allianceBank`" pulumi-lang-dotnet="`AllianceBank`" pulumi-lang-go="`allianceBank`" pulumi-lang-python="`alliance_bank`" pulumi-lang-yaml="`allianceBank`" pulumi-lang-java="`allianceBank`" pulumi-lang-hcl="`alliance_bank`">`allianceBank`</span>, <span pulumi-lang-nodejs="`ambank`" pulumi-lang-dotnet="`Ambank`" pulumi-lang-go="`ambank`" pulumi-lang-python="`ambank`" pulumi-lang-yaml="`ambank`" pulumi-lang-java="`ambank`" pulumi-lang-hcl="`ambank`">`ambank`</span>, <span pulumi-lang-nodejs="`bankIslam`" pulumi-lang-dotnet="`BankIslam`" pulumi-lang-go="`bankIslam`" pulumi-lang-python="`bank_islam`" pulumi-lang-yaml="`bankIslam`" pulumi-lang-java="`bankIslam`" pulumi-lang-hcl="`bank_islam`">`bankIslam`</span>, <span pulumi-lang-nodejs="`bankMuamalat`" pulumi-lang-dotnet="`BankMuamalat`" pulumi-lang-go="`bankMuamalat`" pulumi-lang-python="`bank_muamalat`" pulumi-lang-yaml="`bankMuamalat`" pulumi-lang-java="`bankMuamalat`" pulumi-lang-hcl="`bank_muamalat`">`bankMuamalat`</span>, <span pulumi-lang-nodejs="`bankRakyat`" pulumi-lang-dotnet="`BankRakyat`" pulumi-lang-go="`bankRakyat`" pulumi-lang-python="`bank_rakyat`" pulumi-lang-yaml="`bankRakyat`" pulumi-lang-java="`bankRakyat`" pulumi-lang-hcl="`bank_rakyat`">`bankRakyat`</span>, <span pulumi-lang-nodejs="`bsn`" pulumi-lang-dotnet="`Bsn`" pulumi-lang-go="`bsn`" pulumi-lang-python="`bsn`" pulumi-lang-yaml="`bsn`" pulumi-lang-java="`bsn`" pulumi-lang-hcl="`bsn`">`bsn`</span>, <span pulumi-lang-nodejs="`cimb`" pulumi-lang-dotnet="`Cimb`" pulumi-lang-go="`cimb`" pulumi-lang-python="`cimb`" pulumi-lang-yaml="`cimb`" pulumi-lang-java="`cimb`" pulumi-lang-hcl="`cimb`">`cimb`</span>, <span pulumi-lang-nodejs="`hongLeongBank`" pulumi-lang-dotnet="`HongLeongBank`" pulumi-lang-go="`hongLeongBank`" pulumi-lang-python="`hong_leong_bank`" pulumi-lang-yaml="`hongLeongBank`" pulumi-lang-java="`hongLeongBank`" pulumi-lang-hcl="`hong_leong_bank`">`hongLeongBank`</span>, <span pulumi-lang-nodejs="`hsbc`" pulumi-lang-dotnet="`Hsbc`" pulumi-lang-go="`hsbc`" pulumi-lang-python="`hsbc`" pulumi-lang-yaml="`hsbc`" pulumi-lang-java="`hsbc`" pulumi-lang-hcl="`hsbc`">`hsbc`</span>, <span pulumi-lang-nodejs="`kfh`" pulumi-lang-dotnet="`Kfh`" pulumi-lang-go="`kfh`" pulumi-lang-python="`kfh`" pulumi-lang-yaml="`kfh`" pulumi-lang-java="`kfh`" pulumi-lang-hcl="`kfh`">`kfh`</span>, <span pulumi-lang-nodejs="`maybank2u`" pulumi-lang-dotnet="`Maybank2u`" pulumi-lang-go="`maybank2u`" pulumi-lang-python="`maybank2u`" pulumi-lang-yaml="`maybank2u`" pulumi-lang-java="`maybank2u`" pulumi-lang-hcl="`maybank2u`">`maybank2u`</span>, <span pulumi-lang-nodejs="`ocbc`" pulumi-lang-dotnet="`Ocbc`" pulumi-lang-go="`ocbc`" pulumi-lang-python="`ocbc`" pulumi-lang-yaml="`ocbc`" pulumi-lang-java="`ocbc`" pulumi-lang-hcl="`ocbc`">`ocbc`</span>, <span pulumi-lang-nodejs="`publicBank`" pulumi-lang-dotnet="`PublicBank`" pulumi-lang-go="`publicBank`" pulumi-lang-python="`public_bank`" pulumi-lang-yaml="`publicBank`" pulumi-lang-java="`publicBank`" pulumi-lang-hcl="`public_bank`">`publicBank`</span>, <span pulumi-lang-nodejs="`rhb`" pulumi-lang-dotnet="`Rhb`" pulumi-lang-go="`rhb`" pulumi-lang-python="`rhb`" pulumi-lang-yaml="`rhb`" pulumi-lang-java="`rhb`" pulumi-lang-hcl="`rhb`">`rhb`</span>, <span pulumi-lang-nodejs="`standardChartered`" pulumi-lang-dotnet="`StandardChartered`" pulumi-lang-go="`standardChartered`" pulumi-lang-python="`standard_chartered`" pulumi-lang-yaml="`standardChartered`" pulumi-lang-java="`standardChartered`" pulumi-lang-hcl="`standard_chartered`">`standardChartered`</span>, <span pulumi-lang-nodejs="`uob`" pulumi-lang-dotnet="`Uob`" pulumi-lang-go="`uob`" pulumi-lang-python="`uob`" pulumi-lang-yaml="`uob`" pulumi-lang-java="`uob`" pulumi-lang-hcl="`uob`">`uob`</span>, <span pulumi-lang-nodejs="`deutscheBank`" pulumi-lang-dotnet="`DeutscheBank`" pulumi-lang-go="`deutscheBank`" pulumi-lang-python="`deutsche_bank`" pulumi-lang-yaml="`deutscheBank`" pulumi-lang-java="`deutscheBank`" pulumi-lang-hcl="`deutsche_bank`">`deutscheBank`</span>, <span pulumi-lang-nodejs="`maybank2e`" pulumi-lang-dotnet="`Maybank2e`" pulumi-lang-go="`maybank2e`" pulumi-lang-python="`maybank2e`" pulumi-lang-yaml="`maybank2e`" pulumi-lang-java="`maybank2e`" pulumi-lang-hcl="`maybank2e`">`maybank2e`</span>, <span pulumi-lang-nodejs="`pbEnterprise`" pulumi-lang-dotnet="`PbEnterprise`" pulumi-lang-go="`pbEnterprise`" pulumi-lang-python="`pb_enterprise`" pulumi-lang-yaml="`pbEnterprise`" pulumi-lang-java="`pbEnterprise`" pulumi-lang-hcl="`pb_enterprise`">`pbEnterprise`</span>, or <span pulumi-lang-nodejs="`bankOfChina`" pulumi-lang-dotnet="`BankOfChina`" pulumi-lang-go="`bankOfChina`" pulumi-lang-python="`bank_of_china`" pulumi-lang-yaml="`bankOfChina`" pulumi-lang-java="`bankOfChina`" pulumi-lang-hcl="`bank_of_china`">`bankOfChina`</span>.
+     * The customer's bank, if provided. Can be one of <span pulumi-lang-nodejs="`affinBank`" pulumi-lang-dotnet="`AffinBank`" pulumi-lang-go="`affinBank`" pulumi-lang-python="`affin_bank`" pulumi-lang-yaml="`affinBank`" pulumi-lang-java="`affinBank`" pulumi-lang-hcl="`affin_bank`">`affinBank`</span>, <span pulumi-lang-nodejs="`agrobank`" pulumi-lang-dotnet="`Agrobank`" pulumi-lang-go="`agrobank`" pulumi-lang-python="`agrobank`" pulumi-lang-yaml="`agrobank`" pulumi-lang-java="`agrobank`" pulumi-lang-hcl="`agrobank`">`agrobank`</span>, <span pulumi-lang-nodejs="`allianceBank`" pulumi-lang-dotnet="`AllianceBank`" pulumi-lang-go="`allianceBank`" pulumi-lang-python="`alliance_bank`" pulumi-lang-yaml="`allianceBank`" pulumi-lang-java="`allianceBank`" pulumi-lang-hcl="`alliance_bank`">`allianceBank`</span>, <span pulumi-lang-nodejs="`ambank`" pulumi-lang-dotnet="`Ambank`" pulumi-lang-go="`ambank`" pulumi-lang-python="`ambank`" pulumi-lang-yaml="`ambank`" pulumi-lang-java="`ambank`" pulumi-lang-hcl="`ambank`">`ambank`</span>, <span pulumi-lang-nodejs="`bankIslam`" pulumi-lang-dotnet="`BankIslam`" pulumi-lang-go="`bankIslam`" pulumi-lang-python="`bank_islam`" pulumi-lang-yaml="`bankIslam`" pulumi-lang-java="`bankIslam`" pulumi-lang-hcl="`bank_islam`">`bankIslam`</span>, <span pulumi-lang-nodejs="`bankMuamalat`" pulumi-lang-dotnet="`BankMuamalat`" pulumi-lang-go="`bankMuamalat`" pulumi-lang-python="`bank_muamalat`" pulumi-lang-yaml="`bankMuamalat`" pulumi-lang-java="`bankMuamalat`" pulumi-lang-hcl="`bank_muamalat`">`bankMuamalat`</span>, <span pulumi-lang-nodejs="`bnpParibas`" pulumi-lang-dotnet="`BnpParibas`" pulumi-lang-go="`bnpParibas`" pulumi-lang-python="`bnp_paribas`" pulumi-lang-yaml="`bnpParibas`" pulumi-lang-java="`bnpParibas`" pulumi-lang-hcl="`bnp_paribas`">`bnpParibas`</span>, <span pulumi-lang-nodejs="`bankRakyat`" pulumi-lang-dotnet="`BankRakyat`" pulumi-lang-go="`bankRakyat`" pulumi-lang-python="`bank_rakyat`" pulumi-lang-yaml="`bankRakyat`" pulumi-lang-java="`bankRakyat`" pulumi-lang-hcl="`bank_rakyat`">`bankRakyat`</span>, <span pulumi-lang-nodejs="`bsn`" pulumi-lang-dotnet="`Bsn`" pulumi-lang-go="`bsn`" pulumi-lang-python="`bsn`" pulumi-lang-yaml="`bsn`" pulumi-lang-java="`bsn`" pulumi-lang-hcl="`bsn`">`bsn`</span>, <span pulumi-lang-nodejs="`cimb`" pulumi-lang-dotnet="`Cimb`" pulumi-lang-go="`cimb`" pulumi-lang-python="`cimb`" pulumi-lang-yaml="`cimb`" pulumi-lang-java="`cimb`" pulumi-lang-hcl="`cimb`">`cimb`</span>, <span pulumi-lang-nodejs="`citibank`" pulumi-lang-dotnet="`Citibank`" pulumi-lang-go="`citibank`" pulumi-lang-python="`citibank`" pulumi-lang-yaml="`citibank`" pulumi-lang-java="`citibank`" pulumi-lang-hcl="`citibank`">`citibank`</span>, <span pulumi-lang-nodejs="`hongLeongBank`" pulumi-lang-dotnet="`HongLeongBank`" pulumi-lang-go="`hongLeongBank`" pulumi-lang-python="`hong_leong_bank`" pulumi-lang-yaml="`hongLeongBank`" pulumi-lang-java="`hongLeongBank`" pulumi-lang-hcl="`hong_leong_bank`">`hongLeongBank`</span>, <span pulumi-lang-nodejs="`hsbc`" pulumi-lang-dotnet="`Hsbc`" pulumi-lang-go="`hsbc`" pulumi-lang-python="`hsbc`" pulumi-lang-yaml="`hsbc`" pulumi-lang-java="`hsbc`" pulumi-lang-hcl="`hsbc`">`hsbc`</span>, <span pulumi-lang-nodejs="`kfh`" pulumi-lang-dotnet="`Kfh`" pulumi-lang-go="`kfh`" pulumi-lang-python="`kfh`" pulumi-lang-yaml="`kfh`" pulumi-lang-java="`kfh`" pulumi-lang-hcl="`kfh`">`kfh`</span>, <span pulumi-lang-nodejs="`maybank2u`" pulumi-lang-dotnet="`Maybank2u`" pulumi-lang-go="`maybank2u`" pulumi-lang-python="`maybank2u`" pulumi-lang-yaml="`maybank2u`" pulumi-lang-java="`maybank2u`" pulumi-lang-hcl="`maybank2u`">`maybank2u`</span>, <span pulumi-lang-nodejs="`ocbc`" pulumi-lang-dotnet="`Ocbc`" pulumi-lang-go="`ocbc`" pulumi-lang-python="`ocbc`" pulumi-lang-yaml="`ocbc`" pulumi-lang-java="`ocbc`" pulumi-lang-hcl="`ocbc`">`ocbc`</span>, <span pulumi-lang-nodejs="`publicBank`" pulumi-lang-dotnet="`PublicBank`" pulumi-lang-go="`publicBank`" pulumi-lang-python="`public_bank`" pulumi-lang-yaml="`publicBank`" pulumi-lang-java="`publicBank`" pulumi-lang-hcl="`public_bank`">`publicBank`</span>, <span pulumi-lang-nodejs="`rhb`" pulumi-lang-dotnet="`Rhb`" pulumi-lang-go="`rhb`" pulumi-lang-python="`rhb`" pulumi-lang-yaml="`rhb`" pulumi-lang-java="`rhb`" pulumi-lang-hcl="`rhb`">`rhb`</span>, <span pulumi-lang-nodejs="`standardChartered`" pulumi-lang-dotnet="`StandardChartered`" pulumi-lang-go="`standardChartered`" pulumi-lang-python="`standard_chartered`" pulumi-lang-yaml="`standardChartered`" pulumi-lang-java="`standardChartered`" pulumi-lang-hcl="`standard_chartered`">`standardChartered`</span>, <span pulumi-lang-nodejs="`uob`" pulumi-lang-dotnet="`Uob`" pulumi-lang-go="`uob`" pulumi-lang-python="`uob`" pulumi-lang-yaml="`uob`" pulumi-lang-java="`uob`" pulumi-lang-hcl="`uob`">`uob`</span>, <span pulumi-lang-nodejs="`deutscheBank`" pulumi-lang-dotnet="`DeutscheBank`" pulumi-lang-go="`deutscheBank`" pulumi-lang-python="`deutsche_bank`" pulumi-lang-yaml="`deutscheBank`" pulumi-lang-java="`deutscheBank`" pulumi-lang-hcl="`deutsche_bank`">`deutscheBank`</span>, <span pulumi-lang-nodejs="`maybank2e`" pulumi-lang-dotnet="`Maybank2e`" pulumi-lang-go="`maybank2e`" pulumi-lang-python="`maybank2e`" pulumi-lang-yaml="`maybank2e`" pulumi-lang-java="`maybank2e`" pulumi-lang-hcl="`maybank2e`">`maybank2e`</span>, <span pulumi-lang-nodejs="`mbsbBank`" pulumi-lang-dotnet="`MbsbBank`" pulumi-lang-go="`mbsbBank`" pulumi-lang-python="`mbsb_bank`" pulumi-lang-yaml="`mbsbBank`" pulumi-lang-java="`mbsbBank`" pulumi-lang-hcl="`mbsb_bank`">`mbsbBank`</span>, <span pulumi-lang-nodejs="`pbEnterprise`" pulumi-lang-dotnet="`PbEnterprise`" pulumi-lang-go="`pbEnterprise`" pulumi-lang-python="`pb_enterprise`" pulumi-lang-yaml="`pbEnterprise`" pulumi-lang-java="`pbEnterprise`" pulumi-lang-hcl="`pb_enterprise`">`pbEnterprise`</span>, or <span pulumi-lang-nodejs="`bankOfChina`" pulumi-lang-dotnet="`BankOfChina`" pulumi-lang-go="`bankOfChina`" pulumi-lang-python="`bank_of_china`" pulumi-lang-yaml="`bankOfChina`" pulumi-lang-java="`bankOfChina`" pulumi-lang-hcl="`bank_of_china`">`bankOfChina`</span>.
      */
     bank: pulumi.Input<string>;
 }
@@ -10296,6 +10742,13 @@ export interface PaymentMethodPayto {
      * The PayID alias for the bank account.
      */
     payId?: pulumi.Input<string | undefined>;
+}
+
+export interface PaymentMethodPix {
+    /**
+     * Uniquely identifies this particular Pix account. You can use this attribute to check whether two Pix accounts are the same.
+     */
+    fingerprint?: pulumi.Input<string | undefined>;
 }
 
 export interface PaymentMethodRadarOptions {
@@ -10600,7 +11053,7 @@ export interface PersonDocuments {
 export interface PersonDocumentsCompanyAuthorization {
     /**
      * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
-     * One or more document ids returned by a [file upload](https://api.stripe.com#create_file) with a <span pulumi-lang-nodejs="`purpose`" pulumi-lang-dotnet="`Purpose`" pulumi-lang-go="`purpose`" pulumi-lang-python="`purpose`" pulumi-lang-yaml="`purpose`" pulumi-lang-java="`purpose`" pulumi-lang-hcl="`purpose`">`purpose`</span> value of <span pulumi-lang-nodejs="`accountRequirement`" pulumi-lang-dotnet="`AccountRequirement`" pulumi-lang-go="`accountRequirement`" pulumi-lang-python="`account_requirement`" pulumi-lang-yaml="`accountRequirement`" pulumi-lang-java="`accountRequirement`" pulumi-lang-hcl="`account_requirement`">`accountRequirement`</span>.
+     * One or more document ids returned by a [file upload](https://docs.stripe.com/api#create_file) with a <span pulumi-lang-nodejs="`purpose`" pulumi-lang-dotnet="`Purpose`" pulumi-lang-go="`purpose`" pulumi-lang-python="`purpose`" pulumi-lang-yaml="`purpose`" pulumi-lang-java="`purpose`" pulumi-lang-hcl="`purpose`">`purpose`</span> value of <span pulumi-lang-nodejs="`accountRequirement`" pulumi-lang-dotnet="`AccountRequirement`" pulumi-lang-go="`accountRequirement`" pulumi-lang-python="`account_requirement`" pulumi-lang-yaml="`accountRequirement`" pulumi-lang-java="`accountRequirement`" pulumi-lang-hcl="`account_requirement`">`accountRequirement`</span>.
      */
     files?: pulumi.Input<pulumi.Input<string>[] | undefined>;
 }
@@ -10608,7 +11061,7 @@ export interface PersonDocumentsCompanyAuthorization {
 export interface PersonDocumentsPassport {
     /**
      * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
-     * One or more document ids returned by a [file upload](https://api.stripe.com#create_file) with a <span pulumi-lang-nodejs="`purpose`" pulumi-lang-dotnet="`Purpose`" pulumi-lang-go="`purpose`" pulumi-lang-python="`purpose`" pulumi-lang-yaml="`purpose`" pulumi-lang-java="`purpose`" pulumi-lang-hcl="`purpose`">`purpose`</span> value of <span pulumi-lang-nodejs="`accountRequirement`" pulumi-lang-dotnet="`AccountRequirement`" pulumi-lang-go="`accountRequirement`" pulumi-lang-python="`account_requirement`" pulumi-lang-yaml="`accountRequirement`" pulumi-lang-java="`accountRequirement`" pulumi-lang-hcl="`account_requirement`">`accountRequirement`</span>.
+     * One or more document ids returned by a [file upload](https://docs.stripe.com/api#create_file) with a <span pulumi-lang-nodejs="`purpose`" pulumi-lang-dotnet="`Purpose`" pulumi-lang-go="`purpose`" pulumi-lang-python="`purpose`" pulumi-lang-yaml="`purpose`" pulumi-lang-java="`purpose`" pulumi-lang-hcl="`purpose`">`purpose`</span> value of <span pulumi-lang-nodejs="`accountRequirement`" pulumi-lang-dotnet="`AccountRequirement`" pulumi-lang-go="`accountRequirement`" pulumi-lang-python="`account_requirement`" pulumi-lang-yaml="`accountRequirement`" pulumi-lang-java="`accountRequirement`" pulumi-lang-hcl="`account_requirement`">`accountRequirement`</span>.
      */
     files?: pulumi.Input<pulumi.Input<string>[] | undefined>;
 }
@@ -10616,7 +11069,7 @@ export interface PersonDocumentsPassport {
 export interface PersonDocumentsVisa {
     /**
      * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
-     * One or more document ids returned by a [file upload](https://api.stripe.com#create_file) with a <span pulumi-lang-nodejs="`purpose`" pulumi-lang-dotnet="`Purpose`" pulumi-lang-go="`purpose`" pulumi-lang-python="`purpose`" pulumi-lang-yaml="`purpose`" pulumi-lang-java="`purpose`" pulumi-lang-hcl="`purpose`">`purpose`</span> value of <span pulumi-lang-nodejs="`accountRequirement`" pulumi-lang-dotnet="`AccountRequirement`" pulumi-lang-go="`accountRequirement`" pulumi-lang-python="`account_requirement`" pulumi-lang-yaml="`accountRequirement`" pulumi-lang-java="`accountRequirement`" pulumi-lang-hcl="`account_requirement`">`accountRequirement`</span>.
+     * One or more document ids returned by a [file upload](https://docs.stripe.com/api#create_file) with a <span pulumi-lang-nodejs="`purpose`" pulumi-lang-dotnet="`Purpose`" pulumi-lang-go="`purpose`" pulumi-lang-python="`purpose`" pulumi-lang-yaml="`purpose`" pulumi-lang-java="`purpose`" pulumi-lang-hcl="`purpose`">`purpose`</span> value of <span pulumi-lang-nodejs="`accountRequirement`" pulumi-lang-dotnet="`AccountRequirement`" pulumi-lang-go="`accountRequirement`" pulumi-lang-python="`account_requirement`" pulumi-lang-yaml="`accountRequirement`" pulumi-lang-java="`accountRequirement`" pulumi-lang-hcl="`account_requirement`">`accountRequirement`</span>.
      */
     files?: pulumi.Input<pulumi.Input<string>[] | undefined>;
 }
@@ -10631,7 +11084,7 @@ export interface PersonFutureRequirements {
      */
     currentlyDues?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
-     * Details about validation and verification failures for <span pulumi-lang-nodejs="`due`" pulumi-lang-dotnet="`Due`" pulumi-lang-go="`due`" pulumi-lang-python="`due`" pulumi-lang-yaml="`due`" pulumi-lang-java="`due`" pulumi-lang-hcl="`due`">`due`</span> requirements that must be resolved.
+     * Fields that are <span pulumi-lang-nodejs="`currentlyDue`" pulumi-lang-dotnet="`CurrentlyDue`" pulumi-lang-go="`currentlyDue`" pulumi-lang-python="`currently_due`" pulumi-lang-yaml="`currentlyDue`" pulumi-lang-java="`currentlyDue`" pulumi-lang-hcl="`currently_due`">`currentlyDue`</span> and need to be collected again because validation or verification failed.
      */
     errors?: pulumi.Input<pulumi.Input<inputs.PersonFutureRequirementsError>[] | undefined>;
     /**
@@ -10746,7 +11199,7 @@ export interface PersonRequirements {
      */
     currentlyDues?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
-     * Details about validation and verification failures for <span pulumi-lang-nodejs="`due`" pulumi-lang-dotnet="`Due`" pulumi-lang-go="`due`" pulumi-lang-python="`due`" pulumi-lang-yaml="`due`" pulumi-lang-java="`due`" pulumi-lang-hcl="`due`">`due`</span> requirements that must be resolved.
+     * Fields that are <span pulumi-lang-nodejs="`currentlyDue`" pulumi-lang-dotnet="`CurrentlyDue`" pulumi-lang-go="`currentlyDue`" pulumi-lang-python="`currently_due`" pulumi-lang-yaml="`currentlyDue`" pulumi-lang-java="`currentlyDue`" pulumi-lang-hcl="`currently_due`">`currentlyDue`</span> and need to be collected again because validation or verification failed.
      */
     errors?: pulumi.Input<pulumi.Input<inputs.PersonRequirementsError>[] | undefined>;
     /**
@@ -10848,7 +11301,7 @@ export interface PersonVerification {
 
 export interface PersonVerificationAdditionalDocument {
     /**
-     * The back of an ID returned by a [file upload](https://api.stripe.com#create_file) with a <span pulumi-lang-nodejs="`purpose`" pulumi-lang-dotnet="`Purpose`" pulumi-lang-go="`purpose`" pulumi-lang-python="`purpose`" pulumi-lang-yaml="`purpose`" pulumi-lang-java="`purpose`" pulumi-lang-hcl="`purpose`">`purpose`</span> value of <span pulumi-lang-nodejs="`identityDocument`" pulumi-lang-dotnet="`IdentityDocument`" pulumi-lang-go="`identityDocument`" pulumi-lang-python="`identity_document`" pulumi-lang-yaml="`identityDocument`" pulumi-lang-java="`identityDocument`" pulumi-lang-hcl="`identity_document`">`identityDocument`</span>.
+     * The back of an ID returned by a [file upload](https://docs.stripe.com/api#create_file) with a <span pulumi-lang-nodejs="`purpose`" pulumi-lang-dotnet="`Purpose`" pulumi-lang-go="`purpose`" pulumi-lang-python="`purpose`" pulumi-lang-yaml="`purpose`" pulumi-lang-java="`purpose`" pulumi-lang-hcl="`purpose`">`purpose`</span> value of <span pulumi-lang-nodejs="`identityDocument`" pulumi-lang-dotnet="`IdentityDocument`" pulumi-lang-go="`identityDocument`" pulumi-lang-python="`identity_document`" pulumi-lang-yaml="`identityDocument`" pulumi-lang-java="`identityDocument`" pulumi-lang-hcl="`identity_document`">`identityDocument`</span>.
      */
     back?: pulumi.Input<string | undefined>;
     /**
@@ -10860,14 +11313,14 @@ export interface PersonVerificationAdditionalDocument {
      */
     detailsCode?: pulumi.Input<string | undefined>;
     /**
-     * The front of an ID returned by a [file upload](https://api.stripe.com#create_file) with a <span pulumi-lang-nodejs="`purpose`" pulumi-lang-dotnet="`Purpose`" pulumi-lang-go="`purpose`" pulumi-lang-python="`purpose`" pulumi-lang-yaml="`purpose`" pulumi-lang-java="`purpose`" pulumi-lang-hcl="`purpose`">`purpose`</span> value of <span pulumi-lang-nodejs="`identityDocument`" pulumi-lang-dotnet="`IdentityDocument`" pulumi-lang-go="`identityDocument`" pulumi-lang-python="`identity_document`" pulumi-lang-yaml="`identityDocument`" pulumi-lang-java="`identityDocument`" pulumi-lang-hcl="`identity_document`">`identityDocument`</span>.
+     * The front of an ID returned by a [file upload](https://docs.stripe.com/api#create_file) with a <span pulumi-lang-nodejs="`purpose`" pulumi-lang-dotnet="`Purpose`" pulumi-lang-go="`purpose`" pulumi-lang-python="`purpose`" pulumi-lang-yaml="`purpose`" pulumi-lang-java="`purpose`" pulumi-lang-hcl="`purpose`">`purpose`</span> value of <span pulumi-lang-nodejs="`identityDocument`" pulumi-lang-dotnet="`IdentityDocument`" pulumi-lang-go="`identityDocument`" pulumi-lang-python="`identity_document`" pulumi-lang-yaml="`identityDocument`" pulumi-lang-java="`identityDocument`" pulumi-lang-hcl="`identity_document`">`identityDocument`</span>.
      */
     front?: pulumi.Input<string | undefined>;
 }
 
 export interface PersonVerificationDocument {
     /**
-     * The back of an ID returned by a [file upload](https://api.stripe.com#create_file) with a <span pulumi-lang-nodejs="`purpose`" pulumi-lang-dotnet="`Purpose`" pulumi-lang-go="`purpose`" pulumi-lang-python="`purpose`" pulumi-lang-yaml="`purpose`" pulumi-lang-java="`purpose`" pulumi-lang-hcl="`purpose`">`purpose`</span> value of <span pulumi-lang-nodejs="`identityDocument`" pulumi-lang-dotnet="`IdentityDocument`" pulumi-lang-go="`identityDocument`" pulumi-lang-python="`identity_document`" pulumi-lang-yaml="`identityDocument`" pulumi-lang-java="`identityDocument`" pulumi-lang-hcl="`identity_document`">`identityDocument`</span>.
+     * The back of an ID returned by a [file upload](https://docs.stripe.com/api#create_file) with a <span pulumi-lang-nodejs="`purpose`" pulumi-lang-dotnet="`Purpose`" pulumi-lang-go="`purpose`" pulumi-lang-python="`purpose`" pulumi-lang-yaml="`purpose`" pulumi-lang-java="`purpose`" pulumi-lang-hcl="`purpose`">`purpose`</span> value of <span pulumi-lang-nodejs="`identityDocument`" pulumi-lang-dotnet="`IdentityDocument`" pulumi-lang-go="`identityDocument`" pulumi-lang-python="`identity_document`" pulumi-lang-yaml="`identityDocument`" pulumi-lang-java="`identityDocument`" pulumi-lang-hcl="`identity_document`">`identityDocument`</span>.
      */
     back?: pulumi.Input<string | undefined>;
     /**
@@ -10879,7 +11332,7 @@ export interface PersonVerificationDocument {
      */
     detailsCode?: pulumi.Input<string | undefined>;
     /**
-     * The front of an ID returned by a [file upload](https://api.stripe.com#create_file) with a <span pulumi-lang-nodejs="`purpose`" pulumi-lang-dotnet="`Purpose`" pulumi-lang-go="`purpose`" pulumi-lang-python="`purpose`" pulumi-lang-yaml="`purpose`" pulumi-lang-java="`purpose`" pulumi-lang-hcl="`purpose`">`purpose`</span> value of <span pulumi-lang-nodejs="`identityDocument`" pulumi-lang-dotnet="`IdentityDocument`" pulumi-lang-go="`identityDocument`" pulumi-lang-python="`identity_document`" pulumi-lang-yaml="`identityDocument`" pulumi-lang-java="`identityDocument`" pulumi-lang-hcl="`identity_document`">`identityDocument`</span>.
+     * The front of an ID returned by a [file upload](https://docs.stripe.com/api#create_file) with a <span pulumi-lang-nodejs="`purpose`" pulumi-lang-dotnet="`Purpose`" pulumi-lang-go="`purpose`" pulumi-lang-python="`purpose`" pulumi-lang-yaml="`purpose`" pulumi-lang-java="`purpose`" pulumi-lang-hcl="`purpose`">`purpose`</span> value of <span pulumi-lang-nodejs="`identityDocument`" pulumi-lang-dotnet="`IdentityDocument`" pulumi-lang-go="`identityDocument`" pulumi-lang-python="`identity_document`" pulumi-lang-yaml="`identityDocument`" pulumi-lang-java="`identityDocument`" pulumi-lang-hcl="`identity_document`">`identityDocument`</span>.
      */
     front?: pulumi.Input<string | undefined>;
 }
@@ -11034,9 +11487,24 @@ export interface PriceProductData {
      */
     taxCode?: pulumi.Input<string | undefined>;
     /**
+     * Tax details for this product, including the [tax code](https://www.terraform.io/tax/tax-codes) and an optional performance location.
+     */
+    taxDetails?: pulumi.Input<inputs.PriceProductDataTaxDetails | undefined>;
+    /**
      * A label that represents units of this product. When set, this will be included in customers' receipts, invoices, Checkout, and the customer portal.
      */
     unitLabel?: pulumi.Input<string | undefined>;
+}
+
+export interface PriceProductDataTaxDetails {
+    /**
+     * A tax location ID. Depending on the [tax code](https://www.terraform.io/tax/tax-for-tickets/reference/tax-location-performance), this is required, optional, or not supported.
+     */
+    performanceLocation?: pulumi.Input<string | undefined>;
+    /**
+     * A [tax code](https://docs.stripe.com/tax/tax-categories) ID.
+     */
+    taxCode?: pulumi.Input<string | undefined>;
 }
 
 export interface PriceRecurring {
@@ -11094,6 +11562,36 @@ export interface PriceTransformQuantity {
      * After division, either round the result <span pulumi-lang-nodejs="`up`" pulumi-lang-dotnet="`Up`" pulumi-lang-go="`up`" pulumi-lang-python="`up`" pulumi-lang-yaml="`up`" pulumi-lang-java="`up`" pulumi-lang-hcl="`up`">`up`</span> or <span pulumi-lang-nodejs="`down`" pulumi-lang-dotnet="`Down`" pulumi-lang-go="`down`" pulumi-lang-python="`down`" pulumi-lang-yaml="`down`" pulumi-lang-java="`down`" pulumi-lang-hcl="`down`">`down`</span>.
      */
     round: pulumi.Input<string>;
+}
+
+export interface ProductCatalogTrialOfferDuration {
+    relative?: pulumi.Input<inputs.ProductCatalogTrialOfferDurationRelative | undefined>;
+    /**
+     * The type of trial offer duration.
+     */
+    type: pulumi.Input<string>;
+}
+
+export interface ProductCatalogTrialOfferDurationRelative {
+    /**
+     * The number of iterations of the price's interval for this trial offer.
+     */
+    iterations: pulumi.Input<number>;
+}
+
+export interface ProductCatalogTrialOfferEndBehavior {
+    transition: pulumi.Input<inputs.ProductCatalogTrialOfferEndBehaviorTransition>;
+    /**
+     * The type of behavior when the trial offer ends.
+     */
+    type?: pulumi.Input<string | undefined>;
+}
+
+export interface ProductCatalogTrialOfferEndBehaviorTransition {
+    /**
+     * The new price to use at the end of the trial offer period.
+     */
+    price: pulumi.Input<string>;
 }
 
 export interface ProductDefaultPriceData {
@@ -11256,6 +11754,17 @@ export interface ProductPackageDimension {
     width: pulumi.Input<number>;
 }
 
+export interface ProductTaxDetails {
+    /**
+     * The ID of a tax location with type <span pulumi-lang-nodejs="`performance`" pulumi-lang-dotnet="`Performance`" pulumi-lang-go="`performance`" pulumi-lang-python="`performance`" pulumi-lang-yaml="`performance`" pulumi-lang-java="`performance`" pulumi-lang-hcl="`performance`">`performance`</span>, representing where the performance takes place.
+     */
+    performanceLocation?: pulumi.Input<string | undefined>;
+    /**
+     * A [tax code](https://docs.stripe.com/tax/tax-categories) ID.
+     */
+    taxCode?: pulumi.Input<string | undefined>;
+}
+
 export interface PromotionCodePromotion {
     /**
      * If promotion <span pulumi-lang-nodejs="`type`" pulumi-lang-dotnet="`Type`" pulumi-lang-go="`type`" pulumi-lang-python="`type`" pulumi-lang-yaml="`type`" pulumi-lang-java="`type`" pulumi-lang-hcl="`type`">`type`</span> is <span pulumi-lang-nodejs="`coupon`" pulumi-lang-dotnet="`Coupon`" pulumi-lang-go="`coupon`" pulumi-lang-python="`coupon`" pulumi-lang-yaml="`coupon`" pulumi-lang-java="`coupon`" pulumi-lang-hcl="`coupon`">`coupon`</span>, the coupon for this promotion.
@@ -11355,10 +11864,33 @@ export interface QuoteFromQuote {
 
 export interface QuoteInvoiceSettings {
     /**
+     * A list of up to 4 custom fields to be displayed on the invoice.
+     */
+    customFields?: pulumi.Input<pulumi.Input<inputs.QuoteInvoiceSettingsCustomField>[] | undefined>;
+    /**
      * Number of days within which a customer must pay invoices generated by this quote. This value will be <span pulumi-lang-nodejs="`null`" pulumi-lang-dotnet="`Null`" pulumi-lang-go="`null`" pulumi-lang-python="`null`" pulumi-lang-yaml="`null`" pulumi-lang-java="`null`" pulumi-lang-hcl="`null`">`null`</span> for quotes where `collection_method=charge_automatically`.
      */
     daysUntilDue?: pulumi.Input<number | undefined>;
+    /**
+     * An arbitrary string attached to the object. Often useful for displaying to users.
+     */
+    description?: pulumi.Input<string | undefined>;
+    /**
+     * Footer to be displayed on the invoice.
+     */
+    footer?: pulumi.Input<string | undefined>;
     issuer?: pulumi.Input<inputs.QuoteInvoiceSettingsIssuer | undefined>;
+}
+
+export interface QuoteInvoiceSettingsCustomField {
+    /**
+     * The name of the custom field.
+     */
+    name: pulumi.Input<string>;
+    /**
+     * The value of the custom field.
+     */
+    value: pulumi.Input<string>;
 }
 
 export interface QuoteInvoiceSettingsIssuer {
@@ -11534,7 +12066,7 @@ export interface QuoteTotalDetailsBreakdownDiscount {
      */
     amount?: pulumi.Input<number | undefined>;
     /**
-     * A discount represents the actual application of a [coupon](https://api.stripe.com#coupons) or [promotion code](https://api.stripe.com#promotion_codes).
+     * A discount represents the actual application of a [coupon](https://docs.stripe.com/api#coupons) or [promotion code](https://docs.stripe.com/api#promotion_codes).
      * It contains information about when the discount began, when it will end, and what it is applied to.
      *
      * Related guide: [Applying discounts to subscriptions](https://docs.stripe.com/billing/subscriptions/discounts)
@@ -11593,7 +12125,7 @@ export interface SetupIntentAutomaticPaymentMethods {
 
 export interface SetupIntentLastSetupError {
     /**
-     * For card errors resulting from a card issuer decline, a short string indicating [how to proceed with an error](https://docs.stripe.com/declines#retrying-issuer-declines) if they provide one.
+     * For card errors resulting from a card issuer decline, a short string indicating [how to proceed with an error](https://docs.stripe.com/declines/card#retrying-issuer-declines) if they provide one.
      */
     adviceCode?: pulumi.Input<string | undefined>;
     /**
@@ -11661,7 +12193,7 @@ export interface SetupIntentLastSetupError {
     /**
      * A SetupIntent guides you through the process of setting up and saving a customer's payment credentials for future payments.
      * For example, you can use a SetupIntent to set up and save your customer's card without immediately collecting a payment.
-     * Later, you can use [PaymentIntents](https://api.stripe.com#payment_intents) to drive the payment flow.
+     * Later, you can use [PaymentIntents](https://docs.stripe.com/api#payment_intents) to drive the payment flow.
      *
      * Create a SetupIntent when you're ready to collect your customer's payment credentials.
      * Don't maintain long-lived, unconfirmed SetupIntents because they might not be valid.
@@ -11672,9 +12204,9 @@ export interface SetupIntentLastSetupError {
      * For example, cardholders in [certain regions](https://stripe.com/guides/strong-customer-authentication) might need to be run through
      * [Strong Customer Authentication](https://docs.stripe.com/strong-customer-authentication) during payment method collection
      * to streamline later [off-session payments](https://docs.stripe.com/payments/setup-intents).
-     * If you use the SetupIntent with a [Customer](https://api.stripe.com#setup_intent_object-customer),
+     * If you use the SetupIntent with a [Customer](https://docs.stripe.com/api#setup_intent_object-customer),
      * it automatically attaches the resulting payment method to that Customer after successful setup.
-     * We recommend using SetupIntents or <span pulumi-lang-nodejs="[setupFutureUsage]" pulumi-lang-dotnet="[SetupFutureUsage]" pulumi-lang-go="[setupFutureUsage]" pulumi-lang-python="[setup_future_usage]" pulumi-lang-yaml="[setupFutureUsage]" pulumi-lang-java="[setupFutureUsage]" pulumi-lang-hcl="[setup_future_usage]">[setupFutureUsage]</span>(https://api.stripe.com#payment_intent_object-setup_future_usage) on
+     * We recommend using SetupIntents or <span pulumi-lang-nodejs="[setupFutureUsage]" pulumi-lang-dotnet="[SetupFutureUsage]" pulumi-lang-go="[setupFutureUsage]" pulumi-lang-python="[setup_future_usage]" pulumi-lang-yaml="[setupFutureUsage]" pulumi-lang-java="[setupFutureUsage]" pulumi-lang-hcl="[setup_future_usage]">[setupFutureUsage]</span>(https://docs.stripe.com/api#payment_intent_object-setup_future_usage) on
      * PaymentIntents to save payment methods to prevent saving invalid or unoptimized payment methods.
      *
      * By using SetupIntents, you can reduce friction for your customers, even as regulations change over time.
@@ -12289,6 +12821,7 @@ export interface SetupIntentPaymentMethodDataUsBankAccount {
 export interface SetupIntentPaymentMethodOptions {
     acssDebit?: pulumi.Input<inputs.SetupIntentPaymentMethodOptionsAcssDebit | undefined>;
     bacsDebit?: pulumi.Input<inputs.SetupIntentPaymentMethodOptionsBacsDebit | undefined>;
+    blik?: pulumi.Input<inputs.SetupIntentPaymentMethodOptionsBlik | undefined>;
     card?: pulumi.Input<inputs.SetupIntentPaymentMethodOptionsCard | undefined>;
     klarna?: pulumi.Input<inputs.SetupIntentPaymentMethodOptionsKlarna | undefined>;
     link?: pulumi.Input<inputs.SetupIntentPaymentMethodOptionsLink | undefined>;
@@ -12346,6 +12879,25 @@ export interface SetupIntentPaymentMethodOptionsBacsDebitMandateOptions {
     referencePrefix?: pulumi.Input<string | undefined>;
 }
 
+export interface SetupIntentPaymentMethodOptionsBlik {
+    /**
+     * The 6-digit BLIK code that a customer has generated using their banking application. Can only be set on confirmation.
+     */
+    code?: pulumi.Input<string | undefined>;
+    mandateOptions?: pulumi.Input<inputs.SetupIntentPaymentMethodOptionsBlikMandateOptions | undefined>;
+}
+
+export interface SetupIntentPaymentMethodOptionsBlikMandateOptions {
+    /**
+     * Date at which the mandate expires.
+     */
+    expiresAt?: pulumi.Input<number | undefined>;
+    /**
+     * Type of the mandate.
+     */
+    type?: pulumi.Input<string | undefined>;
+}
+
 export interface SetupIntentPaymentMethodOptionsCard {
     /**
      * Configuration options for setting up an eMandate for cards issued in India.
@@ -12365,6 +12917,10 @@ export interface SetupIntentPaymentMethodOptionsCard {
      * We strongly recommend that you rely on our SCA Engine to automatically prompt your customers for authentication based on risk level and [other requirements](https://docs.stripe.com/strong-customer-authentication). However, if you wish to request 3D Secure based on logic from your own fraud engine, provide this option. If not provided, this value defaults to <span pulumi-lang-nodejs="`automatic`" pulumi-lang-dotnet="`Automatic`" pulumi-lang-go="`automatic`" pulumi-lang-python="`automatic`" pulumi-lang-yaml="`automatic`" pulumi-lang-java="`automatic`" pulumi-lang-hcl="`automatic`">`automatic`</span>. Read our guide on [manually requesting 3D Secure](https://docs.stripe.com/payments/3d-secure/authentication-flow#manual-three-ds) for more information on how this configuration interacts with Radar and our SCA Engine.
      */
     requestThreeDSecure?: pulumi.Input<string | undefined>;
+    /**
+     * Set to indicate the future transaction type usage for the card being set up.
+     */
+    setupCredentialUsage?: pulumi.Input<string | undefined>;
     /**
      * If 3D Secure authentication was performed with a third-party provider,
      * the authentication details to use for this setup.
@@ -13646,6 +14202,10 @@ export interface SubscriptionCancellationDetails {
      */
     feedback?: pulumi.Input<string | undefined>;
     /**
+     * Customized feedback options that provide deeper insight into why the subscription was canceled, if the subscription was canceled explicitly by the user.
+     */
+    feedbackOption?: pulumi.Input<string | undefined>;
+    /**
      * Why this subscription was canceled.
      */
     reason?: pulumi.Input<string | undefined>;
@@ -13671,7 +14231,30 @@ export interface SubscriptionInvoiceSettings {
      * The account tax IDs associated with the subscription. Will be set on invoices generated by the subscription.
      */
     accountTaxIds?: pulumi.Input<pulumi.Input<string>[] | undefined>;
+    /**
+     * A list of up to 4 custom fields to be displayed on the invoice.
+     */
+    customFields?: pulumi.Input<pulumi.Input<inputs.SubscriptionInvoiceSettingsCustomField>[] | undefined>;
+    /**
+     * An arbitrary string attached to the object. Often useful for displaying to users.
+     */
+    description?: pulumi.Input<string | undefined>;
+    /**
+     * Footer to be displayed on the invoice.
+     */
+    footer?: pulumi.Input<string | undefined>;
     issuer?: pulumi.Input<inputs.SubscriptionInvoiceSettingsIssuer | undefined>;
+}
+
+export interface SubscriptionInvoiceSettingsCustomField {
+    /**
+     * The name of the custom field.
+     */
+    name: pulumi.Input<string>;
+    /**
+     * The value of the custom field.
+     */
+    value: pulumi.Input<string>;
 }
 
 export interface SubscriptionInvoiceSettingsIssuer {
@@ -13690,6 +14273,10 @@ export interface SubscriptionItem {
      * Define thresholds at which an invoice will be sent, and the subscription advanced to a new billing period. Pass an empty string to remove previously-defined thresholds.
      */
     billingThresholds?: pulumi.Input<inputs.SubscriptionItemBillingThresholds | undefined>;
+    /**
+     * The trial offer to apply to this subscription item.
+     */
+    currentTrial?: pulumi.Input<inputs.SubscriptionItemCurrentTrial | undefined>;
     /**
      * The coupons to redeem into discounts for the subscription item.
      */
@@ -13725,6 +14312,21 @@ export interface SubscriptionItemBillingThresholds {
      * Usage threshold that triggers the subscription to create an invoice
      */
     usageGte: pulumi.Input<number>;
+}
+
+export interface SubscriptionItemCurrentTrial {
+    /**
+     * The time the current trial ends.
+     */
+    endDate?: pulumi.Input<number | undefined>;
+    /**
+     * The time the current trial started.
+     */
+    startDate?: pulumi.Input<number | undefined>;
+    /**
+     * The Trial Offer ID applied to the subscription item.
+     */
+    trialOffer: pulumi.Input<string>;
 }
 
 export interface SubscriptionItemDiscount {
@@ -13831,6 +14433,14 @@ export interface SubscriptionPaymentSettingsPaymentMethodOptions {
      */
     bancontact?: pulumi.Input<inputs.SubscriptionPaymentSettingsPaymentMethodOptionsBancontact | undefined>;
     /**
+     * This sub-hash contains details about the Billie payment method options to pass to invoices created by the subscription.
+     */
+    billie?: pulumi.Input<inputs.SubscriptionPaymentSettingsPaymentMethodOptionsBillie | undefined>;
+    /**
+     * This sub-hash contains details about the Blik payment method options to pass to invoices created by the subscription.
+     */
+    blik?: pulumi.Input<inputs.SubscriptionPaymentSettingsPaymentMethodOptionsBlik | undefined>;
+    /**
      * This sub-hash contains details about the Card payment method options to pass to invoices created by the subscription.
      */
     card?: pulumi.Input<inputs.SubscriptionPaymentSettingsPaymentMethodOptionsCard | undefined>;
@@ -13876,6 +14486,68 @@ export interface SubscriptionPaymentSettingsPaymentMethodOptionsBancontact {
      * Preferred language of the Bancontact authorization page that the customer is redirected to.
      */
     preferredLanguage?: pulumi.Input<string | undefined>;
+}
+
+export interface SubscriptionPaymentSettingsPaymentMethodOptionsBillie {
+    companyDetails?: pulumi.Input<inputs.SubscriptionPaymentSettingsPaymentMethodOptionsBillieCompanyDetails | undefined>;
+}
+
+export interface SubscriptionPaymentSettingsPaymentMethodOptionsBillieCompanyDetails {
+    registeredAddress?: pulumi.Input<inputs.SubscriptionPaymentSettingsPaymentMethodOptionsBillieCompanyDetailsRegisteredAddress | undefined>;
+    /**
+     * Company or entity name.
+     */
+    registeredName?: pulumi.Input<string | undefined>;
+    /**
+     * The official registration number for the given registration type.
+     */
+    registrationNumber?: pulumi.Input<string | undefined>;
+    /**
+     * Type of registration the company or entity holds in their registered country.
+     */
+    registrationType?: pulumi.Input<string | undefined>;
+    /**
+     * VAT ID number.
+     */
+    vat?: pulumi.Input<string | undefined>;
+}
+
+export interface SubscriptionPaymentSettingsPaymentMethodOptionsBillieCompanyDetailsRegisteredAddress {
+    /**
+     * City, district, suburb, town, or village.
+     */
+    city?: pulumi.Input<string | undefined>;
+    /**
+     * Two-letter country code.
+     */
+    country?: pulumi.Input<string | undefined>;
+    /**
+     * Address line 1 (for example, street, PO Box, or company name).
+     */
+    line1?: pulumi.Input<string | undefined>;
+    /**
+     * Address line 2 (for example, apartment, suite, unit, or building).
+     */
+    line2?: pulumi.Input<string | undefined>;
+    /**
+     * ZIP or postal code.
+     */
+    postalCode?: pulumi.Input<string | undefined>;
+    /**
+     * State, county, province, or region.
+     */
+    state?: pulumi.Input<string | undefined>;
+}
+
+export interface SubscriptionPaymentSettingsPaymentMethodOptionsBlik {
+    mandateOptions?: pulumi.Input<inputs.SubscriptionPaymentSettingsPaymentMethodOptionsBlikMandateOptions | undefined>;
+}
+
+export interface SubscriptionPaymentSettingsPaymentMethodOptionsBlikMandateOptions {
+    /**
+     * Date when the mandate expires and no further payments will be charged. If not provided, the mandate will be set to be indefinite.
+     */
+    expiresAt?: pulumi.Input<number | undefined>;
 }
 
 export interface SubscriptionPaymentSettingsPaymentMethodOptionsCard {
@@ -13949,7 +14621,7 @@ export interface SubscriptionPaymentSettingsPaymentMethodOptionsPaytoMandateOpti
 
 export interface SubscriptionPaymentSettingsPaymentMethodOptionsPix {
     /**
-     * The number of seconds (between 10 and 1209600) after which Pix payment will expire. Defaults to 86400 seconds.
+     * The number of seconds after PaymentIntent confirmation when the Pix expires (between 60 and 1209600, inclusive). If unspecified, defaults to 14400 seconds (4 hours).
      */
     expiresAfterSeconds?: pulumi.Input<number | undefined>;
     mandateOptions?: pulumi.Input<inputs.SubscriptionPaymentSettingsPaymentMethodOptionsPixMandateOptions | undefined>;
@@ -14041,6 +14713,10 @@ export interface SubscriptionPendingUpdate {
      */
     billingCycleAnchor?: pulumi.Input<number | undefined>;
     /**
+     * Indicates whether this subscription should cancel at the end of the current period if the update is applied.
+     */
+    cancelAtPeriodEnd?: pulumi.Input<boolean | undefined>;
+    /**
      * The pending subscription-level discount that will be applied when the pending update is applied.
      */
     discount?: pulumi.Input<string | undefined>;
@@ -14057,7 +14733,7 @@ export interface SubscriptionPendingUpdate {
      */
     trialEnd?: pulumi.Input<number | undefined>;
     /**
-     * Indicates if a plan's <span pulumi-lang-nodejs="`trialPeriodDays`" pulumi-lang-dotnet="`TrialPeriodDays`" pulumi-lang-go="`trialPeriodDays`" pulumi-lang-python="`trial_period_days`" pulumi-lang-yaml="`trialPeriodDays`" pulumi-lang-java="`trialPeriodDays`" pulumi-lang-hcl="`trial_period_days`">`trialPeriodDays`</span> should be applied to the subscription. Setting <span pulumi-lang-nodejs="`trialEnd`" pulumi-lang-dotnet="`TrialEnd`" pulumi-lang-go="`trialEnd`" pulumi-lang-python="`trial_end`" pulumi-lang-yaml="`trialEnd`" pulumi-lang-java="`trialEnd`" pulumi-lang-hcl="`trial_end`">`trialEnd`</span> per subscription is preferred, and this defaults to <span pulumi-lang-nodejs="`false`" pulumi-lang-dotnet="`False`" pulumi-lang-go="`false`" pulumi-lang-python="`false`" pulumi-lang-yaml="`false`" pulumi-lang-java="`false`" pulumi-lang-hcl="`false`">`false`</span>. Setting this flag to <span pulumi-lang-nodejs="`true`" pulumi-lang-dotnet="`True`" pulumi-lang-go="`true`" pulumi-lang-python="`true`" pulumi-lang-yaml="`true`" pulumi-lang-java="`true`" pulumi-lang-hcl="`true`">`true`</span> together with <span pulumi-lang-nodejs="`trialEnd`" pulumi-lang-dotnet="`TrialEnd`" pulumi-lang-go="`trialEnd`" pulumi-lang-python="`trial_end`" pulumi-lang-yaml="`trialEnd`" pulumi-lang-java="`trialEnd`" pulumi-lang-hcl="`trial_end`">`trialEnd`</span> is not allowed. See [Using trial periods on subscriptions](https://docs.stripe.com/billing/subscriptions/trials) to learn more.
+     * Indicates if a plan's <span pulumi-lang-nodejs="`trialPeriodDays`" pulumi-lang-dotnet="`TrialPeriodDays`" pulumi-lang-go="`trialPeriodDays`" pulumi-lang-python="`trial_period_days`" pulumi-lang-yaml="`trialPeriodDays`" pulumi-lang-java="`trialPeriodDays`" pulumi-lang-hcl="`trial_period_days`">`trialPeriodDays`</span> should be applied to the subscription. Setting <span pulumi-lang-nodejs="`trialEnd`" pulumi-lang-dotnet="`TrialEnd`" pulumi-lang-go="`trialEnd`" pulumi-lang-python="`trial_end`" pulumi-lang-yaml="`trialEnd`" pulumi-lang-java="`trialEnd`" pulumi-lang-hcl="`trial_end`">`trialEnd`</span> per subscription is preferred, and this defaults to <span pulumi-lang-nodejs="`false`" pulumi-lang-dotnet="`False`" pulumi-lang-go="`false`" pulumi-lang-python="`false`" pulumi-lang-yaml="`false`" pulumi-lang-java="`false`" pulumi-lang-hcl="`false`">`false`</span>. Setting this flag to <span pulumi-lang-nodejs="`true`" pulumi-lang-dotnet="`True`" pulumi-lang-go="`true`" pulumi-lang-python="`true`" pulumi-lang-yaml="`true`" pulumi-lang-java="`true`" pulumi-lang-hcl="`true`">`true`</span> together with <span pulumi-lang-nodejs="`trialEnd`" pulumi-lang-dotnet="`TrialEnd`" pulumi-lang-go="`trialEnd`" pulumi-lang-python="`trial_end`" pulumi-lang-yaml="`trialEnd`" pulumi-lang-java="`trialEnd`" pulumi-lang-hcl="`trial_end`">`trialEnd`</span> is not allowed. See [Using trial periods on subscriptions](https://docs.stripe.com/billing/subscriptions/trials/free-trials) to learn more.
      */
     trialFromPlan?: pulumi.Input<boolean | undefined>;
 }
@@ -14182,10 +14858,33 @@ export interface SubscriptionScheduleDefaultSettingsInvoiceSettings {
      */
     accountTaxIds?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
+     * A list of up to 4 custom fields to be displayed on the invoice.
+     */
+    customFields?: pulumi.Input<pulumi.Input<inputs.SubscriptionScheduleDefaultSettingsInvoiceSettingsCustomField>[] | undefined>;
+    /**
      * Number of days within which a customer must pay invoices generated by this subscription schedule. This value will be <span pulumi-lang-nodejs="`null`" pulumi-lang-dotnet="`Null`" pulumi-lang-go="`null`" pulumi-lang-python="`null`" pulumi-lang-yaml="`null`" pulumi-lang-java="`null`" pulumi-lang-hcl="`null`">`null`</span> for subscription schedules where `billing=charge_automatically`.
      */
     daysUntilDue?: pulumi.Input<number | undefined>;
+    /**
+     * An arbitrary string attached to the object. Often useful for displaying to users.
+     */
+    description?: pulumi.Input<string | undefined>;
+    /**
+     * Footer to be displayed on the invoice.
+     */
+    footer?: pulumi.Input<string | undefined>;
     issuer?: pulumi.Input<inputs.SubscriptionScheduleDefaultSettingsInvoiceSettingsIssuer | undefined>;
+}
+
+export interface SubscriptionScheduleDefaultSettingsInvoiceSettingsCustomField {
+    /**
+     * The name of the custom field.
+     */
+    name: pulumi.Input<string>;
+    /**
+     * The value of the custom field.
+     */
+    value: pulumi.Input<string>;
 }
 
 export interface SubscriptionScheduleDefaultSettingsInvoiceSettingsIssuer {
@@ -14208,6 +14907,123 @@ export interface SubscriptionScheduleDefaultSettingsTransferData {
      * The account where funds from the payment will be transferred to upon payment success.
      */
     destination: pulumi.Input<string>;
+}
+
+export interface SubscriptionSchedulePauseSchedule {
+    /**
+     * A unique identifier for this pause schedule.
+     */
+    key?: pulumi.Input<string | undefined>;
+    pause?: pulumi.Input<inputs.SubscriptionSchedulePauseSchedulePause | undefined>;
+    /**
+     * Details about when and how the subscription resumes.
+     */
+    resume?: pulumi.Input<inputs.SubscriptionSchedulePauseScheduleResume | undefined>;
+}
+
+export interface SubscriptionSchedulePauseSchedulePause {
+    /**
+     * Time at which the subscription pauses.
+     */
+    pauseAt: pulumi.Input<number>;
+    /**
+     * Settings controlling billing behavior during the pause.
+     */
+    settings?: pulumi.Input<inputs.SubscriptionSchedulePauseSchedulePauseSettings | undefined>;
+    status?: pulumi.Input<inputs.SubscriptionSchedulePauseSchedulePauseStatus | undefined>;
+}
+
+export interface SubscriptionSchedulePauseSchedulePauseSettings {
+    billFor?: pulumi.Input<inputs.SubscriptionSchedulePauseSchedulePauseSettingsBillFor | undefined>;
+    /**
+     * Determines how to handle debits and credits when pausing.
+     */
+    invoicingBehavior?: pulumi.Input<string | undefined>;
+    /**
+     * The type of pause settings.
+     */
+    type?: pulumi.Input<string | undefined>;
+}
+
+export interface SubscriptionSchedulePauseSchedulePauseSettingsBillFor {
+    outstandingUsageThrough?: pulumi.Input<inputs.SubscriptionSchedulePauseSchedulePauseSettingsBillForOutstandingUsageThrough | undefined>;
+    unusedTimeFrom?: pulumi.Input<inputs.SubscriptionSchedulePauseSchedulePauseSettingsBillForUnusedTimeFrom | undefined>;
+}
+
+export interface SubscriptionSchedulePauseSchedulePauseSettingsBillForOutstandingUsageThrough {
+    /**
+     * The type of outstanding usage billing behavior.
+     */
+    type?: pulumi.Input<string | undefined>;
+}
+
+export interface SubscriptionSchedulePauseSchedulePauseSettingsBillForUnusedTimeFrom {
+    /**
+     * The type of unused time credit behavior.
+     */
+    type?: pulumi.Input<string | undefined>;
+}
+
+export interface SubscriptionSchedulePauseSchedulePauseStatus {
+    error?: pulumi.Input<inputs.SubscriptionSchedulePauseSchedulePauseStatusError | undefined>;
+    /**
+     * The lifecycle state of the pause operation.
+     */
+    type?: pulumi.Input<string | undefined>;
+}
+
+export interface SubscriptionSchedulePauseSchedulePauseStatusError {
+    /**
+     * A machine-readable error code.
+     */
+    code?: pulumi.Input<string | undefined>;
+    /**
+     * A description of the error.
+     */
+    message?: pulumi.Input<string | undefined>;
+}
+
+export interface SubscriptionSchedulePauseScheduleResume {
+    /**
+     * Time at which the subscription resumes.
+     */
+    resumeAt: pulumi.Input<number>;
+    settings?: pulumi.Input<inputs.SubscriptionSchedulePauseScheduleResumeSettings | undefined>;
+    status?: pulumi.Input<inputs.SubscriptionSchedulePauseScheduleResumeStatus | undefined>;
+}
+
+export interface SubscriptionSchedulePauseScheduleResumeSettings {
+    /**
+     * The billing cycle anchor that applies when the subscription is resumed.
+     */
+    billingCycleAnchor?: pulumi.Input<string | undefined>;
+    /**
+     * Controls whether Stripe attempts payment on the resumption invoice and how that affects the subscription's status.
+     */
+    paymentBehavior?: pulumi.Input<string | undefined>;
+    /**
+     * Determines how to handle prorations resulting from the<span pulumi-lang-nodejs=" billingCycleAnchor " pulumi-lang-dotnet=" BillingCycleAnchor " pulumi-lang-go=" billingCycleAnchor " pulumi-lang-python=" billing_cycle_anchor " pulumi-lang-yaml=" billingCycleAnchor " pulumi-lang-java=" billingCycleAnchor " pulumi-lang-hcl=" billing_cycle_anchor "> billingCycleAnchor </span>change on resume.
+     */
+    prorationBehavior?: pulumi.Input<string | undefined>;
+}
+
+export interface SubscriptionSchedulePauseScheduleResumeStatus {
+    error?: pulumi.Input<inputs.SubscriptionSchedulePauseScheduleResumeStatusError | undefined>;
+    /**
+     * The lifecycle state of the resume operation.
+     */
+    type?: pulumi.Input<string | undefined>;
+}
+
+export interface SubscriptionSchedulePauseScheduleResumeStatusError {
+    /**
+     * A machine-readable error code.
+     */
+    code?: pulumi.Input<string | undefined>;
+    /**
+     * A description of the error.
+     */
+    message?: pulumi.Input<string | undefined>;
 }
 
 export interface SubscriptionSchedulePhase {
@@ -14464,13 +15280,36 @@ export interface SubscriptionSchedulePhaseInvoiceSettings {
      */
     accountTaxIds?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
+     * A list of up to 4 custom fields to be displayed on the invoice.
+     */
+    customFields?: pulumi.Input<pulumi.Input<inputs.SubscriptionSchedulePhaseInvoiceSettingsCustomField>[] | undefined>;
+    /**
      * Number of days within which a customer must pay invoices generated by this subscription schedule. This value will be <span pulumi-lang-nodejs="`null`" pulumi-lang-dotnet="`Null`" pulumi-lang-go="`null`" pulumi-lang-python="`null`" pulumi-lang-yaml="`null`" pulumi-lang-java="`null`" pulumi-lang-hcl="`null`">`null`</span> for subscription schedules where `billing=charge_automatically`.
      */
     daysUntilDue?: pulumi.Input<number | undefined>;
     /**
+     * An arbitrary string attached to the object. Often useful for displaying to users.
+     */
+    description?: pulumi.Input<string | undefined>;
+    /**
+     * Footer to be displayed on the invoice.
+     */
+    footer?: pulumi.Input<string | undefined>;
+    /**
      * The connected account that issues the invoice. The invoice is presented with the branding and support information of the specified account.
      */
     issuer?: pulumi.Input<inputs.SubscriptionSchedulePhaseInvoiceSettingsIssuer | undefined>;
+}
+
+export interface SubscriptionSchedulePhaseInvoiceSettingsCustomField {
+    /**
+     * The name of the custom field.
+     */
+    name: pulumi.Input<string>;
+    /**
+     * The value of the custom field.
+     */
+    value: pulumi.Input<string>;
 }
 
 export interface SubscriptionSchedulePhaseInvoiceSettingsIssuer {
@@ -14590,6 +15429,35 @@ export interface SubscriptionSchedulePhaseTransferData {
     destination: pulumi.Input<string>;
 }
 
+export interface SubscriptionStatusDetails {
+    /**
+     * Indicates when and why the subscription transitioned to the paused status.
+     */
+    paused?: pulumi.Input<inputs.SubscriptionStatusDetailsPaused | undefined>;
+}
+
+export interface SubscriptionStatusDetailsPaused {
+    /**
+     * Information on the `type=subscription` pause.
+     */
+    subscription?: pulumi.Input<inputs.SubscriptionStatusDetailsPausedSubscription | undefined>;
+    /**
+     * Unix timestamp in seconds of when the subscription status transitioned to <span pulumi-lang-nodejs="`paused`" pulumi-lang-dotnet="`Paused`" pulumi-lang-go="`paused`" pulumi-lang-python="`paused`" pulumi-lang-yaml="`paused`" pulumi-lang-java="`paused`" pulumi-lang-hcl="`paused`">`paused`</span>.
+     */
+    transitionedAt?: pulumi.Input<number | undefined>;
+    /**
+     * The type of pause.
+     */
+    type?: pulumi.Input<string | undefined>;
+}
+
+export interface SubscriptionStatusDetailsPausedSubscription {
+    /**
+     * The reason that the subscription was paused.
+     */
+    type?: pulumi.Input<string | undefined>;
+}
+
 export interface SubscriptionTransferData {
     /**
      * A non-negative decimal between 0 and 100, with at most two decimal places. This represents the percentage of the subscription invoice total that will be transferred to the destination account. By default, the entire amount is transferred to the destination.
@@ -14610,9 +15478,13 @@ export interface SubscriptionTrialSettings {
 
 export interface SubscriptionTrialSettingsEndBehavior {
     /**
+     * Indicates how the subscription's billing cycle anchor is reset when a trial ends. If not set, the default is <span pulumi-lang-nodejs="`now`" pulumi-lang-dotnet="`Now`" pulumi-lang-go="`now`" pulumi-lang-python="`now`" pulumi-lang-yaml="`now`" pulumi-lang-java="`now`" pulumi-lang-hcl="`now`">`now`</span>.
+     */
+    billingCycleAnchor?: pulumi.Input<string | undefined>;
+    /**
      * Indicates how the subscription should change when the trial ends if the user did not provide a payment method.
      */
-    missingPaymentMethod: pulumi.Input<string>;
+    missingPaymentMethod?: pulumi.Input<string | undefined>;
 }
 
 export interface TaxIdOwner {
@@ -14653,6 +15525,33 @@ export interface TaxIdVerification {
     verifiedName?: pulumi.Input<string | undefined>;
 }
 
+export interface TaxLocationAddress {
+    /**
+     * City, district, suburb, town, or village.
+     */
+    city?: pulumi.Input<string | undefined>;
+    /**
+     * Two-letter country code ([ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2)).
+     */
+    country: pulumi.Input<string>;
+    /**
+     * Address line 1, such as the street, PO Box, or company name.
+     */
+    line1?: pulumi.Input<string | undefined>;
+    /**
+     * Address line 2, such as the apartment, suite, unit, or building.
+     */
+    line2?: pulumi.Input<string | undefined>;
+    /**
+     * ZIP or postal code.
+     */
+    postalCode?: pulumi.Input<string | undefined>;
+    /**
+     * State, county, province, or region ([ISO 3166-2](https://en.wikipedia.org/wiki/ISO_3166-2)).
+     */
+    state?: pulumi.Input<string | undefined>;
+}
+
 export interface TaxRateFlatAmount {
     /**
      * Amount of the tax when the <span pulumi-lang-nodejs="`rateType`" pulumi-lang-dotnet="`RateType`" pulumi-lang-go="`rateType`" pulumi-lang-python="`rate_type`" pulumi-lang-yaml="`rateType`" pulumi-lang-java="`rateType`" pulumi-lang-hcl="`rate_type`">`rateType`</span> is <span pulumi-lang-nodejs="`flatAmount`" pulumi-lang-dotnet="`FlatAmount`" pulumi-lang-go="`flatAmount`" pulumi-lang-python="`flat_amount`" pulumi-lang-yaml="`flatAmount`" pulumi-lang-java="`flatAmount`" pulumi-lang-hcl="`flat_amount`">`flatAmount`</span>. This positive integer represents how much to charge in the smallest currency unit (e.g., 100 cents to charge $1.00 or 100 to charge ¥100, a zero-decimal currency). The amount value supports up to eight digits (e.g., a value of 99999999 for a USD charge of $999,999.99).
@@ -14682,10 +15581,12 @@ export interface TaxRegistrationCountryOptions {
     bh?: pulumi.Input<inputs.TaxRegistrationCountryOptionsBh | undefined>;
     bj?: pulumi.Input<inputs.TaxRegistrationCountryOptionsBj | undefined>;
     bs?: pulumi.Input<inputs.TaxRegistrationCountryOptionsBs | undefined>;
+    bw?: pulumi.Input<inputs.TaxRegistrationCountryOptionsBw | undefined>;
     by?: pulumi.Input<inputs.TaxRegistrationCountryOptionsBy | undefined>;
     ca?: pulumi.Input<inputs.TaxRegistrationCountryOptionsCa | undefined>;
     cd?: pulumi.Input<inputs.TaxRegistrationCountryOptionsCd | undefined>;
     ch?: pulumi.Input<inputs.TaxRegistrationCountryOptionsCh | undefined>;
+    ci?: pulumi.Input<inputs.TaxRegistrationCountryOptionsCi | undefined>;
     cl?: pulumi.Input<inputs.TaxRegistrationCountryOptionsCl | undefined>;
     cm?: pulumi.Input<inputs.TaxRegistrationCountryOptionsCm | undefined>;
     co?: pulumi.Input<inputs.TaxRegistrationCountryOptionsCo | undefined>;
@@ -14704,6 +15605,7 @@ export interface TaxRegistrationCountryOptions {
     fr?: pulumi.Input<inputs.TaxRegistrationCountryOptionsFr | undefined>;
     gb?: pulumi.Input<inputs.TaxRegistrationCountryOptionsGb | undefined>;
     ge?: pulumi.Input<inputs.TaxRegistrationCountryOptionsGe | undefined>;
+    gh?: pulumi.Input<inputs.TaxRegistrationCountryOptionsGh | undefined>;
     gn?: pulumi.Input<inputs.TaxRegistrationCountryOptionsGn | undefined>;
     gr?: pulumi.Input<inputs.TaxRegistrationCountryOptionsGr | undefined>;
     hr?: pulumi.Input<inputs.TaxRegistrationCountryOptionsHr | undefined>;
@@ -14730,6 +15632,7 @@ export interface TaxRegistrationCountryOptions {
     mk?: pulumi.Input<inputs.TaxRegistrationCountryOptionsMk | undefined>;
     mr?: pulumi.Input<inputs.TaxRegistrationCountryOptionsMr | undefined>;
     mt?: pulumi.Input<inputs.TaxRegistrationCountryOptionsMt | undefined>;
+    mu?: pulumi.Input<inputs.TaxRegistrationCountryOptionsMu | undefined>;
     mx?: pulumi.Input<inputs.TaxRegistrationCountryOptionsMx | undefined>;
     my?: pulumi.Input<inputs.TaxRegistrationCountryOptionsMy | undefined>;
     ng?: pulumi.Input<inputs.TaxRegistrationCountryOptionsNg | undefined>;
@@ -15026,6 +15929,13 @@ export interface TaxRegistrationCountryOptionsBsStandard {
     placeOfSupplyScheme?: pulumi.Input<string | undefined>;
 }
 
+export interface TaxRegistrationCountryOptionsBw {
+    /**
+     * Type of registration in <span pulumi-lang-nodejs="`country`" pulumi-lang-dotnet="`Country`" pulumi-lang-go="`country`" pulumi-lang-python="`country`" pulumi-lang-yaml="`country`" pulumi-lang-java="`country`" pulumi-lang-hcl="`country`">`country`</span>.
+     */
+    type: pulumi.Input<string>;
+}
+
 export interface TaxRegistrationCountryOptionsBy {
     /**
      * Type of registration in <span pulumi-lang-nodejs="`country`" pulumi-lang-dotnet="`Country`" pulumi-lang-go="`country`" pulumi-lang-python="`country`" pulumi-lang-yaml="`country`" pulumi-lang-java="`country`" pulumi-lang-hcl="`country`">`country`</span>.
@@ -15079,6 +15989,13 @@ export interface TaxRegistrationCountryOptionsChStandard {
      * Place of supply scheme used in an Default standard registration.
      */
     placeOfSupplyScheme?: pulumi.Input<string | undefined>;
+}
+
+export interface TaxRegistrationCountryOptionsCi {
+    /**
+     * Type of registration in <span pulumi-lang-nodejs="`country`" pulumi-lang-dotnet="`Country`" pulumi-lang-go="`country`" pulumi-lang-python="`country`" pulumi-lang-yaml="`country`" pulumi-lang-java="`country`" pulumi-lang-hcl="`country`">`country`</span>.
+     */
+    type: pulumi.Input<string>;
 }
 
 export interface TaxRegistrationCountryOptionsCl {
@@ -15208,7 +16125,7 @@ export interface TaxRegistrationCountryOptionsEg {
 export interface TaxRegistrationCountryOptionsEs {
     standard?: pulumi.Input<inputs.TaxRegistrationCountryOptionsEsStandard | undefined>;
     /**
-     * Type of registration in an EU country.
+     * Type of registration in ES.
      */
     type: pulumi.Input<string>;
 }
@@ -15284,6 +16201,13 @@ export interface TaxRegistrationCountryOptionsGbStandard {
 }
 
 export interface TaxRegistrationCountryOptionsGe {
+    /**
+     * Type of registration in <span pulumi-lang-nodejs="`country`" pulumi-lang-dotnet="`Country`" pulumi-lang-go="`country`" pulumi-lang-python="`country`" pulumi-lang-yaml="`country`" pulumi-lang-java="`country`" pulumi-lang-hcl="`country`">`country`</span>.
+     */
+    type: pulumi.Input<string>;
+}
+
+export interface TaxRegistrationCountryOptionsGh {
     /**
      * Type of registration in <span pulumi-lang-nodejs="`country`" pulumi-lang-dotnet="`Country`" pulumi-lang-go="`country`" pulumi-lang-python="`country`" pulumi-lang-yaml="`country`" pulumi-lang-java="`country`" pulumi-lang-hcl="`country`">`country`</span>.
      */
@@ -15607,6 +16531,13 @@ export interface TaxRegistrationCountryOptionsMtStandard {
     placeOfSupplyScheme: pulumi.Input<string>;
 }
 
+export interface TaxRegistrationCountryOptionsMu {
+    /**
+     * Type of registration in <span pulumi-lang-nodejs="`country`" pulumi-lang-dotnet="`Country`" pulumi-lang-go="`country`" pulumi-lang-python="`country`" pulumi-lang-yaml="`country`" pulumi-lang-java="`country`" pulumi-lang-hcl="`country`">`country`</span>.
+     */
+    type: pulumi.Input<string>;
+}
+
 export interface TaxRegistrationCountryOptionsMx {
     /**
      * Type of registration in <span pulumi-lang-nodejs="`country`" pulumi-lang-dotnet="`Country`" pulumi-lang-go="`country`" pulumi-lang-python="`country`" pulumi-lang-yaml="`country`" pulumi-lang-java="`country`" pulumi-lang-hcl="`country`">`country`</span>.
@@ -15924,17 +16855,63 @@ export interface TaxRegistrationCountryOptionsUg {
 }
 
 export interface TaxRegistrationCountryOptionsUs {
+    admissionsTax?: pulumi.Input<inputs.TaxRegistrationCountryOptionsUsAdmissionsTax | undefined>;
+    attendanceTax?: pulumi.Input<inputs.TaxRegistrationCountryOptionsUsAttendanceTax | undefined>;
+    entertainmentTax?: pulumi.Input<inputs.TaxRegistrationCountryOptionsUsEntertainmentTax | undefined>;
+    grossReceiptsTax?: pulumi.Input<inputs.TaxRegistrationCountryOptionsUsGrossReceiptsTax | undefined>;
+    hospitalityTax?: pulumi.Input<inputs.TaxRegistrationCountryOptionsUsHospitalityTax | undefined>;
     localAmusementTax?: pulumi.Input<inputs.TaxRegistrationCountryOptionsUsLocalAmusementTax | undefined>;
     localLeaseTax?: pulumi.Input<inputs.TaxRegistrationCountryOptionsUsLocalLeaseTax | undefined>;
+    luxuryTax?: pulumi.Input<inputs.TaxRegistrationCountryOptionsUsLuxuryTax | undefined>;
+    massTransitParkingTax?: pulumi.Input<inputs.TaxRegistrationCountryOptionsUsMassTransitParkingTax | undefined>;
+    parkingTax?: pulumi.Input<inputs.TaxRegistrationCountryOptionsUsParkingTax | undefined>;
+    resortTax?: pulumi.Input<inputs.TaxRegistrationCountryOptionsUsResortTax | undefined>;
     /**
      * Two-letter US state code ([ISO 3166-2](https://en.wikipedia.org/wiki/ISO_3166-2)).
      */
     state: pulumi.Input<string>;
     stateSalesTax?: pulumi.Input<inputs.TaxRegistrationCountryOptionsUsStateSalesTax | undefined>;
+    tourismTax?: pulumi.Input<inputs.TaxRegistrationCountryOptionsUsTourismTax | undefined>;
     /**
      * Type of registration in the US.
      */
     type: pulumi.Input<string>;
+    utilityUsersTax?: pulumi.Input<inputs.TaxRegistrationCountryOptionsUsUtilityUsersTax | undefined>;
+}
+
+export interface TaxRegistrationCountryOptionsUsAdmissionsTax {
+    /**
+     * A [jurisdiction code](https://docs.stripe.com/tax/registering?type=admissions_tax#registration-types) representing the local jurisdiction.
+     */
+    jurisdiction: pulumi.Input<string>;
+}
+
+export interface TaxRegistrationCountryOptionsUsAttendanceTax {
+    /**
+     * A [jurisdiction code](https://docs.stripe.com/tax/registering?type=attendance_tax#registration-types) representing the local jurisdiction.
+     */
+    jurisdiction: pulumi.Input<string>;
+}
+
+export interface TaxRegistrationCountryOptionsUsEntertainmentTax {
+    /**
+     * A [jurisdiction code](https://docs.stripe.com/tax/registering?type=entertainment_tax#registration-types) representing the local jurisdiction.
+     */
+    jurisdiction: pulumi.Input<string>;
+}
+
+export interface TaxRegistrationCountryOptionsUsGrossReceiptsTax {
+    /**
+     * A [jurisdiction code](https://docs.stripe.com/tax/registering?type=gross_receipts_tax#registration-types) representing the local jurisdiction.
+     */
+    jurisdiction: pulumi.Input<string>;
+}
+
+export interface TaxRegistrationCountryOptionsUsHospitalityTax {
+    /**
+     * A [jurisdiction code](https://docs.stripe.com/tax/registering?type=hospitality_tax#registration-types) representing the local jurisdiction.
+     */
+    jurisdiction: pulumi.Input<string>;
 }
 
 export interface TaxRegistrationCountryOptionsUsLocalAmusementTax {
@@ -15947,6 +16924,34 @@ export interface TaxRegistrationCountryOptionsUsLocalAmusementTax {
 export interface TaxRegistrationCountryOptionsUsLocalLeaseTax {
     /**
      * A [FIPS code](https://www.census.gov/library/reference/code-lists/ansi.html) representing the local jurisdiction.
+     */
+    jurisdiction: pulumi.Input<string>;
+}
+
+export interface TaxRegistrationCountryOptionsUsLuxuryTax {
+    /**
+     * A [jurisdiction code](https://docs.stripe.com/tax/registering?type=luxury_tax#registration-types) representing the local jurisdiction.
+     */
+    jurisdiction: pulumi.Input<string>;
+}
+
+export interface TaxRegistrationCountryOptionsUsMassTransitParkingTax {
+    /**
+     * A [jurisdiction code](https://docs.stripe.com/tax/registering?type=mass_transit_parking_tax#registration-types) representing the local jurisdiction.
+     */
+    jurisdiction: pulumi.Input<string>;
+}
+
+export interface TaxRegistrationCountryOptionsUsParkingTax {
+    /**
+     * A [jurisdiction code](https://docs.stripe.com/tax/registering?type=parking_tax#registration-types) representing the local jurisdiction.
+     */
+    jurisdiction: pulumi.Input<string>;
+}
+
+export interface TaxRegistrationCountryOptionsUsResortTax {
+    /**
+     * A [jurisdiction code](https://docs.stripe.com/tax/registering?type=resort_tax#registration-types) representing the local jurisdiction.
      */
     jurisdiction: pulumi.Input<string>;
 }
@@ -15967,6 +16972,20 @@ export interface TaxRegistrationCountryOptionsUsStateSalesTaxElection {
      * The type of the election for the state sales tax registration.
      */
     type: pulumi.Input<string>;
+}
+
+export interface TaxRegistrationCountryOptionsUsTourismTax {
+    /**
+     * A [jurisdiction code](https://docs.stripe.com/tax/registering?type=tourism_tax#registration-types) representing the local jurisdiction.
+     */
+    jurisdiction: pulumi.Input<string>;
+}
+
+export interface TaxRegistrationCountryOptionsUsUtilityUsersTax {
+    /**
+     * A [jurisdiction code](https://docs.stripe.com/tax/registering?type=utility_users_tax#registration-types) representing the local jurisdiction.
+     */
+    jurisdiction: pulumi.Input<string>;
 }
 
 export interface TaxRegistrationCountryOptionsUy {
@@ -16072,6 +17091,13 @@ export interface TerminalConfigurationOffline {
     enabled: pulumi.Input<boolean>;
 }
 
+export interface TerminalConfigurationReaderSecurity {
+    /**
+     * Passcode used to access a reader's admin menu.
+     */
+    adminMenuPasscode?: pulumi.Input<string | undefined>;
+}
+
 export interface TerminalConfigurationRebootWindow {
     /**
      * Integer between 0 to 23 that represents the end hour of the reboot time window. The value must be different than the start_hour.
@@ -16091,6 +17117,13 @@ export interface TerminalConfigurationStripeS700 {
 }
 
 export interface TerminalConfigurationStripeS710 {
+    /**
+     * A File ID representing an image to display on the reader
+     */
+    splashscreen?: pulumi.Input<string | undefined>;
+}
+
+export interface TerminalConfigurationStripeT600 {
     /**
      * A File ID representing an image to display on the reader
      */
@@ -16649,7 +17682,7 @@ export interface TerminalReaderAction {
 
 export interface TerminalReaderActionApiError {
     /**
-     * For card errors resulting from a card issuer decline, a short string indicating [how to proceed with an error](https://docs.stripe.com/declines#retrying-issuer-declines) if they provide one.
+     * For card errors resulting from a card issuer decline, a short string indicating [how to proceed with an error](https://docs.stripe.com/declines/card#retrying-issuer-declines) if they provide one.
      */
     adviceCode?: pulumi.Input<string | undefined>;
     /**
@@ -16717,7 +17750,7 @@ export interface TerminalReaderActionApiError {
     /**
      * A SetupIntent guides you through the process of setting up and saving a customer's payment credentials for future payments.
      * For example, you can use a SetupIntent to set up and save your customer's card without immediately collecting a payment.
-     * Later, you can use [PaymentIntents](https://api.stripe.com#payment_intents) to drive the payment flow.
+     * Later, you can use [PaymentIntents](https://docs.stripe.com/api#payment_intents) to drive the payment flow.
      *
      * Create a SetupIntent when you're ready to collect your customer's payment credentials.
      * Don't maintain long-lived, unconfirmed SetupIntents because they might not be valid.
@@ -16728,9 +17761,9 @@ export interface TerminalReaderActionApiError {
      * For example, cardholders in [certain regions](https://stripe.com/guides/strong-customer-authentication) might need to be run through
      * [Strong Customer Authentication](https://docs.stripe.com/strong-customer-authentication) during payment method collection
      * to streamline later [off-session payments](https://docs.stripe.com/payments/setup-intents).
-     * If you use the SetupIntent with a [Customer](https://api.stripe.com#setup_intent_object-customer),
+     * If you use the SetupIntent with a [Customer](https://docs.stripe.com/api#setup_intent_object-customer),
      * it automatically attaches the resulting payment method to that Customer after successful setup.
-     * We recommend using SetupIntents or <span pulumi-lang-nodejs="[setupFutureUsage]" pulumi-lang-dotnet="[SetupFutureUsage]" pulumi-lang-go="[setupFutureUsage]" pulumi-lang-python="[setup_future_usage]" pulumi-lang-yaml="[setupFutureUsage]" pulumi-lang-java="[setupFutureUsage]" pulumi-lang-hcl="[setup_future_usage]">[setupFutureUsage]</span>(https://api.stripe.com#payment_intent_object-setup_future_usage) on
+     * We recommend using SetupIntents or <span pulumi-lang-nodejs="[setupFutureUsage]" pulumi-lang-dotnet="[SetupFutureUsage]" pulumi-lang-go="[setupFutureUsage]" pulumi-lang-python="[setup_future_usage]" pulumi-lang-yaml="[setupFutureUsage]" pulumi-lang-java="[setupFutureUsage]" pulumi-lang-hcl="[setup_future_usage]">[setupFutureUsage]</span>(https://docs.stripe.com/api#payment_intent_object-setup_future_usage) on
      * PaymentIntents to save payment methods to prevent saving invalid or unoptimized payment methods.
      *
      * By using SetupIntents, you can reduce friction for your customers, even as regulations change over time.
@@ -17143,6 +18176,400 @@ export interface TerminalReaderActionSetReaderDisplayCartLineItem {
      * The quantity of the line item.
      */
     quantity?: pulumi.Input<number | undefined>;
+}
+
+export interface ThreeDSecureAuthenticationAcquirerDetails {
+    /**
+     * The Acquirer BIN (specific to the directory_server).
+     */
+    acquirerBin: pulumi.Input<string>;
+    /**
+     * The two-letter country code of the acquirer ([ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2)).
+     */
+    acquirerCountry: pulumi.Input<string>;
+    /**
+     * The Merchant ID (or Card Acceptor ID) that your acquirer assigned you (specific to the directory_server).
+     */
+    acquirerMerchantId: pulumi.Input<string>;
+    /**
+     * The [merchant category code](https://en.wikipedia.org/wiki/Merchant_category_code) as defined by each payment system or directory server.
+     */
+    mcc?: pulumi.Input<string | undefined>;
+    /**
+     * The merchant name assigned by the acquirer or payment system. Same name used in the authorization message as defined in [ISO 8583](https://en.wikipedia.org/wiki/ISO_8583).
+     */
+    merchantName?: pulumi.Input<string | undefined>;
+    /**
+     * Requestor ID if you’re enrolled in the card network’s 3DS program. Otherwise, you can omit this field because Stripe assigns a Requestor ID with the card networks.
+     */
+    requestorId?: pulumi.Input<string | undefined>;
+}
+
+export interface ThreeDSecureAuthenticationChannel {
+    /**
+     * Contains details on the browser for a standalone 3DS Authentication.
+     */
+    browser?: pulumi.Input<inputs.ThreeDSecureAuthenticationChannelBrowser | undefined>;
+    /**
+     * Contains details for a 3RI standalone 3DS Authentication.
+     */
+    threeRI?: pulumi.Input<inputs.ThreeDSecureAuthenticationChannelThreeRI | undefined>;
+    /**
+     * Type of channel you would prefer to use for this 3DS Authentication. Only browser.
+     */
+    type: pulumi.Input<string>;
+}
+
+export interface ThreeDSecureAuthenticationChannelBrowser {
+    /**
+     * The HTTP accept headers from the cardholder's browser.
+     */
+    acceptHeader: pulumi.Input<string>;
+    /**
+     * The color depth of the cardholder’s screen.
+     */
+    colorDepth?: pulumi.Input<number | undefined>;
+    /**
+     * Unique and immutable identifier linked to a device that is consistent across 3DS transactions for the specific user device. For example: hardware device ID or a platform-calculated device fingerprint.
+     */
+    deviceId?: pulumi.Input<string | undefined>;
+    /**
+     * The IP address of the browser.
+     */
+    ipAddress: pulumi.Input<string>;
+    /**
+     * The cardholder browser’s ability to execute Java.
+     */
+    javaEnabled?: pulumi.Input<boolean | undefined>;
+    /**
+     * The cardholder browser’s ability to execute JavaScript.
+     */
+    javascriptEnabled: pulumi.Input<boolean>;
+    /**
+     * An IETF BCP 47 language tag representing the browser language.
+     */
+    language: pulumi.Input<string>;
+    /**
+     * The total height of the cardholder’s screen in pixels.
+     */
+    screenHeight?: pulumi.Input<number | undefined>;
+    /**
+     * The total width of the cardholder’s screen in pixels.
+     */
+    screenWidth?: pulumi.Input<number | undefined>;
+    /**
+     * The time difference between UTC time and the local time of the cardholder’s browser, in minutes.
+     */
+    timezoneOffset?: pulumi.Input<number | undefined>;
+    /**
+     * The browser user agent.
+     */
+    userAgent: pulumi.Input<string>;
+}
+
+export interface ThreeDSecureAuthenticationChannelThreeRI {
+    /**
+     * ID of the previous initial authenticated 3DS Authentication object.
+     */
+    previousAuthentication: pulumi.Input<string>;
+    /**
+     * Type of the 3RI Authentication.
+     */
+    type: pulumi.Input<string>;
+}
+
+export interface ThreeDSecureAuthenticationFlowPreference {
+    challenge?: pulumi.Input<inputs.ThreeDSecureAuthenticationFlowPreferenceChallenge | undefined>;
+    dataShare?: pulumi.Input<inputs.ThreeDSecureAuthenticationFlowPreferenceDataShare | undefined>;
+    frictionless?: pulumi.Input<inputs.ThreeDSecureAuthenticationFlowPreferenceFrictionless | undefined>;
+    /**
+     * Type of flow you requested for this 3DS Authentication.
+     */
+    type: pulumi.Input<string>;
+}
+
+export interface ThreeDSecureAuthenticationFlowPreferenceChallenge {
+    /**
+     * Type of challenge flow you requested for this 3DS Authentication.
+     */
+    type: pulumi.Input<string>;
+}
+
+export interface ThreeDSecureAuthenticationFlowPreferenceDataShare {
+    /**
+     * Type of data share flow you requested for this 3DS Authentication.
+     */
+    type: pulumi.Input<string>;
+}
+
+export interface ThreeDSecureAuthenticationFlowPreferenceFrictionless {
+    /**
+     * Type of frictionless flow you requested for this 3DS Authentication.
+     */
+    type: pulumi.Input<string>;
+}
+
+export interface ThreeDSecureAuthenticationFutureUsage {
+    /**
+     * Details about installment payments
+     */
+    installment?: pulumi.Input<inputs.ThreeDSecureAuthenticationFutureUsageInstallment | undefined>;
+    /**
+     * Details about recurring payments
+     */
+    recurring?: pulumi.Input<inputs.ThreeDSecureAuthenticationFutureUsageRecurring | undefined>;
+    /**
+     * The type of future usage declared for this 3DS Authentication.
+     */
+    type: pulumi.Input<string>;
+}
+
+export interface ThreeDSecureAuthenticationFutureUsageInstallment {
+    /**
+     * A non-negative integer representing the amount in the [smallest currency unit](https://www.terraform.io/currencies#zero-decimal).
+     */
+    amount: pulumi.Input<number>;
+    /**
+     * Information about recurring payment expiry
+     */
+    expiry: pulumi.Input<inputs.ThreeDSecureAuthenticationFutureUsageInstallmentExpiry>;
+    /**
+     * The unit of time for <span pulumi-lang-nodejs="`intervalCount`" pulumi-lang-dotnet="`IntervalCount`" pulumi-lang-go="`intervalCount`" pulumi-lang-python="`interval_count`" pulumi-lang-yaml="`intervalCount`" pulumi-lang-java="`intervalCount`" pulumi-lang-hcl="`interval_count`">`intervalCount`</span>.
+     */
+    interval?: pulumi.Input<string | undefined>;
+    /**
+     * The minimum number of time intervals between authorizations.
+     */
+    intervalCount?: pulumi.Input<number | undefined>;
+    /**
+     * The maximum number of installments.
+     */
+    number: pulumi.Input<number>;
+}
+
+export interface ThreeDSecureAuthenticationFutureUsageInstallmentExpiry {
+    date?: pulumi.Input<string | undefined>;
+    type: pulumi.Input<string>;
+}
+
+export interface ThreeDSecureAuthenticationFutureUsageRecurring {
+    /**
+     * A non-negative integer representing the amount in the [smallest currency unit](https://www.terraform.io/currencies#zero-decimal).
+     */
+    amount: pulumi.Input<number>;
+    /**
+     * Information about recurring payment expiry
+     */
+    expiry: pulumi.Input<inputs.ThreeDSecureAuthenticationFutureUsageRecurringExpiry>;
+    /**
+     * The unit of time for <span pulumi-lang-nodejs="`intervalCount`" pulumi-lang-dotnet="`IntervalCount`" pulumi-lang-go="`intervalCount`" pulumi-lang-python="`interval_count`" pulumi-lang-yaml="`intervalCount`" pulumi-lang-java="`intervalCount`" pulumi-lang-hcl="`interval_count`">`intervalCount`</span>.
+     */
+    interval?: pulumi.Input<string | undefined>;
+    /**
+     * The minimum number of time intervals between authorizations.
+     */
+    intervalCount?: pulumi.Input<number | undefined>;
+}
+
+export interface ThreeDSecureAuthenticationFutureUsageRecurringExpiry {
+    date?: pulumi.Input<string | undefined>;
+    type: pulumi.Input<string>;
+}
+
+export interface ThreeDSecureAuthenticationOutcomeDetails {
+    /**
+     * Universally unique transaction identifier assigned by the issuer to identify the transaction.
+     */
+    acsTransactionId?: pulumi.Input<string | undefined>;
+    /**
+     * The Authentication Response Message (ARes) is the issuer's response to the AReq message.
+     */
+    ares?: pulumi.Input<string | undefined>;
+    /**
+     * TransStatus field on the ARes
+     */
+    aresTransStatus?: pulumi.Input<string | undefined>;
+    /**
+     * A 28-character Base64 string proving that 3DS was completed. Store this value securely, and don’t reuse it for multiple authorizations.
+     */
+    cryptogram?: pulumi.Input<string | undefined>;
+    /**
+     * The 3DS2 Directory Server Transaction ID.
+     */
+    dsTransactionId?: pulumi.Input<string | undefined>;
+    /**
+     * Electronic Commerce Indicator provided by the issuer to indicate the result of this 3DS Authentication.
+     */
+    eci?: pulumi.Input<string | undefined>;
+    /**
+     * Contains details specific to the individual network.
+     */
+    networkDetails?: pulumi.Input<inputs.ThreeDSecureAuthenticationOutcomeDetailsNetworkDetails | undefined>;
+    /**
+     * The 3DS protocol version used for this 3DS Authentication.
+     */
+    protocolVersion?: pulumi.Input<string | undefined>;
+    /**
+     * The indicator provided to the issuer by Stripe in the AReq that indicates whether a challenge is requested for this Authentication. This indicator should match the<span pulumi-lang-nodejs=" flowPreference " pulumi-lang-dotnet=" FlowPreference " pulumi-lang-go=" flowPreference " pulumi-lang-python=" flow_preference " pulumi-lang-yaml=" flowPreference " pulumi-lang-java=" flowPreference " pulumi-lang-hcl=" flow_preference "> flowPreference </span>you specified but may be overridden (for compliance reasons for example).
+     */
+    requestorChallengeIndicator?: pulumi.Input<string | undefined>;
+    /**
+     * The Results Request Message (RReq) communicates the results of the authentication or verification.
+     */
+    rreq?: pulumi.Input<string | undefined>;
+    /**
+     * TransStatus field on the RReq
+     */
+    rreqTransStatus?: pulumi.Input<string | undefined>;
+    /**
+     * Universally unique transaction identifier assigned by Stripe to identify the transaction.
+     */
+    threeDsServerTransactionId?: pulumi.Input<string | undefined>;
+}
+
+export interface ThreeDSecureAuthenticationOutcomeDetailsNetworkDetails {
+    /**
+     * Contains details for Cartes Bancaires specific fields in the authentication outcomes.
+     */
+    cartesBancaires?: pulumi.Input<inputs.ThreeDSecureAuthenticationOutcomeDetailsNetworkDetailsCartesBancaires | undefined>;
+}
+
+export interface ThreeDSecureAuthenticationOutcomeDetailsNetworkDetailsCartesBancaires {
+    /**
+     * The cryptogram calculation algorithm used by the card Issuer's ACS to calculate the Authentication cryptogram. Also known as cavvAlgorithm. ARes/RReq messageExtension: `CB-AVALGO`
+     */
+    avalgo?: pulumi.Input<string | undefined>;
+    /**
+     * The exemption indicator returned from Cartes Bancaires in the ARes. This is a 3 byte bitmap (lowest significant byte first and most significant bit first) that has been Base64 encoded. String (4 characters). ARes message extension: `CB-EXEMPTION`
+     */
+    cbExemption?: pulumi.Input<string | undefined>;
+    /**
+     * The risk score returned from Cartes Bancaires in the ARes. Numeric value 0-99. ARes/RReq message extension: `CB-SCORE`
+     */
+    cbScore?: pulumi.Input<string | undefined>;
+}
+
+export interface ThreeDSecureAuthenticationPaymentMethodData {
+    /**
+     * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * Billing information associated with the PaymentMethod that may be used or required by particular types of payment methods.
+     */
+    billingDetails?: pulumi.Input<inputs.ThreeDSecureAuthenticationPaymentMethodDataBillingDetails | undefined>;
+    /**
+     * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     */
+    card: pulumi.Input<inputs.ThreeDSecureAuthenticationPaymentMethodDataCard>;
+    /**
+     * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * The type of the PaymentMethod. An additional hash is included on the PaymentMethod with a name matching this value. It contains additional information specific to the PaymentMethod type.
+     */
+    type: pulumi.Input<string>;
+}
+
+export interface ThreeDSecureAuthenticationPaymentMethodDataBillingDetails {
+    /**
+     * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * Billing address.
+     */
+    address?: pulumi.Input<inputs.ThreeDSecureAuthenticationPaymentMethodDataBillingDetailsAddress | undefined>;
+    /**
+     * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * Email address.
+     */
+    email?: pulumi.Input<string | undefined>;
+    /**
+     * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * Full name.
+     */
+    name?: pulumi.Input<string | undefined>;
+    /**
+     * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * Billing phone number (including extension).
+     */
+    phone?: pulumi.Input<string | undefined>;
+}
+
+export interface ThreeDSecureAuthenticationPaymentMethodDataBillingDetailsAddress {
+    /**
+     * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * City, district, suburb, town, or village.
+     */
+    city?: pulumi.Input<string | undefined>;
+    /**
+     * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * Two-letter country code ([ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2)).
+     */
+    country?: pulumi.Input<string | undefined>;
+    /**
+     * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * Address line 1, such as the street, PO Box, or company name.
+     */
+    line1?: pulumi.Input<string | undefined>;
+    /**
+     * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * Address line 2, such as the apartment, suite, unit, or building.
+     */
+    line2?: pulumi.Input<string | undefined>;
+    /**
+     * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * ZIP or postal code.
+     */
+    postalCode?: pulumi.Input<string | undefined>;
+    /**
+     * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * Country subdivision code defined in ISO 3166-2.
+     */
+    state?: pulumi.Input<string | undefined>;
+}
+
+export interface ThreeDSecureAuthenticationPaymentMethodDataCard {
+    /**
+     * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     */
+    cvc?: pulumi.Input<string | undefined>;
+    /**
+     * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     */
+    expMonth?: pulumi.Input<number | undefined>;
+    /**
+     * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     */
+    expYear?: pulumi.Input<number | undefined>;
+    /**
+     * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     */
+    number?: pulumi.Input<string | undefined>;
+    /**
+     * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     */
+    token?: pulumi.Input<string | undefined>;
+}
+
+export interface ThreeDSecureAuthenticationShippingAddress {
+    /**
+     * City, district, suburb, town, or village.
+     */
+    city?: pulumi.Input<string | undefined>;
+    /**
+     * Two-letter country code ([ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2)).
+     */
+    country?: pulumi.Input<string | undefined>;
+    /**
+     * Address line 1, such as the street, PO Box, or company name.
+     */
+    line1?: pulumi.Input<string | undefined>;
+    /**
+     * Address line 2, such as the apartment, suite, unit, or building.
+     */
+    line2?: pulumi.Input<string | undefined>;
+    /**
+     * ZIP or postal code.
+     */
+    postalCode?: pulumi.Input<string | undefined>;
+    /**
+     * State, county, province, or region ([ISO 3166-2](https://en.wikipedia.org/wiki/ISO_3166-2)).
+     */
+    state?: pulumi.Input<string | undefined>;
 }
 
 export interface TreasuryFinancialAccountBalance {
@@ -17634,49 +19061,49 @@ export interface TreasuryFinancialAccountStatusDetailsClosed {
 
 export interface V2CoreEventDestinationAmazonEventbridge {
     /**
-     * The AWS account ID.
+     * The AWS account ID that owns the event bus receiving events.
      */
     awsAccountId: pulumi.Input<string>;
     /**
-     * The ARN of the AWS event source.
+     * The ARN of the Stripe-created partner event source in your AWS account.
      */
     awsEventSourceArn?: pulumi.Input<string | undefined>;
     /**
-     * The state of the AWS event source.
+     * The AWS-reported lifecycle state of the partner event source.
      */
     awsEventSourceStatus?: pulumi.Input<string | undefined>;
     /**
-     * The region of the AWS event source.
+     * The AWS region where Stripe creates the partner event source.
      */
     awsRegion: pulumi.Input<string>;
 }
 
 export interface V2CoreEventDestinationAzureEventGrid {
     /**
-     * The name of the Azure partner topic.
+     * The name of the Stripe-created partner topic that receives events.
      */
     azurePartnerTopicName?: pulumi.Input<string | undefined>;
     /**
-     * The status of the Azure partner topic.
+     * The Azure-reported lifecycle state of the partner topic.
      */
     azurePartnerTopicStatus?: pulumi.Input<string | undefined>;
     /**
-     * The Azure region.
+     * The Azure region where the partner topic is located.
      */
     azureRegion: pulumi.Input<string>;
     /**
-     * The name of the Azure resource group.
+     * The Azure resource group containing the partner topic.
      */
     azureResourceGroupName: pulumi.Input<string>;
     /**
-     * The Azure subscription ID.
+     * The Azure subscription containing the resource group and partner topic.
      */
     azureSubscriptionId: pulumi.Input<string>;
 }
 
 export interface V2CoreEventDestinationStatusDetails {
     /**
-     * Details about why the event destination has been disabled.
+     * Present when the destination was disabled; identifies the cause, time, and provider-side object involved when available.
      */
     disabled?: pulumi.Input<inputs.V2CoreEventDestinationStatusDetailsDisabled | undefined>;
 }
@@ -17690,11 +19117,904 @@ export interface V2CoreEventDestinationStatusDetailsDisabled {
 
 export interface V2CoreEventDestinationWebhookEndpoint {
     /**
-     * The signing secret of the webhook endpoint, only includable on creation.
+     * The secret used to verify Stripe signatures on delivered events. Returned only in the create response when explicitly included; public API clients cannot retrieve it later.
      */
     signingSecret?: pulumi.Input<string | undefined>;
     /**
-     * The URL of the webhook endpoint, includable.
+     * The URL where Stripe sends matching events. Live mode requires HTTPS; sandbox mode also supports HTTP. Returned only when explicitly included.
      */
     url: pulumi.Input<string>;
+}
+
+export interface V2CoreVaultUsBankAccountVerification {
+    /**
+     * The microdeposit verification details if the status is awaiting verification.
+     */
+    microdepositVerificationDetails?: pulumi.Input<inputs.V2CoreVaultUsBankAccountVerificationMicrodepositVerificationDetails | undefined>;
+    /**
+     * The bank account verification status.
+     */
+    status?: pulumi.Input<string | undefined>;
+}
+
+export interface V2CoreVaultUsBankAccountVerificationMicrodepositVerificationDetails {
+    /**
+     * Time when microdeposits will expire and have to be re-sent.
+     */
+    expires?: pulumi.Input<string | undefined>;
+    /**
+     * Microdeposit type can be amounts or descriptor_type.
+     */
+    microdepositType?: pulumi.Input<string | undefined>;
+    /**
+     * Time when microdeposits were sent.
+     */
+    sent?: pulumi.Input<string | undefined>;
+}
+
+export interface V2MoneyManagementFinancialAddressBankAccount {
+    /**
+     * ABA bank account details (US).
+     */
+    aba?: pulumi.Input<inputs.V2MoneyManagementFinancialAddressBankAccountAba | undefined>;
+    /**
+     * The country of the bank account. Always included in the response, but null while the bank
+     * account is pending and its country is not yet known.
+     */
+    country?: pulumi.Input<string | undefined>;
+    /**
+     * Open Enum. The currency of the bank account.
+     */
+    currency: pulumi.Input<string>;
+    /**
+     * IBAN bank account details.
+     */
+    iban?: pulumi.Input<inputs.V2MoneyManagementFinancialAddressBankAccountIban | undefined>;
+    /**
+     * Sort code bank account details (UK).
+     */
+    sortCode?: pulumi.Input<inputs.V2MoneyManagementFinancialAddressBankAccountSortCode | undefined>;
+    /**
+     * Open Enum. The type of bank account details.
+     */
+    type?: pulumi.Input<string | undefined>;
+}
+
+export interface V2MoneyManagementFinancialAddressBankAccountAba {
+    /**
+     * The name of the account holder.
+     */
+    accountHolderName?: pulumi.Input<string | undefined>;
+    /**
+     * The full account number. Empty while the bank account is pending allocation.
+     */
+    accountNumber?: pulumi.Input<string | undefined>;
+    /**
+     * The address of the account holder.
+     */
+    address?: pulumi.Input<inputs.V2MoneyManagementFinancialAddressBankAccountAbaAddress | undefined>;
+    /**
+     * The name of the bank.
+     */
+    bankName?: pulumi.Input<string | undefined>;
+    /**
+     * The ABA routing number.
+     */
+    routingNumber?: pulumi.Input<string | undefined>;
+}
+
+export interface V2MoneyManagementFinancialAddressBankAccountAbaAddress {
+    /**
+     * City.
+     */
+    city?: pulumi.Input<string | undefined>;
+    /**
+     * Country.
+     */
+    country?: pulumi.Input<string | undefined>;
+    /**
+     * Address line 1.
+     */
+    line1?: pulumi.Input<string | undefined>;
+    /**
+     * Address line 2.
+     */
+    line2?: pulumi.Input<string | undefined>;
+    /**
+     * Postal code.
+     */
+    postalCode?: pulumi.Input<string | undefined>;
+    /**
+     * State or province.
+     */
+    state?: pulumi.Input<string | undefined>;
+    /**
+     * Town or suburb.
+     */
+    town?: pulumi.Input<string | undefined>;
+}
+
+export interface V2MoneyManagementFinancialAddressBankAccountIban {
+    /**
+     * The name of the account holder.
+     */
+    accountHolderName?: pulumi.Input<string | undefined>;
+    /**
+     * The name of the bank.
+     */
+    bankName?: pulumi.Input<string | undefined>;
+    /**
+     * The full IBAN. Empty while the bank account is pending allocation.
+     */
+    iban?: pulumi.Input<string | undefined>;
+}
+
+export interface V2MoneyManagementFinancialAddressBankAccountSortCode {
+    /**
+     * The name of the account holder.
+     */
+    accountHolderName?: pulumi.Input<string | undefined>;
+    /**
+     * The full account number. Empty while the bank account is pending allocation.
+     */
+    accountNumber?: pulumi.Input<string | undefined>;
+    /**
+     * The sort code.
+     */
+    sortCode?: pulumi.Input<string | undefined>;
+}
+
+export interface V2MoneyManagementInboundTransferAmount {
+    /**
+     * The currency of the monetary amount.
+     */
+    currency: pulumi.Input<string>;
+    /**
+     * The monetary amount in minor units of the currency.
+     */
+    value: pulumi.Input<number>;
+}
+
+export interface V2MoneyManagementInboundTransferFrom {
+    /**
+     * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * An optional currency field used to specify which currency is debited from the Payment Method.
+     * Since many Payment Methods support only one currency, this field is optional.
+     */
+    currency?: pulumi.Input<string | undefined>;
+    /**
+     * The amount in specified currency that was debited from the Payment Method.
+     */
+    debited?: pulumi.Input<inputs.V2MoneyManagementInboundTransferFromDebited | undefined>;
+    /**
+     * The bank account credential used to fund the InboundTransfer (for example, a US bank account), not a Payments API `pm_` PaymentMethod.
+     */
+    paymentMethod: pulumi.Input<inputs.V2MoneyManagementInboundTransferFromPaymentMethod>;
+}
+
+export interface V2MoneyManagementInboundTransferFromDebited {
+    /**
+     * The currency of the monetary amount.
+     */
+    currency?: pulumi.Input<string | undefined>;
+    /**
+     * The monetary amount in minor units of the currency.
+     */
+    value?: pulumi.Input<number | undefined>;
+}
+
+export interface V2MoneyManagementInboundTransferFromPaymentMethod {
+    /**
+     * The type of PaymentMethod used to create the InboundTransfer. Clients should tolerate future values.
+     */
+    type?: pulumi.Input<string | undefined>;
+    /**
+     * The destination US bank account identifier. eg "usba_***".
+     */
+    usBankAccount?: pulumi.Input<string | undefined>;
+}
+
+export interface V2MoneyManagementInboundTransferTo {
+    /**
+     * The amount by which the FinancialAccount balance is credited.
+     */
+    credited?: pulumi.Input<inputs.V2MoneyManagementInboundTransferToCredited | undefined>;
+    /**
+     * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * The currency to credit to the FinancialAccount.
+     */
+    currency: pulumi.Input<string>;
+    /**
+     * The FinancialAccount that funds will land in.
+     */
+    financialAccount: pulumi.Input<string>;
+}
+
+export interface V2MoneyManagementInboundTransferToCredited {
+    /**
+     * The currency of the monetary amount.
+     */
+    currency?: pulumi.Input<string | undefined>;
+    /**
+     * The monetary amount in minor units of the currency.
+     */
+    value?: pulumi.Input<number | undefined>;
+}
+
+export interface V2MoneyManagementInboundTransferTransferHistory {
+    /**
+     * The InboundTransfer failed. See <span pulumi-lang-nodejs="`failureReason`" pulumi-lang-dotnet="`FailureReason`" pulumi-lang-go="`failureReason`" pulumi-lang-python="`failure_reason`" pulumi-lang-yaml="`failureReason`" pulumi-lang-java="`failureReason`" pulumi-lang-hcl="`failure_reason`">`failureReason`</span> for more details.
+     */
+    bankDebitFailed?: pulumi.Input<inputs.V2MoneyManagementInboundTransferTransferHistoryBankDebitFailed | undefined>;
+    /**
+     * The InboundTransfer was returned. The original transaction has been reversed.
+     */
+    bankDebitReturned?: pulumi.Input<inputs.V2MoneyManagementInboundTransferTransferHistoryBankDebitReturned | undefined>;
+    /**
+     * Creation time of the HistoryEntry in RFC 3339 format and UTC.
+     */
+    created?: pulumi.Input<string | undefined>;
+    /**
+     * Effective at time of the HistoryEntry in RFC 3339 format and UTC.
+     */
+    effectiveAt?: pulumi.Input<string | undefined>;
+    /**
+     * A unique ID for the HistoryEntry.
+     */
+    id?: pulumi.Input<string | undefined>;
+    /**
+     * Open Enum. The type of the HistoryEntry.
+     */
+    type?: pulumi.Input<string | undefined>;
+}
+
+export interface V2MoneyManagementInboundTransferTransferHistoryBankDebitFailed {
+    /**
+     * Open Enum. The return reason for the failed InboundTransfer.
+     */
+    failureReason?: pulumi.Input<string | undefined>;
+}
+
+export interface V2MoneyManagementInboundTransferTransferHistoryBankDebitReturned {
+    /**
+     * Open Enum. The return reason for the returned InboundTransfer.
+     */
+    returnReason?: pulumi.Input<string | undefined>;
+}
+
+export interface V2MoneyManagementOutboundPaymentAmount {
+    /**
+     * The currency of the monetary amount.
+     */
+    currency: pulumi.Input<string>;
+    /**
+     * The monetary amount in minor units of the currency.
+     */
+    value: pulumi.Input<number>;
+}
+
+export interface V2MoneyManagementOutboundPaymentFrom {
+    /**
+     * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * Describes the FinancialAmount's currency drawn from.
+     */
+    currency: pulumi.Input<string>;
+    /**
+     * The monetary amount debited from the sender, only set on responses.
+     */
+    debited?: pulumi.Input<inputs.V2MoneyManagementOutboundPaymentFromDebited | undefined>;
+    /**
+     * The FinancialAccount that funds were pulled from.
+     */
+    financialAccount: pulumi.Input<string>;
+}
+
+export interface V2MoneyManagementOutboundPaymentFromDebited {
+    /**
+     * The currency of the monetary amount.
+     */
+    currency?: pulumi.Input<string | undefined>;
+    /**
+     * The monetary amount in minor units of the currency.
+     */
+    value?: pulumi.Input<number | undefined>;
+}
+
+export interface V2MoneyManagementOutboundPaymentRecipientNotification {
+    /**
+     * Closed Enum. Configuration option to enable or disable notifications to recipients.
+     * Do not send notifications when <span pulumi-lang-nodejs="`setting`" pulumi-lang-dotnet="`Setting`" pulumi-lang-go="`setting`" pulumi-lang-python="`setting`" pulumi-lang-yaml="`setting`" pulumi-lang-java="`setting`" pulumi-lang-hcl="`setting`">`setting`</span> is <span pulumi-lang-nodejs="`none`" pulumi-lang-dotnet="`None`" pulumi-lang-go="`none`" pulumi-lang-python="`none`" pulumi-lang-yaml="`none`" pulumi-lang-java="`none`" pulumi-lang-hcl="`none`">`none`</span>. Use the account setting when <span pulumi-lang-nodejs="`setting`" pulumi-lang-dotnet="`Setting`" pulumi-lang-go="`setting`" pulumi-lang-python="`setting`" pulumi-lang-yaml="`setting`" pulumi-lang-java="`setting`" pulumi-lang-hcl="`setting`">`setting`</span> is <span pulumi-lang-nodejs="`configured`" pulumi-lang-dotnet="`Configured`" pulumi-lang-go="`configured`" pulumi-lang-python="`configured`" pulumi-lang-yaml="`configured`" pulumi-lang-java="`configured`" pulumi-lang-hcl="`configured`">`configured`</span> or omitted.
+     */
+    setting: pulumi.Input<string>;
+}
+
+export interface V2MoneyManagementOutboundPaymentStatusDetails {
+    /**
+     * The <span pulumi-lang-nodejs="`failed`" pulumi-lang-dotnet="`Failed`" pulumi-lang-go="`failed`" pulumi-lang-python="`failed`" pulumi-lang-yaml="`failed`" pulumi-lang-java="`failed`" pulumi-lang-hcl="`failed`">`failed`</span> status reason.
+     */
+    failed?: pulumi.Input<inputs.V2MoneyManagementOutboundPaymentStatusDetailsFailed | undefined>;
+    /**
+     * The <span pulumi-lang-nodejs="`processing`" pulumi-lang-dotnet="`Processing`" pulumi-lang-go="`processing`" pulumi-lang-python="`processing`" pulumi-lang-yaml="`processing`" pulumi-lang-java="`processing`" pulumi-lang-hcl="`processing`">`processing`</span> status details.
+     */
+    processing?: pulumi.Input<inputs.V2MoneyManagementOutboundPaymentStatusDetailsProcessing | undefined>;
+    /**
+     * The <span pulumi-lang-nodejs="`returned`" pulumi-lang-dotnet="`Returned`" pulumi-lang-go="`returned`" pulumi-lang-python="`returned`" pulumi-lang-yaml="`returned`" pulumi-lang-java="`returned`" pulumi-lang-hcl="`returned`">`returned`</span> status reason.
+     */
+    returned?: pulumi.Input<inputs.V2MoneyManagementOutboundPaymentStatusDetailsReturned | undefined>;
+}
+
+export interface V2MoneyManagementOutboundPaymentStatusDetailsFailed {
+    /**
+     * Open Enum. The <span pulumi-lang-nodejs="`failed`" pulumi-lang-dotnet="`Failed`" pulumi-lang-go="`failed`" pulumi-lang-python="`failed`" pulumi-lang-yaml="`failed`" pulumi-lang-java="`failed`" pulumi-lang-hcl="`failed`">`failed`</span> status reason.
+     */
+    reason?: pulumi.Input<string | undefined>;
+}
+
+export interface V2MoneyManagementOutboundPaymentStatusDetailsProcessing {
+    /**
+     * Open Enum. The <span pulumi-lang-nodejs="`processing`" pulumi-lang-dotnet="`Processing`" pulumi-lang-go="`processing`" pulumi-lang-python="`processing`" pulumi-lang-yaml="`processing`" pulumi-lang-java="`processing`" pulumi-lang-hcl="`processing`">`processing`</span> status reason.
+     */
+    reason?: pulumi.Input<string | undefined>;
+}
+
+export interface V2MoneyManagementOutboundPaymentStatusDetailsReturned {
+    /**
+     * Open Enum. The <span pulumi-lang-nodejs="`returned`" pulumi-lang-dotnet="`Returned`" pulumi-lang-go="`returned`" pulumi-lang-python="`returned`" pulumi-lang-yaml="`returned`" pulumi-lang-java="`returned`" pulumi-lang-hcl="`returned`">`returned`</span> status reason.
+     */
+    reason?: pulumi.Input<string | undefined>;
+}
+
+export interface V2MoneyManagementOutboundPaymentStatusTransitions {
+    /**
+     * Timestamp describing when an OutboundPayment changed status to <span pulumi-lang-nodejs="`canceled`" pulumi-lang-dotnet="`Canceled`" pulumi-lang-go="`canceled`" pulumi-lang-python="`canceled`" pulumi-lang-yaml="`canceled`" pulumi-lang-java="`canceled`" pulumi-lang-hcl="`canceled`">`canceled`</span>.
+     * Represented as a RFC 3339 date & time UTC value in millisecond precision, for example: 2022-09-18T13:22:18.123Z.
+     */
+    canceledAt?: pulumi.Input<string | undefined>;
+    /**
+     * Timestamp describing when an OutboundPayment changed status to <span pulumi-lang-nodejs="`failed`" pulumi-lang-dotnet="`Failed`" pulumi-lang-go="`failed`" pulumi-lang-python="`failed`" pulumi-lang-yaml="`failed`" pulumi-lang-java="`failed`" pulumi-lang-hcl="`failed`">`failed`</span>.
+     * Represented as a RFC 3339 date & time UTC value in millisecond precision, for example: 2022-09-18T13:22:18.123Z.
+     */
+    failedAt?: pulumi.Input<string | undefined>;
+    /**
+     * Timestamp describing when an OutboundPayment changed status to <span pulumi-lang-nodejs="`posted`" pulumi-lang-dotnet="`Posted`" pulumi-lang-go="`posted`" pulumi-lang-python="`posted`" pulumi-lang-yaml="`posted`" pulumi-lang-java="`posted`" pulumi-lang-hcl="`posted`">`posted`</span>.
+     * Represented as a RFC 3339 date & time UTC value in millisecond precision, for example: 2022-09-18T13:22:18.123Z.
+     */
+    postedAt?: pulumi.Input<string | undefined>;
+    /**
+     * Timestamp describing when an OutboundPayment changed status to <span pulumi-lang-nodejs="`returned`" pulumi-lang-dotnet="`Returned`" pulumi-lang-go="`returned`" pulumi-lang-python="`returned`" pulumi-lang-yaml="`returned`" pulumi-lang-java="`returned`" pulumi-lang-hcl="`returned`">`returned`</span>.
+     * Represented as a RFC 3339 date & time UTC value in millisecond precision, for example: 2022-09-18T13:22:18.123Z.
+     */
+    returnedAt?: pulumi.Input<string | undefined>;
+}
+
+export interface V2MoneyManagementOutboundPaymentTo {
+    /**
+     * The monetary amount being credited to the destination.
+     */
+    credited?: pulumi.Input<inputs.V2MoneyManagementOutboundPaymentToCredited | undefined>;
+    /**
+     * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * Describes the currency to send to the recipient.
+     * If included, this currency must match a currency supported by the destination.
+     * Can be omitted in the following cases:
+     * - destination only supports one currency
+     * - destination supports multiple currencies and one matches `from.currency`
+     * - destination supports multiple currencies and one matches `amount.currency`
+     *   When both `from.currency` and `amount.currency` are supported, Stripe selects `from.currency` to minimize currency conversion.
+     */
+    currency?: pulumi.Input<string | undefined>;
+    /**
+     * The payout method which the OutboundPayment uses to send payout.
+     */
+    payoutMethod?: pulumi.Input<string | undefined>;
+    /**
+     * Payout method options for the OutboundPayment.
+     */
+    payoutMethodOptions?: pulumi.Input<inputs.V2MoneyManagementOutboundPaymentToPayoutMethodOptions | undefined>;
+    /**
+     * To which account the OutboundPayment is sent.
+     */
+    recipient: pulumi.Input<string>;
+}
+
+export interface V2MoneyManagementOutboundPaymentToCredited {
+    /**
+     * The currency of the monetary amount.
+     */
+    currency?: pulumi.Input<string | undefined>;
+    /**
+     * The monetary amount in minor units of the currency.
+     */
+    value?: pulumi.Input<number | undefined>;
+}
+
+export interface V2MoneyManagementOutboundPaymentToPayoutMethodOptions {
+    /**
+     * Options for bank account payout methods.
+     */
+    bankAccount?: pulumi.Input<inputs.V2MoneyManagementOutboundPaymentToPayoutMethodOptionsBankAccount | undefined>;
+}
+
+export interface V2MoneyManagementOutboundPaymentToPayoutMethodOptionsBankAccount {
+    /**
+     * Per-network configuration options.
+     */
+    preferredNetworkOptions?: pulumi.Input<inputs.V2MoneyManagementOutboundPaymentToPayoutMethodOptionsBankAccountPreferredNetworkOptions | undefined>;
+    /**
+     * The preferred networks to use for this OutboundPayment.
+     */
+    preferredNetworks?: pulumi.Input<pulumi.Input<string>[] | undefined>;
+}
+
+export interface V2MoneyManagementOutboundPaymentToPayoutMethodOptionsBankAccountPreferredNetworkOptions {
+    /**
+     * ACH-specific network options.
+     */
+    ach?: pulumi.Input<inputs.V2MoneyManagementOutboundPaymentToPayoutMethodOptionsBankAccountPreferredNetworkOptionsAch | undefined>;
+}
+
+export interface V2MoneyManagementOutboundPaymentToPayoutMethodOptionsBankAccountPreferredNetworkOptionsAch {
+    /**
+     * Open Enum. ACH submission timing.
+     */
+    submission?: pulumi.Input<string | undefined>;
+    /**
+     * The transaction purpose for this ACH payment.
+     */
+    transactionPurpose?: pulumi.Input<string | undefined>;
+}
+
+export interface V2MoneyManagementOutboundPaymentTrackingDetails {
+    /**
+     * Bank account tracking details.
+     */
+    bankAccount?: pulumi.Input<inputs.V2MoneyManagementOutboundPaymentTrackingDetailsBankAccount | undefined>;
+    /**
+     * Card tracking details.
+     */
+    card?: pulumi.Input<inputs.V2MoneyManagementOutboundPaymentTrackingDetailsCard | undefined>;
+    /**
+     * The status of the tracking details for this OutboundPayment.
+     */
+    status?: pulumi.Input<string | undefined>;
+    /**
+     * The type of tracking details for this OutboundPayment.
+     */
+    type?: pulumi.Input<string | undefined>;
+}
+
+export interface V2MoneyManagementOutboundPaymentTrackingDetailsBankAccount {
+    /**
+     * A unique identifier that can be used to track this OutboundPayment with the recipient bank. Banks might call this a “reference number” or something similar.
+     */
+    traceId?: pulumi.Input<string | undefined>;
+}
+
+export interface V2MoneyManagementOutboundPaymentTrackingDetailsCard {
+    /**
+     * A unique identifier that can be used to track this OutboundPayment with the recipient card.
+     */
+    retrievalReference?: pulumi.Input<string | undefined>;
+}
+
+export interface V2MoneyManagementOutboundSetupIntentPayoutMethodData {
+    /**
+     * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * The type specific details of the bank account payout method.
+     */
+    bankAccount?: pulumi.Input<inputs.V2MoneyManagementOutboundSetupIntentPayoutMethodDataBankAccount | undefined>;
+    /**
+     * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * Open Enum. The type of payout method to be created.
+     */
+    type: pulumi.Input<string>;
+}
+
+export interface V2MoneyManagementOutboundSetupIntentPayoutMethodDataBankAccount {
+    /**
+     * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * The account number or IBAN of the bank account.
+     */
+    accountNumber: pulumi.Input<string>;
+    /**
+     * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * Closed Enum. The type of the bank account (checking or savings).
+     */
+    bankAccountType?: pulumi.Input<string | undefined>;
+    /**
+     * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * The branch number of the bank account, if present.
+     */
+    branchNumber?: pulumi.Input<string | undefined>;
+    /**
+     * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * The country code of the bank account.
+     */
+    country: pulumi.Input<string>;
+    /**
+     * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * The currency of the bank account.
+     */
+    currency: pulumi.Input<string>;
+    /**
+     * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * The routing number of the bank account, if present.
+     */
+    routingNumber?: pulumi.Input<string | undefined>;
+    /**
+     * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * The swift code of the bank account, if present.
+     */
+    swiftCode?: pulumi.Input<string | undefined>;
+}
+
+export interface V2MoneyManagementPayoutIntentAmount {
+    /**
+     * The currency of the monetary amount.
+     */
+    currency: pulumi.Input<string>;
+    /**
+     * The monetary amount in minor units of the currency.
+     */
+    value: pulumi.Input<number>;
+}
+
+export interface V2MoneyManagementPayoutIntentEstimatedFee {
+    /**
+     * The fee amount.
+     */
+    amount?: pulumi.Input<inputs.V2MoneyManagementPayoutIntentEstimatedFeeAmount | undefined>;
+    /**
+     * Details about the network and options associated with this fee. Present when <span pulumi-lang-nodejs="`type`" pulumi-lang-dotnet="`Type`" pulumi-lang-go="`type`" pulumi-lang-python="`type`" pulumi-lang-yaml="`type`" pulumi-lang-java="`type`" pulumi-lang-hcl="`type`">`type`</span> is <span pulumi-lang-nodejs="`networkFee`" pulumi-lang-dotnet="`NetworkFee`" pulumi-lang-go="`networkFee`" pulumi-lang-python="`network_fee`" pulumi-lang-yaml="`networkFee`" pulumi-lang-java="`networkFee`" pulumi-lang-hcl="`network_fee`">`networkFee`</span>.
+     */
+    networkFeeDetails?: pulumi.Input<inputs.V2MoneyManagementPayoutIntentEstimatedFeeNetworkFeeDetails | undefined>;
+    /**
+     * Tax charged for this fee, if applicable. Value expressed as a decimal string in major units.
+     */
+    taxAmount?: pulumi.Input<inputs.V2MoneyManagementPayoutIntentEstimatedFeeTaxAmount | undefined>;
+    /**
+     * Open Enum. The type of fee.
+     */
+    type?: pulumi.Input<string | undefined>;
+}
+
+export interface V2MoneyManagementPayoutIntentEstimatedFeeAmount {
+    /**
+     * The currency of the monetary amount.
+     */
+    currency?: pulumi.Input<string | undefined>;
+    /**
+     * The monetary amount in minor units of the currency.
+     */
+    value?: pulumi.Input<number | undefined>;
+}
+
+export interface V2MoneyManagementPayoutIntentEstimatedFeeNetworkFeeDetails {
+    /**
+     * The network associated with the fee.
+     */
+    network?: pulumi.Input<string | undefined>;
+    /**
+     * Per-network options that affect the fee.
+     */
+    networkOptions?: pulumi.Input<inputs.V2MoneyManagementPayoutIntentEstimatedFeeNetworkFeeDetailsNetworkOptions | undefined>;
+}
+
+export interface V2MoneyManagementPayoutIntentEstimatedFeeNetworkFeeDetailsNetworkOptions {
+    /**
+     * ACH-specific network fee options.
+     */
+    ach?: pulumi.Input<inputs.V2MoneyManagementPayoutIntentEstimatedFeeNetworkFeeDetailsNetworkOptionsAch | undefined>;
+}
+
+export interface V2MoneyManagementPayoutIntentEstimatedFeeNetworkFeeDetailsNetworkOptionsAch {
+    /**
+     * Open Enum. ACH submission timing.
+     */
+    submission?: pulumi.Input<string | undefined>;
+}
+
+export interface V2MoneyManagementPayoutIntentEstimatedFeeTaxAmount {
+    /**
+     * Currency code.
+     */
+    currency?: pulumi.Input<string | undefined>;
+    /**
+     * Tax amount value represented as a decimal string in major units.
+     */
+    valueDecimal?: pulumi.Input<string | undefined>;
+}
+
+export interface V2MoneyManagementPayoutIntentFrom {
+    /**
+     * The currency of the financial account.
+     */
+    currency: pulumi.Input<string>;
+    /**
+     * Estimated amount to be debited from the financial account.
+     */
+    debited?: pulumi.Input<inputs.V2MoneyManagementPayoutIntentFromDebited | undefined>;
+    /**
+     * The FinancialAccount that funds are pulled from.
+     */
+    financialAccount: pulumi.Input<string>;
+}
+
+export interface V2MoneyManagementPayoutIntentFromDebited {
+    /**
+     * The currency of the monetary amount.
+     */
+    currency?: pulumi.Input<string | undefined>;
+    /**
+     * The monetary amount in minor units of the currency.
+     */
+    value?: pulumi.Input<number | undefined>;
+}
+
+export interface V2MoneyManagementPayoutIntentFxQuote {
+    /**
+     * Open Enum. Duration of the FX rate lock.
+     */
+    lockDuration?: pulumi.Input<string | undefined>;
+    /**
+     * Timestamp when the rate lock expires. Null when rate locking is not supported.
+     */
+    lockExpiresAt?: pulumi.Input<string | undefined>;
+    /**
+     * Open Enum. Lock status of the FX rate.
+     */
+    lockStatus?: pulumi.Input<string | undefined>;
+    /**
+     * Maps each source currency to its exchange rate into <span pulumi-lang-nodejs="`toCurrency`" pulumi-lang-dotnet="`ToCurrency`" pulumi-lang-go="`toCurrency`" pulumi-lang-python="`to_currency`" pulumi-lang-yaml="`toCurrency`" pulumi-lang-java="`toCurrency`" pulumi-lang-hcl="`to_currency`">`toCurrency`</span>.
+     */
+    rates?: pulumi.Input<{[key: string]: pulumi.Input<inputs.V2MoneyManagementPayoutIntentFxQuoteRates>} | undefined>;
+    /**
+     * The destination currency.
+     */
+    toCurrency?: pulumi.Input<string | undefined>;
+}
+
+export interface V2MoneyManagementPayoutIntentFxQuoteRates {
+    /**
+     * The exchange rate from the source currency to <span pulumi-lang-nodejs="`toCurrency`" pulumi-lang-dotnet="`ToCurrency`" pulumi-lang-go="`toCurrency`" pulumi-lang-python="`to_currency`" pulumi-lang-yaml="`toCurrency`" pulumi-lang-java="`toCurrency`" pulumi-lang-hcl="`to_currency`">`toCurrency`</span>, represented as a decimal string
+     * (for example, `1.1520`) to preserve the full precision of the rate.
+     */
+    exchangeRate?: pulumi.Input<string | undefined>;
+}
+
+export interface V2MoneyManagementPayoutIntentLatestPayout {
+    /**
+     * The ID of the OutboundPayment, if applicable.
+     */
+    outboundPayment?: pulumi.Input<string | undefined>;
+    /**
+     * The ID of the OutboundTransfer, if applicable.
+     */
+    outboundTransfer?: pulumi.Input<string | undefined>;
+    /**
+     * The type of payout.
+     */
+    type?: pulumi.Input<string | undefined>;
+}
+
+export interface V2MoneyManagementPayoutIntentNextAction {
+    /**
+     * Details about a confirmation required. Populated when <span pulumi-lang-nodejs="`type`" pulumi-lang-dotnet="`Type`" pulumi-lang-go="`type`" pulumi-lang-python="`type`" pulumi-lang-yaml="`type`" pulumi-lang-java="`type`" pulumi-lang-hcl="`type`">`type`</span> is <span pulumi-lang-nodejs="`confirm`" pulumi-lang-dotnet="`Confirm`" pulumi-lang-go="`confirm`" pulumi-lang-python="`confirm`" pulumi-lang-yaml="`confirm`" pulumi-lang-java="`confirm`" pulumi-lang-hcl="`confirm`">`confirm`</span>.
+     */
+    confirm?: pulumi.Input<inputs.V2MoneyManagementPayoutIntentNextActionConfirm | undefined>;
+    /**
+     * Details about a failure that requires user action. Populated when <span pulumi-lang-nodejs="`type`" pulumi-lang-dotnet="`Type`" pulumi-lang-go="`type`" pulumi-lang-python="`type`" pulumi-lang-yaml="`type`" pulumi-lang-java="`type`" pulumi-lang-hcl="`type`">`type`</span> is <span pulumi-lang-nodejs="`handleFailure`" pulumi-lang-dotnet="`HandleFailure`" pulumi-lang-go="`handleFailure`" pulumi-lang-python="`handle_failure`" pulumi-lang-yaml="`handleFailure`" pulumi-lang-java="`handleFailure`" pulumi-lang-hcl="`handle_failure`">`handleFailure`</span>.
+     */
+    handleFailure?: pulumi.Input<inputs.V2MoneyManagementPayoutIntentNextActionHandleFailure | undefined>;
+    /**
+     * Open Enum. The type of next action required.
+     */
+    type?: pulumi.Input<string | undefined>;
+}
+
+export interface V2MoneyManagementPayoutIntentNextActionConfirm {
+    /**
+     * The PayoutIntent fields that must be reviewed before confirmation.
+     */
+    fieldsToReviews?: pulumi.Input<pulumi.Input<string>[] | undefined>;
+    /**
+     * Open Enum. The reason the PayoutIntent requires confirmation.
+     */
+    reason?: pulumi.Input<string | undefined>;
+}
+
+export interface V2MoneyManagementPayoutIntentNextActionHandleFailure {
+    /**
+     * Open Enum. The reason for the failure.
+     */
+    failureReason?: pulumi.Input<string | undefined>;
+}
+
+export interface V2MoneyManagementPayoutIntentRecipientNotification {
+    /**
+     * Closed Enum. Configuration option to enable or disable notifications to recipients.
+     * Do not send notifications when <span pulumi-lang-nodejs="`setting`" pulumi-lang-dotnet="`Setting`" pulumi-lang-go="`setting`" pulumi-lang-python="`setting`" pulumi-lang-yaml="`setting`" pulumi-lang-java="`setting`" pulumi-lang-hcl="`setting`">`setting`</span> is <span pulumi-lang-nodejs="`none`" pulumi-lang-dotnet="`None`" pulumi-lang-go="`none`" pulumi-lang-python="`none`" pulumi-lang-yaml="`none`" pulumi-lang-java="`none`" pulumi-lang-hcl="`none`">`none`</span>. Use the account setting when <span pulumi-lang-nodejs="`setting`" pulumi-lang-dotnet="`Setting`" pulumi-lang-go="`setting`" pulumi-lang-python="`setting`" pulumi-lang-yaml="`setting`" pulumi-lang-java="`setting`" pulumi-lang-hcl="`setting`">`setting`</span> is <span pulumi-lang-nodejs="`configured`" pulumi-lang-dotnet="`Configured`" pulumi-lang-go="`configured`" pulumi-lang-python="`configured`" pulumi-lang-yaml="`configured`" pulumi-lang-java="`configured`" pulumi-lang-hcl="`configured`">`configured`</span> or omitted.
+     */
+    setting: pulumi.Input<string>;
+}
+
+export interface V2MoneyManagementPayoutIntentRecipientVerification {
+    /**
+     * Closed Enum. The recipient-verification provider's match result.
+     */
+    matchResult?: pulumi.Input<string | undefined>;
+    /**
+     * Details associated with the match result.
+     */
+    matchResultDetails?: pulumi.Input<inputs.V2MoneyManagementPayoutIntentRecipientVerificationMatchResultDetails | undefined>;
+}
+
+export interface V2MoneyManagementPayoutIntentRecipientVerificationMatchResultDetails {
+    /**
+     * The business type returned by the recipient-verification provider.
+     */
+    matchedBusinessType?: pulumi.Input<string | undefined>;
+    /**
+     * The account name returned by the recipient-verification provider.
+     */
+    matchedName?: pulumi.Input<string | undefined>;
+    /**
+     * A message describing the match result.
+     */
+    message?: pulumi.Input<string | undefined>;
+    /**
+     * The business type provided for recipient verification.
+     */
+    providedBusinessType?: pulumi.Input<string | undefined>;
+    /**
+     * The name associated with the provided recipient.
+     */
+    providedName?: pulumi.Input<string | undefined>;
+}
+
+export interface V2MoneyManagementPayoutIntentScheduleOptions {
+    /**
+     * The date when the payout should be executed, in YYYY-MM-DD format.
+     */
+    executeOn?: pulumi.Input<string | undefined>;
+}
+
+export interface V2MoneyManagementPayoutIntentStatusTransitions {
+    /**
+     * Timestamp describing when a PayoutIntent changed status to <span pulumi-lang-nodejs="`canceled`" pulumi-lang-dotnet="`Canceled`" pulumi-lang-go="`canceled`" pulumi-lang-python="`canceled`" pulumi-lang-yaml="`canceled`" pulumi-lang-java="`canceled`" pulumi-lang-hcl="`canceled`">`canceled`</span>.
+     * Represented as a RFC 3339 date & time UTC value in millisecond precision, for example: 2022-09-18T13:22:18.123Z.
+     */
+    canceledAt?: pulumi.Input<string | undefined>;
+    /**
+     * Timestamp describing when a PayoutIntent changed status to <span pulumi-lang-nodejs="`posted`" pulumi-lang-dotnet="`Posted`" pulumi-lang-go="`posted`" pulumi-lang-python="`posted`" pulumi-lang-yaml="`posted`" pulumi-lang-java="`posted`" pulumi-lang-hcl="`posted`">`posted`</span>.
+     * Represented as a RFC 3339 date & time UTC value in millisecond precision, for example: 2022-09-18T13:22:18.123Z.
+     */
+    postedAt?: pulumi.Input<string | undefined>;
+    /**
+     * Timestamp describing when a PayoutIntent changed status to <span pulumi-lang-nodejs="`processing`" pulumi-lang-dotnet="`Processing`" pulumi-lang-go="`processing`" pulumi-lang-python="`processing`" pulumi-lang-yaml="`processing`" pulumi-lang-java="`processing`" pulumi-lang-hcl="`processing`">`processing`</span>.
+     * Represented as a RFC 3339 date & time UTC value in millisecond precision, for example: 2022-09-18T13:22:18.123Z.
+     */
+    processingAt?: pulumi.Input<string | undefined>;
+    /**
+     * Timestamp describing when a PayoutIntent changed status to <span pulumi-lang-nodejs="`requiresAction`" pulumi-lang-dotnet="`RequiresAction`" pulumi-lang-go="`requiresAction`" pulumi-lang-python="`requires_action`" pulumi-lang-yaml="`requiresAction`" pulumi-lang-java="`requiresAction`" pulumi-lang-hcl="`requires_action`">`requiresAction`</span>.
+     * Represented as a RFC 3339 date & time UTC value in millisecond precision, for example: 2022-09-18T13:22:18.123Z.
+     */
+    requiresActionAt?: pulumi.Input<string | undefined>;
+}
+
+export interface V2MoneyManagementPayoutIntentTo {
+    /**
+     * Estimated amount to be credited to the recipient in the destination currency.
+     */
+    credited?: pulumi.Input<inputs.V2MoneyManagementPayoutIntentToCredited | undefined>;
+    /**
+     * The currency to send to the recipient.
+     */
+    currency?: pulumi.Input<string | undefined>;
+    /**
+     * The payout method ID for the PayoutIntent. Optional when the PayoutIntent creates an OutboundPayment and the recipient has a default payout method. Required when the PayoutIntent creates an OutboundTransfer.
+     */
+    payoutMethod?: pulumi.Input<string | undefined>;
+    /**
+     * Payout method options for the PayoutIntent.
+     */
+    payoutMethodOptions?: pulumi.Input<inputs.V2MoneyManagementPayoutIntentToPayoutMethodOptions | undefined>;
+    /**
+     * The recipient ID for the PayoutIntent.
+     */
+    recipient?: pulumi.Input<string | undefined>;
+}
+
+export interface V2MoneyManagementPayoutIntentToCredited {
+    /**
+     * The currency of the monetary amount.
+     */
+    currency?: pulumi.Input<string | undefined>;
+    /**
+     * The monetary amount in minor units of the currency.
+     */
+    value?: pulumi.Input<number | undefined>;
+}
+
+export interface V2MoneyManagementPayoutIntentToPayoutMethodOptions {
+    /**
+     * Options for bank account payout methods.
+     */
+    bankAccount?: pulumi.Input<inputs.V2MoneyManagementPayoutIntentToPayoutMethodOptionsBankAccount | undefined>;
+}
+
+export interface V2MoneyManagementPayoutIntentToPayoutMethodOptionsBankAccount {
+    /**
+     * Per-network configuration options.
+     */
+    preferredNetworkOptions?: pulumi.Input<inputs.V2MoneyManagementPayoutIntentToPayoutMethodOptionsBankAccountPreferredNetworkOptions | undefined>;
+    /**
+     * The preferred networks to use for this PayoutIntent.
+     */
+    preferredNetworks?: pulumi.Input<pulumi.Input<string>[] | undefined>;
+}
+
+export interface V2MoneyManagementPayoutIntentToPayoutMethodOptionsBankAccountPreferredNetworkOptions {
+    /**
+     * ACH-specific network options.
+     */
+    ach?: pulumi.Input<inputs.V2MoneyManagementPayoutIntentToPayoutMethodOptionsBankAccountPreferredNetworkOptionsAch | undefined>;
+}
+
+export interface V2MoneyManagementPayoutIntentToPayoutMethodOptionsBankAccountPreferredNetworkOptionsAch {
+    /**
+     * Open Enum. ACH submission timing.
+     */
+    submission?: pulumi.Input<string | undefined>;
+    /**
+     * The transaction purpose for this ACH payment.
+     */
+    transactionPurpose?: pulumi.Input<string | undefined>;
+}
+
+export interface V2MoneyManagementRecipientVerificationConsumedBy {
+    /**
+     * The ID of the OutboundPayment that consumed the RecipientVerification.
+     */
+    outboundPayment?: pulumi.Input<string | undefined>;
+    /**
+     * The type of resource that consumed the RecipientVerification.
+     */
+    type?: pulumi.Input<string | undefined>;
+}
+
+export interface V2MoneyManagementRecipientVerificationMatchResultDetails {
+    /**
+     * The business type matched by the provider. Only present for Confirmation of Payee (CoP) verifications.
+     */
+    matchedBusinessType?: pulumi.Input<string | undefined>;
+    /**
+     * The account name associated with the bank account as provided by the VoP provider, only present if there is a match or close match.
+     */
+    matchedName?: pulumi.Input<string | undefined>;
+    /**
+     * A message describing the match result.
+     */
+    message?: pulumi.Input<string | undefined>;
+    /**
+     * The business type provided by the user. Only present for Confirmation of Payee (CoP) verifications.
+     */
+    providedBusinessType?: pulumi.Input<string | undefined>;
+    /**
+     * The name associated with the provided recipient.
+     */
+    providedName?: pulumi.Input<string | undefined>;
+}
+
+export interface V2MoneyManagementRecipientVerificationStatusTransitions {
+    /**
+     * Timestamp describing when a RecipientVerification changed status to <span pulumi-lang-nodejs="`acknowledged`" pulumi-lang-dotnet="`Acknowledged`" pulumi-lang-go="`acknowledged`" pulumi-lang-python="`acknowledged`" pulumi-lang-yaml="`acknowledged`" pulumi-lang-java="`acknowledged`" pulumi-lang-hcl="`acknowledged`">`acknowledged`</span>.
+     * Represented as a RFC 3339 date & time UTC value in millisecond precision, for example: 2022-09-18T13:22:18.123Z.
+     */
+    acknowledgedAt?: pulumi.Input<string | undefined>;
+    /**
+     * Timestamp describing when a RecipientVerification changed status to <span pulumi-lang-nodejs="`consumed`" pulumi-lang-dotnet="`Consumed`" pulumi-lang-go="`consumed`" pulumi-lang-python="`consumed`" pulumi-lang-yaml="`consumed`" pulumi-lang-java="`consumed`" pulumi-lang-hcl="`consumed`">`consumed`</span>.
+     * Represented as a RFC 3339 date & time UTC value in millisecond precision, for example: 2022-09-18T13:22:18.123Z.
+     */
+    consumedAt?: pulumi.Input<string | undefined>;
 }

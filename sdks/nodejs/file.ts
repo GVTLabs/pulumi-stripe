@@ -20,6 +20,17 @@ export class File extends pulumi.CustomResource {
         return new File(name, <any>state, { ...opts, id: id });
     }
 
+    /**
+     * Check whether an existing File resource with the given ID exists.
+     *
+     * @param id The _unique_ provider ID of the resource to check.
+     * @param state Any extra arguments used during the lookup.
+     * @param opts Optional settings to control the behavior of the CustomResource.
+     */
+    public static exists(id: pulumi.Input<string>, state?: FileState, opts?: pulumi.CustomResourceOptions): pulumi.Output<boolean> {
+        return pulumi.runtime.existsResource("stripe:index/file:File", id, <any>state || {}, { ...opts }, utilities.getPackage());
+    }
+
     /** @internal */
     public static readonly __pulumiType = 'stripe:index/file:File';
 
@@ -49,7 +60,7 @@ export class File extends pulumi.CustomResource {
     declare public readonly file: pulumi.Output<string>;
     /**
      * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
-     * Optional parameters that automatically create a [file link](https://api.stripe.com#file_links) for the newly created file.
+     * Optional parameters that automatically create a [file link](https://docs.stripe.com/api#file_links) for the newly created file.
      */
     declare public readonly fileLinkData: pulumi.Output<outputs.FileFileLinkData | undefined>;
     /**
@@ -151,7 +162,7 @@ export interface FileState {
     file?: pulumi.Input<string | undefined>;
     /**
      * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
-     * Optional parameters that automatically create a [file link](https://api.stripe.com#file_links) for the newly created file.
+     * Optional parameters that automatically create a [file link](https://docs.stripe.com/api#file_links) for the newly created file.
      */
     fileLinkData?: pulumi.Input<inputs.FileFileLinkData | undefined>;
     /**
@@ -195,7 +206,7 @@ export interface FileArgs {
     file: pulumi.Input<string>;
     /**
      * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
-     * Optional parameters that automatically create a [file link](https://api.stripe.com#file_links) for the newly created file.
+     * Optional parameters that automatically create a [file link](https://docs.stripe.com/api#file_links) for the newly created file.
      */
     fileLinkData?: pulumi.Input<inputs.FileFileLinkData | undefined>;
     /**

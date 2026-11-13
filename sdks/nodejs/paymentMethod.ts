@@ -20,6 +20,17 @@ export class PaymentMethod extends pulumi.CustomResource {
         return new PaymentMethod(name, <any>state, { ...opts, id: id });
     }
 
+    /**
+     * Check whether an existing PaymentMethod resource with the given ID exists.
+     *
+     * @param id The _unique_ provider ID of the resource to check.
+     * @param state Any extra arguments used during the lookup.
+     * @param opts Optional settings to control the behavior of the CustomResource.
+     */
+    public static exists(id: pulumi.Input<string>, state?: PaymentMethodState, opts?: pulumi.CustomResourceOptions): pulumi.Output<boolean> {
+        return pulumi.runtime.existsResource("stripe:index/paymentMethod:PaymentMethod", id, <any>state || {}, { ...opts }, utilities.getPackage());
+    }
+
     /** @internal */
     public static readonly __pulumiType = 'stripe:index/paymentMethod:PaymentMethod';
 
@@ -42,6 +53,8 @@ export class PaymentMethod extends pulumi.CustomResource {
     declare public readonly auBecsDebit: pulumi.Output<outputs.PaymentMethodAuBecsDebit>;
     declare public readonly bacsDebit: pulumi.Output<outputs.PaymentMethodBacsDebit>;
     declare public readonly billingDetails: pulumi.Output<outputs.PaymentMethodBillingDetails>;
+    declare public readonly bizum: pulumi.Output<outputs.PaymentMethodBizum>;
+    declare public readonly blik: pulumi.Output<outputs.PaymentMethodBlik>;
     declare public readonly boleto: pulumi.Output<outputs.PaymentMethodBoleto>;
     declare public readonly card: pulumi.Output<outputs.PaymentMethodCard>;
     declare public /*out*/ readonly cardPresent: pulumi.Output<outputs.PaymentMethodCardPresent>;
@@ -83,6 +96,7 @@ export class PaymentMethod extends pulumi.CustomResource {
     declare public readonly paymentMethod: pulumi.Output<string | undefined>;
     declare public readonly paypal: pulumi.Output<outputs.PaymentMethodPaypal>;
     declare public readonly payto: pulumi.Output<outputs.PaymentMethodPayto>;
+    declare public readonly pix: pulumi.Output<outputs.PaymentMethodPix>;
     /**
      * Options to configure Radar. See [Radar Session](https://docs.stripe.com/radar/radar-session) for more information.
      */
@@ -114,6 +128,8 @@ export class PaymentMethod extends pulumi.CustomResource {
             resourceInputs["auBecsDebit"] = state?.auBecsDebit;
             resourceInputs["bacsDebit"] = state?.bacsDebit;
             resourceInputs["billingDetails"] = state?.billingDetails;
+            resourceInputs["bizum"] = state?.bizum;
+            resourceInputs["blik"] = state?.blik;
             resourceInputs["boleto"] = state?.boleto;
             resourceInputs["card"] = state?.card;
             resourceInputs["cardPresent"] = state?.cardPresent;
@@ -136,6 +152,7 @@ export class PaymentMethod extends pulumi.CustomResource {
             resourceInputs["paymentMethod"] = state?.paymentMethod;
             resourceInputs["paypal"] = state?.paypal;
             resourceInputs["payto"] = state?.payto;
+            resourceInputs["pix"] = state?.pix;
             resourceInputs["radarOptions"] = state?.radarOptions;
             resourceInputs["sepaDebit"] = state?.sepaDebit;
             resourceInputs["sofort"] = state?.sofort;
@@ -149,6 +166,8 @@ export class PaymentMethod extends pulumi.CustomResource {
             resourceInputs["auBecsDebit"] = args?.auBecsDebit;
             resourceInputs["bacsDebit"] = args?.bacsDebit;
             resourceInputs["billingDetails"] = args?.billingDetails;
+            resourceInputs["bizum"] = args?.bizum;
+            resourceInputs["blik"] = args?.blik;
             resourceInputs["boleto"] = args?.boleto;
             resourceInputs["card"] = args?.card;
             resourceInputs["cashapp"] = args?.cashapp;
@@ -167,6 +186,7 @@ export class PaymentMethod extends pulumi.CustomResource {
             resourceInputs["paymentMethod"] = args?.paymentMethod ? pulumi.secret(args.paymentMethod) : undefined;
             resourceInputs["paypal"] = args?.paypal;
             resourceInputs["payto"] = args?.payto;
+            resourceInputs["pix"] = args?.pix;
             resourceInputs["radarOptions"] = args?.radarOptions;
             resourceInputs["sepaDebit"] = args?.sepaDebit;
             resourceInputs["sofort"] = args?.sofort;
@@ -197,6 +217,8 @@ export interface PaymentMethodState {
     auBecsDebit?: pulumi.Input<inputs.PaymentMethodAuBecsDebit | undefined>;
     bacsDebit?: pulumi.Input<inputs.PaymentMethodBacsDebit | undefined>;
     billingDetails?: pulumi.Input<inputs.PaymentMethodBillingDetails | undefined>;
+    bizum?: pulumi.Input<inputs.PaymentMethodBizum | undefined>;
+    blik?: pulumi.Input<inputs.PaymentMethodBlik | undefined>;
     boleto?: pulumi.Input<inputs.PaymentMethodBoleto | undefined>;
     card?: pulumi.Input<inputs.PaymentMethodCard | undefined>;
     cardPresent?: pulumi.Input<inputs.PaymentMethodCardPresent | undefined>;
@@ -238,6 +260,7 @@ export interface PaymentMethodState {
     paymentMethod?: pulumi.Input<string | undefined>;
     paypal?: pulumi.Input<inputs.PaymentMethodPaypal | undefined>;
     payto?: pulumi.Input<inputs.PaymentMethodPayto | undefined>;
+    pix?: pulumi.Input<inputs.PaymentMethodPix | undefined>;
     /**
      * Options to configure Radar. See [Radar Session](https://docs.stripe.com/radar/radar-session) for more information.
      */
@@ -264,6 +287,8 @@ export interface PaymentMethodArgs {
     auBecsDebit?: pulumi.Input<inputs.PaymentMethodAuBecsDebit | undefined>;
     bacsDebit?: pulumi.Input<inputs.PaymentMethodBacsDebit | undefined>;
     billingDetails?: pulumi.Input<inputs.PaymentMethodBillingDetails | undefined>;
+    bizum?: pulumi.Input<inputs.PaymentMethodBizum | undefined>;
+    blik?: pulumi.Input<inputs.PaymentMethodBlik | undefined>;
     boleto?: pulumi.Input<inputs.PaymentMethodBoleto | undefined>;
     card?: pulumi.Input<inputs.PaymentMethodCard | undefined>;
     cashapp?: pulumi.Input<inputs.PaymentMethodCashapp | undefined>;
@@ -292,6 +317,7 @@ export interface PaymentMethodArgs {
     paymentMethod?: pulumi.Input<string | undefined>;
     paypal?: pulumi.Input<inputs.PaymentMethodPaypal | undefined>;
     payto?: pulumi.Input<inputs.PaymentMethodPayto | undefined>;
+    pix?: pulumi.Input<inputs.PaymentMethodPix | undefined>;
     /**
      * Options to configure Radar. See [Radar Session](https://docs.stripe.com/radar/radar-session) for more information.
      */

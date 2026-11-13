@@ -5,9 +5,20 @@ package com.pulumi.stripe.outputs;
 
 import com.pulumi.core.annotations.CustomType;
 import com.pulumi.exceptions.MissingRequiredPropertyException;
+import com.pulumi.stripe.outputs.TaxRegistrationCountryOptionsUsAdmissionsTax;
+import com.pulumi.stripe.outputs.TaxRegistrationCountryOptionsUsAttendanceTax;
+import com.pulumi.stripe.outputs.TaxRegistrationCountryOptionsUsEntertainmentTax;
+import com.pulumi.stripe.outputs.TaxRegistrationCountryOptionsUsGrossReceiptsTax;
+import com.pulumi.stripe.outputs.TaxRegistrationCountryOptionsUsHospitalityTax;
 import com.pulumi.stripe.outputs.TaxRegistrationCountryOptionsUsLocalAmusementTax;
 import com.pulumi.stripe.outputs.TaxRegistrationCountryOptionsUsLocalLeaseTax;
+import com.pulumi.stripe.outputs.TaxRegistrationCountryOptionsUsLuxuryTax;
+import com.pulumi.stripe.outputs.TaxRegistrationCountryOptionsUsMassTransitParkingTax;
+import com.pulumi.stripe.outputs.TaxRegistrationCountryOptionsUsParkingTax;
+import com.pulumi.stripe.outputs.TaxRegistrationCountryOptionsUsResortTax;
 import com.pulumi.stripe.outputs.TaxRegistrationCountryOptionsUsStateSalesTax;
+import com.pulumi.stripe.outputs.TaxRegistrationCountryOptionsUsTourismTax;
+import com.pulumi.stripe.outputs.TaxRegistrationCountryOptionsUsUtilityUsersTax;
 import java.lang.String;
 import java.util.Objects;
 import java.util.Optional;
@@ -15,26 +26,64 @@ import javax.annotation.Nullable;
 
 @CustomType
 public final class TaxRegistrationCountryOptionsUs {
+    private @Nullable TaxRegistrationCountryOptionsUsAdmissionsTax admissionsTax;
+    private @Nullable TaxRegistrationCountryOptionsUsAttendanceTax attendanceTax;
+    private @Nullable TaxRegistrationCountryOptionsUsEntertainmentTax entertainmentTax;
+    private @Nullable TaxRegistrationCountryOptionsUsGrossReceiptsTax grossReceiptsTax;
+    private @Nullable TaxRegistrationCountryOptionsUsHospitalityTax hospitalityTax;
     private @Nullable TaxRegistrationCountryOptionsUsLocalAmusementTax localAmusementTax;
     private @Nullable TaxRegistrationCountryOptionsUsLocalLeaseTax localLeaseTax;
+    private @Nullable TaxRegistrationCountryOptionsUsLuxuryTax luxuryTax;
+    private @Nullable TaxRegistrationCountryOptionsUsMassTransitParkingTax massTransitParkingTax;
+    private @Nullable TaxRegistrationCountryOptionsUsParkingTax parkingTax;
+    private @Nullable TaxRegistrationCountryOptionsUsResortTax resortTax;
     /**
      * @return Two-letter US state code ([ISO 3166-2](https://en.wikipedia.org/wiki/ISO_3166-2)).
      * 
      */
     private String state;
     private @Nullable TaxRegistrationCountryOptionsUsStateSalesTax stateSalesTax;
+    private @Nullable TaxRegistrationCountryOptionsUsTourismTax tourismTax;
     /**
      * @return Type of registration in the US.
      * 
      */
     private String type;
+    private @Nullable TaxRegistrationCountryOptionsUsUtilityUsersTax utilityUsersTax;
 
     private TaxRegistrationCountryOptionsUs() {}
+    public Optional<TaxRegistrationCountryOptionsUsAdmissionsTax> admissionsTax() {
+        return Optional.ofNullable(this.admissionsTax);
+    }
+    public Optional<TaxRegistrationCountryOptionsUsAttendanceTax> attendanceTax() {
+        return Optional.ofNullable(this.attendanceTax);
+    }
+    public Optional<TaxRegistrationCountryOptionsUsEntertainmentTax> entertainmentTax() {
+        return Optional.ofNullable(this.entertainmentTax);
+    }
+    public Optional<TaxRegistrationCountryOptionsUsGrossReceiptsTax> grossReceiptsTax() {
+        return Optional.ofNullable(this.grossReceiptsTax);
+    }
+    public Optional<TaxRegistrationCountryOptionsUsHospitalityTax> hospitalityTax() {
+        return Optional.ofNullable(this.hospitalityTax);
+    }
     public Optional<TaxRegistrationCountryOptionsUsLocalAmusementTax> localAmusementTax() {
         return Optional.ofNullable(this.localAmusementTax);
     }
     public Optional<TaxRegistrationCountryOptionsUsLocalLeaseTax> localLeaseTax() {
         return Optional.ofNullable(this.localLeaseTax);
+    }
+    public Optional<TaxRegistrationCountryOptionsUsLuxuryTax> luxuryTax() {
+        return Optional.ofNullable(this.luxuryTax);
+    }
+    public Optional<TaxRegistrationCountryOptionsUsMassTransitParkingTax> massTransitParkingTax() {
+        return Optional.ofNullable(this.massTransitParkingTax);
+    }
+    public Optional<TaxRegistrationCountryOptionsUsParkingTax> parkingTax() {
+        return Optional.ofNullable(this.parkingTax);
+    }
+    public Optional<TaxRegistrationCountryOptionsUsResortTax> resortTax() {
+        return Optional.ofNullable(this.resortTax);
     }
     /**
      * @return Two-letter US state code ([ISO 3166-2](https://en.wikipedia.org/wiki/ISO_3166-2)).
@@ -46,12 +95,18 @@ public final class TaxRegistrationCountryOptionsUs {
     public Optional<TaxRegistrationCountryOptionsUsStateSalesTax> stateSalesTax() {
         return Optional.ofNullable(this.stateSalesTax);
     }
+    public Optional<TaxRegistrationCountryOptionsUsTourismTax> tourismTax() {
+        return Optional.ofNullable(this.tourismTax);
+    }
     /**
      * @return Type of registration in the US.
      * 
      */
     public String type() {
         return this.type;
+    }
+    public Optional<TaxRegistrationCountryOptionsUsUtilityUsersTax> utilityUsersTax() {
+        return Optional.ofNullable(this.utilityUsersTax);
     }
 
     public static Builder builder() {
@@ -63,21 +118,73 @@ public final class TaxRegistrationCountryOptionsUs {
     }
     @CustomType.Builder
     public static final class Builder {
+        private @Nullable TaxRegistrationCountryOptionsUsAdmissionsTax admissionsTax;
+        private @Nullable TaxRegistrationCountryOptionsUsAttendanceTax attendanceTax;
+        private @Nullable TaxRegistrationCountryOptionsUsEntertainmentTax entertainmentTax;
+        private @Nullable TaxRegistrationCountryOptionsUsGrossReceiptsTax grossReceiptsTax;
+        private @Nullable TaxRegistrationCountryOptionsUsHospitalityTax hospitalityTax;
         private @Nullable TaxRegistrationCountryOptionsUsLocalAmusementTax localAmusementTax;
         private @Nullable TaxRegistrationCountryOptionsUsLocalLeaseTax localLeaseTax;
+        private @Nullable TaxRegistrationCountryOptionsUsLuxuryTax luxuryTax;
+        private @Nullable TaxRegistrationCountryOptionsUsMassTransitParkingTax massTransitParkingTax;
+        private @Nullable TaxRegistrationCountryOptionsUsParkingTax parkingTax;
+        private @Nullable TaxRegistrationCountryOptionsUsResortTax resortTax;
         private String state;
         private @Nullable TaxRegistrationCountryOptionsUsStateSalesTax stateSalesTax;
+        private @Nullable TaxRegistrationCountryOptionsUsTourismTax tourismTax;
         private String type;
+        private @Nullable TaxRegistrationCountryOptionsUsUtilityUsersTax utilityUsersTax;
         public Builder() {}
         public Builder(TaxRegistrationCountryOptionsUs defaults) {
     	      Objects.requireNonNull(defaults);
+    	      this.admissionsTax = defaults.admissionsTax;
+    	      this.attendanceTax = defaults.attendanceTax;
+    	      this.entertainmentTax = defaults.entertainmentTax;
+    	      this.grossReceiptsTax = defaults.grossReceiptsTax;
+    	      this.hospitalityTax = defaults.hospitalityTax;
     	      this.localAmusementTax = defaults.localAmusementTax;
     	      this.localLeaseTax = defaults.localLeaseTax;
+    	      this.luxuryTax = defaults.luxuryTax;
+    	      this.massTransitParkingTax = defaults.massTransitParkingTax;
+    	      this.parkingTax = defaults.parkingTax;
+    	      this.resortTax = defaults.resortTax;
     	      this.state = defaults.state;
     	      this.stateSalesTax = defaults.stateSalesTax;
+    	      this.tourismTax = defaults.tourismTax;
     	      this.type = defaults.type;
+    	      this.utilityUsersTax = defaults.utilityUsersTax;
         }
 
+        @CustomType.Setter
+        public Builder admissionsTax(@Nullable TaxRegistrationCountryOptionsUsAdmissionsTax admissionsTax) {
+
+            this.admissionsTax = admissionsTax;
+            return this;
+        }
+        @CustomType.Setter
+        public Builder attendanceTax(@Nullable TaxRegistrationCountryOptionsUsAttendanceTax attendanceTax) {
+
+            this.attendanceTax = attendanceTax;
+            return this;
+        }
+        @CustomType.Setter
+        public Builder entertainmentTax(@Nullable TaxRegistrationCountryOptionsUsEntertainmentTax entertainmentTax) {
+
+            this.entertainmentTax = entertainmentTax;
+            return this;
+        }
+        @CustomType.Setter
+        public Builder grossReceiptsTax(@Nullable TaxRegistrationCountryOptionsUsGrossReceiptsTax grossReceiptsTax) {
+
+            this.grossReceiptsTax = grossReceiptsTax;
+            return this;
+        }
+        @CustomType.Setter
+        public Builder hospitalityTax(@Nullable TaxRegistrationCountryOptionsUsHospitalityTax hospitalityTax) {
+
+            this.hospitalityTax = hospitalityTax;
+            return this;
+        }
         @CustomType.Setter
         public Builder localAmusementTax(@Nullable TaxRegistrationCountryOptionsUsLocalAmusementTax localAmusementTax) {
 
@@ -88,6 +195,30 @@ public final class TaxRegistrationCountryOptionsUs {
         public Builder localLeaseTax(@Nullable TaxRegistrationCountryOptionsUsLocalLeaseTax localLeaseTax) {
 
             this.localLeaseTax = localLeaseTax;
+            return this;
+        }
+        @CustomType.Setter
+        public Builder luxuryTax(@Nullable TaxRegistrationCountryOptionsUsLuxuryTax luxuryTax) {
+
+            this.luxuryTax = luxuryTax;
+            return this;
+        }
+        @CustomType.Setter
+        public Builder massTransitParkingTax(@Nullable TaxRegistrationCountryOptionsUsMassTransitParkingTax massTransitParkingTax) {
+
+            this.massTransitParkingTax = massTransitParkingTax;
+            return this;
+        }
+        @CustomType.Setter
+        public Builder parkingTax(@Nullable TaxRegistrationCountryOptionsUsParkingTax parkingTax) {
+
+            this.parkingTax = parkingTax;
+            return this;
+        }
+        @CustomType.Setter
+        public Builder resortTax(@Nullable TaxRegistrationCountryOptionsUsResortTax resortTax) {
+
+            this.resortTax = resortTax;
             return this;
         }
         @CustomType.Setter
@@ -105,6 +236,12 @@ public final class TaxRegistrationCountryOptionsUs {
             return this;
         }
         @CustomType.Setter
+        public Builder tourismTax(@Nullable TaxRegistrationCountryOptionsUsTourismTax tourismTax) {
+
+            this.tourismTax = tourismTax;
+            return this;
+        }
+        @CustomType.Setter
         public Builder type(String type) {
             if (type == null) {
               throw new MissingRequiredPropertyException("TaxRegistrationCountryOptionsUs", "type");
@@ -112,13 +249,30 @@ public final class TaxRegistrationCountryOptionsUs {
             this.type = type;
             return this;
         }
+        @CustomType.Setter
+        public Builder utilityUsersTax(@Nullable TaxRegistrationCountryOptionsUsUtilityUsersTax utilityUsersTax) {
+
+            this.utilityUsersTax = utilityUsersTax;
+            return this;
+        }
         public TaxRegistrationCountryOptionsUs build() {
             final var _resultValue = new TaxRegistrationCountryOptionsUs();
+            _resultValue.admissionsTax = admissionsTax;
+            _resultValue.attendanceTax = attendanceTax;
+            _resultValue.entertainmentTax = entertainmentTax;
+            _resultValue.grossReceiptsTax = grossReceiptsTax;
+            _resultValue.hospitalityTax = hospitalityTax;
             _resultValue.localAmusementTax = localAmusementTax;
             _resultValue.localLeaseTax = localLeaseTax;
+            _resultValue.luxuryTax = luxuryTax;
+            _resultValue.massTransitParkingTax = massTransitParkingTax;
+            _resultValue.parkingTax = parkingTax;
+            _resultValue.resortTax = resortTax;
             _resultValue.state = state;
             _resultValue.stateSalesTax = stateSalesTax;
+            _resultValue.tourismTax = tourismTax;
             _resultValue.type = type;
+            _resultValue.utilityUsersTax = utilityUsersTax;
             return _resultValue;
         }
     }

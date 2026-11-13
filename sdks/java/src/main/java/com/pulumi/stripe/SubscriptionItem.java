@@ -11,6 +11,7 @@ import com.pulumi.stripe.SubscriptionItemArgs;
 import com.pulumi.stripe.Utilities;
 import com.pulumi.stripe.inputs.SubscriptionItemState;
 import com.pulumi.stripe.outputs.SubscriptionItemBillingThresholds;
+import com.pulumi.stripe.outputs.SubscriptionItemCurrentTrial;
 import com.pulumi.stripe.outputs.SubscriptionItemDiscount;
 import com.pulumi.stripe.outputs.SubscriptionItemPriceData;
 import java.lang.Double;
@@ -93,6 +94,20 @@ public class SubscriptionItem extends com.pulumi.resources.CustomResource {
         return this.currentPeriodStart;
     }
     /**
+     * The current trial that is applied to this subscription item.
+     * 
+     */
+    @Export(name="currentTrial", refs={SubscriptionItemCurrentTrial.class}, tree="[0]")
+    private Output<SubscriptionItemCurrentTrial> currentTrial;
+
+    /**
+     * @return The current trial that is applied to this subscription item.
+     * 
+     */
+    public Output<SubscriptionItemCurrentTrial> currentTrial() {
+        return this.currentTrial;
+    }
+    /**
      * The discounts applied to the subscription item. Subscription item discounts are applied before subscription discounts. Use `expand[]=discounts` to expand each discount.
      * 
      */
@@ -151,10 +166,10 @@ public class SubscriptionItem extends com.pulumi.resources.CustomResource {
         return Codegen.optional(this.paymentBehavior);
     }
     /**
-     * You can now model subscriptions more flexibly using the [Prices API](https://api.stripe.com#prices). It replaces the Plans API and is backwards compatible to simplify your migration.
+     * You can now model subscriptions more flexibly using the [Prices API](https://docs.stripe.com/api#prices). It replaces the Plans API and is backwards compatible to simplify your migration.
      * 
      * Plans define the base price, currency, and billing cycle for recurring purchases of products.
-     * [Products](https://api.stripe.com#products) help you track inventory or provisioning, and plans help you track pricing. Different physical goods or levels of service should be represented by products, and pricing options should be represented by plans. This approach lets you change prices without having to change your provisioning scheme.
+     * [Products](https://docs.stripe.com/api#products) help you track inventory or provisioning, and plans help you track pricing. Different physical goods or levels of service should be represented by products, and pricing options should be represented by plans. This approach lets you change prices without having to change your provisioning scheme.
      * 
      * For example, you might have a single &#34;gold&#34; product that has plans for $10/month, $100/year, €9/month, and €90/year.
      * 
@@ -165,10 +180,10 @@ public class SubscriptionItem extends com.pulumi.resources.CustomResource {
     private Output<String> plan;
 
     /**
-     * @return You can now model subscriptions more flexibly using the [Prices API](https://api.stripe.com#prices). It replaces the Plans API and is backwards compatible to simplify your migration.
+     * @return You can now model subscriptions more flexibly using the [Prices API](https://docs.stripe.com/api#prices). It replaces the Plans API and is backwards compatible to simplify your migration.
      * 
      * Plans define the base price, currency, and billing cycle for recurring purchases of products.
-     * [Products](https://api.stripe.com#products) help you track inventory or provisioning, and plans help you track pricing. Different physical goods or levels of service should be represented by products, and pricing options should be represented by plans. This approach lets you change prices without having to change your provisioning scheme.
+     * [Products](https://docs.stripe.com/api#products) help you track inventory or provisioning, and plans help you track pricing. Different physical goods or levels of service should be represented by products, and pricing options should be represented by plans. This approach lets you change prices without having to change your provisioning scheme.
      * 
      * For example, you might have a single &#34;gold&#34; product that has plans for $10/month, $100/year, €9/month, and €90/year.
      * 
@@ -180,7 +195,7 @@ public class SubscriptionItem extends com.pulumi.resources.CustomResource {
     }
     /**
      * Prices define the unit cost, currency, and (optional) billing cycle for both recurring and one-time purchases of products.
-     * [Products](https://api.stripe.com#products) help you track inventory or provisioning, and prices help you track payment terms. Different physical goods or levels of service should be represented by products, and pricing options should be represented by prices. This approach lets you change prices without having to change your provisioning scheme.
+     * [Products](https://docs.stripe.com/api#products) help you track inventory or provisioning, and prices help you track payment terms. Different physical goods or levels of service should be represented by products, and pricing options should be represented by prices. This approach lets you change prices without having to change your provisioning scheme.
      * 
      * For example, you might have a single &#34;gold&#34; product that has prices for $10/month, $100/year, and €9 once.
      * 
@@ -192,7 +207,7 @@ public class SubscriptionItem extends com.pulumi.resources.CustomResource {
 
     /**
      * @return Prices define the unit cost, currency, and (optional) billing cycle for both recurring and one-time purchases of products.
-     * [Products](https://api.stripe.com#products) help you track inventory or provisioning, and prices help you track payment terms. Different physical goods or levels of service should be represented by products, and pricing options should be represented by prices. This approach lets you change prices without having to change your provisioning scheme.
+     * [Products](https://docs.stripe.com/api#products) help you track inventory or provisioning, and prices help you track payment terms. Different physical goods or levels of service should be represented by products, and pricing options should be represented by prices. This approach lets you change prices without having to change your provisioning scheme.
      * 
      * For example, you might have a single &#34;gold&#34; product that has prices for $10/month, $100/year, and €9 once.
      * 

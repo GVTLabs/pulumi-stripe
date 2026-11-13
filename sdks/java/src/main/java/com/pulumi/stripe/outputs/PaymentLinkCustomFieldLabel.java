@@ -11,7 +11,7 @@ import java.util.Objects;
 @CustomType
 public final class PaymentLinkCustomFieldLabel {
     /**
-     * @return Custom text for the label, displayed to the customer. Up to 50 characters.
+     * @return Custom text for the label, displayed to the customer. Up to 100 characters.
      * 
      */
     private String custom;
@@ -23,7 +23,7 @@ public final class PaymentLinkCustomFieldLabel {
 
     private PaymentLinkCustomFieldLabel() {}
     /**
-     * @return Custom text for the label, displayed to the customer. Up to 50 characters.
+     * @return Custom text for the label, displayed to the customer. Up to 100 characters.
      * 
      */
     public String custom() {

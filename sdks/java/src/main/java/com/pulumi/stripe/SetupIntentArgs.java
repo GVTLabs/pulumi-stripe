@@ -24,6 +24,21 @@ public final class SetupIntentArgs extends com.pulumi.resources.ResourceArgs {
     public static final SetupIntentArgs Empty = new SetupIntentArgs();
 
     /**
+     * The list of payment method types to allow for this SetupIntent. Stripe will only use methods in this list when determining the payment methods to offer.
+     * 
+     */
+    @Import(name="allowedPaymentMethodTypes")
+    private @Nullable Output<List<String>> allowedPaymentMethodTypes;
+
+    /**
+     * @return The list of payment method types to allow for this SetupIntent. Stripe will only use methods in this list when determining the payment methods to offer.
+     * 
+     */
+    public Optional<Output<List<String>>> allowedPaymentMethodTypes() {
+        return Optional.ofNullable(this.allowedPaymentMethodTypes);
+    }
+
+    /**
      * If present, the SetupIntent&#39;s payment method will be attached to the in-context Stripe Account.
      * 
      * It can only be used for this Stripe Account’s own money movement flows like InboundTransfer and OutboundTransfers. It cannot be set to true when setting up a PaymentMethod for a Customer, and defaults to false when attaching a PaymentMethod to a Customer.
@@ -296,21 +311,6 @@ public final class SetupIntentArgs extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * The list of payment method types (e.g. card) that this SetupIntent is allowed to set up. A list of valid payment method types can be found [here](https://docs.stripe.com/api/payment_methods/object#payment_method_object-type).
-     * 
-     */
-    @Import(name="paymentMethodTypes")
-    private @Nullable Output<List<String>> paymentMethodTypes;
-
-    /**
-     * @return The list of payment method types (e.g. card) that this SetupIntent is allowed to set up. A list of valid payment method types can be found [here](https://docs.stripe.com/api/payment_methods/object#payment_method_object-type).
-     * 
-     */
-    public Optional<Output<List<String>>> paymentMethodTypes() {
-        return Optional.ofNullable(this.paymentMethodTypes);
-    }
-
-    /**
      * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
      * The URL to redirect your customer back to after they authenticate or cancel their payment on the payment method&#39;s app or site. To redirect to a mobile application, you can alternatively supply an application URI scheme. This parameter can only be used with [`confirm=true`](https://docs.stripe.com/api/setup_intents/create#create_setup_intent-confirm).
      * 
@@ -387,6 +387,7 @@ public final class SetupIntentArgs extends com.pulumi.resources.ResourceArgs {
     private SetupIntentArgs() {}
 
     private SetupIntentArgs(SetupIntentArgs $) {
+        this.allowedPaymentMethodTypes = $.allowedPaymentMethodTypes;
         this.attachToSelf = $.attachToSelf;
         this.automaticPaymentMethods = $.automaticPaymentMethods;
         this.confirm = $.confirm;
@@ -403,7 +404,6 @@ public final class SetupIntentArgs extends com.pulumi.resources.ResourceArgs {
         this.paymentMethodConfiguration = $.paymentMethodConfiguration;
         this.paymentMethodData = $.paymentMethodData;
         this.paymentMethodOptions = $.paymentMethodOptions;
-        this.paymentMethodTypes = $.paymentMethodTypes;
         this.returnUrl = $.returnUrl;
         this.singleUse = $.singleUse;
         this.usage = $.usage;
@@ -426,6 +426,37 @@ public final class SetupIntentArgs extends com.pulumi.resources.ResourceArgs {
 
         public Builder(SetupIntentArgs defaults) {
             $ = new SetupIntentArgs(Objects.requireNonNull(defaults));
+        }
+
+        /**
+         * @param allowedPaymentMethodTypes The list of payment method types to allow for this SetupIntent. Stripe will only use methods in this list when determining the payment methods to offer.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder allowedPaymentMethodTypes(@Nullable Output<List<String>> allowedPaymentMethodTypes) {
+            $.allowedPaymentMethodTypes = allowedPaymentMethodTypes;
+            return this;
+        }
+
+        /**
+         * @param allowedPaymentMethodTypes The list of payment method types to allow for this SetupIntent. Stripe will only use methods in this list when determining the payment methods to offer.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder allowedPaymentMethodTypes(List<String> allowedPaymentMethodTypes) {
+            return allowedPaymentMethodTypes(Output.of(allowedPaymentMethodTypes));
+        }
+
+        /**
+         * @param allowedPaymentMethodTypes The list of payment method types to allow for this SetupIntent. Stripe will only use methods in this list when determining the payment methods to offer.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder allowedPaymentMethodTypes(String... allowedPaymentMethodTypes) {
+            return allowedPaymentMethodTypes(List.of(allowedPaymentMethodTypes));
         }
 
         /**
@@ -816,37 +847,6 @@ public final class SetupIntentArgs extends com.pulumi.resources.ResourceArgs {
          */
         public Builder paymentMethodOptions(SetupIntentPaymentMethodOptionsArgs paymentMethodOptions) {
             return paymentMethodOptions(Output.of(paymentMethodOptions));
-        }
-
-        /**
-         * @param paymentMethodTypes The list of payment method types (e.g. card) that this SetupIntent is allowed to set up. A list of valid payment method types can be found [here](https://docs.stripe.com/api/payment_methods/object#payment_method_object-type).
-         * 
-         * @return builder
-         * 
-         */
-        public Builder paymentMethodTypes(@Nullable Output<List<String>> paymentMethodTypes) {
-            $.paymentMethodTypes = paymentMethodTypes;
-            return this;
-        }
-
-        /**
-         * @param paymentMethodTypes The list of payment method types (e.g. card) that this SetupIntent is allowed to set up. A list of valid payment method types can be found [here](https://docs.stripe.com/api/payment_methods/object#payment_method_object-type).
-         * 
-         * @return builder
-         * 
-         */
-        public Builder paymentMethodTypes(List<String> paymentMethodTypes) {
-            return paymentMethodTypes(Output.of(paymentMethodTypes));
-        }
-
-        /**
-         * @param paymentMethodTypes The list of payment method types (e.g. card) that this SetupIntent is allowed to set up. A list of valid payment method types can be found [here](https://docs.stripe.com/api/payment_methods/object#payment_method_object-type).
-         * 
-         * @return builder
-         * 
-         */
-        public Builder paymentMethodTypes(String... paymentMethodTypes) {
-            return paymentMethodTypes(List.of(paymentMethodTypes));
         }
 
         /**

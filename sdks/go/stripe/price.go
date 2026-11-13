@@ -209,6 +209,18 @@ func (PriceState) ElementType() reflect.Type {
 	return reflect.TypeOf((*priceState)(nil)).Elem()
 }
 
+// PriceExists checks whether an existing Price resource with the given ID exists.
+func PriceExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *PriceState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	ref, err := internal.PkgGetPackageRef(ctx)
+	if err != nil {
+		return pulumi.Bool(false).ToBoolOutput().ApplyT(func(bool) (bool, error) {
+			return false, err
+		}).(pulumi.BoolOutput)
+	}
+	return ctx.ExistsResource("stripe:index/price:Price", id, state, ref, opts...)
+}
+
 type priceArgs struct {
 	// Whether the price can be used for new purchases.
 	Active *bool `pulumi:"active"`

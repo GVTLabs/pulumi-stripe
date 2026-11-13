@@ -13,37 +13,37 @@ namespace Pulumi.Stripe
     public partial class V2CoreEventDestination : global::Pulumi.CustomResource
     {
         /// <summary>
-        /// Amazon EventBridge configuration.
+        /// Configuration for delivering events through an Amazon EventBridge partner event source.
         /// </summary>
         [Output("amazonEventbridges")]
         public Output<ImmutableArray<Outputs.V2CoreEventDestinationAmazonEventbridge>> AmazonEventbridges { get; private set; } = null!;
 
         /// <summary>
-        /// Azure Event Grid configuration.
+        /// Configuration for delivering events through an Azure Event Grid partner topic.
         /// </summary>
         [Output("azureEventGrid")]
         public Output<Outputs.V2CoreEventDestinationAzureEventGrid> AzureEventGrid { get; private set; } = null!;
 
         /// <summary>
-        /// Time at which the object was created.
+        /// The time when the destination was created.
         /// </summary>
         [Output("created")]
         public Output<string> Created { get; private set; } = null!;
 
         /// <summary>
-        /// An optional description of what the event destination is used for.
+        /// An optional user-defined description of the destination's purpose.
         /// </summary>
         [Output("description")]
         public Output<string> Description { get; private set; } = null!;
 
         /// <summary>
-        /// The list of events to enable for this endpoint.
+        /// The list of event types enabled for delivery to this destination.
         /// </summary>
         [Output("enabledEvents")]
         public Output<ImmutableArray<string>> EnabledEvents { get; private set; } = null!;
 
         /// <summary>
-        /// Payload type of events being subscribed to.
+        /// Whether to deliver as snapshot or thin events.
         /// </summary>
         [Output("eventPayload")]
         public Output<string> EventPayload { get; private set; } = null!;
@@ -60,7 +60,7 @@ namespace Pulumi.Stripe
 
         /// <summary>
         /// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
-        /// Additional fields to include in the response.
+        /// Include normally redacted webhook fields in the create response. Public API clients must include `webhook_endpoint.signing_secret` to receive the signing secret.
         /// </summary>
         [Output("includes")]
         public Output<ImmutableArray<string>> Includes { get; private set; } = null!;
@@ -72,13 +72,13 @@ namespace Pulumi.Stripe
         public Output<bool> Livemode { get; private set; } = null!;
 
         /// <summary>
-        /// Metadata.
+        /// User-defined key/value data for the destination; it has no effect on event matching or delivery.
         /// </summary>
         [Output("metadata")]
         public Output<ImmutableDictionary<string, string>> Metadata { get; private set; } = null!;
 
         /// <summary>
-        /// Event destination name.
+        /// A user-defined label for identifying the destination in Stripe.
         /// </summary>
         [Output("name")]
         public Output<string> Name { get; private set; } = null!;
@@ -90,37 +90,37 @@ namespace Pulumi.Stripe
         public Output<string> Object { get; private set; } = null!;
 
         /// <summary>
-        /// If using the snapshot event payload, the API version events are rendered as.
+        /// For snapshot events only, the Stripe API version used to render event objects. You can't change this value after you create the event destination. Thin events are not pinned to an API version.
         /// </summary>
         [Output("snapshotApiVersion")]
         public Output<string> SnapshotApiVersion { get; private set; } = null!;
 
         /// <summary>
-        /// Status. It can be set to either enabled or disabled.
+        /// Whether Stripe currently attempts delivery. Stripe attempts delivery to enabled destinations when their provider configuration is active; disabled destinations do not receive delivery attempts.
         /// </summary>
         [Output("status")]
         public Output<string> Status { get; private set; } = null!;
 
         /// <summary>
-        /// Additional information about event destination status.
+        /// Additional lifecycle context for the destination status, when available.
         /// </summary>
         [Output("statusDetails")]
         public Output<Outputs.V2CoreEventDestinationStatusDetails> StatusDetails { get; private set; } = null!;
 
         /// <summary>
-        /// Event destination type.
+        /// The delivery transport. Chosen when the destination is created and cannot be changed by update.
         /// </summary>
         [Output("type")]
         public Output<string> Type { get; private set; } = null!;
 
         /// <summary>
-        /// Time at which the object was last updated.
+        /// The time when the destination object was last updated.
         /// </summary>
         [Output("updated")]
         public Output<string> Updated { get; private set; } = null!;
 
         /// <summary>
-        /// Webhook endpoint configuration.
+        /// Configuration for delivering events to a webhook endpoint. Live mode requires HTTPS; sandbox mode also supports HTTP.
         /// </summary>
         [Output("webhookEndpoints")]
         public Output<ImmutableArray<Outputs.V2CoreEventDestinationWebhookEndpoint>> WebhookEndpoints { get; private set; } = null!;
@@ -179,7 +179,7 @@ namespace Pulumi.Stripe
         private InputList<Inputs.V2CoreEventDestinationAmazonEventbridgeArgs>? _amazonEventbridges;
 
         /// <summary>
-        /// Amazon EventBridge configuration.
+        /// Configuration for delivering events through an Amazon EventBridge partner event source.
         /// </summary>
         public InputList<Inputs.V2CoreEventDestinationAmazonEventbridgeArgs> AmazonEventbridges
         {
@@ -188,13 +188,13 @@ namespace Pulumi.Stripe
         }
 
         /// <summary>
-        /// Azure Event Grid configuration.
+        /// Configuration for delivering events through an Azure Event Grid partner topic.
         /// </summary>
         [Input("azureEventGrid")]
         public Input<Inputs.V2CoreEventDestinationAzureEventGridArgs>? AzureEventGrid { get; set; }
 
         /// <summary>
-        /// An optional description of what the event destination is used for.
+        /// An optional user-defined description of the destination's purpose.
         /// </summary>
         [Input("description")]
         public Input<string>? Description { get; set; }
@@ -203,7 +203,7 @@ namespace Pulumi.Stripe
         private InputList<string>? _enabledEvents;
 
         /// <summary>
-        /// The list of events to enable for this endpoint.
+        /// The list of event types enabled for delivery to this destination.
         /// </summary>
         public InputList<string> EnabledEvents
         {
@@ -212,7 +212,7 @@ namespace Pulumi.Stripe
         }
 
         /// <summary>
-        /// Payload type of events being subscribed to.
+        /// Whether to deliver as snapshot or thin events.
         /// </summary>
         [Input("eventPayload", required: true)]
         public Input<string> EventPayload { get; set; } = null!;
@@ -238,7 +238,7 @@ namespace Pulumi.Stripe
 
         /// <summary>
         /// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
-        /// Additional fields to include in the response.
+        /// Include normally redacted webhook fields in the create response. Public API clients must include `webhook_endpoint.signing_secret` to receive the signing secret.
         /// </summary>
         public InputList<string> Includes
         {
@@ -254,7 +254,7 @@ namespace Pulumi.Stripe
         private InputMap<string>? _metadata;
 
         /// <summary>
-        /// Metadata.
+        /// User-defined key/value data for the destination; it has no effect on event matching or delivery.
         /// </summary>
         public InputMap<string> Metadata
         {
@@ -263,19 +263,19 @@ namespace Pulumi.Stripe
         }
 
         /// <summary>
-        /// Event destination name.
+        /// A user-defined label for identifying the destination in Stripe.
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// If using the snapshot event payload, the API version events are rendered as.
+        /// For snapshot events only, the Stripe API version used to render event objects. You can't change this value after you create the event destination. Thin events are not pinned to an API version.
         /// </summary>
         [Input("snapshotApiVersion")]
         public Input<string>? SnapshotApiVersion { get; set; }
 
         /// <summary>
-        /// Event destination type.
+        /// The delivery transport. Chosen when the destination is created and cannot be changed by update.
         /// </summary>
         [Input("type", required: true)]
         public Input<string> Type { get; set; } = null!;
@@ -284,7 +284,7 @@ namespace Pulumi.Stripe
         private InputList<Inputs.V2CoreEventDestinationWebhookEndpointArgs>? _webhookEndpoints;
 
         /// <summary>
-        /// Webhook endpoint configuration.
+        /// Configuration for delivering events to a webhook endpoint. Live mode requires HTTPS; sandbox mode also supports HTTP.
         /// </summary>
         public InputList<Inputs.V2CoreEventDestinationWebhookEndpointArgs> WebhookEndpoints
         {
@@ -304,7 +304,7 @@ namespace Pulumi.Stripe
         private InputList<Inputs.V2CoreEventDestinationAmazonEventbridgeGetArgs>? _amazonEventbridges;
 
         /// <summary>
-        /// Amazon EventBridge configuration.
+        /// Configuration for delivering events through an Amazon EventBridge partner event source.
         /// </summary>
         public InputList<Inputs.V2CoreEventDestinationAmazonEventbridgeGetArgs> AmazonEventbridges
         {
@@ -313,19 +313,19 @@ namespace Pulumi.Stripe
         }
 
         /// <summary>
-        /// Azure Event Grid configuration.
+        /// Configuration for delivering events through an Azure Event Grid partner topic.
         /// </summary>
         [Input("azureEventGrid")]
         public Input<Inputs.V2CoreEventDestinationAzureEventGridGetArgs>? AzureEventGrid { get; set; }
 
         /// <summary>
-        /// Time at which the object was created.
+        /// The time when the destination was created.
         /// </summary>
         [Input("created")]
         public Input<string>? Created { get; set; }
 
         /// <summary>
-        /// An optional description of what the event destination is used for.
+        /// An optional user-defined description of the destination's purpose.
         /// </summary>
         [Input("description")]
         public Input<string>? Description { get; set; }
@@ -334,7 +334,7 @@ namespace Pulumi.Stripe
         private InputList<string>? _enabledEvents;
 
         /// <summary>
-        /// The list of events to enable for this endpoint.
+        /// The list of event types enabled for delivery to this destination.
         /// </summary>
         public InputList<string> EnabledEvents
         {
@@ -343,7 +343,7 @@ namespace Pulumi.Stripe
         }
 
         /// <summary>
-        /// Payload type of events being subscribed to.
+        /// Whether to deliver as snapshot or thin events.
         /// </summary>
         [Input("eventPayload")]
         public Input<string>? EventPayload { get; set; }
@@ -369,7 +369,7 @@ namespace Pulumi.Stripe
 
         /// <summary>
         /// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
-        /// Additional fields to include in the response.
+        /// Include normally redacted webhook fields in the create response. Public API clients must include `webhook_endpoint.signing_secret` to receive the signing secret.
         /// </summary>
         public InputList<string> Includes
         {
@@ -391,7 +391,7 @@ namespace Pulumi.Stripe
         private InputMap<string>? _metadata;
 
         /// <summary>
-        /// Metadata.
+        /// User-defined key/value data for the destination; it has no effect on event matching or delivery.
         /// </summary>
         public InputMap<string> Metadata
         {
@@ -400,7 +400,7 @@ namespace Pulumi.Stripe
         }
 
         /// <summary>
-        /// Event destination name.
+        /// A user-defined label for identifying the destination in Stripe.
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
@@ -412,31 +412,31 @@ namespace Pulumi.Stripe
         public Input<string>? Object { get; set; }
 
         /// <summary>
-        /// If using the snapshot event payload, the API version events are rendered as.
+        /// For snapshot events only, the Stripe API version used to render event objects. You can't change this value after you create the event destination. Thin events are not pinned to an API version.
         /// </summary>
         [Input("snapshotApiVersion")]
         public Input<string>? SnapshotApiVersion { get; set; }
 
         /// <summary>
-        /// Status. It can be set to either enabled or disabled.
+        /// Whether Stripe currently attempts delivery. Stripe attempts delivery to enabled destinations when their provider configuration is active; disabled destinations do not receive delivery attempts.
         /// </summary>
         [Input("status")]
         public Input<string>? Status { get; set; }
 
         /// <summary>
-        /// Additional information about event destination status.
+        /// Additional lifecycle context for the destination status, when available.
         /// </summary>
         [Input("statusDetails")]
         public Input<Inputs.V2CoreEventDestinationStatusDetailsGetArgs>? StatusDetails { get; set; }
 
         /// <summary>
-        /// Event destination type.
+        /// The delivery transport. Chosen when the destination is created and cannot be changed by update.
         /// </summary>
         [Input("type")]
         public Input<string>? Type { get; set; }
 
         /// <summary>
-        /// Time at which the object was last updated.
+        /// The time when the destination object was last updated.
         /// </summary>
         [Input("updated")]
         public Input<string>? Updated { get; set; }
@@ -445,7 +445,7 @@ namespace Pulumi.Stripe
         private InputList<Inputs.V2CoreEventDestinationWebhookEndpointGetArgs>? _webhookEndpoints;
 
         /// <summary>
-        /// Webhook endpoint configuration.
+        /// Configuration for delivering events to a webhook endpoint. Live mode requires HTTPS; sandbox mode also supports HTTP.
         /// </summary>
         public InputList<Inputs.V2CoreEventDestinationWebhookEndpointGetArgs> WebhookEndpoints
         {

@@ -5,6 +5,7 @@ package com.pulumi.stripe.inputs;
 
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
+import com.pulumi.stripe.inputs.SubscriptionInvoiceSettingsCustomFieldArgs;
 import com.pulumi.stripe.inputs.SubscriptionInvoiceSettingsIssuerArgs;
 import java.lang.String;
 import java.util.List;
@@ -32,6 +33,51 @@ public final class SubscriptionInvoiceSettingsArgs extends com.pulumi.resources.
         return Optional.ofNullable(this.accountTaxIds);
     }
 
+    /**
+     * A list of up to 4 custom fields to be displayed on the invoice.
+     * 
+     */
+    @Import(name="customFields")
+    private @Nullable Output<List<SubscriptionInvoiceSettingsCustomFieldArgs>> customFields;
+
+    /**
+     * @return A list of up to 4 custom fields to be displayed on the invoice.
+     * 
+     */
+    public Optional<Output<List<SubscriptionInvoiceSettingsCustomFieldArgs>>> customFields() {
+        return Optional.ofNullable(this.customFields);
+    }
+
+    /**
+     * An arbitrary string attached to the object. Often useful for displaying to users.
+     * 
+     */
+    @Import(name="description")
+    private @Nullable Output<String> description;
+
+    /**
+     * @return An arbitrary string attached to the object. Often useful for displaying to users.
+     * 
+     */
+    public Optional<Output<String>> description() {
+        return Optional.ofNullable(this.description);
+    }
+
+    /**
+     * Footer to be displayed on the invoice.
+     * 
+     */
+    @Import(name="footer")
+    private @Nullable Output<String> footer;
+
+    /**
+     * @return Footer to be displayed on the invoice.
+     * 
+     */
+    public Optional<Output<String>> footer() {
+        return Optional.ofNullable(this.footer);
+    }
+
     @Import(name="issuer")
     private @Nullable Output<SubscriptionInvoiceSettingsIssuerArgs> issuer;
 
@@ -43,6 +89,9 @@ public final class SubscriptionInvoiceSettingsArgs extends com.pulumi.resources.
 
     private SubscriptionInvoiceSettingsArgs(SubscriptionInvoiceSettingsArgs $) {
         this.accountTaxIds = $.accountTaxIds;
+        this.customFields = $.customFields;
+        this.description = $.description;
+        this.footer = $.footer;
         this.issuer = $.issuer;
     }
 
@@ -93,6 +142,79 @@ public final class SubscriptionInvoiceSettingsArgs extends com.pulumi.resources.
          */
         public Builder accountTaxIds(String... accountTaxIds) {
             return accountTaxIds(List.of(accountTaxIds));
+        }
+
+        /**
+         * @param customFields A list of up to 4 custom fields to be displayed on the invoice.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder customFields(@Nullable Output<List<SubscriptionInvoiceSettingsCustomFieldArgs>> customFields) {
+            $.customFields = customFields;
+            return this;
+        }
+
+        /**
+         * @param customFields A list of up to 4 custom fields to be displayed on the invoice.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder customFields(List<SubscriptionInvoiceSettingsCustomFieldArgs> customFields) {
+            return customFields(Output.of(customFields));
+        }
+
+        /**
+         * @param customFields A list of up to 4 custom fields to be displayed on the invoice.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder customFields(SubscriptionInvoiceSettingsCustomFieldArgs... customFields) {
+            return customFields(List.of(customFields));
+        }
+
+        /**
+         * @param description An arbitrary string attached to the object. Often useful for displaying to users.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder description(@Nullable Output<String> description) {
+            $.description = description;
+            return this;
+        }
+
+        /**
+         * @param description An arbitrary string attached to the object. Often useful for displaying to users.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder description(String description) {
+            return description(Output.of(description));
+        }
+
+        /**
+         * @param footer Footer to be displayed on the invoice.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder footer(@Nullable Output<String> footer) {
+            $.footer = footer;
+            return this;
+        }
+
+        /**
+         * @param footer Footer to be displayed on the invoice.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder footer(String footer) {
+            return footer(Output.of(footer));
         }
 
         public Builder issuer(@Nullable Output<SubscriptionInvoiceSettingsIssuerArgs> issuer) {

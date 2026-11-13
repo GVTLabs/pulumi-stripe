@@ -20,6 +20,17 @@ export class InvoiceItem extends pulumi.CustomResource {
         return new InvoiceItem(name, <any>state, { ...opts, id: id });
     }
 
+    /**
+     * Check whether an existing InvoiceItem resource with the given ID exists.
+     *
+     * @param id The _unique_ provider ID of the resource to check.
+     * @param state Any extra arguments used during the lookup.
+     * @param opts Optional settings to control the behavior of the CustomResource.
+     */
+    public static exists(id: pulumi.Input<string>, state?: InvoiceItemState, opts?: pulumi.CustomResourceOptions): pulumi.Output<boolean> {
+        return pulumi.runtime.existsResource("stripe:index/invoiceItem:InvoiceItem", id, <any>state || {}, { ...opts }, utilities.getPackage());
+    }
+
     /** @internal */
     public static readonly __pulumiType = 'stripe:index/invoiceItem:InvoiceItem';
 
@@ -64,9 +75,17 @@ export class InvoiceItem extends pulumi.CustomResource {
      */
     declare public readonly discounts: pulumi.Output<outputs.InvoiceItemDiscount[]>;
     /**
+     * Array of field names that can't be modified. Attempting to update a frozen field returns an error.
+     */
+    declare public /*out*/ readonly frozenFields: pulumi.Output<string[]>;
+    /**
      * The ID of the invoice this invoice item belongs to.
      */
     declare public readonly invoice: pulumi.Output<string>;
+    /**
+     * The rules that control when this invoice item is eligible for invoicing. All rules must be satisfied for the item to be invoiced.
+     */
+    declare public readonly invoicingRules: pulumi.Output<outputs.InvoiceItemInvoicingRule[]>;
     /**
      * If the object exists in live mode, the value is <span pulumi-lang-nodejs="`true`" pulumi-lang-dotnet="`True`" pulumi-lang-go="`true`" pulumi-lang-python="`true`" pulumi-lang-yaml="`true`" pulumi-lang-java="`true`" pulumi-lang-hcl="`true`">`true`</span>. If the object exists in test mode, the value is <span pulumi-lang-nodejs="`false`" pulumi-lang-dotnet="`False`" pulumi-lang-go="`false`" pulumi-lang-python="`false`" pulumi-lang-yaml="`false`" pulumi-lang-java="`false`" pulumi-lang-hcl="`false`">`false`</span>.
      */
@@ -157,7 +176,9 @@ export class InvoiceItem extends pulumi.CustomResource {
             resourceInputs["description"] = state?.description;
             resourceInputs["discountable"] = state?.discountable;
             resourceInputs["discounts"] = state?.discounts;
+            resourceInputs["frozenFields"] = state?.frozenFields;
             resourceInputs["invoice"] = state?.invoice;
+            resourceInputs["invoicingRules"] = state?.invoicingRules;
             resourceInputs["livemode"] = state?.livemode;
             resourceInputs["metadata"] = state?.metadata;
             resourceInputs["object"] = state?.object;
@@ -184,6 +205,7 @@ export class InvoiceItem extends pulumi.CustomResource {
             resourceInputs["discountable"] = args?.discountable;
             resourceInputs["discounts"] = args?.discounts;
             resourceInputs["invoice"] = args?.invoice;
+            resourceInputs["invoicingRules"] = args?.invoicingRules;
             resourceInputs["metadata"] = args?.metadata;
             resourceInputs["period"] = args?.period;
             resourceInputs["priceData"] = args?.priceData ? pulumi.secret(args.priceData) : undefined;
@@ -196,6 +218,7 @@ export class InvoiceItem extends pulumi.CustomResource {
             resourceInputs["taxRates"] = args?.taxRates;
             resourceInputs["unitAmountDecimal"] = args?.unitAmountDecimal ? pulumi.secret(args.unitAmountDecimal) : undefined;
             resourceInputs["date"] = undefined /*out*/;
+            resourceInputs["frozenFields"] = undefined /*out*/;
             resourceInputs["livemode"] = undefined /*out*/;
             resourceInputs["object"] = undefined /*out*/;
             resourceInputs["parent"] = undefined /*out*/;
@@ -244,9 +267,17 @@ export interface InvoiceItemState {
      */
     discounts?: pulumi.Input<pulumi.Input<inputs.InvoiceItemDiscount>[] | undefined>;
     /**
+     * Array of field names that can't be modified. Attempting to update a frozen field returns an error.
+     */
+    frozenFields?: pulumi.Input<pulumi.Input<string>[] | undefined>;
+    /**
      * The ID of the invoice this invoice item belongs to.
      */
     invoice?: pulumi.Input<string | undefined>;
+    /**
+     * The rules that control when this invoice item is eligible for invoicing. All rules must be satisfied for the item to be invoiced.
+     */
+    invoicingRules?: pulumi.Input<pulumi.Input<inputs.InvoiceItemInvoicingRule>[] | undefined>;
     /**
      * If the object exists in live mode, the value is <span pulumi-lang-nodejs="`true`" pulumi-lang-dotnet="`True`" pulumi-lang-go="`true`" pulumi-lang-python="`true`" pulumi-lang-yaml="`true`" pulumi-lang-java="`true`" pulumi-lang-hcl="`true`">`true`</span>. If the object exists in test mode, the value is <span pulumi-lang-nodejs="`false`" pulumi-lang-dotnet="`False`" pulumi-lang-go="`false`" pulumi-lang-python="`false`" pulumi-lang-yaml="`false`" pulumi-lang-java="`false`" pulumi-lang-hcl="`false`">`false`</span>.
      */
@@ -351,6 +382,10 @@ export interface InvoiceItemArgs {
      * The ID of the invoice this invoice item belongs to.
      */
     invoice?: pulumi.Input<string | undefined>;
+    /**
+     * The rules that control when this invoice item is eligible for invoicing. All rules must be satisfied for the item to be invoiced.
+     */
+    invoicingRules?: pulumi.Input<pulumi.Input<inputs.InvoiceItemInvoicingRule>[] | undefined>;
     /**
      * Set of [key-value pairs](https://docs.stripe.com/api/metadata) that you can attach to an object. This can be useful for storing additional information about the object in a structured format.
      */

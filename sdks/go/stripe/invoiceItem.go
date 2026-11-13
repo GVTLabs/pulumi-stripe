@@ -29,8 +29,12 @@ type InvoiceItem struct {
 	Discountable pulumi.BoolOutput `pulumi:"discountable"`
 	// The discounts which apply to the invoice item. Item discounts are applied before invoice discounts. Use `expand[]=discounts` to expand each discount.
 	Discounts InvoiceItemDiscountArrayOutput `pulumi:"discounts"`
+	// Array of field names that can't be modified. Attempting to update a frozen field returns an error.
+	FrozenFields pulumi.StringArrayOutput `pulumi:"frozenFields"`
 	// The ID of the invoice this invoice item belongs to.
 	Invoice pulumi.StringOutput `pulumi:"invoice"`
+	// The rules that control when this invoice item is eligible for invoicing. All rules must be satisfied for the item to be invoiced.
+	InvoicingRules InvoiceItemInvoicingRuleArrayOutput `pulumi:"invoicingRules"`
 	// If the object exists in live mode, the value is <span pulumi-lang-nodejs="`true`" pulumi-lang-dotnet="`True`" pulumi-lang-go="`true`" pulumi-lang-python="`true`" pulumi-lang-yaml="`true`" pulumi-lang-java="`true`" pulumi-lang-hcl="`true`">`true`</span>. If the object exists in test mode, the value is <span pulumi-lang-nodejs="`false`" pulumi-lang-dotnet="`False`" pulumi-lang-go="`false`" pulumi-lang-python="`false`" pulumi-lang-yaml="`false`" pulumi-lang-java="`false`" pulumi-lang-hcl="`false`">`false`</span>.
 	Livemode pulumi.BoolOutput `pulumi:"livemode"`
 	// Set of [key-value pairs](https://docs.stripe.com/api/metadata) that you can attach to an object. This can be useful for storing additional information about the object in a structured format.
@@ -160,8 +164,12 @@ type invoiceItemState struct {
 	Discountable *bool `pulumi:"discountable"`
 	// The discounts which apply to the invoice item. Item discounts are applied before invoice discounts. Use `expand[]=discounts` to expand each discount.
 	Discounts []InvoiceItemDiscount `pulumi:"discounts"`
+	// Array of field names that can't be modified. Attempting to update a frozen field returns an error.
+	FrozenFields []string `pulumi:"frozenFields"`
 	// The ID of the invoice this invoice item belongs to.
 	Invoice *string `pulumi:"invoice"`
+	// The rules that control when this invoice item is eligible for invoicing. All rules must be satisfied for the item to be invoiced.
+	InvoicingRules []InvoiceItemInvoicingRule `pulumi:"invoicingRules"`
 	// If the object exists in live mode, the value is <span pulumi-lang-nodejs="`true`" pulumi-lang-dotnet="`True`" pulumi-lang-go="`true`" pulumi-lang-python="`true`" pulumi-lang-yaml="`true`" pulumi-lang-java="`true`" pulumi-lang-hcl="`true`">`true`</span>. If the object exists in test mode, the value is <span pulumi-lang-nodejs="`false`" pulumi-lang-dotnet="`False`" pulumi-lang-go="`false`" pulumi-lang-python="`false`" pulumi-lang-yaml="`false`" pulumi-lang-java="`false`" pulumi-lang-hcl="`false`">`false`</span>.
 	Livemode *bool `pulumi:"livemode"`
 	// Set of [key-value pairs](https://docs.stripe.com/api/metadata) that you can attach to an object. This can be useful for storing additional information about the object in a structured format.
@@ -219,8 +227,12 @@ type InvoiceItemState struct {
 	Discountable pulumi.BoolPtrInput
 	// The discounts which apply to the invoice item. Item discounts are applied before invoice discounts. Use `expand[]=discounts` to expand each discount.
 	Discounts InvoiceItemDiscountArrayInput
+	// Array of field names that can't be modified. Attempting to update a frozen field returns an error.
+	FrozenFields pulumi.StringArrayInput
 	// The ID of the invoice this invoice item belongs to.
 	Invoice pulumi.StringPtrInput
+	// The rules that control when this invoice item is eligible for invoicing. All rules must be satisfied for the item to be invoiced.
+	InvoicingRules InvoiceItemInvoicingRuleArrayInput
 	// If the object exists in live mode, the value is <span pulumi-lang-nodejs="`true`" pulumi-lang-dotnet="`True`" pulumi-lang-go="`true`" pulumi-lang-python="`true`" pulumi-lang-yaml="`true`" pulumi-lang-java="`true`" pulumi-lang-hcl="`true`">`true`</span>. If the object exists in test mode, the value is <span pulumi-lang-nodejs="`false`" pulumi-lang-dotnet="`False`" pulumi-lang-go="`false`" pulumi-lang-python="`false`" pulumi-lang-yaml="`false`" pulumi-lang-java="`false`" pulumi-lang-hcl="`false`">`false`</span>.
 	Livemode pulumi.BoolPtrInput
 	// Set of [key-value pairs](https://docs.stripe.com/api/metadata) that you can attach to an object. This can be useful for storing additional information about the object in a structured format.
@@ -266,6 +278,18 @@ func (InvoiceItemState) ElementType() reflect.Type {
 	return reflect.TypeOf((*invoiceItemState)(nil)).Elem()
 }
 
+// InvoiceItemExists checks whether an existing InvoiceItem resource with the given ID exists.
+func InvoiceItemExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *InvoiceItemState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	ref, err := internal.PkgGetPackageRef(ctx)
+	if err != nil {
+		return pulumi.Bool(false).ToBoolOutput().ApplyT(func(bool) (bool, error) {
+			return false, err
+		}).(pulumi.BoolOutput)
+	}
+	return ctx.ExistsResource("stripe:index/invoiceItem:InvoiceItem", id, state, ref, opts...)
+}
+
 type invoiceItemArgs struct {
 	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
 	// Amount (in the <span pulumi-lang-nodejs="`currency`" pulumi-lang-dotnet="`Currency`" pulumi-lang-go="`currency`" pulumi-lang-python="`currency`" pulumi-lang-yaml="`currency`" pulumi-lang-java="`currency`" pulumi-lang-hcl="`currency`">`currency`</span> specified) of the invoice item. This should always be equal to <span pulumi-lang-nodejs="`unitAmount " pulumi-lang-dotnet="`UnitAmount " pulumi-lang-go="`unitAmount " pulumi-lang-python="`unit_amount " pulumi-lang-yaml="`unitAmount " pulumi-lang-java="`unitAmount " pulumi-lang-hcl="`unit_amount ">`unitAmount </span>* quantity`.
@@ -282,6 +306,8 @@ type invoiceItemArgs struct {
 	Discounts []InvoiceItemDiscount `pulumi:"discounts"`
 	// The ID of the invoice this invoice item belongs to.
 	Invoice *string `pulumi:"invoice"`
+	// The rules that control when this invoice item is eligible for invoicing. All rules must be satisfied for the item to be invoiced.
+	InvoicingRules []InvoiceItemInvoicingRule `pulumi:"invoicingRules"`
 	// Set of [key-value pairs](https://docs.stripe.com/api/metadata) that you can attach to an object. This can be useful for storing additional information about the object in a structured format.
 	Metadata map[string]string  `pulumi:"metadata"`
 	Period   *InvoiceItemPeriod `pulumi:"period"`
@@ -329,6 +355,8 @@ type InvoiceItemArgs struct {
 	Discounts InvoiceItemDiscountArrayInput
 	// The ID of the invoice this invoice item belongs to.
 	Invoice pulumi.StringPtrInput
+	// The rules that control when this invoice item is eligible for invoicing. All rules must be satisfied for the item to be invoiced.
+	InvoicingRules InvoiceItemInvoicingRuleArrayInput
 	// Set of [key-value pairs](https://docs.stripe.com/api/metadata) that you can attach to an object. This can be useful for storing additional information about the object in a structured format.
 	Metadata pulumi.StringMapInput
 	Period   InvoiceItemPeriodPtrInput
@@ -432,9 +460,19 @@ func (o InvoiceItemOutput) Discounts() InvoiceItemDiscountArrayOutput {
 	return o.ApplyT(func(v *InvoiceItem) InvoiceItemDiscountArrayOutput { return v.Discounts }).(InvoiceItemDiscountArrayOutput)
 }
 
+// Array of field names that can't be modified. Attempting to update a frozen field returns an error.
+func (o InvoiceItemOutput) FrozenFields() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *InvoiceItem) pulumi.StringArrayOutput { return v.FrozenFields }).(pulumi.StringArrayOutput)
+}
+
 // The ID of the invoice this invoice item belongs to.
 func (o InvoiceItemOutput) Invoice() pulumi.StringOutput {
 	return o.ApplyT(func(v *InvoiceItem) pulumi.StringOutput { return v.Invoice }).(pulumi.StringOutput)
+}
+
+// The rules that control when this invoice item is eligible for invoicing. All rules must be satisfied for the item to be invoiced.
+func (o InvoiceItemOutput) InvoicingRules() InvoiceItemInvoicingRuleArrayOutput {
+	return o.ApplyT(func(v *InvoiceItem) InvoiceItemInvoicingRuleArrayOutput { return v.InvoicingRules }).(InvoiceItemInvoicingRuleArrayOutput)
 }
 
 // If the object exists in live mode, the value is <span pulumi-lang-nodejs="`true`" pulumi-lang-dotnet="`True`" pulumi-lang-go="`true`" pulumi-lang-python="`true`" pulumi-lang-yaml="`true`" pulumi-lang-java="`true`" pulumi-lang-hcl="`true`">`true`</span>. If the object exists in test mode, the value is <span pulumi-lang-nodejs="`false`" pulumi-lang-dotnet="`False`" pulumi-lang-go="`false`" pulumi-lang-python="`false`" pulumi-lang-yaml="`false`" pulumi-lang-java="`false`" pulumi-lang-hcl="`false`">`false`</span>.

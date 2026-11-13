@@ -265,6 +265,18 @@ func (SourceState) ElementType() reflect.Type {
 	return reflect.TypeOf((*sourceState)(nil)).Elem()
 }
 
+// SourceExists checks whether an existing Source resource with the given ID exists.
+func SourceExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *SourceState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	ref, err := internal.PkgGetPackageRef(ctx)
+	if err != nil {
+		return pulumi.Bool(false).ToBoolOutput().ApplyT(func(bool) (bool, error) {
+			return false, err
+		}).(pulumi.BoolOutput)
+	}
+	return ctx.ExistsResource("stripe:index/source:Source", id, state, ref, opts...)
+}
+
 type sourceArgs struct {
 	// A positive integer in the smallest currency unit (that is, 100 cents for $1.00, or 1 for ¥1, Japanese Yen being a zero-decimal currency) representing the total amount associated with the source. This is the amount for which the source will be chargeable once ready. Required for <span pulumi-lang-nodejs="`singleUse`" pulumi-lang-dotnet="`SingleUse`" pulumi-lang-go="`singleUse`" pulumi-lang-python="`single_use`" pulumi-lang-yaml="`singleUse`" pulumi-lang-java="`singleUse`" pulumi-lang-hcl="`single_use`">`singleUse`</span> sources.
 	Amount *float64 `pulumi:"amount"`

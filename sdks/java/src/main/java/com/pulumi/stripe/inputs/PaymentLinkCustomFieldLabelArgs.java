@@ -15,14 +15,14 @@ public final class PaymentLinkCustomFieldLabelArgs extends com.pulumi.resources.
     public static final PaymentLinkCustomFieldLabelArgs Empty = new PaymentLinkCustomFieldLabelArgs();
 
     /**
-     * Custom text for the label, displayed to the customer. Up to 50 characters.
+     * Custom text for the label, displayed to the customer. Up to 100 characters.
      * 
      */
     @Import(name="custom", required=true)
     private Output<String> custom;
 
     /**
-     * @return Custom text for the label, displayed to the customer. Up to 50 characters.
+     * @return Custom text for the label, displayed to the customer. Up to 100 characters.
      * 
      */
     public Output<String> custom() {
@@ -70,7 +70,7 @@ public final class PaymentLinkCustomFieldLabelArgs extends com.pulumi.resources.
         }
 
         /**
-         * @param custom Custom text for the label, displayed to the customer. Up to 50 characters.
+         * @param custom Custom text for the label, displayed to the customer. Up to 100 characters.
          * 
          * @return builder
          * 
@@ -81,7 +81,7 @@ public final class PaymentLinkCustomFieldLabelArgs extends com.pulumi.resources.
         }
 
         /**
-         * @param custom Custom text for the label, displayed to the customer. Up to 50 characters.
+         * @param custom Custom text for the label, displayed to the customer. Up to 100 characters.
          * 
          * @return builder
          * 

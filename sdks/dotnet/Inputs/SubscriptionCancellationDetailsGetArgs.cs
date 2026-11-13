@@ -25,6 +25,12 @@ namespace Pulumi.Stripe.Inputs
         public Input<string>? Feedback { get; set; }
 
         /// <summary>
+        /// Customized feedback options that provide deeper insight into why the subscription was canceled, if the subscription was canceled explicitly by the user.
+        /// </summary>
+        [Input("feedbackOption")]
+        public Input<string>? FeedbackOption { get; set; }
+
+        /// <summary>
         /// Why this subscription was canceled.
         /// </summary>
         [Input("reason")]

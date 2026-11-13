@@ -12,14 +12,14 @@ import javax.annotation.Nullable;
 @CustomType
 public final class IssuingCardholderIndividualCardIssuing {
     /**
-     * @return Information about cardholder acceptance of Celtic [Authorized User Terms](https://stripe.com/docs/issuing/cards#accept-authorized-user-terms). Required for cards backed by a Celtic program.
+     * @return Information about cardholder acceptance of Celtic [Authorized User Terms](https://docs.stripe.com/issuing/compliance-us#issuing-terms). Required for cards backed by a Celtic program.
      * 
      */
     private @Nullable IssuingCardholderIndividualCardIssuingUserTermsAcceptance userTermsAcceptance;
 
     private IssuingCardholderIndividualCardIssuing() {}
     /**
-     * @return Information about cardholder acceptance of Celtic [Authorized User Terms](https://stripe.com/docs/issuing/cards#accept-authorized-user-terms). Required for cards backed by a Celtic program.
+     * @return Information about cardholder acceptance of Celtic [Authorized User Terms](https://docs.stripe.com/issuing/compliance-us#issuing-terms). Required for cards backed by a Celtic program.
      * 
      */
     public Optional<IssuingCardholderIndividualCardIssuingUserTermsAcceptance> userTermsAcceptance() {
